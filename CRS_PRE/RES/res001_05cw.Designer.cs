@@ -53,6 +53,7 @@ namespace CRS_PRE
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.res001_05c_p01 = new CRS_PRE.RES.res001_05c_p01();
+            this.res001_05c_p02 = new CRS_PRE.RES.res001_05c_p02();
             this.m_frm_hja.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -246,7 +247,7 @@ namespace CRS_PRE
             this.cr_rep_ort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cr_rep_ort.Location = new System.Drawing.Point(0, 0);
             this.cr_rep_ort.Name = "cr_rep_ort";
-            this.cr_rep_ort.ReportSource = this.res001_05c_p01;
+            this.cr_rep_ort.ReportSource = this.res001_05c_p02;
             this.cr_rep_ort.ShowCloseButton = false;
             this.cr_rep_ort.ShowCopyButton = false;
             this.cr_rep_ort.ShowGroupTreeButton = false;
@@ -301,5 +302,6 @@ namespace CRS_PRE
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripTextBox mn_nro_pag;
         private res001_05c_p01 res001_05c_p01;
+        private res001_05c_p02 res001_05c_p02;
     }
 }

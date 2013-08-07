@@ -621,7 +621,7 @@ namespace CRS_PRE.CMR
             // Instacia de formulario para completar la operacion
             dynamic frm_com_ope ;
             frm_com_ope = new res001_02e();
-            // Abre completa operacion
+            // ABRE VENTANA COMPLETA OPERACION
             switch (tip_ope)
             {
                 case 1: // Factura **********************
@@ -690,12 +690,9 @@ namespace CRS_PRE.CMR
 
                     break;
             }
-
-
-
+   
             
-            
-            
+            // RESULTADO DE LA VENTANA COMPLETA OPERACION
             if((frm_com_ope.DialogResult == DialogResult.OK))
             {
                 try { //** Graba venta
@@ -736,7 +733,6 @@ namespace CRS_PRE.CMR
                             //Actualiza codigo QR
                             o_res001.fu_edi_dbf(tb_res001.Rows[0]["va_ide_vta"].ToString(), tb_fec_vta.Value,  va_arc_cqr);
 
-
                             break;
                         case 2: // GRABA NOTA DE VENTA
                             tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, 0, // <- Nro de factura
@@ -756,6 +752,7 @@ namespace CRS_PRE.CMR
                     tab_dat.Columns.Add("va_ges_doc");
                     tab_dat.Columns.Add("va_nro_tal");
                     tab_dat.Columns.Add("va_ope_rac");
+                    tab_dat.Columns.Add("va_nro_fac");
                     tab_dat.Columns.Add("va_cod_plv");
 
                     tab_dat.Rows.Add();
@@ -763,6 +760,7 @@ namespace CRS_PRE.CMR
                     tab_dat.Rows[0]["va_cod_doc"] = tb_res001.Rows[0]["va_doc_vta"].ToString();
                     tab_dat.Rows[0]["va_ges_doc"] = tb_res001.Rows[0]["va_ges_vta"].ToString();
                     tab_dat.Rows[0]["va_nro_tal"] = tb_res001.Rows[0]["va_nro_tal"].ToString();
+                    tab_dat.Rows[0]["va_nro_fac"] = tb_res001.Rows[0]["va_nro_fac"].ToString();
                     tab_dat.Rows[0]["va_cod_plv"] = tb_res001.Rows[0]["va_cod_plv"].ToString();
 
                     tab_dat.Rows[0]["va_ope_rac"] = "VENTA";
