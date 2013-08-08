@@ -264,10 +264,32 @@ namespace CRS_PRE
       
         private void Mn_con_sul_Click(object sender, EventArgs e)
         {
+            // Verifica concurrencia de datos para editar
+            if (fi_ver_dat() == false)
+                return;
 
+            ecp001_05 frm = new ecp001_05();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
-        
 
+        private void mn_hab_des_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para editar
+            if (fi_ver_dat() == false)
+                return;
+
+            ecp001_04 frm = new ecp001_04();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+        private void mn_eli_min_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para editar
+            if (fi_ver_dat() == false)
+                return;
+
+            ecp001_06 frm = new ecp001_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
         private void mn_cre_ar_Click(object sender, EventArgs e)
         {
             ecp001_02 frm = new ecp001_02();
@@ -291,5 +313,7 @@ namespace CRS_PRE
                 cl_glo_frm.Cerrar(this);
             }
         }
+
+       
     }
 }

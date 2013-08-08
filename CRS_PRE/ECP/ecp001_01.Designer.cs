@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lb_des_plg = new System.Windows.Forms.Label();
             this.bt_bus_car = new System.Windows.Forms.Button();
@@ -52,16 +55,17 @@
             this.mn_list_mod = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.va_cod_plg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_des_plg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nro_cuo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_int_dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_dia_ini = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_frm_hja.SuspendLayout();
@@ -198,6 +202,7 @@
             // 
             this.mn_mod_ifi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_edi_tar,
+            this.mn_hab_des,
             this.mn_eli_min});
             this.mn_mod_ifi.Name = "mn_mod_ifi";
             this.mn_mod_ifi.Size = new System.Drawing.Size(58, 20);
@@ -215,7 +220,7 @@
             this.mn_eli_min.Name = "mn_eli_min";
             this.mn_eli_min.Size = new System.Drawing.Size(180, 22);
             this.mn_eli_min.Text = "Elimi&na";
-            //this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
+            this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
@@ -251,15 +256,15 @@
             this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_cod_plg,
@@ -268,14 +273,14 @@
             this.va_int_dia,
             this.va_dia_ini,
             this.va_est_ado});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle16;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -287,49 +292,6 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
-            // 
-            // va_cod_plg
-            // 
-            this.va_cod_plg.HeaderText = "ID.";
-            this.va_cod_plg.Name = "va_cod_plg";
-            this.va_cod_plg.Width = 40;
-            // 
-            // va_des_plg
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.va_des_plg.DefaultCellStyle = dataGridViewCellStyle2;
-            this.va_des_plg.HeaderText = "Descripción";
-            this.va_des_plg.Name = "va_des_plg";
-            this.va_des_plg.Width = 220;
-            // 
-            // va_nro_cuo
-            // 
-            this.va_nro_cuo.HeaderText = "Nro. Cuota";
-            this.va_nro_cuo.Name = "va_nro_cuo";
-            this.va_nro_cuo.Width = 70;
-            // 
-            // va_int_dia
-            // 
-            this.va_int_dia.HeaderText = "Intervalo";
-            this.va_int_dia.Name = "va_int_dia";
-            this.va_int_dia.Width = 75;
-            // 
-            // va_dia_ini
-            // 
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.va_dia_ini.DefaultCellStyle = dataGridViewCellStyle3;
-            this.va_dia_ini.HeaderText = "Día inicial.";
-            this.va_dia_ini.Name = "va_dia_ini";
-            this.va_dia_ini.Width = 70;
-            // 
-            // va_est_ado
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle4;
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.Width = 65;
             // 
             // gb_ctr_btn
             // 
@@ -372,6 +334,63 @@
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // va_cod_plg
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.va_cod_plg.DefaultCellStyle = dataGridViewCellStyle10;
+            this.va_cod_plg.HeaderText = "ID.";
+            this.va_cod_plg.Name = "va_cod_plg";
+            this.va_cod_plg.Width = 40;
+            // 
+            // va_des_plg
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_des_plg.DefaultCellStyle = dataGridViewCellStyle11;
+            this.va_des_plg.HeaderText = "Descripción";
+            this.va_des_plg.Name = "va_des_plg";
+            this.va_des_plg.Width = 220;
+            // 
+            // va_nro_cuo
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.va_nro_cuo.DefaultCellStyle = dataGridViewCellStyle12;
+            this.va_nro_cuo.HeaderText = "Nro. Cuota";
+            this.va_nro_cuo.Name = "va_nro_cuo";
+            this.va_nro_cuo.Width = 70;
+            // 
+            // va_int_dia
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.va_int_dia.DefaultCellStyle = dataGridViewCellStyle13;
+            this.va_int_dia.HeaderText = "Intervalo";
+            this.va_int_dia.Name = "va_int_dia";
+            this.va_int_dia.Width = 75;
+            // 
+            // va_dia_ini
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "d";
+            dataGridViewCellStyle14.NullValue = null;
+            this.va_dia_ini.DefaultCellStyle = dataGridViewCellStyle14;
+            this.va_dia_ini.HeaderText = "Día inicial.";
+            this.va_dia_ini.Name = "va_dia_ini";
+            this.va_dia_ini.Width = 70;
+            // 
+            // va_est_ado
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle15;
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.Width = 65;
+            // 
+            // mn_hab_des
+            // 
+            this.mn_hab_des.Name = "mn_hab_des";
+            this.mn_hab_des.Size = new System.Drawing.Size(180, 22);
+            this.mn_hab_des.Text = "Habilita/Deshabilita";
+            this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // ecp001_01
             // 
@@ -418,12 +437,6 @@
         public System.Windows.Forms.TextBox tb_sel_ecc;
         private System.Windows.Forms.ComboBox cb_est_ado;
         private System.Windows.Forms.Label lb_des_plg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_plg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_des_plg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_nro_cuo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_int_dia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_dia_ini;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         public System.Windows.Forms.MenuStrip m_frm_hja;
         private System.Windows.Forms.ToolStripMenuItem mn_cre_ar;
@@ -434,5 +447,12 @@
         private System.Windows.Forms.ToolStripMenuItem mn_edi_tar;
         private System.Windows.Forms.ToolStripMenuItem mn_eli_min;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_plg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_des_plg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_nro_cuo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_int_dia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_dia_ini;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
+        private System.Windows.Forms.ToolStripMenuItem mn_hab_des;
     }
 }

@@ -63,6 +63,49 @@ namespace CRS_NEG
             }
         }
 
+        /// <summary>
+        /// funcion "Habilita Plan de Pago"
+        /// </summary>
+        /// <param name="cod_plg">Codigo del Plan de Pago</param>
+        /// <returns></returns>
+        public void Fe_hab_plg(int cod_plg)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine(" UPDATE ecp001 SET va_est_ado = 'H'");
+                cadena.AppendLine(" WHERE  va_cod_plg = '" + cod_plg + "'");
+
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /// <summary>
+        /// funcion "Deshabilita Plan de Pago"
+        /// </summary>
+        /// <param name="cod_plg">Codigo del Plan de Pago</param>
+        /// <returns></returns>
+        public void Fe_dhb_plg(int cod_plg)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine(" UPDATE ecp001 SET va_est_ado = 'N'");
+                cadena.AppendLine(" WHERE  va_cod_plg = '" + cod_plg + "'");
+
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
         /// <summary>
