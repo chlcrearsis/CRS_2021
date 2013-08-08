@@ -65,7 +65,7 @@ namespace CRS_PRE
         {
             //** TRATAMIENTO FORMULARIO **\\
             bool abi_ert = false;   //--> Formulario abierto
-            dynamic frm_mdi;        //--> Formulario MDI
+            dynamic frm_mdi;        //--> Formulario MDI principal
             DataTable frm_dat;
             
             //obtiene formulario MDI
@@ -73,7 +73,7 @@ namespace CRS_PRE
           
             // Si frm_tip = modal o frm_mdi <> formulario MDI
             // no deberia de verificar si ya se abrio la ventana anteriormente (por que se abre a peticion 
-            //y no se hace otra accion hasta que se cierra
+            //y no se hace otra accion hasta su cierre
             // (no hacer lo de arriba)
 
             //Verifica si ya está abierto.//
@@ -113,28 +113,26 @@ namespace CRS_PRE
                 //Pregunta de que forma abrira el formulario nuevo
                 switch (frm_tip)
                 {
-                    case ventana.nada:
+                    case ventana.nada: // para formularios: Crea, Modifica, Consulta, Elimina
                         break;
                     case ventana.bloq:
                         // Elimina formularios dependientes de formulario padre primero
                         foreach (Form f in frm_mdi.MdiChildren)
                         {
+                            // Cerrar ventanas hijas que frm_pad = frm_hja.frm_pad y Diferente a frm_hja
                             dynamic fx = f;
-                            if (fx.frm_pad.Name != frm_pad.Name && fx.frm_pad.Name != frm_mdi.Name)
-                            {
+                            if (fx.frm_pad.Name == frm_pad.Name && fx.Name != frm_hja.Name)
                                 f.Dispose();
-                            }
                         }
                         frm_pad.Enabled = false;
                         break;
                     case ventana.ocul:
                         foreach (Form f in frm_mdi.MdiChildren)
                         {
+                            // Cerrar ventanas hijas que frm_pad = frm_hja.frm_pad y Diferente a frm_hja
                             dynamic fx = f;
-                            if (fx.frm_pad.Name != frm_pad.Name && fx.frm_pad.Name != frm_mdi.Name)
-                            {
+                            if(fx.frm_pad.Name == frm_pad.Name && fx.Name != frm_hja.Name)
                                 f.Dispose();
-                            }
                         }
                         frm_pad.Visible = false;
                         break;
@@ -211,14 +209,11 @@ namespace CRS_PRE
             dynamic frm_pad = frm_hja.frm_pad;
             dynamic frm_tip = frm_hja.frm_tip;
 
-
-
             if(frm_mdi.IsMdiContainer == false)
             {
                 frm_hja.Close();
                 return;
-            }
-           
+            }          
 
             //si el formulario padre es el mismo formulario MDI
             if (frm_mdi.Name == frm_pad.Name)
@@ -233,10 +228,19 @@ namespace CRS_PRE
             }
             else
             {
-                if(frm_tip == (int)ventana.bloq)
+
+                // Cierra todas las ventanas que tengan como padre a 
+                foreach (dynamic frm_aux in frm_mdi.MdiChildren)
+                {
+                    if(frm_aux.frm_pad.Name == frm_hja.Name)
+                        frm_aux.Close();
+                }
+
+
+                if (frm_tip == (int)ventana.bloq)
                     frm_pad.Enabled = true;
                 if(frm_tip == (int)ventana.ocul)
-                    frm_pad.Visible = false;
+                    frm_pad.Visible = true;
 
                 frm_hja.Close();
             }
