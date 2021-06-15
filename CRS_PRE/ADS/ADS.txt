@@ -1,0 +1,28 @@
+********		ESTRUCTURA		********
+******** IDENTIFICADOR: ADS			********
+******** MODULO: Administración y Seguridad	********
+
+Ads001 = Modulo                                             
+Ads002 = Aplicacion
+Ads003 = Documento
+Ads004 = Talonario
+Ads005 = Numeración
+Ads006 = Tipo de Usuario
+Ads007 = Usuario
+Ads008 = Autorización s/Aplic.
+Ads009 = Autorización s/Tal.
+Ads010 = Sucursal
+Ads011 = Autorización s/Suc.
+Ads012 = Restricción menú
+Ads013 = Globales
+Ads014 = Region
+Ads015 = Autorizacion usuario s/Region
+Ads016 = Gestion Periodos
+Ads017 = Autorizacion usuario s/Plantilla de ventas (cmr004)
+Ads018 = Autorizacion usuario s/Plantilla de ventas (res004)
+Ads019 = Autorizacion usuario s/Lista de precios (cmr001)
+Ads020 = Autorizacion usuario s/Vendedor (cmr014)
+Ads021 = Autorizacion usuario s/Delivery (cmr015)
+ads022 = Tipo de cambio Bs/Us
+ads023 = Tipo de cambio Bs/Ufv
+

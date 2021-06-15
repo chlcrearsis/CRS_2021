@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0CEAB83D-D470-4CE8-AE2D-C99263F26522}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRS_NEG</RootNamespace>
+    <AssemblyName>CRS_NEG</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CRS_PRE\bin\Debug\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADS\c_ads002.cs" />
+    <Compile Include="ADS\c_ads005.cs" />
+    <Compile Include="ADS\c_ads004.cs" />
+    <Compile Include="ADS\c_ads009.cs" />
+    <Compile Include="ADS\c_ads008.cs" />
+    <Compile Include="ADS\c_ads019.cs" />
+    <Compile Include="ADS\c_ads018.cs" />
+    <Compile Include="ADS\c_ads017.cs" />
+    <Compile Include="ADS\c_ads007.cs" />
+    <Compile Include="ADS\c_ads001.cs" />
+    <Compile Include="ADS\c_ads013.cs" />
+    <Compile Include="ADS\c_ads003.cs" />
+    <Compile Include="ADS\c_ads016.cs" />
+    <Compile Include="ADS\c_ads022.cs" />
+    <Compile Include="CMR\c_cmr008.cs" />
+    <Compile Include="CMR\c_cmr007.cs" />
+    <Compile Include="CMR\c_cmr005.cs" />
+    <Compile Include="CMR\c_cmr006.cs" />
+    <Compile Include="CMR\c_res004.cs" />
+    <Compile Include="CMR\c_cmr004.cs" />
+    <Compile Include="CMR\c_cmr012.cs" />
+    <Compile Include="CMR\c_cmr014.cs" />
+    <Compile Include="CMR\c_cmr015.cs" />
+    <Compile Include="CMR\c_cmr002.cs" />
+    <Compile Include="CMR\c_cmr001.cs" />
+    <Compile Include="CMR\c_cmr013.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="INV\c_inv099.cs" />
+    <Compile Include="INV\c_inv005.cs" />
+    <Compile Include="INV\c_inv007.cs" />
+    <Compile Include="INV\c_inv006.cs" />
+    <Compile Include="INV\c_inv002.cs" />
+    <Compile Include="INV\c_res002.cs" />
+    <Compile Include="INV\c_res001.cs" />
+    <Compile Include="INV\c_inv004.cs" />
+    <Compile Include="INV\c_inv003.cs" />
+    <Compile Include="INV\c_inv001.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRS_DAT\CRS_DAT.csproj">
+      <Project>{ee8fcda7-bddc-4e62-8cfc-832ced0cc05e}</Project>
+      <Name>CRS_DAT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CCP\" />
+    <Folder Include="TES\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

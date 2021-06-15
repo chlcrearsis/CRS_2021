@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dts_ads200" targetNamespace="http://tempuri.org/dts_ads200.xsd" xmlns:mstns="http://tempuri.org/dts_ads200.xsd" xmlns="http://tempuri.org/dts_ads200.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dts_ads200" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dts_ads200" msprop:Generator_UserDSName="dts_ads200">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ads007_R01" msprop:Generator_TableClassName="ads007_R01DataTable" msprop:Generator_TableVarName="tableads007_R01" msprop:Generator_TablePropName="ads007_R01" msprop:Generator_RowDeletingName="ads007_R01RowDeleting" msprop:Generator_RowChangingName="ads007_R01RowChanging" msprop:Generator_RowEvHandlerName="ads007_R01RowChangeEventHandler" msprop:Generator_RowDeletedName="ads007_R01RowDeleted" msprop:Generator_UserTableName="ads007_R01" msprop:Generator_RowChangedName="ads007_R01RowChanged" msprop:Generator_RowEvArgName="ads007_R01RowChangeEvent" msprop:Generator_RowClassName="ads007_R01Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="va_ide_usr" msprop:Generator_ColumnVarNameInTable="columnva_ide_usr" msprop:Generator_ColumnPropNameInRow="va_ide_usr" msprop:Generator_ColumnPropNameInTable="va_ide_usrColumn" msprop:Generator_UserColumnName="va_ide_usr" type="xs:string" minOccurs="0" />
+              <xs:element name="va_nom_usr" msprop:Generator_ColumnVarNameInTable="columnva_nom_usr" msprop:Generator_ColumnPropNameInRow="va_nom_usr" msprop:Generator_ColumnPropNameInTable="va_nom_usrColumn" msprop:Generator_UserColumnName="va_nom_usr" type="xs:string" minOccurs="0" />
+              <xs:element name="va_tel_usr" msprop:Generator_ColumnVarNameInTable="columnva_tel_usr" msprop:Generator_ColumnPropNameInRow="va_tel_usr" msprop:Generator_ColumnPropNameInTable="va_tel_usrColumn" msprop:Generator_UserColumnName="va_tel_usr" type="xs:string" minOccurs="0" />
+              <xs:element name="va_car_usr" msprop:Generator_ColumnVarNameInTable="columnva_car_usr" msprop:Generator_ColumnPropNameInRow="va_car_usr" msprop:Generator_ColumnPropNameInTable="va_car_usrColumn" msprop:Generator_UserColumnName="va_car_usr" type="xs:string" minOccurs="0" />
+              <xs:element name="va_ema_usr" msprop:Generator_ColumnVarNameInTable="columnva_ema_usr" msprop:Generator_ColumnPropNameInRow="va_ema_usr" msprop:Generator_ColumnPropNameInTable="va_ema_usrColumn" msprop:Generator_UserColumnName="va_ema_usr" type="xs:string" minOccurs="0" />
+              <xs:element name="va_win_max" msprop:Generator_ColumnVarNameInTable="columnva_win_max" msprop:Generator_ColumnPropNameInRow="va_win_max" msprop:Generator_ColumnPropNameInTable="va_win_maxColumn" msprop:Generator_UserColumnName="va_win_max" type="xs:int" minOccurs="0" />
+              <xs:element name="va_ide_per" msprop:Generator_ColumnVarNameInTable="columnva_ide_per" msprop:Generator_ColumnPropNameInRow="va_ide_per" msprop:Generator_ColumnPropNameInTable="va_ide_perColumn" msprop:Generator_UserColumnName="va_ide_per" type="xs:int" minOccurs="0" />
+              <xs:element name="va_est_ado" msprop:Generator_ColumnVarNameInTable="columnva_est_ado" msprop:Generator_ColumnPropNameInRow="va_est_ado" msprop:Generator_ColumnPropNameInTable="va_est_adoColumn" msprop:Generator_UserColumnName="va_est_ado" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
