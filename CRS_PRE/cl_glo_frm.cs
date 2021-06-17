@@ -297,7 +297,7 @@ namespace CRS_PRE
             string[] vv_vec_dia = { "g", "a", "b", "c", "d", "e", "f" }; //dia ( 1=a ; 2=b ; 3=c ... ; 8=a ; 9=b ; 10=c ... 15=a ...; 28=a ...
             string[] vv_vec_mes = { "m", "h", "i", "j", "k", "l" }; //meses (enero=h ; febrero=i ; marzo=j ; abril=k ...)
 
-            //'obtiene fecha del servidor//-------------MODIFY
+            //'obtiene fecha del servidor
 
             fec_srv = fg_fec_act();
             //fec_srv = "14/08/2016"

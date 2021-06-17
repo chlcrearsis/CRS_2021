@@ -4,7 +4,7 @@
 
 cmr001 = Lista de precios
 cmr002 = Detalle de precios
-cmr003 = 
+cmr003 = Sucursal (pendiente) traer aca desde ads010
 cmr004 = Plantilla de ventas
 cmr005 = Nota de venta
 cmr006 = Detalle de nota de venta

@@ -56,6 +56,7 @@ namespace CRS_PRE.ADS
                 return "Debe proporcionar el nombre para el usuario";
             }
             
+            
             if (cl_glo_bal.IsNumeric(tb_win_max.Text) == false)
             {
                 tb_win_max.Focus();
