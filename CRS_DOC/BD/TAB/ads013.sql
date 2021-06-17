@@ -37,6 +37,13 @@ INSERT INTO ads013 VALUES (1,12,'Logo Empresa',1,'',0,0)
 INSERT INTO ads013 VALUES (1,13,'Logo B',1,'',0,0)
 INSERT INTO ads013 VALUES (1,14,'Logo C',1,'',0,0)
 INSERT INTO ads013 VALUES (1,15,'Logo D',1,'',0,0)
+
+--16/06/2021
+INSERT INTO ads013 VALUES (1,16,'UsrLicAct',2,'',15360,0)	-- Cantidad de Licencia * 1024; (15*1024 = 15360)
+INSERT INTO ads013 VALUES (1,17,'FecLicAct',1,'21260026',0,0) -- Cadena encriptada de la licencia que contiene la fecha de expiracion
+--16/06/2021
+
+
 INSERT INTO ads013 VALUES (1,100,'Version del sistema',1,'1.0.0',0,0)
 
 -- Modulo Comercializacion
