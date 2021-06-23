@@ -136,16 +136,18 @@ namespace CRS_NEG.ADS
         /// <param name="ag_nom_usr">nombre</param>
         /// <param name="ag_tel_usr">telefono</param>
         /// <param name="ag_car_usr">cargo</param>
+        /// <param name="ag_dir_ect">Directorio de trabajo</param>
         /// <param name="ag_ema_usr">email</param>
         /// <param name="ag_win_max">maximo de ventanas abiertas permitidas</param>
         /// <param name="ag_ide_per">persona relacionada con el usuario</param>
+        /// <param name="ag_tip_usr">Tipo de usuario</param>
         public void Fe_exe_nue(string ag_ide_usr, string ag_nom_usr, string ag_tel_usr,
-                                  string ag_car_usr, string ag_ema_usr, int ag_win_max,
-                                  int ag_ide_per = 0, int ag_usr_new = 1)
+                                  string ag_car_usr, string ag_dir_ect, string ag_ema_usr, int ag_win_max,
+                                  int ag_ide_per = 0, int ag_tip_usr = 1, int ag_usr_new = 1)
         {
             cadena = " execute ads007_02a_p01 '" + ag_ide_usr + "','"+ ag_nom_usr + "','";
-            cadena += ag_tel_usr + "','" + ag_car_usr + "','" + ag_ema_usr+ "'," + ag_win_max + ",";
-            cadena += ag_ide_per + ", " + ag_usr_new;
+            cadena += ag_tel_usr + "','" + ag_car_usr + "','" + ag_dir_ect+ "','" + ag_ema_usr + "'," + ag_win_max + ",";
+            cadena += ag_ide_per + "," + ag_tip_usr + ", " + ag_usr_new;
 
              ob_con_ecA.fe_exe_sql(cadena);
         }
@@ -163,12 +165,12 @@ namespace CRS_NEG.ADS
         /// <param name="ag_win_max">maximo de ventanas abiertas permitidas</param>
         /// <param name="ag_ide_per">persona relacionada con el usuario</param>
         public void Fe_exe_edi(string ag_ide_usr, string ag_nom_usr, string ag_tel_usr,
-                                  string ag_car_usr, string ag_ema_usr, int ag_win_max,
-                                  int ag_ide_per = 0)
+                                  string ag_car_usr, string ag_dir_ect, string ag_ema_usr, int ag_win_max,
+                                  int ag_ide_per = 0, int ag_tip_usr = 0)
         {
             cadena = " execute ads007_03a_p01 '" + ag_ide_usr + "','" + ag_nom_usr + "','";
-            cadena += ag_tel_usr + "','" + ag_car_usr + "','" + ag_ema_usr + "'," + ag_win_max + ",";
-            cadena += ag_ide_per;
+            cadena += ag_tel_usr + "','" + ag_car_usr + "','" + ag_dir_ect + "','" + ag_ema_usr + "'," + ag_win_max + ",";
+            cadena += ag_ide_per + "," + ag_tip_usr;
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
@@ -228,17 +230,23 @@ namespace CRS_NEG.ADS
         /// <param name="ag_par_ame"> argumento parametro por que se buscara</param>
         /// <param name="ag_val_or"> argumento valor que se buscara</param>
         /// <returns></returns>
-        public DataTable Fe_bus_usu(string ag_tex_bus, int ag_prm_bus, int ag_est_bus)
+        public DataTable Fe_bus_usu(string ag_tex_bus, int ag_prm_bus, int ag_est_bus, int ag_tip_usr = 0)
         {
-            cadena = " Select * from ads007";
+            cadena = " Select * from ads007 , ads006 ";
+            cadena += " WHERE ads006.va_ide_tus = ads007.va_tip_usr ";
+
             if(ag_prm_bus == 1)
-                cadena += " where va_ide_usr like '" + ag_tex_bus + "%'";
+                cadena += " AND va_ide_usr like '" + ag_tex_bus + "%'";
             if(ag_prm_bus == 2)
-                cadena += " where va_nom_usr like '" + ag_tex_bus + "%'";
+                cadena += " AND va_nom_usr like '" + ag_tex_bus + "%'";
+
             if(ag_est_bus == 1)
                 cadena += " AND va_est_ado = 'H'";
-             if (ag_est_bus == 2)
+            if (ag_est_bus == 2)
                 cadena += " AND va_est_ado = 'N'";
+
+            if(ag_tip_usr != 0)
+                cadena += " AND va_tip_usr = " + ag_tip_usr ;
 
             return ob_con_ecA.fe_exe_sql(cadena);
 

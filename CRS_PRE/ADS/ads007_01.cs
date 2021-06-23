@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using CRS_NEG.ADS;
+using CRS_NEG;
+
 
 namespace CRS_PRE.ADS
 {
@@ -26,10 +28,13 @@ namespace CRS_PRE.ADS
         }
 
         // instancia
+        c_ads006 o_ads006 = new c_ads006();
         c_ads007 o_ads007 = new c_ads007();
 
         // Variables
         DataTable tabla = new DataTable();
+        DataTable tab_ads006 = new DataTable();
+
 
         private void ads007_01_Load(object sender, EventArgs e)
         {
@@ -42,8 +47,42 @@ namespace CRS_PRE.ADS
             tb_sel_bus.Text = "";
             cb_prm_bus.SelectedIndex = 0;
             cb_est_bus.SelectedIndex = 0;
+            
+            // Obtiene tipo de usuarios
+            Fi_obt_tus();
+
+            cb_tip_usr.SelectedIndex = 0;
+
 
             fi_bus_car("", parametro.codigo, estado.Todos);  
+        }
+
+        private void Fi_obt_tus()
+        {
+            tab_ads006 = new DataTable();
+
+            tab_ads006.Columns.Add("va_ide_tus");
+            tab_ads006.Columns.Add("va_nom_tus");
+
+            tab_ads006.Rows.Add();
+            tab_ads006.Rows[0][0] = "0";
+            tab_ads006.Rows[0][1] = "Todos";
+
+            tabla = o_ads006.Fe_lis_tus();
+            
+            for (int i = 0; i < tabla.Rows.Count ; i++)
+            {
+                tab_ads006.Rows.Add();
+                tab_ads006.Rows[i + 1][0] = tabla.Rows[i][0].ToString();
+                tab_ads006.Rows[i + 1][1] = tabla.Rows[i][1].ToString();
+            }
+
+            cb_tip_usr.DataSource = tab_ads006;
+            cb_tip_usr.DisplayMember = "va_nom_tus";
+            cb_tip_usr.ValueMember = "va_ide_tus";
+            cb_tip_usr.Refresh();
+
+
         }
 
         protected enum parametro
@@ -66,7 +105,8 @@ namespace CRS_PRE.ADS
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
 
-            tabla = o_ads007.Fe_bus_usu(ar_tex_bus, (int)ar_prm_bus, (int)ar_est_bus);
+            tabla = o_ads007.Fe_bus_usu(ar_tex_bus, (int)ar_prm_bus, (int)ar_est_bus,int.Parse(cb_tip_usr.SelectedValue.ToString()));
+            
             if (tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < tabla.Rows.Count; i++)
@@ -76,6 +116,8 @@ namespace CRS_PRE.ADS
                     dg_res_ult.Rows[i].Cells["va_nom_usr"].Value = tabla.Rows[i]["va_nom_usr"].ToString();
                     dg_res_ult.Rows[i].Cells["va_tel_usr"].Value = tabla.Rows[i]["va_tel_usr"].ToString();
                     dg_res_ult.Rows[i].Cells["va_car_usr"].Value = tabla.Rows[i]["va_car_usr"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_tus"].Value = tabla.Rows[i]["va_nom_tus"].ToString();
+
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
@@ -451,6 +493,16 @@ namespace CRS_PRE.ADS
 
             ads019_01 frm = new ads019_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void bt_can_cel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_ace_pta_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

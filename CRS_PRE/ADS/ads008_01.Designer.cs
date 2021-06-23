@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ch_che_tod = new System.Windows.Forms.CheckBox();
             this.tb_nom_usr = new System.Windows.Forms.TextBox();
@@ -63,9 +64,10 @@
             // 
             this.ch_che_tod.AutoSize = true;
             this.ch_che_tod.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ch_che_tod.Location = new System.Drawing.Point(361, 37);
+            this.ch_che_tod.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ch_che_tod.Location = new System.Drawing.Point(361, 36);
             this.ch_che_tod.Name = "ch_che_tod";
-            this.ch_che_tod.Size = new System.Drawing.Size(65, 17);
+            this.ch_che_tod.Size = new System.Drawing.Size(72, 17);
             this.ch_che_tod.TabIndex = 52;
             this.ch_che_tod.Text = "Todos ?";
             this.ch_che_tod.UseVisualStyleBackColor = true;
@@ -74,12 +76,12 @@
             // tb_nom_usr
             // 
             this.tb_nom_usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_usr.Location = new System.Drawing.Point(148, 10);
+            this.tb_nom_usr.Location = new System.Drawing.Point(157, 10);
             this.tb_nom_usr.MaxLength = 30;
             this.tb_nom_usr.Multiline = true;
             this.tb_nom_usr.Name = "tb_nom_usr";
             this.tb_nom_usr.ReadOnly = true;
-            this.tb_nom_usr.Size = new System.Drawing.Size(285, 18);
+            this.tb_nom_usr.Size = new System.Drawing.Size(283, 18);
             this.tb_nom_usr.TabIndex = 20;
             this.tb_nom_usr.TabStop = false;
             this.tb_nom_usr.WordWrap = false;
@@ -87,16 +89,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(6, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Usuario";
             // 
             // tb_ide_usr
             // 
             this.tb_ide_usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_usr.Location = new System.Drawing.Point(51, 10);
+            this.tb_ide_usr.Location = new System.Drawing.Point(61, 10);
             this.tb_ide_usr.MaxLength = 15;
             this.tb_ide_usr.Multiline = true;
             this.tb_ide_usr.Name = "tb_ide_usr";
@@ -113,7 +116,7 @@
             this.gb_ctr_btn.Enabled = false;
             this.gb_ctr_btn.Location = new System.Drawing.Point(2, 399);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(447, 35);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(447, 39);
             this.gb_ctr_btn.TabIndex = 20;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -122,8 +125,9 @@
             this.bt_can_cel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(340, 9);
+            this.bt_can_cel.Location = new System.Drawing.Point(357, 11);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
             this.bt_can_cel.TabIndex = 80;
@@ -135,8 +139,9 @@
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_ace_pta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(259, 9);
+            this.bt_ace_pta.Location = new System.Drawing.Point(259, 11);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
             this.bt_ace_pta.TabIndex = 70;
@@ -148,23 +153,31 @@
             // 
             this.dg_res_ult.AllowUserToAddRows = false;
             this.dg_res_ult.AllowUserToDeleteRows = false;
-            this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dg_res_ult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_apl,
             this.va_nom_apl,
             this.va_des_apl,
             this.va_per_mis});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
             this.dg_res_ult.Location = new System.Drawing.Point(2, 55);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -180,17 +193,17 @@
             // 
             // va_ide_apl
             // 
-            this.va_ide_apl.HeaderText = "ID";
+            this.va_ide_apl.HeaderText = "ID.";
             this.va_ide_apl.Name = "va_ide_apl";
             this.va_ide_apl.ReadOnly = true;
-            this.va_ide_apl.Width = 35;
+            this.va_ide_apl.Width = 65;
             // 
             // va_nom_apl
             // 
             this.va_nom_apl.HeaderText = "Aplicacion";
             this.va_nom_apl.Name = "va_nom_apl";
             this.va_nom_apl.ReadOnly = true;
-            this.va_nom_apl.Width = 170;
+            this.va_nom_apl.Width = 145;
             // 
             // va_des_apl
             // 
@@ -216,7 +229,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(451, 435);
+            this.ClientSize = new System.Drawing.Size(451, 440);
             this.ControlBox = false;
             this.Controls.Add(this.dg_res_ult);
             this.Controls.Add(this.groupBox1);
@@ -226,7 +239,7 @@
             this.MinimizeBox = false;
             this.Name = "ads008_01";
             this.Tag = "Permiso sobre Plantilla de ventas Restaurant";
-            this.Text = "Permiso sobre Plantilla de ventas Restaurant";
+            this.Text = "Permiso sobre Aplicaciones";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
