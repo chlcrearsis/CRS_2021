@@ -220,7 +220,7 @@
             // 
             // pn_log_sis
             // 
-            this.pn_log_sis.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.pn_log_sis.BackColor = System.Drawing.SystemColors.WindowText;
             this.pn_log_sis.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pn_log_sis.Controls.Add(this.pb_tel_gra);
             this.pn_log_sis.Controls.Add(this.pb_ins_gra);
