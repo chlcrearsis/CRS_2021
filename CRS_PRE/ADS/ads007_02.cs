@@ -9,7 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
+using CRS_NEG;
+
 using CRS_NEG.ADS;
+using CRS_NEG.CMR;
+using CRS_PRE.CMR;
 
 namespace CRS_PRE.ADS
 {
@@ -20,9 +24,13 @@ namespace CRS_PRE.ADS
         public int frm_tip;
         //Instancias
         c_ads007 o_ads007 = new c_ads007();
+        c_cmr013 o_cmr013 = new c_cmr013();     // Persona
+        c_ads006 o_ads006 = new c_ads006();     // Persona
 
         DataTable tabla = new DataTable();
+        DataTable tab_ads006 = new DataTable();
 
+        public DataTable tab_cmr013 = new DataTable();  // Tabla Persona
 
         public ads007_02()
         {
@@ -46,9 +54,22 @@ namespace CRS_PRE.ADS
                 }
             }
             cb_ini_ses.SelectedIndex = 0;
+           
+
+            cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
+            cb_tip_usr.ValueMember = "va_ide_tus";
+            cb_tip_usr.DisplayMember = "va_nom_tus";
+
+            cb_tip_usr.SelectedIndex = 0;
+
+
+            tb_dir_ect.Text = "C:\\Temp";
+            tb_cod_per.Text = "0";
+            lb_raz_soc.Text = "";
             tb_ide_usr.Focus();
         }
 
+     
 
         private void creaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -132,7 +153,6 @@ namespace CRS_PRE.ADS
             try
             {
 
-           
                 int usr_new = 1;    // Inicializa como usuario nuevo
 
                 if (cb_ini_ses.SelectedIndex > 0)
@@ -150,7 +170,9 @@ namespace CRS_PRE.ADS
                 {
                     //Registrar usuario
                     o_ads007.Fe_exe_nue(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
-                        tb_ema_usr.Text,4,usr_new);
+                        tb_dir_ect.Text, tb_ema_usr.Text, int.Parse(tb_cod_per.Text), 
+                        int.Parse(cb_tip_usr.SelectedValue.ToString()) , usr_new);
+
                     MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Usuario", MessageBoxButtons.OK);
                     Fi_lim_pia();
                 }
@@ -160,5 +182,68 @@ namespace CRS_PRE.ADS
                 MessageBox.Show(ex.Message, "Nuevo Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
+        //** BUSCAR PERSONA
+        private void Bt_bus_per_Click(object sender, EventArgs e)
+        {
+            Fi_abr_bus_per();
+        }
+        private void Tb_cod_per_KeyDown(object sender, KeyEventArgs e)
+        {
+            //al presionar tecla para ARRIBA
+            if (e.KeyData == Keys.Up)
+            {
+                // Abre la ventana Busca Persona
+                Fi_abr_bus_per();
+            }
+        }
+        void Fi_abr_bus_per()
+        {
+            cmr013_01 frm = new cmr013_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                tb_cod_per.Text = frm.tb_sel_bus.Text;
+
+                Fi_obt_per();
+            }
+
+        }
+        private void Tb_cod_per_Validated(object sender, EventArgs e)
+        {
+            Fi_obt_per();
+
+        }
+        private void Fi_obt_per()
+        {
+            if (tb_cod_per.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
+                //tb_cod_per.Focus();
+            }
+            int val = 0;
+            if (int.TryParse(tb_cod_per.Text, out val) == false) ;
+            {
+                //MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
+                //tb_cod_per.Focus();
+                lb_raz_soc.Text = "No Existe";
+            }
+
+            tab_cmr013 = o_cmr013.Fe_con_per(val);
+            if (tab_cmr013.Rows.Count == 0)
+            {
+                lb_raz_soc.Text = "No Existe";
+            }
+            else
+            {
+                lb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+            }
+        }
+
+
     }
 }

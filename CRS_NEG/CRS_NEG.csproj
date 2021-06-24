@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADS\c_ads006.cs" />
     <Compile Include="ADS\c_ads002.cs" />
     <Compile Include="ADS\c_ads005.cs" />
     <Compile Include="ADS\c_ads004.cs" />
