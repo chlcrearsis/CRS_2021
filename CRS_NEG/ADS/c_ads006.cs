@@ -78,7 +78,7 @@ namespace CRS_NEG
 
         public DataTable Fe_con_tus( string ar_ide_tus)
         {
-            cadena = " ads006_05a_p01 '" + ar_ide_tus + "' ";
+            cadena = " SELECT * FROM ads006 WHERE va_ide_tus =  " + ar_ide_tus + " ";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
