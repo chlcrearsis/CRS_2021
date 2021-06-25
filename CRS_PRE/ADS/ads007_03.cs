@@ -58,6 +58,10 @@ namespace CRS_PRE.ADS
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
                 tb_est_ado.Text = "Deshabilitado";
 
+            // Obtiene persona
+            Fi_obt_per();
+
+
             tb_nom_usr.Focus();
         }
 
@@ -121,10 +125,6 @@ namespace CRS_PRE.ADS
                 lb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
             }
         }
-
-
-
-
 
         protected string Fi_val_dat()
         {
