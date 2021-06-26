@@ -59,7 +59,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="csthis.txt" />
+    <Content Include="crs_pro.txt" />
+    <Content Include="crs_tab.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
