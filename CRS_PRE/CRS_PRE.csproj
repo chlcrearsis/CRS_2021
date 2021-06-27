@@ -87,6 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADS\ads000_00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads000_00.Designer.cs">
+      <DependentUpon>ads000_00.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads000_01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1391,6 +1397,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dts_ads200.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ADS\ads000_00.resx">
+      <DependentUpon>ads000_00.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_01.resx">
       <DependentUpon>ads000_01.cs</DependentUpon>
     </EmbeddedResource>
@@ -2160,6 +2169,13 @@
   <ItemGroup>
     <Content Include="ADS\ADS.txt" />
     <Content Include="CMR\CMR.txt" />
+    <None Include="Resources\fondotexto.png" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\telegram.png" />
+    <None Include="Resources\instagram1.png" />
+    <None Include="Resources\instagram.png" />
+    <None Include="Resources\facebook.png" />
+    <None Include="Resources\whatsapp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

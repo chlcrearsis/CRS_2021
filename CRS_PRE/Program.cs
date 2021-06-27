@@ -32,7 +32,7 @@ namespace CRS_PRE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ADS.ads000_01());
+            Application.Run(new ADS.ads000_00());
         }
     }
 }
