@@ -1,0 +1,33 @@
+********		ESTRUCTURA		********
+******** IDENTIFICADOR: ads			********
+******** MODULO: Administración y Seguridad	********
+
+ads001 = Modulo      (pendiente)		CHL                                    
+ads002 = Aplicacion  (pendiente)		CHL
+ads003 = Documento
+ads004 = Talonario
+ads005 = Numeración
+ads006 = Tipo de Usuario (pendiente)	CHL
+ads007 = Usuario    (Actualizar)		CHL
+ads008 = Autorización s/Aplic.
+ads009 = Autorización s/Tal.
+ads010 = Sucursal     (Llevar a cmr003)  (VACIA)
+ads011 = Autorización s/Suc.(pendiente)
+ads012 = Restricción menú
+ads013 = Globales
+ads014 = Region
+ads015 = Autorizacion usuario s/Region
+ads016 = Gestion Periodos
+ads017 = Autorizacion usuario s/Plantilla de ventas (cmr004)
+ads018 = Autorizacion usuario s/Plantilla de ventas Restaurant (res004)
+ads019 = Autorizacion usuario s/Lista de precios (cmr001)
+ads020 = Autorizacion usuario s/Vendedor (cmr014)
+ads021 = Autorizacion usuario s/Delivery (cmr015)
+ads022 = Tipo de cambio Bs/Us
+ads023 = Tipo de cambio Bs/Ufv
+ads024 = Bitacora inicio de sesion   (pendiente)	EJR
+ads025 = Bitacora de operaciones	 (pendiente)	EJR
+ads026 = Bitacora de documentos		 (pendiente)	EJR
+ads027 = Licencias (pendiente)
+
+

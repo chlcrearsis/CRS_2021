@@ -623,6 +623,18 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ADS\ads006_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads006_01.Designer.cs">
+      <DependentUpon>ads006_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads006_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads006_02.Designer.cs">
+      <DependentUpon>ads006_02.cs</DependentUpon>
+    </Compile>
     <Compile Include="RES\res004_06.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1658,6 +1670,12 @@
     <EmbeddedResource Include="CMR\cmr005_R01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>cmr005_R01.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_01.resx">
+      <DependentUpon>ads006_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_02.resx">
+      <DependentUpon>ads006_02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RES\res004_06.resx">
       <DependentUpon>res004_06.cs</DependentUpon>
