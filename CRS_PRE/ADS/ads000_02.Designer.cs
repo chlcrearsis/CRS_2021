@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.mn_adm_sis = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lb_ide_usr = new System.Windows.Forms.Label();
             this.lb_nro_ver = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.mn_adm_sis = new System.Windows.Forms.Button();
+            this.mn_com_pra = new System.Windows.Forms.Button();
             this.mn_com_erc = new System.Windows.Forms.Button();
             this.mn_res_tau = new System.Windows.Forms.Button();
-            this.mn_com_pra = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -54,25 +54,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 500);
             this.panel2.TabIndex = 2;
-            // 
-            // mn_adm_sis
-            // 
-            this.mn_adm_sis.BackColor = System.Drawing.Color.Transparent;
-            this.mn_adm_sis.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mn_adm_sis.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.mn_adm_sis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mn_adm_sis.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mn_adm_sis.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mn_adm_sis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mn_adm_sis.Location = new System.Drawing.Point(3, 3);
-            this.mn_adm_sis.Name = "mn_adm_sis";
-            this.mn_adm_sis.Size = new System.Drawing.Size(183, 32);
-            this.mn_adm_sis.TabIndex = 3;
-            this.mn_adm_sis.Text = "Administrador";
-            this.mn_adm_sis.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mn_adm_sis.UseVisualStyleBackColor = false;
-            this.mn_adm_sis.Visible = false;
-            this.mn_adm_sis.Click += new System.EventHandler(this.mt_ads200_Click);
             // 
             // groupBox1
             // 
@@ -117,6 +98,55 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.mn_adm_sis);
+            this.flowLayoutPanel1.Controls.Add(this.mn_com_pra);
+            this.flowLayoutPanel1.Controls.Add(this.mn_com_erc);
+            this.flowLayoutPanel1.Controls.Add(this.mn_res_tau);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 22);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(190, 475);
+            this.flowLayoutPanel1.TabIndex = 6;
+            // 
+            // mn_adm_sis
+            // 
+            this.mn_adm_sis.BackColor = System.Drawing.Color.Transparent;
+            this.mn_adm_sis.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.mn_adm_sis.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
+            this.mn_adm_sis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mn_adm_sis.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mn_adm_sis.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.mn_adm_sis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mn_adm_sis.Location = new System.Drawing.Point(3, 3);
+            this.mn_adm_sis.Name = "mn_adm_sis";
+            this.mn_adm_sis.Size = new System.Drawing.Size(183, 32);
+            this.mn_adm_sis.TabIndex = 3;
+            this.mn_adm_sis.Text = "Administrador";
+            this.mn_adm_sis.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mn_adm_sis.UseVisualStyleBackColor = false;
+            this.mn_adm_sis.Visible = false;
+            this.mn_adm_sis.Click += new System.EventHandler(this.mt_ads200_Click);
+            // 
+            // mn_com_pra
+            // 
+            this.mn_com_pra.BackColor = System.Drawing.Color.Transparent;
+            this.mn_com_pra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.mn_com_pra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
+            this.mn_com_pra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mn_com_pra.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mn_com_pra.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.mn_com_pra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mn_com_pra.Location = new System.Drawing.Point(3, 41);
+            this.mn_com_pra.Name = "mn_com_pra";
+            this.mn_com_pra.Size = new System.Drawing.Size(183, 32);
+            this.mn_com_pra.TabIndex = 4;
+            this.mn_com_pra.Text = "Inventario";
+            this.mn_com_pra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mn_com_pra.UseVisualStyleBackColor = false;
+            this.mn_com_pra.Visible = false;
+            this.mn_com_pra.Click += new System.EventHandler(this.mt_inv200_Click);
+            // 
             // mn_com_erc
             // 
             this.mn_com_erc.BackColor = System.Drawing.Color.Transparent;
@@ -154,36 +184,6 @@
             this.mn_res_tau.UseVisualStyleBackColor = false;
             this.mn_res_tau.Visible = false;
             this.mn_res_tau.Click += new System.EventHandler(this.mt_res200_Click);
-            // 
-            // mn_com_pra
-            // 
-            this.mn_com_pra.BackColor = System.Drawing.Color.Transparent;
-            this.mn_com_pra.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mn_com_pra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.mn_com_pra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mn_com_pra.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mn_com_pra.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mn_com_pra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mn_com_pra.Location = new System.Drawing.Point(3, 41);
-            this.mn_com_pra.Name = "mn_com_pra";
-            this.mn_com_pra.Size = new System.Drawing.Size(183, 32);
-            this.mn_com_pra.TabIndex = 4;
-            this.mn_com_pra.Text = "Inventario";
-            this.mn_com_pra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mn_com_pra.UseVisualStyleBackColor = false;
-            this.mn_com_pra.Visible = false;
-            this.mn_com_pra.Click += new System.EventHandler(this.mt_inv200_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.mn_adm_sis);
-            this.flowLayoutPanel1.Controls.Add(this.mn_com_pra);
-            this.flowLayoutPanel1.Controls.Add(this.mn_com_erc);
-            this.flowLayoutPanel1.Controls.Add(this.mn_res_tau);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 22);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(190, 475);
-            this.flowLayoutPanel1.TabIndex = 6;
             // 
             // ads000_02
             // 

@@ -74,12 +74,11 @@ namespace CRS_PRE.ADS
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita Usuario", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            msg_res = MessageBox.Show("Esta seguro de Cambiar la contraseña?", "Edita Usuario", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
             if (msg_res == DialogResult.OK)
             {
-                //o_ads007.Fe_edi_psw(tb_ide_usr.Text,tb_usr_psw.Text,tb_usr_psw2.Text,tb_usr_psw2.Text);
-                  //                  tb_ema_usr.Text, int.Parse(tb_win_max.Text));
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                o_ads007.Fe_edi_psw(tb_ide_usr.Text,tb_usr_psw.Text);
+                MessageBox.Show("Se cambio la contraseña para el usuario satisfactoriamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 cl_glo_frm.Cerrar(this);
             }
 

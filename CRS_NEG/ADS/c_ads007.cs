@@ -191,13 +191,11 @@ namespace CRS_NEG.ADS
         /// Edita contraseña de usuario
         /// </summary>
         /// <param name="ag_ide_usr">identificador</param>
-        /// <param name="ag_psw_act">Contraseña actual</param>
         /// <param name="ag_psw_new">Nueva contraseña</param>
-        /// <param name="ag_psw_ne2">Nueva contraseña</param>
-        public void Fe_edi_psw(string ag_ide_usr, string ag_psw_act, string ag_psw_new, string ag_psw_ne2)
+        public void Fe_edi_psw(string ag_ide_usr, string ag_psw_new)
         {
-            cadena = " execute ads007_03b_p01 '" + ag_ide_usr + "','" + ag_psw_act + "','";
-            cadena += ag_psw_new + "','" + ag_psw_ne2 + "'";
+            cadena = " execute ads007_03b_p01 '" + ag_ide_usr + "','" + ag_psw_new + "' ";
+            //cadena += ag_psw_new + "','" + ag_psw_ne2 + "'";
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
