@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_NEG.INV;
 using System.Windows.Markup;
 

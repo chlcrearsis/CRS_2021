@@ -1,4 +1,5 @@
-﻿using CRS_NEG.ADS;
+﻿using CRS_NEG;
+using CRS_NEG.ADS;
 using System;
 using System.Data;
 using System.Windows.Forms;

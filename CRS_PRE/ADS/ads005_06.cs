@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {
