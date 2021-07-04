@@ -116,8 +116,6 @@ namespace CRS_DAT
         {
             try
             {
-
-
                 DataTable dts = new DataTable();
                 fe_abr_cnx();
                 SqlDataAdapter Adaptador = new SqlDataAdapter(StrQuery, va_cxn_sql);

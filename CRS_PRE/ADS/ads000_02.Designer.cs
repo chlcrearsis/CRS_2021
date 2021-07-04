@@ -28,194 +28,244 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ads000_02));
+            this.bt_men_pri = new System.Windows.Forms.Button();
+            this.lp_con_apl = new System.Windows.Forms.FlowLayoutPanel();
+            this.bt_men_res = new System.Windows.Forms.Button();
+            this.bt_men_com = new System.Windows.Forms.Button();
+            this.bt_men_inv = new System.Windows.Forms.Button();
+            this.bt_men_adm = new System.Windows.Forms.Button();
             this.lb_ide_usr = new System.Windows.Forms.Label();
             this.lb_nro_ver = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.mn_adm_sis = new System.Windows.Forms.Button();
-            this.mn_com_pra = new System.Windows.Forms.Button();
-            this.mn_com_erc = new System.Windows.Forms.Button();
-            this.mn_res_tau = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.pb_ima_usr = new PictureBoxAbouAmmar.صورة_دائرة();
+            this.lb_nom_usr = new System.Windows.Forms.Label();
+            this.pn_men_pri = new System.Windows.Forms.Panel();
+            this.lb_nom_equ = new System.Windows.Forms.Label();
+            this.lp_con_apl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_ima_usr)).BeginInit();
+            this.pn_men_pri.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel2
+            // bt_men_pri
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 500);
-            this.panel2.TabIndex = 2;
+            this.bt_men_pri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_pri.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_pri.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_pri.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_pri.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_pri.Image")));
+            this.bt_men_pri.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bt_men_pri.Location = new System.Drawing.Point(164, 7);
+            this.bt_men_pri.Name = "bt_men_pri";
+            this.bt_men_pri.Size = new System.Drawing.Size(30, 30);
+            this.bt_men_pri.TabIndex = 7;
+            this.bt_men_pri.UseVisualStyleBackColor = false;
+            this.bt_men_pri.Click += new System.EventHandler(this.bt_men_pri_Click);
             // 
-            // groupBox1
+            // lp_con_apl
             // 
-            this.groupBox1.Controls.Add(this.lb_ide_usr);
-            this.groupBox1.Controls.Add(this.lb_nro_ver);
-            this.groupBox1.Location = new System.Drawing.Point(0, -6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 27);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
+            this.lp_con_apl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lp_con_apl.Controls.Add(this.bt_men_res);
+            this.lp_con_apl.Controls.Add(this.bt_men_com);
+            this.lp_con_apl.Controls.Add(this.bt_men_inv);
+            this.lp_con_apl.Controls.Add(this.bt_men_adm);
+            this.lp_con_apl.Location = new System.Drawing.Point(-2, 164);
+            this.lp_con_apl.Name = "lp_con_apl";
+            this.lp_con_apl.Size = new System.Drawing.Size(205, 280);
+            this.lp_con_apl.TabIndex = 6;
+            // 
+            // bt_men_res
+            // 
+            this.bt_men_res.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_res.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_res.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_res.Font = new System.Drawing.Font("HP Simplified", 11.25F);
+            this.bt_men_res.ForeColor = System.Drawing.Color.White;
+            this.bt_men_res.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_res.Image")));
+            this.bt_men_res.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_res.Location = new System.Drawing.Point(3, 3);
+            this.bt_men_res.Name = "bt_men_res";
+            this.bt_men_res.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_res.TabIndex = 9;
+            this.bt_men_res.Text = "              Restaurant";
+            this.bt_men_res.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_res.UseVisualStyleBackColor = false;
+            this.bt_men_res.Click += new System.EventHandler(this.bt_men_res_Click);
+            this.bt_men_res.MouseEnter += new System.EventHandler(this.bt_men_res_MouseEnter);
+            this.bt_men_res.MouseLeave += new System.EventHandler(this.bt_men_res_MouseLeave);
+            this.bt_men_res.MouseHover += new System.EventHandler(this.bt_men_res_MouseHover);
+            // 
+            // bt_men_com
+            // 
+            this.bt_men_com.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_com.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_com.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_com.Font = new System.Drawing.Font("HP Simplified", 11.25F);
+            this.bt_men_com.ForeColor = System.Drawing.Color.White;
+            this.bt_men_com.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_com.Image")));
+            this.bt_men_com.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_com.Location = new System.Drawing.Point(3, 45);
+            this.bt_men_com.Name = "bt_men_com";
+            this.bt_men_com.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_com.TabIndex = 10;
+            this.bt_men_com.Text = "              Comercializacion";
+            this.bt_men_com.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_com.UseVisualStyleBackColor = false;
+            this.bt_men_com.Click += new System.EventHandler(this.bt_men_com_Click);
+            this.bt_men_com.MouseEnter += new System.EventHandler(this.bt_men_com_MouseEnter);
+            this.bt_men_com.MouseLeave += new System.EventHandler(this.bt_men_com_MouseLeave);
+            this.bt_men_com.MouseHover += new System.EventHandler(this.bt_men_com_MouseHover);
+            // 
+            // bt_men_inv
+            // 
+            this.bt_men_inv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_inv.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_inv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_inv.Font = new System.Drawing.Font("HP Simplified", 11.25F);
+            this.bt_men_inv.ForeColor = System.Drawing.Color.White;
+            this.bt_men_inv.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_inv.Image")));
+            this.bt_men_inv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_inv.Location = new System.Drawing.Point(3, 87);
+            this.bt_men_inv.Name = "bt_men_inv";
+            this.bt_men_inv.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_inv.TabIndex = 11;
+            this.bt_men_inv.Text = "              Inventario";
+            this.bt_men_inv.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_inv.UseVisualStyleBackColor = false;
+            this.bt_men_inv.Click += new System.EventHandler(this.bt_men_inv_Click);
+            this.bt_men_inv.MouseEnter += new System.EventHandler(this.bt_men_inv_MouseEnter);
+            this.bt_men_inv.MouseLeave += new System.EventHandler(this.bt_men_inv_MouseLeave);
+            this.bt_men_inv.MouseHover += new System.EventHandler(this.bt_men_inv_MouseHover);
+            // 
+            // bt_men_adm
+            // 
+            this.bt_men_adm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_adm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_adm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_adm.Font = new System.Drawing.Font("HP Simplified", 11.25F);
+            this.bt_men_adm.ForeColor = System.Drawing.Color.White;
+            this.bt_men_adm.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_adm.Image")));
+            this.bt_men_adm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_adm.Location = new System.Drawing.Point(3, 129);
+            this.bt_men_adm.Name = "bt_men_adm";
+            this.bt_men_adm.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_adm.TabIndex = 12;
+            this.bt_men_adm.Text = "              Administrador";
+            this.bt_men_adm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_adm.UseVisualStyleBackColor = false;
+            this.bt_men_adm.Click += new System.EventHandler(this.bt_men_adm_Click);
+            this.bt_men_adm.MouseEnter += new System.EventHandler(this.bt_men_adm_MouseEnter);
+            this.bt_men_adm.MouseLeave += new System.EventHandler(this.bt_men_adm_MouseLeave);
+            this.bt_men_adm.MouseHover += new System.EventHandler(this.bt_men_adm_MouseHover);
             // 
             // lb_ide_usr
             // 
-            this.lb_ide_usr.Font = new System.Drawing.Font("Rod", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_ide_usr.ForeColor = System.Drawing.Color.DarkGray;
-            this.lb_ide_usr.Location = new System.Drawing.Point(115, 10);
+            this.lb_ide_usr.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.lb_ide_usr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.lb_ide_usr.Location = new System.Drawing.Point(16, 142);
             this.lb_ide_usr.Name = "lb_ide_usr";
             this.lb_ide_usr.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lb_ide_usr.Size = new System.Drawing.Size(80, 13);
+            this.lb_ide_usr.Size = new System.Drawing.Size(170, 20);
             this.lb_ide_usr.TabIndex = 3;
-            this.lb_ide_usr.Text = "...";
-            this.lb_ide_usr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb_ide_usr.Text = "e.justiniano";
+            this.lb_ide_usr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lb_nro_ver
             // 
             this.lb_nro_ver.AutoSize = true;
-            this.lb_nro_ver.Font = new System.Drawing.Font("Rod", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nro_ver.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_nro_ver.ForeColor = System.Drawing.Color.DarkGray;
-            this.lb_nro_ver.Location = new System.Drawing.Point(9, 10);
+            this.lb_nro_ver.Location = new System.Drawing.Point(404, 88);
             this.lb_nro_ver.Name = "lb_nro_ver";
             this.lb_nro_ver.Size = new System.Drawing.Size(16, 13);
             this.lb_nro_ver.TabIndex = 3;
             this.lb_nro_ver.Text = "...";
             // 
-            // groupBox2
+            // pb_ima_usr
             // 
-            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 500);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
+            this.pb_ima_usr.BackColor = System.Drawing.Color.DarkGray;
+            this.pb_ima_usr.Image = ((System.Drawing.Image)(resources.GetObject("pb_ima_usr.Image")));
+            this.pb_ima_usr.Location = new System.Drawing.Point(49, 19);
+            this.pb_ima_usr.Name = "pb_ima_usr";
+            this.pb_ima_usr.Size = new System.Drawing.Size(100, 100);
+            this.pb_ima_usr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_ima_usr.TabIndex = 4;
+            this.pb_ima_usr.TabStop = false;
             // 
-            // flowLayoutPanel1
+            // lb_nom_usr
             // 
-            this.flowLayoutPanel1.Controls.Add(this.mn_adm_sis);
-            this.flowLayoutPanel1.Controls.Add(this.mn_com_pra);
-            this.flowLayoutPanel1.Controls.Add(this.mn_com_erc);
-            this.flowLayoutPanel1.Controls.Add(this.mn_res_tau);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 22);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(190, 475);
-            this.flowLayoutPanel1.TabIndex = 6;
+            this.lb_nom_usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lb_nom_usr.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.lb_nom_usr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.lb_nom_usr.Location = new System.Drawing.Point(14, 124);
+            this.lb_nom_usr.Name = "lb_nom_usr";
+            this.lb_nom_usr.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lb_nom_usr.Size = new System.Drawing.Size(170, 20);
+            this.lb_nom_usr.TabIndex = 5;
+            this.lb_nom_usr.Text = "Enmanuel Justiniano";
+            this.lb_nom_usr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // mn_adm_sis
+            // pn_men_pri
             // 
-            this.mn_adm_sis.BackColor = System.Drawing.Color.Transparent;
-            this.mn_adm_sis.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mn_adm_sis.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.mn_adm_sis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mn_adm_sis.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mn_adm_sis.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mn_adm_sis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mn_adm_sis.Location = new System.Drawing.Point(3, 3);
-            this.mn_adm_sis.Name = "mn_adm_sis";
-            this.mn_adm_sis.Size = new System.Drawing.Size(183, 32);
-            this.mn_adm_sis.TabIndex = 3;
-            this.mn_adm_sis.Text = "Administrador";
-            this.mn_adm_sis.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mn_adm_sis.UseVisualStyleBackColor = false;
-            this.mn_adm_sis.Visible = false;
-            this.mn_adm_sis.Click += new System.EventHandler(this.mt_ads200_Click);
+            this.pn_men_pri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.pn_men_pri.Controls.Add(this.lb_nom_usr);
+            this.pn_men_pri.Controls.Add(this.lp_con_apl);
+            this.pn_men_pri.Controls.Add(this.lb_nom_equ);
+            this.pn_men_pri.Controls.Add(this.lb_ide_usr);
+            this.pn_men_pri.Controls.Add(this.bt_men_pri);
+            this.pn_men_pri.Controls.Add(this.pb_ima_usr);
+            this.pn_men_pri.Location = new System.Drawing.Point(0, 0);
+            this.pn_men_pri.Name = "pn_men_pri";
+            this.pn_men_pri.Size = new System.Drawing.Size(200, 472);
+            this.pn_men_pri.TabIndex = 8;
             // 
-            // mn_com_pra
+            // lb_nom_equ
             // 
-            this.mn_com_pra.BackColor = System.Drawing.Color.Transparent;
-            this.mn_com_pra.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mn_com_pra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.mn_com_pra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mn_com_pra.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mn_com_pra.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mn_com_pra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mn_com_pra.Location = new System.Drawing.Point(3, 41);
-            this.mn_com_pra.Name = "mn_com_pra";
-            this.mn_com_pra.Size = new System.Drawing.Size(183, 32);
-            this.mn_com_pra.TabIndex = 4;
-            this.mn_com_pra.Text = "Inventario";
-            this.mn_com_pra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mn_com_pra.UseVisualStyleBackColor = false;
-            this.mn_com_pra.Visible = false;
-            this.mn_com_pra.Click += new System.EventHandler(this.mt_inv200_Click);
-            // 
-            // mn_com_erc
-            // 
-            this.mn_com_erc.BackColor = System.Drawing.Color.Transparent;
-            this.mn_com_erc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mn_com_erc.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.mn_com_erc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mn_com_erc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mn_com_erc.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mn_com_erc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mn_com_erc.Location = new System.Drawing.Point(3, 79);
-            this.mn_com_erc.Name = "mn_com_erc";
-            this.mn_com_erc.Size = new System.Drawing.Size(183, 32);
-            this.mn_com_erc.TabIndex = 5;
-            this.mn_com_erc.Text = "Comercializacion";
-            this.mn_com_erc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mn_com_erc.UseVisualStyleBackColor = false;
-            this.mn_com_erc.Visible = false;
-            this.mn_com_erc.Click += new System.EventHandler(this.mt_cmr200_Click);
-            // 
-            // mn_res_tau
-            // 
-            this.mn_res_tau.BackColor = System.Drawing.Color.Transparent;
-            this.mn_res_tau.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mn_res_tau.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SlateGray;
-            this.mn_res_tau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mn_res_tau.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mn_res_tau.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.mn_res_tau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mn_res_tau.Location = new System.Drawing.Point(3, 117);
-            this.mn_res_tau.Name = "mn_res_tau";
-            this.mn_res_tau.Size = new System.Drawing.Size(183, 32);
-            this.mn_res_tau.TabIndex = 3;
-            this.mn_res_tau.Text = "Restaurant";
-            this.mn_res_tau.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mn_res_tau.UseVisualStyleBackColor = false;
-            this.mn_res_tau.Visible = false;
-            this.mn_res_tau.Click += new System.EventHandler(this.mt_res200_Click);
+            this.lb_nom_equ.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lb_nom_equ.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.lb_nom_equ.ForeColor = System.Drawing.Color.Silver;
+            this.lb_nom_equ.Location = new System.Drawing.Point(18, 447);
+            this.lb_nom_equ.Name = "lb_nom_equ";
+            this.lb_nom_equ.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lb_nom_equ.Size = new System.Drawing.Size(159, 20);
+            this.lb_nom_equ.TabIndex = 8;
+            this.lb_nom_equ.Text = "HP1904";
+            this.lb_nom_equ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_nom_equ.Click += new System.EventHandler(this.lb_nom_equ_Click);
             // 
             // ads000_02
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 500);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(800, 469);
+            this.Controls.Add(this.pn_men_pri);
+            this.Controls.Add(this.lb_nro_ver);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ads000_02";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRS -";
             this.Load += new System.EventHandler(this.ads000_02_Load);
-            this.panel2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.lp_con_apl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pb_ima_usr)).EndInit();
+            this.pn_men_pri.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button mn_res_tau;
-        private System.Windows.Forms.Button mn_adm_sis;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lb_ide_usr;
         private System.Windows.Forms.Label lb_nro_ver;
-        private System.Windows.Forms.Button mn_com_pra;
-        private System.Windows.Forms.Button mn_com_erc;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel lp_con_apl;
+        private System.Windows.Forms.Button bt_men_pri;
+        private PictureBoxAbouAmmar.صورة_دائرة pb_ima_usr;
+        private System.Windows.Forms.Label lb_nom_usr;
+        private System.Windows.Forms.Panel pn_men_pri;
+        private System.Windows.Forms.Label lb_nom_equ;
+        private System.Windows.Forms.Button bt_men_res;
+        private System.Windows.Forms.Button bt_men_com;
+        private System.Windows.Forms.Button bt_men_inv;
+        private System.Windows.Forms.Button bt_men_adm;
     }
 }

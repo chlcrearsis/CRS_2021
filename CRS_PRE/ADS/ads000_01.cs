@@ -1,57 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Runtime.InteropServices;
 using CRS_NEG.ADS;
-using System.IO;
-//using System.Runtime.InteropServices;
+
 
 namespace CRS_PRE.ADS
 {
     public partial class ads000_01 : Form
     {
-        public ads000_01()
-        {
-            InitializeComponent();
-        }
-
-        //[DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        //private extern static void ReleaseCapture();
-        //[DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        //private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-
-
-        c_ads007 ObjUsuario = new c_ads007();
-        c_ads013 o_ads013 = new c_ads013();
-
-        //ObjLicencia = New _02.Negocio.se010_01
-        //ObjGlobal = New _02.Negocio.se012_01
-
-        string va_ser_bda; //Servidor
-        string va_ins_bda;//Instancia
-        string va_nom_bda; //Nombre de la BD
-        string va_usu_bda; //Usuario
-        string va_pas_bda;//P=sword
-
-        DataTable Tabla = new DataTable();
-        private string Titulo  = "Inicio Sesión";
-
+        private string Titulo = "Inicio Sesión";
+        public string vp_ide_usr = "";  // ID. Usuario
+        public string vp_pas_usr = "";  // Contraseña Actual
         private int va_coo_pox = 0;
         private int va_coo_poy = 0;
         private bool va_est_ven = false;
+        c_ads007 ObjUsuario = new c_ads007();
 
-        private ToolTip va_tool_tip = new ToolTip();
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
 
+        public ads000_01()
+        {
+            InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            pn_con_usr.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_con_usr.Width, pn_con_usr.Height, 15, 15));
+            pn_fon_usr.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_fon_usr.Width, pn_fon_usr.Height, 15, 15));
+            pn_con_pas.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_con_pas.Width, pn_con_pas.Height, 15, 15));
+            pn_fon_pas.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_fon_pas.Width, pn_fon_pas.Height, 15, 15));
+            pn_rep_pas.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_rep_pas.Width, pn_rep_pas.Height, 15, 15));
+            pn_fon_rep.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_fon_rep.Width, pn_fon_rep.Height, 15, 15));
+        }
 
         private void ads000_01_MouseMove(object sender, MouseEventArgs e)
-        {
-            
+        {            
             if (va_est_ven)
             {
                 this.Left = this.Left + (e.X - va_coo_pox);
@@ -67,7 +58,6 @@ namespace CRS_PRE.ADS
                 va_coo_poy = e.Y;
             }
         }
-
         private void ads000_01_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -75,167 +65,124 @@ namespace CRS_PRE.ADS
                 va_est_ven = false;
             }
         }
-
-
-        private void ads000_01_Load(object sender, EventArgs e)
+        private void pb_mos_pas_MouseHover(object sender, EventArgs e)
         {
-            va_tool_tip.SetToolTip(bt_cer_apl, "Cerrar");
-            va_tool_tip.SetToolTip(pb_ima_usu, "");
-            va_tool_tip.SetToolTip(pb_ima_pas, "Cambiar contraseña");
-            va_tool_tip.SetToolTip(pb_log_sis, "");
-            
-            // Recuperar BD
-            fi_rec_bdo();
-
-            tb_ide_usr.Focus();
-            
+            tb_nue_pas.UseSystemPasswordChar = false;
         }
-
-        private void tb_ide_usr_Enter(object sender, EventArgs e)
+        private void pb_mos_pas_MouseLeave(object sender, EventArgs e)
         {
-            if (tb_ide_usr.Text == "Usuario")
-                tb_ide_usr.Clear();
-
-            rs_sel_usr.Location = new Point(-1, 174);
+            tb_nue_pas.UseSystemPasswordChar = true;
         }
-        private void tb_ide_usr_Validated(object sender, EventArgs e)
+        private void pb_mos_rep_MouseHover(object sender, EventArgs e)
         {
-            if (tb_ide_usr.Text.Trim() == "")
-                tb_ide_usr.Text= "Usuario";
-           
-            rs_sel_usr.Location = new Point(-12, 174);
-            rs_sel_pas.Location = new Point(-1, 234);
+            tb_rep_pas.UseSystemPasswordChar = false;
         }
-
-        private void tb_pas_usr_Enter(object sender, EventArgs e)
+        private void pb_mos_rep_MouseLeave(object sender, EventArgs e)
         {
-            if (tb_pas_usr.Text == "Contraseña")
-                tb_pas_usr.Clear();
-
-            rs_sel_pas.Location = new Point(-1, 234);
+            tb_rep_pas.UseSystemPasswordChar = true;
         }
-
-        private void tb_pas_usr_Validated(object sender, EventArgs e)
-        {
-            if (tb_pas_usr.Text.Trim() == "")
-                tb_pas_usr.Text = "Contraseña";
-
-            rs_sel_pas.Location = new Point(-12, 234);
-        }
-
-        private void bt_cer_apl_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void lk_fan_pag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Abre la pagina de facebook para contacto
-            System.Diagnostics.Process.Start("https://www.facebook.com/crearsis/");
-        }
-
-        private void fi_rec_bdo()
-        {
-            string linea = "";
-            int contador = 1;
-
-            // Lea el archivo y lo muestra línea por línea.  
-            //Dim archivo As System.IO.StreamReader = My.Computer.FileSystem.OpenTextFileReader("C:\iSoft\bd.txt")
-            StreamReader archivo = File.OpenText("C:\\CREARSIS\\CREARSISbd.txt");
-            linea = archivo.ReadLine();
-            
-
-            while (linea != null)
-            {
-                if (contador >= 2)
-                {  // Leer la lista de la base de datos
-                    
-                    va_ser_bda = linea.Substring(1, linea.Length - 1);
-                    //linea = archivo.ReadLine();
-                    // Adiciona a la lista de BD
-                    cb_nom_bda.Items.Add(va_ser_bda);
-                }
-                // Lee la siguiente linea        
-                linea = archivo.ReadLine();
-                contador = contador + 1;
-            }
-            // Cerramos el archivo
-            archivo.Close();
-            cb_nom_bda.SelectedIndex = 0;
-
-        }
-
 
         private bool ValidaDatos()
         {
-            string ide_usr = tb_ide_usr.Text;
-            string pas_usr = tb_pas_usr.Text;
+            string nue_pas = tb_nue_pas.Text.Trim();
+            string rep_pas = tb_rep_pas.Text.Trim();
 
-            if (ide_usr.Trim() == "Usuario")
-                ide_usr = "";
-            if (pas_usr.Trim() == "Contraseña")
-                pas_usr = "";
+            if (nue_pas == "Contraseña")
+                nue_pas = "";
 
-            // Verifica si los campos esta vacio
-            if (ide_usr == "")
-            {
-                MessageBox.Show("Debe proporcionar el usuario", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (rep_pas == "Contraseña")
+                rep_pas = "";
+
+            // Validacion de contraseña
+            if (nue_pas == ""){
+                MessageBox.Show("Debe proporcionar la contraseña nueva", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (pas_usr == "")
-            {
-                MessageBox.Show("Debe proporcionar la contraseña", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (nue_pas == vp_pas_usr){
+                MessageBox.Show("Debe proporcionar una contraseña distinta a la actual", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            
+            if (nue_pas.Length > 3){
+                MessageBox.Show("La contraseña DEBE ser mayor a 3 digitos", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (rep_pas == ""){
+                MessageBox.Show("Debe repetir la contraseña nueva", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (nue_pas != rep_pas){
+                MessageBox.Show("La contraseña no coiciden, Verifique los datos proporcionados", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             return true;
-
         }
 
-         void bt_ace_pta_Click(object sender, EventArgs e)
+        private void ads000_01_Load(object sender, EventArgs e)
         {
-            Fi_ing_res();
+            tb_ide_usr.Text = vp_ide_usr;
+            tb_nue_pas.Focus();
         }
-        void Fi_ing_res()
+
+        private void tb_nue_pas_Enter(object sender, EventArgs e)
         {
+            if (tb_nue_pas.Text == "Contraseña")
+                tb_nue_pas.Clear();
+
+            ps_sel_pas.Visible = true;
+            ps_sel_rep.Visible = false;
+        }
+
+        private void tb_nue_pas_Validated(object sender, EventArgs e)
+        {
+            if (tb_nue_pas.Text.Trim() == "")
+                tb_nue_pas.Text = "Contraseña";
+
+            ps_sel_pas.Visible = false;
+            ps_sel_rep.Visible = false;
+        }
+
+        private void tb_rep_pas_Enter(object sender, EventArgs e)
+        {
+            if (tb_rep_pas.Text == "Contraseña")
+                tb_rep_pas.Clear();
+
+            ps_sel_pas.Visible = false;
+            ps_sel_rep.Visible = true;
+        }
+
+        private void tb_rep_pas_Validated(object sender, EventArgs e)
+        {
+            if (tb_rep_pas.Text.Trim() == "")
+                tb_rep_pas.Text = "Contraseña";
+
+            ps_sel_pas.Visible = false;
+            ps_sel_rep.Visible = false;
+        }
+
+        private void bt_ace_pta_Click(object sender, EventArgs e)
+        {
+            string ide_usr = vp_ide_usr;
+            string act_pas = vp_pas_usr;
+            string nue_pas = tb_nue_pas.Text.Trim();
+            string rep_pas = tb_rep_pas.Text.Trim();
+
             try
             {
-
-            
-            // Verifica que el usuario y contraseña sean correcta
-            if (ValidaDatos() == true)
-            {
-                string va_pas_def = ""; // Contraseña por Defector
-
-                // Verifica que el usuario sea un usuario válido
-                Tabla = new DataTable();
-                string mensaje = ObjUsuario.Login(cb_nom_bda.SelectedItem.ToString(), tb_ide_usr.Text, tb_pas_usr.Text);
-                if (mensaje == "OK")
+                // Valida los datos de proporcionado por el usuario
+                if (ValidaDatos() == true)
                 {
-                    //Guarda datos en la aplicacion
-                    Program.gl_usr_usr = tb_ide_usr.Text;
-
-                    //        'Obtiene: (SG-100) -> Contraseña por Defecto
-                    Tabla = o_ads013.Fe_obt_glo(1,1);
-                    if(Tabla.Rows.Count != 0)
-                    {
-                        va_pas_def = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
-                        if(va_pas_def == tb_pas_usr.Text)
-                        {
-                            // Exige cambiar contraseña - Abre ventana cambia contraseña
-                            MessageBox.Show("Debe cambiar su contraseña", "Inicio de sesión", MessageBoxButtons.OK);
-                        }
-                    }
-                  
-                    this.Visible = false;
-                    ads000_02 frm = new ads000_02();
-                    frm.ShowDialog();
-                    Close();
+                    // Actualiza la contraseña del usuario
+                    DataTable Tabla = new DataTable();
+                    ObjUsuario.Fe_edi_psw(ide_usr, act_pas, nue_pas, rep_pas);
+                    // Devuelve OK Como resultado
+                    MessageBox.Show("Su contraseña se ha actualizado correctamente", "Inicio de sesión");
+                    DialogResult = DialogResult.OK;
                 }
-                else
-                    MessageBox.Show(mensaje, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             }
             catch (Exception ex)
             {
@@ -243,44 +190,11 @@ namespace CRS_PRE.ADS
             }
         }
 
-        private void Tb_ide_usr_KeyPress(object sender, KeyPressEventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-            {
-                Fi_ing_res();
-            }
+            // Devuelve Cancel Como resultado
+            DialogResult = DialogResult.Cancel;
         }
-
-        private void PictureBox2_Click(object sender, EventArgs e)
-        {
-            string mensaje = ObjUsuario.Login(cb_nom_bda.SelectedItem.ToString(), tb_ide_usr.Text, tb_pas_usr.Text);
-            if (mensaje == "OK")
-            {
-                cl_glo_frm bb = new cl_glo_frm();
-                string aa=   bb.fg_obt_cla();
-                tb_ide_usr.Text = aa;
-                MessageBox.Show(aa);
-            }
-            else
-            {
-
-            }
-            
-        }
-
-        private void pb_ima_pas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pb_ver_pss_MouseHover(object sender, EventArgs e)
-        {
-            tb_pas_usr.UseSystemPasswordChar = false;
-        }
-
-        private void pb_ver_pss_MouseLeave(object sender, EventArgs e)
-        {
-            tb_pas_usr.UseSystemPasswordChar = true;
-        }
+        
     }
 }

@@ -71,8 +71,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PictureBoxAbouAmmar">
+      <HintPath>D:\Crearsis\PictureBoxAbouAmmar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -128,6 +133,12 @@
     </Compile>
     <Compile Include="ADS\ads000_R00w.Designer.cs">
       <DependentUpon>ads000_R00w.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads000_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads000_03.Designer.cs">
+      <DependentUpon>ads000_03.cs</DependentUpon>
     </Compile>
     <Compile Include="ADS\ads004_01b.cs">
       <SubType>Form</SubType>
@@ -1418,6 +1429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_R00w.resx">
       <DependentUpon>ads000_R00w.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads000_03.resx">
+      <DependentUpon>ads000_03.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads004_01b.resx">
       <DependentUpon>ads004_01b.cs</DependentUpon>
