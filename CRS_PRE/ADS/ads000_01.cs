@@ -178,7 +178,7 @@ namespace CRS_PRE.ADS
                 {
                     // Actualiza la contraseña del usuario
                     DataTable Tabla = new DataTable();
-                    ObjUsuario.Fe_edi_psw(ide_usr, act_pas, nue_pas, rep_pas);
+                    ObjUsuario.Fe_edi_psw(ide_usr,  nue_pas);
                     // Devuelve OK Como resultado
                     MessageBox.Show("Su contraseña se ha actualizado correctamente", "Inicio de sesión");
                     DialogResult = DialogResult.OK;
