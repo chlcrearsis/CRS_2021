@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_PRE.INV;
-using CRS_NEG.INV;
+using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -23,8 +23,8 @@ namespace CRS_PRE.CMR
         //Instancias
       
 
-        c_inv002 o_inv002 = new c_inv002();
-        c_res001 o_res001 = new c_res001();
+        inv002 o_inv002 = new inv002();
+        res001 o_res001 = new res001();
         DataTable tabla = new DataTable();
 
 

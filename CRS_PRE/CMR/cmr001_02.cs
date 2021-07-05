@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.CMR;
+using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -19,7 +19,7 @@ namespace CRS_PRE.CMR
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        c_cmr001 o_cmr001 = new c_cmr001();
+        cmr001 o_cmr001 = new cmr001();
         //ads001 o_ads001 = new ads001();
 
         DataTable tabla = new DataTable();

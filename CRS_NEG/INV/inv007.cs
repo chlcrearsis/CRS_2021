@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.INV
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: ENCABEZADO COMPRAS
     /// </summary>
-    public class c_inv007
+    public class inv007
     {
         //######################################################################
         //##       Tabla: inv006                                              ##
@@ -32,7 +32,7 @@ namespace CRS_NEG.INV
         string fto_feca_hora = "dd/MM/yyyy hh:mm:ss";
         string fto_fecha = "dd/MM/yyyy";
 
-        public c_inv007()
+        public inv007()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

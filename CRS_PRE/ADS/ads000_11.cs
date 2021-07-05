@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_PRE.CMR;
-using CRS_NEG.INV;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {

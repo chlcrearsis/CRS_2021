@@ -10,8 +10,8 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using CRS_NEG;
-using CRS_NEG.INV;
-using CRS_NEG.CMR;
+using CRS_NEG;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {
@@ -25,7 +25,7 @@ namespace CRS_PRE.ADS
         ads007 o_ads007 = new ads007();
         ads017 o_ads017 = new ads017();
 
-        c_cmr004 o_cmr004 = new c_cmr004();
+        cmr004 o_cmr004 = new cmr004();
 
         // Variables
        // DataTable tab_cmr004 = new DataTable();

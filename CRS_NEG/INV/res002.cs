@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.INV
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: GRUPO VENTAS RESTAURANT
     /// </summary>
-    public class c_res002
+    public class res002
     {
         //######################################################################
         //##       Tabla: res001                                              ##
@@ -36,7 +36,7 @@ namespace CRS_NEG.INV
         string fto_fecha = "dd/MM/yyyy";
 
 
-        public c_res002()
+        public res002()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

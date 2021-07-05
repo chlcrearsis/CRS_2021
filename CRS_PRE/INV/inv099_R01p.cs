@@ -1,4 +1,4 @@
-﻿using CRS_NEG.INV;
+﻿using CRS_NEG;
 using CRS_PRE.INV;
 using System;
 using System.Data;
@@ -15,9 +15,9 @@ namespace CRS_PRE.INV
 
 
         //Instancias
-        c_inv002 o_inv002 = new c_inv002();
-        c_inv004 o_inv004 = new c_inv004();
-        c_inv099 o_inv099 = new c_inv099();
+        inv002 o_inv002 = new inv002();
+        inv004 o_inv004 = new inv004();
+        inv099 o_inv099 = new inv099();
 
         DataTable tabla = new DataTable();
         DataTable tab_pro = new DataTable();

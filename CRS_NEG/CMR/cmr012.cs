@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.CMR
+namespace CRS_NEG
 {
     /// <summary>
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     ///  Clase GRUPO DE PERSONA
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class c_cmr012
+    public class cmr012
     {
         //######################################################################
         //##       Tabla: cmr012                                              ##
@@ -34,7 +34,7 @@ namespace CRS_NEG.CMR
 
 
 
-        public c_cmr012()
+        public cmr012()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

@@ -36,7 +36,6 @@
             this.tb_con_tad = new System.Windows.Forms.TextBox();
             this.tb_nro_fin = new System.Windows.Forms.TextBox();
             this.cb_ges_tio = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,7 +47,6 @@
             this.tb_nro_ini = new System.Windows.Forms.TextBox();
             this.tb_nro_tal = new System.Windows.Forms.TextBox();
             this.tb_ide_doc = new System.Windows.Forms.TextBox();
-            this.bt_bus_doc = new System.Windows.Forms.Button();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -64,7 +62,6 @@
             this.groupBox1.Controls.Add(this.tb_con_tad);
             this.groupBox1.Controls.Add(this.tb_nro_fin);
             this.groupBox1.Controls.Add(this.cb_ges_tio);
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
@@ -76,7 +73,6 @@
             this.groupBox1.Controls.Add(this.tb_nro_ini);
             this.groupBox1.Controls.Add(this.tb_nro_tal);
             this.groupBox1.Controls.Add(this.tb_ide_doc);
-            this.groupBox1.Controls.Add(this.bt_bus_doc);
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(398, 157);
@@ -87,7 +83,7 @@
             // 
             this.tb_fec_fin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_fec_fin.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.tb_fec_fin.Location = new System.Drawing.Point(251, 119);
+            this.tb_fec_fin.Location = new System.Drawing.Point(313, 119);
             this.tb_fec_fin.Mask = "00/00/0000";
             this.tb_fec_fin.Name = "tb_fec_fin";
             this.tb_fec_fin.ReadOnly = true;
@@ -128,7 +124,7 @@
             // 
             this.tb_con_tad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_con_tad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_con_tad.Location = new System.Drawing.Point(349, 87);
+            this.tb_con_tad.Location = new System.Drawing.Point(350, 88);
             this.tb_con_tad.MaxLength = 5;
             this.tb_con_tad.Name = "tb_con_tad";
             this.tb_con_tad.ReadOnly = true;
@@ -156,25 +152,10 @@
             this.cb_ges_tio.Size = new System.Drawing.Size(69, 21);
             this.cb_ges_tio.TabIndex = 102;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(98, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(16, 22);
-            this.button1.TabIndex = 101;
-            this.button1.TabStop = false;
-            this.button1.Text = "|";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.Bt_bus_tal_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(178, 126);
+            this.label7.Location = new System.Drawing.Point(240, 123);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 13);
             this.label7.TabIndex = 29;
@@ -183,7 +164,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 126);
+            this.label6.Location = new System.Drawing.Point(3, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 29;
@@ -283,21 +264,6 @@
             this.tb_ide_doc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_ide_doc_KeyDown);
             this.tb_ide_doc.Validated += new System.EventHandler(this.Tb_ide_doc_Validated);
             // 
-            // bt_bus_doc
-            // 
-            this.bt_bus_doc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_doc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_doc.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_doc.Location = new System.Drawing.Point(98, 12);
-            this.bt_bus_doc.Name = "bt_bus_doc";
-            this.bt_bus_doc.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_doc.TabIndex = 20;
-            this.bt_bus_doc.TabStop = false;
-            this.bt_bus_doc.Text = "|";
-            this.bt_bus_doc.UseVisualStyleBackColor = false;
-            this.bt_bus_doc.Visible = false;
-            this.bt_bus_doc.Click += new System.EventHandler(this.Bt_bus_doc_Click);
-            // 
             // gb_ctr_btn
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
@@ -355,10 +321,8 @@
         private System.Windows.Forms.TextBox tb_nom_tal;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.TextBox tb_nro_tal;
-        private System.Windows.Forms.Button bt_bus_doc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_nro_ini;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cb_ges_tio;
         private System.Windows.Forms.Label label6;

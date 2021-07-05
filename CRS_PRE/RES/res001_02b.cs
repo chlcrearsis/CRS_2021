@@ -11,8 +11,8 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_NEG;
-using CRS_NEG.INV;
-using CRS_NEG.CMR;
+using CRS_NEG;
+using CRS_NEG;
 using CRS_PRE.ADS;
 using CRS_PRE.CMR;
 using CRS_PRE.INV;
@@ -28,17 +28,17 @@ namespace CRS_PRE.CMR
         ads003 o_ads003 = new ads003();
         ads004 o_ads004 = new ads004();
         ads001 o_ads001 = new ads001();
-        c_inv002 o_inv002 = new c_inv002();
-        c_inv003 o_inv003 = new c_inv003();
-        c_inv004 o_inv004 = new c_inv004();
-        c_cmr001 o_cmr001 = new c_cmr001();
-        c_cmr002 o_cmr002 = new c_cmr002();
-        c_res001 o_res001 = new c_res001();
-        c_res002 o_res002 = new c_res002();
+        inv002 o_inv002 = new inv002();
+        inv003 o_inv003 = new inv003();
+        inv004 o_inv004 = new inv004();
+        cmr001 o_cmr001 = new cmr001();
+        cmr002 o_cmr002 = new cmr002();
+        res001 o_res001 = new res001();
+        res002 o_res002 = new res002();
         c_res004 o_res004 = new c_res004();
-        c_cmr015 o_cmr015 = new c_cmr015();
-        c_cmr014 o_cmr014 = new c_cmr014();
-        c_cmr013 o_cmr013 = new c_cmr013();
+        cmr015 o_cmr015 = new cmr015();
+        cmr014 o_cmr014 = new cmr014();
+        cmr013 o_cmr013 = new cmr013();
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
 
 

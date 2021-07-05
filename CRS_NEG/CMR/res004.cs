@@ -6,18 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.CMR
+namespace CRS_NEG
 {
     /// <summary>
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase PLANTILLA DE VENTAS
+    ///  Clase PLANTILLA DE VENTAS RESTAURANT
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class c_cmr004
+    public class c_res004
     {
         //######################################################################
-        //##       Tabla: cmr004                                              ##
-        //##      Nombre: PLANTILLA DE VENTAS                                 ##
+        //##       Tabla: res004                                              ##
+        //##      Nombre: PLANTILLA DE VENTAS   RESTAURANT                    ##
         //## Descripcion:                                                     ##         
         //##       Autor: CHL  - (12-10-2020)                                 ##
         //######################################################################
@@ -34,7 +34,7 @@ namespace CRS_NEG.CMR
 
 
 
-        public c_cmr004()
+        public c_res004()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;
@@ -48,7 +48,7 @@ namespace CRS_NEG.CMR
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" cmr004_01a_p01 '" + val_bus +"', "+ prm_bus  + ",'"+ est_bus  + "'  ");
+                cadena.AppendLine(" res004_01a_p01 '" + val_bus +"', "+ prm_bus  + ",'"+ est_bus  + "'  ");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -64,7 +64,7 @@ namespace CRS_NEG.CMR
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" cmr004_01b_p01 '" + val_bus + "', " + prm_bus + ",'" + est_bus + "'  ");
+                cadena.AppendLine(" res004_01b_p01 '" + val_bus + "', " + prm_bus + ",'" + est_bus + "'  ");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -134,7 +134,7 @@ namespace CRS_NEG.CMR
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" INSERT INTO cmr004 VALUES ");
+                cadena.AppendLine(" INSERT INTO res004 VALUES ");
                 cadena.AppendFormat("('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}',", cod_plv, nom_plv, des_plv, cod_bod, cam_bod, cod_cli, cod_caj, cam_caj);
                 cadena.AppendFormat("'{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',", cod_lis, cam_lis, mon_vta, cam_mon, cod_ven, cam_ven, cod_del, cam_del, dia_ret, for_pgo);
                 cadena.AppendFormat("'{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}',", cam_fpg, pgo_cta, ope_def, lib_cre, lib_dev, bus_pro, des_srv, pro_rep);
@@ -210,7 +210,7 @@ namespace CRS_NEG.CMR
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE cmr004 SET ");
+                cadena.AppendLine(" UPDATE res004 SET ");
                 cadena.AppendFormat("va_nom_plv='{0}',va_des_plv='{1}',va_cod_bod={2},va_cam_bod={3},va_cod_caj={4},", nom_plv, des_plv, cod_bod, cam_bod, cod_caj);
                 cadena.AppendFormat("va_cod_cli='{0}',va_cod_lis={1},va_cam_lis={2},va_mon_vta='{3}',va_cam_mon={4},va_dia_ret={5}, va_cod_del={6},va_cam_del={7}, ", cod_cli, cod_lis, cam_lis, mon_vta, cam_mon, dia_ret, cod_del, cam_del);
                 cadena.AppendFormat("va_cod_ven={0},va_cam_ven={1}, va_lib_cre={2},va_lib_dev={3},va_for_pgo={4},va_cam_fpg={5},", cod_ven, cam_ven, lib_cre, lib_dev, for_pgo, cam_fpg);
@@ -241,7 +241,7 @@ namespace CRS_NEG.CMR
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE cmr004 SET ");
+                cadena.AppendLine(" UPDATE res004 SET ");
                 cadena.AppendLine(" va_est_ado='" + est_ado + "' ");
                 cadena.AppendLine(" WHERE  va_cod_plv =" + cod_plv);
 
@@ -262,7 +262,7 @@ namespace CRS_NEG.CMR
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM cmr004 ");
+                cadena.AppendLine(" SELECT * FROM res004 ");
                 cadena.AppendLine(" WHERE  va_cod_plv =" + cod_plv);
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
@@ -277,37 +277,37 @@ namespace CRS_NEG.CMR
         /// </summary>
         /// <param name="cod_plv">Codigo de la plantilla de venta</param>
         /// <returns></returns>
-        //public DataTable _05a(string cod_plv)
-        //{
+        public DataTable _05a(string cod_plv)
+        {
 
-        //    string uno = "plv.va_doc_fac,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_fac) va_nom_doc_fac";
-        //    string dos = "plv.va_tal_fac,(SELECT va_nom_tal FROM adm005 WHERE va_cod_doc=plv.va_doc_fac AND va_nro_tal=plv.va_tal_fac) va_nom_tal_fac";
+            string uno = "plv.va_doc_fac,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_fac) va_nom_doc_fac";
+            string dos = "plv.va_tal_fac,(SELECT va_nom_tal FROM adm005 WHERE va_cod_doc=plv.va_doc_fac AND va_nro_tal=plv.va_tal_fac) va_nom_tal_fac";
 
-        //    try
-        //    {
-        //        cadena = new StringBuilder();
-        //        cadena.AppendLine(" SELECT plv.va_cod_plv,plv.va_nom_plv,plv.va_des_plv,plv.va_cod_bod,alm.va_nom_bod,plv.va_cam_bod,plv.va_cod_cli,per.va_nom_com,plv.va_cod_caj,caj.va_nom_cjb,plv.va_cam_caj," +
-        //                              "plv.va_cod_lis,lis.va_nom_lis,plv.va_cam_lis,plv.va_mon_vta,plv.va_cam_mon,plv.va_cod_ven,ven.va_nom_ven,plv.va_cam_ven,plv.va_dia_ret,plv.va_for_pgo,plv.va_cam_fpg,plv.va_pgo_cta," +
-        //                              "plv.va_ope_def,plv.va_lib_cre,(SELECT va_des_lib FROM ecp006 where va_cod_lib=plv.va_lib_cre) va_des_lib_cre,plv.va_lib_dev,(SELECT va_des_lib FROM ecp006 where va_cod_lib=plv.va_lib_dev) va_des_lib_dev," +
-        //                              "plv.va_bus_pro,plv.va_des_srv,plv.va_pro_rep,plv.va_doc_fac,(SELECT va_nom_doc FROM adm003 where va_cod_doc=plv.va_doc_fac) va_nom_doc_fac,plv.va_tal_fac," +
-        //                              "(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_fac AND va_nro_tal=plv.va_tal_fac) va_nom_tal_fac,plv.va_doc_nvt,(SELECT va_nom_doc FROM adm003 where va_cod_doc=plv.va_doc_nvt) va_nom_doc_nvt," +
-        //                              "plv.va_tal_ntv,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_nvt AND va_nro_tal=plv.va_tal_ntv) va_nom_tal_ntv,plv.va_doc_ped,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_ped) va_nom_doc_ped," +
-        //                              "plv.va_tal_ped,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_ped AND va_nro_tal=plv.va_tal_ped) va_nom_tal_ped,plv.va_doc_cot,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_cot) va_nom_doc_cot," +
-        //                              "plv.va_tal_cot,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_cot AND va_nro_tal=plv.va_tal_cot) va_nom_tal_cot,plv.va_doc_dcf,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_dcf) va_nom_doc_dcf," +
-        //                              "plv.va_tal_dcf,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_dcf AND va_nro_tal=plv.va_tal_dcf) va_nom_tal_dcf,plv.va_doc_dsf,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_dsf) va_nom_doc_dsf," +
-        //                              "plv.va_tal_dsf,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_dsf AND va_nro_tal=plv.va_tal_dsf) va_nom_tal_dsf,plv.va_imp_fac,plv.va_imp_ntv,plv.va_imp_ped,plv.va_imp_cot,plv.va_imp_dcf,plv.va_imp_dsf," +
-        //                              "plv.va_ban_av1,plv.va_imp_av1,plv.va_ban_av2,plv.va_imp_av2,plv.va_ban_imp,plv.va_est_ado");
-        //        cadena.AppendLine(" FROM cmr004 plv,inv011 alm,adm010 per,tes001 caj,cmr001 lis,cmr003 ven");
-        //        cadena.AppendLine(" WHERE  va_cod_plv =" + cod_plv + " and plv.va_cod_bod=alm.va_cod_bod and plv.va_cod_cli=per.va_cod_per and va_cod_caj=caj.va_cod_cjb and plv.va_cod_lis=lis.va_cod_lis and " +
-        //                              "plv.va_cod_ven=ven.va_cod_ven");
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine(" SELECT plv.va_cod_plv,plv.va_nom_plv,plv.va_des_plv,plv.va_cod_bod,alm.va_nom_bod,plv.va_cam_bod,plv.va_cod_cli,per.va_nom_com,plv.va_cod_caj,caj.va_nom_cjb,plv.va_cam_caj," +
+                                      "plv.va_cod_lis,lis.va_nom_lis,plv.va_cam_lis,plv.va_mon_vta,plv.va_cam_mon,plv.va_cod_ven,ven.va_nom_ven,plv.va_cam_ven,plv.va_dia_ret,plv.va_for_pgo,plv.va_cam_fpg,plv.va_pgo_cta," +
+                                      "plv.va_ope_def,plv.va_lib_cre,(SELECT va_des_lib FROM ecp006 where va_cod_lib=plv.va_lib_cre) va_des_lib_cre,plv.va_lib_dev,(SELECT va_des_lib FROM ecp006 where va_cod_lib=plv.va_lib_dev) va_des_lib_dev," +
+                                      "plv.va_bus_pro,plv.va_des_srv,plv.va_pro_rep,plv.va_doc_fac,(SELECT va_nom_doc FROM adm003 where va_cod_doc=plv.va_doc_fac) va_nom_doc_fac,plv.va_tal_fac," +
+                                      "(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_fac AND va_nro_tal=plv.va_tal_fac) va_nom_tal_fac,plv.va_doc_nvt,(SELECT va_nom_doc FROM adm003 where va_cod_doc=plv.va_doc_nvt) va_nom_doc_nvt," +
+                                      "plv.va_tal_ntv,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_nvt AND va_nro_tal=plv.va_tal_ntv) va_nom_tal_ntv,plv.va_doc_ped,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_ped) va_nom_doc_ped," +
+                                      "plv.va_tal_ped,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_ped AND va_nro_tal=plv.va_tal_ped) va_nom_tal_ped,plv.va_doc_cot,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_cot) va_nom_doc_cot," +
+                                      "plv.va_tal_cot,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_cot AND va_nro_tal=plv.va_tal_cot) va_nom_tal_cot,plv.va_doc_dcf,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_dcf) va_nom_doc_dcf," +
+                                      "plv.va_tal_dcf,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_dcf AND va_nro_tal=plv.va_tal_dcf) va_nom_tal_dcf,plv.va_doc_dsf,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_dsf) va_nom_doc_dsf," +
+                                      "plv.va_tal_dsf,(SELECT va_nom_tal FROM adm004 WHERE va_cod_doc=plv.va_doc_dsf AND va_nro_tal=plv.va_tal_dsf) va_nom_tal_dsf,plv.va_imp_fac,plv.va_imp_ntv,plv.va_imp_ped,plv.va_imp_cot,plv.va_imp_dcf,plv.va_imp_dsf," +
+                                      "plv.va_ban_av1,plv.va_imp_av1,plv.va_ban_av2,plv.va_imp_av2,plv.va_ban_imp,plv.va_est_ado");
+                cadena.AppendLine(" FROM res004 plv,inv011 alm,adm010 per,tes001 caj,cmr001 lis,cmr003 ven");
+                cadena.AppendLine(" WHERE  va_cod_plv =" + cod_plv + " and plv.va_cod_bod=alm.va_cod_bod and plv.va_cod_cli=per.va_cod_per and va_cod_caj=caj.va_cod_cjb and plv.va_cod_lis=lis.va_cod_lis and " +
+                                      "plv.va_cod_ven=ven.va_cod_ven");
 
-        //        return ob_con_ecA.fe_exe_sql(cadena.ToString());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// Funcion "Elimina Planilla de Venta"
@@ -319,7 +319,7 @@ namespace CRS_NEG.CMR
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" DELETE cmr004 ");
+                cadena.AppendLine(" DELETE res004 ");
                 cadena.AppendLine(" WHERE  va_cod_plv =" + cod_plv);
 
                 ob_con_ecA.fe_exe_sql(cadena.ToString());

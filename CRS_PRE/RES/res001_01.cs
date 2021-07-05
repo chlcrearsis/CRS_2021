@@ -1,6 +1,6 @@
 ﻿using CRS_NEG;
-using CRS_NEG.CMR;
-using CRS_NEG.INV;
+using CRS_NEG;
+using CRS_NEG;
 using CRS_PRE.INV;
 using System;
 using System.Data;
@@ -25,9 +25,9 @@ namespace CRS_PRE.CMR
 
         // instancia
         ads016 o_ads016 = new ads016();
-        c_res001 o_res001 = new c_res001();
-        c_cmr013 o_cmr013 = new c_cmr013();
-        c_inv002 o_inv002 = new c_inv002();
+        res001 o_res001 = new res001();
+        cmr013 o_cmr013 = new cmr013();
+        inv002 o_inv002 = new inv002();
 
         // Variables
         DataTable tabla = new DataTable();

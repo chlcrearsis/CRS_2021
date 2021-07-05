@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 
-using CRS_NEG.CMR;
+using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -21,7 +21,7 @@ namespace CRS_PRE.CMR
         public int frm_tip;
         //Instancias
         
-        c_cmr012 o_cmr012 = new c_cmr012();
+        cmr012 o_cmr012 = new cmr012();
 
         DataTable tabla = new DataTable();
 

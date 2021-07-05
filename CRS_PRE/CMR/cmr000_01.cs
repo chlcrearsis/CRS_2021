@@ -11,8 +11,8 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_PRE.CMR;
-using CRS_NEG.INV;
-using CRS_NEG.CMR;
+using CRS_NEG;
+using CRS_NEG;
 using CRS_PRE.ADS;
 using CRS_PRE.INV;
 
@@ -30,13 +30,13 @@ namespace CRS_PRE.CMR
         ads004 o_ads004 = new ads004();
 
         // Instancias Clases de: VENTAS
-        c_res001 o_res001 = new c_res001();
+        res001 o_res001 = new res001();
 
         // Instancias Clases de: COMPRAS
-        c_inv007 o_inv007 = new c_inv007();
-        c_cmr004 o_cmr004 = new c_cmr004();
+        inv007 o_inv007 = new inv007();
+        cmr004 o_cmr004 = new cmr004();
         c_res004 o_res004 = new c_res004();
-        c_cmr005 o_cmr005 = new c_cmr005();
+        cmr005 o_cmr005 = new cmr005();
 
         //** Tablas
         DataTable tab_dat = new DataTable();

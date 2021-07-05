@@ -1,6 +1,6 @@
 ﻿using CRS_NEG;
 using CRS_NEG;
-using CRS_NEG.INV;
+using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -15,7 +15,7 @@ namespace CRS_PRE.INV
         //Instancias
         ads003 o_ads003 = new ads003();
         ads001 o_ads001 = new ads001();
-        c_inv003 o_inv003 = new c_inv003();
+        inv003 o_inv003 = new inv003();
 
         DataTable tabla = new DataTable();
 

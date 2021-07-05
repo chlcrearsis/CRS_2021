@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using CRS_DAT;
 using CRS_NEG;
 
-namespace CRS_NEG.CMR
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: pedido
     /// </summary>
-    public class c_cmr007
+    public class cmr007
     {
         //######################################################################
         //##       Tabla: cmr007                                              ##
@@ -38,7 +38,7 @@ namespace CRS_NEG.CMR
         DataTable Tab_ads005;
 
 
-        public c_cmr007()
+        public cmr007()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

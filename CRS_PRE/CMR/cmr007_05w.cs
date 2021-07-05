@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_NEG.CMR;
+using CRS_NEG;
 using CRS_PRE.ADS;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
@@ -25,7 +25,7 @@ namespace CRS_PRE.CMR
         ads016 o_ads016 = new ads016();
         ads013 o_ads013 = new ads013();
         ads004 o_ads004 = new ads004();
-        c_cmr007 o_cmr007 = new c_cmr007();
+        cmr007 o_cmr007 = new cmr007();
 
         DataTable tabla = new DataTable();
         DataTable tab_ads013 = new DataTable();

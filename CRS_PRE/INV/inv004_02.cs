@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.INV;
+using CRS_NEG;
 
 namespace CRS_PRE.INV
 {
@@ -19,10 +19,10 @@ namespace CRS_PRE.INV
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        c_inv003 o_inv003 = new c_inv003();
-        c_inv004 o_inv004 = new c_inv004();
-        c_inv005 o_inv005 = new c_inv005();
-        c_inv006 o_inv006 = new c_inv006();
+        inv003 o_inv003 = new inv003();
+        inv004 o_inv004 = new inv004();
+        inv005 o_inv005 = new inv005();
+        inv006 o_inv006 = new inv006();
 
         DataTable tabla = new DataTable();
 

@@ -1,4 +1,4 @@
-﻿using CRS_NEG.CMR;
+﻿using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -24,7 +24,7 @@ namespace CRS_PRE.CMR
         // instancia
         
 
-        c_cmr012 o_cmr012 = new c_cmr012();
+        cmr012 o_cmr012 = new cmr012();
 
         // Variables
         DataTable tabla = new DataTable();

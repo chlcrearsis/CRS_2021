@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.CMR;
+using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -29,7 +29,7 @@ namespace CRS_PRE.CMR
         }
 
         // instancia
-        c_cmr014 o_cmr014 = new c_cmr014();
+        cmr014 o_cmr014 = new cmr014();
         
 
         // Variables

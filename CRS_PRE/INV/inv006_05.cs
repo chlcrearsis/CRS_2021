@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.INV;
+using CRS_NEG;
 using CRS_NEG;
 
 namespace CRS_PRE.INV
@@ -22,7 +22,7 @@ namespace CRS_PRE.INV
         public DataTable frm_dat;
 
         //Instancias
-        c_inv006 o_inv006 = new c_inv006();
+        inv006 o_inv006 = new inv006();
 
         DataTable tabla = new DataTable();
 

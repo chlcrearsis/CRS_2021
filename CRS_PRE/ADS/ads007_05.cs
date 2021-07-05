@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_NEG;
-using CRS_NEG.CMR;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {
@@ -22,7 +22,7 @@ namespace CRS_PRE.ADS
         public DataTable frm_dat;
         //Instancias
         ads007 o_ads007 = new ads007();
-        c_cmr013 o_cmr013 = new c_cmr013();
+        cmr013 o_cmr013 = new cmr013();
         ads006 o_ads006 = new ads006();
 
         DataTable tabla = new DataTable();

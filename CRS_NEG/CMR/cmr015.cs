@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.CMR
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: LISTA DE DELIVERY
     /// </summary>
-    public class c_cmr015
+    public class cmr015
     {
         //######################################################################
         //##       Tabla: cmr015                                              ##
@@ -32,7 +32,7 @@ namespace CRS_NEG.CMR
 
 
 
-        public c_cmr015()
+        public cmr015()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

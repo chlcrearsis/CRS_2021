@@ -1,6 +1,6 @@
 ﻿using CRS_NEG;
-using CRS_NEG.CMR;
-using CRS_NEG.INV;
+using CRS_NEG;
+using CRS_NEG;
 using CRS_PRE.CMR;
 using CRS_PRE.INV;
 using System;
@@ -26,9 +26,9 @@ namespace CRS_PRE.CMR
 
         // instancia
         ads016 o_ads016 = new ads016();
-        c_cmr007 o_cmr007 = new c_cmr007();
-        c_cmr013 o_cmr013 = new c_cmr013();
-        c_inv002 o_inv002 = new c_inv002();
+        cmr007 o_cmr007 = new cmr007();
+        cmr013 o_cmr013 = new cmr013();
+        inv002 o_inv002 = new inv002();
         ads004 o_ads004 = new ads004();
 
         // Variables

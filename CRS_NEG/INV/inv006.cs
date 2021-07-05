@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.INV
+namespace CRS_NEG
 {
     /// <summary>
-    /// Clase: UNIDAD DE MEDIDA
+    /// Clase: MARCAS
     /// </summary>
-    public class c_inv005
+    public class inv006
     {
         //######################################################################
-        //##       Tabla: inv005                                              ##
-        //##      Nombre: UNIDAD DE MEDIDA                                    ##
+        //##       Tabla: inv006                                              ##
+        //##      Nombre: MARCAS                                              ##
         //## Descripcion:                                                     ##         
         //##       Autor: CHL  - (11-09-2020)                                 ##
         //######################################################################
@@ -32,7 +32,7 @@ namespace CRS_NEG.INV
 
 
 
-        public c_inv005()
+        public inv006()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;
@@ -41,62 +41,54 @@ namespace CRS_NEG.INV
             va_pas_usr = ob_con_ecA.va_pas_usr;
         }
  
-        public void Fe_crea(string ar_cod_umd, string ar_nom_umd)
+        public void Fe_crea(int ar_cod_mar, string ar_nom_mar)
         {
-            cadena = " INSERT INTO inv005 VALUES('" + ar_cod_umd + "', '" + ar_nom_umd + "')";
+            cadena = " INSERT INTO inv006 VALUES(" + ar_cod_mar + ", '" + ar_nom_mar + "')";
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
       
-        public void Fe_edi_umd(string ar_cod_umd, string ar_nom_umd )
+        public void Fe_edi_mar(int ar_cod_mar, string ar_nom_mar)
         {
-            cadena = " UPDATE inv005 SET va_nom_umd = '" + ar_nom_umd + "'  " +
-                    " WHERE va_cod_umd = '" + ar_cod_umd + "'";
+            cadena = " UPDATE inv006 SET va_nom_mar = '" + ar_nom_mar + "'  " +
+                    " WHERE va_cod_mar = " + ar_cod_mar;
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+ 
+        public void Fe_eli_mar(int ar_cod_mar )
+        {
+            cadena = " DELETE inv006 " +
+                 " WHERE va_cod_mar = " + ar_cod_mar + " "; 
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
-        public void Fe_eli_umd(string ar_cod_umd )
+        public DataTable Fe_con_mar( int ar_cod_mar)
         {
-            cadena = " DELETE inv005 " +
-                 " WHERE va_cod_umd ='" + ar_cod_umd + "' ";
-            ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        public DataTable Fe_con_umd( string ar_cod_umd)
-        {
-            cadena = " SELECT * FROM inv005" +
-                " WHERE va_cod_umd = '" + ar_cod_umd + "' ";
+            cadena = " SELECT * FROM inv006" +
+                " WHERE va_cod_mar = " + ar_cod_mar + " ";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
        
-        public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado )
+        public DataTable Fe_bus_car(string ar_tex_bus )
         {
-            cadena = " SELECT * FROM inv005 ";
-            if (ar_par_ame == 0)
-                cadena += " WHERE va_cod_umd like '" + ar_tex_bus + "%'";
-            if (ar_par_ame == 1)
-                cadena += " WHERE va_nom_umd LIKE '" + ar_tex_bus + "%'";
-          
-
-            if (ar_est_ado != "T")
-                cadena += " AND va_est_ado ='" + ar_est_ado + "'";
-
+            cadena = " SELECT * FROM inv006 ";
+            cadena += " WHERE va_nom_mar like '" + ar_tex_bus + "%'";
            
             return ob_con_ecA.fe_exe_sql(cadena);
         }
-       
         //** FUNCIONES DE REPORTES
 
         /// <summary>
         /// Funcion externa reporte: PERIODOS DE UNA GESTION
         /// </summary>
-        /// <param name="ar_cod_umd"> Ide Modulo</param>
+        /// <param name="ar_cod_mar"> Ide Modulo</param>
         /// <param name="ar_est_ado"> Estado</param>
         /// <returns></returns>
-        public DataTable Fe_inv005_R01( )
+        public DataTable Fe_inv006_R01( string ar_est_ado)
         {   
-            cadena = " SELECT * FROM inv005"  ;
+            cadena = " SELECT * FROM inv006" +
+                "WHERE va_est_ado = '" + ar_est_ado + "'" ;
 
             return ob_con_ecA.fe_exe_sql(cadena);
         }

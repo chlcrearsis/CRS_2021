@@ -6,18 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.CMR
+namespace CRS_NEG
 {
     /// <summary>
-    /// Clase: VENDEDORES
+    /// Clase: GRUPO BODEGAS
     /// </summary>
-    public class c_cmr014
+    public class inv001
     {
         //######################################################################
-        //##       Tabla: cmr014                                              ##
-        //##      Nombre: VENDEDORES                                          ##
+        //##       Tabla: inv001                                              ##
+        //##      Nombre: GRUPO BODEGAS                                       ##
         //## Descripcion:                                                     ##         
-        //##       Autor: CHL  - (15-09-2020)                                 ##
+        //##       Autor: CHL  - (22-07-2020)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
 
@@ -32,7 +32,7 @@ namespace CRS_NEG.CMR
 
 
 
-        public c_cmr014()
+        public inv001()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;
@@ -41,60 +41,56 @@ namespace CRS_NEG.CMR
             va_pas_usr = ob_con_ecA.va_pas_usr;
         }
  
-        public void Fe_crea(int ar_cod_ven, string ar_nom_ven,int ar_tip_cms, decimal ar_por_ven)
+        public void Fe_crea(int ar_ide_gru, string ar_nom_gru, string ar_des_gru, string ar_est_ado)
         {
-            cadena = " INSERT INTO cmr014 VALUES(" + ar_cod_ven + ", '" + ar_nom_ven + "', " +
-                "'" + ar_por_ven + "',  "+ ar_tip_cms  + ", 'H')";
+            cadena = " INSERT INTO inv001 VALUES(" + ar_ide_gru + ", '" + ar_nom_gru + "', " +
+                "'" + ar_des_gru + "', 'H')";
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
       
-        public void Fe_edi_ven(int ar_cod_ven, string ar_nom_ven, decimal ar_por_ven, int ar_tip_cms)
+        public void Fe_edi_gru(int ar_ide_gru, string ar_nom_gru, string ar_des_gru)
         {
-            cadena = " UPDATE cmr014 SET va_nom_ven = '" + ar_nom_ven + "' , " +
-                " va_por_cms = '" + ar_por_ven + "', va_tip_cms = " + ar_tip_cms +
-                    " WHERE va_cod_ven = " + ar_cod_ven;
+            cadena = " UPDATE inv001 SET va_nom_gru = '" + ar_nom_gru + "', va_des_gru = '" + ar_des_gru + "' " +
+                    " WHERE va_ide_gru = " + ar_ide_gru;
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
-        public void Fe_hab_ili(int ar_cod_ven )
+        public void Fe_hab_ili(int ar_ide_gru )
         {
-            cadena = " UPDATE cmr014 SET va_est_ado = 'H'" +
-                    " WHERE va_cod_ven = " + ar_cod_ven;
+            cadena = " UPDATE inv001 SET va_est_ado = 'H'" +
+                    " WHERE va_ide_gru = " + ar_ide_gru;
             ob_con_ecA.fe_exe_sql(cadena);
         }
-        public void Fe_des_hab(int ar_cod_ven )
+        public void Fe_des_hab(int ar_ide_gru )
         {
-            cadena = " UPDATE cmr014 SET va_est_ado = 'N'" ;
-            cadena += " WHERE va_cod_ven = '" + ar_cod_ven + "'";
+            cadena = " inv001_04a_p01 '" + ar_ide_gru + "'";
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
 
-        public void Fe_eli_ven(int ar_cod_ven)
+        public void Fe_eli_gru(int ar_ide_gru )
         {
-            cadena = " DELETE cmr014 " ;
-            cadena += " WHERE va_cod_ven = '" + ar_cod_ven + "'";
+            cadena = " inv001_06a_p01 '" + ar_ide_gru + "'";
             ob_con_ecA.fe_exe_sql(cadena);
-
-            
         }
 
-        public DataTable Fe_con_ven( int ar_cod_ven)
+        public DataTable Fe_con_gru( int ar_ide_gru)
         {
-            cadena = " SELECT * FROM cmr014 WHERE va_cod_ven = " + ar_cod_ven + " ";
+            cadena = " inv001_05a_p01 " + ar_ide_gru + " ";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
        
         public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado )
         {
-            cadena = " SELECT * FROM cmr014 ";
+            cadena = " SELECT * FROM inv001 ";
             if (ar_par_ame == 0)
-                cadena += " WHERE va_cod_ven like '" + ar_tex_bus + "%'";
+                cadena += " WHERE va_ide_gru like '" + ar_tex_bus + "%'";
             if (ar_par_ame == 1)
-                cadena += " WHERE va_nom_ven like '" + ar_tex_bus + "%'";
-
+                cadena += " WHERE va_nom_gru ='" + ar_tex_bus + "'";
+            if (ar_par_ame == 2)
+                cadena += " WHERE va_des_gru ='" + ar_tex_bus + "'";
 
 
             if (ar_est_ado != "T")
@@ -103,19 +99,24 @@ namespace CRS_NEG.CMR
            
             return ob_con_ecA.fe_exe_sql(cadena);
         }
+        public DataTable Fe_obt_gru()
+        {
+            cadena = "SELECT * FROM inv001 ";
 
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
 
         //** FUNCIONES DE REPORTES
 
         /// <summary>
         /// Funcion externa reporte: PERIODOS DE UNA GESTION
         /// </summary>
-        /// <param name="ar_cod_ven"> Ide Modulo</param>
+        /// <param name="ar_ide_gru"> Ide Modulo</param>
         /// <param name="ar_est_ado"> Estado</param>
         /// <returns></returns>
-        public DataTable Fe_cmr014_R01( string ar_est_ado)
+        public DataTable Fe_inv001_R01( string ar_est_ado)
         {   
-            cadena = " cmr014_R01 '" + ar_est_ado + "'" ;
+            cadena = " inv001_R01 '" + ar_est_ado + "'" ;
 
             return ob_con_ecA.fe_exe_sql(cadena);
         }

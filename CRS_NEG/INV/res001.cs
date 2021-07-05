@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using CRS_DAT;
 using CRS_NEG;
 
-namespace CRS_NEG.INV
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: VENTAS RESTAURANT
     /// </summary>
-    public class c_res001
+    public class res001
     {
         //######################################################################
         //##       Tabla: res001                                              ##
@@ -38,7 +38,7 @@ namespace CRS_NEG.INV
         DataTable Tab_ads005;
 
 
-        public c_res001()
+        public res001()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

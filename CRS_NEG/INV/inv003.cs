@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.INV
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: FAMILIA DE PRODUCTOS
     /// </summary>
-    public class c_inv003
+    public class inv003
     {
         //######################################################################
         //##       Tabla: inv003                                              ##
@@ -32,7 +32,7 @@ namespace CRS_NEG.INV
 
 
 
-        public c_inv003()
+        public inv003()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

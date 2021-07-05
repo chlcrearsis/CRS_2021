@@ -10,8 +10,8 @@ using System.Windows.Forms;
 
 using CRS_NEG;
 using CRS_PRE.CMR;
-using CRS_NEG.INV;
-using CRS_NEG.CMR;
+using CRS_NEG;
+using CRS_NEG;
 using CRS_PRE.ADS;
 using CRS_PRE.INV;
 

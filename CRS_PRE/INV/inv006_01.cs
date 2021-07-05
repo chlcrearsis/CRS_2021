@@ -1,5 +1,5 @@
 ﻿using CRS_NEG;
-using CRS_NEG.INV;
+using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -23,7 +23,7 @@ namespace CRS_PRE.INV
         }
 
         // instancia
-        c_inv006 o_inv006 = new c_inv006();
+        inv006 o_inv006 = new inv006();
 
         // Variables
         DataTable tabla = new DataTable();

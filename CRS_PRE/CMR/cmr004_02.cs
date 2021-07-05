@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.CMR;
-using CRS_NEG.INV;
+using CRS_NEG;
 using CRS_PRE.INV;
 using System.Drawing.Printing;
 using CRS_PRE.ADS;
-using CRS_NEG;
+
 
 namespace CRS_PRE.CMR
 {
@@ -26,14 +25,14 @@ namespace CRS_PRE.CMR
         public DataTable frm_dat;
 
         //Instancias
-        c_cmr001 o_cmr001 = new c_cmr001();
-        c_cmr002 o_cmr002 = new c_cmr002();
-        c_cmr004 o_cmr004 = new c_cmr004();
+        cmr001 o_cmr001 = new cmr001();
+        cmr002 o_cmr002 = new cmr002();
+        cmr004 o_cmr004 = new cmr004();
 
-        c_inv002 o_inv002 = new c_inv002();
-        c_cmr015 o_cmr015 = new c_cmr015();
-        c_cmr014 o_cmr014 = new c_cmr014();
-        c_cmr013 o_cmr013 = new c_cmr013();
+        inv002 o_inv002 = new inv002();
+        cmr015 o_cmr015 = new cmr015();
+        cmr014 o_cmr014 = new cmr014();
+        cmr013 o_cmr013 = new cmr013();
 
         ads004 o_ads004 = new ads004();
 

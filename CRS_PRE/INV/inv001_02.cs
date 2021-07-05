@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.INV;
+using CRS_NEG;
 using CRS_NEG;
 using CRS_NEG;
 
@@ -23,7 +23,7 @@ namespace CRS_PRE.INV
         //Instancias
         ads003 o_ads003 = new ads003();
         ads001 o_ads001 = new ads001();
-        c_inv001 o_inv001 = new c_inv001();
+        inv001 o_inv001 = new inv001();
 
         DataTable tabla = new DataTable();
 

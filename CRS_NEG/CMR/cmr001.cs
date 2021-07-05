@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.CMR
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: LISTA DE PRECIO
     /// </summary>
-    public class c_cmr001
+    public class cmr001
     {
         //######################################################################
         //##       Tabla: cmr001                                              ##
@@ -33,7 +33,7 @@ namespace CRS_NEG.CMR
 
 
 
-        public c_cmr001()
+        public cmr001()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

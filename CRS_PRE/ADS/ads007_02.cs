@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using CRS_NEG;
 
 using CRS_NEG;
-using CRS_NEG.CMR;
+using CRS_NEG;
 using CRS_PRE.CMR;
 
 namespace CRS_PRE.ADS
@@ -24,7 +24,7 @@ namespace CRS_PRE.ADS
         public int frm_tip;
         //Instancias
         ads007 o_ads007 = new ads007();
-        c_cmr013 o_cmr013 = new c_cmr013();     // Persona
+        cmr013 o_cmr013 = new cmr013();     // Persona
         ads006 o_ads006 = new ads006();     // Persona
 
         DataTable tabla = new DataTable();

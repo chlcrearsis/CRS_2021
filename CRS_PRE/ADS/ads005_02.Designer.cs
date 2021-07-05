@@ -88,7 +88,7 @@
             // 
             this.tb_fec_fin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_fec_fin.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.tb_fec_fin.Location = new System.Drawing.Point(251, 119);
+            this.tb_fec_fin.Location = new System.Drawing.Point(312, 119);
             this.tb_fec_fin.Mask = "00/00/0000";
             this.tb_fec_fin.Name = "tb_fec_fin";
             this.tb_fec_fin.Size = new System.Drawing.Size(80, 20);
@@ -127,7 +127,7 @@
             // 
             this.tb_con_tad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_con_tad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_con_tad.Location = new System.Drawing.Point(349, 87);
+            this.tb_con_tad.Location = new System.Drawing.Point(350, 88);
             this.tb_con_tad.MaxLength = 5;
             this.tb_con_tad.Name = "tb_con_tad";
             this.tb_con_tad.Size = new System.Drawing.Size(43, 20);
@@ -169,16 +169,16 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(178, 126);
+            this.label7.Location = new System.Drawing.Point(239, 123);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 13);
+            this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 29;
-            this.label7.Text = "Fecha Inicial";
+            this.label7.Text = "Fecha Final";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 126);
+            this.label6.Location = new System.Drawing.Point(3, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 29;

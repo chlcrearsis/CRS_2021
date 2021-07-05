@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.INV
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: EXISTENCIA DE PRODUCTOS
     /// </summary>
-    public class c_inv099
+    public class inv099
     {
         //######################################################################
         //##       Tabla: inv005                                              ##
@@ -32,7 +32,7 @@ namespace CRS_NEG.INV
 
 
 
-        public c_inv099()
+        public inv099()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

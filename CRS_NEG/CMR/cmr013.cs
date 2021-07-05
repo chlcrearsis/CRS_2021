@@ -8,14 +8,14 @@ using CRS_DAT;
 
 using Microsoft.SqlServer.Types;
 
-namespace CRS_NEG.CMR
+namespace CRS_NEG
 {
     /// <summary>
     /// ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// Clase Persona
     /// ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class c_cmr013
+    public class cmr013
     {
         //######################################################################
         //##       Tabla: cmr013                                              ##
@@ -37,7 +37,7 @@ namespace CRS_NEG.CMR
         DataTable tabla = new DataTable();
 
 
-        public c_cmr013()
+        public cmr013()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_NEG.INV;
+using CRS_NEG;
 using CRS_PRE.ADS;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
@@ -23,7 +23,7 @@ namespace CRS_PRE.INV
 
         //Instancias
         ads013 o_ads013 = new ads013();
-        c_inv007 o_inv007 = new c_inv007();
+        inv007 o_inv007 = new inv007();
 
         DataTable tabla = new DataTable();
         DataTable tab_ads013 = new DataTable();

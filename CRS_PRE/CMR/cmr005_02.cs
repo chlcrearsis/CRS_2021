@@ -11,8 +11,8 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 using CRS_NEG;
-using CRS_NEG.CMR;
-using CRS_NEG.INV;
+using CRS_NEG;
+using CRS_NEG;
 using CRS_PRE.ADS;
 using CRS_PRE.CMR;
 using CRS_PRE.INV;
@@ -28,18 +28,18 @@ namespace CRS_PRE.CMR
         public int frm_tip;
         
         /* INSTANCIAS  */
-        c_cmr001 o_cmr001 = new c_cmr001();     // Lista de precio
-        c_cmr002 o_cmr002 = new c_cmr002();     // Precios
-        c_cmr004 o_cmr004 = new c_cmr004();     // Plantilla de ventas
-        c_cmr005 o_cmr005 = new c_cmr005();     // Encabezado de Ventas
-        c_cmr006 o_cmr006 = new c_cmr006();     // Detalle de la venta
-        c_cmr007 o_cmr007 = new c_cmr007();     // Encabezado de Pedido
-        c_cmr013 o_cmr013 = new c_cmr013();     // Persona
-        c_cmr015 o_cmr015 = new c_cmr015();     // Delivery
-        c_cmr014 o_cmr014 = new c_cmr014();     // Vendedor
+        cmr001 o_cmr001 = new cmr001();     // Lista de precio
+        cmr002 o_cmr002 = new cmr002();     // Precios
+        cmr004 o_cmr004 = new cmr004();     // Plantilla de ventas
+        cmr005 o_cmr005 = new cmr005();     // Encabezado de Ventas
+        cmr006 o_cmr006 = new cmr006();     // Detalle de la venta
+        cmr007 o_cmr007 = new cmr007();     // Encabezado de Pedido
+        cmr013 o_cmr013 = new cmr013();     // Persona
+        cmr015 o_cmr015 = new cmr015();     // Delivery
+        cmr014 o_cmr014 = new cmr014();     // Vendedor
 
-        c_inv002 o_inv002 = new c_inv002();     // Bodega
-        c_inv004 o_inv004 = new c_inv004();     // Producto
+        inv002 o_inv002 = new inv002();     // Bodega
+        inv004 o_inv004 = new inv004();     // Producto
 
         ads004 o_ads004 = new ads004();     // Talonario
         ads016 o_ads016 = new ads016();     // Periodo

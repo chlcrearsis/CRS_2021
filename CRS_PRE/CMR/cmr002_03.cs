@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.CMR;
-using CRS_NEG.INV;
+using CRS_NEG;
+using CRS_NEG;
 using CRS_PRE.INV;
 namespace CRS_PRE.CMR
 {
@@ -21,9 +21,9 @@ namespace CRS_PRE.CMR
         public DataTable frm_dat;
 
         //Instancias
-        c_cmr001 o_cmr001 = new c_cmr001();
-        c_cmr002 o_cmr002 = new c_cmr002();
-        c_inv004 o_inv004 = new c_inv004();
+        cmr001 o_cmr001 = new cmr001();
+        cmr002 o_cmr002 = new cmr002();
+        inv004 o_inv004 = new inv004();
 
         DataTable tabla = new DataTable();
         string pro_aux = "";

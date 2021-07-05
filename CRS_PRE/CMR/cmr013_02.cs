@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using CRS_NEG.CMR;
+using CRS_NEG;
 using Microsoft.SqlServer.Types;
 
 namespace CRS_PRE.CMR
@@ -12,8 +12,8 @@ namespace CRS_PRE.CMR
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        c_cmr013 o_cmr013 = new c_cmr013();
-        c_cmr012 o_cmr012 = new c_cmr012();
+        cmr013 o_cmr013 = new cmr013();
+        cmr012 o_cmr012 = new cmr012();
 
         DataTable tabla = new DataTable();
         

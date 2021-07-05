@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using CRS_NEG;
-using CRS_NEG.INV;
+using CRS_NEG;
 
 namespace CRS_PRE.INV
 {
@@ -20,7 +20,7 @@ namespace CRS_PRE.INV
         public int frm_tip;
         public DataTable frm_dat;
         //Instancias
-        c_inv003 o_inv003 = new c_inv003();
+        inv003 o_inv003 = new inv003();
 
         DataTable tabla = new DataTable();
 

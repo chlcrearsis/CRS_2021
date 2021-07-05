@@ -1,4 +1,4 @@
-﻿using CRS_NEG.INV;
+﻿using CRS_NEG;
 using CRS_PRE.CMR;
 using CRS_PRE.INV;
 using System;
@@ -16,9 +16,9 @@ namespace CRS_PRE.INV
 
 
         //Instancias
-        c_inv002 o_inv002 = new c_inv002();
-        c_inv004 o_inv004 = new c_inv004();
-        c_inv007 o_inv007 = new c_inv007();
+        inv002 o_inv002 = new inv002();
+        inv004 o_inv004 = new inv004();
+        inv007 o_inv007 = new inv007();
 
         DataTable tabla = new DataTable();
         DataTable tab_pro = new DataTable();
