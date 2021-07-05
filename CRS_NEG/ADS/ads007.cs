@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
-namespace CRS_NEG.ADS
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase USUARIO
     /// </summary>
-    public class c_ads007
+    public class ads007
     {
         //######################################################################
         //##       Tabla: ads001_07                                           ##
@@ -30,7 +30,7 @@ namespace CRS_NEG.ADS
         string cadena = "";
        
        
-        public c_ads007()
+        public ads007()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

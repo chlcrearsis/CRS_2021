@@ -10,7 +10,7 @@ namespace CRS_NEG
     /// <summary>
     /// Clase: MODULOS
     /// </summary>
-    public class c_ads001
+    public class ads001
     {
         //######################################################################
         //##       Tabla: ads001                                              ##
@@ -32,7 +32,7 @@ namespace CRS_NEG
 
         DataTable Tabla = new DataTable();
         string cadena;
-        public c_ads001()
+        public ads001()
         {
 
             va_ser_bda = ob_con_ecA.va_ser_bda;

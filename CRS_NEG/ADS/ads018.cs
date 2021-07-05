@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
-namespace CRS_NEG.ADS
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase USUARIO
     /// </summary>
-    public class c_ads017
+    public class ads018
     {
         //######################################################################
-        //##       Tabla: ads017_01                                           ##
+        //##       Tabla: ads018_01                                           ##
         //##      Nombre: Usuario                                             ##
-        //## Descripcion: Inicio Sesion Usuario                               ##         
+        //## Descripcion:Permiso sobre plantilla de venta restaurant          ##         
         //##       Autor: JEJR - (05-01-2019)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();      
@@ -30,7 +30,7 @@ namespace CRS_NEG.ADS
         string cadena = "";
        
        
-        public c_ads017()
+        public ads018()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;
@@ -46,9 +46,9 @@ namespace CRS_NEG.ADS
         /// </summary>
         /// <param name="ag_ide_usr">Ide Usuario</param>
         /// <returns></returns>
-        public DataTable Fe_ads017_01(string ag_ide_usr)
+        public DataTable Fe_ads018_01(string ag_ide_usr)
         {
-            cadena = " SELECT * FROM ads017 ";
+            cadena = " SELECT * FROM ads018 ";
             cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "'";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
@@ -59,11 +59,11 @@ namespace CRS_NEG.ADS
         /// <param name="ag_ide_usr">Ide Usuario</param>
         /// <param name="ag_cod_plv">Cod de plantilla </param>
         /// <returns></returns>
-        public Boolean Fe_ads017_02(string ag_ide_usr, int ag_cod_plv)
+        public Boolean Fe_ads018_02(string ag_ide_usr, int ag_cod_plv)
         {
             bool resul = false;
 
-            cadena = " SELECT * FROM ads017 ";
+            cadena = " SELECT * FROM ads018 ";
             cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_cod_plv =" + ag_cod_plv ;
             DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
 
@@ -79,9 +79,9 @@ namespace CRS_NEG.ADS
         /// Registra permiso sobre Talonario
         /// </summary>
         /// <returns></returns>
-        public DataTable Fe_ads017_03(string ag_ide_usr, int ag_cod_plv)
+        public DataTable Fe_ads018_03(string ag_ide_usr, int ag_cod_plv)
         {
-            cadena = " INSERT INTO ads017 VALUES ";
+            cadena = " INSERT INTO ads018 VALUES ";
             cadena += " ('" + ag_ide_usr + "', " + ag_cod_plv + ") ";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
@@ -90,9 +90,9 @@ namespace CRS_NEG.ADS
         /// Elimna permiso sobre talonario
         /// </summary>
         /// <returns></returns>
-        public DataTable Fe_ads017_04(string ag_ide_usr, int ag_cod_plv)
+        public DataTable Fe_ads018_04(string ag_ide_usr, int ag_cod_plv)
         {
-            cadena = " DELETE ads017 ";
+            cadena = " DELETE ads018 ";
             cadena += " WHERE va_ide_usr ='" + ag_ide_usr + "' AND va_cod_plv = " + ag_cod_plv;
             return ob_con_ecA.fe_exe_sql(cadena);
         }

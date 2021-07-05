@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_NEG.CMR;
 using CRS_NEG.INV;
 using CRS_PRE.ADS;
@@ -41,8 +41,8 @@ namespace CRS_PRE.CMR
         c_inv002 o_inv002 = new c_inv002();     // Bodega
         c_inv004 o_inv004 = new c_inv004();     // Producto
 
-        c_ads004 o_ads004 = new c_ads004();     // Talonario
-        c_ads016 o_ads016 = new c_ads016();     // Periodo
+        ads004 o_ads004 = new ads004();     // Talonario
+        ads016 o_ads016 = new ads016();     // Periodo
         
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();     // CLASE DE METODOS GLOBALES
 

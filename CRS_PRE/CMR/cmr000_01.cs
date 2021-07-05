@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_PRE.CMR;
 using CRS_NEG.INV;
 using CRS_NEG.CMR;
@@ -26,8 +26,8 @@ namespace CRS_PRE.CMR
         public DataTable frm_dat;
 
         //Instancias
-        c_ads016 o_ads016 = new c_ads016();
-        c_ads004 o_ads004 = new c_ads004();
+        ads016 o_ads016 = new ads016();
+        ads004 o_ads004 = new ads004();
 
         // Instancias Clases de: VENTAS
         c_res001 o_res001 = new c_res001();

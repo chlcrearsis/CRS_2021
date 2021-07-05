@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {
@@ -27,7 +27,7 @@ namespace CRS_PRE.ADS
         }
 
         // instancia
-        c_ads016 o_ads016 = new c_ads016();
+        ads016 o_ads016 = new ads016();
 
         // Variables
         DataTable tabla = new DataTable();

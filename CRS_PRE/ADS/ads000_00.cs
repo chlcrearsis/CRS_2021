@@ -4,7 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {
@@ -18,8 +18,8 @@ namespace CRS_PRE.ADS
         private DataTable Tabla = new DataTable();
         private ToolTip va_tool_tip = new ToolTip();
 
-        private c_ads007 ObjUsuario = new c_ads007();
-        private c_ads013 o_ads013 = new c_ads013();
+        private ads007 ObjUsuario = new ads007();
+        private ads013 o_ads013 = new ads013();
 
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

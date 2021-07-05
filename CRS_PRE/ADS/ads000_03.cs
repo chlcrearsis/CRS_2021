@@ -78,7 +78,8 @@ namespace CRS_PRE.ADS
         private static string fi_sis_ope()
         {
             // Obtiene algunas claves del sistema operativo */
-            string cla_ve1 = @"SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion";
+            //string cla_ve1 = @"SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion";
+            string cla_ve1 = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion";
             string cla_ve2 = @"SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
 
             // Obtiene Registro KEY */
@@ -89,16 +90,21 @@ namespace CRS_PRE.ADS
             // Obtiene el nombre del Sistema Operativo */
             string ver_nam = new ComputerInfo().OSFullName.Replace("Microsoft ", "");
             string com_pil = sub_cl1.GetValue("CurrentBuild").ToString();
-            string rel_ide = sub_cl1.GetValue("ReleaseId").ToString();
+            string rel_ide = "." + (string)sub_cl1.GetValue("ReleaseId");
+            string ver_sio = string.Empty;
             string arq_pro = sub_cl2.GetValue("PROCESSOR_ARCHITECTURE").ToString();
             if (arq_pro.Equals("AMD64"))
                 arq_pro = "64 bits";
             else
                 arq_pro = "32 bits";
 
+            if (rel_ide.Equals("."))
+                ver_sio = com_pil;
+            else
+                ver_sio = com_pil + rel_ide;
 
             // Despliega Mensaje
-            return ver_nam + " " + arq_pro + " Versión: " + com_pil + "." + rel_ide;
+            return ver_nam + " " + arq_pro + " Versión: " + ver_sio;
         }
 
         private static string fi_inf_pro()

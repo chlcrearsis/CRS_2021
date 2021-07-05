@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_NEG.INV
 {
@@ -34,7 +34,7 @@ namespace CRS_NEG.INV
         string cadena = "";
         string DateFornat = "dd.MM.yyyy hh:mm:ss";
 
-        c_ads005 o_ads005 = new c_ads005();
+        ads005 o_ads005 = new ads005();
         DataTable Tab_ads005;
 
 

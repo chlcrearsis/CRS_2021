@@ -14,7 +14,7 @@ using CRS_NEG.INV;
 using CRS_PRE.INV;
 using System.Drawing.Printing;
 using CRS_PRE.ADS;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -35,7 +35,7 @@ namespace CRS_PRE.CMR
         c_cmr014 o_cmr014 = new c_cmr014();
         c_cmr013 o_cmr013 = new c_cmr013();
 
-        c_ads004 o_ads004 = new c_ads004();
+        ads004 o_ads004 = new ads004();
 
 
         DataTable tabla = new DataTable();

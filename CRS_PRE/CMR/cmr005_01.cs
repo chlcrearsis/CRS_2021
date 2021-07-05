@@ -1,4 +1,4 @@
-﻿using CRS_NEG.ADS;
+﻿using CRS_NEG;
 using CRS_NEG.CMR;
 using CRS_NEG.INV;
 using CRS_PRE.CMR;
@@ -25,11 +25,11 @@ namespace CRS_PRE.CMR
         }
 
         // instancia
-        c_ads016 o_ads016 = new c_ads016();
+        ads016 o_ads016 = new ads016();
         c_cmr005 o_cmr005 = new c_cmr005();
         c_cmr013 o_cmr013 = new c_cmr013();
         c_inv002 o_inv002 = new c_inv002();
-        c_ads004 o_ads004 = new c_ads004();
+        ads004 o_ads004 = new ads004();
 
         // Variables
         DataTable tab_ads004 = new DataTable();

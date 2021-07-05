@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_NEG.CMR;
 using CRS_NEG.INV;
 using CRS_PRE.ADS;
@@ -20,8 +20,8 @@ namespace CRS_PRE.INV
         c_inv002 o_inv002 = new c_inv002();
         c_inv004 o_inv004 = new c_inv004();
 
-        c_ads004 o_ads004 = new c_ads004();
-        c_ads016 o_ads016 = new c_ads016();
+        ads004 o_ads004 = new ads004();
+        ads016 o_ads016 = new ads016();
         c_cmr013 o_cmr013 = new c_cmr013();
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
 

@@ -1,4 +1,4 @@
-﻿using CRS_NEG.ADS;
+﻿using CRS_NEG;
 using CRS_NEG.CMR;
 using CRS_NEG.INV;
 using CRS_PRE.INV;
@@ -24,7 +24,7 @@ namespace CRS_PRE.CMR
         }
 
         // instancia
-        c_ads016 o_ads016 = new c_ads016();
+        ads016 o_ads016 = new ads016();
         c_res001 o_res001 = new c_res001();
         c_cmr013 o_cmr013 = new c_cmr013();
         c_inv002 o_inv002 = new c_inv002();

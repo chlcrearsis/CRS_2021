@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 //using System.Runtime.InteropServices;
 using System.Threading;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_PRE.INV;
 using CRS_PRE.CMR;
 
@@ -13,9 +13,9 @@ namespace CRS_PRE.ADS
     public partial class ads000_02 : Form
     {        
         DataTable Tabla = new DataTable();
-        c_ads007 o_ads007 = new c_ads007();
-        c_ads013 o_ads013 = new c_ads013();
-        c_ads008 o_ads008 = new c_ads008();
+        ads007 o_ads007 = new ads007();
+        ads013 o_ads013 = new ads013();
+        ads008 o_ads008 = new ads008();
         ToolTip va_tol_tip = new ToolTip();
 
         public ads000_02()
@@ -359,8 +359,14 @@ namespace CRS_PRE.ADS
         private void lb_nom_equ_Click(object sender, EventArgs e)
         {
             ads000_03 frm = new ads000_03();
-            frm.Show();
-            //cl_glo_frm.abrir(this, form, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, null);
+            //frm.Show();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, null);
+        }
+
+        private void ads000_02_Resize(object sender, EventArgs e)
+        {
+            //lb_nom_equ.Location = new System.Drawing.Point(0,  this.Size.Height - 50);
+            //lb_nom_equ.ForeColor = BackColor;
         }
     }
 }

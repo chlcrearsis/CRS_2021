@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.ADS
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase:  PARAMETROS GLOBALES PARA LA EMPRESA
     /// </summary>
-    public class c_ads013
+    public class ads013
     {
         //######################################################################
         //##       Tabla: ads013                                              ##
@@ -32,7 +32,7 @@ namespace CRS_NEG.ADS
 
 
 
-        public c_ads013()
+        public ads013()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

@@ -20,7 +20,7 @@ namespace CRS_PRE.CMR
         public int frm_tip;
         //Instancias
         c_cmr014 o_cmr014 = new c_cmr014();
-        //c_ads001 o_ads001 = new c_ads001();
+        //ads001 o_ads001 = new ads001();
 
         DataTable tabla = new DataTable();
 

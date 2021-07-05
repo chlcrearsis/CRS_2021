@@ -3,7 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 
 namespace CRS_PRE.ADS
@@ -16,7 +16,7 @@ namespace CRS_PRE.ADS
         private int va_coo_pox = 0;
         private int va_coo_poy = 0;
         private bool va_est_ven = false;
-        c_ads007 ObjUsuario = new c_ads007();
+        ads007 ObjUsuario = new ads007();
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(

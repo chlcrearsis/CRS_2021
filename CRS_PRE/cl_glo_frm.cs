@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_PRE
 {

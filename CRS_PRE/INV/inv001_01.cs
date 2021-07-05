@@ -1,4 +1,4 @@
-﻿using CRS_NEG.ADS;
+﻿using CRS_NEG;
 using CRS_NEG;
 using CRS_NEG.INV;
 using System;
@@ -24,8 +24,8 @@ namespace CRS_PRE.INV
         }
 
         // instancia
-        c_ads003 o_ads003 = new c_ads003();
-        c_ads001 o_ads001 = new c_ads001();
+        ads003 o_ads003 = new ads003();
+        ads001 o_ads001 = new ads001();
 
         c_inv001 o_inv001 = new c_inv001();
 

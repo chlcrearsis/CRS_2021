@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {
@@ -32,7 +32,7 @@ namespace CRS_PRE.ADS
 
         
     #region INSTANCIAS
-        c_ads022 o_ads022 = new c_ads022();
+        ads022 o_ads022 = new ads022();
         CRS_NEG.General o_glo_bal = new CRS_NEG.General();
     #endregion
 

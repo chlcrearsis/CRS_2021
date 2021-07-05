@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_NEG;
 
 namespace CRS_PRE.ADS
@@ -21,11 +21,11 @@ namespace CRS_PRE.ADS
         public DataTable frm_dat;
 
         //Instancias
-        c_ads007 o_ads007 = new c_ads007();
-        c_ads009 o_ads009 = new c_ads009();
-        c_ads004 o_ads004 = new c_ads004();
-        c_ads005 o_ads005 = new c_ads005();
-        c_ads001 o_ads001 = new c_ads001();
+        ads007 o_ads007 = new ads007();
+        ads009 o_ads009 = new ads009();
+        ads004 o_ads004 = new ads004();
+        ads005 o_ads005 = new ads005();
+        ads001 o_ads001 = new ads001();
 
         // Variables
         DataTable tabla = new DataTable();

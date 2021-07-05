@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 
 namespace CRS_PRE.ADS
 {
@@ -19,7 +19,7 @@ namespace CRS_PRE.ADS
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        c_ads007 o_ads007 = new c_ads007();
+        ads007 o_ads007 = new ads007();
 
         DataTable tabla = new DataTable();
 

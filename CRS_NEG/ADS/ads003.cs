@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.ADS
+namespace CRS_NEG
 {
     /// <summary>
     /// Clase: DOCUMENTOS
     /// </summary>
-    public class c_ads003
+    public class ads003
     {
         //######################################################################
         //##       Tabla: ads003                                              ##
@@ -32,7 +32,7 @@ namespace CRS_NEG.ADS
 
 
 
-        public c_ads003()
+        public ads003()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

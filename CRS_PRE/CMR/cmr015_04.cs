@@ -21,7 +21,7 @@ namespace CRS_PRE.CMR
 
         //Instancias
         c_cmr015 o_cmr015 = new c_cmr015();
-        //c_ads001 o_ads001 = new c_ads001();
+        //ads001 o_ads001 = new ads001();
 
         DataTable tabla = new DataTable();
 

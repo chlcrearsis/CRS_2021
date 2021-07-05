@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_NEG;
 using CRS_NEG.INV;
 using System.Windows.Markup;
@@ -32,10 +32,10 @@ namespace CRS_PRE.INV
         }
 
         // instancia
-        c_ads003 o_ads003 = new c_ads003();
+        ads003 o_ads003 = new ads003();
         
 
-        c_ads001 o_ads001 = new c_ads001();
+        ads001 o_ads001 = new ads001();
 
         c_inv003 o_inv003 = new c_inv003();
         c_inv004 o_inv004 = new c_inv004();

@@ -19,8 +19,8 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        c_ads006 o_ads006 = new c_ads006();
-        //c_ads001 o_ads001 = new c_ads001();
+        ads006 o_ads006 = new ads006();
+        //ads001 o_ads001 = new ads001();
 
         DataTable tabla = new DataTable();
 

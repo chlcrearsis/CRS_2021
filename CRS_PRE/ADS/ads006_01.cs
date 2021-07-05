@@ -29,7 +29,7 @@ namespace CRS_PRE
         }
 
         // instancia
-        c_ads006 o_ads006 = new c_ads006();
+        ads006 o_ads006 = new ads006();
         
 
         // Variables

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_PRE.INV;
 
 namespace CRS_PRE.INV
@@ -22,7 +22,7 @@ namespace CRS_PRE.INV
         }
 
         // Instancia
-        c_ads013 o_ads013 = new c_ads013();
+        ads013 o_ads013 = new ads013();
 
         dynamic o_frm;
         public dynamic frm_pad;

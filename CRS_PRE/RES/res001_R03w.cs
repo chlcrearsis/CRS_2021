@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_PRE.ADS;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
@@ -22,9 +22,9 @@ namespace CRS_PRE.CMR
 
         //public string vp_est_ado;
         //Instancias
-        c_ads016 o_ads016 = new c_ads016();
-        c_ads013 o_ads013 = new c_ads013();
-        c_ads004 o_ads004 = new c_ads004();
+        ads016 o_ads016 = new ads016();
+        ads013 o_ads013 = new ads013();
+        ads004 o_ads004 = new ads004();
 
         DataTable tabla = new DataTable();
         DataTable tab_ads013 = new DataTable();

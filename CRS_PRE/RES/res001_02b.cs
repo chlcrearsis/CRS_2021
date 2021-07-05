@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_NEG;
 using CRS_NEG.INV;
 using CRS_NEG.CMR;
@@ -25,9 +25,9 @@ namespace CRS_PRE.CMR
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        c_ads003 o_ads003 = new c_ads003();
-        c_ads004 o_ads004 = new c_ads004();
-        c_ads001 o_ads001 = new c_ads001();
+        ads003 o_ads003 = new ads003();
+        ads004 o_ads004 = new ads004();
+        ads001 o_ads001 = new ads001();
         c_inv002 o_inv002 = new c_inv002();
         c_inv003 o_inv003 = new c_inv003();
         c_inv004 o_inv004 = new c_inv004();

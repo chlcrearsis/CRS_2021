@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
 
-namespace CRS_NEG.ADS
+namespace CRS_NEG
 {
     /// <summary>
     /// ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// Clase T.C. Bs/Us
     /// ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class c_ads022
+    public class ads022
     {
         //######################################################################
         //##       Tabla: ads022                                              ##
@@ -33,7 +33,7 @@ namespace CRS_NEG.ADS
         string cadena = "";
 
 
-        public c_ads022()
+        public ads022()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;

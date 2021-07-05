@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using CRS_NEG;
-using CRS_NEG.ADS;
+using CRS_NEG;
 using CRS_NEG.CMR;
 using CRS_PRE.CMR;
 
@@ -22,8 +22,8 @@ namespace CRS_PRE.ADS
         public int frm_tip;
         public DataTable frm_dat;
         //Instancias
-        c_ads006 o_ads006 = new c_ads006();
-        c_ads007 o_ads007 = new c_ads007();
+        ads006 o_ads006 = new ads006();
+        ads007 o_ads007 = new ads007();
         c_cmr013 o_cmr013 = new c_cmr013();     // Persona
 
         DataTable tabla = new DataTable();

@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
-namespace CRS_NEG.ADS
+namespace CRS_NEG
 {
     /// <summary>
-    /// Clase PERMISO S/LISTA DE PRECIO
+    /// Clase USUARIO
     /// </summary>
-    public class c_ads019
+    public class ads017
     {
         //######################################################################
-        //##       Tabla: ads019_01                                           ##
-        //##      Nombre: Permiso S/Lista de precio                           ##
-        //## Descripcion:Permiso sobre Lista de precio                        ##         
-        //##       Autor: CHL - (19-02-2021)                                  ##
+        //##       Tabla: ads017_01                                           ##
+        //##      Nombre: Usuario                                             ##
+        //## Descripcion: Inicio Sesion Usuario                               ##         
+        //##       Autor: JEJR - (05-01-2019)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();      
 
@@ -30,7 +30,7 @@ namespace CRS_NEG.ADS
         string cadena = "";
        
        
-        public c_ads019()
+        public ads017()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;
@@ -39,32 +39,32 @@ namespace CRS_NEG.ADS
             va_pas_usr = ob_con_ecA.va_pas_usr;
         }
 
-        #region "PERMISO SOBRE LISTA DE PRECIO"
+        #region "PERMISO SOBRE PLANTILLA DE VENTA"
 
         /// <summary>
         /// Obtiene Permiso sobre Plantilla de ventas
         /// </summary>
         /// <param name="ag_ide_usr">Ide Usuario</param>
         /// <returns></returns>
-        public DataTable Fe_ads019_01(string ag_ide_usr)
+        public DataTable Fe_ads017_01(string ag_ide_usr)
         {
-            cadena = " SELECT * FROM ads019 ";
+            cadena = " SELECT * FROM ads017 ";
             cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "'";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
         /// <summary>
-        /// Consulta si el usuario tiene permiso sobre una  Lista de precio especifica
+        /// Consulta si el usuario tiene permiso sobre una  Plantilla especifico
         /// </summary>
         /// <param name="ag_ide_usr">Ide Usuario</param>
-        /// <param name="ag_cod_lis">Cod de lista de precio </param>
+        /// <param name="ag_cod_plv">Cod de plantilla </param>
         /// <returns></returns>
-        public Boolean Fe_ads019_02(string ag_ide_usr, int ag_cod_lis)
+        public Boolean Fe_ads017_02(string ag_ide_usr, int ag_cod_plv)
         {
             bool resul = false;
 
-            cadena = " SELECT * FROM ads019 ";
-            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_cod_lis =" + ag_cod_lis ;
+            cadena = " SELECT * FROM ads017 ";
+            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_cod_plv =" + ag_cod_plv ;
             DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
 
             if (tabla.Rows.Count == 0)
@@ -76,24 +76,24 @@ namespace CRS_NEG.ADS
         }
 
         /// <summary>
-        /// Registra permiso sobre Lista de precio
+        /// Registra permiso sobre Talonario
         /// </summary>
         /// <returns></returns>
-        public DataTable Fe_ads019_03(string ag_ide_usr, int ag_cod_lis)
+        public DataTable Fe_ads017_03(string ag_ide_usr, int ag_cod_plv)
         {
-            cadena = " INSERT INTO ads019 VALUES ";
-            cadena += " ('" + ag_ide_usr + "', " + ag_cod_lis + ") ";
+            cadena = " INSERT INTO ads017 VALUES ";
+            cadena += " ('" + ag_ide_usr + "', " + ag_cod_plv + ") ";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
         /// <summary>
-        /// Elimna permiso sobre lista de precio
+        /// Elimna permiso sobre talonario
         /// </summary>
         /// <returns></returns>
-        public DataTable Fe_ads019_04(string ag_ide_usr, int ag_cod_lis)
+        public DataTable Fe_ads017_04(string ag_ide_usr, int ag_cod_plv)
         {
-            cadena = " DELETE ads019 ";
-            cadena += " WHERE va_ide_usr ='" + ag_ide_usr + "' AND va_cod_lis = " + ag_cod_lis;
+            cadena = " DELETE ads017 ";
+            cadena += " WHERE va_ide_usr ='" + ag_ide_usr + "' AND va_cod_plv = " + ag_cod_plv;
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
