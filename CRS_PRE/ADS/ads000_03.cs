@@ -28,10 +28,7 @@ namespace CRS_PRE.ADS
             tb_pla_sis.Text = string.Empty;
             tb_bio_sis.Text = string.Empty;
             tb_dir_ipp.Text = string.Empty;
-            tb_dir_mac.Text = string.Empty;
-            tb_fir_win.Text = string.Empty;
-            tb_red_dom.Text = string.Empty;
-            tb_red_pub.Text = string.Empty;
+            tb_dir_mac.Text = string.Empty;           
             tb_net_fra.Text = string.Empty;
             tb_run_cry.Text = string.Empty;
         }
@@ -57,16 +54,13 @@ namespace CRS_PRE.ADS
             tb_pla_sis.Text = fi_pla_bas();
 
             // Obtiene la Version Bios
-            tb_bio_sis.Text = fi_ser_bio();
+            tb_bio_sis.Text = fi_ver_bio();
 
             // Obtiene la Direccion Ip local
             tb_dir_ipp.Text = fi_dir_ipp();
 
             // Obtiene la Direccion MAC
             tb_dir_mac.Text = fi_dir_mac();
-
-            // Obtiene el estado del Firewall de Windows
-            fi_fir_win();
 
             // Obtiene la Version del NET.Framework
             tb_net_fra.Text = fi_net_fra();
@@ -75,6 +69,10 @@ namespace CRS_PRE.ADS
             tb_run_cry.Text = fi_cry_rep();
         }
 
+        /// <summary>
+        /// Funcion que Devuelve datos del Sistema Operativo
+        /// </summary>
+        /// <returns></returns>
         private static string fi_sis_ope()
         {
             // Obtiene algunas claves del sistema operativo */
@@ -107,6 +105,10 @@ namespace CRS_PRE.ADS
             return ver_nam + " " + arq_pro + " Versión: " + ver_sio;
         }
 
+        /// <summary>
+        /// Funcion que Devuelve datos del Procesador
+        /// </summary>
+        /// <returns></returns>
         private static string fi_inf_pro()
         {
             string cla_pro = @"HARDWARE\DESCRIPTION\System\CentralProcessor\0";
@@ -114,6 +116,10 @@ namespace CRS_PRE.ADS
             return key_pro.GetValue("ProcessorNameString").ToString();
         }
 
+        /// <summary>
+        /// Funcion que Devuelve datos de la Memoria RAN
+        /// </summary>
+        /// <returns></returns>
         private static string fi_mem_ran()
         {
             ManagementClass mc = new ManagementClass("Win32_ComputerSystem");
@@ -126,6 +132,10 @@ namespace CRS_PRE.ADS
             return "No Lecturable";
         }
 
+        /// <summary>
+        /// Funcion que Devuelve datos de la Placa Base
+        /// </summary>
+        /// <returns></returns>
         private static string fi_pla_bas()
         {
             // Obteniendo lista de placas base
@@ -138,7 +148,11 @@ namespace CRS_PRE.ADS
             return ((ManagementObject)(mbEnum.Current)).Properties["SerialNumber"].Value.ToString();
         }
 
-        private static string fi_ser_bio()
+        /// <summary>
+        /// Funcion que Devuelve datos de la Versión de la BIOS
+        /// </summary>
+        /// <returns></returns>
+        private static string fi_ver_bio()
         {
             SelectQuery Sq = new SelectQuery("Win32_BIOS");
             ManagementObjectSearcher objOSDetails = new ManagementObjectSearcher(Sq);
@@ -151,6 +165,10 @@ namespace CRS_PRE.ADS
             return "No Lecturable";
         }
 
+        /// <summary>
+        /// Funcion que Devuelve datos de la Ip Local
+        /// </summary>
+        /// <returns></returns>
         private static string fi_dir_ipp()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -164,6 +182,10 @@ namespace CRS_PRE.ADS
             return "No Conectado";
         }
 
+        /// <summary>
+        /// Funcion que Devuelve datos de la Dirección MAC
+        /// </summary>
+        /// <returns></returns>
         private static string fi_dir_mac()
         {
             try
@@ -194,53 +216,10 @@ namespace CRS_PRE.ADS
             }
         }
 
-        private void fi_fir_win()
-        {
-            // Crea constante para los tipos de cortafuegos.
-            const int NET_FW_PROFILE2_DOMAIN = 1;
-            const int NET_FW_PROFILE2_PRIVATE = 2;
-            const int NET_FW_PROFILE2_PUBLIC = 4;
-
-            // Cree el tipo de firewall.
-            Type FWManagerType = Type.GetTypeFromProgID("HNetCfg.FwPolicy2");
-
-            // Utilice el tipo de cortafuegos para crear un objeto de administrador de cortafuegos.
-            dynamic FWManager = Activator.CreateInstance(FWManagerType);
-
-            // Obtén la configuración del firewall.
-            bool CheckDomain =
-                FWManager.FirewallEnabled(NET_FW_PROFILE2_DOMAIN);
-            bool CheckPrivate =
-                FWManager.FirewallEnabled(NET_FW_PROFILE2_PRIVATE);
-            bool CheckPublic =
-                FWManager.FirewallEnabled(NET_FW_PROFILE2_PUBLIC);
-
-            // Verifique el estado del firewall.
-            if (CheckDomain == true && CheckPrivate == true && CheckPublic == true){
-                tb_fir_win.Text = "Seguro";
-            }else {
-                tb_fir_win.Text = "Inseguro";
-            }
-
-            if (CheckDomain == true){
-                tb_red_dom.Text = "Activado";
-            }else {
-                tb_red_dom.Text = "Desactivado";
-            }
-
-            if (CheckPrivate == true){
-                tb_red_pri.Text = "Activado";
-            }else{
-                tb_red_pri.Text = "Desactivado";
-            }
-
-            if (CheckPublic == true){
-                tb_red_pub.Text = "Activado";
-            }else{
-                tb_red_pub.Text = "Desactivado";
-            }
-        }
-
+        /// <summary>
+        /// Funcion que Devuelve datos de la Versión del NET.Framework instalado
+        /// </summary>
+        /// <returns></returns>
         private static string fi_net_fra()
         {
             try
@@ -269,6 +248,10 @@ namespace CRS_PRE.ADS
             }
         }
 
+        /// <summary>
+        /// Funcion que Devuelve datos de la Versión del CrystalReportView instalado
+        /// </summary>
+        /// <returns></returns>
         private static string fi_cry_rep()
         {
             try

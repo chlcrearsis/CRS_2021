@@ -32,14 +32,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tb_dir_mac = new System.Windows.Forms.Label();
             this.lb_dir_mac = new System.Windows.Forms.Label();
-            this.tb_fir_win = new System.Windows.Forms.Label();
-            this.tb_red_pub = new System.Windows.Forms.Label();
-            this.lb_red_pub = new System.Windows.Forms.Label();
-            this.tb_red_pri = new System.Windows.Forms.Label();
-            this.lb_red_pri = new System.Windows.Forms.Label();
-            this.tb_red_dom = new System.Windows.Forms.Label();
-            this.lb_red_dom = new System.Windows.Forms.Label();
-            this.lb_fir_win = new System.Windows.Forms.Label();
             this.tb_dir_ipp = new System.Windows.Forms.Label();
             this.lb_dir_ipp = new System.Windows.Forms.Label();
             this.tb_bio_sis = new System.Windows.Forms.Label();
@@ -69,14 +61,6 @@
             // 
             this.groupBox1.Controls.Add(this.tb_dir_mac);
             this.groupBox1.Controls.Add(this.lb_dir_mac);
-            this.groupBox1.Controls.Add(this.tb_fir_win);
-            this.groupBox1.Controls.Add(this.tb_red_pub);
-            this.groupBox1.Controls.Add(this.lb_red_pub);
-            this.groupBox1.Controls.Add(this.tb_red_pri);
-            this.groupBox1.Controls.Add(this.lb_red_pri);
-            this.groupBox1.Controls.Add(this.tb_red_dom);
-            this.groupBox1.Controls.Add(this.lb_red_dom);
-            this.groupBox1.Controls.Add(this.lb_fir_win);
             this.groupBox1.Controls.Add(this.tb_dir_ipp);
             this.groupBox1.Controls.Add(this.lb_dir_ipp);
             this.groupBox1.Controls.Add(this.tb_bio_sis);
@@ -97,220 +81,136 @@
             this.groupBox1.Controls.Add(this.lb_sis_ope);
             this.groupBox1.Location = new System.Drawing.Point(4, -1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(546, 290);
+            this.groupBox1.Size = new System.Drawing.Size(546, 207);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // tb_dir_mac
             // 
             this.tb_dir_mac.AutoSize = true;
-            this.tb_dir_mac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_dir_mac.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_dir_mac.ForeColor = System.Drawing.Color.Gray;
-            this.tb_dir_mac.Location = new System.Drawing.Point(283, 140);
+            this.tb_dir_mac.Location = new System.Drawing.Point(280, 140);
             this.tb_dir_mac.Name = "tb_dir_mac";
-            this.tb_dir_mac.Size = new System.Drawing.Size(109, 15);
+            this.tb_dir_mac.Size = new System.Drawing.Size(96, 14);
             this.tb_dir_mac.TabIndex = 14;
             this.tb_dir_mac.Text = "90:50:CA:99:85:D2";
             // 
             // lb_dir_mac
             // 
             this.lb_dir_mac.AutoSize = true;
-            this.lb_dir_mac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_dir_mac.Location = new System.Drawing.Point(155, 140);
+            this.lb_dir_mac.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_dir_mac.Location = new System.Drawing.Point(150, 140);
             this.lb_dir_mac.Name = "lb_dir_mac";
-            this.lb_dir_mac.Size = new System.Drawing.Size(91, 15);
+            this.lb_dir_mac.Size = new System.Drawing.Size(77, 14);
             this.lb_dir_mac.TabIndex = 13;
             this.lb_dir_mac.Text = "Dirección MAC:";
-            // 
-            // tb_fir_win
-            // 
-            this.tb_fir_win.AutoSize = true;
-            this.tb_fir_win.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tb_fir_win.ForeColor = System.Drawing.Color.Gray;
-            this.tb_fir_win.Location = new System.Drawing.Point(283, 160);
-            this.tb_fir_win.Name = "tb_fir_win";
-            this.tb_fir_win.Size = new System.Drawing.Size(47, 15);
-            this.tb_fir_win.TabIndex = 16;
-            this.tb_fir_win.Text = "Seguro";
-            // 
-            // tb_red_pub
-            // 
-            this.tb_red_pub.AutoSize = true;
-            this.tb_red_pub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tb_red_pub.ForeColor = System.Drawing.Color.Gray;
-            this.tb_red_pub.Location = new System.Drawing.Point(283, 220);
-            this.tb_red_pub.Name = "tb_red_pub";
-            this.tb_red_pub.Size = new System.Drawing.Size(66, 15);
-            this.tb_red_pub.TabIndex = 22;
-            this.tb_red_pub.Text = "Encendido";
-            // 
-            // lb_red_pub
-            // 
-            this.lb_red_pub.AutoSize = true;
-            this.lb_red_pub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_red_pub.Location = new System.Drawing.Point(197, 220);
-            this.lb_red_pub.Name = "lb_red_pub";
-            this.lb_red_pub.Size = new System.Drawing.Size(77, 15);
-            this.lb_red_pub.TabIndex = 21;
-            this.lb_red_pub.Text = "Red Pública:";
-            // 
-            // tb_red_pri
-            // 
-            this.tb_red_pri.AutoSize = true;
-            this.tb_red_pri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tb_red_pri.ForeColor = System.Drawing.Color.Gray;
-            this.tb_red_pri.Location = new System.Drawing.Point(283, 200);
-            this.tb_red_pri.Name = "tb_red_pri";
-            this.tb_red_pri.Size = new System.Drawing.Size(66, 15);
-            this.tb_red_pri.TabIndex = 20;
-            this.tb_red_pri.Text = "Encendido";
-            // 
-            // lb_red_pri
-            // 
-            this.lb_red_pri.AutoSize = true;
-            this.lb_red_pri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_red_pri.Location = new System.Drawing.Point(193, 200);
-            this.lb_red_pri.Name = "lb_red_pri";
-            this.lb_red_pri.Size = new System.Drawing.Size(77, 15);
-            this.lb_red_pri.TabIndex = 19;
-            this.lb_red_pri.Text = "Red Privada:";
-            // 
-            // tb_red_dom
-            // 
-            this.tb_red_dom.AutoSize = true;
-            this.tb_red_dom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tb_red_dom.ForeColor = System.Drawing.Color.Gray;
-            this.tb_red_dom.Location = new System.Drawing.Point(283, 180);
-            this.tb_red_dom.Name = "tb_red_dom";
-            this.tb_red_dom.Size = new System.Drawing.Size(66, 15);
-            this.tb_red_dom.TabIndex = 18;
-            this.tb_red_dom.Text = "Encendido";
-            // 
-            // lb_red_dom
-            // 
-            this.lb_red_dom.AutoSize = true;
-            this.lb_red_dom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_red_dom.Location = new System.Drawing.Point(178, 180);
-            this.lb_red_dom.Name = "lb_red_dom";
-            this.lb_red_dom.Size = new System.Drawing.Size(100, 15);
-            this.lb_red_dom.TabIndex = 17;
-            this.lb_red_dom.Text = "Red de Dominio:";
-            // 
-            // lb_fir_win
-            // 
-            this.lb_fir_win.AutoSize = true;
-            this.lb_fir_win.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_fir_win.Location = new System.Drawing.Point(155, 160);
-            this.lb_fir_win.Name = "lb_fir_win";
-            this.lb_fir_win.Size = new System.Drawing.Size(120, 15);
-            this.lb_fir_win.TabIndex = 15;
-            this.lb_fir_win.Text = "Firewall de Windows";
             // 
             // tb_dir_ipp
             // 
             this.tb_dir_ipp.AutoSize = true;
-            this.tb_dir_ipp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_dir_ipp.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_dir_ipp.ForeColor = System.Drawing.Color.Gray;
-            this.tb_dir_ipp.Location = new System.Drawing.Point(283, 120);
+            this.tb_dir_ipp.Location = new System.Drawing.Point(280, 120);
             this.tb_dir_ipp.Name = "tb_dir_ipp";
-            this.tb_dir_ipp.Size = new System.Drawing.Size(72, 15);
+            this.tb_dir_ipp.Size = new System.Drawing.Size(64, 14);
             this.tb_dir_ipp.TabIndex = 12;
             this.tb_dir_ipp.Text = "190.186.0.1";
             // 
             // lb_dir_ipp
             // 
             this.lb_dir_ipp.AutoSize = true;
-            this.lb_dir_ipp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_dir_ipp.Location = new System.Drawing.Point(155, 120);
+            this.lb_dir_ipp.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_dir_ipp.Location = new System.Drawing.Point(150, 120);
             this.lb_dir_ipp.Name = "lb_dir_ipp";
-            this.lb_dir_ipp.Size = new System.Drawing.Size(112, 15);
+            this.lb_dir_ipp.Size = new System.Drawing.Size(93, 14);
             this.lb_dir_ipp.TabIndex = 11;
             this.lb_dir_ipp.Text = "Dirección Local  IP:";
             // 
             // tb_bio_sis
             // 
             this.tb_bio_sis.AutoSize = true;
-            this.tb_bio_sis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_bio_sis.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_bio_sis.ForeColor = System.Drawing.Color.Gray;
-            this.tb_bio_sis.Location = new System.Drawing.Point(282, 100);
+            this.tb_bio_sis.Location = new System.Drawing.Point(280, 100);
             this.tb_bio_sis.Name = "tb_bio_sis";
-            this.tb_bio_sis.Size = new System.Drawing.Size(31, 15);
+            this.tb_bio_sis.Size = new System.Drawing.Size(26, 14);
             this.tb_bio_sis.TabIndex = 10;
             this.tb_bio_sis.Text = "F.36";
             // 
             // lb_bio_sis
             // 
             this.lb_bio_sis.AutoSize = true;
-            this.lb_bio_sis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_bio_sis.Location = new System.Drawing.Point(154, 100);
+            this.lb_bio_sis.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_bio_sis.Location = new System.Drawing.Point(150, 100);
             this.lb_bio_sis.Name = "lb_bio_sis";
-            this.lb_bio_sis.Size = new System.Drawing.Size(104, 15);
+            this.lb_bio_sis.Size = new System.Drawing.Size(88, 14);
             this.lb_bio_sis.TabIndex = 9;
             this.lb_bio_sis.Text = "BIOS del sistema:";
             // 
             // tb_run_cry
             // 
             this.tb_run_cry.AutoSize = true;
-            this.tb_run_cry.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_run_cry.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_run_cry.ForeColor = System.Drawing.Color.Gray;
-            this.tb_run_cry.Location = new System.Drawing.Point(282, 260);
+            this.tb_run_cry.Location = new System.Drawing.Point(280, 180);
             this.tb_run_cry.Name = "tb_run_cry";
-            this.tb_run_cry.Size = new System.Drawing.Size(182, 15);
+            this.tb_run_cry.Size = new System.Drawing.Size(159, 14);
             this.tb_run_cry.TabIndex = 26;
             this.tb_run_cry.Text = "Crystal Reports Runtine 13.0.35 ";
             // 
             // tb_net_fra
             // 
             this.tb_net_fra.AutoSize = true;
-            this.tb_net_fra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_net_fra.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_net_fra.ForeColor = System.Drawing.Color.Gray;
-            this.tb_net_fra.Location = new System.Drawing.Point(282, 240);
+            this.tb_net_fra.Location = new System.Drawing.Point(280, 160);
             this.tb_net_fra.Name = "tb_net_fra";
-            this.tb_net_fra.Size = new System.Drawing.Size(172, 15);
+            this.tb_net_fra.Size = new System.Drawing.Size(151, 14);
             this.tb_net_fra.TabIndex = 24;
             this.tb_net_fra.Text = "Microsoft NET. Framework 4.5";
             // 
             // tb_pla_sis
             // 
             this.tb_pla_sis.AutoSize = true;
-            this.tb_pla_sis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_pla_sis.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_pla_sis.ForeColor = System.Drawing.Color.Gray;
-            this.tb_pla_sis.Location = new System.Drawing.Point(282, 80);
+            this.tb_pla_sis.Location = new System.Drawing.Point(280, 80);
             this.tb_pla_sis.Name = "tb_pla_sis";
-            this.tb_pla_sis.Size = new System.Drawing.Size(70, 15);
+            this.tb_pla_sis.Size = new System.Drawing.Size(61, 14);
             this.tb_pla_sis.TabIndex = 8;
             this.tb_pla_sis.Text = "832B 23.51";
             // 
             // tb_mem_ran
             // 
             this.tb_mem_ran.AutoSize = true;
-            this.tb_mem_ran.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_mem_ran.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_mem_ran.ForeColor = System.Drawing.Color.Gray;
-            this.tb_mem_ran.Location = new System.Drawing.Point(282, 60);
+            this.tb_mem_ran.Location = new System.Drawing.Point(280, 60);
             this.tb_mem_ran.Name = "tb_mem_ran";
-            this.tb_mem_ran.Size = new System.Drawing.Size(31, 15);
+            this.tb_mem_ran.Size = new System.Drawing.Size(27, 14);
             this.tb_mem_ran.TabIndex = 6;
             this.tb_mem_ran.Text = "8GB";
             // 
             // tb_pro_ces
             // 
             this.tb_pro_ces.AutoSize = true;
-            this.tb_pro_ces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tb_pro_ces.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_pro_ces.ForeColor = System.Drawing.Color.Gray;
-            this.tb_pro_ces.Location = new System.Drawing.Point(282, 40);
+            this.tb_pro_ces.Location = new System.Drawing.Point(280, 40);
             this.tb_pro_ces.Name = "tb_pro_ces";
-            this.tb_pro_ces.Size = new System.Drawing.Size(250, 15);
+            this.tb_pro_ces.Size = new System.Drawing.Size(211, 14);
             this.tb_pro_ces.TabIndex = 4;
             this.tb_pro_ces.Text = "Intel(R) Core(TM) i5-7200U CPU @ 2.50GHz";
             // 
             // tb_sis_ope
             // 
             this.tb_sis_ope.AutoSize = true;
-            this.tb_sis_ope.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_sis_ope.Font = new System.Drawing.Font("HP Simplified", 9F);
             this.tb_sis_ope.ForeColor = System.Drawing.Color.Gray;
-            this.tb_sis_ope.Location = new System.Drawing.Point(282, 20);
+            this.tb_sis_ope.Location = new System.Drawing.Point(280, 20);
             this.tb_sis_ope.Name = "tb_sis_ope";
-            this.tb_sis_ope.Size = new System.Drawing.Size(257, 15);
+            this.tb_sis_ope.Size = new System.Drawing.Size(221, 14);
             this.tb_sis_ope.TabIndex = 2;
             this.tb_sis_ope.Text = "Windows 10 Pro  64 bits  Version: 19042.1052";
             // 
@@ -339,60 +239,60 @@
             // lb_run_cry
             // 
             this.lb_run_cry.AutoSize = true;
-            this.lb_run_cry.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_run_cry.Location = new System.Drawing.Point(154, 260);
+            this.lb_run_cry.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_run_cry.Location = new System.Drawing.Point(150, 180);
             this.lb_run_cry.Name = "lb_run_cry";
-            this.lb_run_cry.Size = new System.Drawing.Size(136, 15);
+            this.lb_run_cry.Size = new System.Drawing.Size(121, 14);
             this.lb_run_cry.TabIndex = 25;
             this.lb_run_cry.Text = "Runtime Crystal Report:";
             // 
             // lb_net_fra
             // 
             this.lb_net_fra.AutoSize = true;
-            this.lb_net_fra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_net_fra.Location = new System.Drawing.Point(154, 240);
+            this.lb_net_fra.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_net_fra.Location = new System.Drawing.Point(150, 160);
             this.lb_net_fra.Name = "lb_net_fra";
-            this.lb_net_fra.Size = new System.Drawing.Size(102, 15);
+            this.lb_net_fra.Size = new System.Drawing.Size(90, 14);
             this.lb_net_fra.TabIndex = 23;
             this.lb_net_fra.Text = "NET. Framework:";
             // 
             // lb_pla_sis
             // 
             this.lb_pla_sis.AutoSize = true;
-            this.lb_pla_sis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_pla_sis.Location = new System.Drawing.Point(154, 80);
+            this.lb_pla_sis.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_pla_sis.Location = new System.Drawing.Point(150, 80);
             this.lb_pla_sis.Name = "lb_pla_sis";
-            this.lb_pla_sis.Size = new System.Drawing.Size(109, 15);
+            this.lb_pla_sis.Size = new System.Drawing.Size(93, 14);
             this.lb_pla_sis.TabIndex = 7;
             this.lb_pla_sis.Text = "Placa del Sistema:";
             // 
             // lb_mem_ran
             // 
             this.lb_mem_ran.AutoSize = true;
-            this.lb_mem_ran.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_mem_ran.Location = new System.Drawing.Point(154, 60);
+            this.lb_mem_ran.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_mem_ran.Location = new System.Drawing.Point(150, 60);
             this.lb_mem_ran.Name = "lb_mem_ran";
-            this.lb_mem_ran.Size = new System.Drawing.Size(128, 15);
+            this.lb_mem_ran.Size = new System.Drawing.Size(110, 14);
             this.lb_mem_ran.TabIndex = 5;
             this.lb_mem_ran.Text = "Memoria del Sistema:";
             // 
             // lb_pro_ces
             // 
             this.lb_pro_ces.AutoSize = true;
-            this.lb_pro_ces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lb_pro_ces.Location = new System.Drawing.Point(154, 40);
+            this.lb_pro_ces.Font = new System.Drawing.Font("HP Simplified", 9F);
+            this.lb_pro_ces.Location = new System.Drawing.Point(150, 40);
             this.lb_pro_ces.Name = "lb_pro_ces";
-            this.lb_pro_ces.Size = new System.Drawing.Size(70, 15);
+            this.lb_pro_ces.Size = new System.Drawing.Size(62, 14);
             this.lb_pro_ces.TabIndex = 3;
             this.lb_pro_ces.Text = "Procesador";
             // 
             // lb_sis_ope
             // 
             this.lb_sis_ope.AutoSize = true;
-            this.lb_sis_ope.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_sis_ope.Location = new System.Drawing.Point(154, 20);
+            this.lb_sis_ope.Font = new System.Drawing.Font("HP Simplified", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_sis_ope.Location = new System.Drawing.Point(150, 20);
             this.lb_sis_ope.Name = "lb_sis_ope";
-            this.lb_sis_ope.Size = new System.Drawing.Size(110, 15);
+            this.lb_sis_ope.Size = new System.Drawing.Size(98, 14);
             this.lb_sis_ope.TabIndex = 1;
             this.lb_sis_ope.Text = "Sistema Operativo:";
             // 
@@ -413,7 +313,7 @@
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 285);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 201);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(546, 43);
             this.gb_ctr_btn.TabIndex = 9;
@@ -424,7 +324,7 @@
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 330);
+            this.ClientSize = new System.Drawing.Size(556, 247);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -433,7 +333,7 @@
             this.MinimizeBox = false;
             this.Name = "ads000_03";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Tag = "Crea documento";
+            this.Tag = "Información System";
             this.Text = "Información System";
             this.Load += new System.EventHandler(this.ads000_03_Load);
             this.groupBox1.ResumeLayout(false);
@@ -465,14 +365,6 @@
         private System.Windows.Forms.Label lb_bio_sis;
         private System.Windows.Forms.Label tb_dir_ipp;
         private System.Windows.Forms.Label lb_dir_ipp;
-        private System.Windows.Forms.Label lb_fir_win;
-        private System.Windows.Forms.Label tb_red_dom;
-        private System.Windows.Forms.Label lb_red_dom;
-        private System.Windows.Forms.Label tb_red_pri;
-        private System.Windows.Forms.Label lb_red_pri;
-        private System.Windows.Forms.Label tb_red_pub;
-        private System.Windows.Forms.Label lb_red_pub;
-        private System.Windows.Forms.Label tb_fir_win;
         private System.Windows.Forms.Label tb_dir_mac;
         private System.Windows.Forms.Label lb_dir_mac;
         public System.Windows.Forms.GroupBox gb_ctr_btn;

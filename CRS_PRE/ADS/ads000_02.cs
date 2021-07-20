@@ -336,6 +336,9 @@ namespace CRS_PRE.ADS
                 lb_nom_usr.Visible = false;
                 lb_nom_equ.Visible = false;
                 lp_con_apl.Width = 45;
+                pb_lic_act.Location = new System.Drawing.Point(54, 461);
+                lb_lic_act.Location = new System.Drawing.Point(75, 463);
+                lb_val_lic.Location = new System.Drawing.Point(51, 481);
                 va_tol_tip.SetToolTip(bt_men_res, "Restaurant");
                 va_tol_tip.SetToolTip(bt_men_com, "Comercialización");
                 va_tol_tip.SetToolTip(bt_men_inv, "Inventario");
@@ -349,6 +352,9 @@ namespace CRS_PRE.ADS
                 lb_nom_usr.Visible = true;
                 lb_nom_equ.Visible = true;
                 lp_con_apl.Width = 205;
+                pb_lic_act.Location = new System.Drawing.Point(212, 461);
+                lb_lic_act.Location = new System.Drawing.Point(233, 463);
+                lb_val_lic.Location = new System.Drawing.Point(209, 481);
                 va_tol_tip.SetToolTip(bt_men_res, "");
                 va_tol_tip.SetToolTip(bt_men_com, "");
                 va_tol_tip.SetToolTip(bt_men_inv, "");
