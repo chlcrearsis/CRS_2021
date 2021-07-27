@@ -41,11 +41,15 @@
             this.lb_nom_usr = new System.Windows.Forms.Label();
             this.pn_men_pri = new System.Windows.Forms.Panel();
             this.lb_nom_equ = new System.Windows.Forms.Label();
-            this.صورة_دائرة1 = new PictureBoxAbouAmmar.صورة_دائرة();
+            this.pb_lic_act = new System.Windows.Forms.PictureBox();
+            this.lb_val_lic = new System.Windows.Forms.Label();
+            this.lb_lic_act = new System.Windows.Forms.Label();
+            this.pb_not_fic = new System.Windows.Forms.PictureBox();
             this.lp_con_apl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ima_usr)).BeginInit();
             this.pn_men_pri.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.صورة_دائرة1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_act)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_not_fic)).BeginInit();
             this.SuspendLayout();
             // 
             // bt_men_pri
@@ -72,7 +76,7 @@
             this.lp_con_apl.Controls.Add(this.bt_men_adm);
             this.lp_con_apl.Location = new System.Drawing.Point(-2, 164);
             this.lp_con_apl.Name = "lp_con_apl";
-            this.lp_con_apl.Size = new System.Drawing.Size(205, 339);
+            this.lp_con_apl.Size = new System.Drawing.Size(205, 315);
             this.lp_con_apl.TabIndex = 6;
             // 
             // bt_men_res
@@ -80,7 +84,7 @@
             this.bt_men_res.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_men_res.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bt_men_res.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_men_res.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.bt_men_res.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_men_res.ForeColor = System.Drawing.Color.White;
             this.bt_men_res.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_res.Image")));
             this.bt_men_res.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,7 +106,7 @@
             this.bt_men_com.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_men_com.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bt_men_com.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_men_com.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.bt_men_com.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_men_com.ForeColor = System.Drawing.Color.White;
             this.bt_men_com.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_com.Image")));
             this.bt_men_com.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -124,7 +128,7 @@
             this.bt_men_inv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_men_inv.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bt_men_inv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_men_inv.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.bt_men_inv.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_men_inv.ForeColor = System.Drawing.Color.White;
             this.bt_men_inv.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_inv.Image")));
             this.bt_men_inv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -146,7 +150,7 @@
             this.bt_men_adm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_men_adm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bt_men_adm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_men_adm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.bt_men_adm.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_men_adm.ForeColor = System.Drawing.Color.White;
             this.bt_men_adm.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_adm.Image")));
             this.bt_men_adm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -165,7 +169,7 @@
             // 
             // lb_ide_usr
             // 
-            this.lb_ide_usr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.lb_ide_usr.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_ide_usr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.lb_ide_usr.Location = new System.Drawing.Point(16, 142);
             this.lb_ide_usr.Name = "lb_ide_usr";
@@ -200,7 +204,7 @@
             // lb_nom_usr
             // 
             this.lb_nom_usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lb_nom_usr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.lb_nom_usr.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_nom_usr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lb_nom_usr.Location = new System.Drawing.Point(14, 124);
             this.lb_nom_usr.Name = "lb_nom_usr";
@@ -227,9 +231,9 @@
             // lb_nom_equ
             // 
             this.lb_nom_equ.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lb_nom_equ.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.lb_nom_equ.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_nom_equ.ForeColor = System.Drawing.Color.Silver;
-            this.lb_nom_equ.Location = new System.Drawing.Point(18, 506);
+            this.lb_nom_equ.Location = new System.Drawing.Point(18, 481);
             this.lb_nom_equ.Name = "lb_nom_equ";
             this.lb_nom_equ.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lb_nom_equ.Size = new System.Drawing.Size(159, 20);
@@ -238,25 +242,60 @@
             this.lb_nom_equ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lb_nom_equ.Click += new System.EventHandler(this.lb_nom_equ_Click);
             // 
-            // صورة_دائرة1
+            // pb_lic_act
             // 
-            this.صورة_دائرة1.BackColor = System.Drawing.Color.DarkGray;
-            this.صورة_دائرة1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.صورة_دائرة1.Image = ((System.Drawing.Image)(resources.GetObject("صورة_دائرة1.Image")));
-            this.صورة_دائرة1.Location = new System.Drawing.Point(727, 464);
-            this.صورة_دائرة1.Name = "صورة_دائرة1";
-            this.صورة_دائرة1.Size = new System.Drawing.Size(60, 60);
-            this.صورة_دائرة1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.صورة_دائرة1.TabIndex = 9;
-            this.صورة_دائرة1.TabStop = false;
+            this.pb_lic_act.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_act.Image")));
+            this.pb_lic_act.Location = new System.Drawing.Point(212, 461);
+            this.pb_lic_act.Name = "pb_lic_act";
+            this.pb_lic_act.Size = new System.Drawing.Size(20, 20);
+            this.pb_lic_act.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_lic_act.TabIndex = 11;
+            this.pb_lic_act.TabStop = false;
+            // 
+            // lb_val_lic
+            // 
+            this.lb_val_lic.AutoSize = true;
+            this.lb_val_lic.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.lb_val_lic.ForeColor = System.Drawing.Color.Navy;
+            this.lb_val_lic.Location = new System.Drawing.Point(209, 481);
+            this.lb_val_lic.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
+            this.lb_val_lic.Name = "lb_val_lic";
+            this.lb_val_lic.Size = new System.Drawing.Size(193, 16);
+            this.lb_val_lic.TabIndex = 12;
+            this.lb_val_lic.Text = "Validez de la Licencia: 17/03/2022";
+            // 
+            // lb_lic_act
+            // 
+            this.lb_lic_act.AutoSize = true;
+            this.lb_lic_act.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.lb_lic_act.ForeColor = System.Drawing.Color.Black;
+            this.lb_lic_act.Location = new System.Drawing.Point(233, 463);
+            this.lb_lic_act.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
+            this.lb_lic_act.Name = "lb_lic_act";
+            this.lb_lic_act.Size = new System.Drawing.Size(102, 16);
+            this.lb_lic_act.TabIndex = 10;
+            this.lb_lic_act.Text = "Licencia Activada";
+            // 
+            // pb_not_fic
+            // 
+            this.pb_not_fic.Image = ((System.Drawing.Image)(resources.GetObject("pb_not_fic.Image")));
+            this.pb_not_fic.Location = new System.Drawing.Point(734, 439);
+            this.pb_not_fic.Name = "pb_not_fic";
+            this.pb_not_fic.Size = new System.Drawing.Size(50, 50);
+            this.pb_not_fic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_not_fic.TabIndex = 14;
+            this.pb_not_fic.TabStop = false;
             // 
             // ads000_02
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 529);
-            this.Controls.Add(this.صورة_دائرة1);
+            this.ClientSize = new System.Drawing.Size(800, 504);
+            this.Controls.Add(this.pb_not_fic);
+            this.Controls.Add(this.pb_lic_act);
+            this.Controls.Add(this.lb_val_lic);
+            this.Controls.Add(this.lb_lic_act);
             this.Controls.Add(this.pn_men_pri);
             this.Controls.Add(this.lb_nro_ver);
             this.ForeColor = System.Drawing.Color.White;
@@ -271,7 +310,8 @@
             this.lp_con_apl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pb_ima_usr)).EndInit();
             this.pn_men_pri.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.صورة_دائرة1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_act)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_not_fic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +330,9 @@
         private System.Windows.Forms.Button bt_men_com;
         private System.Windows.Forms.Button bt_men_inv;
         private System.Windows.Forms.Button bt_men_adm;
-        private PictureBoxAbouAmmar.صورة_دائرة صورة_دائرة1;
+        private System.Windows.Forms.PictureBox pb_lic_act;
+        private System.Windows.Forms.Label lb_val_lic;
+        private System.Windows.Forms.Label lb_lic_act;
+        private System.Windows.Forms.PictureBox pb_not_fic;
     }
 }
