@@ -15,7 +15,7 @@ using CRS_NEG;
 using CRS_NEG;
 using CRS_PRE.CMR;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads007_02 : Form
     {
@@ -109,8 +109,14 @@ namespace CRS_PRE.ADS
             if (tb_ide_usr.Text.Trim()=="")
             {
                 tb_ide_usr.Focus();
-                return "Debe proporcionar el Id para el nuevo usuario";
+                return "Debe proporcionar el codigo para el nuevo usuario";
             }
+            if (tb_ide_usr.Text.Trim().Length < 4)
+            {
+                tb_ide_usr.Focus();
+                return "El codigo de usuario debe contener al menos 4 caracteres como minimo";
+            }
+
 
             //Verificar 
             tabla = o_ads007.Fe_con_usu(tb_ide_usr.Text);

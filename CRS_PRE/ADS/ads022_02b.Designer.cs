@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads022_02b
     {

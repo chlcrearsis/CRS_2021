@@ -112,7 +112,7 @@ namespace CRS_PRE
             lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_tus"].ToString());
         }
         /// <summary>
-        /// - > Función que selecciona la fila en el Datagrid que el documento Modificó
+        /// - > Función que selecciona la fila en el Datagrid que el Tipo Usuario Modificó
         /// </summary>
         private void fi_sel_fil(int cod_tus)
         {
@@ -220,14 +220,14 @@ namespace CRS_PRE
         {
             string res_fun = "";
             tab_dat = o_ads006.Fe_con_tus(sel_ecc);
-            if (tabla.Rows.Count == 0)
+            if (tab_dat.Rows.Count == 0)
             {
-                res_fun = "El documento que desea editar, no se encuentra registrado";
+                res_fun = "El Tipo Usuario no se encuentra registrado";
             }
 
             if (res_fun != "")
             {
-                MessageBox.Show(res_fun, "Edita documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, "Tipo Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -241,7 +241,7 @@ namespace CRS_PRE
             tab_dat = o_ads006.Fe_con_tus(sel_ecc);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL Tipo Usuario ya no se encuentra registrado en la base de datos.", "Consulta Tipo Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -253,7 +253,7 @@ namespace CRS_PRE
             tab_dat = o_ads006.Fe_con_tus(sel_ecc);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL Tipo Usuario ya no se encuentra registrado en la base de datos.", "Consulta Tipo Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -397,6 +397,58 @@ namespace CRS_PRE
             //cmr015_R01p frm = new cmr015_R01p();
             //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
+
+
+        private void mn_per_tal_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
+            ads008_02b frm = new ads008_02b();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void mn_per_plv_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
+            ads008_03b frm = new ads008_03b();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void mn_per_plv_res_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
+            ads008_04b frm = new ads008_04b();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void mn_per_apl_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
+            ads008_01b frm = new ads008_01b();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void mn_per_lis_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
+            ads008_05b frm = new ads008_05b();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
 
         private void Bt_ace_pta_Click(object sender, EventArgs e)
         {

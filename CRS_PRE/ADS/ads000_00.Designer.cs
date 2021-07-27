@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads000_00
     {
@@ -83,7 +83,7 @@
             // 
             // bt_ace_pta
             // 
-            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_ace_pta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bt_ace_pta.FlatAppearance.BorderSize = 0;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -255,7 +255,7 @@
             // 
             // ps_sel_usr
             // 
-            this.ps_sel_usr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.ps_sel_usr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.ps_sel_usr.Location = new System.Drawing.Point(543, 74);
             this.ps_sel_usr.Name = "ps_sel_usr";
             this.ps_sel_usr.Size = new System.Drawing.Size(10, 42);
@@ -264,7 +264,7 @@
             // 
             // ps_sel_pas
             // 
-            this.ps_sel_pas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.ps_sel_pas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.ps_sel_pas.Location = new System.Drawing.Point(543, 122);
             this.ps_sel_pas.Name = "ps_sel_pas";
             this.ps_sel_pas.Size = new System.Drawing.Size(10, 42);
@@ -389,7 +389,7 @@
             // 
             this.lb_ini_ses.AutoSize = true;
             this.lb_ini_ses.Font = new System.Drawing.Font("HP Simplified", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lb_ini_ses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.lb_ini_ses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.lb_ini_ses.Location = new System.Drawing.Point(213, 19);
             this.lb_ini_ses.Name = "lb_ini_ses";
             this.lb_ini_ses.Size = new System.Drawing.Size(194, 32);

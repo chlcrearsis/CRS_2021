@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads016_R01w
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ads016_R01 = new CRS_PRE.ADS.ads016_R01();
+            this.ads016_R01 = new CRS_PRE.ads016_R01();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_imp_rim = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_exp_ort = new System.Windows.Forms.ToolStripMenuItem();

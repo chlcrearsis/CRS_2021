@@ -79,17 +79,17 @@ namespace CRS_PRE
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_cod_tus"].Value = tabla.Rows[i]["va_ide_tus"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_tus"].Value = tabla.Rows[i]["va_nom_tus"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_des_tus"].Value =tabla.Rows[i]["va_des_tus"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_ide_mod"].Value = tabla.Rows[i]["va_ide_mod"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_mod"].Value = tabla.Rows[i]["va_nom_mod"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_abr_mod"].Value =tabla.Rows[i]["va_abr_mod"].ToString();
                     
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_sel_bus.Text = tabla.Rows[0]["va_ide_tus"].ToString();
-                lb_des_bus.Text = tabla.Rows[0]["va_nom_tus"].ToString();
+                tb_sel_bus.Text = tabla.Rows[0]["va_ide_mod"].ToString();
+                lb_des_bus.Text = tabla.Rows[0]["va_nom_mod"].ToString();
             }
 
         }
@@ -109,7 +109,7 @@ namespace CRS_PRE
                 return;
             }
 
-            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_tus"].ToString());
+            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_mod"].ToString());
         }
         /// <summary>
         /// - > Función que selecciona la fila en el Datagrid que el documento Modificó

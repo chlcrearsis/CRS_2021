@@ -12,9 +12,9 @@ using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_NEG;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
-    public partial class ads009_01 : Form
+    public partial class ads008_02b : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -31,7 +31,7 @@ namespace CRS_PRE.ADS
         DataTable tabla = new DataTable();
         DataTable tab_ads001 = new DataTable();
         int val_mod = 0;
-        public ads009_01()
+        public ads008_02b()
         {
             InitializeComponent();
         }
@@ -39,9 +39,8 @@ namespace CRS_PRE.ADS
       
         private void frm_Load(object sender, EventArgs e)
         {
-
-            tb_ide_usr.Text = frm_dat.Rows[0]["va_ide_usr"].ToString();
-            tb_nom_usr.Text = frm_dat.Rows[0]["va_nom_usr"].ToString();
+            tb_ide_usr.Text = frm_dat.Rows[0]["va_ide_tus"].ToString();
+            tb_nom_usr.Text = frm_dat.Rows[0]["va_nom_tus"].ToString();
 
             // obtiene lista de Modulos
             tabla = o_ads001.Fe_obt_mod();
@@ -80,10 +79,10 @@ namespace CRS_PRE.ADS
             }
 
 
-            //cb_mod_ulo.SelectedIndex = 0;
+            // Obtiene talonarios
             string mod_ulo = cb_mod_ulo.SelectedValue.ToString(); 
             tabla = o_ads004.Fe_bus_car("", 2,"T",int.Parse(mod_ulo) );
-            //tabla = o_ads004.Fe_bus_car("", 2, "T", int.Parse(cb_mod_ulo.SelectedValue.ToString()));
+            
             if (tabla.Rows.Count >0)
             {
                 for (int i = 0; i < tabla.Rows.Count; i++)
@@ -104,11 +103,8 @@ namespace CRS_PRE.ADS
 
                     //**** TIKEA LOS PERMITIDOS Y DESTIKEA LOS RESTRINGIDOS
                     //dg_res_ult.Rows[i].Cells[4].Value = false;
-                    dg_res_ult.Rows[i].Cells[4].Value = o_ads009.Fe_ads009_02(tb_ide_usr.Text, ide_doc, nro_tal);
+                    dg_res_ult.Rows[i].Cells[4].Value = o_ads009.Fe_ads009_02(tb_ide_usr.Text,"ads004", ide_doc, nro_tal.ToString());
 
-                    //DataGridViewCheckBoxCell chk_val = (DataGridViewCheckBoxCell)dg_res_ult.Rows[i].Cells[4];
-                    //chk_val.Selected = o_ads007.Fe_ads009_02(tb_ide_usr.Text, ide_doc, nro_tal);
-                    
                 }
 
             }
@@ -138,11 +134,11 @@ namespace CRS_PRE.ADS
 
                     if (chk_val == true)
                     { 
-                        o_ads009.Fe_ads009_04(tb_ide_usr.Text, ide_doc, nro_tal);
-                        o_ads009.Fe_ads009_03(tb_ide_usr.Text, ide_doc, nro_tal);
+                        o_ads009.Fe_ads009_04(tb_ide_usr.Text,"ads004", ide_doc, nro_tal.ToString());
+                        o_ads009.Fe_ads009_03(tb_ide_usr.Text,"ads004", ide_doc, nro_tal.ToString());
                     }
-                    if (chk_val == false)  
-                        o_ads009.Fe_ads009_04(tb_ide_usr.Text, ide_doc, nro_tal);
+                    if (chk_val == false)
+                        o_ads009.Fe_ads009_04(tb_ide_usr.Text, "ads004", ide_doc, nro_tal.ToString());
                 }
 
                 cl_glo_frm.Cerrar(this);

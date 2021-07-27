@@ -242,6 +242,7 @@
             this.tb_cod_bod.Location = new System.Drawing.Point(330, 13);
             this.tb_cod_bod.MaxLength = 3;
             this.tb_cod_bod.Name = "tb_cod_bod";
+            this.tb_cod_bod.ReadOnly = true;
             this.tb_cod_bod.Size = new System.Drawing.Size(63, 20);
             this.tb_cod_bod.TabIndex = 40;
             this.tb_cod_bod.TabStop = false;

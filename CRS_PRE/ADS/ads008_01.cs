@@ -10,10 +10,8 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using CRS_NEG;
-using CRS_NEG;
-using CRS_NEG;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads008_01 : Form
     {
@@ -28,7 +26,6 @@ namespace CRS_PRE.ADS
         ads002 o_ads002 = new ads002();
 
         // Variables
-       // DataTable tab_ads002 = new DataTable();
         DataTable tab_ads002 = new DataTable();
 
         public ads008_01()
@@ -59,7 +56,7 @@ namespace CRS_PRE.ADS
                     dg_res_ult.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
 
                 //**** TIKEA LOS PERMITIDOS Y DESTIKEA LOS RESTRINGIDOS
-                dg_res_ult.Rows[i].Cells["va_per_mis"].Value = o_ads008.Fe_ads008_02(tb_ide_usr.Text, tab_ads002.Rows[i]["va_ide_apl"].ToString());
+                dg_res_ult.Rows[i].Cells["va_per_mis"].Value = o_ads008.Fe_ads008_02(tb_ide_usr.Text, "ads002", tab_ads002.Rows[i]["va_ide_apl"].ToString());
             }
         }
 
@@ -82,11 +79,11 @@ namespace CRS_PRE.ADS
 
                     if (chk_val == true)
                     { 
-                        o_ads008.Fe_ads008_04(tb_ide_usr.Text, ide_apl);
-                        o_ads008.Fe_ads008_03(tb_ide_usr.Text, ide_apl);
+                        o_ads008.Fe_ads008_04(tb_ide_usr.Text,"ads002", ide_apl);
+                        o_ads008.Fe_ads008_03(tb_ide_usr.Text, "ads002", ide_apl);
                     }
                     if (chk_val == false)
-                        o_ads008.Fe_ads008_04(tb_ide_usr.Text, ide_apl);
+                        o_ads008.Fe_ads008_04(tb_ide_usr.Text, "ads002", ide_apl);
                 }
 
                 cl_glo_frm.Cerrar(this);

@@ -13,7 +13,7 @@ using CrystalDecisions.Shared;
 
 using CrystalDecisions.ReportAppServer;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads007_R01w : Form
     {

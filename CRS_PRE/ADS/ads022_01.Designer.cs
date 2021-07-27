@@ -1,5 +1,5 @@
 ﻿
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     partial class ads022_01
     {
@@ -30,11 +30,6 @@ namespace CRS_PRE.ADS
         private void InitializeComponent()
         {
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cb_prm_bus = new System.Windows.Forms.ComboBox();
-            this.tb_val_año = new System.Windows.Forms.NumericUpDown();
-            this.GroupBox3 = new System.Windows.Forms.GroupBox();
             this.mn_pri_nci = new System.Windows.Forms.MenuStrip();
             this.m_adm022_02 = new System.Windows.Forms.ToolStripMenuItem();
             this.m_adm022_02a = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +38,11 @@ namespace CRS_PRE.ADS
             this.m_adm013_08a = new System.Windows.Forms.ToolStripMenuItem();
             this.m_adm013_08b = new System.Windows.Forms.ToolStripMenuItem();
             this.m_atr_ass = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cb_prm_bus = new System.Windows.Forms.ComboBox();
+            this.tb_val_año = new System.Windows.Forms.NumericUpDown();
+            this.GroupBox3 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -57,9 +57,9 @@ namespace CRS_PRE.ADS
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.GroupBox1.SuspendLayout();
+            this.mn_pri_nci.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_val_año)).BeginInit();
             this.GroupBox3.SuspendLayout();
-            this.mn_pri_nci.SuspendLayout();
             this.GroupBox2.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -79,71 +79,6 @@ namespace CRS_PRE.ADS
             this.GroupBox1.TabIndex = 70;
             this.GroupBox1.TabStop = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(223, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 75;
-            this.label2.Text = "Mes";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 13);
-            this.label1.TabIndex = 75;
-            this.label1.Text = "Año";
-            // 
-            // cb_prm_bus
-            // 
-            this.cb_prm_bus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cb_prm_bus.FormattingEnabled = true;
-            this.cb_prm_bus.Items.AddRange(new object[] {
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"});
-            this.cb_prm_bus.Location = new System.Drawing.Point(256, 11);
-            this.cb_prm_bus.Name = "cb_prm_bus";
-            this.cb_prm_bus.Size = new System.Drawing.Size(121, 21);
-            this.cb_prm_bus.TabIndex = 11;
-            this.cb_prm_bus.SelectedIndexChanged += new System.EventHandler(this.cb_prm_bus_SelectedIndexChanged);
-            // 
-            // tb_val_año
-            // 
-            this.tb_val_año.Location = new System.Drawing.Point(48, 12);
-            this.tb_val_año.Name = "tb_val_año";
-            this.tb_val_año.Size = new System.Drawing.Size(69, 20);
-            this.tb_val_año.TabIndex = 10;
-            this.tb_val_año.ValueChanged += new System.EventHandler(this.tb_val_año_ValueChanged);
-            // 
-            // GroupBox3
-            // 
-            this.GroupBox3.Controls.Add(this.label9);
-            this.GroupBox3.Controls.Add(this.label8);
-            this.GroupBox3.Controls.Add(this.label7);
-            this.GroupBox3.Controls.Add(this.label6);
-            this.GroupBox3.Controls.Add(this.label5);
-            this.GroupBox3.Controls.Add(this.label4);
-            this.GroupBox3.Controls.Add(this.label3);
-            this.GroupBox3.Controls.Add(this.fl_cal_end);
-            this.GroupBox3.Location = new System.Drawing.Point(3, 36);
-            this.GroupBox3.Name = "GroupBox3";
-            this.GroupBox3.Size = new System.Drawing.Size(512, 29);
-            this.GroupBox3.TabIndex = 73;
-            this.GroupBox3.TabStop = false;
-            // 
             // mn_pri_nci
             // 
             this.mn_pri_nci.BackColor = System.Drawing.Color.White;
@@ -157,7 +92,7 @@ namespace CRS_PRE.ADS
             this.m_atr_ass});
             this.mn_pri_nci.Location = new System.Drawing.Point(124, 12);
             this.mn_pri_nci.Name = "mn_pri_nci";
-            this.mn_pri_nci.Size = new System.Drawing.Size(369, 24);
+            this.mn_pri_nci.Size = new System.Drawing.Size(249, 24);
             this.mn_pri_nci.TabIndex = 5;
             this.mn_pri_nci.Text = "MenuStrip1";
             this.mn_pri_nci.Visible = false;
@@ -211,9 +146,76 @@ namespace CRS_PRE.ADS
             this.m_atr_ass.Text = "&Atrás";
             this.m_atr_ass.Click += new System.EventHandler(this.m_atr_ass_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(223, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 75;
+            this.label2.Text = "Mes";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.TabIndex = 75;
+            this.label1.Text = "Año";
+            // 
+            // cb_prm_bus
+            // 
+            this.cb_prm_bus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cb_prm_bus.FormattingEnabled = true;
+            this.cb_prm_bus.Items.AddRange(new object[] {
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"});
+            this.cb_prm_bus.Location = new System.Drawing.Point(256, 11);
+            this.cb_prm_bus.Name = "cb_prm_bus";
+            this.cb_prm_bus.Size = new System.Drawing.Size(121, 21);
+            this.cb_prm_bus.TabIndex = 11;
+            this.cb_prm_bus.SelectedIndexChanged += new System.EventHandler(this.cb_prm_bus_SelectedIndexChanged);
+            // 
+            // tb_val_año
+            // 
+            this.tb_val_año.Location = new System.Drawing.Point(48, 12);
+            this.tb_val_año.Name = "tb_val_año";
+            this.tb_val_año.Size = new System.Drawing.Size(69, 20);
+            this.tb_val_año.TabIndex = 10;
+            this.tb_val_año.ValueChanged += new System.EventHandler(this.tb_val_año_ValueChanged);
+            // 
+            // GroupBox3
+            // 
+            this.GroupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.GroupBox3.Controls.Add(this.label9);
+            this.GroupBox3.Controls.Add(this.label8);
+            this.GroupBox3.Controls.Add(this.label7);
+            this.GroupBox3.Controls.Add(this.label6);
+            this.GroupBox3.Controls.Add(this.label5);
+            this.GroupBox3.Controls.Add(this.label4);
+            this.GroupBox3.Controls.Add(this.label3);
+            this.GroupBox3.Controls.Add(this.fl_cal_end);
+            this.GroupBox3.Location = new System.Drawing.Point(3, 36);
+            this.GroupBox3.Name = "GroupBox3";
+            this.GroupBox3.Size = new System.Drawing.Size(512, 29);
+            this.GroupBox3.TabIndex = 73;
+            this.GroupBox3.TabStop = false;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Location = new System.Drawing.Point(443, 10);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
@@ -223,6 +225,7 @@ namespace CRS_PRE.ADS
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label8.Location = new System.Drawing.Point(370, 10);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 13);
@@ -232,6 +235,7 @@ namespace CRS_PRE.ADS
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label7.Location = new System.Drawing.Point(306, 10);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 13);
@@ -241,6 +245,7 @@ namespace CRS_PRE.ADS
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Location = new System.Drawing.Point(226, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
@@ -250,6 +255,7 @@ namespace CRS_PRE.ADS
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Location = new System.Drawing.Point(160, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
@@ -259,6 +265,7 @@ namespace CRS_PRE.ADS
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(91, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
@@ -355,11 +362,11 @@ namespace CRS_PRE.ADS
             this.Load += new System.EventHandler(this.frm_Load);
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
+            this.mn_pri_nci.ResumeLayout(false);
+            this.mn_pri_nci.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_val_año)).EndInit();
             this.GroupBox3.ResumeLayout(false);
             this.GroupBox3.PerformLayout();
-            this.mn_pri_nci.ResumeLayout(false);
-            this.mn_pri_nci.PerformLayout();
             this.GroupBox2.ResumeLayout(false);
             this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);

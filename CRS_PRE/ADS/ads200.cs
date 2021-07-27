@@ -13,7 +13,7 @@ using CRS_NEG;
 using CRS_PRE.INV;
 using CRS_PRE.CMR;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads200 : Form
     {
@@ -204,6 +204,12 @@ namespace CRS_PRE.ADS
         private void mn_tip_bus_Click(object sender, EventArgs e)
         {
             o_frm = new ads022_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_mod_ulo_Click(object sender, EventArgs e)
+        {
+            o_frm = new ads001_01();
             cl_glo_frm.abrir(this, o_frm);
         }
     }

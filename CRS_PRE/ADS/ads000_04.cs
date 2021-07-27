@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads000_04 : Form
     {

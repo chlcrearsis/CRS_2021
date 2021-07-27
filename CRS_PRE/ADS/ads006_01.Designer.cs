@@ -57,6 +57,12 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.mn_per_usu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_tal = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_plv = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_plv_res = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_apl = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_lis = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,11 +77,12 @@
             this.mn_cre_ar,
             this.mn_edi_tar,
             this.mn_con_sul,
+            this.mn_per_usu,
             this.mn_rep_ort,
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(257, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(438, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -357,6 +364,53 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
+            // mn_per_usu
+            // 
+            this.mn_per_usu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_per_tal,
+            this.mn_per_plv,
+            this.mn_per_plv_res,
+            this.mn_per_apl,
+            this.mn_per_lis});
+            this.mn_per_usu.Name = "mn_per_usu";
+            this.mn_per_usu.Size = new System.Drawing.Size(61, 20);
+            this.mn_per_usu.Text = "&Permisos";
+            // 
+            // mn_per_tal
+            // 
+            this.mn_per_tal.Name = "mn_per_tal";
+            this.mn_per_tal.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_tal.Text = "Permiso de Talonaios";
+            this.mn_per_tal.Click += new System.EventHandler(this.mn_per_tal_Click);
+            // 
+            // mn_per_plv
+            // 
+            this.mn_per_plv.Name = "mn_per_plv";
+            this.mn_per_plv.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_plv.Text = "Permiso de Plantilla de Venta";
+            this.mn_per_plv.Click += new System.EventHandler(this.mn_per_plv_Click);
+            // 
+            // mn_per_plv_res
+            // 
+            this.mn_per_plv_res.Name = "mn_per_plv_res";
+            this.mn_per_plv_res.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_plv_res.Text = "Permiso de Plantilla de Venta Restaurant";
+            this.mn_per_plv_res.Click += new System.EventHandler(this.mn_per_plv_res_Click);
+            // 
+            // mn_per_apl
+            // 
+            this.mn_per_apl.Name = "mn_per_apl";
+            this.mn_per_apl.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_apl.Text = "Permiso de aplicaciones";
+            this.mn_per_apl.Click += new System.EventHandler(this.mn_per_apl_Click);
+            // 
+            // mn_per_lis
+            // 
+            this.mn_per_lis.Name = "mn_per_lis";
+            this.mn_per_lis.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_lis.Text = "S/Lista de precios";
+            this.mn_per_lis.Click += new System.EventHandler(this.mn_per_lis_Click);
+            // 
             // ads006_01
             // 
             this.AcceptButton = this.bt_ace_pta;
@@ -419,5 +473,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tus;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_des_tus;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_usu;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_tal;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_plv;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_plv_res;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_apl;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_lis;
     }
 }

@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_NEG;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads004_R01p : Form
     {

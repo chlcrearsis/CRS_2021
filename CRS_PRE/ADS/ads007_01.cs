@@ -13,7 +13,7 @@ using CRS_NEG;
 using CRS_NEG;
 
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads007_01 : Form
     {
@@ -451,7 +451,7 @@ namespace CRS_PRE.ADS
             if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
-            ads009_01 frm = new ads009_01();
+            ads008_02 frm = new ads008_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
@@ -461,7 +461,7 @@ namespace CRS_PRE.ADS
             if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
-            ads017_01 frm = new ads017_01();
+            ads008_03 frm = new ads008_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
@@ -471,7 +471,7 @@ namespace CRS_PRE.ADS
             if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
-            ads018_01 frm = new ads018_01();
+            ads008_04 frm = new ads008_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
@@ -491,9 +491,10 @@ namespace CRS_PRE.ADS
             if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
-            ads019_01 frm = new ads019_01();
+            ads008_05 frm = new ads008_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
+        
         private void mn_tip_usu_Click(object sender, EventArgs e)
         {
             ads006_01 frm = new ads006_01();
