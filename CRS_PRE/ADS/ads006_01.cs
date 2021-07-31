@@ -355,8 +355,8 @@ namespace CRS_PRE
             if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_03 frm = new cmr015_03();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads006_03 frm = new ads006_03();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
         private void Mn_hab_des_Click(object sender, EventArgs e)
@@ -365,8 +365,8 @@ namespace CRS_PRE
             if (fi_ver_hds(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_04 frm = new cmr015_04();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads006_04 frm = new ads006_04();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
         {
@@ -374,8 +374,8 @@ namespace CRS_PRE
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_05 frm = new cmr015_05();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads006_05 frm = new ads006_05();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {
@@ -383,8 +383,8 @@ namespace CRS_PRE
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_06 frm = new cmr015_06();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads006_06 frm = new ads006_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)

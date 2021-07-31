@@ -16,9 +16,5 @@ CONSTRAINT pk1_ads002 PRIMARY KEY(va_ide_mod,va_ide_apl)
 )
 
 go
-INSERT INTO ads002 VALUES (1,'ads200','Administrador','V')
-INSERT INTO ads002 VALUES (2,'inv200','Inventario','V')
-INSERT INTO ads002 VALUES (3,'cmr200','Comercializacion','V')
-INSERT INTO ads002 VALUES (3,'res200','Restaurant','V')
 
 

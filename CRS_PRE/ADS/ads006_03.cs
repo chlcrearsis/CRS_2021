@@ -18,6 +18,8 @@ namespace CRS_PRE
 
         public dynamic frm_pad;
         public int frm_tip;
+        public DataTable frm_dat;
+
         //Instancias
         ads006 o_ads006 = new ads006();
         //ads001 o_ads001 = new ads001();
@@ -33,24 +35,28 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-           
-            tb_cod_tus.Focus();
+            tb_ide_tus.Text = frm_dat.Rows[0]["va_ide_tus"].ToString();
+            tb_nom_tus.Text = frm_dat.Rows[0]["va_nom_tus"].ToString();
+            tb_des_tus.Text = frm_dat.Rows[0]["va_des_tus"].ToString();
+
+            
+            tb_ide_tus.Focus();
         }
 
         protected string Fi_val_dat()
         {
 
-            if (tb_cod_tus.Text.Trim() == "")
+            if (tb_ide_tus.Text.Trim() == "")
             {
-                tb_cod_tus.Focus();
+                tb_ide_tus.Focus();
                 return "Debe proporcionar el Codigo";
             }
 
             //Verificar 
-            tabla = o_ads006.Fe_con_tus(tb_cod_tus.Text);
+            tabla = o_ads006.Fe_con_tus(tb_ide_tus.Text);
             if (tabla.Rows.Count == 0)
             {
-                tb_cod_tus.Focus();
+                tb_ide_tus.Focus();
                 return "El Tipo de usuario no se encuentra registrado";
             }
             if (tb_nom_tus.Text.Trim() == "")
@@ -65,11 +71,11 @@ namespace CRS_PRE
 
         private void Fi_lim_pia()
         {          
-            tb_cod_tus.Clear(); 
+            tb_ide_tus.Clear(); 
             tb_nom_tus.Clear();
             tb_des_tus.Clear();
            
-            tb_cod_tus.Focus();
+            tb_ide_tus.Focus();
         }
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
@@ -92,10 +98,10 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar 
-                o_ads006.Fe_crea(int.Parse(tb_cod_tus.Text), tb_nom_tus.Text, tb_des_tus.Text,"H");
+                o_ads006.Fe_edi_tus(int.Parse(tb_ide_tus.Text), tb_nom_tus.Text, tb_des_tus.Text);
                 MessageBox.Show("Los datos se grabaron correctamente", "Tipo de usuario", MessageBoxButtons.OK);
 
-                frm_pad.Fe_act_frm(int.Parse(tb_cod_tus.Text));
+                frm_pad.Fe_act_frm(int.Parse(tb_ide_tus.Text));
 
                 cl_glo_frm.Cerrar(this);
             }

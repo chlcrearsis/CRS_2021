@@ -32,7 +32,7 @@
             this.tb_nom_tus = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_des_tus = new System.Windows.Forms.TextBox();
-            this.tb_cod_tus = new System.Windows.Forms.TextBox();
+            this.tb_ide_tus = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@
             this.groupBox1.Controls.Add(this.tb_nom_tus);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_des_tus);
-            this.groupBox1.Controls.Add(this.tb_cod_tus);
+            this.groupBox1.Controls.Add(this.tb_ide_tus);
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(336, 76);
@@ -79,17 +79,17 @@
             this.tb_des_tus.Size = new System.Drawing.Size(317, 20);
             this.tb_des_tus.TabIndex = 40;
             // 
-            // tb_cod_tus
+            // tb_ide_tus
             // 
-            this.tb_cod_tus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_cod_tus.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_tus.Location = new System.Drawing.Point(77, 16);
-            this.tb_cod_tus.MaxLength = 2;
-            this.tb_cod_tus.Name = "tb_cod_tus";
-            this.tb_cod_tus.ReadOnly = true;
-            this.tb_cod_tus.Size = new System.Drawing.Size(28, 20);
-            this.tb_cod_tus.TabIndex = 10;
-            this.tb_cod_tus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_ide_tus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ide_tus.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_ide_tus.Location = new System.Drawing.Point(77, 16);
+            this.tb_ide_tus.MaxLength = 2;
+            this.tb_ide_tus.Name = "tb_ide_tus";
+            this.tb_ide_tus.ReadOnly = true;
+            this.tb_ide_tus.Size = new System.Drawing.Size(28, 20);
+            this.tb_ide_tus.TabIndex = 10;
+            this.tb_ide_tus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // gb_ctr_btn
             // 
@@ -157,7 +157,7 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox tb_cod_tus;
+        private System.Windows.Forms.TextBox tb_ide_tus;
         private System.Windows.Forms.Button bt_can_cel;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.TextBox tb_nom_tus;

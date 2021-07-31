@@ -229,24 +229,26 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_bus_usu(string ag_tex_bus, int ag_prm_bus, int ag_est_bus, int ag_tip_usr = 0)
         {
-            cadena = " Select * from ads007 , ads006 ";
+            cadena = " SELECT ads007.va_ide_usr, ads007.va_nom_usr, ads007.va_tel_usr, " +
+                     "ads007.va_car_usr, ads006.va_nom_tus, ads007.va_est_ado " +
+                     " FROM ads007 ,ads006 ";
             cadena += " WHERE ads006.va_ide_tus = ads007.va_tip_usr ";
 
             if(ag_prm_bus == 1)
-                cadena += " AND va_ide_usr like '" + ag_tex_bus + "%'";
+                cadena += " AND ads007.va_ide_usr like '" + ag_tex_bus + "%'";
             if(ag_prm_bus == 2)
-                cadena += " AND va_nom_usr like '" + ag_tex_bus + "%'";
+                cadena += " AND ads007.va_nom_usr like '" + ag_tex_bus + "%'";
 
             if(ag_est_bus == 1)
-                cadena += " AND va_est_ado = 'H'";
+                cadena += " AND ads007.va_est_ado = 'H'";
             if (ag_est_bus == 2)
-                cadena += " AND va_est_ado = 'N'";
+                cadena += " AND ads007.va_est_ado = 'N'";
 
             if(ag_tip_usr != 0)
-                cadena += " AND va_tip_usr = " + ag_tip_usr ;
+                cadena += " AND ads007.va_tip_usr = " + ag_tip_usr ;
 
             return ob_con_ecA.fe_exe_sql(cadena);
-
+            
         }
 
         /// <summary>

@@ -84,7 +84,7 @@ namespace CRS_NEG
 
         public void Fe_eli_mod (int ar_ide_mod )
         {
-            cadena = " ads001_06a_p01 '" + ar_ide_mod + "'";
+            cadena = " ads001_06a_p01 " + ar_ide_mod + "";
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
@@ -99,9 +99,12 @@ namespace CRS_NEG
         {
             cadena = " SELECT * FROM ads001 ";
             if (ar_par_ame == 0)
-                cadena += " WHERE va_nom_mod like '" + ar_tex_bus + "%'";
+                cadena += " WHERE va_ide_mod like '" + ar_tex_bus + "%'";
             if (ar_par_ame == 1)
+                cadena += " WHERE va_nom_mod like '" + ar_tex_bus + "%'";
+            if (ar_par_ame == 2)
                 cadena += " WHERE va_abr_mod like '" + ar_tex_bus + "%'";
+            
 
 
             if (ar_est_ado != "T")

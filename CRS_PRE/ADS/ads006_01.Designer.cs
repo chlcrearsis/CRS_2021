@@ -37,8 +37,14 @@
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_eli_min = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_usu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_tal = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_plv = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_plv_res = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_apl = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_lis = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_list_del = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_list_tus = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bt_bus_car = new System.Windows.Forms.Button();
@@ -50,19 +56,13 @@
             this.tb_sel_bus = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
             this.va_cod_tus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_tus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_des_tus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.mn_per_usu = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_per_tal = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_per_plv = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_per_plv_res = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_per_apl = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_per_lis = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -82,7 +82,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(438, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(318, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -106,21 +106,21 @@
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(165, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(180, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(180, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(180, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
@@ -131,19 +131,66 @@
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
+            // mn_per_usu
+            // 
+            this.mn_per_usu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_per_tal,
+            this.mn_per_plv,
+            this.mn_per_plv_res,
+            this.mn_per_apl,
+            this.mn_per_lis});
+            this.mn_per_usu.Name = "mn_per_usu";
+            this.mn_per_usu.Size = new System.Drawing.Size(61, 20);
+            this.mn_per_usu.Text = "&Permisos";
+            // 
+            // mn_per_tal
+            // 
+            this.mn_per_tal.Name = "mn_per_tal";
+            this.mn_per_tal.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_tal.Text = "Permiso de Talonaios";
+            this.mn_per_tal.Click += new System.EventHandler(this.mn_per_tal_Click);
+            // 
+            // mn_per_plv
+            // 
+            this.mn_per_plv.Name = "mn_per_plv";
+            this.mn_per_plv.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_plv.Text = "Permiso de Plantilla de Venta";
+            this.mn_per_plv.Click += new System.EventHandler(this.mn_per_plv_Click);
+            // 
+            // mn_per_plv_res
+            // 
+            this.mn_per_plv_res.Name = "mn_per_plv_res";
+            this.mn_per_plv_res.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_plv_res.Text = "Permiso de Plantilla de Venta Restaurant";
+            this.mn_per_plv_res.Click += new System.EventHandler(this.mn_per_plv_res_Click);
+            // 
+            // mn_per_apl
+            // 
+            this.mn_per_apl.Name = "mn_per_apl";
+            this.mn_per_apl.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_apl.Text = "Permiso de aplicaciones";
+            this.mn_per_apl.Click += new System.EventHandler(this.mn_per_apl_Click);
+            // 
+            // mn_per_lis
+            // 
+            this.mn_per_lis.Name = "mn_per_lis";
+            this.mn_per_lis.Size = new System.Drawing.Size(268, 22);
+            this.mn_per_lis.Text = "S/Lista de precios";
+            this.mn_per_lis.Click += new System.EventHandler(this.mn_per_lis_Click);
+            // 
             // mn_rep_ort
             // 
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_list_del});
+            this.mn_list_tus});
             this.mn_rep_ort.Name = "mn_rep_ort";
             this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
-            // mn_list_del
+            // mn_list_tus
             // 
-            this.mn_list_del.Name = "mn_list_del";
-            this.mn_list_del.Size = new System.Drawing.Size(152, 22);
-            this.mn_list_del.Text = "&Lista de delivery";
+            this.mn_list_tus.Name = "mn_list_tus";
+            this.mn_list_tus.Size = new System.Drawing.Size(190, 22);
+            this.mn_list_tus.Text = "&Lista deTipo de Usuarios";
             // 
             // mn_cer_rar
             // 
@@ -297,33 +344,6 @@
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             // 
-            // va_cod_tus
-            // 
-            this.va_cod_tus.HeaderText = "Cod.";
-            this.va_cod_tus.Name = "va_cod_tus";
-            this.va_cod_tus.ReadOnly = true;
-            this.va_cod_tus.Width = 40;
-            // 
-            // va_nom_tus
-            // 
-            this.va_nom_tus.HeaderText = "Nombre";
-            this.va_nom_tus.Name = "va_nom_tus";
-            this.va_nom_tus.ReadOnly = true;
-            this.va_nom_tus.Width = 150;
-            // 
-            // va_des_tus
-            // 
-            this.va_des_tus.HeaderText = "Descripcion";
-            this.va_des_tus.Name = "va_des_tus";
-            this.va_des_tus.ReadOnly = true;
-            this.va_des_tus.Width = 350;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
-            // 
             // gb_ctr_btn
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
@@ -364,52 +384,32 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // mn_per_usu
+            // va_cod_tus
             // 
-            this.mn_per_usu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_per_tal,
-            this.mn_per_plv,
-            this.mn_per_plv_res,
-            this.mn_per_apl,
-            this.mn_per_lis});
-            this.mn_per_usu.Name = "mn_per_usu";
-            this.mn_per_usu.Size = new System.Drawing.Size(61, 20);
-            this.mn_per_usu.Text = "&Permisos";
+            this.va_cod_tus.HeaderText = "ID.";
+            this.va_cod_tus.Name = "va_cod_tus";
+            this.va_cod_tus.ReadOnly = true;
+            this.va_cod_tus.Width = 40;
             // 
-            // mn_per_tal
+            // va_nom_tus
             // 
-            this.mn_per_tal.Name = "mn_per_tal";
-            this.mn_per_tal.Size = new System.Drawing.Size(268, 22);
-            this.mn_per_tal.Text = "Permiso de Talonaios";
-            this.mn_per_tal.Click += new System.EventHandler(this.mn_per_tal_Click);
+            this.va_nom_tus.HeaderText = "Nombre";
+            this.va_nom_tus.Name = "va_nom_tus";
+            this.va_nom_tus.ReadOnly = true;
+            this.va_nom_tus.Width = 150;
             // 
-            // mn_per_plv
+            // va_des_tus
             // 
-            this.mn_per_plv.Name = "mn_per_plv";
-            this.mn_per_plv.Size = new System.Drawing.Size(268, 22);
-            this.mn_per_plv.Text = "Permiso de Plantilla de Venta";
-            this.mn_per_plv.Click += new System.EventHandler(this.mn_per_plv_Click);
+            this.va_des_tus.HeaderText = "Descripcion";
+            this.va_des_tus.Name = "va_des_tus";
+            this.va_des_tus.ReadOnly = true;
+            this.va_des_tus.Width = 350;
             // 
-            // mn_per_plv_res
+            // va_est_ado
             // 
-            this.mn_per_plv_res.Name = "mn_per_plv_res";
-            this.mn_per_plv_res.Size = new System.Drawing.Size(268, 22);
-            this.mn_per_plv_res.Text = "Permiso de Plantilla de Venta Restaurant";
-            this.mn_per_plv_res.Click += new System.EventHandler(this.mn_per_plv_res_Click);
-            // 
-            // mn_per_apl
-            // 
-            this.mn_per_apl.Name = "mn_per_apl";
-            this.mn_per_apl.Size = new System.Drawing.Size(268, 22);
-            this.mn_per_apl.Text = "Permiso de aplicaciones";
-            this.mn_per_apl.Click += new System.EventHandler(this.mn_per_apl_Click);
-            // 
-            // mn_per_lis
-            // 
-            this.mn_per_lis.Name = "mn_per_lis";
-            this.mn_per_lis.Size = new System.Drawing.Size(268, 22);
-            this.mn_per_lis.Text = "S/Lista de precios";
-            this.mn_per_lis.Click += new System.EventHandler(this.mn_per_lis_Click);
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
             // 
             // ads006_01
             // 
@@ -464,20 +464,20 @@
         private System.Windows.Forms.ToolStripMenuItem mn_mod_ifi;
         private System.Windows.Forms.ToolStripMenuItem mn_hab_des;
         private System.Windows.Forms.ToolStripMenuItem mn_eli_min;
-        private System.Windows.Forms.ToolStripMenuItem mn_list_del;
+        private System.Windows.Forms.ToolStripMenuItem mn_list_tus;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         public System.Windows.Forms.TextBox tb_sel_bus;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
         public System.Windows.Forms.Label lb_des_bus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_tus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_des_tus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
         private System.Windows.Forms.ToolStripMenuItem mn_per_usu;
         private System.Windows.Forms.ToolStripMenuItem mn_per_tal;
         private System.Windows.Forms.ToolStripMenuItem mn_per_plv;
         private System.Windows.Forms.ToolStripMenuItem mn_per_plv_res;
         private System.Windows.Forms.ToolStripMenuItem mn_per_apl;
         private System.Windows.Forms.ToolStripMenuItem mn_per_lis;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_tus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_des_tus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }
 }

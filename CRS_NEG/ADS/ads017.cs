@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CRS_DAT;
+using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CRS_DAT;
 namespace CRS_NEG
 {
     /// <summary>
@@ -18,7 +14,7 @@ namespace CRS_NEG
         //## Descripcion: Inicio Sesion Usuario                               ##         
         //##       Autor: JEJR - (05-01-2019)                                 ##
         //######################################################################
-        conexion_a ob_con_ecA = new conexion_a();      
+        conexion_a ob_con_ecA = new conexion_a();
 
         public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
 
@@ -28,8 +24,8 @@ namespace CRS_NEG
         public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
 
         string cadena = "";
-       
-       
+
+
         public ads017()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
@@ -64,7 +60,7 @@ namespace CRS_NEG
             bool resul = false;
 
             cadena = " SELECT * FROM ads017 ";
-            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_cod_plv =" + ag_cod_plv ;
+            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_cod_plv =" + ag_cod_plv;
             DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
 
             if (tabla.Rows.Count == 0)
