@@ -58,7 +58,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -77,14 +76,14 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(377, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
             // mn_cre_ar
             // 
             this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
+            this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
             this.mn_cre_ar.Text = "&Crea";
             this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
             // 
@@ -93,10 +92,9 @@
             this.mn_edi_tar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_mod_ifi,
             this.mn_hab_des,
-            this.toolStripMenuItem1,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
+            this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
@@ -123,7 +121,7 @@
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
@@ -132,20 +130,20 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_doc});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_doc
             // 
             this.mn_list_doc.Name = "mn_list_doc";
-            this.mn_list_doc.Size = new System.Drawing.Size(184, 22);
+            this.mn_list_doc.Size = new System.Drawing.Size(180, 22);
             this.mn_list_doc.Text = "&Lista de documentos";
             this.mn_list_doc.Click += new System.EventHandler(this.Mn_list_doc_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -363,12 +361,6 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem1.Text = "E&limina";
-            // 
             // cmr001_01
             // 
             this.AcceptButton = this.bt_ace_pta;
@@ -433,6 +425,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn va_fec_fin;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_mon_lis;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

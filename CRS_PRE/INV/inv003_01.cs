@@ -452,8 +452,8 @@ namespace CRS_PRE.INV
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            //inv003_06 frm = new inv003_06();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            inv003_06 frm = new inv003_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)

@@ -3,25 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CRS_PRE
 {
     class cl_glo_bal
     {
-        //metodo para validar si los valores son numericos
+        /// <summary>
+        /// Verifica que elvalor sea Numerico valido
+        /// </summary>
+        /// <param name="num">Valor a verificar</param>
+        /// <returns></returns>
         public static bool IsNumeric(string num)
         {
             try
             {
-                double x = Convert.ToDouble(num);
+                int x = Convert.ToInt32(num);
                 return true;
             }
             catch (Exception)
             {
                 return false;
-            }
+            } 
         }
 
+        /// <summary>
+        /// No permite digitar numeros en el key press del control
+        /// </summary>
+        /// <param name="e"> volor digitado</param>
+        public static void NotNumeric( KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
 
         // ** CODIGO DE CONTROL 
         #region VÁLIDAS PARA OBTENER CCF

@@ -86,7 +86,7 @@
             this.tb_abr_mod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_abr_mod.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tb_abr_mod.Location = new System.Drawing.Point(245, 17);
-            this.tb_abr_mod.MaxLength = 5;
+            this.tb_abr_mod.MaxLength = 3;
             this.tb_abr_mod.Name = "tb_abr_mod";
             this.tb_abr_mod.Size = new System.Drawing.Size(80, 20);
             this.tb_abr_mod.TabIndex = 20;

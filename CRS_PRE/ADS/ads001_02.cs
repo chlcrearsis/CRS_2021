@@ -45,6 +45,12 @@ namespace CRS_PRE
                 return "Debe proporcionar el Codigo";
             }
 
+            if (cl_glo_bal.IsNumeric(tb_ide_mod.Text) == false)
+            {
+                tb_ide_mod.Focus();
+                return "El codigo no es valido";
+            }
+
             //Verificar 
             tabla = o_ads001.Fe_con_mod(tb_ide_mod.Text);
             if (tabla.Rows.Count > 0)
@@ -100,18 +106,11 @@ namespace CRS_PRE
         }
 
         private void tb_ide_mod_KeyPress(object sender, KeyPressEventArgs e)
-        {            
-            if (char.IsNumber(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else {
-                e.Handled = true;
-            }
+        {
+
+            cl_glo_bal.NotNumeric(e);
+
+          
         }
     }
 }
