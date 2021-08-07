@@ -44,10 +44,7 @@
             this.tb_nro_doc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tb_cam_bio = new System.Windows.Forms.TextBox();
             this.tb_obs_vta = new System.Windows.Forms.TextBox();
-            this.tb_mto_pag = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tb_tot_net = new System.Windows.Forms.TextBox();
@@ -57,7 +54,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.lb_mon_vta = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
@@ -85,7 +81,7 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(2, -3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(482, 220);
+            this.groupBox1.Size = new System.Drawing.Size(482, 183);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
@@ -243,31 +239,14 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.tb_cam_bio);
             this.groupBox2.Controls.Add(this.tb_obs_vta);
-            this.groupBox2.Controls.Add(this.tb_mto_pag);
-            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.groupBox4);
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(6, 75);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(474, 144);
+            this.groupBox2.Size = new System.Drawing.Size(474, 104);
             this.groupBox2.TabIndex = 70;
             this.groupBox2.TabStop = false;
-            // 
-            // tb_cam_bio
-            // 
-            this.tb_cam_bio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_cam_bio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cam_bio.Location = new System.Drawing.Point(352, 122);
-            this.tb_cam_bio.MaxLength = 8;
-            this.tb_cam_bio.Name = "tb_cam_bio";
-            this.tb_cam_bio.ReadOnly = true;
-            this.tb_cam_bio.Size = new System.Drawing.Size(104, 20);
-            this.tb_cam_bio.TabIndex = 120;
-            this.tb_cam_bio.TabStop = false;
-            this.tb_cam_bio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tb_obs_vta
             // 
@@ -279,27 +258,6 @@
             this.tb_obs_vta.Name = "tb_obs_vta";
             this.tb_obs_vta.Size = new System.Drawing.Size(248, 76);
             this.tb_obs_vta.TabIndex = 75;
-            // 
-            // tb_mto_pag
-            // 
-            this.tb_mto_pag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_mto_pag.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_mto_pag.Location = new System.Drawing.Point(352, 101);
-            this.tb_mto_pag.MaxLength = 8;
-            this.tb_mto_pag.Name = "tb_mto_pag";
-            this.tb_mto_pag.Size = new System.Drawing.Size(104, 20);
-            this.tb_mto_pag.TabIndex = 110;
-            this.tb_mto_pag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_mto_pag.Validated += new System.EventHandler(this.tb_mto_pag_Validated);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(285, 125);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 53;
-            this.label3.Text = "Cambio";
             // 
             // label15
             // 
@@ -400,23 +358,14 @@
             this.label12.TabIndex = 53;
             this.label12.Text = "Total bruto";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(285, 105);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 53;
-            this.label2.Text = "Mto. a pagar";
-            // 
             // gb_ctr_btn
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(2, 211);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(2, 176);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(482, 35);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(482, 37);
             this.gb_ctr_btn.TabIndex = 20;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -427,7 +376,7 @@
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(312, 9);
             this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 130;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
@@ -441,7 +390,7 @@
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_can_cel.Location = new System.Drawing.Point(395, 9);
             this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 135;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
@@ -451,7 +400,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 247);
+            this.ClientSize = new System.Drawing.Size(486, 214);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -490,8 +439,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tb_for_pag;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button bt_bus_caj;
         private System.Windows.Forms.Label lb_nom_caj;
         private System.Windows.Forms.Label label5;
@@ -501,8 +448,6 @@
         public System.Windows.Forms.TextBox tb_des_cue;
         public System.Windows.Forms.TextBox tb_tot_bru;
         public System.Windows.Forms.TextBox tb_obs_vta;
-        public System.Windows.Forms.TextBox tb_cam_bio;
-        public System.Windows.Forms.TextBox tb_mto_pag;
         public System.Windows.Forms.TextBox tb_cod_caj;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tb_nro_doc;

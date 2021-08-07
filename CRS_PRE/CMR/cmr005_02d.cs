@@ -129,7 +129,18 @@ namespace CRS_PRE.CMR
         private void tb_mto_pag_Validated(object sender, EventArgs e)
         {
             // Calcula cambio
-            mto_pag = decimal.Parse(tb_mto_pag.Text);
+            try
+            {
+                mto_pag = decimal.Parse(tb_mto_pag.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("El monto a pagar no es valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_mto_pag.Focus();
+            }
+            
+            
+            
             mto_pag = decimal.Round(mto_pag, 2);
             tb_mto_pag.Text = mto_pag.ToString("N2");
 

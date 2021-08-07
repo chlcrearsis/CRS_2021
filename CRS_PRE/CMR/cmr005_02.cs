@@ -506,15 +506,13 @@ namespace CRS_PRE.CMR
             if (frm.DialogResult == DialogResult.Cancel)
                 return 0;
 
-            // Obtiene Gestion
-            //int ges_tio = int.Parse(o_ads016.Fe_obt_ges(tb_fec_vta.Value).Rows[0]["va_ges_tio"].ToString());
-            // GRABA Venta
+            
+            // GRABA PEDIDO
             tab_doc = o_cmr007.Fe_crea(Program.gl_usr_usr, DateTime.Parse(ve_cod_tmp.ToString()),
                 int.Parse(tb_cod_plv.Text), int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
                 frm.tb_nit_vta.Text, frm.tb_raz_soc.Text, ve_mon_vta, tb_fec_vta.Value, cb_for_pag.SelectedIndex,
                 int.Parse(tb_cod_ven.Text), int.Parse(tb_cod_lis.Text), 0, 0, decimal.Parse(frm.tb_des_cue.Text),
-                frm.tb_obs_vta.Text, ve_vta_par, int.Parse(tb_cod_ven.Text), "", decimal.Parse(frm.tb_mto_pag.Text),
-                decimal.Parse(frm.tb_cam_bio.Text));
+                frm.tb_obs_vta.Text, ve_vta_par, int.Parse(tb_cod_ven.Text), "");
 
             // Inicializa tabla para pasar datos
             Fi_tab_imp();

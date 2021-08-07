@@ -13,20 +13,18 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class ads001_03 : Form
+    public partial class ads002_03 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-
         //Instancias
         ads001 o_ads001 = new ads001();
+        ads002 o_ads002 = new ads002();
 
         DataTable tabla = new DataTable();
 
-
-        public ads001_03()
+        public ads002_03()
         {
             InitializeComponent();
         }
@@ -34,56 +32,47 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
+
             tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
             tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
-            tb_abr_mod.Text = frm_dat.Rows[0]["va_abr_mod"].ToString();
+            tb_ide_apl.Text = frm_dat.Rows[0]["va_ide_apl"].ToString();
+            tb_nom_apl.Text = frm_dat.Rows[0]["va_nom_apl"].ToString();
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
-            else
+            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
                 tb_est_ado.Text = "Deshabilitado";
-
-            tb_ide_mod.Focus();
         }
+
+
+
 
         protected string Fi_val_dat()
         {
-
-            if (tb_ide_mod.Text.Trim() == "")
+            if (tb_nom_mod.Text.Trim()=="")
             {
-                tb_ide_mod.Focus();
-                return "Debe proporcionar el Codigo";
+                tb_nom_mod.Focus();
+                return "Debe proporcionar el nombre para el Modulo";
             }
 
-            //Verificar 
+            tabla = new DataTable();
             tabla = o_ads001.Fe_con_mod(tb_ide_mod.Text);
             if (tabla.Rows.Count == 0)
             {
-                tb_ide_mod.Focus();
-                return "El Modulo no se encuentra registrado";
+                return "EL Modulo no se encuentra en la base de datos";
             }
-            if (tb_abr_mod.Text.Trim() == "")
+
+            tabla = new DataTable();
+            tabla = o_ads002.Fe_con_apl( tb_ide_apl.Text);
+            if (tabla.Rows.Count == 0)
             {
-                tb_nom_mod.Focus();
-                return "Debe proporcionar la abreviatura";
-            }
-            if (tb_nom_mod.Text.Trim() == "")
-            {
-                tb_nom_mod.Focus();
-                return "Debe proporcionar el Nombre";
+                return "EL Aplicacion No se encuentra registrado";
             }
 
             return "";
-        }
 
-        private void Fi_lim_pia()
-        {          
-            tb_ide_mod.Clear(); 
-            tb_nom_mod.Clear();
-            tb_abr_mod.Clear();
-           
-            tb_ide_mod.Focus();
         }
+             
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -101,15 +90,14 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita Modulo", MessageBoxButtons.OKCancel);
-                if (msg_res == DialogResult.OK)
+            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita Aplicacion", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            if (msg_res == DialogResult.OK)
             {
-                //Registrar 
-                o_ads001.Fe_edi_mod(int.Parse(tb_ide_mod.Text), tb_nom_mod.Text, tb_abr_mod.Text);
-                MessageBox.Show("Los datos se grabaron correctamente", "Modulo", MessageBoxButtons.OK);
+                //Edita usuario
+                o_ads002.Fe_edi_apl(int.Parse(tb_ide_mod.Text),tb_ide_apl.Text,tb_nom_apl.Text);
+                MessageBox.Show("Los datos se grabaron correctamente", "Edita Aplicacion", MessageBoxButtons.OK,MessageBoxIcon.Information);
 
-                frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
-
+                frm_pad.Fe_act_frm(tb_ide_apl.Text);
                 cl_glo_frm.Cerrar(this);
             }
 

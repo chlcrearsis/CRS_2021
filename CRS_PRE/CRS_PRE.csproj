@@ -140,6 +140,36 @@
     <Compile Include="ADS\ads000_03.Designer.cs">
       <DependentUpon>ads000_03.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads002_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads002_01.Designer.cs">
+      <DependentUpon>ads002_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads002_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads002_02.Designer.cs">
+      <DependentUpon>ads002_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads002_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads002_03.Designer.cs">
+      <DependentUpon>ads002_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads002_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads002_04.Designer.cs">
+      <DependentUpon>ads002_04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads002_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads002_05.Designer.cs">
+      <DependentUpon>ads002_05.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads006_06.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1516,6 +1546,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_03.resx">
       <DependentUpon>ads000_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads002_01.resx">
+      <DependentUpon>ads002_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads002_02.resx">
+      <DependentUpon>ads002_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads002_03.resx">
+      <DependentUpon>ads002_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads002_04.resx">
+      <DependentUpon>ads002_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads002_05.resx">
+      <DependentUpon>ads002_05.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_06.resx">
       <DependentUpon>ads006_06.cs</DependentUpon>

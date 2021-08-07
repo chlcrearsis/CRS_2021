@@ -166,6 +166,7 @@ namespace CRS_PRE
             // 
             // cb_prm_bus
             // 
+            this.cb_prm_bus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_prm_bus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cb_prm_bus.FormattingEnabled = true;
             this.cb_prm_bus.Items.AddRange(new object[] {

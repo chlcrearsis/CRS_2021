@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tb_nom_mod = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_abr_mod = new System.Windows.Forms.TextBox();
@@ -36,7 +37,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +53,15 @@
             this.groupBox1.Size = new System.Drawing.Size(336, 76);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(176, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Abreviación";
             // 
             // tb_nom_mod
             // 
@@ -75,6 +84,7 @@
             // tb_abr_mod
             // 
             this.tb_abr_mod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_abr_mod.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tb_abr_mod.Location = new System.Drawing.Point(245, 17);
             this.tb_abr_mod.MaxLength = 5;
             this.tb_abr_mod.Name = "tb_abr_mod";
@@ -91,6 +101,7 @@
             this.tb_ide_mod.Size = new System.Drawing.Size(36, 20);
             this.tb_ide_mod.TabIndex = 10;
             this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_ide_mod.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_mod_KeyPress);
             // 
             // gb_ctr_btn
             // 
@@ -131,15 +142,6 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(179, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 41;
-            this.label1.Text = "Abreviatura";
             // 
             // ads001_02
             // 

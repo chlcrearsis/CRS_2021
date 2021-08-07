@@ -78,7 +78,7 @@ namespace CRS_NEG
             {
                 StringBuilder vv_str_sql = new StringBuilder();
                 vv_str_sql.AppendFormat(" EXECUTE cmr005_02a_p02 ");
-                vv_str_sql.AppendFormat(" '{0}', ", ar_cod_tmp);
+                vv_str_sql.AppendFormat(" '{0}', ", ar_cod_tmp.ToString(fto_fecha_hora));
                 vv_str_sql.AppendFormat(" {0}, ", ar_tip_vta);
                 vv_str_sql.AppendFormat(" {0}, ", ar_pla_vta);
                 vv_str_sql.AppendFormat(" {0}, ", ar_cod_bod);

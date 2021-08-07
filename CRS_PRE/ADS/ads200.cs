@@ -212,5 +212,11 @@ namespace CRS_PRE
             o_frm = new ads001_01();
             cl_glo_frm.abrir(this, o_frm);
         }
+
+        private void mn_apl_ica_Click(object sender, EventArgs e)
+        {
+            o_frm = new ads002_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
     }
 }

@@ -36,15 +36,15 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tb_est_ado);
             this.groupBox1.Controls.Add(this.tb_nom_mod);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_abr_mod);
             this.groupBox1.Controls.Add(this.tb_ide_mod);
@@ -70,15 +70,16 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 27;
-            this.label2.Text = "Modulo";
+            this.label2.Text = "Módulo";
             // 
             // tb_abr_mod
             // 
             this.tb_abr_mod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_abr_mod.Location = new System.Drawing.Point(259, 17);
+            this.tb_abr_mod.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_abr_mod.Location = new System.Drawing.Point(98, 16);
             this.tb_abr_mod.MaxLength = 5;
             this.tb_abr_mod.Name = "tb_abr_mod";
-            this.tb_abr_mod.Size = new System.Drawing.Size(66, 20);
+            this.tb_abr_mod.Size = new System.Drawing.Size(71, 20);
             this.tb_abr_mod.TabIndex = 20;
             // 
             // tb_ide_mod
@@ -133,14 +134,15 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // label1
+            // tb_est_ado
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(194, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Abreviatura";
+            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_est_ado.Location = new System.Drawing.Point(226, 16);
+            this.tb_est_ado.MaxLength = 30;
+            this.tb_est_ado.Name = "tb_est_ado";
+            this.tb_est_ado.ReadOnly = true;
+            this.tb_est_ado.Size = new System.Drawing.Size(99, 20);
+            this.tb_est_ado.TabIndex = 42;
             // 
             // ads001_03
             // 
@@ -157,7 +159,7 @@
             this.MinimizeBox = false;
             this.Name = "ads001_03";
             this.Tag = "Edita Modulo";
-            this.Text = "Edita Modulo";
+            this.Text = "Edita Módulo";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -175,6 +177,6 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.TextBox tb_abr_mod;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tb_est_ado;
     }
 }

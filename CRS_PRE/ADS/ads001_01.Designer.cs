@@ -50,13 +50,13 @@
             this.tb_sel_bus = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
             this.va_ide_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_abr_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,7 +75,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(377, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(257, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -99,21 +99,21 @@
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(180, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(165, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(180, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(180, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
@@ -135,7 +135,7 @@
             // mn_list_mod
             // 
             this.mn_list_mod.Name = "mn_list_mod";
-            this.mn_list_mod.Size = new System.Drawing.Size(180, 22);
+            this.mn_list_mod.Size = new System.Drawing.Size(153, 22);
             this.mn_list_mod.Text = "&Lista de Módulos";
             // 
             // mn_cer_rar
@@ -156,7 +156,7 @@
             this.groupBox1.Controls.Add(this.tb_sel_bus);
             this.groupBox1.Location = new System.Drawing.Point(2, -5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(654, 59);
+            this.groupBox1.Size = new System.Drawing.Size(490, 59);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -166,7 +166,7 @@
             this.bt_bus_car.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_bus_car.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_bus_car.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_car.Location = new System.Drawing.Point(555, 32);
+            this.bt_bus_car.Location = new System.Drawing.Point(399, 32);
             this.bt_bus_car.Name = "bt_bus_car";
             this.bt_bus_car.Size = new System.Drawing.Size(75, 23);
             this.bt_bus_car.TabIndex = 30;
@@ -182,7 +182,7 @@
             "Todos",
             "Habilitado",
             "Deshabilitado"});
-            this.cb_est_bus.Location = new System.Drawing.Point(440, 33);
+            this.cb_est_bus.Location = new System.Drawing.Point(284, 33);
             this.cb_est_bus.Name = "cb_est_bus";
             this.cb_est_bus.Size = new System.Drawing.Size(114, 21);
             this.cb_est_bus.TabIndex = 25;
@@ -194,8 +194,8 @@
             this.cb_prm_bus.Items.AddRange(new object[] {
             "Codigo",
             "Nombre",
-            "Abreviatura"});
-            this.cb_prm_bus.Location = new System.Drawing.Point(339, 33);
+            "Abreviación"});
+            this.cb_prm_bus.Location = new System.Drawing.Point(183, 33);
             this.cb_prm_bus.Name = "cb_prm_bus";
             this.cb_prm_bus.Size = new System.Drawing.Size(95, 21);
             this.cb_prm_bus.TabIndex = 20;
@@ -205,7 +205,7 @@
             this.tb_tex_bus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_tex_bus.Location = new System.Drawing.Point(9, 33);
             this.tb_tex_bus.Name = "tb_tex_bus";
-            this.tb_tex_bus.Size = new System.Drawing.Size(327, 20);
+            this.tb_tex_bus.Size = new System.Drawing.Size(168, 20);
             this.tb_tex_bus.TabIndex = 15;
             this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
@@ -225,7 +225,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Modulo";
+            this.label1.Text = "Módulo";
             // 
             // tb_sel_bus
             // 
@@ -244,7 +244,7 @@
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(2, 48);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(654, 199);
+            this.groupBox2.Size = new System.Drawing.Size(490, 199);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
@@ -285,37 +285,11 @@
             this.dg_res_ult.RowHeadersVisible = false;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(650, 187);
+            this.dg_res_ult.Size = new System.Drawing.Size(481, 187);
             this.dg_res_ult.TabIndex = 35;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
-            // 
-            // va_ide_mod
-            // 
-            this.va_ide_mod.HeaderText = "ID.";
-            this.va_ide_mod.Name = "va_ide_mod";
-            this.va_ide_mod.ReadOnly = true;
-            this.va_ide_mod.Width = 40;
-            // 
-            // va_abr_mod
-            // 
-            this.va_abr_mod.HeaderText = "Abreviacion";
-            this.va_abr_mod.Name = "va_abr_mod";
-            this.va_abr_mod.ReadOnly = true;
-            // 
-            // va_nom_mod
-            // 
-            this.va_nom_mod.HeaderText = "Modulo";
-            this.va_nom_mod.Name = "va_nom_mod";
-            this.va_nom_mod.ReadOnly = true;
-            this.va_nom_mod.Width = 400;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
             // 
             // gb_ctr_btn
             // 
@@ -324,7 +298,7 @@
             this.gb_ctr_btn.Enabled = false;
             this.gb_ctr_btn.Location = new System.Drawing.Point(2, 241);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(654, 39);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(490, 40);
             this.gb_ctr_btn.TabIndex = 8;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -335,7 +309,7 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(560, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(403, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 45;
@@ -349,7 +323,7 @@
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(466, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(309, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 40;
@@ -357,13 +331,40 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
+            // va_ide_mod
+            // 
+            this.va_ide_mod.HeaderText = "ID.";
+            this.va_ide_mod.Name = "va_ide_mod";
+            this.va_ide_mod.ReadOnly = true;
+            this.va_ide_mod.Width = 40;
+            // 
+            // va_abr_mod
+            // 
+            this.va_abr_mod.HeaderText = "Abreviación";
+            this.va_abr_mod.Name = "va_abr_mod";
+            this.va_abr_mod.ReadOnly = true;
+            this.va_abr_mod.Width = 80;
+            // 
+            // va_nom_mod
+            // 
+            this.va_nom_mod.HeaderText = "Módulo";
+            this.va_nom_mod.Name = "va_nom_mod";
+            this.va_nom_mod.ReadOnly = true;
+            this.va_nom_mod.Width = 250;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            // 
             // ads001_01
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(659, 282);
+            this.ClientSize = new System.Drawing.Size(496, 287);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -377,7 +378,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "Busca Tipo de Usuario";
-            this.Text = "Busca Modulo";
+            this.Text = "Busca Módulo";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
             this.m_frm_hja.PerformLayout();

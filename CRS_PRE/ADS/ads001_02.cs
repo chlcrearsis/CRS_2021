@@ -98,5 +98,20 @@ namespace CRS_PRE
             }
 
         }
+
+        private void tb_ide_mod_KeyPress(object sender, KeyPressEventArgs e)
+        {            
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else {
+                e.Handled = true;
+            }
+        }
     }
 }

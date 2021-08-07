@@ -67,11 +67,11 @@
             // tb_abr_mod
             // 
             this.tb_abr_mod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_abr_mod.Location = new System.Drawing.Point(108, 16);
+            this.tb_abr_mod.Location = new System.Drawing.Point(86, 16);
             this.tb_abr_mod.MaxLength = 30;
             this.tb_abr_mod.Name = "tb_abr_mod";
             this.tb_abr_mod.ReadOnly = true;
-            this.tb_abr_mod.Size = new System.Drawing.Size(117, 20);
+            this.tb_abr_mod.Size = new System.Drawing.Size(86, 20);
             this.tb_abr_mod.TabIndex = 20;
             // 
             // label2
@@ -79,9 +79,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 27;
-            this.label2.Text = "Tipo Modulo";
+            this.label2.Text = "Módulo";
             // 
             // tb_nom_mod
             // 
@@ -97,7 +97,7 @@
             // 
             this.tb_ide_mod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ide_mod.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_ide_mod.Location = new System.Drawing.Point(77, 16);
+            this.tb_ide_mod.Location = new System.Drawing.Point(52, 16);
             this.tb_ide_mod.MaxLength = 2;
             this.tb_ide_mod.Name = "tb_ide_mod";
             this.tb_ide_mod.ReadOnly = true;
@@ -160,7 +160,7 @@
             this.MinimizeBox = false;
             this.Name = "ads001_04";
             this.Tag = "Habilita/deshabilita Modulo";
-            this.Text = "Habilita/deshabilita Modulo";
+            this.Text = "Habilita/deshabilita Módulo";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
