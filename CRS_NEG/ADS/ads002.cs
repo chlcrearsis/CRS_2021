@@ -41,10 +41,9 @@ namespace CRS_NEG
             va_pas_usr = ob_con_ecA.va_pas_usr;
         }
  
-        public void Fe_crea(int ar_ide_mod, string ar_ide_apl, string ar_nom_apl, string ar_est_ado)
+        public void Fe_crea(int ar_ide_mod, string ar_ide_apl, string ar_nom_apl)
         {
             cadena = " INSERT INTO ads002 VALUES(" + ar_ide_mod + ",'" + ar_ide_apl + "' , '" + ar_nom_apl + "', 'H')";
-            
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
@@ -59,13 +58,17 @@ namespace CRS_NEG
 
         public void Fe_hab_ili(int ar_ide_mod, string ar_ide_apl)
         {
-            cadena = " UPDATE ads002 SET va_est_ado = 'H'" +
-                    " WHERE va_ide_apl = '" + ar_ide_apl + "' AND va_ide_mod = " + ar_ide_mod;
+
+            cadena = " ads002_04a_p01 '" + ar_ide_apl + "'";
             ob_con_ecA.fe_exe_sql(cadena);
+
+
+           
         }
         public void Fe_des_hab(int ar_ide_mod, string ar_ide_apl)
         {
-            cadena = " ads002_04a_p01 '" + ar_ide_apl + "'";
+            cadena = " UPDATE ads002 SET va_est_ado = 'N'" +
+                    " WHERE va_ide_apl = '" + ar_ide_apl + "' AND va_ide_mod = " + ar_ide_mod;
             ob_con_ecA.fe_exe_sql(cadena);
         }
 

@@ -40,8 +40,11 @@ namespace CRS_PRE.INV
             tb_nom_bod.Text = frm_dat.Rows[0]["va_nom_bod"].ToString();
             tb_des_bod.Text = frm_dat.Rows[0]["va_des_bod"].ToString();
             tb_dir_bod.Text = frm_dat.Rows[0]["va_dir_bod"].ToString();
-            
-            if( frm_dat.Rows[0]["va_mon_inv"].ToString() == "B")
+            tb_nom_ecg.Text = frm_dat.Rows[0]["va_nom_ecg"].ToString();
+            tb_tlf_ecg.Text = frm_dat.Rows[0]["va_tlf_ecg"].ToString();
+            tb_dir_ecg.Text = frm_dat.Rows[0]["va_dir_ecg"].ToString();
+
+            if ( frm_dat.Rows[0]["va_mon_inv"].ToString() == "B")
                 cb_mon_inv.SelectedIndex = 0;
             else
                 cb_mon_inv.SelectedIndex = 1;

@@ -11,7 +11,7 @@ using CRS_NEG;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads004_R01w : Form
     {

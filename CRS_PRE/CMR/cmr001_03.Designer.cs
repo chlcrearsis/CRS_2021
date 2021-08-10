@@ -158,6 +158,7 @@
             this.tb_nro_dec.Name = "tb_nro_dec";
             this.tb_nro_dec.Size = new System.Drawing.Size(31, 20);
             this.tb_nro_dec.TabIndex = 40;
+            this.tb_nro_dec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_dec_KeyPress);
             // 
             // tb_nro_lis
             // 

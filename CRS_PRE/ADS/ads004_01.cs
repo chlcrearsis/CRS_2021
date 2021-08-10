@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads004_01 : Form
     {

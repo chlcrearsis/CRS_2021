@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads200
     {
@@ -43,7 +43,6 @@
             this.mn_pro_duc = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mar_ca = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_und_med = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_par_ame = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_com_erc = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_lis_pre = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_pre_cio = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +52,9 @@
             this.mn_per_son = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_gru_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_per_son1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_tip_bus = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_par_ame = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_mod_ulo = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.st_bar_pie = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -64,7 +66,7 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mn_tip_bus = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_apl_ica = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -132,7 +134,8 @@
             this.mn_par_inv,
             this.mn_com_erc,
             this.mn_per_son,
-            this.mn_tip_bus});
+            this.mn_tip_bus,
+            this.mn_par_ame});
             this.mn_def_par.Name = "mn_def_par";
             this.mn_def_par.Size = new System.Drawing.Size(76, 20);
             this.mn_def_par.Text = "&Definiciones";
@@ -145,8 +148,7 @@
             this.mn_fam_pro,
             this.mn_pro_duc,
             this.mn_mar_ca,
-            this.mn_und_med,
-            this.mn_par_ame});
+            this.mn_und_med});
             this.mn_par_inv.Name = "mn_par_inv";
             this.mn_par_inv.Size = new System.Drawing.Size(180, 22);
             this.mn_par_inv.Text = "&Inventario";
@@ -192,12 +194,6 @@
             this.mn_und_med.Size = new System.Drawing.Size(159, 22);
             this.mn_und_med.Text = "&Unidad de Medida";
             this.mn_und_med.Click += new System.EventHandler(this.mn_und_med_Click);
-            // 
-            // mn_par_ame
-            // 
-            this.mn_par_ame.Name = "mn_par_ame";
-            this.mn_par_ame.Size = new System.Drawing.Size(159, 22);
-            this.mn_par_ame.Text = "Parame&tros";
             // 
             // mn_com_erc
             // 
@@ -258,16 +254,39 @@
             // mn_gru_per
             // 
             this.mn_gru_per.Name = "mn_gru_per";
-            this.mn_gru_per.Size = new System.Drawing.Size(180, 22);
+            this.mn_gru_per.Size = new System.Drawing.Size(160, 22);
             this.mn_gru_per.Text = "&Grupo de Persona";
             this.mn_gru_per.Click += new System.EventHandler(this.mn_gru_per_Click);
             // 
             // mn_per_son1
             // 
             this.mn_per_son1.Name = "mn_per_son1";
-            this.mn_per_son1.Size = new System.Drawing.Size(180, 22);
+            this.mn_per_son1.Size = new System.Drawing.Size(160, 22);
             this.mn_per_son1.Text = "&Persona";
             this.mn_per_son1.Click += new System.EventHandler(this.mn_per_son1_Click);
+            // 
+            // mn_tip_bus
+            // 
+            this.mn_tip_bus.Name = "mn_tip_bus";
+            this.mn_tip_bus.Size = new System.Drawing.Size(180, 22);
+            this.mn_tip_bus.Text = "T.C. Bs/Us";
+            this.mn_tip_bus.Click += new System.EventHandler(this.mn_tip_bus_Click);
+            // 
+            // mn_par_ame
+            // 
+            this.mn_par_ame.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_mod_ulo,
+            this.mn_apl_ica});
+            this.mn_par_ame.Name = "mn_par_ame";
+            this.mn_par_ame.Size = new System.Drawing.Size(180, 22);
+            this.mn_par_ame.Text = "&Parametros";
+            // 
+            // mn_mod_ulo
+            // 
+            this.mn_mod_ulo.Name = "mn_mod_ulo";
+            this.mn_mod_ulo.Size = new System.Drawing.Size(180, 22);
+            this.mn_mod_ulo.Text = "&Modulo";
+            this.mn_mod_ulo.Click += new System.EventHandler(this.mn_mod_ulo_Click);
             // 
             // m_frm_hja
             // 
@@ -367,12 +386,12 @@
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // mn_tip_bus
+            // mn_apl_ica
             // 
-            this.mn_tip_bus.Name = "mn_tip_bus";
-            this.mn_tip_bus.Size = new System.Drawing.Size(180, 22);
-            this.mn_tip_bus.Text = "T.C. Bs/Us";
-            this.mn_tip_bus.Click += new System.EventHandler(this.mn_tip_bus_Click);
+            this.mn_apl_ica.Name = "mn_apl_ica";
+            this.mn_apl_ica.Size = new System.Drawing.Size(180, 22);
+            this.mn_apl_ica.Text = "&Aplicación";
+            this.mn_apl_ica.Click += new System.EventHandler(this.mn_apl_ica_Click);
             // 
             // ads200
             // 
@@ -424,7 +443,6 @@
         private System.Windows.Forms.ToolStripMenuItem mn_bod_ega;
         private System.Windows.Forms.ToolStripMenuItem mn_fam_pro;
         private System.Windows.Forms.ToolStripMenuItem mn_pro_duc;
-        private System.Windows.Forms.ToolStripMenuItem mn_par_ame;
         private System.Windows.Forms.ToolStripMenuItem mn_com_erc;
         private System.Windows.Forms.ToolStripMenuItem mn_lis_pre;
         private System.Windows.Forms.ToolStripMenuItem mn_pre_cio;
@@ -437,5 +455,8 @@
         private System.Windows.Forms.ToolStripMenuItem mn_per_son1;
         private System.Windows.Forms.ToolStripMenuItem mn_pla_vta;
         private System.Windows.Forms.ToolStripMenuItem mn_tip_bus;
+        private System.Windows.Forms.ToolStripMenuItem mn_par_ame;
+        private System.Windows.Forms.ToolStripMenuItem mn_mod_ulo;
+        private System.Windows.Forms.ToolStripMenuItem mn_apl_ica;
     }
 }

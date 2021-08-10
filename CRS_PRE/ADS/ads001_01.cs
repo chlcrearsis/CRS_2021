@@ -79,17 +79,17 @@ namespace CRS_PRE
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_cod_tus"].Value = tabla.Rows[i]["va_ide_tus"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_tus"].Value = tabla.Rows[i]["va_nom_tus"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_des_tus"].Value =tabla.Rows[i]["va_des_tus"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_ide_mod"].Value = tabla.Rows[i]["va_ide_mod"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_mod"].Value = tabla.Rows[i]["va_nom_mod"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_abr_mod"].Value =tabla.Rows[i]["va_abr_mod"].ToString();
                     
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_sel_bus.Text = tabla.Rows[0]["va_ide_tus"].ToString();
-                lb_des_bus.Text = tabla.Rows[0]["va_nom_tus"].ToString();
+                tb_sel_bus.Text = tabla.Rows[0]["va_ide_mod"].ToString();
+                lb_des_bus.Text = tabla.Rows[0]["va_nom_mod"].ToString();
             }
 
         }
@@ -109,10 +109,10 @@ namespace CRS_PRE
                 return;
             }
 
-            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_tus"].ToString());
+            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_mod"].ToString());
         }
         /// <summary>
-        /// - > Función que selecciona la fila en el Datagrid que el documento Modificó
+        /// - > Función que selecciona la fila en el Datagrid que el Modulo Modificó
         /// </summary>
         private void fi_sel_fil(int cod_tus)
         {
@@ -220,14 +220,14 @@ namespace CRS_PRE
         {
             string res_fun = "";
             tab_dat = o_ads001.Fe_con_mod(sel_ecc);
-            if (tabla.Rows.Count == 0)
+            if (tab_dat.Rows.Count == 0)
             {
-                res_fun = "El documento que desea editar, no se encuentra registrado";
+                res_fun = "El Modulo que desea editar, no se encuentra registrado";
             }
 
             if (res_fun != "")
             {
-                MessageBox.Show(res_fun, "Edita documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, "Edita Modulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -241,7 +241,7 @@ namespace CRS_PRE
             tab_dat = o_ads001.Fe_con_mod(sel_ecc);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL Modulo ya no se encuentra registrado en la base de datos.", "Consulta Modulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -253,7 +253,7 @@ namespace CRS_PRE
             tab_dat = o_ads001.Fe_con_mod(sel_ecc);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL Modulo ya no se encuentra registrado en la base de datos.", "Consulta Modulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -345,8 +345,8 @@ namespace CRS_PRE
 
         private void Mn_cre_ar_Click(object sender, EventArgs e)
         {
-            //ads001_02 frm = new ads001_02();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            ads001_02 frm = new ads001_02();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
         private void Mn_mod_ifi_Click(object sender, EventArgs e)
@@ -355,8 +355,8 @@ namespace CRS_PRE
             if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_03 frm = new cmr015_03();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads001_03 frm = new ads001_03();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
         private void Mn_hab_des_Click(object sender, EventArgs e)
@@ -365,8 +365,8 @@ namespace CRS_PRE
             if (fi_ver_hds(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_04 frm = new cmr015_04();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads001_04 frm = new ads001_04();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
         {
@@ -374,8 +374,8 @@ namespace CRS_PRE
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_05 frm = new cmr015_05();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads001_05 frm = new ads001_05();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {
@@ -383,8 +383,8 @@ namespace CRS_PRE
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr015_06 frm = new cmr015_06();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads001_06 frm = new ads001_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)

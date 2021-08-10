@@ -14,7 +14,7 @@ using CRS_PRE.CMR;
 using CRS_NEG;
 using System.Drawing.Printing;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     /// <summary>
     /// CAJA QUE MUESTRA IMPRESORAS DE LA PC

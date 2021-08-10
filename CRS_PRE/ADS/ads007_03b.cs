@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads007_03b : Form
     {

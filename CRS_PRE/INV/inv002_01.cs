@@ -92,10 +92,14 @@ namespace CRS_PRE.INV
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    //dg_res_ult.Rows[i].Cells["va_ide_gru"].Value = tabla.Rows[i]["va_ide_gru"].ToString();
                     dg_res_ult.Rows[i].Cells["va_cod_bod"].Value = tabla.Rows[i]["va_cod_bod"].ToString();
                     dg_res_ult.Rows[i].Cells["va_nom_bod"].Value = tabla.Rows[i]["va_nom_bod"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_mon_inv"].Value = tabla.Rows[i]["va_mon_inv"].ToString();
+
+                    if (tabla.Rows[i]["va_mon_inv"].ToString() == "B")
+                        dg_res_ult.Rows[i].Cells["va_mon_inv"].Value = "Bs.";
+                    else
+                        dg_res_ult.Rows[i].Cells["va_mon_inv"].Value = "Us.";
+
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else

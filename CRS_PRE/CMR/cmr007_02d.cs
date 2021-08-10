@@ -22,8 +22,6 @@ namespace CRS_PRE.CMR
         decimal des_cue = 0m;
         decimal tot_bru = 0m;
         decimal tot_net = 0m;
-        decimal mto_pag = 0m;
-        decimal cam_bio = 0m;
 
         DataTable tabla = new DataTable();
 
@@ -50,10 +48,7 @@ namespace CRS_PRE.CMR
             des_cue = 0m;
             tb_tot_net.Text = frm_pad.tb_tot_bru.Text;
             tot_net = tot_bru;
-            tb_mto_pag.Text = "0";
-            mto_pag = 0;
-            tb_cam_bio.Text = frm_pad.tb_tot_bru.Text;
-            cam_bio = tot_bru;
+            
 
             tb_nit_vta.Focus();
 
@@ -70,12 +65,12 @@ namespace CRS_PRE.CMR
         {
             int res_ult = 1;
             // Pregunta si el monto pagado no sea menor que el monto a pagar
-            if(decimal.Parse(tb_tot_net.Text) > decimal.Parse(tb_mto_pag.Text))
-            {
-                MessageBox.Show("El Mto. a pagar debe ser igual o mayor al Total Neto","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                tb_mto_pag.Focus();
-                return 0;
-            }
+            //if(decimal.Parse(tb_tot_net.Text) > decimal.Parse(tb_mto_pag.Text))
+            //{
+            //    MessageBox.Show("El Mto. a pagar debe ser igual o mayor al Total Neto","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            //    tb_mto_pag.Focus();
+            //    return 0;
+            //}
 
 
             return res_ult;
@@ -118,25 +113,7 @@ namespace CRS_PRE.CMR
 
             tb_tot_net.Text = tot_net.ToString("N2");
 
-            // Calcula cambio
-            mto_pag = decimal.Parse(tb_mto_pag.Text);
-            cam_bio = mto_pag - tot_net;
-            cam_bio = decimal.Round(cam_bio, 2);
-
-            tb_cam_bio.Text = cam_bio.ToString("N2");
         }
 
-        private void tb_mto_pag_Validated(object sender, EventArgs e)
-        {
-            // Calcula cambio
-            mto_pag = decimal.Parse(tb_mto_pag.Text);
-            mto_pag = decimal.Round(mto_pag, 2);
-            tb_mto_pag.Text = mto_pag.ToString("N2");
-
-            cam_bio = mto_pag - tot_net;
-            cam_bio = decimal.Round(cam_bio, 2);
-
-            tb_cam_bio.Text = cam_bio.ToString("N2");
-        }
     }
 }

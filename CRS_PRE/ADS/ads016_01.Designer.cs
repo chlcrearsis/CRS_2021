@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads016_01
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
@@ -79,7 +78,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(257, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -90,27 +89,27 @@
             this.mn_sig_ges,
             this.mn_nue_per});
             this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
+            this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
             this.mn_cre_ar.Text = "&Crea";
             // 
             // mn_ini_ges
             // 
             this.mn_ini_ges.Name = "mn_ini_ges";
-            this.mn_ini_ges.Size = new System.Drawing.Size(207, 22);
+            this.mn_ini_ges.Size = new System.Drawing.Size(196, 22);
             this.mn_ini_ges.Text = "Inicializa gestion";
             this.mn_ini_ges.Click += new System.EventHandler(this.Mn_ini_ges_Click);
             // 
             // mn_sig_ges
             // 
             this.mn_sig_ges.Name = "mn_sig_ges";
-            this.mn_sig_ges.Size = new System.Drawing.Size(207, 22);
+            this.mn_sig_ges.Size = new System.Drawing.Size(196, 22);
             this.mn_sig_ges.Text = "Prepara siguiente gestion";
             this.mn_sig_ges.Click += new System.EventHandler(this.Mn_sig_ges_Click);
             // 
             // mn_nue_per
             // 
             this.mn_nue_per.Name = "mn_nue_per";
-            this.mn_nue_per.Size = new System.Drawing.Size(207, 22);
+            this.mn_nue_per.Size = new System.Drawing.Size(196, 22);
             this.mn_nue_per.Text = "Nuevo Periodo";
             this.mn_nue_per.Click += new System.EventHandler(this.Mn_nue_per_Click);
             // 
@@ -120,27 +119,27 @@
             this.mn_mod_ifi,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
+            this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(121, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(113, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(121, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(113, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
@@ -150,27 +149,27 @@
             this.mn_per_ges,
             this.mn_lis_ges});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_per_ges
             // 
             this.mn_per_ges.Name = "mn_per_ges";
-            this.mn_per_ges.Size = new System.Drawing.Size(201, 22);
+            this.mn_per_ges.Size = new System.Drawing.Size(189, 22);
             this.mn_per_ges.Text = "&Periodos de una gestion";
             this.mn_per_ges.Click += new System.EventHandler(this.Mn_per_ges_Click);
             // 
             // mn_lis_ges
             // 
             this.mn_lis_ges.Name = "mn_lis_ges";
-            this.mn_lis_ges.Size = new System.Drawing.Size(201, 22);
+            this.mn_lis_ges.Size = new System.Drawing.Size(189, 22);
             this.mn_lis_ges.Text = "&Gestiones";
             this.mn_lis_ges.Click += new System.EventHandler(this.Mn_lis_ges_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -184,7 +183,7 @@
             this.groupBox1.Controls.Add(this.tb_sel_ges);
             this.groupBox1.Location = new System.Drawing.Point(2, -5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(432, 59);
+            this.groupBox1.Size = new System.Drawing.Size(439, 59);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
@@ -258,7 +257,7 @@
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(2, 48);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(432, 199);
+            this.groupBox2.Size = new System.Drawing.Size(439, 199);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             // 
@@ -266,9 +265,19 @@
             // 
             this.dg_res_ult.AllowUserToAddRows = false;
             this.dg_res_ult.AllowUserToDeleteRows = false;
-            this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dg_res_ult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ges_tio,
@@ -276,14 +285,6 @@
             this.va_nom_per,
             this.va_fec_ini,
             this.va_fec_fin});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.Location = new System.Drawing.Point(4, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -291,7 +292,7 @@
             this.dg_res_ult.RowHeadersVisible = false;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(426, 187);
+            this.dg_res_ult.Size = new System.Drawing.Size(431, 187);
             this.dg_res_ult.TabIndex = 50;
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             // 
@@ -318,8 +319,6 @@
             // 
             // va_fec_ini
             // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
             this.va_fec_ini.DefaultCellStyle = dataGridViewCellStyle1;
             this.va_fec_ini.HeaderText = "Fecha inicial";
             this.va_fec_ini.Name = "va_fec_ini";
@@ -327,8 +326,15 @@
             // 
             // va_fec_fin
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.Format = "d";
             dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.va_fec_fin.DefaultCellStyle = dataGridViewCellStyle2;
             this.va_fec_fin.HeaderText = "Fecha final";
             this.va_fec_fin.Name = "va_fec_fin";
@@ -341,7 +347,7 @@
             this.gb_ctr_btn.Enabled = false;
             this.gb_ctr_btn.Location = new System.Drawing.Point(2, 241);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(432, 34);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(439, 34);
             this.gb_ctr_btn.TabIndex = 30;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -373,7 +379,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 275);
+            this.ClientSize = new System.Drawing.Size(444, 275);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);

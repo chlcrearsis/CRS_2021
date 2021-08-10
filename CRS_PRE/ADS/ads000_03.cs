@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads000_03 : Form
     {

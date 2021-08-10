@@ -33,7 +33,7 @@ namespace CRS_PRE.CMR
       
         private void frm_Load(object sender, EventArgs e)
         {
-           
+            cb_mon_lis.SelectedIndex = 0;
             tb_nro_lis.Focus();
         }
 
@@ -62,10 +62,17 @@ namespace CRS_PRE.CMR
         protected string Fi_val_dat()
         {
 
-            if (tb_nro_lis.Text.Trim() == "")
+
+            if (cl_glo_bal.IsNumeric(tb_nro_lis.Text) == false)
             {
                 tb_nro_lis.Focus();
-                return "Debe proporcionar el Codigo de la Lista de Precio";
+                return "Debe proporcionar un Codigo de la Lista de Precio valida";
+            }
+          
+            if(int.Parse(tb_nro_lis.Text) == 0)
+            {
+                tb_nro_dec.Focus();
+                return "El Codigo de la Lista de Precio debe ser mayor a cero";
             }
 
             //Verificar 
@@ -82,23 +89,20 @@ namespace CRS_PRE.CMR
             }
 
 
-
-            int val;
-            try
-            {
-                val = int.Parse(tb_nro_dec.Text);
-            }
-            catch (Exception)
+            if(cl_glo_bal.IsNumeric(tb_nro_dec.Text)== false)
             {
                 tb_nro_dec.Focus();
                 return "El numero de decimales con el que trabajara la lista de precios es incorrecto";
             }
-            
-            if (val < 0 || val > 4)
+
+
+            if (!(int.Parse(tb_nro_dec.Text) > 0) && !(int.Parse(tb_nro_dec.Text) < 5 ))
             {
                 tb_nro_dec.Focus();
                 return "El numero de decimales con el que trabajara la lista de precios debe estar entre 0-4";
             }
+
+          
 
             if (tb_fec_ini.Value > tb_fec_fin.Value)
             {
@@ -149,6 +153,10 @@ namespace CRS_PRE.CMR
                 Fi_lim_pia();
             }
 
+        }
+        private void _KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotNumeric(e);
         }
     }
 }

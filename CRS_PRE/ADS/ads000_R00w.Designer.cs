@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads000_R00w
     {
@@ -49,7 +49,7 @@
             this.mn_zoo_075 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_zoo_025 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
-            this.ads000_R00 = new CRS_PRE.ADS.ads000_R00();
+            this.ads000_R00 = new CRS_PRE.ads000_R00();
             this.m_frm_hja.SuspendLayout();
             this.SuspendLayout();
             // 

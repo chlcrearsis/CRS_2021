@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads000_01
     {
@@ -135,7 +135,7 @@
             // 
             // ps_sel_pas
             // 
-            this.ps_sel_pas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.ps_sel_pas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.ps_sel_pas.Location = new System.Drawing.Point(331, 63);
             this.ps_sel_pas.Name = "ps_sel_pas";
             this.ps_sel_pas.Size = new System.Drawing.Size(10, 42);
@@ -256,7 +256,7 @@
             // 
             // ps_sel_rep
             // 
-            this.ps_sel_rep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.ps_sel_rep.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.ps_sel_rep.Location = new System.Drawing.Point(331, 110);
             this.ps_sel_rep.Name = "ps_sel_rep";
             this.ps_sel_rep.Size = new System.Drawing.Size(10, 42);
@@ -325,7 +325,7 @@
             // 
             // bt_ace_pta
             // 
-            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_ace_pta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bt_ace_pta.FlatAppearance.BorderSize = 0;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads000_02
     {
@@ -95,6 +95,7 @@
             this.bt_men_res.Text = "              Restaurant";
             this.bt_men_res.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_res.UseVisualStyleBackColor = false;
+            this.bt_men_res.Visible = false;
             this.bt_men_res.Click += new System.EventHandler(this.bt_men_res_Click);
             this.bt_men_res.MouseEnter += new System.EventHandler(this.bt_men_res_MouseEnter);
             this.bt_men_res.MouseLeave += new System.EventHandler(this.bt_men_res_MouseLeave);
@@ -116,6 +117,7 @@
             this.bt_men_com.Text = "              Comercializacion";
             this.bt_men_com.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_com.UseVisualStyleBackColor = false;
+            this.bt_men_com.Visible = false;
             this.bt_men_com.Click += new System.EventHandler(this.bt_men_com_Click);
             this.bt_men_com.MouseEnter += new System.EventHandler(this.bt_men_com_MouseEnter);
             this.bt_men_com.MouseLeave += new System.EventHandler(this.bt_men_com_MouseLeave);
@@ -137,6 +139,7 @@
             this.bt_men_inv.Text = "              Inventario";
             this.bt_men_inv.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_inv.UseVisualStyleBackColor = false;
+            this.bt_men_inv.Visible = false;
             this.bt_men_inv.Click += new System.EventHandler(this.bt_men_inv_Click);
             this.bt_men_inv.MouseEnter += new System.EventHandler(this.bt_men_inv_MouseEnter);
             this.bt_men_inv.MouseLeave += new System.EventHandler(this.bt_men_inv_MouseLeave);
@@ -158,6 +161,7 @@
             this.bt_men_adm.Text = "              Administrador";
             this.bt_men_adm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_adm.UseVisualStyleBackColor = false;
+            this.bt_men_adm.Visible = false;
             this.bt_men_adm.Click += new System.EventHandler(this.bt_men_adm_Click);
             this.bt_men_adm.MouseEnter += new System.EventHandler(this.bt_men_adm_MouseEnter);
             this.bt_men_adm.MouseLeave += new System.EventHandler(this.bt_men_adm_MouseLeave);
@@ -298,6 +302,8 @@
             this.Controls.Add(this.lb_nro_ver);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximumSize = new System.Drawing.Size(806, 554);
+            this.MinimumSize = new System.Drawing.Size(806, 554);
             this.Name = "ads000_02";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRS -";

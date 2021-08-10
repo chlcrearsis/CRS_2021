@@ -103,7 +103,7 @@ namespace CRS_NEG
         public DataTable Fe_crea(string _cod_usr, DateTime _cod_tmp, int _pla_ped,
             int _cod_bod, string _cod_per, string _nit_cli, string _raz_soc, string _mon_ped,
             DateTime _fec_ped, int _for_pag, int _ven_ded, int _lis_pre, int _cod_caj, int _cod_lcr,
-            decimal _des_cue, string _obs_ped,string _ped_par, int _cod_del, string _ref_ped, decimal _mto_pag, decimal _cam_bio)
+            decimal _des_cue, string _obs_ped,string _ped_par, int _cod_del, string _ref_ped)
         {
             try
             {
@@ -131,10 +131,7 @@ namespace CRS_NEG
 
                 vv_str_sql.AppendFormat(" {0} , ", _cod_del);
 
-
-                vv_str_sql.AppendFormat(" '{0}' , ", _ref_ped);
-                vv_str_sql.AppendFormat(" '{0}' , ", _mto_pag);
-                vv_str_sql.AppendFormat(" '{0}'  ", _cam_bio);
+                vv_str_sql.AppendFormat(" '{0}'  ", _ref_ped);
 
                 vv_str_sql.AppendLine("");
                 DataTable tabla = new DataTable();

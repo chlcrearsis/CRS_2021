@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.ADS
+﻿namespace CRS_PRE
 {
     partial class ads005_05
     {
@@ -157,9 +157,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(240, 123);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 13);
+            this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 29;
-            this.label7.Text = "Fecha Inicial";
+            this.label7.Text = "Fecha Final";
             // 
             // label6
             // 

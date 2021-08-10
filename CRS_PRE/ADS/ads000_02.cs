@@ -8,7 +8,7 @@ using CRS_NEG;
 using CRS_PRE.INV;
 using CRS_PRE.CMR;
 
-namespace CRS_PRE.ADS
+namespace CRS_PRE
 {
     public partial class ads000_02 : Form
     {        
@@ -258,18 +258,18 @@ namespace CRS_PRE.ADS
         {
             // Obtiene permisos del usuario sobre las aplicaciones
             Tabla = new DataTable();
-            Tabla = o_ads008.Fe_ads008_01(ide_usr);
+            Tabla = o_ads008.Fe_ads008_01(ide_usr, "ads002");
 
             // Habilita/Deshabilita las aplicaciones autorizadas
             for (int i = 0; i < Tabla.Rows.Count; i++)
             {
-                if (Tabla.Rows[i]["va_ide_apl"].ToString() == "ads200")
+                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "ads200")
                     bt_men_adm.Visible = true;
-                if (Tabla.Rows[i]["va_ide_apl"].ToString() == "inv200")
+                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "inv200")
                     bt_men_inv.Visible = true;
-                if (Tabla.Rows[i]["va_ide_apl"].ToString() == "cmr200")
+                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "cmr200")
                     bt_men_com.Visible = true;
-                if (Tabla.Rows[i]["va_ide_apl"].ToString() == "res200")
+                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "res200")
                     bt_men_res.Visible = true;
             }
         }

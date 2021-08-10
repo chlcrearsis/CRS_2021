@@ -157,6 +157,7 @@
             this.tb_nro_dec.Name = "tb_nro_dec";
             this.tb_nro_dec.Size = new System.Drawing.Size(31, 20);
             this.tb_nro_dec.TabIndex = 40;
+            this.tb_nro_dec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._KeyPress);
             // 
             // tb_nro_lis
             // 
@@ -168,6 +169,7 @@
             this.tb_nro_lis.Size = new System.Drawing.Size(31, 20);
             this.tb_nro_lis.TabIndex = 10;
             this.tb_nro_lis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_nro_lis.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._KeyPress);
             // 
             // gb_ctr_btn
             // 

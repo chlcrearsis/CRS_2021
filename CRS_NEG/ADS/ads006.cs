@@ -65,8 +65,16 @@ namespace CRS_NEG
         }
         public void Fe_des_hab(int ar_ide_tus)
         {
-            cadena = " ads006_04a_p01 '" + ar_ide_tus + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " ads006_04a_p01 " + ar_ide_tus ;
+                ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 

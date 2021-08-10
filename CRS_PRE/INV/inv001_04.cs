@@ -72,39 +72,37 @@ namespace CRS_PRE.INV
         {
             try
             {
+                string msg_val = "";
+                DialogResult msg_res;
 
+                // funcion para validar datos
+                msg_val = Fi_val_dat();
+                if (msg_val != "")
+                {
+                    MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
+                    return;
+                }
 
-            string msg_val = "";
-            DialogResult msg_res;
-
-            // funcion para validar datos
-            msg_val = Fi_val_dat();
-            if (msg_val != "")
-            {
-                MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
-                return;
-            }
-
-            if (tb_est_ado.Text == "Habilitado")
-                msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Grupo de Bodega?", "Edita Grupo de Bodega", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-             else
-                msg_res = MessageBox.Show("Esta seguro de Habilitar el Grupo de Bodega?", "Edita Grupo de Bodega", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (msg_res == DialogResult.OK)
-            {
                 if (tb_est_ado.Text == "Habilitado")
-                    o_inv001.Fe_des_hab(int.Parse(tb_ide_gru.Text));
-                else
-                    o_inv001.Fe_hab_ili(int.Parse(tb_ide_gru.Text));
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Grupo de Bodega?", "Edita Grupo de Bodega", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                 else
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Grupo de Bodega?", "Edita Grupo de Bodega", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (msg_res == DialogResult.OK)
+                {
+                    if (tb_est_ado.Text == "Habilitado")
+                        o_inv001.Fe_des_hab(int.Parse(tb_ide_gru.Text));
+                    else
+                        o_inv001.Fe_hab_ili(int.Parse(tb_ide_gru.Text));
 
 
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita Grupo de Bodega", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", "Edita Grupo de Bodega", MessageBoxButtons.OK,MessageBoxIcon.Information);
 
-                //Actualiza ventana buscar
-                frm_pad.Fe_act_frm(tb_ide_gru.Text);
+                    //Actualiza ventana buscar
+                    frm_pad.Fe_act_frm(int.Parse(tb_ide_gru.Text));
 
-                cl_glo_frm.Cerrar(this);
-            }
+                    cl_glo_frm.Cerrar(this);
+                }
             }
             catch (Exception ex)
             {

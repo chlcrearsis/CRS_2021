@@ -71,11 +71,7 @@ namespace CRS_PRE.CMR
 
         protected string Fi_val_dat()
         {
-            //if (tb_ide_doc.Text.Trim()=="")
-            //{
-            //    tb_ide_doc.Focus();
-            //    return "Debe proporcionar el Codigo de la Lista de Precio";
-            //}
+           
 
             //Verificar 
             tabla = o_cmr001.Fe_con_lis(int.Parse(tb_nro_lis.Text));
@@ -90,24 +86,21 @@ namespace CRS_PRE.CMR
                 return "Debe proporcionar el Nombre para la Lista de Precio";
             }
 
-            int val;
-            int.TryParse(tb_nro_dec.Text, out val);
-            if (tb_nro_dec.Text != "0")
+            if (cl_glo_bal.IsNumeric(tb_nro_dec.Text) == false)
             {
-                if(val==0)
-                {
-                    tb_nro_dec.Focus();
-                    return "El numero de decimales con el que trabajara la lista de precios es incorrecto";
-                }
+                tb_nro_dec.Focus();
+                return "El numero de decimales con el que trabajara la lista de precios es incorrecto";
             }
 
-            if (val < 1 || val > 4)
+
+            if (!(int.Parse(tb_nro_dec.Text) > 0) && !(int.Parse(tb_nro_dec.Text) < 5))
             {
                 tb_nro_dec.Focus();
                 return "El numero de decimales con el que trabajara la lista de precios debe estar entre 0-4";
             }
 
-            if(tb_fec_ini.Value > tb_fec_fin.Value)
+
+            if (tb_fec_ini.Value > tb_fec_fin.Value)
             {
                 tb_fec_fin.Focus();
                 return "La fecha final debe ser mayor igual a la fecha inicial";
@@ -156,6 +149,11 @@ namespace CRS_PRE.CMR
                 cl_glo_frm.Cerrar(this);
             }
 
+        }
+
+        private void tb_nro_dec_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotNumeric(e);
         }
     }
 }
