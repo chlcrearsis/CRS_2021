@@ -70,7 +70,7 @@ namespace CRS_DAT
                 //Obtiene la Cadena de Conexion
                 Cadena = ("Data Source=" + va_ser_bda + "\\" + va_ins_bda + "; Initial Catalog = " + va_nom_bda + "; User Id = " + va_ide_usr + "; Password = " + va_pas_usr + "");
                 //Coneta con el Servidor
-                if (va_cxn_sql.State == ConnectionState.Closed )
+                if (va_cxn_sql.State == ConnectionState.Closed)
                 {
                     va_cxn_sql.ConnectionString = Cadena;
                     va_cxn_sql.Open();
@@ -103,8 +103,6 @@ namespace CRS_DAT
 
 
 
-
-
         #region METODOS PARA EJECUTAR CONSULTAS A SQL
  
         /// <summary>
@@ -112,12 +110,65 @@ namespace CRS_DAT
         /// </summary>
         /// <param name="cad_sql">Consulta(query) a ejecutar</param>
         /// <returns></returns>
-        public DataTable fe_exe_sql(string StrQuery )  
+        public DataTable fe_exe_sql(string StrQuery)  
         {
             try
             {
                 DataTable dts = new DataTable();
                 fe_abr_cnx();
+                SqlDataAdapter Adaptador = new SqlDataAdapter(StrQuery, va_cxn_sql);
+                Adaptador.Fill(dts);
+                fe_cer_cnx();
+                return dts;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                //Cierra La conexion depues de ejecutar comando
+                fe_cer_cnx();
+            }
+        }
+
+        /// <summary>
+        /// Funcion que Ejecuta comando SQL CON RETORNO, con el Usuario (crssql)
+        /// </summary>
+        /// <param name="StrQuery">Consulta(query) a ejecutar</param>
+        /// <param name="ag_usr_sql">Usuario SQL</param>
+        /// /// <param name="ag_pas_sql">Contraseña SQL</param>
+        /// <returns></returns>
+        public DataTable fe_exe_sql(string StrQuery, string ag_ser_bda, string ag_usr_sql, string ag_pas_sql)
+        {
+            try
+            {
+                DataTable dts = new DataTable();
+                //Obtiene los argumentos de conexion               
+                int ser_bda = 0;
+                int ins_bda = 0;
+                int nom_bda = 0;
+
+                //Obtiene el indice del Servidor y la Instancia
+                ser_bda = ag_ser_bda.LastIndexOf("\\");
+                ins_bda = ag_ser_bda.LastIndexOf(":");
+                nom_bda = ag_ser_bda.Length;
+
+                //Obtiene los datos de Conexion
+                va_ide_usr = ag_usr_sql;
+                va_pas_usr = ag_pas_sql;
+                va_ser_bda = ag_ser_bda.Substring(0, ser_bda);
+                va_ins_bda = ag_ser_bda.Substring(ser_bda + 1, ins_bda - ser_bda - 1);
+                va_nom_bda = ag_ser_bda.Substring(ins_bda + 1, nom_bda - ins_bda - 1);
+
+                //Obtiene la Cadena de Conexion
+                Cadena = ("Data Source=" + va_ser_bda + "\\" + va_ins_bda + "; Initial Catalog = " + va_nom_bda + "; User Id = " + va_ide_usr + "; Password = " + va_pas_usr + "");
+                //Coneta con el Servidor
+                if (va_cxn_sql.State == ConnectionState.Closed)
+                {
+                    va_cxn_sql.ConnectionString = Cadena;
+                    va_cxn_sql.Open();
+                }
                 SqlDataAdapter Adaptador = new SqlDataAdapter(StrQuery, va_cxn_sql);
                 Adaptador.Fill(dts);
                 fe_cer_cnx();

@@ -8,6 +8,11 @@ namespace CRS_PRE
 {
     static class Program
     {
+        // CONSTANTES GLOBAL DATOS DE USUARIO DE CONEXION
+        public static string gl_usr_sql = "crssql";
+        public static string gl_pas_sql = "crssql7*";
+
+        // VARIABLE GLOBAL DATOS DEL USUARIO LOGUEADO
         public static string gl_usr_usr = "";
         public static string gl_cnx_str = "";
         public static string gl_bdo_usr = "";

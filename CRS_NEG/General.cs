@@ -50,7 +50,7 @@ namespace CRS_NEG
             string car_ter6 = str_b64.Substring(5, 1);
             string car_ter7 = str_b64.Substring(6, 1);
             // Obtiene el Codigo PIN
-            string cod_pin = "t";
+            string cod_pin = "c";
             cod_pin += Fi_num_car(car_ter1);
             cod_pin += Fi_car_num(car_ter2);
             cod_pin += Fi_car_num(car_ter3);

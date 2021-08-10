@@ -43,7 +43,7 @@ namespace CRS_PRE.ADS
 
             while (linea != null)
             {
-                if (contador >= 2){  // Leer la lista de la base de datos
+                if (contador >= 1){  // Leer la lista de la base de datos
                     va_ser_bda = linea.Substring(1, linea.Length - 1);
                     //linea = archivo.ReadLine();
                     // Adiciona a la lista de BD
@@ -58,6 +58,10 @@ namespace CRS_PRE.ADS
             cb_nom_bda.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Valida los datos proporcionados por el usuario
+        /// </summary>
+        /// <returns></returns>
         private bool fi_val_dat()
         {
             string ide_usr = tb_ide_usr.Text;
@@ -84,6 +88,9 @@ namespace CRS_PRE.ADS
             return true;
         }
 
+        /// <summary>
+        /// Funcion: Ingresro 
+        /// </summary>
         private void fi_ing_res()
         {
             try
@@ -93,44 +100,53 @@ namespace CRS_PRE.ADS
                 string pas_usr = tb_pas_usr.Text;
                 string nom_bda = cb_nom_bda.SelectedItem.ToString();
                 string pas_def = "";    // Contraseña por Defecto   
+                string usr_sql = Program.gl_usr_sql;
+                string pas_sql = Program.gl_pas_sql;
 
                 // Verifica que el usuario y contraseña sean correcta
-                if (fi_val_dat() == true)
-                {
-                    // Verifica que el usuario sea un usuario válido
+                if (fi_val_dat() == true) {
+                    // Verifica que el usuario crssql este definido en el servidor
                     Tabla = new DataTable();
-                    string mensaje = ObjUsuario.Login(nom_bda, ide_usr, pas_usr);
-                    if (mensaje == "OK")
-                    {
-                        // Guarda datos en la aplicacion
-                        Program.gl_usr_usr = ide_usr;
+                    Tabla = ObjUsuario.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
+                    if (Tabla.Rows.Count == 0) {
+                        MessageBox.Show("El Usuario 'crssql' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                        // 'Obtiene: (SG-100) -> Contraseña por Defecto
-                        Tabla = o_ads013.Fe_obt_glo(1, 1);
-                        if (Tabla.Rows.Count > 0)
-                        {
-                            pas_def = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
-                            if (pas_def == pas_usr)
-                            {
-                                // Abre la pantalla para actualizar su contraseña
-                                ads000_01 form = new ads000_01();
-                                form.vp_ide_usr = ide_usr;
-                                form.vp_pas_usr = pas_usr;
-                                form.Opacity = 0.95;
-                                if (form.ShowDialog() == DialogResult.OK)
-                                    return;
+                    // Verifica que el usuario este definido y asignado los permisos correspondiente
+                    Tabla = ObjUsuario.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
+                    if (Tabla.Rows.Count == 0) {
+                        MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Guarda datos en la aplicacion
+                    if (ObjUsuario.Login(nom_bda, ide_usr, pas_usr) == "OK") {                         
+                        Program.gl_usr_usr = ide_usr;
+                    }
+
+                    // Obtiene: (SG-100) -> Contraseña por Defecto
+                    Tabla = o_ads013.Fe_obt_glo(1, 1);
+                    if (Tabla.Rows.Count > 0){
+                        pas_def = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
+                        if (pas_def == pas_usr) {
+                            // Abre la pantalla para actualizar su contraseña
+                            ads000_01 form = new ads000_01();
+                            form.vp_ide_usr = ide_usr;
+                            form.vp_pas_usr = pas_usr;
+                            form.Opacity = 0.95;
+                            if (form.ShowDialog() == DialogResult.OK ||
+                                form.ShowDialog() == DialogResult.Cancel) {
+                                return;
                             }
                         }
+                    }
 
-                        this.Visible = false;
-                        ads000_02 frm = new ads000_02();
-                        frm.ShowDialog();
-                        Close();
-                    }
-                    else {
-                        MessageBox.Show(mensaje, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                    this.Visible = false;
+                    ads000_02 frm = new ads000_02();
+                    frm.ShowDialog();
+                    Close();                
+                }           
             }
             catch (Exception ex)
             {

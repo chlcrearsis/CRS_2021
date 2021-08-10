@@ -20,16 +20,15 @@ namespace CRS_NEG
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();      
 
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
+        public string va_ser_bda;   // Servidor
+        public string va_ins_bda;   // Instancia
+        public string va_nom_bda;   // Base de Datos
+        public string va_ide_usr;   // Usuario
+        public string va_pas_usr;   // Password
         string cadena = "";
-       
-       
+        DataTable Tabla = new DataTable();
+
+
         public ads007()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
@@ -37,6 +36,35 @@ namespace CRS_NEG
             va_nom_bda = ob_con_ecA.va_nom_bda;
             va_ide_usr = ob_con_ecA.va_ide_usr;
             va_pas_usr = ob_con_ecA.va_pas_usr;
+        }
+
+
+        /// <summary>
+        /// Verifica que el usuario (crssql) este definida en el SQL-Server
+        /// </summary>
+        /// <param name="ag_ser_bda"></param>
+        /// <param name="ar_usr_sql"></param>
+        /// <param name="ar_pas_sql"></param>
+        /// <returns></returns>
+        public DataTable Fe_usr_sql(string ag_ser_bda, string ar_usr_sql, string ar_pas_sql)
+        {
+            cadena = "SELECT * FROM ads001";
+            Tabla = ob_con_ecA.fe_exe_sql(cadena, ag_ser_bda, ar_usr_sql, ar_pas_sql);
+            return Tabla;
+        }
+
+        /// <summary>
+        /// Consulta SI el usuario a loguear tiene los permisos 
+        /// necesario para ingresar al sistema
+        /// </summary>
+        /// <param name="ar_ide_usr">ID. Usuario</param>
+        /// <param name="ar_pas_usr">Contraseña</param>
+        /// <returns></returns>
+        public DataTable Fe_ver_usr(string ag_ser_bda, string ar_usr_sql, string ar_pas_sql, string ar_ide_usr, string ar_pas_usr)
+        {
+            cadena = "EXECUTE ads000_01b_p01 '" + ar_ide_usr + "', '" + ar_pas_usr + "'";
+            Tabla = ob_con_ecA.fe_exe_sql(cadena, ag_ser_bda, ar_usr_sql, ar_pas_sql);
+            return Tabla;
         }
 
         public string Login(string ag_ser_bda, string ag_ide_usr, string ag_pas_usr)

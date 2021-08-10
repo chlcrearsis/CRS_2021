@@ -16,6 +16,7 @@ namespace CRS_PRE.ADS
         ads007 o_ads007 = new ads007();
         ads013 o_ads013 = new ads013();
         ads008 o_ads008 = new ads008();
+        cmr013 o_cmr013 = new cmr013();
         ToolTip va_tol_tip = new ToolTip();
 
         public ads000_02()
@@ -27,7 +28,7 @@ namespace CRS_PRE.ADS
         {
             //** INICIALIZA FORMULARIO DE CARGA INICIAL PARA REPORTES
             bt_men_rpt_Click();
-
+            
             lb_ide_usr.Text = "";
             lb_nom_usr.Text = "";
             lb_nom_equ.Text = "";
@@ -35,20 +36,28 @@ namespace CRS_PRE.ADS
             // Lee datos del Usuario Logueado
             Tabla = new DataTable();
             Tabla = o_ads007.Fe_con_usu(o_ads007.va_ide_usr);
-            if (Tabla.Rows.Count > 0)
-            {
+            if (Tabla.Rows.Count > 0){
                 lb_ide_usr.Text = Tabla.Rows[0]["va_ide_usr"].ToString();
                 lb_nom_usr.Text = Tabla.Rows[0]["va_nom_usr"].ToString();
-            }            
+            }
+
+            // Obtiene Datos de la Persona Usuario
+            /*Tabla = new DataTable();
+            Tabla = o_cmr013.Fe_con_per(ide_per);
+            if (Tabla.Rows.Count > 0)
+            {
+                
+            }  */          
 
             // Obtiene nombre de la empresa (1-4)
             Tabla = new DataTable();
             Tabla = o_ads013.Fe_obt_glo(1, 4);
             this.Text = this.Text + Tabla.Rows[0]["va_glo_car"].ToString();         
 
-            // Obtiene Nombre del Equipo
+            // Despliega Información del Usuario
             lb_nom_equ.Text = SystemInformation.ComputerName;
-           
+            
+
             // Envia a funcion que verifica y desplega aplicaciones permitidas
             fi_apl_per(lb_ide_usr.Text);
         }
@@ -373,6 +382,19 @@ namespace CRS_PRE.ADS
         {
             //lb_nom_equ.Location = new System.Drawing.Point(0,  this.Size.Height - 50);
             //lb_nom_equ.ForeColor = BackColor;
+        }
+
+        private void pb_lic_act_Click(object sender, EventArgs e)
+        {            
+            ads000_04 frm = new ads000_04();
+            frm.ShowDialog();
+            
+        }
+
+        private void lb_lic_act_Click(object sender, EventArgs e)
+        {            
+            ads000_04 frm = new ads000_04();
+            frm.ShowDialog();
         }
     }
 }

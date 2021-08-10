@@ -104,7 +104,7 @@ namespace CRS_PRE.ADS
                 return false;
             }
             
-            if (nue_pas.Length > 3){
+            if (nue_pas.Length <= 3){
                 MessageBox.Show("La contraseña DEBE ser mayor a 3 digitos", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -174,8 +174,7 @@ namespace CRS_PRE.ADS
             try
             {
                 // Valida los datos de proporcionado por el usuario
-                if (ValidaDatos() == true)
-                {
+                if (ValidaDatos() == true){
                     // Actualiza la contraseña del usuario
                     DataTable Tabla = new DataTable();
                     ObjUsuario.Fe_edi_psw(ide_usr,  nue_pas);

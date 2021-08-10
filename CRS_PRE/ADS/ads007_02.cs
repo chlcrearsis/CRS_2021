@@ -170,10 +170,11 @@ namespace CRS_PRE.ADS
                 {
                     //Registrar usuario
                     o_ads007.Fe_exe_nue(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
-                        tb_dir_ect.Text, tb_ema_usr.Text, int.Parse(tb_cod_per.Text), 
+                        tb_dir_ect.Text, tb_ema_usr.Text, 3, int.Parse(tb_cod_per.Text), 
                         int.Parse(cb_tip_usr.SelectedValue.ToString()) , usr_new);
 
                     MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Usuario", MessageBoxButtons.OK);
+                    frm_pad.Fe_act_frm(tb_ide_usr.Text);
                     Fi_lim_pia();
                 }
             }

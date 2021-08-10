@@ -247,6 +247,7 @@
             this.pb_lic_act.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_lic_act.TabIndex = 11;
             this.pb_lic_act.TabStop = false;
+            this.pb_lic_act.Click += new System.EventHandler(this.pb_lic_act_Click);
             // 
             // lb_val_lic
             // 
@@ -271,6 +272,7 @@
             this.lb_lic_act.Size = new System.Drawing.Size(102, 16);
             this.lb_lic_act.TabIndex = 10;
             this.lb_lic_act.Text = "Licencia Activada";
+            this.lb_lic_act.Click += new System.EventHandler(this.lb_lic_act_Click);
             // 
             // pb_not_fic
             // 
