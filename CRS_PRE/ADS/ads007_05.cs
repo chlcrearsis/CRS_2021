@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
-using CRS_NEG;
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -66,7 +57,7 @@ namespace CRS_PRE
                 //tb_cod_per.Focus();
             }
             int val = 0;
-            if (int.TryParse(tb_cod_per.Text, out val) == false) ;
+            if (int.TryParse(tb_cod_per.Text, out val) == false)
             {
                 //MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
                 //tb_cod_per.Focus();

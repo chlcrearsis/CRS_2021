@@ -25,7 +25,6 @@ namespace CRS_PRE
 
         string err_msg = "";
         DataTable tab_ads022;
-        DataTable tabla;
         int vv_ban_tcm = 0;
 
     #endregion

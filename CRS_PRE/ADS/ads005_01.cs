@@ -1,5 +1,4 @@
 ﻿using CRS_NEG;
-using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -13,9 +12,6 @@ namespace CRS_PRE
         public DataTable tab_dat;
         public dynamic frm_MDI;
 
-        string est_bus = "T";
-
-        //Form frm_mdi;
         public ads005_01()
         {
             InitializeComponent();
@@ -76,14 +72,6 @@ namespace CRS_PRE
         {
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
-
-            if (cb_ges_tio.SelectedIndex == 0)
-                est_bus = "T";
-            if (cb_ges_tio.SelectedIndex == 1)
-                est_bus = "H";
-            if (cb_ges_tio.SelectedIndex == 2)
-                est_bus = "N";
-
             string ar_tex_bus = tb_tex_bus.Text;
             int ar_prm_bus = cb_prm_bus.SelectedIndex;
 

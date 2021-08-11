@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
-using CRS_NEG;
 
 namespace CRS_NEG
 {
@@ -32,7 +28,7 @@ namespace CRS_NEG
         public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
 
         string cadena = "";
-        string fto_fecha_hora = "dd/MM/yyyy hh:mm:ss";
+        string ft_fch_hor = "dd/MM/yyyy hh:mm:ss";
         string fto_fecha = "dd/MM/yyyy";
         ads005 o_ads005 = new ads005();
         DataTable Tab_ads005;
@@ -78,7 +74,7 @@ namespace CRS_NEG
             {
                 StringBuilder vv_str_sql = new StringBuilder();
                 vv_str_sql.AppendFormat(" EXECUTE cmr005_02a_p02 ");
-                vv_str_sql.AppendFormat(" '{0}', ", ar_cod_tmp.ToString(fto_fecha_hora));
+                vv_str_sql.AppendFormat(" '{0}', ", ar_cod_tmp.ToString(ft_fch_hor));
                 vv_str_sql.AppendFormat(" {0}, ", ar_tip_vta);
                 vv_str_sql.AppendFormat(" {0}, ", ar_pla_vta);
                 vv_str_sql.AppendFormat(" {0}, ", ar_cod_bod);
@@ -106,7 +102,7 @@ namespace CRS_NEG
             {
                 StringBuilder vv_str_sql = new StringBuilder();
                 vv_str_sql.AppendFormat(" EXECUTE cmr005_02a_p01 ");
-                vv_str_sql.AppendFormat(" '{0}', ", _cod_tmp.ToString(fto_fecha_hora));
+                vv_str_sql.AppendFormat(" '{0}', ", _cod_tmp.ToString(ft_fch_hor));
                 vv_str_sql.AppendFormat(" {0}, ", _pla_vta);
                 vv_str_sql.AppendFormat("  {0} , ", _tip_vta);
                 vv_str_sql.AppendFormat("  '{0}' , ", _cod_bod);

@@ -1,5 +1,4 @@
 ﻿using CRS_NEG;
-using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -13,8 +12,6 @@ namespace CRS_PRE.INV
         public int frm_tip;
         public DataTable tab_dat;
         public dynamic frm_MDI;
-
-        string est_bus = "T";
 
         //Form frm_mdi;
         public inv005_01()

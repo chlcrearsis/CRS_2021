@@ -2,11 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_NEG;
-using CRS_NEG;
-using CRS_PRE;
 using CRS_PRE.CMR;
-using Microsoft.SqlServer.Types;
 
 namespace CRS_PRE.INV
 {
@@ -32,7 +28,6 @@ namespace CRS_PRE.INV
         DataTable tab_cmp = new DataTable();
 
         DateTime va_cod_tmp = new DateTime();
-        string va_ide_cmp = "";
 
         public inv007_02()
         {

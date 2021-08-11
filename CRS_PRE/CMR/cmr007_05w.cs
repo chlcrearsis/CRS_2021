@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_NEG;
-using CRS_PRE;
 using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
 
 namespace CRS_PRE.CMR
 {
@@ -25,9 +16,7 @@ namespace CRS_PRE.CMR
         ads016 o_ads016 = new ads016();
         ads013 o_ads013 = new ads013();
         ads004 o_ads004 = new ads004();
-        cmr007 o_cmr007 = new cmr007();
 
-        DataTable tabla = new DataTable();
         DataTable tab_ads013 = new DataTable();
         DataTable tab_ads004 = new DataTable();
         DataTable tab_cmr007 = new DataTable();
@@ -38,14 +27,14 @@ namespace CRS_PRE.CMR
         string va_dir_emp = "";
         string va_tel_emp = "";
         string va_cla_wif = "";
-
-        int va_nro_pag;
+        int va_nro_pag = 0;
 
         string doc_vta;     // Documento de pedido (VTx)
         string ide_doc;     // ID. del documento (xxx-000-000000)
         int nro_tal;        // Nro del talonario (0)
         int nro_for;        // Nro_formato del talonario (0)
         int ges_doc;        // Gestion del documento (0000)
+
         public cmr007_05w()
         {
             InitializeComponent();

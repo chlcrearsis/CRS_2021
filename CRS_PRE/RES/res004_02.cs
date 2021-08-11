@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
 using CRS_NEG;
 using CRS_PRE.INV;
 using System.Drawing.Printing;
-using CRS_PRE;
-using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -846,8 +836,8 @@ namespace CRS_PRE.CMR
         {
             string msg_val = "";
             DialogResult msg_res;
-            int cam_bod = 0, cam_lis = 0, cam_fpg = 0, cam_del = 0, cam_cli=0,
-                des_srv=0, pro_rep=0, imp_av1=0, imp_av2 =0;
+            int cam_bod = 0, cam_lis = 0, cam_fpg = 0, cam_del = 0,
+                des_srv = 0, pro_rep = 0, imp_av1 = 0, imp_av2 = 0;
            
 
 

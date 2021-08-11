@@ -133,7 +133,7 @@ namespace CRS_PRE.CMR
             {
                 mto_pag = decimal.Parse(tb_mto_pag.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("El monto a pagar no es valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_mto_pag.Focus();

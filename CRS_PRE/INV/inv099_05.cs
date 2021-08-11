@@ -1,5 +1,4 @@
 ﻿using CRS_NEG;
-using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -14,10 +13,8 @@ namespace CRS_PRE.INV
         public DataTable frm_dat;
         public dynamic frm_MDI;
 
-        string est_bus = "T";
         DataTable tab_dat = new DataTable();
 
-        //Form frm_mdi;
         public inv099_05()
         {
             InitializeComponent();

@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -23,7 +16,6 @@ namespace CRS_PRE
         //Instancias
         ads007 o_ads007 = new ads007();
         ads008 o_ads008 = new ads008();
-        //ads009 o_ads009 = new ads009();
         ads004 o_ads004 = new ads004();
         ads005 o_ads005 = new ads005();
         ads001 o_ads001 = new ads001();

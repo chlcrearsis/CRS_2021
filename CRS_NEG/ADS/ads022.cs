@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -23,27 +20,17 @@ namespace CRS_NEG
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
 
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
-        string cadena = "";
+        public string va_ser_bda;   // Servidor;
+        public string va_ins_bda;   // Instancia;
+        public string va_nom_bda;   // Nombre de Base de Datos;
+        public string va_ide_usr;   // ID. Usuario;
+        public string va_pas_usr;   // Contraseña;
 
 
         public ads022()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
         }
-
-
-
 
         /// <summary>
         /// Cadena de Comando SQL

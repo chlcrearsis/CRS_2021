@@ -34,14 +34,11 @@ namespace CRS_PRE.CMR
       
         private void frm_Load(object sender, EventArgs e)
         {
-            int por_cms = 0;
             tb_cod_ven.Text = frm_dat.Rows[0]["va_cod_ven"].ToString();
             tb_nom_ven.Text = frm_dat.Rows[0]["va_nom_ven"].ToString();
-             
-            tb_por_cms.Text =frm_dat.Rows[0]["va_por_cms"].ToString();
+            tb_por_cms.Text = frm_dat.Rows[0]["va_por_cms"].ToString();
 
             cb_tip_cms.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_tip_cms"].ToString());
-
 
             tb_nom_ven.Focus(); frm_dat.Rows[0]["va_por_cms"].ToString();
         }

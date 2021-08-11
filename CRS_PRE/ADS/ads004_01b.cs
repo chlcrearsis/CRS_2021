@@ -1,5 +1,4 @@
 ﻿using CRS_NEG;
-using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -14,8 +13,6 @@ namespace CRS_PRE
         public DataTable frm_dat;
         public dynamic frm_MDI;
 
-        string est_bus = "H";
-         
         public ads004_01b()
         {
             InitializeComponent();
@@ -124,7 +121,6 @@ namespace CRS_PRE
         /// </summary>
         private void fi_sel_fil(string ide_doc, int nro_tal)
         {
-            est_bus = "H";
             fi_bus_car(tb_tex_bus.Text );
 
             if (ide_doc != null  )

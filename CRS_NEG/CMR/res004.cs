@@ -279,10 +279,6 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable _05a(string cod_plv)
         {
-
-            string uno = "plv.va_doc_fac,(SELECT va_nom_doc FROM adm003 where va_cod_doc = plv.va_doc_fac) va_nom_doc_fac";
-            string dos = "plv.va_tal_fac,(SELECT va_nom_tal FROM adm005 WHERE va_cod_doc=plv.va_doc_fac AND va_nro_tal=plv.va_tal_fac) va_nom_tal_fac";
-
             try
             {
                 cadena = new StringBuilder();

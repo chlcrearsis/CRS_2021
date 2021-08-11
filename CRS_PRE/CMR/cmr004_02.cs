@@ -845,8 +845,8 @@ namespace CRS_PRE.CMR
         {
             string msg_val = "";
             DialogResult msg_res;
-            int cam_bod = 0, cam_lis = 0, cam_fpg = 0, cam_del = 0, cam_cli=0,
-                des_srv=0, pro_rep=0, imp_av1=0, imp_av2 =0;
+            int cam_bod = 0, cam_lis = 0, cam_fpg = 0, cam_del = 0,
+                des_srv = 0, pro_rep = 0, imp_av1 = 0, imp_av2 = 0;
            
 
 

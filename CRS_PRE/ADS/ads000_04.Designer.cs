@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE
+﻿namespace CRS_PRE.ADS
 {
     partial class ads000_04
     {
@@ -127,8 +127,8 @@
             // 
             // pn_lic_sis
             // 
-            this.pn_lic_sis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pn_lic_sis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pn_lic_sis.AutoSize = true;
             this.pn_lic_sis.BackColor = System.Drawing.Color.White;
@@ -144,8 +144,8 @@
             // 
             // pn_fon_lic
             // 
-            this.pn_fon_lic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pn_fon_lic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pn_fon_lic.AutoSize = true;
             this.pn_fon_lic.BackColor = System.Drawing.Color.Gray;

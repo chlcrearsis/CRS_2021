@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
 using CRS_NEG;
 using CRS_PRE.INV;
 
@@ -40,10 +32,6 @@ namespace CRS_PRE.CMR
         /// 0 = lista de precio inicial ; 1 = Lista de precio final
         /// </summary>
         int ban_ord_lis = 0;
-
-        decimal val_pre = 0m;
-        int nro_row = 0;
-        int nro_cel = 0;
 
         public cmr002_05b()
         {

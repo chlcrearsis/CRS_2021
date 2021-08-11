@@ -30,12 +30,9 @@ namespace CRS_PRE.CMR
         DataTable tab_ads013 = new DataTable();
         DataTable tab_ads004 = new DataTable();
 
-        string va_nom_emp="";
-        string va_dir_emp = "";
-        string va_tel_emp = "";
-        string va_cla_wif = "";
+        string va_nom_emp = "";
+        int va_nro_pag = 0;
 
-        int va_nro_pag;
         public res001_R03w()
         {
             InitializeComponent();

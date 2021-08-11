@@ -1,22 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 
 using CRS_NEG;
-using CRS_NEG;
-using CRS_NEG;
-using CRS_PRE;
-using CRS_PRE.CMR;
 using CRS_PRE.INV;
-//using Microsoft.SqlServer.Types;
 
 namespace CRS_PRE.CMR
 {
@@ -664,7 +653,7 @@ namespace CRS_PRE.CMR
                 //tb_cod_per.Focus();
             }
             int val = 0;
-            if( int.TryParse(tb_cod_per.Text, out val) == false);           
+            if( int.TryParse(tb_cod_per.Text, out val) == false)          
             {
                 //MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
                 //tb_cod_per.Focus();

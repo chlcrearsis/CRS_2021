@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
 using CRS_NEG;
 using CRS_PRE.INV;
 using System.Drawing.Printing;
-using CRS_PRE;
-using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -41,9 +31,9 @@ namespace CRS_PRE.CMR
         DataTable tabla = new DataTable();
         DataTable tab_prm = new DataTable();
 
-        PrintDocument printDocument = new PrintDocument();
-        string va_imp_def= "";
         int opc_doc = 0;
+
+        PrintDocument printDocument = new PrintDocument();
 
         public res004_04()
         {

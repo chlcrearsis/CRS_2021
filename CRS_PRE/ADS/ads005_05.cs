@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -29,9 +21,6 @@ namespace CRS_PRE
 
         DataTable tabla = new DataTable();
         DataTable tab_prm = new DataTable();
-        DataTable tab_ges = new DataTable();
-        DateTime va_fec_ini_ges;
-        DateTime va_fec_fin_ges;
 
 
         public ads005_05()
@@ -39,7 +28,6 @@ namespace CRS_PRE
             InitializeComponent();
         }
 
-      
         private void frm_Load(object sender, EventArgs e)
         {
             tb_ide_doc.Text = frm_dat.Rows[0]["va_ide_doc"].ToString();

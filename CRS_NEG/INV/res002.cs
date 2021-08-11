@@ -32,8 +32,7 @@ namespace CRS_NEG
         string cadena = "";
         StringBuilder cadena_stb = new StringBuilder();
 
-        string fto_fecha_hora = "dd/MM/yyyy hh:mm:ss";
-        string fto_fecha = "dd/MM/yyyy";
+        string ft_fch_hor = "dd/MM/yyyy hh:mm:ss";
 
 
         public res002()
@@ -64,7 +63,7 @@ namespace CRS_NEG
 
                     cadena_stb.AppendLine(" Insert into res002tmp ");
                     cadena_stb.AppendFormat(" values('{0}', ", _cod_usr);
-                    cadena_stb.AppendFormat(" '{0}', ", _cod_tmp.ToString(fto_fecha_hora));
+                    cadena_stb.AppendFormat(" '{0}', ", _cod_tmp.ToString(ft_fch_hor));
                     cadena_stb.AppendFormat("  {0} , ", _ITM_VTA.Rows[i]["va_nro_itm"].ToString());
                     cadena_stb.AppendFormat(" '{0}' , ", _ITM_VTA.Rows[i]["va_cod_pro"].ToString());
                     cadena_stb.AppendFormat(" '{0}' , ", "");// _ITM_VTA.Rows[i]["va_nom_pro"].ToString());
@@ -118,7 +117,7 @@ namespace CRS_NEG
                     cadena +=" va_por_cen = '"+ 0 +"' ";
 
                     cadena +=" WHERE va_cod_usr = '"+ _cod_usr +"' ";
-                    cadena +=" AND va_cod_tmp = '"+_cod_tmp.ToString(fto_fecha_hora)+"'";
+                    cadena +=" AND va_cod_tmp = '"+_cod_tmp.ToString(ft_fch_hor)+"'";
                     cadena +=" AND va_nro_itm = '"+ _ITM_VTA.Rows[i]["va_nro_itm"].ToString()+"'";
                 
                 }
@@ -146,7 +145,7 @@ namespace CRS_NEG
 
                 cadena_stb.AppendFormat(" DELETE FROM res002tmp ");
                 cadena_stb.AppendFormat(" WHERE va_cod_usr = '{0}' ", _cod_usr);
-                cadena_stb.AppendFormat(" AND va_cod_tmp = '{0}' ", _cod_tmp.ToString(fto_fecha_hora));
+                cadena_stb.AppendFormat(" AND va_cod_tmp = '{0}' ", _cod_tmp.ToString(ft_fch_hor));
                 if (_nro_itm != 0)
                     cadena_stb.AppendFormat(" AND va_nro_itm = {0} ", _nro_itm);
 
@@ -178,7 +177,7 @@ namespace CRS_NEG
                 cadena_stb.AppendFormat(" UPDATE res002tmp ");
                 cadena_stb.AppendFormat(" SET va_nro_itm = {0} ", _new_val);
                 cadena_stb.AppendFormat(" WHERE va_cod_usr = '{0}' ", _cod_usr);
-                cadena_stb.AppendFormat(" AND va_cod_tmp = '{0}' ", _cod_tmp.ToString(fto_fecha_hora));
+                cadena_stb.AppendFormat(" AND va_cod_tmp = '{0}' ", _cod_tmp.ToString(ft_fch_hor));
                 cadena_stb.AppendFormat(" AND va_nro_itm = {0} ", _nro_itm);
 
                 cadena_stb.AppendLine("");

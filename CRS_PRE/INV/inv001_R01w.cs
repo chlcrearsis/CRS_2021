@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_NEG;
-using CRS_PRE;
-using CRS_PRE.INV;
-
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
 
 namespace CRS_PRE.INV
 {
@@ -23,19 +11,16 @@ namespace CRS_PRE.INV
         public int frm_tip;
         public DataTable frm_dat;
         public string vp_est_ado;
-       
-
 
         //Instancias
         ads013 o_ads013 = new ads013();
-        DataTable tabla = new DataTable();
         DataTable tab_ads013 = new DataTable();
-        string va_nom_emp="";
-        int va_nro_pag;
+        string va_nom_emp = "";
+        int va_nro_pag = 0;
+
         public inv001_R01w()
         {
             InitializeComponent();
-            
         }
 
         private void frm_Load(object sender, EventArgs e)

@@ -24,9 +24,6 @@ namespace CRS_PRE
         public DataTable frm_dat;
 
         string err_msg = "";
-        DataTable tab_ads022;
-        DataTable tabla;
-        int vv_ban_tcm = 0;
 
     #endregion
 
@@ -42,7 +39,6 @@ namespace CRS_PRE
         /// <summary>
         /// Funcion que verifica los datos antes de grabar
         /// </summary>
-        DateTime Dtemp;
         public string fu_ver_dat()
         {
             decimal temp;

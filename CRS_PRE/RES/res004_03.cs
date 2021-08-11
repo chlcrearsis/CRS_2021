@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
 using CRS_NEG;
 using CRS_PRE.INV;
-using System.Drawing.Printing;
-using CRS_PRE;
-using CRS_NEG;
 
 namespace CRS_PRE.CMR
 {
@@ -27,7 +16,6 @@ namespace CRS_PRE.CMR
 
         //Instancias
         cmr001 o_cmr001 = new cmr001();
-        cmr002 o_cmr002 = new cmr002();
         c_res004 o_res004 = new c_res004();
 
         inv002 o_inv002 = new inv002();
@@ -40,10 +28,8 @@ namespace CRS_PRE.CMR
 
         DataTable tabla = new DataTable();
         DataTable tab_prm = new DataTable();
-
-        PrintDocument printDocument = new PrintDocument();
-        string va_imp_def= "";
         int opc_doc = 0;
+
 
         public res004_03()
         {
@@ -959,8 +945,8 @@ namespace CRS_PRE.CMR
         {
             string msg_val = "";
             DialogResult msg_res;
-            int cam_bod = 0, cam_lis = 0, cam_fpg = 0, cam_del = 0, cam_cli=0,
-                des_srv=0, pro_rep=0, imp_av1=0, imp_av2 =0;
+            int cam_bod = 0, cam_lis = 0, cam_fpg = 0, cam_del = 0,
+                des_srv = 0, pro_rep = 0, imp_av1 = 0, imp_av2 = 0;
            
             // funcion para validar datos
             msg_val = Fi_val_dat();

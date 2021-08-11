@@ -30,12 +30,8 @@ namespace CRS_PRE.CMR
         DataTable tab_ads013 = new DataTable();
         DataTable tab_ads004 = new DataTable();
 
-        string va_nom_emp="";
-        string va_dir_emp = "";
-        string va_tel_emp = "";
-        string va_cla_wif = "";
+        string va_nom_emp = "";
 
-        int va_nro_pag;
         public cmr005_R01w()
         {
             InitializeComponent();
@@ -51,8 +47,6 @@ namespace CRS_PRE.CMR
             // Hacer grande la pantalla
             this.Dock = DockStyle.Fill;
 
-
-
             //obtener nombre de la empresa
             tab_ads013 = o_ads013.Fe_obt_glo(1, 4);
             va_nom_emp = tab_ads013.Rows[0]["va_glo_car"].ToString();
@@ -64,9 +58,6 @@ namespace CRS_PRE.CMR
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
             cmr005_R01.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
             cmr005_R01.SetParameterValue("vc_nom_emp", va_nom_emp);
-
-            
-
             cmr005_R01.SetParameterValue("vc_cod_bod", int.Parse(frm_pad.tb_cod_bod.Text));
             cmr005_R01.SetParameterValue("vc_nom_bod", frm_pad.lb_nom_bod.Text);
             cmr005_R01.SetParameterValue("vc_fec_ini", frm_pad.tb_fec_ini.Value);
@@ -74,7 +65,7 @@ namespace CRS_PRE.CMR
             cmr005_R01.SetParameterValue("vc_est_ado", frm_pad.cb_est_ado.Text);
             
             // Obtiene nro de paginas
-            va_nro_pag = cr_rep_ort.GetCurrentPageNumber();
+            int va_nro_pag = cr_rep_ort.GetCurrentPageNumber();
         }
 
         public void Fe_imp_doc(string ide_doc, int nro_tal)

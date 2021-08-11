@@ -24,10 +24,7 @@ namespace CRS_PRE
 
         //Instancias
         ads013 o_ads013 = new ads013();
-        DataTable tabla = new DataTable();
-        DataTable tab_ads013 = new DataTable();
-        string va_nom_emp="";
-        int va_nro_pag;
+
         public ads000_R00w()
         {
             InitializeComponent();

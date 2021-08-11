@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
-using CRS_NEG;
-using CRS_NEG;
-using CRS_NEG;
-using CRS_PRE;
-using CRS_PRE.CMR;
 using CRS_PRE.INV;
 
 namespace CRS_PRE.CMR
@@ -26,8 +16,6 @@ namespace CRS_PRE.CMR
         public int frm_tip;
         //Instancias
         ads003 o_ads003 = new ads003();
-        ads004 o_ads004 = new ads004();
-        ads001 o_ads001 = new ads001();
         inv002 o_inv002 = new inv002();
         inv003 o_inv003 = new inv003();
         inv004 o_inv004 = new inv004();
@@ -51,7 +39,6 @@ namespace CRS_PRE.CMR
         DataTable tab_cmr015 = new DataTable();
         DataTable tab_cmr014 = new DataTable();
         DataTable tab_cmr013 = new DataTable();
-        DataTable tab_res001 = new DataTable();
         DataTable tb_res001 = new DataTable();
 
         //** Variable Venta para (M=Mesa ; L=Llevar ; D=Delivery)
@@ -172,7 +159,6 @@ namespace CRS_PRE.CMR
             int nro_itm = 0;
             int can_uni = 1;
             decimal pre_uni = 0;
-            decimal pre_bru = 0;
 
             //** Obtiene precio del producto
             tab_cmr002 = o_cmr002.Fe_con_pre(int.Parse(tb_cod_lis.Text), bt_pro_sel.Name);

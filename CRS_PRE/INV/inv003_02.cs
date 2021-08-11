@@ -1,6 +1,4 @@
 ﻿using CRS_NEG;
-using CRS_NEG;
-using CRS_NEG;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -60,7 +58,6 @@ namespace CRS_PRE.INV
             string[] va_mat_cod;
             int va_niv_lin = 0;
             string err_msg = "";
-            int val = 0;
 
             if (tb_cod_fam.Text.Trim()=="")
             {
