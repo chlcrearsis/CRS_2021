@@ -109,7 +109,7 @@ namespace CRS_PRE
                     Tabla = new DataTable();
                     Tabla = ObjUsuario.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
                     if (Tabla.Rows.Count == 0) {
-                        MessageBox.Show("El Usuario 'crssql' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -118,6 +118,13 @@ namespace CRS_PRE
                     if (Tabla.Rows.Count == 0) {
                         MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    } else {
+                        string cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
+                        string msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
+                        if (cod_err.CompareTo("0") != 0) {
+                            MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                     }
 
                     // Guarda datos en la aplicacion
@@ -135,8 +142,8 @@ namespace CRS_PRE
                             form.vp_ide_usr = ide_usr;
                             form.vp_pas_usr = pas_usr;
                             form.Opacity = 0.95;
-                            if (form.ShowDialog() == DialogResult.OK ||
-                                form.ShowDialog() == DialogResult.Cancel) {
+                            if (form.ShowDialog() == DialogResult.OK) {
+                                form.Close();
                                 return;
                             }
                         }
@@ -258,33 +265,61 @@ namespace CRS_PRE
                 ide_usr = tb_ide_usr.Text;
                 pas_usr = tb_pas_usr.Text;
                 nom_bda = cb_nom_bda.SelectedItem.ToString();
+                string pas_def = "";    // Contraseña por Defecto   
+                string usr_sql = Program.gl_usr_sql;
+                string pas_sql = Program.gl_pas_sql;
 
                 // Verifica que el usuario y contraseña sean correcta
-                if (fi_val_dat() == true)
-                {
-                    // Verifica que el usuario sea un usuario válido
-                    Tabla = new DataTable();
-                    string mensaje = ObjUsuario.Login(nom_bda, ide_usr, pas_usr);
-                    if (mensaje == "OK")
-                    {
-                        // Guarda datos en la aplicacion
-                        Program.gl_usr_usr = ide_usr;
-
-                        // Abre la pantalla para actualizar su contraseña
-                        ads000_01 form = new ads000_01();
-                        form.vp_ide_usr = ide_usr;
-                        form.vp_pas_usr = pas_usr;
-                        form.Opacity = 0.95;
-                        if (form.ShowDialog() == DialogResult.OK)
+                if (fi_val_dat() == true){
+                    // Verifica que el usuario y contraseña sean correcta
+                    if (fi_val_dat() == true){
+                        // Verifica que el usuario crssql este definido en el servidor
+                        Tabla = new DataTable();
+                        Tabla = ObjUsuario.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
+                        if (Tabla.Rows.Count == 0){
+                            MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
+                        }
 
-                    } else {
-                        MessageBox.Show(mensaje, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Verifica que el usuario este definido y asignado los permisos correspondiente
+                        Tabla = ObjUsuario.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
+                        if (Tabla.Rows.Count == 0){
+                            MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }else{
+                            string cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
+                            string msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
+                            if (cod_err.CompareTo("0") != 0){
+                                MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+
+                        // Guarda datos en la aplicacion
+                        if (ObjUsuario.Login(nom_bda, ide_usr, pas_usr) == "OK"){
+                            Program.gl_usr_usr = ide_usr;
+                        }
+
+                        // Obtiene: (SG-100) -> Contraseña por Defecto
+                        Tabla = o_ads013.Fe_obt_glo(1, 1);
+                        if (Tabla.Rows.Count > 0){
+                            pas_def = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
+                            if (pas_def == pas_usr)
+                            {
+                                // Abre la pantalla para actualizar su contraseña
+                                ads000_01 form = new ads000_01();
+                                form.vp_ide_usr = ide_usr;
+                                form.vp_pas_usr = pas_usr;
+                                form.Opacity = 0.95;
+                                if (form.ShowDialog() == DialogResult.OK){
+                                    form.Close();
+                                    return;
+                                }
+                            }
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 MessageBox.Show(ex.Message, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

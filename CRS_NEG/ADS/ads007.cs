@@ -48,7 +48,7 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_usr_sql(string ag_ser_bda, string ar_usr_sql, string ar_pas_sql)
         {
-            cadena = "SELECT * FROM ads001";
+            cadena = "SELECT name FROM master.sys.server_principals WHERE name = '" + ar_usr_sql + "'";
             Tabla = ob_con_ecA.fe_exe_sql(cadena, ag_ser_bda, ar_usr_sql, ar_pas_sql);
             return Tabla;
         }
@@ -62,7 +62,7 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_ver_usr(string ag_ser_bda, string ar_usr_sql, string ar_pas_sql, string ar_ide_usr, string ar_pas_usr)
         {
-            cadena = "EXECUTE ads000_01b_p01 '" + ar_ide_usr + "', '" + ar_pas_usr + "'";
+            cadena = "EXECUTE ads000_01a_p01 '" + ar_ide_usr + "', '" + ar_pas_usr + "'";
             Tabla = ob_con_ecA.fe_exe_sql(cadena, ag_ser_bda, ar_usr_sql, ar_pas_sql);
             return Tabla;
         }

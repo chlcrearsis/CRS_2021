@@ -6,6 +6,8 @@ using System.Data;
 using System.Configuration;
 
 using CRS_DAT.Properties;
+using System;
+
 namespace CRS_DAT
 {
     public class conexion_a
@@ -174,9 +176,10 @@ namespace CRS_DAT
                 fe_cer_cnx();
                 return dts;
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                DataTable table = new DataTable();
+                return table;
             }
             finally
             {
