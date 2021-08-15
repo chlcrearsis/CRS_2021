@@ -501,7 +501,15 @@ namespace CRS_PRE
             ads007_03c frm = new ads007_03c();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
+        private void mn_cam_tus_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para editar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
 
+            ads007_03d frm = new ads007_03d();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
 
@@ -509,7 +517,7 @@ namespace CRS_PRE
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-
+          
         }
 
        

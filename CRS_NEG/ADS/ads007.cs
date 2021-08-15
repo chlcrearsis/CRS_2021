@@ -194,14 +194,26 @@ namespace CRS_NEG
         /// <param name="ag_ide_per">persona relacionada con el usuario</param>
         public void Fe_exe_edi(string ag_ide_usr, string ag_nom_usr, string ag_tel_usr,
                                   string ag_car_usr, string ag_dir_ect, string ag_ema_usr, int ag_win_max,
-                                  int ag_ide_per = 0, int ag_tip_usr = 0)
+                                  int ag_ide_per = 0)
         {
             cadena = " execute ads007_03a_p01 '" + ag_ide_usr + "','" + ag_nom_usr + "','";
             cadena += ag_tel_usr + "','" + ag_car_usr + "','" + ag_dir_ect + "','" + ag_ema_usr + "'," + ag_win_max + ",";
-            cadena += ag_ide_per + "," + ag_tip_usr;
+            cadena += ag_ide_per ;
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
+        /// <summary>
+        /// cambia tipo de usuario al usuario
+        /// </summary>
+        /// <param name="ag_ide_usr">identificador</param>
+        /// <param name="ag_ide_tus">Tipo de usuario a asignar</param>
+        public void Fe_cam_tus(string ag_ide_usr, string ag_ide_tus)
+        {
+            cadena = " execute ads007_03d_p01 '" + ag_ide_usr + "','" + ag_ide_tus + "'";
+
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+
 
         /// <summary>
         /// Habilitad/Deshabilita usuario

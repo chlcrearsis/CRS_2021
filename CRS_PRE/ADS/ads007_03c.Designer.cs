@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.tb_nom_usr = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +55,16 @@
             this.groupBox1.Size = new System.Drawing.Size(347, 102);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(18, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(313, 13);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Inicializa la contraseña del usuario a una por defecto.";
             // 
             // tb_est_ado
             // 
@@ -80,6 +90,7 @@
             this.tb_nom_usr.ReadOnly = true;
             this.tb_nom_usr.Size = new System.Drawing.Size(261, 18);
             this.tb_nom_usr.TabIndex = 20;
+            this.tb_nom_usr.TabStop = false;
             this.tb_nom_usr.WordWrap = false;
             // 
             // label2
@@ -110,6 +121,7 @@
             this.tb_ide_usr.ReadOnly = true;
             this.tb_ide_usr.Size = new System.Drawing.Size(95, 18);
             this.tb_ide_usr.TabIndex = 10;
+            this.tb_ide_usr.TabStop = false;
             this.tb_ide_usr.WordWrap = false;
             // 
             // gb_ctr_btn
@@ -149,15 +161,6 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(49, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(258, 13);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Inicializa la contraseña del usuario a una por defecto.";
             // 
             // ads007_03c
             // 

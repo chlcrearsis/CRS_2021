@@ -7,7 +7,7 @@ using CRS_PRE.CMR;
 
 namespace CRS_PRE
 {
-    public partial class ads007_03 : Form
+    public partial class ads007_03d : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -20,7 +20,7 @@ namespace CRS_PRE
         DataTable tabla = new DataTable();
          DataTable tab_cmr013 = new DataTable();  // Tabla Persona
 
-        public ads007_03()
+        public ads007_03d()
         {
             InitializeComponent();
         }
@@ -38,9 +38,9 @@ namespace CRS_PRE
             tb_cod_per.Text = frm_dat.Rows[0]["va_ide_per"].ToString();
             tb_win_max.Text = frm_dat.Rows[0]["va_win_max"].ToString();
 
-            //cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
-            //cb_tip_usr.ValueMember = "va_ide_tus";
-            //cb_tip_usr.DisplayMember = "va_nom_tus";
+            cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
+            cb_tip_usr.ValueMember = "va_ide_tus";
+            cb_tip_usr.DisplayMember = "va_nom_tus";
 
             tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
             if(tabla.Rows.Count == 0)
@@ -130,7 +130,13 @@ namespace CRS_PRE
                 return "Debe proporcionar el nombre para el usuario";
             }
             
-            
+            if(tb_tip_usr.Text.Trim() == cb_tip_usr.Text.Trim())
+            {
+                tb_nom_usr.Focus();
+                return "El tipo de usuario seleecionado debe ser diferente al actual que tiene el usuario.";
+            }
+
+
             if (cl_glo_bal.IsNumeric(tb_win_max.Text) == false)
             {
                 tb_win_max.Focus();
@@ -158,14 +164,12 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita Usuario", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Usuario", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
             if (msg_res == DialogResult.OK)
             {
                 //Edita usuario
-                o_ads007.Fe_exe_edi(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
-                                       tb_dir_ect.Text, tb_ema_usr.Text, int.Parse(tb_win_max.Text),
-                                       int.Parse(tb_cod_per.Text));
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                o_ads007.Fe_cam_tus(tb_ide_usr.Text,cb_tip_usr.SelectedValue.ToString() );
+                MessageBox.Show("Los datos se grabaron correctamente", "Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 frm_pad.Fe_act_frm(tb_ide_usr.Text);
                 cl_glo_frm.Cerrar(this);
             }
