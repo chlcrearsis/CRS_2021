@@ -167,9 +167,7 @@ namespace CRS_PRE
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             string ide_usr = vp_ide_usr;
-            string act_pas = vp_pas_usr;
             string nue_pas = tb_nue_pas.Text.Trim();
-            string rep_pas = tb_rep_pas.Text.Trim();
 
             try
             {
@@ -192,7 +190,7 @@ namespace CRS_PRE
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             // Devuelve Cancel Como resultado
-            DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.OK;
         }
         
     }
