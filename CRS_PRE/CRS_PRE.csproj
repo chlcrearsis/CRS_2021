@@ -380,6 +380,12 @@
     <Compile Include="ADS\ads006_03.Designer.cs">
       <DependentUpon>ads006_03.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads007_03c.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads007_03c.Designer.cs">
+      <DependentUpon>ads007_03c.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads007_R01b.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1674,6 +1680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_03.resx">
       <DependentUpon>ads006_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads007_03c.resx">
+      <DependentUpon>ads007_03c.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads007_R01b.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

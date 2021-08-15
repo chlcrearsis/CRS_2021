@@ -228,6 +228,17 @@ namespace CRS_NEG
         }
 
         /// <summary>
+        /// Inicializa contraseña de usuario a la por defecto
+        /// </summary>
+        /// <param name="ag_ide_usr">ID. Usuario</param>
+        public void Fe_ini_psw(string ag_ide_usr)
+        {
+            cadena = " execute ads007_03c_p01 '" + ag_ide_usr + "' ";
+
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        /// <summary>
         /// Consulta Usuario por id exacto
         /// </summary>
         /// <param name="ag_ide_usr"> Ide exacto del usuario a consultar</param>

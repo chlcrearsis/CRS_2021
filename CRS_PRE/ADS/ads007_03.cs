@@ -38,11 +38,16 @@ namespace CRS_PRE
             tb_cod_per.Text = frm_dat.Rows[0]["va_ide_per"].ToString();
             tb_win_max.Text = frm_dat.Rows[0]["va_win_max"].ToString();
 
-            cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
-            cb_tip_usr.ValueMember = "va_ide_tus";
-            cb_tip_usr.DisplayMember = "va_nom_tus";
+            //cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
+            //cb_tip_usr.ValueMember = "va_ide_tus";
+            //cb_tip_usr.DisplayMember = "va_nom_tus";
 
-            cb_tip_usr.SelectedValue = int.Parse(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            if(tabla.Rows.Count == 0)
+                tb_tip_usr.Text = "??";
+            else
+                tb_tip_usr.Text = tabla.Rows[0]["va_nom_tus"].ToString();
+
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
