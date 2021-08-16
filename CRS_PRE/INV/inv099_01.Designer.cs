@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_pro = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(300, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(172, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -91,27 +92,27 @@
             this.mn_con_exi,
             this.mn_kar_pro});
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
             this.mn_con_sul.Text = "&Consulta";
             // 
             // mn_con_pro
             // 
             this.mn_con_pro.Name = "mn_con_pro";
-            this.mn_con_pro.Size = new System.Drawing.Size(210, 22);
+            this.mn_con_pro.Size = new System.Drawing.Size(198, 22);
             this.mn_con_pro.Text = "Consulta &producto";
             this.mn_con_pro.Click += new System.EventHandler(this.Mn_con_pro_Click);
             // 
             // mn_con_exi
             // 
             this.mn_con_exi.Name = "mn_con_exi";
-            this.mn_con_exi.Size = new System.Drawing.Size(210, 22);
+            this.mn_con_exi.Size = new System.Drawing.Size(198, 22);
             this.mn_con_exi.Text = "Existencia de un &producto";
             this.mn_con_exi.Click += new System.EventHandler(this.Mn_con_exi_Click);
             // 
             // mn_kar_pro
             // 
             this.mn_kar_pro.Name = "mn_kar_pro";
-            this.mn_kar_pro.Size = new System.Drawing.Size(210, 22);
+            this.mn_kar_pro.Size = new System.Drawing.Size(198, 22);
             this.mn_kar_pro.Text = "&Kardex de producto";
             this.mn_kar_pro.Click += new System.EventHandler(this.mn_kar_pro_Click);
             // 
@@ -120,20 +121,20 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_fam});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_fam
             // 
             this.mn_list_fam.Name = "mn_list_fam";
-            this.mn_list_fam.Size = new System.Drawing.Size(242, 22);
+            this.mn_list_fam.Size = new System.Drawing.Size(231, 22);
             this.mn_list_fam.Text = "&Existencias en bodega a la fecha";
             this.mn_list_fam.Click += new System.EventHandler(this.Mn_list_fam_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -290,8 +291,18 @@
             // 
             this.dg_res_ult.AllowUserToAddRows = false;
             this.dg_res_ult.AllowUserToDeleteRows = false;
+            this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dg_res_ult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_cod_pro,
@@ -303,14 +314,14 @@
             this.va_und_cmp,
             this.va_und_vta,
             this.va_est_ado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -326,9 +337,9 @@
             // 
             // va_cod_pro
             // 
-            dataGridViewCellStyle1.Format = "00-00-00";
-            dataGridViewCellStyle1.NullValue = null;
-            this.va_cod_pro.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "00-00-00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.va_cod_pro.DefaultCellStyle = dataGridViewCellStyle2;
             this.va_cod_pro.HeaderText = "Codigo";
             this.va_cod_pro.Name = "va_cod_pro";
             this.va_cod_pro.ReadOnly = true;

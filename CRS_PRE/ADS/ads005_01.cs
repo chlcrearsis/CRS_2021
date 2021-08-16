@@ -282,9 +282,13 @@ namespace CRS_PRE
                 res_fun = "La Numeración, no se encuentra registrado";
 
             int val;
-            int.TryParse(tb_sel_tal.Text, out val);
-            if (val == 0)
-                res_fun = "La Numeración, no se encuentra registrado";
+            //int.TryParse(tb_sel_tal.Text, out val);
+            //if (val == 0)
+            //    res_fun = "La Numeración, no se encuentra registrado";
+
+            if(cl_glo_bal.IsNumeric(tb_sel_tal.Text) == false)
+                res_fun = "La Numeración, no es valida";
+
 
             int.TryParse(tb_sel_ano.Text, out val);
             if (val == 0)

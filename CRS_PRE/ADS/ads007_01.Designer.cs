@@ -37,7 +37,7 @@
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_eli_min = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_ini_psw = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_act_per = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_rei_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cam_tus = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +109,7 @@
             this.mn_hab_des,
             this.mn_eli_min,
             this.mn_ini_psw,
-            this.mn_act_per,
+            this.mn_rei_per,
             this.mn_cam_tus});
             this.mn_edi_tar.Name = "mn_edi_tar";
             this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
@@ -142,11 +142,12 @@
             this.mn_ini_psw.Text = "&Inicializa contraseña";
             this.mn_ini_psw.Click += new System.EventHandler(this.mn_ini_psw_Click);
             // 
-            // mn_act_per
+            // mn_rei_per
             // 
-            this.mn_act_per.Name = "mn_act_per";
-            this.mn_act_per.Size = new System.Drawing.Size(186, 22);
-            this.mn_act_per.Text = "&Actualiza Permisos";
+            this.mn_rei_per.Name = "mn_rei_per";
+            this.mn_rei_per.Size = new System.Drawing.Size(186, 22);
+            this.mn_rei_per.Text = "&Reinicia Permisos";
+            this.mn_rei_per.Click += new System.EventHandler(this.mn_rei_per_Click);
             // 
             // mn_cam_tus
             // 
@@ -550,7 +551,7 @@
         private System.Windows.Forms.ToolStripMenuItem mn_tip_usu;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem mn_ini_psw;
-        private System.Windows.Forms.ToolStripMenuItem mn_act_per;
+        private System.Windows.Forms.ToolStripMenuItem mn_rei_per;
         private System.Windows.Forms.ToolStripMenuItem mn_cam_tus;
     }
 }

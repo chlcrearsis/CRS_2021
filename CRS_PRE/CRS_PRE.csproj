@@ -380,6 +380,12 @@
     <Compile Include="ADS\ads006_03.Designer.cs">
       <DependentUpon>ads006_03.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads007_03e.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads007_03e.Designer.cs">
+      <DependentUpon>ads007_03e.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads007_03d.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1535,11 +1541,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Z_REP_DAT\dts_ads200.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dts_ads200.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="ADS\ads000_00.resx">
       <DependentUpon>ads000_00.cs</DependentUpon>
     </EmbeddedResource>
@@ -1686,6 +1687,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_03.resx">
       <DependentUpon>ads006_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads007_03e.resx">
+      <DependentUpon>ads007_03e.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads007_03d.resx">
       <DependentUpon>ads007_03d.cs</DependentUpon>
@@ -2296,17 +2300,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\RECURSOS GUI MODERN.rar" />
-    <None Include="Z_REP_DAT\dts_ads200.xsc">
-      <DependentUpon>dts_ads200.xsd</DependentUpon>
-    </None>
-    <None Include="Z_REP_DAT\dts_ads200.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dts_ads200.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Z_REP_DAT\dts_ads200.xss">
-      <DependentUpon>dts_ads200.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

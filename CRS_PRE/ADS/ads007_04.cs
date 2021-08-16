@@ -91,29 +91,36 @@ namespace CRS_PRE
 
         private void Bt_ace_pta_Click(object sender, EventArgs e)
         {
-            DialogResult msg_res = DialogResult.OK;
-            string msg_fun = Fi_val_dat();
-            if( msg_fun != "")
-                MessageBox.Show(msg_fun, "Edita Usuario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
-                msg_res = MessageBox.Show("Esta seguro de Deshabilitar al usuario?", "Edita Usuario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
-                msg_res = MessageBox.Show("Esta seguro de Habilitar al usuario?", "Edita Usuario", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
-
-            if (msg_res == DialogResult.OK)
+            try
             {
-                //Edita usuario
+                DialogResult msg_res = DialogResult.OK;
+                string msg_fun = Fi_val_dat();
+                if( msg_fun != "")
+                    MessageBox.Show(msg_fun, "Edita Usuario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
                 if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
-                    o_ads007.Fe_exe_hds(tb_ide_usr.Text,"H");
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar al usuario?", "Edita Usuario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
-                    o_ads007.Fe_exe_hds(tb_ide_usr.Text, "N");
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar al usuario?", "Edita Usuario", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
 
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                frm_pad.Fe_act_frm(tb_ide_usr.Text);
-                cl_glo_frm.Cerrar(this);
+                if (msg_res == DialogResult.OK)
+                {
+                    //Edita usuario
+                    if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
+                        o_ads007.Fe_exe_hds(tb_ide_usr.Text,"H");
+                    if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
+                        o_ads007.Fe_exe_hds(tb_ide_usr.Text, "N");
+
+                    MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    frm_pad.Fe_act_frm(tb_ide_usr.Text);
+                    cl_glo_frm.Cerrar(this);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message , "Edita Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
         }
     }
 }
