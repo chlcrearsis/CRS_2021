@@ -177,13 +177,13 @@ namespace CRS_PRE
 
         private void mn_gru_per_Click(object sender, EventArgs e)
         {
-            o_frm = new cmr012_01();
+            o_frm = new adp001_01();
             cl_glo_frm.abrir(this, o_frm);
         }
 
         private void mn_per_son1_Click(object sender, EventArgs e)
         {
-            o_frm = new cmr013_01();
+            o_frm = new adp002_01();
             cl_glo_frm.abrir(this, o_frm);
         }
 

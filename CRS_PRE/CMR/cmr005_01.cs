@@ -24,7 +24,7 @@ namespace CRS_PRE.CMR
         // instancia
         ads016 o_ads016 = new ads016();
         cmr005 o_cmr005 = new cmr005();
-        cmr013 o_cmr013 = new cmr013();
+        adp002 o_adp002 = new adp002();
         inv002 o_inv002 = new inv002();
         ads004 o_ads004 = new ads004();
 
@@ -60,9 +60,6 @@ namespace CRS_PRE.CMR
         /// <summary>
         /// Funcion interna buscar
         /// </summary>
-        /// <param name="ar_tex_bus">Texto a buscar</param>
-        /// <param name="ar_prm_bus">Parametro a buscar</param>
-        /// <param name="ar_est_bus">Estado a buscar</param>
         private void fi_bus_car(  )
         {
             //Limpia Grilla
@@ -76,7 +73,6 @@ namespace CRS_PRE.CMR
                 est_bus = "N";
 
             string ar_tex_bus = tb_tex_bus.Text;
-            int ar_prm_bus = cb_prm_bus.SelectedIndex;
 
             tabla = o_cmr005.Fe_bus_car( int.Parse(tb_cod_per.Text),tb_cod_bod.Text, tb_fec_ini.Value, tb_fec_fin.Value, ar_tex_bus, 1,est_bus);
 
@@ -514,7 +510,7 @@ namespace CRS_PRE.CMR
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -547,7 +543,7 @@ namespace CRS_PRE.CMR
                     MessageBox.Show("Debe proporcionar un codigo de cliente valido", "Error", MessageBoxButtons.OK);
                     tb_cod_per.Focus();
                 }
-                tabla = o_cmr013.Fe_con_per(val);
+                tabla = o_adp002.Fe_con_per(val);
                 if (tabla.Rows.Count == 0)
                 {
                     lb_raz_soc.Text = "No Existe";

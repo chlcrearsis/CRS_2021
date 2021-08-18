@@ -1,6 +1,6 @@
-﻿namespace CRS_PRE.CMR
+﻿namespace CRS_PRE
 {
-    partial class cmr013_03
+    partial class adp002_03
     {
         /// <summary>
         /// Required designer variable.
@@ -391,7 +391,7 @@
             this.label17.TabIndex = 112;
             this.label17.Text = "Vendedor";
             // 
-            // cmr013_03
+            // adp002_03
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -402,7 +402,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr013_03";
+            this.Name = "adp002_03";
             this.Tag = "Edita Grupo de Bodegas";
             this.Text = "Edita Persona";
             this.Load += new System.EventHandler(this.frm_Load);

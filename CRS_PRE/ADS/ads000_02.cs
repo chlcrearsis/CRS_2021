@@ -17,7 +17,7 @@ namespace CRS_PRE
         ads007 o_ads007 = new ads007();
         ads013 o_ads013 = new ads013();
         ads008 o_ads008 = new ads008();
-        cmr013 o_cmr013 = new cmr013();
+        adp002 o_adp002 = new adp002();
         ToolTip va_tol_tip = new ToolTip();
 
         public ads000_02()
@@ -44,7 +44,7 @@ namespace CRS_PRE
 
             // Obtiene Datos de la Persona Usuario
             /*Tabla = new DataTable();
-            Tabla = o_cmr013.Fe_con_per(ide_per);
+            Tabla = o_adp002.Fe_con_per(ide_per);
             if (Tabla.Rows.Count > 0)
             {
                 

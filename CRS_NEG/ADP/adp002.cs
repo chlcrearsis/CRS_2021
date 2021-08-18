@@ -15,10 +15,10 @@ namespace CRS_NEG
     /// Clase Persona
     /// ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class cmr013
+    public class adp002
     {
         //######################################################################
-        //##       Tabla: cmr013                                              ##
+        //##       Tabla: adp002                                              ##
         //##      Nombre: PERSONAS                                            ##
         //## Descripcion:                                                     ##         
         //##       Autor: CHL  - (22-07-2020)                                 ##
@@ -37,7 +37,7 @@ namespace CRS_NEG
         DataTable tabla = new DataTable();
 
 
-        public cmr013()
+        public adp002()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;
@@ -60,7 +60,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" cmr013_01a_p01  ");
+                cadena.AppendLine(" adp002_01a_p01  ");
                 cadena.AppendFormat("{0},", gru_per);  
                 cadena.AppendFormat("'{0}',", val_bus);  
                 cadena.AppendFormat("{0},", prm_bus); 
@@ -100,7 +100,7 @@ namespace CRS_NEG
             {
 
                 cadena = new StringBuilder();
-                cadena.AppendLine(" INSERT INTO cmr013 VALUES ");
+                cadena.AppendLine(" INSERT INTO adp002 VALUES ");
                 cadena.AppendFormat("({0},{1},'{2}','{3}',", cod_per,  cod_gru, raz_soc, nom_com);
                 cadena.AppendFormat(" '{0}',{1},'{2}','{3}','{4}','{5}',", nit_per,car_net, dir_per, tel_per, cel_per, ema_per);
 
@@ -140,7 +140,7 @@ namespace CRS_NEG
             {
 
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE cmr013 SET ");
+                cadena.AppendLine(" UPDATE adp002 SET ");
                 cadena.AppendFormat("va_raz_soc='{0}',va_nom_com='{1}',va_nit_per='{2}',va_car_net={3},", raz_soc, nom_com, nit_per,car_net);
                 cadena.AppendFormat("va_dir_per='{0}',va_tel_per='{1}',va_cel_per='{2}',va_ema_per='{3}', ", dir_per, tel_per, cel_per, ema_per);
                 cadena.AppendFormat("va_cod_ven='{0}' ", cod_ven);
@@ -167,7 +167,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE cmr013 SET ");
+                cadena.AppendLine(" UPDATE adp002 SET ");
                 cadena.AppendLine(" va_est_ado='" + est_ado + "' ");
                 cadena.AppendLine(" WHERE  va_cod_per = '" + cod_per + "'");
 
@@ -189,7 +189,7 @@ namespace CRS_NEG
             {
 
                 cadena = new StringBuilder();
-                cadena.AppendLine(" cmr013_05a_p01 " + cod_per + "");
+                cadena.AppendLine(" adp002_05a_p01 " + cod_per + "");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -209,7 +209,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM cmr013 ");
+                cadena.AppendLine(" SELECT * FROM adp002 ");
                 cadena.AppendLine(" WHERE  va_nit_per = " + nit_ci + " AND ");
                 cadena.AppendLine("        va_cod_per <> " + cod_per + "  ");
 
@@ -230,7 +230,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM cmr013 ");
+                cadena.AppendLine(" SELECT * FROM adp002 ");
                 cadena.AppendLine(" WHERE  va_car_net = " + nro_ci + " AND ");
                 cadena.AppendLine("        va_cod_per <> " + cod_per + "  ");
 
@@ -249,7 +249,7 @@ namespace CRS_NEG
                 int ult_nro = 0;
 
                 cadena = new StringBuilder();
-                cadena.AppendLine(" cmr013_01a_p02 " + nro_gru + "");
+                cadena.AppendLine(" adp002_01a_p02 " + nro_gru + "");
                 tabla = new DataTable();
                 tabla = ob_con_ecA.fe_exe_sql(cadena.ToString());
                 ult_nro = int.Parse(tabla.Rows[0][0].ToString());
@@ -272,7 +272,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT MAX(va_nro_per) FROM cmr013   ");
+                cadena.AppendLine(" SELECT MAX(va_nro_per) FROM adp002   ");
                 cadena.AppendLine(" WHERE va_cod_gru ='" + cod_gru + "' ");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
@@ -293,7 +293,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" cmr013_06a_p01 " + cod_per + " ");
+                cadena.AppendLine(" adp002_06a_p01 " + cod_per + " ");
 
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -318,7 +318,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
 
-                cadena.AppendLine(" select * from cmr013  ");
+                cadena.AppendLine(" select * from adp002  ");
 
                 switch (prm_bus)
                 {

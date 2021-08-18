@@ -1066,65 +1066,65 @@
     <Compile Include="CMR\cmr001_03.Designer.cs">
       <DependentUpon>cmr001_03.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr012_01.cs">
+    <Compile Include="ADP\adp001_01.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr012_01.Designer.cs">
-      <DependentUpon>cmr012_01.cs</DependentUpon>
+    <Compile Include="ADP\adp001_01.Designer.cs">
+      <DependentUpon>adp001_01.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr012_02.cs">
+    <Compile Include="ADP\adp001_02.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr012_02.Designer.cs">
-      <DependentUpon>cmr012_02.cs</DependentUpon>
+    <Compile Include="ADP\adp001_02.Designer.cs">
+      <DependentUpon>adp001_02.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr012_03.cs">
+    <Compile Include="ADP\adp001_03.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr012_03.Designer.cs">
-      <DependentUpon>cmr012_03.cs</DependentUpon>
+    <Compile Include="ADP\adp001_03.Designer.cs">
+      <DependentUpon>adp001_03.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr012_04.cs">
+    <Compile Include="ADP\adp001_04.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr012_04.Designer.cs">
-      <DependentUpon>cmr012_04.cs</DependentUpon>
+    <Compile Include="ADP\adp001_04.Designer.cs">
+      <DependentUpon>adp001_04.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr012_05.cs">
+    <Compile Include="ADP\adp001_05.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr012_05.Designer.cs">
-      <DependentUpon>cmr012_05.cs</DependentUpon>
+    <Compile Include="ADP\adp001_05.Designer.cs">
+      <DependentUpon>adp001_05.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr013_01.cs">
+    <Compile Include="ADP\adp002_01.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr013_01.Designer.cs">
-      <DependentUpon>cmr013_01.cs</DependentUpon>
+    <Compile Include="ADP\adp002_01.Designer.cs">
+      <DependentUpon>adp002_01.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr013_02.cs">
+    <Compile Include="ADP\adp002_02.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr013_02.Designer.cs">
-      <DependentUpon>cmr013_02.cs</DependentUpon>
+    <Compile Include="ADP\adp002_02.Designer.cs">
+      <DependentUpon>adp002_02.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr013_04.cs">
+    <Compile Include="ADP\adp002_04.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr013_04.Designer.cs">
-      <DependentUpon>cmr013_04.cs</DependentUpon>
+    <Compile Include="ADP\adp002_04.Designer.cs">
+      <DependentUpon>adp002_04.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr013_05.cs">
+    <Compile Include="ADP\adp002_05.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr013_05.Designer.cs">
-      <DependentUpon>cmr013_05.cs</DependentUpon>
+    <Compile Include="ADP\adp002_05.Designer.cs">
+      <DependentUpon>adp002_05.cs</DependentUpon>
     </Compile>
-    <Compile Include="CMR\cmr013_03.cs">
+    <Compile Include="ADP\adp002_03.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CMR\cmr013_03.Designer.cs">
-      <DependentUpon>cmr013_03.cs</DependentUpon>
+    <Compile Include="ADP\adp002_03.Designer.cs">
+      <DependentUpon>adp002_03.cs</DependentUpon>
     </Compile>
     <Compile Include="RES\res001_02c.cs">
       <SubType>Form</SubType>
@@ -2043,35 +2043,35 @@
     <EmbeddedResource Include="CMR\cmr001_03.resx">
       <DependentUpon>cmr001_03.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr012_01.resx">
-      <DependentUpon>cmr012_01.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp001_01.resx">
+      <DependentUpon>adp001_01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr012_02.resx">
-      <DependentUpon>cmr012_02.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp001_02.resx">
+      <DependentUpon>adp001_02.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr012_03.resx">
-      <DependentUpon>cmr012_03.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp001_03.resx">
+      <DependentUpon>adp001_03.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr012_04.resx">
-      <DependentUpon>cmr012_04.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp001_04.resx">
+      <DependentUpon>adp001_04.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr012_05.resx">
-      <DependentUpon>cmr012_05.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp001_05.resx">
+      <DependentUpon>adp001_05.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr013_01.resx">
-      <DependentUpon>cmr013_01.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp002_01.resx">
+      <DependentUpon>adp002_01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr013_02.resx">
-      <DependentUpon>cmr013_02.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp002_02.resx">
+      <DependentUpon>adp002_02.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr013_04.resx">
-      <DependentUpon>cmr013_04.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp002_04.resx">
+      <DependentUpon>adp002_04.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr013_05.resx">
-      <DependentUpon>cmr013_05.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp002_05.resx">
+      <DependentUpon>adp002_05.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr013_03.resx">
-      <DependentUpon>cmr013_03.cs</DependentUpon>
+    <EmbeddedResource Include="ADP\adp002_03.resx">
+      <DependentUpon>adp002_03.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RES\res001_02c.resx">
       <DependentUpon>res001_02c.cs</DependentUpon>
@@ -2372,6 +2372,7 @@
     <None Include="Resources\ultimo1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ADP\ADP.txt" />
     <Content Include="ADS\ADS.txt" />
     <Content Include="CMR\CMR.txt" />
     <None Include="Resources\fondotexto.png" />

@@ -59,7 +59,7 @@ namespace CRS_NEG
         public void Fe_hab_ili(int ar_ide_mod, string ar_ide_apl)
         {
 
-            cadena = " ads002_04a_p01 '" + ar_ide_apl + "'";
+            cadena = " ads002_04a_p01 " + ar_ide_mod + ", '" + ar_ide_apl + "'";
             ob_con_ecA.fe_exe_sql(cadena);
 
 

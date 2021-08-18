@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using CRS_NEG;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
-using CRS_NEG;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
-    public partial class cmr013_01 : Form
+    public partial class adp001_01 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -23,16 +16,15 @@ namespace CRS_PRE.CMR
         string est_bus = "T";
 
         //Form frm_mdi;
-        public cmr013_01()
+        public adp001_01()
         {
             InitializeComponent();
         }
 
         // instancia
-        cmr013 o_cmr013 = new cmr013();
-        cmr012 o_cmr012 = new cmr012();
+        
 
-
+        adp001 o_adp001 = new adp001();
 
         // Variables
         DataTable tabla = new DataTable();
@@ -46,25 +38,21 @@ namespace CRS_PRE.CMR
         private void fi_ini_frm()
         {
             tb_sel_bus.Text = "";
-
-            // obtiene lista de 
-            tb_cod_gru.Text = "0";
-            lb_nom_gru.Text = "Todos";
-
+           
             cb_prm_bus.SelectedIndex = 0;
             cb_est_bus.SelectedIndex = 0;
 
-            fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
+            fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
         }
 
-        //public enum parametro
-        //{
-        //    codigo = 1, nombre = 2
-        //}
-        //protected enum estado
-        //{
-        //    Todos = 0, Habilitado = 1, Deshabilitado = 2
-        //}
+        public enum parametro
+        {
+            codigo = 1, nombre = 2
+        }
+        protected enum estado
+        {
+            Todos = 0, Habilitado = 1, Deshabilitado = 2
+        }
 
         /// <summary>
         /// Funcion interna buscar
@@ -72,14 +60,19 @@ namespace CRS_PRE.CMR
         /// <param name="ar_tex_bus">Texto a buscar</param>
         /// <param name="ar_prm_bus">Parametro a buscar</param>
         /// <param name="ar_est_bus">Estado a buscar</param>
-        private void fi_bus_car(string ar_tex_bus = "", int ar_prm_bus = 0, string ar_est_bus = "T", int ar_gru_per =0)
+        private void fi_bus_car(string ar_tex_bus = "", int ar_prm_bus = 0, string ar_est_bus = "T")
         {
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
 
-           
+            if (cb_est_bus.SelectedIndex == 0)
+                est_bus = "T";
+            if (cb_est_bus.SelectedIndex == 1)
+                est_bus = "H";
+            if (cb_est_bus.SelectedIndex == 2)
+                est_bus = "N";
 
-            tabla = o_cmr013.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus, ar_gru_per );
+            tabla = o_adp001.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus);
 
             if (tabla.Rows.Count > 0)
             {
@@ -88,26 +81,14 @@ namespace CRS_PRE.CMR
                     dg_res_ult.Rows.Add();
                     dg_res_ult.Rows[i].Cells["va_cod_gru"].Value = tabla.Rows[i]["va_cod_gru"].ToString();
                     dg_res_ult.Rows[i].Cells["va_nom_gru"].Value = tabla.Rows[i]["va_nom_gru"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_cod_per"].Value = tabla.Rows[i]["va_cod_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_raz_soc"].Value = tabla.Rows[i]["va_raz_soc"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_com"].Value = tabla.Rows[i]["va_nom_com"].ToString();
-
-                    dg_res_ult.Rows[i].Cells["va_nit_per"].Value = tabla.Rows[i]["va_nit_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_car_net"].Value = tabla.Rows[i]["va_car_net"].ToString();
-
-
-                    dg_res_ult.Rows[i].Cells["va_dir_per"].Value = tabla.Rows[i]["va_dir_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_tel_per"].Value = tabla.Rows[i]["va_tel_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_cel_per"].Value = tabla.Rows[i]["va_cel_per"].ToString();
-                    //dg_res_ult.Rows[i].Cells["va_ema_per"].Value = tabla.Rows[i]["va_ema_per"].ToString();
-
+                    
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_sel_bus.Text = tabla.Rows[0]["va_cod_per"].ToString();
-                lb_des_bus.Text = tabla.Rows[0]["va_raz_soc"].ToString();
+                tb_sel_bus.Text = tabla.Rows[0]["va_cod_gru"].ToString();
+                lb_des_bus.Text = tabla.Rows[0]["va_nom_gru"].ToString();
             }
 
         }
@@ -120,19 +101,19 @@ namespace CRS_PRE.CMR
                 return;
             }
 
-            tabla = o_cmr013.Fe_con_per(int.Parse(tb_sel_bus.Text));
-             if (tabla.Rows.Count == 0)
+            tabla = o_adp001.Fe_con_gru(int.Parse(tb_sel_bus.Text));
+            if (tabla.Rows.Count == 0)
             {
                 lb_des_bus.Text = "** NO existe";
                 return;
             }
 
-            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_com"].ToString());
+            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_gru"].ToString());
         }
         /// <summary>
-        /// - > Función que selecciona la fila en el Datagrid que la persona Modificó
+        /// - > Función que selecciona la fila en el Datagrid que el Grupo de persona Modificó
         /// </summary>
-        private void fi_sel_fil(string cod_per)
+        private void fi_sel_fil(string ide_gru)
         {
             if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
@@ -141,15 +122,15 @@ namespace CRS_PRE.CMR
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
-            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
+            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (cod_per != null)
+            if (ide_gru != null)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == cod_per.ToUpper())
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_gru.ToUpper())
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
@@ -233,18 +214,25 @@ namespace CRS_PRE.CMR
         /// <summary>
         /// Método para verificar concurrencia de datos para editar
         /// </summary>
-        public bool fi_ver_edi(int sel_ecc)
-        {
+        public bool fi_ver_edi(string sel_ecc)
+        { 
             string res_fun = "";
-            tab_dat = o_cmr013.Fe_con_per(sel_ecc);
+            
+
+            if(sel_ecc.Trim() == "")
+            {
+                res_fun = "El Grupo de persona que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Grupo de persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_sel_bus.Focus();
+                return false;
+            }
+               
+
+            tab_dat = o_adp001.Fe_con_gru(int.Parse(sel_ecc));
             if (tabla.Rows.Count == 0)
             {
-                res_fun = "La persona que desea editar, NO se encuentra registrada";
-            }
-
-            if (res_fun != "")
-            {
-                MessageBox.Show(res_fun, "Edita persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                res_fun = "El Grupo de persona que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Grupo de persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -254,26 +242,53 @@ namespace CRS_PRE.CMR
         }
         public bool fi_ver_hds(string sel_ecc)
         {
-          
-            tab_dat = o_cmr013.Fe_con_per(int.Parse(sel_ecc));
-            if (tab_dat.Rows.Count == 0)
+            string res_fun = "";
+
+
+            if (sel_ecc.Trim() == "")
             {
-                MessageBox.Show("la persona ya no se encuentra registrada en la base de datos.", "Consulta persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                res_fun = "El Grupo de persona que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Grupo de persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
+
+
+            tab_dat = o_adp001.Fe_con_gru(int.Parse(sel_ecc));
+            if (tabla.Rows.Count == 0)
+            {
+                res_fun = "El Grupo de persona que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Grupo de persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_sel_bus.Focus();
+                return false;
+            }
+
 
             return true;
         }
         public bool fi_ver_con(string sel_ecc)
         {
-            tab_dat = o_cmr013.Fe_con_per(int.Parse(sel_ecc));
-            if (tab_dat.Rows.Count == 0)
+            string res_fun = "";
+
+
+            if (sel_ecc.Trim() == "")
             {
-                MessageBox.Show("la persona ya no se encuentra registrada en la base de datos.", "Consulta persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                res_fun = "El Grupo de persona que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Grupo de persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
+
+
+            tab_dat = o_adp001.Fe_con_gru(int.Parse(sel_ecc));
+            if (tabla.Rows.Count == 0)
+            {
+                res_fun = "El Grupo de persona que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Grupo de persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_sel_bus.Focus();
+                return false;
+            }
+
 
             return true;
         }
@@ -317,7 +332,7 @@ namespace CRS_PRE.CMR
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
-            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
+            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
         }
 
@@ -325,7 +340,7 @@ namespace CRS_PRE.CMR
         /// <summary>
         /// Funcion Externa que actualiza la ventana con los datos que tenga, despues de realizar alguna operacion.
         /// </summary>
-        public void Fe_act_frm( int cod_per)
+        public void Fe_act_frm(int ide_gru)
         {
          if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
@@ -334,15 +349,15 @@ namespace CRS_PRE.CMR
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
-            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
+            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (cod_per.ToString() != null)
+            if (ide_gru.ToString() != null)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if ( dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_per.ToString())
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == ide_gru.ToString())
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
@@ -362,17 +377,17 @@ namespace CRS_PRE.CMR
 
         private void Mn_cre_ar_Click(object sender, EventArgs e)
         {
-            cmr013_02 frm = new cmr013_02();
+            adp001_02 frm = new adp001_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
         private void Mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
-            if (fi_ver_edi(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
-            cmr013_03 frm = new cmr013_03();
+            adp001_03 frm = new adp001_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
@@ -382,7 +397,7 @@ namespace CRS_PRE.CMR
             if (fi_ver_hds(tb_sel_bus.Text) == false)
                 return;
 
-            cmr013_04 frm = new cmr013_04();
+            adp001_04 frm = new adp001_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
@@ -391,7 +406,7 @@ namespace CRS_PRE.CMR
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            cmr013_05 frm = new cmr013_05();
+            adp001_05 frm = new adp001_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
@@ -400,13 +415,19 @@ namespace CRS_PRE.CMR
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            //cmr013_06 frm = new cmr013_06();
+            //adp001_06 frm = new adp001_06();
             //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
+        }
+
+        private void Mn_list_gru_Click(object sender, EventArgs e)
+        {
+            //adp001_R01p frm = new adp001_R01p();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
         private void Bt_ace_pta_Click(object sender, EventArgs e)
@@ -419,85 +440,6 @@ namespace CRS_PRE.CMR
         {
             this.DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
-        }
-
-        private void mn_list_per_Click(object sender, EventArgs e)
-        {
-            //cmr013_R01p frm = new cmr013_R01p();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
-        }
-
- 
-        private void Bt_bus_gru_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_gru();
-        }
-
-        private void Tb_cod_gru_KeyDown(object sender, KeyEventArgs e)
-        {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Persona
-                Fi_abr_bus_gru();
-            }
-
-        }
-
-
-        void Fi_abr_bus_gru()
-        {
-            cmr012_01 frm = new cmr012_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_gru.Text = frm.tb_sel_bus.Text;
-                lb_nom_gru.Text = frm.lb_des_bus.Text;
-            }
-
-
-        }
-
-
-        private void Tb_cod_gru_Validated(object sender, EventArgs e)
-        {
-            Fi_obt_gru();
-        }
-        private void Fi_obt_gru()
-        {
-            if(tb_cod_gru.Text.Trim() == "")
-            {
-                MessageBox.Show("DEbe proporcionar un Grupo de persona valido", "Error", MessageBoxButtons.OK);
-                tb_cod_gru.Focus();
-            }
-            int val = 0;
-            if (tb_cod_gru.Text.Trim() == "0" || tb_cod_gru.Text.Trim() == "00")
-            {
-                lb_nom_gru.Text = "Todos";
-            }
-            else
-            {
-                int.TryParse(tb_cod_gru.Text, out val);
-                if(val == 0)
-                {
-                    MessageBox.Show("DEbe proporcionar un Grupo de persona valido", "Error", MessageBoxButtons.OK);
-                    tb_cod_gru.Focus();
-                }
-
-                tabla = o_cmr012.Fe_con_gru(val);
-                if(tabla.Rows.Count== 0)
-                {
-                    lb_nom_gru.Text = "No Existe";
-                }
-                else
-                {
-                    lb_nom_gru.Text = tabla.Rows[0]["va_nom_gru"].ToString();
-                }
-            }
-            
-
-
         }
 
     }

@@ -23,7 +23,7 @@ namespace CRS_PRE.CMR
         cmr005 o_cmr005 = new cmr005();     // Encabezado de Ventas
         cmr006 o_cmr006 = new cmr006();     // Detalle de la venta
         cmr007 o_cmr007 = new cmr007();     // Encabezado de Pedido
-        cmr013 o_cmr013 = new cmr013();     // Persona
+        adp002 o_adp002 = new adp002();     // Persona
         cmr015 o_cmr015 = new cmr015();     // Delivery
         cmr014 o_cmr014 = new cmr014();     // Vendedor
 
@@ -43,7 +43,7 @@ namespace CRS_PRE.CMR
         DataTable tab_doc = new DataTable();    // Tabla Documento grabado
 
         DataTable tab_cmr004 = new DataTable(); // Tabla Plantilla de ventas
-        public DataTable tab_cmr013 = new DataTable();  // Tabla Persona
+        public DataTable tab_adp002 = new DataTable();  // Tabla Persona
         DataTable tab_cmr001 = new DataTable(); // Tabla Lista de precio
         DataTable tab_cmr002 = new DataTable(); // Tabla Precios
         DataTable tab_cmr015 = new DataTable(); // tabla Delivery
@@ -249,7 +249,7 @@ namespace CRS_PRE.CMR
         //    }
 
         //    tabla = new DataTable();
-        //    tabla = o_cmr013.Fe_con_per(val);
+        //    tabla = o_adp002.Fe_con_per(val);
         //    if (tabla.Rows.Count == 0)
         //    {
         //        val_ret = "Debe proporcionar una persona valida";
@@ -629,7 +629,7 @@ namespace CRS_PRE.CMR
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -660,14 +660,14 @@ namespace CRS_PRE.CMR
                 lb_raz_soc.Text = "No Existe";
             }
 
-            tab_cmr013 = o_cmr013.Fe_con_per(val);
-            if (tab_cmr013.Rows.Count == 0)
+            tab_adp002 = o_adp002.Fe_con_per(val);
+            if (tab_adp002.Rows.Count == 0)
             {
                 lb_raz_soc.Text = "No Existe";
             }
             else
             {
-                lb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+                lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
 
                 if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "2") // Asignado al cliente
                 {
@@ -1458,11 +1458,11 @@ namespace CRS_PRE.CMR
                 tb_cod_per.Text = tab_cmr004.Rows[0]["va_cod_cli"].ToString();
 
                 // Obtiene Persona
-                tab_cmr013 = o_cmr013.Fe_con_per(int.Parse(tb_cod_per.Text));
-                if (tab_cmr013.Rows.Count == 0)
+                tab_adp002 = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
+                if (tab_adp002.Rows.Count == 0)
                     lb_raz_soc.Text = "** No Existe";
                 else
-                    lb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+                    lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
 
 
 
@@ -1639,7 +1639,7 @@ namespace CRS_PRE.CMR
         /// </summary>
         private void Fi_ven_asi()
         {
-            int cod_ven = int.Parse(tab_cmr013.Rows[0]["va_cod_ven"].ToString());
+            int cod_ven = int.Parse(tab_adp002.Rows[0]["va_cod_ven"].ToString());
 
             tb_cod_ven.Text = cod_ven.ToString();
             Fi_obt_ven();

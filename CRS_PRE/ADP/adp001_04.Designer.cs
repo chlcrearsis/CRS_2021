@@ -1,6 +1,6 @@
-﻿namespace CRS_PRE.CMR
+﻿namespace CRS_PRE
 {
-    partial class cmr012_04
+    partial class adp001_04
     {
         /// <summary>
         /// Required designer variable.
@@ -131,7 +131,7 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // cmr012_04
+            // adp001_04
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,7 +144,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr012_04";
+            this.Name = "adp001_04";
             this.Tag = "Habilita/Deshabilita Grupo de Persona";
             this.Text = "Habilita/Deshabilita Grupo de Persona";
             this.Load += new System.EventHandler(this.frm_Load);

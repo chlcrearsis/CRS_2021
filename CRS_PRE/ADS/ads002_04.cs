@@ -34,10 +34,10 @@ namespace CRS_PRE
         {
 
             tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
-            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_modc"].ToString();
+            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
             tb_ide_apl.Text = frm_dat.Rows[0]["va_ide_apl"].ToString();
             tb_nom_apl.Text = frm_dat.Rows[0]["va_nom_apl"].ToString();
-            
+
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
@@ -106,7 +106,7 @@ namespace CRS_PRE
                     MessageBox.Show("Los datos se grabaron correctamente", "Habilita/Deshabilita Aplicacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     //Actualiza ventana buscar
-                    frm_pad.Fe_act_frm(tb_ide_mod.Text,int.Parse(tb_ide_apl.Text));
+                    frm_pad.Fe_act_frm(tb_ide_apl.Text);
 
                     cl_glo_frm.Cerrar(this);
                 }

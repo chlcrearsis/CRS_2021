@@ -12,21 +12,21 @@ using System.Runtime.InteropServices;
 
 using CRS_NEG;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
-    public partial class cmr012_02 : Form
+    public partial class adp001_02 : Form
     {
 
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
         
-        cmr012 o_cmr012 = new cmr012();
+        adp001 o_adp001 = new adp001();
 
         DataTable tabla = new DataTable();
 
 
-        public cmr012_02()
+        public adp001_02()
         {
             InitializeComponent();
         }
@@ -77,7 +77,7 @@ namespace CRS_PRE.CMR
             }
 
             //Verificar 
-            tabla = o_cmr012.Fe_con_gru(int.Parse(tb_ide_gru.Text) );
+            tabla = o_adp001.Fe_con_gru(int.Parse(tb_ide_gru.Text) );
             if(tabla.Rows.Count >0)
             {
                 tb_ide_gru.Focus();
@@ -121,7 +121,7 @@ namespace CRS_PRE.CMR
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar
-                o_cmr012.Fe_crea(int.Parse(tb_ide_gru.Text), tb_nom_gru.Text);
+                o_adp001.Fe_crea(int.Parse(tb_ide_gru.Text), tb_nom_gru.Text);
                 frm_pad.Fe_act_frm( int.Parse(tb_ide_gru.Text));
                 //MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Grupo de persona", MessageBoxButtons.OK);
                 Fi_lim_pia();

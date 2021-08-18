@@ -1,11 +1,11 @@
 /*--**********************************************
-ARCHIVO:	cmr013.sql	
+ARCHIVO:	adp002.sql	
 TABLA:		Tabla de "Persona"
 AUTOR:		CREARSIS 3.0.0 (LEO)
 FECHA:		03-01-2018
 */--**********************************************
 	 
-CREATE TABLE cmr013 
+CREATE TABLE adp002 
 (
 --** Llave Primaria
 va_cod_per		INT				NOT NULL	DEFAULT(0),			--** Codigo Persona (2 de Grup. Per y 5 de Persona)
@@ -30,7 +30,7 @@ va_cod_ven		SMALLINT					DEFAULT(0),			--// Codigo de Vendedor asociado(4 numero
 	   	    	  	   		
 va_est_ado		CHAR(1)			NOT NULL	DEFAULT(''),		--** Estado(H=Habilitado; N=Deshabilitado)
      
-CONSTRAINT pk1_cmr013 PRIMARY KEY(va_cod_per,va_cod_gru)
+CONSTRAINT pk1_adp002 PRIMARY KEY(va_cod_per,va_cod_gru)
   
 )
 GO

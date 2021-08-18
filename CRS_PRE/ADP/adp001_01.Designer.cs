@@ -1,6 +1,6 @@
-﻿namespace CRS_PRE.CMR
+﻿namespace CRS_PRE
 {
-    partial class cmr012_01
+    partial class adp001_01
     {
         /// <summary>
         /// Required designer variable.
@@ -345,7 +345,7 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // cmr012_01
+            // adp001_01
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,7 +360,7 @@
             this.MainMenuStrip = this.m_frm_hja;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr012_01";
+            this.Name = "adp001_01";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

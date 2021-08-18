@@ -26,7 +26,7 @@ namespace CRS_PRE.CMR
         c_res004 o_res004 = new c_res004();
         cmr015 o_cmr015 = new cmr015();
         cmr014 o_cmr014 = new cmr014();
-        cmr013 o_cmr013 = new cmr013();
+        adp002 o_adp002 = new adp002();
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
 
 
@@ -38,7 +38,7 @@ namespace CRS_PRE.CMR
         DataTable tab_res004 = new DataTable();
         DataTable tab_cmr015 = new DataTable();
         DataTable tab_cmr014 = new DataTable();
-        DataTable tab_cmr013 = new DataTable();
+        DataTable tab_adp002 = new DataTable();
         DataTable tb_res001 = new DataTable();
 
         //** Variable Venta para (M=Mesa ; L=Llevar ; D=Delivery)
@@ -357,13 +357,13 @@ namespace CRS_PRE.CMR
                 return "Debe proporcionar un Cliente valido";
             }
 
-            tab_cmr013 = o_cmr013.Fe_con_per(int.Parse(tb_cod_per.Text));
-            if (tab_cmr013.Rows.Count == 0)
+            tab_adp002 = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
+            if (tab_adp002.Rows.Count == 0)
             {
                 tb_cod_per.Focus();
                 return "El Cliente no se encuentra registrado";
             }
-            if (tab_cmr013.Rows[0]["va_est_ado"].ToString() == "N")
+            if (tab_adp002.Rows[0]["va_est_ado"].ToString() == "N")
             {
                 tb_cod_per.Focus();
                 return "El Cliente se encuentra Deshabilitado";
@@ -776,7 +776,7 @@ namespace CRS_PRE.CMR
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -803,7 +803,7 @@ namespace CRS_PRE.CMR
             }
 
 
-            tabla = o_cmr013.Fe_con_per(val);
+            tabla = o_adp002.Fe_con_per(val);
             if (tabla.Rows.Count == 0)
             {
                 tb_raz_soc.Text = "No Existe";
@@ -900,11 +900,11 @@ namespace CRS_PRE.CMR
                 // Obtiene Cliente
                 tb_cod_per.Text = tab_res004.Rows[0]["va_cod_cli"].ToString();
 
-                tab_cmr013 = o_cmr013.Fe_con_per(int.Parse(tb_cod_per.Text));
-                if (tab_cmr013.Rows.Count == 0)
+                tab_adp002 = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
+                if (tab_adp002.Rows.Count == 0)
                     tb_raz_soc.Text = "** No Existe";
                 else
-                    tb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+                    tb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
 
 
                 // Obtiene bodega

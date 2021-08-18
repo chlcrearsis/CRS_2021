@@ -13,10 +13,10 @@ namespace CRS_NEG
     ///  Clase GRUPO DE PERSONA
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class cmr012
+    public class adp001
     {
         //######################################################################
-        //##       Tabla: cmr012                                              ##
+        //##       Tabla: adp001                                              ##
         //##      Nombre: GRUPO DE PERSONAS                                   ##
         //## Descripcion:                                                     ##         
         //##       Autor: CHL  - (22-07-2020)                                 ##
@@ -34,7 +34,7 @@ namespace CRS_NEG
 
 
 
-        public cmr012()
+        public adp001()
         {
             va_ser_bda = ob_con_ecA.va_ser_bda;
             va_ins_bda = ob_con_ecA.va_ins_bda;
@@ -48,7 +48,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" select * from cmr012  ");
+                cadena.AppendLine(" select * from adp001  ");
 
                 switch (prm_bus)
                 {
@@ -88,7 +88,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" INSERT INTO cmr012 VALUES ");
+                cadena.AppendLine(" INSERT INTO adp001 VALUES ");
                 cadena.AppendLine(" (" + cod_gru + ", '" + nom_gru + "','H')");
 
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
@@ -109,7 +109,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE cmr012 SET ");
+                cadena.AppendLine(" UPDATE adp001 SET ");
                 cadena.AppendLine(" va_nom_gru='" + nom_gru + "'");
                 cadena.AppendLine(" WHERE va_cod_gru =" + cod_gru);
 
@@ -132,7 +132,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE cmr012 SET ");
+                cadena.AppendLine(" UPDATE adp001 SET ");
                 cadena.AppendLine(" va_est_ado='" + est_ado + "' ");
                 cadena.AppendLine(" WHERE  va_cod_gru = '" + cod_gru + "'");
 
@@ -154,7 +154,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM cmr012   ");
+                cadena.AppendLine(" SELECT * FROM adp001   ");
                 cadena.AppendLine(" WHERE va_cod_gru =" + cod_gru + " ");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
@@ -170,7 +170,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM cmr012   ");
+                cadena.AppendLine(" SELECT * FROM adp001   ");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -191,7 +191,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" DELETE cmr012 ");
+                cadena.AppendLine(" DELETE adp001 ");
                 cadena.AppendLine(" WHERE va_cod_gru ='" + cod_gru + "' ");
 
                 ob_con_ecA.fe_exe_sql(cadena.ToString());

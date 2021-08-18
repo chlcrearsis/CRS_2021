@@ -1,6 +1,6 @@
-﻿namespace CRS_PRE.CMR
+﻿namespace CRS_PRE
 {
-    partial class cmr013_02
+    partial class adp002_02
     {
         /// <summary>
         /// Required designer variable.
@@ -341,7 +341,7 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // cmr013_02
+            // adp002_02
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,7 +354,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr013_02";
+            this.Name = "adp002_02";
             this.Tag = "Crea bodega";
             this.Text = "Crea Persona";
             this.Load += new System.EventHandler(this.frm_Load);

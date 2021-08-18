@@ -12,21 +12,21 @@ using System.Runtime.InteropServices;
 
 using CRS_NEG;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
-    public partial class cmr013_03 : Form
+    public partial class adp002_03 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
         //Instancias
-        cmr012 o_cmr012 = new cmr012();
-        cmr013 o_cmr013 = new cmr013();
+        adp001 o_adp001 = new adp001();
+        adp002 o_adp002 = new adp002();
         cmr014 o_cmr014 = new cmr014();
 
         DataTable tabla = new DataTable();
 
-        public cmr013_03()
+        public adp002_03()
         {
             InitializeComponent();
         }
@@ -81,7 +81,7 @@ namespace CRS_PRE.CMR
 
             //Verificar Grupo de Persona
             tabla = new DataTable();
-            tabla = o_cmr012.Fe_con_gru(int.Parse(tb_cod_gru.Text));
+            tabla = o_adp001.Fe_con_gru(int.Parse(tb_cod_gru.Text));
             if (tabla.Rows.Count == 0)
             {
                 tb_cod_gru.Focus();
@@ -96,7 +96,7 @@ namespace CRS_PRE.CMR
            
 
             tabla = new DataTable();
-            tabla = o_cmr013.Fe_con_per(int.Parse(tb_cod_per.Text));
+            tabla = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
             if (tabla.Rows.Count == 0)
             {
                 return "La Persona que desea editar NO se encuentra registrada";
@@ -129,7 +129,7 @@ namespace CRS_PRE.CMR
             if(decimal.Parse(tb_nit_per.Text.Trim()) != 0m)
             {
                 tabla = new DataTable();
-                tabla = o_cmr013.Fe_con_per_nit(int.Parse(tb_cod_per.Text), decimal.Parse(tb_nit_per.Text));
+                tabla = o_adp002.Fe_con_per_nit(int.Parse(tb_cod_per.Text), decimal.Parse(tb_nit_per.Text));
                 if (tabla.Rows.Count > 0)
                 {
                     DialogResult res;
@@ -157,7 +157,7 @@ namespace CRS_PRE.CMR
             if (int.Parse(tb_car_net.Text.Trim()) != 0)
             {
                 tabla = new DataTable();
-                tabla = o_cmr013.Fe_con_per_ci(int.Parse(tb_cod_per.Text), int.Parse(tb_car_net.Text));
+                tabla = o_adp002.Fe_con_per_ci(int.Parse(tb_cod_per.Text), int.Parse(tb_car_net.Text));
                 if (tabla.Rows.Count > 0)
                 {
                     DialogResult res;
@@ -195,7 +195,7 @@ namespace CRS_PRE.CMR
             if (msg_res == DialogResult.OK)
             {
                 //Edita persona
-                o_cmr013.Fe_edi_per(int.Parse(tb_cod_per.Text),tb_raz_soc.Text, tb_nom_com.Text,decimal.Parse(tb_nit_per.Text), int.Parse(tb_car_net.Text),
+                o_adp002.Fe_edi_per(int.Parse(tb_cod_per.Text),tb_raz_soc.Text, tb_nom_com.Text,decimal.Parse(tb_nit_per.Text), int.Parse(tb_car_net.Text),
                                     tb_dir_per.Text,tb_tel_per.Text,tb_cel_per.Text,tb_ema_per.Text, int.Parse(tb_cod_ven.Text));
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Persona", MessageBoxButtons.OK,MessageBoxIcon.Information);
 

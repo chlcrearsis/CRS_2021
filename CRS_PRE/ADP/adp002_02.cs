@@ -4,21 +4,21 @@ using System.Windows.Forms;
 using CRS_NEG;
 using Microsoft.SqlServer.Types;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
-    public partial class cmr013_02 : Form
+    public partial class adp002_02 : Form
     {
 
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        cmr013 o_cmr013 = new cmr013();
-        cmr012 o_cmr012 = new cmr012();
+        adp002 o_adp002 = new adp002();
+        adp001 o_adp001 = new adp001();
 
         DataTable tabla = new DataTable();
         
         
-        public cmr013_02()
+        public adp002_02()
         {
             InitializeComponent();
         }
@@ -55,7 +55,7 @@ namespace CRS_PRE.CMR
 
             // Valida que el grupo exista
             tabla = new DataTable();
-            tabla = o_cmr012.Fe_con_gru(int.Parse(tb_cod_gru.Text));
+            tabla = o_adp001.Fe_con_gru(int.Parse(tb_cod_gru.Text));
             if(tabla.Rows.Count == 0)
             {
                 tb_nro_per.Text = "0";
@@ -63,7 +63,7 @@ namespace CRS_PRE.CMR
                 return;
             }
             // Obtiene ultimo numero para la persona en el grupo y le suma 1
-            tb_nro_per.Text = (o_cmr013.Fe_obt_ult_nro(int.Parse(tb_cod_gru.Text)) + 1).ToString();
+            tb_nro_per.Text = (o_adp002.Fe_obt_ult_nro(int.Parse(tb_cod_gru.Text)) + 1).ToString();
             Fi_obt_cod_per();
 
         }
@@ -88,7 +88,7 @@ namespace CRS_PRE.CMR
 
             // Valida que el grupo exista
             tabla = new DataTable();
-            tabla = o_cmr012.Fe_con_gru(int.Parse(tb_cod_gru.Text));
+            tabla = o_adp001.Fe_con_gru(int.Parse(tb_cod_gru.Text));
             if (tabla.Rows.Count == 0)
             {
                 tb_nro_per.Text = "0";
@@ -143,7 +143,7 @@ namespace CRS_PRE.CMR
 
             //Verificar Grupo de Persona
             tabla = new DataTable();
-            tabla = o_cmr012.Fe_con_gru(int.Parse(tb_cod_gru.Text));
+            tabla = o_adp001.Fe_con_gru(int.Parse(tb_cod_gru.Text));
             if(tabla.Rows.Count==0)
             {
                 tb_cod_gru.Focus();
@@ -163,7 +163,7 @@ namespace CRS_PRE.CMR
             }
 
             tabla = new DataTable();
-            tabla = o_cmr013.Fe_con_per(int.Parse(tb_cod_per.Text));
+            tabla = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
             if(tabla.Rows.Count > 0)
             {
                 tb_nro_per.Focus();
@@ -205,7 +205,7 @@ namespace CRS_PRE.CMR
             if (decimal.Parse(tb_nit_per.Text.Trim()) != 0m)
             {
                 tabla = new DataTable();
-                tabla = o_cmr013.Fe_con_per_nit(int.Parse(tb_cod_per.Text), decimal.Parse(tb_nit_per.Text));
+                tabla = o_adp002.Fe_con_per_nit(int.Parse(tb_cod_per.Text), decimal.Parse(tb_nit_per.Text));
                 if (tabla.Rows.Count > 0)
                 {
                     DialogResult res;
@@ -233,7 +233,7 @@ namespace CRS_PRE.CMR
             if (int.Parse(tb_car_net.Text.Trim()) != 0)
             {
                 tabla = new DataTable();
-                tabla = o_cmr013.Fe_con_per_ci(int.Parse(tb_cod_per.Text), int.Parse(tb_car_net.Text));
+                tabla = o_adp002.Fe_con_per_ci(int.Parse(tb_cod_per.Text), int.Parse(tb_car_net.Text));
                 if (tabla.Rows.Count > 0)
                 {
                     DialogResult res;
@@ -293,7 +293,7 @@ namespace CRS_PRE.CMR
                 SqlGeography ubi_per = SqlGeography.Null ;
 
                 //Registrar Persona
-                o_cmr013.Fe_crea(int.Parse(tb_cod_per.Text), int.Parse(tb_cod_gru.Text), tb_raz_soc.Text, tb_nom_com.Text, decimal.Parse(tb_nit_per.Text),
+                o_adp002.Fe_crea(int.Parse(tb_cod_per.Text), int.Parse(tb_cod_gru.Text), tb_raz_soc.Text, tb_nom_com.Text, decimal.Parse(tb_nit_per.Text),
                                  int.Parse(tb_car_net.Text), tb_dir_per.Text, tb_tel_per.Text, tb_cel_per.Text, tb_ema_per.Text, ubi_per, 1, 1);
 
                 MessageBox.Show("Los datos se grabaron correctamente", "Nueva Persona", MessageBoxButtons.OK);
@@ -321,7 +321,7 @@ namespace CRS_PRE.CMR
 
         void Fi_abr_bus_gru()
         {
-            cmr012_01 frm = new cmr012_01();
+            adp001_01 frm = new adp001_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK )

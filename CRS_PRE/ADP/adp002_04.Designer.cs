@@ -1,6 +1,6 @@
-﻿namespace CRS_PRE.CMR
+﻿namespace CRS_PRE
 {
-    partial class cmr013_04
+    partial class adp002_04
     {
         /// <summary>
         /// Required designer variable.
@@ -333,7 +333,7 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // cmr013_04
+            // adp002_04
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -344,7 +344,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr013_04";
+            this.Name = "adp002_04";
             this.Tag = "habilita/Deshabilita Persona";
             this.Text = "habilita/Deshabilita Persona";
             this.Load += new System.EventHandler(this.frm_Load);

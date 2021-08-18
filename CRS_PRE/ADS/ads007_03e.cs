@@ -15,10 +15,10 @@ namespace CRS_PRE
         //Instancias
         ads006 o_ads006 = new ads006();
         ads007 o_ads007 = new ads007();
-        cmr013 o_cmr013 = new cmr013();     // Persona
+        adp002 o_adp002 = new adp002();     // Persona
 
         DataTable tabla = new DataTable();
-         DataTable tab_cmr013 = new DataTable();  // Tabla Persona
+         DataTable tab_adp002 = new DataTable();  // Tabla Persona
 
         public ads007_03e()
         {
@@ -80,7 +80,7 @@ namespace CRS_PRE
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -111,14 +111,14 @@ namespace CRS_PRE
                 lb_raz_soc.Text = "No Existe";
             }
 
-            tab_cmr013 = o_cmr013.Fe_con_per(val);
-            if (tab_cmr013.Rows.Count == 0)
+            tab_adp002 = o_adp002.Fe_con_per(val);
+            if (tab_adp002.Rows.Count == 0)
             {
                 lb_raz_soc.Text = "No Existe";
             }
             else
             {
-                lb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+                lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
             }
         }
 

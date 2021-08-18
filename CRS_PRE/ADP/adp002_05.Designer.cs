@@ -1,6 +1,6 @@
-﻿namespace CRS_PRE.CMR
+﻿namespace CRS_PRE
 {
-    partial class cmr013_05
+    partial class adp002_05
     {
         /// <summary>
         /// Required designer variable.
@@ -326,7 +326,7 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
             // 
-            // cmr013_05
+            // adp002_05
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -337,8 +337,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr013_05";
-            this.Tag = "Edita Grupo de Bodegas";
+            this.Name = "adp002_05";
+            this.Tag = "Edita Persona";
             this.Text = "Edita Persona";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
