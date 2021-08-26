@@ -12,13 +12,16 @@ using CRS_PRE.ADS;
 namespace CRS_PRE
 {
     public partial class ads000_02 : Form
-    {        
+    {
         DataTable Tabla = new DataTable();
         ads007 o_ads007 = new ads007();
         ads013 o_ads013 = new ads013();
         ads008 o_ads008 = new ads008();
         cmr013 o_cmr013 = new cmr013();
         ToolTip va_tol_tip = new ToolTip();
+        General o_general = new General();
+
+        string Titulo = "Menú Principal";
 
         public ads000_02()
         {
@@ -55,11 +58,13 @@ namespace CRS_PRE
             Tabla = o_ads013.Fe_obt_glo(1, 4);
             this.Text = this.Text + Tabla.Rows[0]["va_glo_car"].ToString();         
 
-            // Despliega Información del Usuario
+            // Despliega el nombre del Equipo
             lb_nom_equ.Text = SystemInformation.ComputerName;
-            
 
-            // Envia a funcion que verifica y desplega aplicaciones permitidas
+            // Lee datos de la licencia del Sistema
+            fi_lic_sis();
+
+            // Despliega las aplicaciones permitidas al usuario
             fi_apl_per(lb_ide_usr.Text);
         }
 
@@ -254,23 +259,59 @@ namespace CRS_PRE
             }
         }
 
+        // Licencia y Autorizaciones del Sistema
+        private void fi_lic_sis() {
+            try
+            {
+                lb_val_lic.Text = string.Empty;
+                string fec_act = o_general.Fe_fec_act().ToString();
+
+                // Lee datos de la licencia
+                Tabla = new DataTable();
+                Tabla = o_ads013.Fe_obt_lic();
+                if (Tabla.Rows.Count > 0)
+                {                    
+                    string fec_exp = Tabla.Rows[0]["va_fec_exp"].ToString().Trim();
+
+                    if (fec_exp.CompareTo("") == 0) {
+                        lb_val_lic.Text = "Validez de la Licencia: Sin Licencia";
+                        return;
+                    }
+
+                    if (fec_exp.CompareTo(fec_act) == 0){
+                        lb_val_lic.Text = "Validez de la Licencia: Vence Hoy a las 23:59 pm";
+                        return;
+                    }
+
+                    lb_val_lic.Text = "Validez de la Licencia: " + fec_exp;
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // Aplicaciones Permitidas
         private void fi_apl_per(string ide_usr)
         {
-            // Obtiene permisos del usuario sobre las aplicaciones
+            bt_men_adm.Visible = false;
+            bt_men_inv.Visible = false;
+            bt_men_com.Visible = false;
+            bt_men_res.Visible = false;
+
+            // Obtiene las aplicaciones autorizadas al usuario
             Tabla = new DataTable();
-            Tabla = o_ads008.Fe_ads008_01(ide_usr, "ads002");
+            Tabla = o_ads008.Fe_ads008_00(ide_usr);
 
             // Habilita/Deshabilita las aplicaciones autorizadas
-            for (int i = 0; i < Tabla.Rows.Count; i++)
-            {
-                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "ads200")
+            for (int i = 0; i < Tabla.Rows.Count; i++){
+                if (Tabla.Rows[i]["va_ide_apl"].ToString().Trim() == "ads200")
                     bt_men_adm.Visible = true;
-                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "inv200")
+                if (Tabla.Rows[i]["va_ide_apl"].ToString().Trim() == "inv200")
                     bt_men_inv.Visible = true;
-                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "cmr200")
+                if (Tabla.Rows[i]["va_ide_apl"].ToString().Trim() == "cmr200")
                     bt_men_com.Visible = true;
-                if (Tabla.Rows[i]["va_ide_uno"].ToString().Trim() == "res200")
+                if (Tabla.Rows[i]["va_ide_apl"].ToString().Trim() == "res200")
                     bt_men_res.Visible = true;
             }
         }
@@ -386,16 +427,39 @@ namespace CRS_PRE
         }
 
         private void pb_lic_act_Click(object sender, EventArgs e)
-        {            
-            ads000_04 frm = new ads000_04();
-            frm.ShowDialog();
-            
+        {                       
+            ads000_04 frm_pin = new ads000_04();
+            ads000_05 frm_lic = new ads000_05();
+
+            // Abre la ventana que verifica el PIN para lincenciar
+            if (frm_pin.ShowDialog() == DialogResult.OK){
+                frm_pin.Close();
+
+                // Abre la ventana que licencia el sistema
+                if (frm_lic.ShowDialog() == DialogResult.OK){
+                    fi_apl_per(lb_ide_usr.Text);
+                    fi_lic_sis();
+                }
+            }
+
         }
 
         private void lb_lic_act_Click(object sender, EventArgs e)
-        {            
-            ads000_04 frm = new ads000_04();
-            frm.ShowDialog();
+        {
+            ads000_04 frm_pin = new ads000_04();
+            ads000_05 frm_lic = new ads000_05();
+
+            // Abre la ventana que verifica el PIN para lincenciar
+            if (frm_pin.ShowDialog() == DialogResult.OK)
+            {
+                frm_pin.Close();
+
+                // Abre la ventana que licencia el sistema
+                if (frm_lic.ShowDialog() == DialogResult.OK){                                        
+                    fi_apl_per(lb_ide_usr.Text);
+                    fi_lic_sis();
+                }
+            }
         }
     }
 }

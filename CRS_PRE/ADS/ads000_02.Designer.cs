@@ -238,7 +238,7 @@
             this.lb_nom_equ.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lb_nom_equ.Size = new System.Drawing.Size(159, 20);
             this.lb_nom_equ.TabIndex = 8;
-            this.lb_nom_equ.Text = "HP1904";
+            this.lb_nom_equ.Text = "HP-1904";
             this.lb_nom_equ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lb_nom_equ.Click += new System.EventHandler(this.lb_nom_equ_Click);
             // 
@@ -293,7 +293,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 504);
+            this.ClientSize = new System.Drawing.Size(790, 515);
             this.Controls.Add(this.pb_not_fic);
             this.Controls.Add(this.pb_lic_act);
             this.Controls.Add(this.lb_val_lic);

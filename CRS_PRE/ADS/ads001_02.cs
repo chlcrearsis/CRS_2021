@@ -107,10 +107,7 @@ namespace CRS_PRE
 
         private void tb_ide_mod_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            cl_glo_bal.NotNumeric(e);
-
-          
+            cl_glo_bal.NotNumeric(e);          
         }
     }
 }

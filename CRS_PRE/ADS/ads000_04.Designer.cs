@@ -61,10 +61,10 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.bt_can_cel.ForeColor = System.Drawing.Color.White;
-            this.bt_can_cel.Location = new System.Drawing.Point(123, 96);
+            this.bt_can_cel.Location = new System.Drawing.Point(217, 97);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(90, 30);
-            this.bt_can_cel.TabIndex = 38;
+            this.bt_can_cel.TabIndex = 2;
             this.bt_can_cel.Text = "Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
@@ -77,10 +77,10 @@
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.bt_ace_pta.ForeColor = System.Drawing.Color.White;
-            this.bt_ace_pta.Location = new System.Drawing.Point(219, 96);
+            this.bt_ace_pta.Location = new System.Drawing.Point(121, 97);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(90, 30);
-            this.bt_ace_pta.TabIndex = 37;
+            this.bt_ace_pta.TabIndex = 1;
             this.bt_ace_pta.Text = "Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
@@ -94,7 +94,7 @@
             this.gb_con_pri.Location = new System.Drawing.Point(98, 17);
             this.gb_con_pri.Name = "gb_con_pri";
             this.gb_con_pri.Size = new System.Drawing.Size(211, 74);
-            this.gb_con_pri.TabIndex = 36;
+            this.gb_con_pri.TabIndex = 0;
             this.gb_con_pri.TabStop = false;
             // 
             // tb_cla_lic
@@ -108,10 +108,11 @@
             this.tb_cla_lic.Location = new System.Drawing.Point(59, 36);
             this.tb_cla_lic.Name = "tb_cla_lic";
             this.tb_cla_lic.Size = new System.Drawing.Size(130, 19);
-            this.tb_cla_lic.TabIndex = 5;
+            this.tb_cla_lic.TabIndex = 1;
             this.tb_cla_lic.Text = "Llave123.";
             this.tb_cla_lic.UseSystemPasswordChar = true;
             this.tb_cla_lic.Enter += new System.EventHandler(this.tb_cla_lic_Enter);
+            this.tb_cla_lic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_cla_lic_KeyPress);
             this.tb_cla_lic.Leave += new System.EventHandler(this.tb_cla_lic_Leave);
             // 
             // pb_ima_lic
@@ -127,8 +128,8 @@
             // 
             // pn_lic_sis
             // 
-            this.pn_lic_sis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.pn_lic_sis.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pn_lic_sis.AutoSize = true;
             this.pn_lic_sis.BackColor = System.Drawing.Color.White;
@@ -139,13 +140,13 @@
             this.pn_lic_sis.MinimumSize = new System.Drawing.Size(180, 40);
             this.pn_lic_sis.Name = "pn_lic_sis";
             this.pn_lic_sis.Size = new System.Drawing.Size(180, 40);
-            this.pn_lic_sis.TabIndex = 3;
+            this.pn_lic_sis.TabIndex = 0;
             this.pn_lic_sis.Text = "             Clave Licencia";
             // 
             // pn_fon_lic
             // 
-            this.pn_fon_lic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.pn_fon_lic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pn_fon_lic.AutoSize = true;
             this.pn_fon_lic.BackColor = System.Drawing.Color.Gray;

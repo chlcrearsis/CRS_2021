@@ -42,7 +42,18 @@ namespace CRS_NEG
         #region "PERMISO DE USUARIO SOBRE EL SISTEMA"
 
         /// <summary>
-        /// Obtiene Permiso sobre una tabla
+        /// Obtiene las aplicaciones autorizadas al usuario P/Menu Principal
+        /// </summary>
+        /// <param name="ag_ide_usr">Ide Usuario</param>
+        /// <returns></returns>
+        public DataTable Fe_ads008_00(string ag_ide_usr)
+        {
+            cadena = "EXECUTE ads008_01a_p01 '" + ag_ide_usr + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        /// <summary>
+        /// Obtiene las aplicaciones autorizadas al usuario
         /// </summary>
         /// <param name="ag_ide_usr">Ide Usuario</param>
         /// <returns></returns>

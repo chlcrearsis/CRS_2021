@@ -64,14 +64,32 @@ namespace CRS_NEG
 
             return ob_con_ecA.fe_exe_sql(cadena);
         }
-       
+
+        // Obtiene Datos de la Licencia del Servidor
+        public DataTable Fe_obt_lic()
+        {
+            cadena = " EXECUTE ads000_13a_p01";
+
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        // Graba Datos de la Licencia del Servidor
+        public void Fe_gra_lic(int ag_nro_usr, string ag_fec_exp, string ag_mod_adm,
+                                    string ag_mod_inv, string ag_mod_com, string ag_mod_res)
+        {
+            cadena = " EXECUTE ads000_13b_p01 " + ag_nro_usr + ", '" + ag_fec_exp + "', '" + ag_mod_adm + "', " +
+                "'" + ag_mod_inv + "', '" + ag_mod_com + "', '" + ag_mod_res + "'";
+
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+
         //** FUNCIONES DE REPORTES
 
-            /// <summary>
-            /// Funcion externa reporte: PERIODOS DE UNA GESTION
-            /// </summary>
-            /// <param name="ar_ges_tio"></param>
-            /// <returns></returns>
+        /// <summary>
+        /// Funcion externa reporte: PERIODOS DE UNA GESTION
+        /// </summary>
+        /// <param name="ar_ges_tio"></param>
+        /// <returns></returns>
         //public DataTable Fe_ads016_R01(int ar_ges_tio)
         //{
         //    cadena = " ads016_R01 " + ar_ges_tio;
