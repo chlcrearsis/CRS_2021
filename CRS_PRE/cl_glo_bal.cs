@@ -10,7 +10,7 @@ namespace CRS_PRE
     class cl_glo_bal
     {
         /// <summary>
-        /// Verifica que elvalor sea Numerico valido
+        /// Verifica que el valor sea Numerico valido
         /// </summary>
         /// <param name="num">Valor a verificar</param>
         /// <returns></returns>
@@ -28,7 +28,24 @@ namespace CRS_PRE
         }
 
         /// <summary>
-        /// No permite digitar numeros en el key press del control
+        /// Verifica que el valor sea DECIMAL valido
+        /// </summary>
+        /// <param name="num">Valor a verificar</param>
+        /// <returns></returns>
+        public static bool IsDecimal(string num)
+        {
+            try
+            {
+                decimal x = Convert.ToDecimal(num);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// No permite digitar otro caractero que no sea numeros en el key press del control
         /// </summary>
         /// <param name="e"> volor digitado</param>
         public static void NotNumeric( KeyPressEventArgs e)
@@ -46,6 +63,34 @@ namespace CRS_PRE
                 e.Handled = true;
             }
         }
+
+        /// <summary>
+        /// No permite digitar otros caracteres que no sean Decimal en el key press del control
+        /// </summary>
+        /// <param name="e"> volor digitado</param>
+        public static void NotDecimal(KeyPressEventArgs e, string val_tex)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar.ToString() == ".")
+            {
+                
+                if(val_tex.Contains(e.KeyChar.ToString()) == true && e.KeyChar.ToString() == ".")
+                {
+                    e.Handled = true;
+                    return;
+                }
+                else
+                    e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
 
         // ** CODIGO DE CONTROL 
         #region VÁLIDAS PARA OBTENER CCF

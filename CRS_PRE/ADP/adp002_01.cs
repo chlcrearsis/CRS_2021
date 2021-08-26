@@ -55,6 +55,12 @@ namespace CRS_PRE
             cb_est_bus.SelectedIndex = 0;
 
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
+
+            tb_tex_bus.Focus();
+            tb_tex_bus.SelectAll();
+
+            SelectNextControl(tb_tex_bus,true,true,false,true);
+
         }
 
         //public enum parametro
@@ -108,6 +114,9 @@ namespace CRS_PRE
                 }
                 tb_sel_bus.Text = tabla.Rows[0]["va_cod_per"].ToString();
                 lb_des_bus.Text = tabla.Rows[0]["va_raz_soc"].ToString();
+
+                tb_tex_bus.Focus();
+                tb_tex_bus.SelectAll();
             }
 
         }
@@ -162,6 +171,8 @@ namespace CRS_PRE
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                 }
             }
+
+            tb_tex_bus.Focus();
         }
 
         private void fi_sub_baj_fil_KeyDown(object sender, KeyEventArgs e)
@@ -303,11 +314,12 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (bt_ace_pta.Enabled == false)
+                return;
+
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
-
-
         private void Bt_bus_car_Click(object sender, EventArgs e)
         {
             if (cb_est_bus.SelectedIndex == 0)
@@ -500,5 +512,18 @@ namespace CRS_PRE
 
         }
 
+        private void dg_res_ult_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                e.Handled = true;
+
+                if (bt_ace_pta.Enabled == false)
+                    return;
+                
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
     }
 }

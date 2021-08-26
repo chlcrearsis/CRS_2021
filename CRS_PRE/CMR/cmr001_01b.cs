@@ -106,7 +106,7 @@ namespace CRS_PRE.CMR
                 lb_des_bus.Text = "** NO existe";
                 return;
             }
-
+            
             tabla = o_cmr001.Fe_con_lis(int.Parse(tb_sel_bus.Text));
             if (tabla.Rows.Count == 0)
             {
@@ -144,6 +144,8 @@ namespace CRS_PRE.CMR
                             return;
                         }
                     }
+                    tb_sel_bus.Text = cod_lis.ToString();
+                    lb_des_bus.Text = "** NO autorizada";
                 }
                 catch (Exception ex)
                 {

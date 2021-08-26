@@ -790,6 +790,18 @@
     <Compile Include="INV\inv003_06.Designer.cs">
       <DependentUpon>inv003_06.cs</DependentUpon>
     </Compile>
+    <Compile Include="RES\res001_02e.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RES\res001_02e.Designer.cs">
+      <DependentUpon>res001_02e.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RES\res001_02d.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RES\res001_02d.Designer.cs">
+      <DependentUpon>res001_02d.cs</DependentUpon>
+    </Compile>
     <Compile Include="RES\res004_06.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1901,6 +1913,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV\inv003_06.resx">
       <DependentUpon>inv003_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RES\res001_02e.resx">
+      <DependentUpon>res001_02e.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RES\res001_02d.resx">
+      <DependentUpon>res001_02d.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RES\res004_06.resx">
       <DependentUpon>res004_06.cs</DependentUpon>
