@@ -2,19 +2,19 @@
 ******** IDENTIFICADOR: ADP			********
 ******** MODULO: Administración de Personas	********
 
-adp001 = Grupo de personas										CHL                                  
-adp002 = Tipos de atributos										EJR		
-adp003 = Atributo												EJR
-adp004 = Tipo de Imagen											EJR
-adp005 = Persona												CHL
-adp006 = Atributo por persona									CHL	
-adp007 = Imagen de persona										CHL
-adp008 = Rutas													EJR
-adp009 = Rutas por persona										EJR
-adp010 = Contatos de persona									CHL
-adp011 = Lista de precios por persona							CHL
-adp012 = Contratos												EJR
-adp013 = Personas relacionadas									CHL
-adp014 = Descuento especial x persona							EJR
+adp001 = Grupo de personas										CHL	(ok)       
+adp002 = Persona												CHL	(ok)
+adp003 = Tipos de atributos										EJR	 
+adp004 = Atributo												EJR
+adp005 = Atributo por persona									CHL	
+adp006 = Imagen de persona										FVM 
+adp007 = Rutas													EJR
+adp008 = Rutas por persona										EJR
+
+adp009 = Lista de precios por persona							CHL
+adp010 = Contratos												EJR (opcional)
+adp011 = Descuento especial x persona							EJR
+adp012 = Personas relacionadas									CHL (opcional)
+adp013 = Contactos por persona									CHL 
 
 

@@ -50,7 +50,7 @@ namespace CRS_PRE
                 dg_res_ult.Rows[i].Cells["va_nom_apl"].Value = tab_ads002.Rows[i]["va_nom_apl"].ToString();
                 //dg_res_ult.Rows[i].Cells["va_des_apl"].Value = tab_ads002.Rows[i]["va_des_apl"].ToString();
 
-                if (tab_ads002.Rows[i]["va_est_ado"].ToString() == "V")
+                if (tab_ads002.Rows[i]["va_est_ado"].ToString() == "H")
                     dg_res_ult.Rows[i].DefaultCellStyle.ForeColor = Color.Blue;
                 else
                     dg_res_ult.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
