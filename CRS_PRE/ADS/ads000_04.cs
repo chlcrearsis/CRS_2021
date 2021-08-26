@@ -35,23 +35,39 @@ namespace CRS_PRE.ADS
             }
         }
 
+        private void tb_cla_lic_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                string cla_pin = ObjGeneral.Fu_obt_pin();
+                if (tb_cla_lic.Text == "Llave123."){
+                    MessageBox.Show("NO ha digitado ninguna clave", "Error");
+                }else if (tb_cla_lic.Text == cla_pin){
+                    DialogResult = DialogResult.OK;
+                }else{
+                    MessageBox.Show("La clave digitada es incorrecta", "Error");
+                }
+            }
+        }
+
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             string cla_pin = ObjGeneral.Fu_obt_pin();
             if (tb_cla_lic.Text == "Llave123.") {
                 MessageBox.Show("NO ha digitado ninguna clave", "Error");
             }else if (tb_cla_lic.Text == cla_pin){
-                ads000_05 frm = new ads000_05();
-                frm.Show();
-                Close();
-            }else {
+                DialogResult = DialogResult.OK;
+            }
+            else {
                 MessageBox.Show("La clave digitada es incorrecta", "Error");
             }
         }
 
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult = DialogResult.Cancel;
         }
+
+        
     }
 }
