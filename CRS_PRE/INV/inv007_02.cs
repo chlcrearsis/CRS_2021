@@ -18,7 +18,7 @@ namespace CRS_PRE.INV
 
         ads004 o_ads004 = new ads004();
         ads016 o_ads016 = new ads016();
-        cmr013 o_cmr013 = new cmr013();
+        adp002 o_adp002 = new adp002();
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
 
 
@@ -164,7 +164,7 @@ namespace CRS_PRE.INV
             }
 
             tabla = new DataTable();
-            tabla = o_cmr013.Fe_con_per(val);
+            tabla = o_adp002.Fe_con_per(val);
             if (tabla.Rows.Count == 0)
             {
                 val_ret = "Debe proporcionar una persona valida";
@@ -442,7 +442,7 @@ namespace CRS_PRE.INV
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -470,7 +470,7 @@ namespace CRS_PRE.INV
                 //tb_cod_per.Focus();
                 lb_raz_soc.Text = "No Existe";
             }
-            tabla = o_cmr013.Fe_con_per(val);
+            tabla = o_adp002.Fe_con_per(val);
             if (tabla.Rows.Count == 0)
             {
                 lb_raz_soc.Text = "No Existe";

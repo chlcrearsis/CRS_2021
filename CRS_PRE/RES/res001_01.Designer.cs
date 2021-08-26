@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ifi = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +47,10 @@
             this.mn_res_vta = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tb_cod_bod = new System.Windows.Forms.TextBox();
+            this.bt_bus_bod = new System.Windows.Forms.Button();
+            this.lb_nom_bod = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_cod_per = new System.Windows.Forms.TextBox();
@@ -77,10 +82,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.tb_cod_bod = new System.Windows.Forms.TextBox();
-            this.bt_bus_bod = new System.Windows.Forms.Button();
-            this.lb_nom_bod = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -98,7 +99,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(225, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(215, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -109,27 +110,27 @@
             this.mn_anu_vta,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
+            this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(121, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(113, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_anu_vta
             // 
             this.mn_anu_vta.Name = "mn_anu_vta";
-            this.mn_anu_vta.Size = new System.Drawing.Size(121, 22);
+            this.mn_anu_vta.Size = new System.Drawing.Size(113, 22);
             this.mn_anu_vta.Text = "&Anula";
             this.mn_anu_vta.Click += new System.EventHandler(this.Mn_anu_vta_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(121, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(113, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
@@ -140,27 +141,27 @@
             this.mn_con_avi,
             this.toolStripSeparator1});
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
             this.mn_con_sul.Text = "&Consulta";
             // 
             // mn_con_vta
             // 
             this.mn_con_vta.Name = "mn_con_vta";
-            this.mn_con_vta.Size = new System.Drawing.Size(154, 22);
+            this.mn_con_vta.Size = new System.Drawing.Size(147, 22);
             this.mn_con_vta.Text = "C&onsulta Venta";
             this.mn_con_vta.Click += new System.EventHandler(this.Mn_con_vta_Click);
             // 
             // mn_con_avi
             // 
             this.mn_con_avi.Name = "mn_con_avi";
-            this.mn_con_avi.Size = new System.Drawing.Size(154, 22);
+            this.mn_con_avi.Size = new System.Drawing.Size(147, 22);
             this.mn_con_avi.Text = "Consulta A&viso";
             this.mn_con_avi.Click += new System.EventHandler(this.Mn_con_avi_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(144, 6);
             // 
             // mn_rep_ort
             // 
@@ -169,34 +170,34 @@
             this.mn_vta_del,
             this.mn_res_vta});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_ven
             // 
             this.mn_list_ven.Name = "mn_list_ven";
-            this.mn_list_ven.Size = new System.Drawing.Size(242, 22);
+            this.mn_list_ven.Size = new System.Drawing.Size(230, 22);
             this.mn_list_ven.Text = "&Lista de ventas";
             this.mn_list_ven.Click += new System.EventHandler(this.Mn_list_vta_Click);
             // 
             // mn_vta_del
             // 
             this.mn_vta_del.Name = "mn_vta_del";
-            this.mn_vta_del.Size = new System.Drawing.Size(242, 22);
+            this.mn_vta_del.Size = new System.Drawing.Size(230, 22);
             this.mn_vta_del.Text = "Ventas por Delivery";
             this.mn_vta_del.Click += new System.EventHandler(this.Mn_vta_del_Click);
             // 
             // mn_res_vta
             // 
             this.mn_res_vta.Name = "mn_res_vta";
-            this.mn_res_vta.Size = new System.Drawing.Size(242, 22);
+            this.mn_res_vta.Size = new System.Drawing.Size(230, 22);
             this.mn_res_vta.Text = "Resumen de ventas por Delivery";
             this.mn_res_vta.Click += new System.EventHandler(this.Mn_vta_del_res_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -227,6 +228,50 @@
             this.groupBox1.Size = new System.Drawing.Size(670, 109);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            // 
+            // tb_cod_bod
+            // 
+            this.tb_cod_bod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_cod_bod.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_cod_bod.Location = new System.Drawing.Point(432, 11);
+            this.tb_cod_bod.MaxLength = 5;
+            this.tb_cod_bod.Name = "tb_cod_bod";
+            this.tb_cod_bod.Size = new System.Drawing.Size(42, 20);
+            this.tb_cod_bod.TabIndex = 48;
+            this.tb_cod_bod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_cod_bod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cod_bod_KeyDown);
+            this.tb_cod_bod.Validated += new System.EventHandler(this.Tb_cod_bod_Validated);
+            // 
+            // bt_bus_bod
+            // 
+            this.bt_bus_bod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_bus_bod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_bus_bod.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_bus_bod.Location = new System.Drawing.Point(473, 10);
+            this.bt_bus_bod.Name = "bt_bus_bod";
+            this.bt_bus_bod.Size = new System.Drawing.Size(16, 22);
+            this.bt_bus_bod.TabIndex = 49;
+            this.bt_bus_bod.TabStop = false;
+            this.bt_bus_bod.Text = "|";
+            this.bt_bus_bod.UseVisualStyleBackColor = false;
+            this.bt_bus_bod.Click += new System.EventHandler(this.Bt_bus_bod_Click);
+            // 
+            // lb_nom_bod
+            // 
+            this.lb_nom_bod.Location = new System.Drawing.Point(489, 14);
+            this.lb_nom_bod.Name = "lb_nom_bod";
+            this.lb_nom_bod.Size = new System.Drawing.Size(173, 13);
+            this.lb_nom_bod.TabIndex = 47;
+            this.lb_nom_bod.Text = ".";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(386, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "Bodega";
             // 
             // label4
             // 
@@ -410,8 +455,18 @@
             // 
             this.dg_res_ult.AllowUserToAddRows = false;
             this.dg_res_ult.AllowUserToDeleteRows = false;
+            this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dg_res_ult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_fec_vta,
@@ -424,15 +479,15 @@
             this.va_tot_vtB,
             this.va_obs_vta,
             this.va_ges_vta});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dg_res_ult.Location = new System.Drawing.Point(6, 10);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
             this.dg_res_ult.ReadOnly = true;
@@ -445,9 +500,9 @@
             // 
             // va_fec_vta
             // 
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            this.va_fec_vta.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.va_fec_vta.DefaultCellStyle = dataGridViewCellStyle2;
             this.va_fec_vta.HeaderText = "Fecha";
             this.va_fec_vta.Name = "va_fec_vta";
             this.va_fec_vta.ReadOnly = true;
@@ -498,10 +553,10 @@
             // 
             // va_tot_vtB
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.va_tot_vtB.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.va_tot_vtB.DefaultCellStyle = dataGridViewCellStyle3;
             this.va_tot_vtB.HeaderText = "Total Neto";
             this.va_tot_vtB.Name = "va_tot_vtB";
             this.va_tot_vtB.ReadOnly = true;
@@ -556,50 +611,6 @@
             this.bt_ace_pta.TabIndex = 40;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
-            // 
-            // tb_cod_bod
-            // 
-            this.tb_cod_bod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_cod_bod.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_bod.Location = new System.Drawing.Point(432, 11);
-            this.tb_cod_bod.MaxLength = 5;
-            this.tb_cod_bod.Name = "tb_cod_bod";
-            this.tb_cod_bod.Size = new System.Drawing.Size(42, 20);
-            this.tb_cod_bod.TabIndex = 48;
-            this.tb_cod_bod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_cod_bod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cod_bod_KeyDown);
-            this.tb_cod_bod.Validated += new System.EventHandler(this.Tb_cod_bod_Validated);
-            // 
-            // bt_bus_bod
-            // 
-            this.bt_bus_bod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_bod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_bod.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_bod.Location = new System.Drawing.Point(473, 10);
-            this.bt_bus_bod.Name = "bt_bus_bod";
-            this.bt_bus_bod.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_bod.TabIndex = 49;
-            this.bt_bus_bod.TabStop = false;
-            this.bt_bus_bod.Text = "|";
-            this.bt_bus_bod.UseVisualStyleBackColor = false;
-            this.bt_bus_bod.Click += new System.EventHandler(this.Bt_bus_bod_Click);
-            // 
-            // lb_nom_bod
-            // 
-            this.lb_nom_bod.Location = new System.Drawing.Point(489, 14);
-            this.lb_nom_bod.Name = "lb_nom_bod";
-            this.lb_nom_bod.Size = new System.Drawing.Size(173, 13);
-            this.lb_nom_bod.TabIndex = 47;
-            this.lb_nom_bod.Text = ".";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(386, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 13);
-            this.label5.TabIndex = 46;
-            this.label5.Text = "Bodega";
             // 
             // res001_01
             // 

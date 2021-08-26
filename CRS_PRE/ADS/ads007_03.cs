@@ -15,10 +15,10 @@ namespace CRS_PRE
         //Instancias
         ads006 o_ads006 = new ads006();
         ads007 o_ads007 = new ads007();
-        cmr013 o_cmr013 = new cmr013();     // Persona
+        adp002 o_adp002 = new adp002();     // Persona
 
         DataTable tabla = new DataTable();
-         DataTable tab_cmr013 = new DataTable();  // Tabla Persona
+         DataTable tab_adp002 = new DataTable();  // Tabla Persona
 
         public ads007_03()
         {
@@ -38,11 +38,16 @@ namespace CRS_PRE
             tb_cod_per.Text = frm_dat.Rows[0]["va_ide_per"].ToString();
             tb_win_max.Text = frm_dat.Rows[0]["va_win_max"].ToString();
 
-            cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
-            cb_tip_usr.ValueMember = "va_ide_tus";
-            cb_tip_usr.DisplayMember = "va_nom_tus";
+            //cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
+            //cb_tip_usr.ValueMember = "va_ide_tus";
+            //cb_tip_usr.DisplayMember = "va_nom_tus";
 
-            cb_tip_usr.SelectedValue = int.Parse(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            if(tabla.Rows.Count == 0)
+                tb_tip_usr.Text = "??";
+            else
+                tb_tip_usr.Text = tabla.Rows[0]["va_nom_tus"].ToString();
+
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
@@ -75,7 +80,7 @@ namespace CRS_PRE
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -106,14 +111,14 @@ namespace CRS_PRE
                 lb_raz_soc.Text = "No Existe";
             }
 
-            tab_cmr013 = o_cmr013.Fe_con_per(val);
-            if (tab_cmr013.Rows.Count == 0)
+            tab_adp002 = o_adp002.Fe_con_per(val);
+            if (tab_adp002.Rows.Count == 0)
             {
                 lb_raz_soc.Text = "No Existe";
             }
             else
             {
-                lb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+                lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
             }
         }
 
@@ -159,7 +164,7 @@ namespace CRS_PRE
                 //Edita usuario
                 o_ads007.Fe_exe_edi(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
                                        tb_dir_ect.Text, tb_ema_usr.Text, int.Parse(tb_win_max.Text),
-                                       int.Parse(tb_cod_per.Text), int.Parse(cb_tip_usr.SelectedValue.ToString()));
+                                       int.Parse(tb_cod_per.Text));
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 frm_pad.Fe_act_frm(tb_ide_usr.Text);
                 cl_glo_frm.Cerrar(this);

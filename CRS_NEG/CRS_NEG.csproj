@@ -66,12 +66,12 @@
     <Compile Include="CMR\cmr006.cs" />
     <Compile Include="CMR\res004.cs" />
     <Compile Include="CMR\cmr004.cs" />
-    <Compile Include="CMR\cmr012.cs" />
+    <Compile Include="ADP\adp001.cs" />
     <Compile Include="CMR\cmr014.cs" />
     <Compile Include="CMR\cmr015.cs" />
     <Compile Include="CMR\cmr002.cs" />
     <Compile Include="CMR\cmr001.cs" />
-    <Compile Include="CMR\cmr013.cs" />
+    <Compile Include="ADP\adp002.cs" />
     <Compile Include="General.cs" />
     <Compile Include="INV\inv099.cs" />
     <Compile Include="INV\inv005.cs" />

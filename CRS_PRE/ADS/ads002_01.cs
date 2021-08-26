@@ -354,8 +354,8 @@ namespace CRS_PRE
             if (fi_ver_con() == false)
                 return;
 
-            //ads002_05 frm = new ads002_05();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads002_05 frm = new ads002_05();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {

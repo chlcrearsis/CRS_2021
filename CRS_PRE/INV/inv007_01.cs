@@ -24,7 +24,7 @@ namespace CRS_PRE.INV
         // instancia
         ads016 o_ads016 = new ads016();
         inv007 o_inv007 = new inv007();
-        cmr013 o_cmr013 = new cmr013();
+        adp002 o_adp002 = new adp002();
         inv002 o_inv002 = new inv002();
 
         // Variables
@@ -455,7 +455,7 @@ namespace CRS_PRE.INV
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -488,7 +488,7 @@ namespace CRS_PRE.INV
                     MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
                     tb_cod_per.Focus();
                 }
-                tabla = o_cmr013.Fe_con_per(val);
+                tabla = o_adp002.Fe_con_per(val);
                 if (tabla.Rows.Count == 0)
                 {
                     lb_raz_soc.Text = "No Existe";

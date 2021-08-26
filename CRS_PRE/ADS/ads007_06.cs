@@ -14,10 +14,10 @@ namespace CRS_PRE
         //Instancias
         ads007 o_ads007 = new ads007();
         ads006 o_ads006 = new ads006();
-        cmr013 o_cmr013 = new cmr013();
+        adp002 o_adp002 = new adp002();
 
         DataTable tabla = new DataTable();
-        DataTable tab_cmr013 = new DataTable();
+        DataTable tab_adp002 = new DataTable();
 
         public ads007_06()
         {
@@ -64,14 +64,14 @@ namespace CRS_PRE
                 lb_raz_soc.Text = "No Existe";
             }
 
-            tab_cmr013 = o_cmr013.Fe_con_per(val);
-            if (tab_cmr013.Rows.Count == 0)
+            tab_adp002 = o_adp002.Fe_con_per(val);
+            if (tab_adp002.Rows.Count == 0)
             {
                 lb_raz_soc.Text = "No Existe";
             }
             else
             {
-                lb_raz_soc.Text = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+                lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
             }
         }
 

@@ -244,7 +244,7 @@ namespace CRS_PRE.INV
         }
         void Fi_abr_bus_per()
         {
-            cmr013_01 frm = new cmr013_01();
+            adp002_01 frm = new adp002_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
