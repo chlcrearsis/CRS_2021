@@ -363,8 +363,8 @@ namespace CRS_PRE
             if (fi_ver_con() == false)
                 return;
 
-            //ads002_06 frm = new ads002_06();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ads002_06 frm = new ads002_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)

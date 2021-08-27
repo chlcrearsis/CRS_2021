@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class ads002_04
+    partial class ads002_06
     {
         /// <summary>
         /// Required designer variable.
@@ -167,7 +167,7 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // ads002_04
+            // ads002_06
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,9 +180,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ads002_04";
-            this.Tag = "Edita documento";
-            this.Text = "Habilita/Deshabilita Aplicacion";
+            this.Name = "ads002_06";
+            this.Tag = "Elimina Aplicacion";
+            this.Text = "Elimina Aplicacion";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

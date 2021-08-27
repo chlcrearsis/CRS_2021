@@ -76,7 +76,7 @@
             this.lp_con_apl.Controls.Add(this.bt_men_adm);
             this.lp_con_apl.Location = new System.Drawing.Point(-2, 164);
             this.lp_con_apl.Name = "lp_con_apl";
-            this.lp_con_apl.Size = new System.Drawing.Size(205, 315);
+            this.lp_con_apl.Size = new System.Drawing.Size(205, 303);
             this.lp_con_apl.TabIndex = 6;
             // 
             // bt_men_res
@@ -233,7 +233,7 @@
             this.lb_nom_equ.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lb_nom_equ.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_nom_equ.ForeColor = System.Drawing.Color.Silver;
-            this.lb_nom_equ.Location = new System.Drawing.Point(18, 481);
+            this.lb_nom_equ.Location = new System.Drawing.Point(18, 467);
             this.lb_nom_equ.Name = "lb_nom_equ";
             this.lb_nom_equ.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lb_nom_equ.Size = new System.Drawing.Size(159, 20);
@@ -245,7 +245,7 @@
             // pb_lic_act
             // 
             this.pb_lic_act.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_act.Image")));
-            this.pb_lic_act.Location = new System.Drawing.Point(212, 461);
+            this.pb_lic_act.Location = new System.Drawing.Point(207, 449);
             this.pb_lic_act.Name = "pb_lic_act";
             this.pb_lic_act.Size = new System.Drawing.Size(20, 20);
             this.pb_lic_act.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -258,7 +258,7 @@
             this.lb_val_lic.AutoSize = true;
             this.lb_val_lic.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_val_lic.ForeColor = System.Drawing.Color.Navy;
-            this.lb_val_lic.Location = new System.Drawing.Point(209, 481);
+            this.lb_val_lic.Location = new System.Drawing.Point(204, 469);
             this.lb_val_lic.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
             this.lb_val_lic.Name = "lb_val_lic";
             this.lb_val_lic.Size = new System.Drawing.Size(193, 16);
@@ -270,7 +270,7 @@
             this.lb_lic_act.AutoSize = true;
             this.lb_lic_act.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_lic_act.ForeColor = System.Drawing.Color.Black;
-            this.lb_lic_act.Location = new System.Drawing.Point(233, 463);
+            this.lb_lic_act.Location = new System.Drawing.Point(228, 451);
             this.lb_lic_act.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
             this.lb_lic_act.Name = "lb_lic_act";
             this.lb_lic_act.Size = new System.Drawing.Size(102, 16);
@@ -281,7 +281,7 @@
             // pb_not_fic
             // 
             this.pb_not_fic.Image = ((System.Drawing.Image)(resources.GetObject("pb_not_fic.Image")));
-            this.pb_not_fic.Location = new System.Drawing.Point(734, 439);
+            this.pb_not_fic.Location = new System.Drawing.Point(734, 435);
             this.pb_not_fic.Name = "pb_not_fic";
             this.pb_not_fic.Size = new System.Drawing.Size(50, 50);
             this.pb_not_fic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -293,7 +293,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(790, 515);
+            this.ClientSize = new System.Drawing.Size(790, 489);
             this.Controls.Add(this.pb_not_fic);
             this.Controls.Add(this.pb_lic_act);
             this.Controls.Add(this.lb_val_lic);
@@ -302,8 +302,8 @@
             this.Controls.Add(this.lb_nro_ver);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximumSize = new System.Drawing.Size(806, 554);
-            this.MinimumSize = new System.Drawing.Size(806, 554);
+            this.MaximumSize = new System.Drawing.Size(806, 528);
+            this.MinimumSize = new System.Drawing.Size(806, 528);
             this.Name = "ads000_02";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRS -";

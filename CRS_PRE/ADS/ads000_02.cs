@@ -14,6 +14,7 @@ namespace CRS_PRE
     public partial class ads000_02 : Form
     {
         DataTable Tabla = new DataTable();
+        ads002 o_ads002 = new ads002();
         ads007 o_ads007 = new ads007();
         ads013 o_ads013 = new ads013();
         ads008 o_ads008 = new ads008();
@@ -22,6 +23,7 @@ namespace CRS_PRE
         General o_general = new General();
 
         string Titulo = "Menú Principal";
+        int vg_lic_sis = 0; // Licencia del Sistema (0=Sin Licencia; 1=Con Licencia)
 
         public ads000_02()
         {
@@ -160,9 +162,35 @@ namespace CRS_PRE
         private void bt_men_res_Click(object sender, EventArgs e)
         {
             try {
+                // Desplega Informacion de la Licencia
+                fi_lic_sis();
+
+                // Verifica Si tiene una licencia valida activada
+                if (vg_lic_sis == 0){
+                    MessageBox.Show("El Sistema NO tiene un licencia válida activada, comuniquese con su proveedor", "Seguridad");
+                    return;
+                }
+
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false)
-                {
+                if (fi_ven_max(o_ads007.va_ide_usr) == false){                  
+                    // Verifica que la aplicación este registrada y habilitada 
+                    Tabla = new DataTable();
+                    Tabla = o_ads002.Fe_con_apl("res200");
+                    if (Tabla.Rows.Count == 0){
+                        MessageBox.Show("La aplicación Restaurante (res200) NO está definida", "Seguridad");
+                        return;
+                    }                       
+                    if (Tabla.Rows[0]["va_est_ado"].ToString() != "H"){
+                        MessageBox.Show("La aplicación Restaurante (res200) NO está habilitada", "Seguridad");
+                        return;
+                    }
+
+                    // Verifica que el usuario tenga los permisos sobre la aplicacion
+                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "res200") == false){
+                        MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Restaurante (res200)", "Seguridad");
+                        return;
+                    }
+
                     // Crea el hilo del menu Restaurant
                     Thread thread = new Thread(fi_run_res);
                     thread.SetApartmentState(ApartmentState.STA);
@@ -179,9 +207,36 @@ namespace CRS_PRE
         {            
             try
             {
+                // Desplega Informacion de la Licencia
+                fi_lic_sis();
+
+                // Verifica Si tiene una licencia valida activada
+                if (vg_lic_sis == 0){
+                    MessageBox.Show("El Sistema NO tiene un licencia válida activada, comuniquese con su proveedor", "Seguridad");
+                    return;
+                }
+
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false)
-                {
+                if (fi_ven_max(o_ads007.va_ide_usr) == false){
+                    
+                    // Verifica que la aplicación este registrada y habilitada 
+                    Tabla = new DataTable();
+                    Tabla = o_ads002.Fe_con_apl("cmr200");
+                    if (Tabla.Rows.Count == 0){
+                        MessageBox.Show("La aplicación Comercialización NO está definida", "Seguridad");
+                        return;
+                    }
+                    if (Tabla.Rows[0]["va_est_ado"].ToString() != "H"){
+                        MessageBox.Show("La aplicación Comercialización NO está habilitada", "Seguridad");
+                        return;
+                    }
+
+                    // Verifica que el usuario tenga los permisos sobre la aplicacion
+                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "cmr200") == false){
+                        MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Comercialización.", "Seguridad");
+                        return;
+                    }
+
                     // Crea el hilo del menu Comercializacion
                     Thread thread = new Thread(fi_run_cmr);
                     thread.SetApartmentState(ApartmentState.STA);
@@ -200,9 +255,36 @@ namespace CRS_PRE
         {         
             try
             {
+                // Desplega Informacion de la Licencia
+                fi_lic_sis();
+
+                // Verifica Si tiene una licencia valida activada
+                if (vg_lic_sis == 0){
+                    MessageBox.Show("El Sistema NO tiene un licencia válida activada, comuniquese con su proveedor", "Seguridad");
+                    return;
+                }
+
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
                 if (fi_ven_max(o_ads007.va_ide_usr) == false)
                 {
+                    // Verifica que la aplicación este registrada y habilitada 
+                    Tabla = new DataTable();
+                    Tabla = o_ads002.Fe_con_apl("inv200");
+                    if (Tabla.Rows.Count == 0){
+                        MessageBox.Show("La aplicación Inventario NO está definida", "Seguridad");
+                        return;
+                    }
+                    if (Tabla.Rows[0]["va_est_ado"].ToString() != "H"){
+                        MessageBox.Show("La aplicación Inventario NO está habilitada", "Seguridad");
+                        return;
+                    }
+
+                    // Verifica que el usuario tenga los permisos sobre la aplicacion
+                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "inv200") == false){
+                        MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Inventario.", "Seguridad");
+                        return;
+                    }
+
                     // Crea el hilo del menu Inventario
                     Thread thread = new Thread(fi_run_inv);
                     thread.SetApartmentState(ApartmentState.STA);
@@ -221,9 +303,36 @@ namespace CRS_PRE
         {           
             try
             {
+                // Desplega Informacion de la Licencia
+                fi_lic_sis();
+
+                // Verifica Si tiene una licencia valida activada
+                if (vg_lic_sis == 0){
+                    MessageBox.Show("El Sistema NO tiene un licencia válida activada, comuniquese con su proveedor", "Seguridad");
+                    return;
+                }
+
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false)
-                {
+                if (fi_ven_max(o_ads007.va_ide_usr) == false){
+
+                    // Verifica que la aplicación este registrada y habilitada 
+                    Tabla = new DataTable();
+                    Tabla = o_ads002.Fe_con_apl("ads200");
+                    if (Tabla.Rows.Count == 0){
+                        MessageBox.Show("La aplicación Administrador NO está definida", "Seguridad");
+                        return;
+                    }
+                    if (Tabla.Rows[0]["va_est_ado"].ToString() != "H"){
+                        MessageBox.Show("La aplicación Administrador NO está habilitada", "Seguridad");
+                        return;
+                    }
+
+                    // Verifica que el usuario tenga los permisos sobre la aplicacion
+                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "ads200") == false){
+                        MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Administrador.", "Seguridad");
+                        return;
+                    }
+
                     // Crea el hilo del menu Administrador
                     Thread thread = new Thread(fi_run_ads);
                     thread.SetApartmentState(ApartmentState.STA);
@@ -272,17 +381,39 @@ namespace CRS_PRE
                 if (Tabla.Rows.Count > 0)
                 {                    
                     string fec_exp = Tabla.Rows[0]["va_fec_exp"].ToString().Trim();
-
                     if (fec_exp.CompareTo("") == 0) {
-                        lb_val_lic.Text = "Validez de la Licencia: Sin Licencia";
+                        vg_lic_sis = 0; // 0=Sin Licencia
+                        lb_val_lic.Text = "Validez de la Licencia: Sin Licencia";                        
                         return;
                     }
+                               
+                    DateTime exp_fec = DateTime.Parse(fec_exp);
+                    DateTime act_fec = DateTime.Parse(fec_act);
+                    TimeSpan dif_fch = exp_fec - act_fec;
+                    int nro_dia = dif_fch.Days;
+                    if (dif_fch.Hours > 0){
+                        nro_dia += 1;
+                    }
 
-                    if (fec_exp.CompareTo(fec_act) == 0){
+                    if (nro_dia == 0) {
+                        vg_lic_sis = 1; // 1=Con Licencia
                         lb_val_lic.Text = "Validez de la Licencia: Vence Hoy a las 23:59 pm";
                         return;
                     }
+                    
+                    if (nro_dia >= 0 && nro_dia <= 7){
+                        vg_lic_sis = 1; // 1=Con Licencia                        
+                        lb_val_lic.Text = "Validez de la Licencia: Próximo a Vencerse en " + nro_dia + " días.";
+                        return;
+                    }
 
+                    if (nro_dia < 0) {
+                        vg_lic_sis = 0; // 0=Sin Licencia
+                        lb_val_lic.Text = "Validez de la Licencia: Licencia Expirada";
+                        return;
+                    }
+
+                    vg_lic_sis = 1; // 1=Con Licencia
                     lb_val_lic.Text = "Validez de la Licencia: " + fec_exp;
                 }
             }

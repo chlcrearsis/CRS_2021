@@ -158,6 +158,12 @@
     <Compile Include="ADS\ads002_03.Designer.cs">
       <DependentUpon>ads002_03.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads002_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads002_06.Designer.cs">
+      <DependentUpon>ads002_06.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads002_04.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1586,6 +1592,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads002_03.resx">
       <DependentUpon>ads002_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads002_06.resx">
+      <DependentUpon>ads002_06.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads002_04.resx">
       <DependentUpon>ads002_04.cs</DependentUpon>

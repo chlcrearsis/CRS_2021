@@ -271,53 +271,53 @@ namespace CRS_PRE
 
                 // Verifica que el usuario y contraseña sean correcta
                 if (fi_val_dat() == true){
-                    // Verifica que el usuario y contraseña sean correcta
-                    if (fi_val_dat() == true){
-                        // Verifica que el usuario crssql este definido en el servidor
-                        Tabla = new DataTable();
-                        Tabla = ObjUsuario.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
-                        if (Tabla.Rows.Count == 0){
-                            MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Verifica que el usuario crssql este definido en el servidor
+                    Tabla = new DataTable();
+                    Tabla = ObjUsuario.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
+                    if (Tabla.Rows.Count == 0){
+                        MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Verifica que el usuario este definido y asignado los permisos correspondiente
+                    Tabla = ObjUsuario.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
+                    if (Tabla.Rows.Count == 0){
+                        MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }else{
+                        string cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
+                        string msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
+                        if (cod_err.CompareTo("0") != 0){
+                            MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
-                        }
-
-                        // Verifica que el usuario este definido y asignado los permisos correspondiente
-                        Tabla = ObjUsuario.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
-                        if (Tabla.Rows.Count == 0){
-                            MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }else{
-                            string cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
-                            string msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
-                            if (cod_err.CompareTo("0") != 0){
-                                MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-                        }
-
-                        // Guarda datos en la aplicacion
-                        if (ObjUsuario.Login(nom_bda, ide_usr, pas_usr) == "OK"){
-                            Program.gl_usr_usr = ide_usr;
-                        }
-
-                        // Obtiene: (SG-100) -> Contraseña por Defecto
-                        Tabla = o_ads013.Fe_obt_glo(1, 1);
-                        if (Tabla.Rows.Count > 0){
-                            pas_def = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
-                            if (pas_def == pas_usr)
-                            {
-                                // Abre la pantalla para actualizar su contraseña
-                                ads000_01 form = new ads000_01();
-                                form.vp_ide_usr = ide_usr;
-                                form.vp_pas_usr = pas_usr;
-                                form.Opacity = 0.95;
-                                if (form.ShowDialog() == DialogResult.OK){
-                                    form.Close();
-                                    return;
-                                }
-                            }
                         }
                     }
+
+                    // Guarda datos en la aplicacion
+                    if (ObjUsuario.Login(nom_bda, ide_usr, pas_usr) == "OK"){
+                        Program.gl_usr_usr = ide_usr;
+
+                        // Abre la pantalla para actualizar su contraseña
+                        ads000_01 form = new ads000_01();
+                        form.vp_ide_usr = ide_usr;
+                        form.vp_pas_usr = pas_usr;
+                        form.Opacity = 0.95;
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            form.Close();
+                            return;
+                        }
+                    }
+
+                    // Obtiene: (SG-100) -> Contraseña por Defecto
+                    /*Tabla = o_ads013.Fe_obt_glo(1, 1);
+                    if (Tabla.Rows.Count > 0){
+                        pas_def = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
+                        if (pas_def == pas_usr)
+                        {
+                            
+                        }
+                    }*/
                 }
             }catch (Exception ex){
                 MessageBox.Show(ex.Message, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
