@@ -13,14 +13,15 @@ namespace CRS_PRE
 {
     public partial class ads000_02 : Form
     {
+        ToolTip va_tol_tip = new ToolTip();
         DataTable Tabla = new DataTable();
         ads002 o_ads002 = new ads002();
         ads007 o_ads007 = new ads007();
         ads013 o_ads013 = new ads013();
         ads008 o_ads008 = new ads008();
         adp002 o_adp002 = new adp002();
-        ToolTip va_tol_tip = new ToolTip();
-        General o_general = new General();
+        ads024 o_ads024 = new ads024();        
+        General general = new General();
 
         string Titulo = "Menú Principal";
         int vg_lic_sis = 0; // Licencia del Sistema (0=Sin Licencia; 1=Con Licencia)
@@ -373,7 +374,7 @@ namespace CRS_PRE
             try
             {
                 lb_val_lic.Text = string.Empty;
-                string fec_act = o_general.Fe_fec_act().ToString();
+                string fec_act = general.Fe_fec_act().ToString();
 
                 // Lee datos de la licencia
                 Tabla = new DataTable();
@@ -591,6 +592,13 @@ namespace CRS_PRE
                     fi_lic_sis();
                 }
             }
+        }
+
+        private void ads000_02_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Registra Finaliza Sesión en Bitacora de Inicio de Sesion            
+            o_ads024.Fe_fin_ses(Program.gl_ide_uni);
+
         }
     }
 }

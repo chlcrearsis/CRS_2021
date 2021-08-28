@@ -18,8 +18,10 @@ namespace CRS_PRE
         private DataTable Tabla = new DataTable();
         private ToolTip va_tool_tip = new ToolTip();
 
-        private ads007 ObjUsuario = new ads007();
+        private General general = new General();
+        private ads007 o_ads007 = new ads007();
         private ads013 o_ads013 = new ads013();
+        private ads024 o_ads024 = new ads024();
 
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -96,6 +98,7 @@ namespace CRS_PRE
             try
             {
                 // Obtiene datos de pantalla
+                string ide_uni = general.generateID();
                 string ide_usr = tb_ide_usr.Text;
                 string pas_usr = tb_pas_usr.Text;
                 string nom_bda = cb_nom_bda.SelectedItem.ToString();
@@ -107,14 +110,14 @@ namespace CRS_PRE
                 if (fi_val_dat() == true) {
                     // Verifica que el usuario crssql este definido en el servidor
                     Tabla = new DataTable();
-                    Tabla = ObjUsuario.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
+                    Tabla = o_ads007.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
                     if (Tabla.Rows.Count == 0) {
                         MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     // Verifica que el usuario este definido y asignado los permisos correspondiente
-                    Tabla = ObjUsuario.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
+                    Tabla = o_ads007.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
                     if (Tabla.Rows.Count == 0) {
                         MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -128,8 +131,9 @@ namespace CRS_PRE
                     }
 
                     // Guarda datos en la aplicacion
-                    if (ObjUsuario.Login(nom_bda, ide_usr, pas_usr) == "OK") {                         
+                    if (o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr) == "OK") {                         
                         Program.gl_usr_usr = ide_usr;
+                        Program.gl_ide_uni = ide_uni;
                     }
 
                     // Obtiene: (SG-100) -> Contraseña por Defecto
@@ -149,6 +153,10 @@ namespace CRS_PRE
                         }
                     }
 
+                    // Inserta Bitacora de Inicio de Sesion                  
+                    o_ads024.Fe_ini_ses(ide_uni, Program.gl_usr_usr, SystemInformation.ComputerName);
+
+                    // Abre la ventana del Menu Principal
                     this.Visible = false;
                     ads000_02 frm = new ads000_02();
                     frm.ShowDialog();
@@ -265,7 +273,7 @@ namespace CRS_PRE
                 ide_usr = tb_ide_usr.Text;
                 pas_usr = tb_pas_usr.Text;
                 nom_bda = cb_nom_bda.SelectedItem.ToString();
-                string pas_def = "";    // Contraseña por Defecto   
+                string ide_uni = general.generateID();
                 string usr_sql = Program.gl_usr_sql;
                 string pas_sql = Program.gl_pas_sql;
 
@@ -273,14 +281,14 @@ namespace CRS_PRE
                 if (fi_val_dat() == true){
                     // Verifica que el usuario crssql este definido en el servidor
                     Tabla = new DataTable();
-                    Tabla = ObjUsuario.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
+                    Tabla = o_ads007.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
                     if (Tabla.Rows.Count == 0){
                         MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     // Verifica que el usuario este definido y asignado los permisos correspondiente
-                    Tabla = ObjUsuario.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
+                    Tabla = o_ads007.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
                     if (Tabla.Rows.Count == 0){
                         MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -294,7 +302,7 @@ namespace CRS_PRE
                     }
 
                     // Guarda datos en la aplicacion
-                    if (ObjUsuario.Login(nom_bda, ide_usr, pas_usr) == "OK"){
+                    if (o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr) == "OK"){
                         Program.gl_usr_usr = ide_usr;
 
                         // Abre la pantalla para actualizar su contraseña

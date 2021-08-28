@@ -307,6 +307,7 @@
             this.Name = "ads000_02";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRS -";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ads000_02_FormClosing);
             this.Load += new System.EventHandler(this.ads000_02_Load);
             this.Resize += new System.EventHandler(this.ads000_02_Resize);
             this.lp_con_apl.ResumeLayout(false);

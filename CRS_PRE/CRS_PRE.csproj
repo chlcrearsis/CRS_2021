@@ -446,6 +446,12 @@
     <Compile Include="ADS\ads008_05b.Designer.cs">
       <DependentUpon>ads008_05b.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads024_R01p.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads024_R01p.Designer.cs">
+      <DependentUpon>ads024_R01p.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads022_02b.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1739,6 +1745,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads008_05b.resx">
       <DependentUpon>ads008_05b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads024_R01p.resx">
+      <DependentUpon>ads024_R01p.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads022_02b.resx">
       <DependentUpon>ads022_02b.cs</DependentUpon>

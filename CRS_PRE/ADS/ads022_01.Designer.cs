@@ -92,7 +92,7 @@ namespace CRS_PRE
             this.m_atr_ass});
             this.mn_pri_nci.Location = new System.Drawing.Point(124, 12);
             this.mn_pri_nci.Name = "mn_pri_nci";
-            this.mn_pri_nci.Size = new System.Drawing.Size(249, 24);
+            this.mn_pri_nci.Size = new System.Drawing.Size(264, 24);
             this.mn_pri_nci.TabIndex = 5;
             this.mn_pri_nci.Text = "MenuStrip1";
             this.mn_pri_nci.Visible = false;
@@ -102,20 +102,20 @@ namespace CRS_PRE
             this.m_adm022_02.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.m_adm022_02a});
             this.m_adm022_02.Name = "m_adm022_02";
-            this.m_adm022_02.Size = new System.Drawing.Size(50, 20);
+            this.m_adm022_02.Size = new System.Drawing.Size(54, 20);
             this.m_adm022_02.Text = "&Nuevo";
             // 
             // m_adm022_02a
             // 
             this.m_adm022_02a.Name = "m_adm022_02a";
-            this.m_adm022_02a.Size = new System.Drawing.Size(190, 22);
+            this.m_adm022_02a.Size = new System.Drawing.Size(197, 22);
             this.m_adm022_02a.Text = "&T.C. por rango de fecha";
             this.m_adm022_02a.Click += new System.EventHandler(this.m_adm022_02b_Click);
             // 
             // m_adm013_p00
             // 
             this.m_adm013_p00.Name = "m_adm013_p00";
-            this.m_adm013_p00.Size = new System.Drawing.Size(57, 20);
+            this.m_adm013_p00.Size = new System.Drawing.Size(61, 20);
             this.m_adm013_p00.Text = "&Informe";
             // 
             // m_adm013_08
@@ -124,25 +124,25 @@ namespace CRS_PRE
             this.m_adm013_08a,
             this.m_adm013_08b});
             this.m_adm013_08.Name = "m_adm013_08";
-            this.m_adm013_08.Size = new System.Drawing.Size(89, 20);
+            this.m_adm013_08.Size = new System.Drawing.Size(95, 20);
             this.m_adm013_08.Text = "&Importar Excel";
             // 
             // m_adm013_08a
             // 
             this.m_adm013_08a.Name = "m_adm013_08a";
-            this.m_adm013_08a.Size = new System.Drawing.Size(151, 22);
+            this.m_adm013_08a.Size = new System.Drawing.Size(154, 22);
             this.m_adm013_08a.Text = "&T.C. por Año";
             // 
             // m_adm013_08b
             // 
             this.m_adm013_08b.Name = "m_adm013_08b";
-            this.m_adm013_08b.Size = new System.Drawing.Size(151, 22);
+            this.m_adm013_08b.Size = new System.Drawing.Size(154, 22);
             this.m_adm013_08b.Text = "&T.C. por Fechas";
             // 
             // m_atr_ass
             // 
             this.m_atr_ass.Name = "m_atr_ass";
-            this.m_atr_ass.Size = new System.Drawing.Size(45, 20);
+            this.m_atr_ass.Size = new System.Drawing.Size(46, 20);
             this.m_atr_ass.Text = "&Atrás";
             this.m_atr_ass.Click += new System.EventHandler(this.m_atr_ass_Click);
             // 
@@ -276,7 +276,7 @@ namespace CRS_PRE
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.label3.Location = new System.Drawing.Point(15, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
