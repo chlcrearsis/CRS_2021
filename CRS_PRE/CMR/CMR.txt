@@ -14,8 +14,8 @@ cmr008 = detalle pedido
 cmr009 = proforma
 cmr010 = detalle de proforma
 
-cmr012 = Grupo de personas
-cmr013 = Persona
+cmr012 = 
+cmr013 = Registro de Nit
 cmr014 = Vendedor
 cmr015 = Delivery
 

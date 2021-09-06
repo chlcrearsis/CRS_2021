@@ -16,6 +16,7 @@ va_ide_vta		VARCHAR(20)		NOT NULL,	--Identificador de la venta (XXX|000-00000/20
 
 --Llave Foránea
 va_tip_vta		INT				NOT NULL,	--Tipo de venta ( 2= Nota de Venta ; 1=Factura )
+va_nro_fac		INT				NOT NULL DEFAULT(0),	-- Nro de factura
 
 va_cod_per		VARCHAR(7)		NOT NULL,	--Codigo del cliente (adm010) (7 numeros)
 va_raz_soc		VARCHAR(180)			,	--Razon social del cliente 

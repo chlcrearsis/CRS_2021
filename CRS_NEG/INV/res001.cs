@@ -57,10 +57,10 @@ namespace CRS_NEG
             return fec_act;
         }
 
-        public DataTable Fe_crea(string _cod_usr, DateTime _cod_tmp, int _pla_vta, int _tip_vta, string _ide_doc,
-    int _nro_tal, int _cod_bod, string _cod_per, string _nit_cli, string _raz_soc, string _mon_vta,
-    DateTime _fec_vta, int _for_pag, int _ven_ded, int _lis_pre, int _cod_caj, int _cod_lcr,
-     decimal _tip_cam, decimal _des_cue, string _obs_vta,string _vta_par, int _cod_del, string _ref_vta, decimal _mto_pag, decimal _cam_bio, long _nro_aut)
+        public DataTable Fe_crea(string _cod_usr, DateTime _cod_tmp, int _pla_vta, int _tip_vta, int _nro_fac, 
+            int _cod_bod, string _cod_per, string _nit_cli, string _raz_soc, string _mon_vta,
+            DateTime _fec_vta, int _for_pag, int _ven_ded, int _lis_pre, int _cod_caj, int _cod_lcr,
+            decimal _tip_cam, decimal _des_cue, string _obs_vta,string _vta_par, int _cod_del, string _ref_vta, decimal _mto_pag, decimal _cam_bio, long _nro_aut,  string _cod_ctr)
         {
             try
             {
@@ -70,8 +70,9 @@ namespace CRS_NEG
                 vv_str_sql.AppendFormat(" '{0}', ", _cod_tmp.ToString(DateFornat));
                 vv_str_sql.AppendFormat(" {0}, ", _pla_vta);
                 vv_str_sql.AppendFormat("  {0} , ", _tip_vta);
-                vv_str_sql.AppendFormat("  '{0}' , ", _ide_doc);
-                vv_str_sql.AppendFormat("  {0} , ", _nro_tal);
+                vv_str_sql.AppendFormat("  {0} , ", _nro_fac);
+
+                
                 vv_str_sql.AppendFormat("  '{0}' , ", _cod_bod);
                 vv_str_sql.AppendFormat("  {0} , ", _cod_per);
                 vv_str_sql.AppendFormat("  '{0}' , ", _nit_cli);
@@ -96,7 +97,8 @@ namespace CRS_NEG
                 vv_str_sql.AppendFormat(" '{0}' , ", _ref_vta);
                 vv_str_sql.AppendFormat(" '{0}' , ", _mto_pag);
                 vv_str_sql.AppendFormat(" '{0}' , ", _cam_bio);
-                vv_str_sql.AppendFormat(" '{0}'  ", _nro_aut);
+                vv_str_sql.AppendFormat(" '{0}' , ", _nro_aut);
+                vv_str_sql.AppendFormat(" '{0}'  ", _cod_ctr);
 
                 vv_str_sql.AppendLine("");
                 DataTable tabla = new DataTable();
@@ -199,12 +201,12 @@ namespace CRS_NEG
         }
 
 
-        public DataTable Fe_bus_car(int ar_cod_cli ,string ar_cod_bod, DateTime ar_fec_ini, DateTime ar_fec_fin,string ar_tex_bus, int ar_par_ame ,string ar_est_ado )
+        public DataTable Fe_bus_car(int ar_cod_cli ,string ar_cod_bod, DateTime ar_fec_ini, DateTime ar_fec_fin,string ar_tex_bus, int ar_par_ame ,int ar_tip_ope, string ar_est_ado )
         {
 
             //res001_01a_p01  0,0,'01/01/2020', '10/08/2020','venta','T','V'
 
-            cadena = " res001_01a_p01 " + ar_cod_cli +",'" + int.Parse(ar_cod_bod) + "','" + ar_fec_ini + "','" + ar_fec_fin + "','" + ar_tex_bus + "', " + ar_par_ame + ",'" + ar_est_ado + "', 'V'";
+            cadena = " res001_01a_p01 " + ar_cod_cli +",'" + int.Parse(ar_cod_bod) + "','" + ar_fec_ini + "','" + ar_fec_fin + "','" + ar_tex_bus + "', " + ar_par_ame + ",'" + ar_est_ado + "', " + ar_tip_ope  ;
 
            
             return ob_con_ecA.fe_exe_sql(cadena);

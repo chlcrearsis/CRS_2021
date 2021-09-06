@@ -16,30 +16,38 @@ namespace CRS_PRE.CMR
         public int frm_tip;
         //Instancias
         ads003 o_ads003 = new ads003();
+        ads004 o_ads004 = new ads004();
         ads008 o_ads008 = new ads008();
         inv002 o_inv002 = new inv002();
         inv003 o_inv003 = new inv003();
         inv004 o_inv004 = new inv004();
         cmr001 o_cmr001 = new cmr001();
         cmr002 o_cmr002 = new cmr002();
+        ctb007 o_ctb007 = new ctb007();
         res001 o_res001 = new res001();
         res002 o_res002 = new res002();
         c_res004 o_res004 = new c_res004();
-        cmr015 o_cmr015 = new cmr015();
+        cmr013 o_cmr013 = new cmr013();
         cmr014 o_cmr014 = new cmr014();
+        cmr015 o_cmr015 = new cmr015();
         adp002 o_adp002 = new adp002();
+
+
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
 
 
         DataTable tabla = new DataTable();
+        DataTable tab_ads004 = new DataTable();
         DataTable tab_ads008 = new DataTable();
         DataTable tab_inv002 = new DataTable();
         DataTable tab_inv004 = new DataTable();
         DataTable tab_cmr001 = new DataTable();
         DataTable tab_cmr002 = new DataTable();
+        DataTable tab_ctb007 = new DataTable();
         DataTable tab_res004 = new DataTable();
-        DataTable tab_cmr015 = new DataTable();
+        DataTable tab_cmr013 = new DataTable();
         DataTable tab_cmr014 = new DataTable();
+        DataTable tab_cmr015 = new DataTable();
         DataTable tab_adp002 = new DataTable();
         DataTable tb_res001 = new DataTable();
 
@@ -57,6 +65,7 @@ namespace CRS_PRE.CMR
         // VARIABLES DE LA VENTA
         string doc_ope ="";
         int tal_ope = 0;
+        int tip_tal = 0;
         int cod_per = 0;
         public int nit_per = 0;
         public string raz_soc = "";
@@ -69,7 +78,14 @@ namespace CRS_PRE.CMR
         int cod_lcr = 0;
         decimal tip_cam = 0m;
         string mon_ope = "";
+
+        // VARIABLES DE LA DOSIFICACION
         
+        int va_nro_aut = 0;
+        int va_nro_fac = 0;
+        string va_lla_ve = "";
+        string va_cod_ctr = "";
+
 
         public int va_for_pag = 0; // 1 = contado ; 2 = credito
 
@@ -440,6 +456,10 @@ namespace CRS_PRE.CMR
             mto_can = 0m;
             cam_bio = 0m;
             obs_ope = "";
+
+            // Obtiene fecha y hora actual para codigo de tabla temporal
+            va_cod_tmp = o_mg_glo_frm.fg_fec_act();
+            raz_soc = "";
         }
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
@@ -579,7 +599,6 @@ namespace CRS_PRE.CMR
        
         private void bt_gra_bar_Click(object sender, EventArgs e)
         {
-
             // valida datos en pantalla
             string ret_val = "";
             ret_val = Fi_val_dat();
@@ -589,30 +608,78 @@ namespace CRS_PRE.CMR
                 return;
             }
 
-            // Instacia de formulario para completar la operacion
-            dynamic frm_com_ope; 
+            //** Inicializa variables
+            doc_ope = tab_res004.Rows[0]["va_doc_ntv"].ToString();
+            tal_ope = int.Parse(tab_res004.Rows[0]["va_tal_ntv"].ToString());
+            cod_per = int.Parse(tb_cod_per.Text);
+            cod_caj = 0;
+            cod_lcr = 0;
+            tip_cam = 1m;
+            mon_ope = tab_res004.Rows[0]["va_mon_vta"].ToString();
 
-            // Abre completa operacion (NOTA DE VENTA)
+
+            // Instacia de formulario para completar la operacion
+            dynamic frm_com_ope ;
+            frm_com_ope = new res001_02e();
+            // Abre completa operacion
             switch (tip_ope)
             {
-                case 1: // Factura
+                case 1: // Factura **********************
+
+                    // OBTIENE NIT DE LA PERSONA
+                    // ** Obtiene el ultimo nit al que se facturo a la persona
+                    tab_cmr013 = o_cmr013.Fe_ult_nit(cod_per);
+                    if (tab_cmr013.Rows.Count > 0)
+                    { 
+                        nit_per = int.Parse(tab_cmr013.Rows[0]["va_nit_per"].ToString());
+                        raz_soc = tab_cmr013.Rows[0]["va_raz_soc"].ToString();
+                    }
+                    else
+                    {
+                        // ** Obtiene nit del ABM de la persona
+                        nit_per = int.Parse(tab_adp002.Rows[0]["va_nit_per"].ToString());
+                        raz_soc = tab_adp002.Rows[0]["va_raz_soc"].ToString();
+                    }
+
+
                     frm_com_ope = new res001_02e();
                     cl_glo_frm.abrir(this, frm_com_ope, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
+
+                    // **  Recupera datos del Completa venta con Factura
                     obs_ope = frm_com_ope.tb_obs_vta.Text;
-                    nit_per = int.Parse(frm_com_ope.tb_nit_per.Text);
+
+                    if (cl_glo_bal.IsNumeric(frm_com_ope.tb_nit_per.Text) == false)
+                        nit_per = 0;
+                    else
+                        nit_per = int.Parse(frm_com_ope.tb_nit_per.Text);
+
                     raz_soc = frm_com_ope.tb_raz_soc.Text;
                     mto_can = decimal.Parse(frm_com_ope.tb_mto_can.Text);
                     cam_bio = decimal.Parse(frm_com_ope.tb_cam_bio.Text);
 
-                    if (frm_com_ope.DialogResult == DialogResult.OK)
+                    // Obtiene talonario de la plantilla para obtener dosificacion
+                    doc_ope = tab_res004.Rows[0]["va_doc_fac"].ToString();
+                    tal_ope = int.Parse(tab_res004.Rows[0]["va_tal_fac"].ToString());
+
+                    // Obtiene dosificacion del talonario
+                    tab_ads004 = o_ads004.Fe_con_tal(doc_ope, tal_ope);
+                    va_nro_aut = int.Parse(tab_ads004.Rows[0]["va_nro_aut"].ToString());
+                    tip_tal = int.Parse(tab_ads004.Rows[0]["va_tip_tal"].ToString());
+
+                    // Obtiene datos de la dosificacion
+                    tab_ctb007 = o_ctb007._05(va_nro_aut);
+                    if (tab_ctb007.Rows.Count == 0)
                     {
-                        //obs_ope = frm.tb_obs_vta.Text;
-                        //raz_soc = frm.tb_raz_soc.Text;
+                        MessageBox.Show("La dosificacion no se encuentra registrada","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        return;
                     }
+                    va_nro_fac = int.Parse(tab_ctb007.Rows[0]["va_con_tad"].ToString());
+                    va_lla_ve = tab_ctb007.Rows[0]["va_nro_aut"].ToString();
+                    
                     break;
 
-                case 2: // Nota de Venta
+                case 2: // Nota de Venta ****************
                     frm_com_ope = new res001_02d();
                     cl_glo_frm.abrir(this, frm_com_ope, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
@@ -621,39 +688,51 @@ namespace CRS_PRE.CMR
                     mto_can = decimal.Parse(frm_com_ope.tb_mto_can.Text);
                     cam_bio = decimal.Parse(frm_com_ope.tb_cam_bio.Text);
 
-                    if (frm_com_ope.DialogResult == DialogResult.OK)
-                    {
-                        return;
-                    }
-
                     break;
-
-                
             }
 
 
 
-            doc_ope = tab_res004.Rows[0]["va_doc_ntv"].ToString();
-            tal_ope = int.Parse(tab_res004.Rows[0]["va_tal_ntv"].ToString());
-            cod_per = int.Parse(tb_cod_per.Text);
-            //nit_per = 0;
-            cod_caj = 0;
-            cod_lcr = 0;
-            tip_cam = 1m;
-            mon_ope = tab_res004.Rows[0]["va_mon_vta"].ToString();
-
             
             
-            DialogResult res;
-            res = MessageBox.Show("Esta seguro de grabar la venta?", "Venta",MessageBoxButtons.OKCancel);
-            if(res== DialogResult.OK)
+            
+            if((frm_com_ope.DialogResult == DialogResult.OK))
             {
                 try { //** Graba venta
-                    tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope ,
-                                  doc_ope,tal_ope, int.Parse(tb_cod_bod.Text), cod_per.ToString(),nit_per.ToString(),
-                                  raz_soc,mon_ope, tb_fec_vta.Value,1, int.Parse(tb_cod_ven.Text), 
-                                  int.Parse(tb_cod_lis.Text), cod_caj, cod_lcr, tip_cam, 0, obs_ope,
-                                  vta_par,int.Parse(lb_cod_del.Text), "",pre_tot, 0,0);
+
+                    switch (tip_ope)
+                    {
+                        case 1: // GRABA FACTURA
+
+                            if (tip_tal == 0) // Tito talonario manual
+                                va_nro_fac = 0;
+                            else
+                                va_nro_fac = va_nro_fac + 1;
+
+                            //Obtiene codigo de control
+                            va_cod_ctr = cl_glo_bal.FE_obt_ccf(va_nro_aut.ToString(),va_nro_fac.ToString(), nit_per.ToString(), tb_fec_vta.Value , pre_tot,va_lla_ve);
+
+                            tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, va_nro_fac, // <- Nro de factura
+                                 int.Parse(tb_cod_bod.Text), cod_per.ToString(), nit_per.ToString(),
+                                 raz_soc, mon_ope, tb_fec_vta.Value, va_for_pag, int.Parse(tb_cod_ven.Text),
+                                 int.Parse(tb_cod_lis.Text), cod_caj, cod_lcr, tip_cam, 0, obs_ope,
+                                 vta_par, int.Parse(lb_cod_del.Text), "", pre_tot, cam_bio,
+                                 va_nro_aut, va_cod_ctr); // <- Nro de autorizacion y codigo de control
+
+                            
+                            // Actualiza codigo de control   
+
+                            break;
+                        case 2: // GRABA NOTA DE VENTA
+                            tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, 0, // <- Nro de factura
+                                 int.Parse(tb_cod_bod.Text), cod_per.ToString(), nit_per.ToString(),
+                                 raz_soc, mon_ope, tb_fec_vta.Value, va_for_pag, int.Parse(tb_cod_ven.Text),
+                                 int.Parse(tb_cod_lis.Text), cod_caj, cod_lcr, tip_cam, 0, obs_ope,
+                                 vta_par, int.Parse(lb_cod_del.Text), "", pre_tot, cam_bio,
+                                 0, ""); // <- Nro de autorizacion y codigo de control
+                            break;
+                    }
+
 
                     // Crea tabla para pasar datos
                     DataTable tab_dat = new DataTable();
@@ -662,13 +741,14 @@ namespace CRS_PRE.CMR
                     tab_dat.Columns.Add("va_ges_doc");
                     tab_dat.Columns.Add("va_nro_tal");
                     tab_dat.Columns.Add("va_ope_rac");
-
+                    tab_dat.Columns.Add("va_cod_plv");
 
                     tab_dat.Rows.Add();
                     tab_dat.Rows[0]["va_ide_doc"] = tb_res001.Rows[0]["va_ide_vta"].ToString();
                     tab_dat.Rows[0]["va_cod_doc"] = tb_res001.Rows[0]["va_doc_vta"].ToString();
                     tab_dat.Rows[0]["va_ges_doc"] = tb_res001.Rows[0]["va_ges_vta"].ToString();
                     tab_dat.Rows[0]["va_nro_tal"] = tb_res001.Rows[0]["va_nro_tal"].ToString();
+                    tab_dat.Rows[0]["va_cod_plv"] = tb_res001.Rows[0]["va_cod_plv"].ToString();
 
                     tab_dat.Rows[0]["va_ope_rac"] = "VENTA";
 
@@ -678,8 +758,6 @@ namespace CRS_PRE.CMR
                      //** Envia a imprimir documento
                     cmr000_01 frm = new cmr000_01();
                     cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_dat);
-
-                    
                 }
                 catch (Exception ex)
                 {
@@ -910,7 +988,7 @@ namespace CRS_PRE.CMR
             else
             {
                 // Pregunta si el usuario tiene permiso sobre la plantilla
-                if (o_ads008.Fe_ads008_02(Program.gl_usr_usr, "res004", tb_cod_plv.Text) == false)
+                if (o_ads008.Fe_aut_usr( "res004", tb_cod_plv.Text) == false)
                 {
                     MessageBox.Show("La plantilla de venta no esta permitida para el usuario ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ban_plv = false;

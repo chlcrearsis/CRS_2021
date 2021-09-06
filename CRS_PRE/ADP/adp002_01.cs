@@ -512,18 +512,10 @@ namespace CRS_PRE
 
         }
 
-        private void dg_res_ult_KeyDown(object sender, KeyEventArgs e)
+        private void dg_res_ult_Enter(object sender, EventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
-            {
-                e.Handled = true;
-
-                if (bt_ace_pta.Enabled == false)
-                    return;
-                
-                this.DialogResult = DialogResult.OK;
-                cl_glo_frm.Cerrar(this);
-            }
+            this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);
         }
     }
 }

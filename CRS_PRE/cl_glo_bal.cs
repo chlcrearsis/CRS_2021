@@ -95,9 +95,9 @@ namespace CRS_PRE
         // ** CODIGO DE CONTROL 
         #region VÁLIDAS PARA OBTENER CCF
 
-        int contador = 0;
+        static int contador = 0;
 
-        string formato(string valor)
+        static string formato(string valor)
         {
             string cod = "";
 
@@ -113,7 +113,7 @@ namespace CRS_PRE
             return cod;
         }
 
-        string sub_string(string va_lor, int indice, int cuantos)
+        static string sub_string(string va_lor, int indice, int cuantos)
         {
             indice--;
             string res_ult = "";
@@ -136,8 +136,8 @@ namespace CRS_PRE
         }
 
 
-        public string FU_obt_ccf(string ar_num_aut, string ar_num_fac, string ar_nit_cli,
-                          string ar_fec_fac, decimal ar_mto_fac, string ar_lla_ve)
+        public static string FE_obt_ccf(string ar_num_aut, string ar_num_fac, string ar_nit_cli,
+                          DateTime ar_fec_fac, decimal ar_mto_fac, string ar_lla_ve)
         {
             string va_num_fax, va_nit_clx, va_fec_fax, va_mto_fax;
             string va_num_aut, va_num_fac, va_nit_cli, va_fec_fac, va_mto_fac;
@@ -370,7 +370,7 @@ namespace CRS_PRE
         }
 
 
-        string base64(int numero)
+        static string base64(int numero)
         {
             string Diccionario;
             int Cociente;
@@ -394,7 +394,7 @@ namespace CRS_PRE
         }
 
 
-        string AllegedRC4(string mensaje, string key)
+        static string AllegedRC4(string mensaje, string key)
         {
             int[] state = new int[257];
             int x, y;
@@ -453,7 +453,7 @@ namespace CRS_PRE
         }
 
 
-        int ObtenerVerhoeff(string ar_ci_fra)
+        static int ObtenerVerhoeff(string ar_ci_fra)
         {
             int[,] va_mat_mul = new int[11, 11];        //MATRIZ DE MULTIPLICACIONES
             int[,] va_mat_per = new int[9, 11];     //MATRIZ DE PERMUTACIONES
