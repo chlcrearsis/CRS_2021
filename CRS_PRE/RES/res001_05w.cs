@@ -92,9 +92,6 @@ namespace CRS_PRE
 
 
 
-
-
-
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             rd_con_vta.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)

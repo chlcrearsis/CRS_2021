@@ -417,7 +417,7 @@
             this.mn_dos_ifi.Name = "mn_dos_ifi";
             this.mn_dos_ifi.Size = new System.Drawing.Size(180, 22);
             this.mn_dos_ifi.Text = "Dosificación";
-            this.mn_dos_ifi.Click += new System.EventHandler(this.mn_dos_ifi_Click);
+            //this.mn_dos_ifi.Click += new System.EventHandler(this.mn_dos_ifi_Click);
             // 
             // ads200
             // 

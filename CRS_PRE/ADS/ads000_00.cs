@@ -134,8 +134,8 @@ namespace CRS_PRE
                     }
 
                     // Guarda datos en la aplicacion
-                    string msn_err2 = ObjUsuario.Login(nom_bda, ide_usr, pas_usr);
-                    if (ObjUsuario.Login(nom_bda, ide_usr, pas_usr) == "OK") {                         
+                    string msn_err2 = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
+                    if (o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr) == "OK") {                         
                         Program.gl_usr_usr = ide_usr;
                         Program.gl_ide_uni = ide_uni;
                     }
