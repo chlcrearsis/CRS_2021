@@ -13,6 +13,7 @@ namespace CRS_PRE
         public static string gl_pas_sql = "crssql7*";
 
         // VARIABLE GLOBAL DATOS DEL USUARIO LOGUEADO
+        public static string gl_ide_uni = "";
         public static string gl_usr_usr = "";
         public static string gl_cnx_str = "";
         public static string gl_bdo_usr = "";

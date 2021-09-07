@@ -22,6 +22,6 @@ ads023 = Tipo de cambio Bs/Ufv		 (Pendiente)
 ads024 = Bitacora inicio de sesion   (pendiente)				EJR
 ads025 = Bitacora de operaciones	 (pendiente)				EJR
 ads026 = Bitacora de documentos		 (pendiente)				EJR
-ads027 = Licencias					 (pendiente)				EJR
+ads027 = Licencias					            				EJR
 
 

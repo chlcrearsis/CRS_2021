@@ -19,17 +19,11 @@ namespace CRS_DAT
         public string va_ide_usr = Settings.Default.va_ide_usr;  // ID Usuario
         public string va_pas_usr = Settings.Default.va_pas_usr;  // Contraseña Usuario
 
-
-
-
-
         SqlConnection va_cxn_sql = new SqlConnection();
         SqlCommand va_sql_cmd = new SqlCommand();     //Instancia el Objeto de Comando de SQL
         string Cadena;
-       
 
-
-        public void Login(string ag_ser_bda , string ag_ide_usr , string ag_pas_usr )
+        public void Login(string va_ide_uni, string ag_ser_bda , string ag_ide_usr , string ag_pas_usr )
         {
 
             int ser_bda = 0;
@@ -49,6 +43,7 @@ namespace CRS_DAT
             va_nom_bda = ag_ser_bda.Substring(ins_bda + 1, nom_bda - ins_bda - 1);
 
             //Graba los argumentos de conexion en la Configuración
+            Settings.Default.va_ide_uni = va_ide_uni;
             Settings.Default.va_ser_bda = va_ser_bda;
             Settings.Default.va_ins_bda = va_ins_bda;
             Settings.Default.va_nom_bda = va_nom_bda;

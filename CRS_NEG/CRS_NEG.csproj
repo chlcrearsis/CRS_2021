@@ -49,6 +49,7 @@
     <Compile Include="ADS\ads002.cs" />
     <Compile Include="ADS\ads005.cs" />
     <Compile Include="ADS\ads004.cs" />
+    <Compile Include="ADS\ads024.cs" />
     <Compile Include="ADS\ads009.cs" />
     <Compile Include="ADS\ads008.cs" />
     <Compile Include="ADS\ads019.cs" />

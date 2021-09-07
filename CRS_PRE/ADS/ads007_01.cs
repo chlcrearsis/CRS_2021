@@ -521,12 +521,14 @@ namespace CRS_PRE
         }
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.Cancel;
+            cl_glo_frm.Cerrar(this);
         }
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-          
+            this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);
         }
 
      

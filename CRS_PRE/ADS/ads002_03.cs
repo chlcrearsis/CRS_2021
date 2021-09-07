@@ -69,6 +69,13 @@ namespace CRS_PRE
                 return "EL Aplicacion No se encuentra registrado";
             }
 
+            if ((tb_ide_apl.Text.ToString().CompareTo("ads200") == 0) ||
+                (tb_ide_apl.Text.ToString().CompareTo("inv200") == 0) ||
+                (tb_ide_apl.Text.ToString().CompareTo("cmr200") == 0) ||
+                (tb_ide_apl.Text.ToString().CompareTo("res200") == 0)) {
+                return "No se puede modificar esta Aplicación, es indespensable para el sistema";
+            }
+
             return "";
 
         }

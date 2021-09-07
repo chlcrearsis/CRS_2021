@@ -98,7 +98,6 @@
             // tb_ide_apl
             // 
             this.tb_ide_apl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_apl.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tb_ide_apl.Location = new System.Drawing.Point(70, 36);
             this.tb_ide_apl.MaxLength = 10;
             this.tb_ide_apl.Name = "tb_ide_apl";

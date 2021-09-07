@@ -21,12 +21,11 @@ namespace CRS_NEG
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
 
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
+        public string va_ser_bda;
+        public string va_ins_bda;
+        public string va_nom_bda;
+        public string va_ide_usr;
+        public string va_pas_usr;
 
         string cadena = "";
 
@@ -54,16 +53,12 @@ namespace CRS_NEG
             cadena = " UPDATE ads002 SET va_nom_apl = '" + ar_nom_apl + "' " +
                     " WHERE va_ide_apl = '" + ar_ide_apl + "' AND va_ide_mod = " + ar_ide_mod;
             ob_con_ecA.fe_exe_sql(cadena);
-        }
+        }        
 
         public void Fe_hab_ili(int ar_ide_mod, string ar_ide_apl)
         {
-
             cadena = " ads002_04a_p01 " + ar_ide_mod + ", '" + ar_ide_apl + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
-
-
-           
+            ob_con_ecA.fe_exe_sql(cadena);           
         }
         public void Fe_des_hab(int ar_ide_mod, string ar_ide_apl)
         {
@@ -81,10 +76,11 @@ namespace CRS_NEG
 
         public DataTable Fe_con_apl( string ar_ide_apl)
         {
-            cadena = " ads002_05a_p01 '" + ar_ide_apl + "' ";
+            cadena = " ads002_05a_p01 '" + ar_ide_apl + "'";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
-       
+
+
         public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado )
         {
             cadena = " SELECT * FROM ads002 ";
@@ -98,7 +94,6 @@ namespace CRS_NEG
 
             if (ar_est_ado != "T")
                 cadena += " AND va_est_ado ='" + ar_est_ado + "'";
-
            
             return ob_con_ecA.fe_exe_sql(cadena);
         }

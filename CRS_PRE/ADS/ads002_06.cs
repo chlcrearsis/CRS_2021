@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class ads002_04 : Form
+    public partial class ads002_06 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -24,7 +17,7 @@ namespace CRS_PRE
 
         DataTable tabla = new DataTable();
 
-        public ads002_04()
+        public ads002_06()
         {
             InitializeComponent();
         }
@@ -44,9 +37,6 @@ namespace CRS_PRE
                 tb_est_ado.Text = "Deshabilitado";
         }
 
-
-
-
         protected string Fi_val_dat()
         {
 
@@ -59,17 +49,21 @@ namespace CRS_PRE
 
             tabla = new DataTable();
             tabla = o_ads002.Fe_con_apl(tb_ide_apl.Text);
-            if (tabla.Rows.Count == 0)
-            {
+            if (tabla.Rows.Count == 0){
                 return "la Aplicacion No se encuentra registrada";
             }
 
-            if ((tb_ide_apl.Text.ToString().CompareTo("ads200") == 0) ||
-                (tb_ide_apl.Text.ToString().CompareTo("inv200") == 0) ||
-                (tb_ide_apl.Text.ToString().CompareTo("cmr200") == 0) ||
-                (tb_ide_apl.Text.ToString().CompareTo("res200") == 0)) {
+            if (tb_est_ado.Text == "Habilitado") 
+            {
+                return "No se puede eliminar, la aplicación se encuentra Habilitada";
+            }
+
+            if ((tb_ide_apl.Text.CompareTo("ads200") == 0) ||
+                (tb_ide_apl.Text.CompareTo("inv200") == 0) ||
+                (tb_ide_apl.Text.CompareTo("cmr200") == 0) ||
+                (tb_ide_apl.Text.CompareTo("res200") == 0)) {
                 if (tb_est_ado.Text == "Habilitado"){ 
-                    return "No se puede Deshabilitar esta Aplicación, es indespensable para el sistema";
+                    return "No se puede Eliminar esta Aplicación, es indespensable para el sistema";
                 }
             }
 
@@ -86,8 +80,6 @@ namespace CRS_PRE
         {
             try
             {
-
-
                 string msg_val = "";
                 DialogResult msg_res;
 
@@ -98,25 +90,14 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-
-                if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar la Aplicacion?", "Habilita/Deshabilita Aplicacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar la Aplicacion?", "Habilita/Deshabilita Aplicacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
+                msg_res = MessageBox.Show("Esta seguro de eliminar la informacion?", "Elimina Aplicacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
-                    if (tb_est_ado.Text == "Habilitado")
-                        o_ads002.Fe_des_hab(int.Parse(tb_ide_mod.Text),tb_ide_apl.Text);
-                    else
-                        o_ads002.Fe_hab_ili(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text);
+                    //Elimina aplicación
+                    o_ads002.Fe_eli_apl(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text);
+                    MessageBox.Show("Los datos se grabaron correctamente", "Elimina Aplicacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                    MessageBox.Show("Los datos se grabaron correctamente", "Habilita/Deshabilita Aplicacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //Actualiza ventana buscar
                     frm_pad.Fe_act_frm(tb_ide_apl.Text);
-
                     cl_glo_frm.Cerrar(this);
                 }
             }

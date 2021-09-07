@@ -76,8 +76,9 @@ namespace CRS_NEG
             bool resul = false;
 
             cadena = " SELECT * FROM ads008 ";
-            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_ide_tab = '" + ag_ide_tab + "'" +
-                " AND va_ide_uno = '" + ag_ide_uno + "'";
+            cadena += " WHERE va_ide_usr = '" + ag_ide_usr + "'";
+            cadena += "   AND va_ide_tab = '" + ag_ide_tab + "'";
+            cadena += "   AND va_ide_uno = '" + ag_ide_uno + "'";
 
             DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
 

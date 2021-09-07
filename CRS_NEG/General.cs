@@ -27,6 +27,15 @@ namespace CRS_NEG
         }
 
         /// <summary>
+        /// Genera un Codigo Unico de 32 dígitos
+        /// </summary>
+        /// <returns></returns>
+        public string generateID()
+        {
+            return Guid.NewGuid().ToString("N");
+        }
+
+        /// <summary>
         /// Funcion que me general la clave para activar el sistema
         /// </summary>
         public string Fu_obt_pin() {

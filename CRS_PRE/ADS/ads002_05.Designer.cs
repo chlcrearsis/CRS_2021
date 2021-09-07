@@ -110,7 +110,6 @@
             // tb_ide_apl
             // 
             this.tb_ide_apl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_apl.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tb_ide_apl.Location = new System.Drawing.Point(70, 36);
             this.tb_ide_apl.MaxLength = 3;
             this.tb_ide_apl.Name = "tb_ide_apl";
@@ -167,7 +166,7 @@
             this.MinimizeBox = false;
             this.Name = "ads002_05";
             this.Tag = "Edita aplicacion";
-            this.Text = "Habilita/Deshabilita Talonario";
+            this.Text = "Consulta Talonario";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
