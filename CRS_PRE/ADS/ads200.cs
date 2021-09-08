@@ -187,6 +187,18 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm);
         }
 
+        private void mn_tip_atr_Click(object sender, EventArgs e)
+        {
+            o_frm = new adp003_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_def_atr_Click(object sender, EventArgs e)
+        {
+            o_frm = new adp004_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
         private void mn_pla_vta_Click(object sender, EventArgs e)
         {
             o_frm = new cmr004_01();
@@ -224,5 +236,6 @@ namespace CRS_PRE
             o_frm = new ads024_R01p();
             cl_glo_frm.abrir(this, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
         }
+        
     }
 }

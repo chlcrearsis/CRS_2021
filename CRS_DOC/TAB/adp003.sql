@@ -13,8 +13,21 @@ va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de atributo
 --** Atributos     
 va_nom_tip      VARCHAR(30)     NOT NULL,       --** Nombre
 va_atr_def      INT						,       --** ID. atributo por defecto (adp004)
-va_est_ado      CHAR(01)				        --** Estado
+va_est_ado      CHAR(01)				        --** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp003 PRIMARY KEY(va_ide_tip)
 )
 GO
+
+
+--** Inserta los tipo de atributos iniciales
+INSERT INTO adp003 VALUES (1, 'Ciudad', 1, 'H')
+INSERT INTO adp003 VALUES (2, 'Zona', 1, 'H')
+INSERT INTO adp003 VALUES (3, 'Sector', 2, 'H')
+INSERT INTO adp003 VALUES (4, 'Canal', 99, 'H')
+INSERT INTO adp003 VALUES (5, 'Calificación', 1, 'H')
+INSERT INTO adp003 VALUES (6, 'Profesión', 99, 'H')
+INSERT INTO adp003 VALUES (10, 'Vendedor', 1, 'H')
+INSERT INTO adp003 VALUES (11, 'Cobrador', 1, 'H')
+INSERT INTO adp003 VALUES (12, 'Distribuidor', 1, 'H')
+INSERT INTO adp003 VALUES (13, 'Despacho', 1, 'H')

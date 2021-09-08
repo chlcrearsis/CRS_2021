@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADP\adp004.cs" />
+    <Compile Include="ADP\adp003.cs" />
     <Compile Include="ADS\ads006.cs" />
     <Compile Include="ADS\ads002.cs" />
     <Compile Include="ADS\ads005.cs" />

@@ -40,7 +40,7 @@ namespace CRS_PRE
             int contador = 1;
 
             // Lea el archivo y lo muestra línea por línea.              
-            StreamReader archivo = File.OpenText("C:\\CREARSIS\\CREARSISbd.txt");
+            StreamReader archivo = File.OpenText("C:\\crearsis\\crearsisbd.txt");
             linea = archivo.ReadLine();
 
             while (linea != null)
