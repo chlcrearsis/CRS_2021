@@ -229,13 +229,22 @@ namespace CRS_PRE
         {
             o_frm = new ads002_01();
             cl_glo_frm.abrir(this, o_frm);
+        }      
+
+        private void mn_bit_ope_Click(object sender, EventArgs e)
+        {
+
         }
 
-        private void mn_bit_ses_Click(object sender, EventArgs e)
+        private void mn_bit_doc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mn_reg_ini_Click(object sender, EventArgs e)
         {
             o_frm = new ads024_R01p();
             cl_glo_frm.abrir(this, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
         }
-        
     }
 }
