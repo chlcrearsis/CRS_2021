@@ -46,6 +46,6 @@ va_iva_uUS		DECIMAL(15,5)	NOT NULL,	--IVA Unitario en Us
 va_itr_uBS		DECIMAL(15,5)	NOT NULL,	--ITR Unitario en Bs
 va_itr_uUS		DECIMAL(15,5)	NOT NULL,	--ITR Unitario en Us
 
-CONSTRAINT pk1_res002 PRIMARY KEY(va_doc_vta,va_nro_tal,va_nro_vta,va_itm_vta)
+CONSTRAINT pk1_res002 PRIMARY KEY(va_doc_vta,va_nro_tal,va_nro_vta,va_itm_vta,va_ges_vta)
 )
 

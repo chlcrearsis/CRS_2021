@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRS_NEG;
 using CRS_PRE;
+using CRS_PRE.RES;
+//using CRS_PRE.RES;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class res001_05w : Form
     {
@@ -34,6 +36,9 @@ namespace CRS_PRE.CMR
         string va_tel_emp = "";
         string va_cla_wif = "";
 
+        ReportDocument rd_con_vta = new ReportDocument();
+
+
         int va_nro_pag;
         public res001_05w()
         {
@@ -47,6 +52,8 @@ namespace CRS_PRE.CMR
 
         public void Fe_pob_rep()
         {
+
+
             // Hacer grande la pantalla
             this.Dock = DockStyle.Fill;
 
@@ -71,16 +78,28 @@ namespace CRS_PRE.CMR
             va_cla_wif = tab_ads013.Rows[0]["va_glo_car"].ToString();
 
 
+            //Si es Factura
+            if (frm_dat.Rows[0]["va_tip_vta"].ToString() == "1")
+                rd_con_vta = res001_05c_p01;
+            else
+                rd_con_vta = res001_05a_p01;
+
+
+            cr_rep_ort.ReportSource = rd_con_vta;
+
             //Logueo manual el ReportDocument asociado al crystal report
-            res001_05a_p01.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            rd_con_vta.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+
+
+
             // Paso los datos obtenidos del procedimiento en la anterior ventana
-            res001_05a_p01.SetDataSource(frm_dat);
+            rd_con_vta.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            res001_05a_p01.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
-            res001_05a_p01.SetParameterValue("vc_nom_emp", va_nom_emp);
-            res001_05a_p01.SetParameterValue("vc_dir_emp", va_dir_emp);
-            res001_05a_p01.SetParameterValue("vc_tel_emp", va_tel_emp);
-            res001_05a_p01.SetParameterValue("vc_cla_wif", va_cla_wif);
+            rd_con_vta.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
+            rd_con_vta.SetParameterValue("vc_nom_emp", va_nom_emp);
+            rd_con_vta.SetParameterValue("vc_dir_emp", va_dir_emp);
+            rd_con_vta.SetParameterValue("vc_tel_emp", va_tel_emp);
+            rd_con_vta.SetParameterValue("vc_cla_wif", va_cla_wif);
 
             // Obtiene nro de paginas
             va_nro_pag = cr_rep_ort.GetCurrentPageNumber();
@@ -88,17 +107,17 @@ namespace CRS_PRE.CMR
 
         public void Fe_imp_doc(string cod_doc, int nro_tal,string nom_imp,int nro_cop)
         {
-            
+
             //** Obtiene numero de compias a imprimir
             //tab_ads004 = o_ads004.Fe_con_tal(cod_doc, nro_tal);
             //nro_cop = int.Parse(tab_ads004.Rows[0]["va_nro_cop"].ToString());
 
-            res001_05a_p01.PrintOptions.PrinterName = nom_imp;
-            res001_05a_p01.PrintToPrinter(1, false, 0, 0);
+            rd_con_vta.PrintOptions.PrinterName = nom_imp;
+            rd_con_vta.PrintToPrinter(1, false, 0, 0);
 
             for (int i = 0; i < nro_cop; i++)
             {
-                res001_05a_p01.PrintToPrinter(1, false, 0, 0);
+                rd_con_vta.PrintToPrinter(1, false, 0, 0);
             }
         }
 

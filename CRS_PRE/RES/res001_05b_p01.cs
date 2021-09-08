@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRS_PRE.CMR {
+namespace CRS_PRE.RES {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;

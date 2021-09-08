@@ -94,6 +94,8 @@ namespace CRS_PRE.CMR
                     case "VENTA" :
                         if (cod_doc.Substring(0,2) == "VR") // Restaurant
                         {
+
+                            //cod_plv = 1;
                             // Obtiene impresora
                             tab_pla_vta = o_res004.Fe_con_plv(cod_plv.ToString());
                             imp_nom = tab_pla_vta.Rows[0]["va_imp_ntv"].ToString();
@@ -195,6 +197,8 @@ namespace CRS_PRE.CMR
             {
                 //tab_dat = o_res001.Fe_con_vta(ide_doc, ges_doc); // Obtiene datos
                 frm = new res001_05w(); // Instancia ventana
+                tab_dat = o_res001.Fe_con_vta(ide_doc, ges_doc);
+                cl_glo_frm.abrir(this.frm_pad, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, tab_dat);
             }
             if (cod_doc == "VRF") // Factura Restaurant
             {

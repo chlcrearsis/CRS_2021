@@ -43,6 +43,7 @@ namespace CRS_PRE.CMR
             tb_cod_per.Text = "0";
             cb_prm_bus.SelectedIndex = 0;
             cb_est_ado.SelectedIndex = 0;
+            cb_tip_vta.SelectedIndex = 0;
             tb_fec_ini.Value = DateTime.Now;
             tb_fec_fin.Value = DateTime.Now;
 
@@ -83,8 +84,9 @@ namespace CRS_PRE.CMR
 
             string ar_tex_bus = tb_tex_bus.Text;
             int ar_prm_bus = cb_prm_bus.SelectedIndex;
+            int ar_tip_vta = cb_tip_vta.SelectedIndex;
 
-            tabla = o_res001.Fe_bus_car(int.Parse(tb_cod_per.Text), tb_cod_bod.Text, tb_fec_ini.Value, tb_fec_fin.Value, ar_tex_bus, ar_prm_bus, est_bus);
+            tabla = o_res001.Fe_bus_car(int.Parse(tb_cod_per.Text), tb_cod_bod.Text, tb_fec_ini.Value, tb_fec_fin.Value, ar_tex_bus, ar_prm_bus, ar_tip_vta, est_bus);
 
             if (tabla.Rows.Count > 0)
             {

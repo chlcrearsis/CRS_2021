@@ -16,14 +16,14 @@ namespace CRS_PRE.RES {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class res001_05a_p01 : ReportClass {
+    public class res001_05c_p01 : ReportClass {
         
-        public res001_05a_p01() {
+        public res001_05c_p01() {
         }
         
         public override string ResourceName {
             get {
-                return "res001_05a_p01.rpt";
+                return "res001_05c_p01.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace CRS_PRE.RES {
         
         public override string FullResourceName {
             get {
-                return "CRS_PRE.RES.res001_05a_p01.rpt";
+                return "CRS_PRE.RES.res001_05c_p01.rpt";
             }
             set {
                 // Do nothing
@@ -58,7 +58,7 @@ namespace CRS_PRE.RES {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Delivery {
+        public CrystalDecisions.CrystalReports.Engine.Section Cliente {
             get {
                 return this.ReportDefinition.Sections[1];
             }
@@ -66,7 +66,7 @@ namespace CRS_PRE.RES {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Cliente {
+        public CrystalDecisions.CrystalReports.Engine.Section Detalle {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace CRS_PRE.RES {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Detalle {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,17 +82,9 @@ namespace CRS_PRE.RES {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[5];
+                return this.ReportDefinition.Sections[4];
             }
         }
         
@@ -154,9 +146,9 @@ namespace CRS_PRE.RES {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class Cachedres001_05a_p01 : Component, ICachedReport {
+    public class Cachedres001_05c_p01 : Component, ICachedReport {
         
-        public Cachedres001_05a_p01() {
+        public Cachedres001_05c_p01() {
         }
         
         [Browsable(false)]
@@ -193,7 +185,7 @@ namespace CRS_PRE.RES {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            res001_05a_p01 rpt = new res001_05a_p01();
+            res001_05c_p01 rpt = new res001_05c_p01();
             rpt.Site = this.Site;
             return rpt;
         }

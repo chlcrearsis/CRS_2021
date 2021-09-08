@@ -121,19 +121,28 @@ namespace CRS_PRE
                     if (Tabla.Rows.Count == 0) {
                         MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-                    } else {
+                    }
+                    else
+                    {
                         string cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
                         string msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
-                        if (cod_err.CompareTo("0") != 0) {
+                        if (cod_err.CompareTo("0") != 0)
+                        {
                             MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
 
                     // Guarda datos en la aplicacion
+                    string msn_err2 = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
                     if (o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr) == "OK") {                         
                         Program.gl_usr_usr = ide_usr;
                         Program.gl_ide_uni = ide_uni;
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR '" + msn_err2 + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
 
                     // Obtiene: (SG-100) -> Contraseña por Defecto

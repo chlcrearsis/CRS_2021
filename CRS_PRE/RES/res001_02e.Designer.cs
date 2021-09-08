@@ -69,7 +69,7 @@
             this.tb_obs_vta.Multiline = true;
             this.tb_obs_vta.Name = "tb_obs_vta";
             this.tb_obs_vta.Size = new System.Drawing.Size(490, 89);
-            this.tb_obs_vta.TabIndex = 8;
+            this.tb_obs_vta.TabIndex = 30;
             // 
             // label3
             // 
@@ -169,7 +169,7 @@
             this.bt_ace_pta.Location = new System.Drawing.Point(250, 13);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(107, 37);
-            this.bt_ace_pta.TabIndex = 10;
+            this.bt_ace_pta.TabIndex = 40;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
@@ -184,7 +184,7 @@
             this.bt_can_cel.Location = new System.Drawing.Point(379, 13);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(107, 37);
-            this.bt_can_cel.TabIndex = 20;
+            this.bt_can_cel.TabIndex = 50;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
@@ -193,33 +193,35 @@
             // 
             this.tb_raz_soc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_raz_soc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_raz_soc.Location = new System.Drawing.Point(141, 9);
+            this.tb_raz_soc.Location = new System.Drawing.Point(12, 40);
             this.tb_raz_soc.MaxLength = 60;
             this.tb_raz_soc.Name = "tb_raz_soc";
-            this.tb_raz_soc.Size = new System.Drawing.Size(372, 26);
+            this.tb_raz_soc.Size = new System.Drawing.Size(501, 26);
             this.tb_raz_soc.TabIndex = 10;
             // 
             // tb_nit_per
             // 
             this.tb_nit_per.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_nit_per.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_nit_per.Location = new System.Drawing.Point(33, 9);
+            this.tb_nit_per.Location = new System.Drawing.Point(108, 9);
             this.tb_nit_per.MaxLength = 10;
             this.tb_nit_per.Name = "tb_nit_per";
-            this.tb_nit_per.Size = new System.Drawing.Size(105, 26);
+            this.tb_nit_per.Size = new System.Drawing.Size(405, 26);
             this.tb_nit_per.TabIndex = 5;
             this.tb_nit_per.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_nit_per.TextChanged += new System.EventHandler(this.tb_nit_per_TextChanged);
+            this.tb_nit_per.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nit_per_KeyPress);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 15);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(9, 12);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 15);
+            this.label5.Size = new System.Drawing.Size(94, 20);
             this.label5.TabIndex = 33;
-            this.label5.Text = "Nit:";
+            this.label5.Text = "Nit cliente:";
             // 
             // res001_02e
             // 

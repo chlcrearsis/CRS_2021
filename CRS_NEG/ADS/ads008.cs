@@ -89,6 +89,25 @@ namespace CRS_NEG
 
             return resul;
         }
+
+        public Boolean Fe_aut_usr(string ag_ide_tab, string ag_ide_uno)
+        {
+            bool resul = false;
+
+            cadena = " SELECT * FROM ads008 ";
+            cadena += " WHERE  va_ide_usr = SYSTEM_USER AND va_ide_tab = '" + ag_ide_tab + "'" +
+                " AND va_ide_uno = '" + ag_ide_uno + "'";
+
+            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
+
+            if (tabla.Rows.Count == 0)
+                resul = false;
+            if (tabla.Rows.Count > 0)
+                resul = true;
+
+            return resul;
+        }
+
         /// <summary>
         /// Consulta si el usuario tiene permiso sobre algo en especifico
         /// </summary>

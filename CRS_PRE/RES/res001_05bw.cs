@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRS_NEG;
 using CRS_PRE;
+using CRS_PRE.RES;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class res001_05bw : Form
     {
