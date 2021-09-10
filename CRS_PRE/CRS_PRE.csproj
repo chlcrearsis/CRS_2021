@@ -95,6 +95,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADP\adp004_07.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_07.Designer.cs">
+      <DependentUpon>adp004_07.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp004_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_06.Designer.cs">
+      <DependentUpon>adp004_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp004_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_05.Designer.cs">
+      <DependentUpon>adp004_05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp004_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_04.Designer.cs">
+      <DependentUpon>adp004_04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp004_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_03.Designer.cs">
+      <DependentUpon>adp004_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp004_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_02.Designer.cs">
+      <DependentUpon>adp004_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp004_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_01.Designer.cs">
+      <DependentUpon>adp004_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp003_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp003_06.Designer.cs">
+      <DependentUpon>adp003_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp003_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp003_05.Designer.cs">
+      <DependentUpon>adp003_05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp003_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp003_04.Designer.cs">
+      <DependentUpon>adp003_04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp003_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp003_03.Designer.cs">
+      <DependentUpon>adp003_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp003_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp003_02.Designer.cs">
+      <DependentUpon>adp003_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp003_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp003_01.Designer.cs">
+      <DependentUpon>adp003_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp003_R01p.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp003_R01p.Designer.cs">
+      <DependentUpon>adp003_R01p.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp004_R01p.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp004_R01p.Designer.cs">
+      <DependentUpon>adp004_R01p.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads000_00.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1598,6 +1688,51 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ADP\adp004_07.resx">
+      <DependentUpon>adp004_07.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp004_06.resx">
+      <DependentUpon>adp004_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp004_05.resx">
+      <DependentUpon>adp004_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp004_04.resx">
+      <DependentUpon>adp004_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp004_03.resx">
+      <DependentUpon>adp004_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp004_02.resx">
+      <DependentUpon>adp004_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp004_01.resx">
+      <DependentUpon>adp004_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp003_06.resx">
+      <DependentUpon>adp003_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp003_05.resx">
+      <DependentUpon>adp003_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp003_04.resx">
+      <DependentUpon>adp003_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp003_03.resx">
+      <DependentUpon>adp003_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp003_02.resx">
+      <DependentUpon>adp003_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp003_01.resx">
+      <DependentUpon>adp003_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp003_R01p.resx">
+      <DependentUpon>adp003_R01p.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp004_R01p.resx">
+      <DependentUpon>adp004_R01p.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_00.resx">
       <DependentUpon>ads000_00.cs</DependentUpon>
     </EmbeddedResource>
