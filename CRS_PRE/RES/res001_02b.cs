@@ -712,6 +712,14 @@ namespace CRS_PRE.CMR
                             //Obtiene codigo de control
                             va_cod_ctr = cl_glo_bal.FE_obt_ccf(va_nro_aut.ToString(),va_nro_fac.ToString(), nit_per.ToString(), tb_fec_vta.Value , pre_tot,va_lla_ve);
 
+                            //Genera QR factura
+                            string va_dat_cqr = "";
+                            va_dat_cqr = Program.gl_nit_emp.ToString() + "|" + va_nro_fac + "|" + va_nro_aut.ToString() + "|" + tb_fec_vta.Value + "|" + va_tot_bru.ToString() + "|" +
+                                         pre_tot.ToString() + "|" + va_cod_ctr + "|" + nit_per + "|" + "0|0|0|" + "0"; // des_cuB;
+
+                            // 'pasa los datos para el qr a la imagen QR
+                            pb_img_qrf.Text = va_dat_cqr;
+
                             tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, va_nro_fac, // <- Nro de factura
                                  int.Parse(tb_cod_bod.Text), cod_per.ToString(), nit_per.ToString(),
                                  raz_soc, mon_ope, tb_fec_vta.Value, va_for_pag, int.Parse(tb_cod_ven.Text),
@@ -719,8 +727,15 @@ namespace CRS_PRE.CMR
                                  vta_par, int.Parse(lb_cod_del.Text), "", pre_tot, cam_bio,
                                  va_nro_aut, va_cod_ctr); // <- Nro de autorizacion y codigo de control
 
-                            
-                            // Actualiza codigo de control   
+                            //'//////////////////////////////////////////
+                            //' CONVIERTE LA IMAGEN DEL QR EN BYTE
+                            //'Convierte la imagen a byte para ser guardada
+                            byte[] va_arc_cqr;
+                            va_arc_cqr = cl_glo_bal.fg_img_byt(pb_img_qrf.Image);
+
+                            //Actualiza codigo QR
+                            o_res001.fu_edi_dbf(tb_res001.Rows[0]["va_ide_vta"].ToString(), tb_fec_vta.Value,  va_arc_cqr);
+
 
                             break;
                         case 2: // GRABA NOTA DE VENTA

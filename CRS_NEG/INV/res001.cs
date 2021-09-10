@@ -113,6 +113,25 @@ namespace CRS_NEG
         }
 
 
+        public void fu_edi_dbf(string ide_vta, DateTime fec_fac, byte[] img_qrf)
+        {
+            try
+            {
+                ob_con_ecA.fu_exe_sql_img("UPDATE ctb008 SET va_img_qrf = @va_img_qrf " +
+                "WHERE va_ide_fac = '" + ide_vta + "'  and va_fec_fac= '" + fec_fac.ToShortDateString() + "'", "@va_img_qrf", img_qrf);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
+
         private int Fi_obt_nvt(string ar_doc_vta, int ar_nro_tal, int ar_ges_vta)
         {
             int nro_vta = 0;
@@ -157,6 +176,12 @@ namespace CRS_NEG
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        /// <summary>
+        /// CONSULTA NOTA DE VENTA
+        /// </summary>
+        /// <param name="ar_ide_vta"></param>
+        /// <param name="ar_ges_vta"></param>
+        /// <returns></returns>
         public DataTable Fe_con_vta( string ar_ide_vta, int ar_ges_vta)
         {
             if (ar_ges_vta == 0)
@@ -168,7 +193,41 @@ namespace CRS_NEG
         }
 
 
-         /// <summary>
+        ///// <summary>
+        ///// CONSULTA ENCABEZADO DE VENTA
+        ///// </summary>
+        ///// <param name="ar_ide_vta"></param>
+        ///// <param name="ar_ges_vta"></param>
+        ///// <returns></returns>
+        //public DataTable Fe_enc_vta(string ar_ide_vta, int ar_ges_vta)
+        //{
+            
+        //    cadena = "SELECT * FROM res001 " +
+        //        "WHERE va_ide_vta = '" + ar_ide_vta + "' AND" +
+        //        " va_ges_vta = " + ar_ges_vta;
+
+        //    return ob_con_ecA.fe_exe_sql(cadena);
+        //}
+
+
+
+        /// <summary>
+        /// CONSULTA FACTURA
+        /// </summary>
+        /// <param name="ar_ide_vta"></param>
+        /// <param name="ar_ges_vta"></param>
+        /// <returns></returns>
+        public DataTable Fe_con_fac(string ar_ide_vta, int ar_ges_vta)
+        {
+            if (ar_ges_vta == 0)
+                ar_ges_vta = 2020;
+
+            cadena = "res001_05c_p01 '" + ar_ide_vta + "'," + ar_ges_vta;
+
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        /// <summary>
         /// Consulta aviso
         /// </summary>
         /// <param name="ar_ide_vta">ID venta</param>

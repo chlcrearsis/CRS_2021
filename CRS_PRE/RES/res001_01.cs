@@ -300,10 +300,10 @@ namespace CRS_PRE.CMR
             }
 
 
-            tab_dat = o_res001.Fe_con_vta(tb_sel_tal.Text, int.Parse(tb_sel_ano.Text));
+            tab_dat = o_res001.Fe_con_exi_vta(tb_sel_tal.Text, int.Parse(tb_sel_ano.Text));
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("El documento ya no se encuentra registrada en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El documento NO se encuentra registrada en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_tal.Focus();
                 return false;
             }
@@ -392,12 +392,22 @@ namespace CRS_PRE.CMR
 
         private void Mn_con_vta_Click(object sender, EventArgs e)
         {
+            Form frm = new Form();
             // Verifica concurrencia de datos para consultar
             if (fi_ver_con() == false)
                 return;
 
-            res001_05w frm = new res001_05w();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, tab_dat);
+            if(tab_dat.Rows[0]["va_tip_vta"].ToString() == "1") // Factura
+            {
+                frm = new res001_05cw();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, tab_dat);
+            }
+            else
+            {                                                   // Nota de Venta
+                frm = new res001_05w();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, tab_dat);
+            }
+            
 
         }
 

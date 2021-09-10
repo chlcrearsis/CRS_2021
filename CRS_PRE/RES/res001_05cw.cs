@@ -16,20 +16,19 @@ using CrystalDecisions.Shared;
 
 namespace CRS_PRE
 {
-    public partial class res001_05w : Form
+    public partial class res001_05cw : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
 
         //Instancias
-        res001 o_res001 = new res001();
         ads016 o_ads016 = new ads016();
         ads013 o_ads013 = new ads013();
         ads004 o_ads004 = new ads004();
+        res001 o_res001 = new res001();
 
         DataTable tabla = new DataTable();
-        DataTable tab_not_vta = new DataTable(); 
         DataTable tab_ads013 = new DataTable();
         DataTable tab_ads004 = new DataTable();
 
@@ -45,7 +44,7 @@ namespace CRS_PRE
 
 
         int va_nro_pag;
-        public res001_05w()
+        public res001_05cw()
         {
             InitializeComponent();
         }
@@ -61,11 +60,7 @@ namespace CRS_PRE
             va_ges_vta = int.Parse(frm_dat.Rows[0]["va_ges_vta"].ToString());
 
             // Obtiene datos de la factura
-            tabla = o_res001.Fe_con_vta(va_ide_vta, va_ges_vta);
-
-
-            // ** OBTIENE DATOS DE LA NOTA DE VENTA **\\
-            tab_not_vta = o_res001.Fe_con_vta(va_ide_vta, va_ges_vta);
+            tabla = o_res001.Fe_con_fac(va_ide_vta, va_ges_vta);
 
             // Hacer grande la pantalla
             this.Dock = DockStyle.Fill;
@@ -89,18 +84,19 @@ namespace CRS_PRE
             tab_ads013 = new DataTable();
             tab_ads013 = o_ads013.Fe_obt_glo(1, 11);
             va_cla_wif = tab_ads013.Rows[0]["va_glo_car"].ToString();
-           
+
+
             // ** SELECCION DE FORMATO DE IMPRESION DEL DOCUMENTO NOTA DE VENTA ** \\
             switch (int.Parse(tabla.Rows[0]["va_for_mat"].ToString()))
             {
                 case 0: // Nota de venta en rollo
-                    rd_con_vta = res001_05a_p01;
+                    rd_con_vta = res001_05c_p01;
                     break;
                 case 1:
-                    rd_con_vta = res001_05a_p01;
+                    rd_con_vta = res001_05c_p01;
                     break;
                 default:
-                    rd_con_vta = res001_05a_p02;
+                    rd_con_vta = res001_05c_p01;
                     break;
             }
 
@@ -109,8 +105,6 @@ namespace CRS_PRE
 
             //Logueo manual el ReportDocument asociado al crystal report
             rd_con_vta.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
-
-
 
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             rd_con_vta.SetDataSource(tabla);

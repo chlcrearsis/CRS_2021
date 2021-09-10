@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,39 @@ namespace CRS_PRE
                 e.Handled = true;
             }
         }
+
+
+
+
+
+        #region -> CONVERTIR DE IMAGEN A BYTE Y VICEVERSA
+        /// <summary>
+        /// Convierte una imagen en byte
+        /// </summary>
+        /// <param name="imageIn">Imagen a converti</param>
+        /// <returns></returns>
+        public static byte[] fg_img_byt(Image imageIn)
+        {
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            return ms.ToArray();
+        }
+        /// <summary>
+        /// Recupera Array de byte de una imagen y la convierte en imagen
+        /// </summary>
+        /// <param name="byteArrayIn">Array de byte a convertir en image</param>
+        /// <returns></returns>
+        public static Image fg_byt_img(byte[] byteArrayIn)
+        {
+            System.IO.MemoryStream ms = new System.IO.MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+
+        #endregion
+
+
+
 
 
         // ** CODIGO DE CONTROL 

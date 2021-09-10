@@ -3,7 +3,7 @@ using CRS_PRE;
 
 namespace CRS_PRE
 {
-    partial class res001_05w
+    partial class res001_05cw
     {
         /// <summary>
         /// Required designer variable.
@@ -52,8 +52,7 @@ namespace CRS_PRE
             this.mn_zoo_025 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.res001_05a_p01 = new CRS_PRE.RES.res001_05a_p01();
-            this.res001_05a_p02 = new CRS_PRE.RES.res001_05a_p02();
+            this.res001_05c_p01 = new CRS_PRE.RES.res001_05c_p01();
             this.m_frm_hja.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -247,7 +246,7 @@ namespace CRS_PRE
             this.cr_rep_ort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cr_rep_ort.Location = new System.Drawing.Point(0, 0);
             this.cr_rep_ort.Name = "cr_rep_ort";
-            this.cr_rep_ort.ReportSource = this.res001_05a_p02;
+            this.cr_rep_ort.ReportSource = this.res001_05c_p01;
             this.cr_rep_ort.ShowCloseButton = false;
             this.cr_rep_ort.ShowCopyButton = false;
             this.cr_rep_ort.ShowGroupTreeButton = false;
@@ -258,7 +257,7 @@ namespace CRS_PRE
             this.cr_rep_ort.TabIndex = 0;
             this.cr_rep_ort.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
-            // res001_05w
+            // res001_05cw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -268,7 +267,7 @@ namespace CRS_PRE
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "res001_05w";
+            this.Name = "res001_05cw";
             this.Text = "Periodos de una gestión";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
@@ -301,7 +300,6 @@ namespace CRS_PRE
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripTextBox mn_nro_pag;
-        private res001_05a_p01 res001_05a_p01;
-        private res001_05a_p02 res001_05a_p02;
+        private res001_05c_p01 res001_05c_p01;
     }
 }
