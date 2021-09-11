@@ -24,9 +24,10 @@ namespace CRS_PRE
 
 
         DataTable tabla = new DataTable();
+        DataTable tab_cmr013 = new DataTable();
 
         adp002 o_adp002 = new adp002();
-
+        cmr013 o_cmr013 = new cmr013();
 
         public res001_02e()
         {
@@ -37,7 +38,11 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             // Obtiene Monto Total a cancelar
-            tb_raz_soc.Text = frm_pad.tb_raz_soc.Text;
+            if(frm_pad.raz_soc != "")
+                tb_raz_soc.Text = frm_pad.raz_soc;
+            else
+                tb_raz_soc.Text = frm_pad.tb_raz_soc.Text;
+
             tb_nit_per.Text = frm_pad.nit_per.ToString();
             tb_pre_tot.Text = frm_pad.pre_tot.ToString();
             tb_obs_vta.Text = frm_pad.obs_ope;
@@ -66,6 +71,10 @@ namespace CRS_PRE
                 tb_raz_soc.Focus();
                 tb_raz_soc.SelectAll();
                 tb_raz_soc.HideSelection = true;
+
+
+                Fi_com_ple();
+
             }
 
         }
@@ -155,5 +164,56 @@ namespace CRS_PRE
                 this.DialogResult = DialogResult.OK;
 
         }
+
+        private void tb_nit_per_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotDecimal(e, tb_mto_can.Text);
+        }
+
+        private void tb_nit_per_TextChanged(object sender, EventArgs e)
+        {
+
+            string[] aux_tex;
+
+            if (tb_nit_per.Text == "")
+                return;
+
+            aux_tex = tb_nit_per.Text.Split('°');
+            //int bus_nit =1; // 1 = buscar por nit ; 2 = buscar por razon social
+
+            if (aux_tex.Length > 1)
+            {
+                tb_nit_per.Text = aux_tex[0];
+                tb_raz_soc.Text = aux_tex[1];
+            }
+        }
+
+        /// <summary>
+        ///  Prepara autocompletado del Nit
+        /// </summary>
+        private void Fi_com_ple()
+        {
+            tb_nit_per.AutoCompleteCustomSource = Fi_car_nit();
+            tb_nit_per.AutoCompleteMode = AutoCompleteMode.Suggest;
+            tb_nit_per.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
+        /// <summary>
+        /// Carga productos al autocompletado
+        /// </summary>
+        AutoCompleteStringCollection Fi_car_nit()
+        {
+            // Define instancia autocompletado
+            AutoCompleteStringCollection ac_nit_per = new AutoCompleteStringCollection();
+            
+            // Obtiene todo el registro de Nit
+            tab_cmr013 = o_cmr013.Fe_bus_car("", 0);
+
+            for (int i = 0; i < tab_cmr013.Rows.Count; i++)
+            {
+                ac_nit_per.Add(tab_cmr013.Rows[i]["va_nit_per"].ToString() + "°" + tab_cmr013.Rows[i]["va_raz_soc"].ToString());
+            }
+            return ac_nit_per;
+        }
+
     }
 }

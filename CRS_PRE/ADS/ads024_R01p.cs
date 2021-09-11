@@ -66,7 +66,7 @@ namespace CRS_PRE
 
                 return "OK";
             }
-            catch (Exception e) {
+            catch (Exception) {
                 return "Los datos proporcionados NO pasaron el proceso de validación.";
             }            
         }

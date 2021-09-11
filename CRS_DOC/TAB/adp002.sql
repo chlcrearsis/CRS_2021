@@ -1,7 +1,7 @@
 /*--**********************************************
 ARCHIVO:	adp002.sql	
 TABLA:		Tabla de "Persona"
-AUTOR:		CREARSIS 3.0.0 (LEO)
+AUTOR:		CREARSIS 3.0.0
 FECHA:		03-01-2018
 */--**********************************************
 	 

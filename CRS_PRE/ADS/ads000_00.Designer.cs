@@ -77,7 +77,7 @@
             this.cb_nom_bda.FormattingEnabled = true;
             this.cb_nom_bda.Location = new System.Drawing.Point(259, 178);
             this.cb_nom_bda.Name = "cb_nom_bda";
-            this.cb_nom_bda.Size = new System.Drawing.Size(251, 26);
+            this.cb_nom_bda.Size = new System.Drawing.Size(251, 8);
             this.cb_nom_bda.TabIndex = 12;
             this.cb_nom_bda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_usr_KeyPress);
             // 
@@ -159,7 +159,7 @@
             this.lb_ver_sis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lb_ver_sis.Location = new System.Drawing.Point(218, 50);
             this.lb_ver_sis.Name = "lb_ver_sis";
-            this.lb_ver_sis.Size = new System.Drawing.Size(80, 16);
+            this.lb_ver_sis.Size = new System.Drawing.Size(0, 16);
             this.lb_ver_sis.TabIndex = 3;
             this.lb_ver_sis.Text = "Versión 1.0.1";
             // 

@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.lb_usr_ini = new System.Windows.Forms.Label();
-            this.tb_usr_ini = new System.Windows.Forms.TextBox();
-            this.bt_usr_ini = new System.Windows.Forms.Button();
+            this.lb_nus_fin = new System.Windows.Forms.Label();
+            this.lb_nus_ini = new System.Windows.Forms.Label();
+            this.gb_ord_por = new System.Windows.Forms.GroupBox();
+            this.rb_ord_usr = new System.Windows.Forms.RadioButton();
+            this.rb_ord_fec = new System.Windows.Forms.RadioButton();
+            this.lb_fec_all = new System.Windows.Forms.Label();
+            this.tb_fec_fin = new System.Windows.Forms.MaskedTextBox();
+            this.lb_fec_del = new System.Windows.Forms.Label();
+            this.tb_fec_ini = new System.Windows.Forms.MaskedTextBox();
             this.lb_us_fin = new System.Windows.Forms.Label();
             this.tb_usr_fin = new System.Windows.Forms.TextBox();
             this.bt_usr_fin = new System.Windows.Forms.Button();
-            this.tb_fec_ini = new System.Windows.Forms.MaskedTextBox();
-            this.lb_fec_del = new System.Windows.Forms.Label();
-            this.lb_fec_all = new System.Windows.Forms.Label();
-            this.tb_fec_fin = new System.Windows.Forms.MaskedTextBox();
-            this.rb_ord_fec = new System.Windows.Forms.RadioButton();
-            this.rb_ord_usr = new System.Windows.Forms.RadioButton();
-            this.gb_ord_por = new System.Windows.Forms.GroupBox();
-            this.lb_nus_ini = new System.Windows.Forms.Label();
-            this.lb_nus_fin = new System.Windows.Forms.Label();
+            this.lb_usr_ini = new System.Windows.Forms.Label();
+            this.tb_usr_ini = new System.Windows.Forms.TextBox();
+            this.bt_usr_ini = new System.Windows.Forms.Button();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.gb_ctr_btn.SuspendLayout();
             this.gb_ord_por.SuspendLayout();
+            this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -72,6 +72,159 @@
             this.groupBox1.Size = new System.Drawing.Size(360, 154);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lb_nus_fin
+            // 
+            this.lb_nus_fin.AutoSize = true;
+            this.lb_nus_fin.Location = new System.Drawing.Point(178, 49);
+            this.lb_nus_fin.Name = "lb_nus_fin";
+            this.lb_nus_fin.Size = new System.Drawing.Size(19, 13);
+            this.lb_nus_fin.TabIndex = 7;
+            this.lb_nus_fin.Text = "....";
+            // 
+            // lb_nus_ini
+            // 
+            this.lb_nus_ini.AutoSize = true;
+            this.lb_nus_ini.Location = new System.Drawing.Point(178, 23);
+            this.lb_nus_ini.Name = "lb_nus_ini";
+            this.lb_nus_ini.Size = new System.Drawing.Size(19, 13);
+            this.lb_nus_ini.TabIndex = 3;
+            this.lb_nus_ini.Text = "....";
+            // 
+            // gb_ord_por
+            // 
+            this.gb_ord_por.Controls.Add(this.rb_ord_usr);
+            this.gb_ord_por.Controls.Add(this.rb_ord_fec);
+            this.gb_ord_por.Location = new System.Drawing.Point(11, 106);
+            this.gb_ord_por.Name = "gb_ord_por";
+            this.gb_ord_por.Size = new System.Drawing.Size(340, 41);
+            this.gb_ord_por.TabIndex = 12;
+            this.gb_ord_por.TabStop = false;
+            this.gb_ord_por.Text = "Ordenado por";
+            // 
+            // rb_ord_usr
+            // 
+            this.rb_ord_usr.AutoSize = true;
+            this.rb_ord_usr.Location = new System.Drawing.Point(179, 15);
+            this.rb_ord_usr.Name = "rb_ord_usr";
+            this.rb_ord_usr.Size = new System.Drawing.Size(61, 17);
+            this.rb_ord_usr.TabIndex = 1;
+            this.rb_ord_usr.TabStop = true;
+            this.rb_ord_usr.Text = "Usuario";
+            this.rb_ord_usr.UseVisualStyleBackColor = true;
+            // 
+            // rb_ord_fec
+            // 
+            this.rb_ord_fec.AutoSize = true;
+            this.rb_ord_fec.Location = new System.Drawing.Point(85, 15);
+            this.rb_ord_fec.Name = "rb_ord_fec";
+            this.rb_ord_fec.Size = new System.Drawing.Size(55, 17);
+            this.rb_ord_fec.TabIndex = 0;
+            this.rb_ord_fec.TabStop = true;
+            this.rb_ord_fec.Text = "Fecha";
+            this.rb_ord_fec.UseVisualStyleBackColor = true;
+            // 
+            // lb_fec_all
+            // 
+            this.lb_fec_all.AutoSize = true;
+            this.lb_fec_all.Location = new System.Drawing.Point(155, 83);
+            this.lb_fec_all.Name = "lb_fec_all";
+            this.lb_fec_all.Size = new System.Drawing.Size(16, 13);
+            this.lb_fec_all.TabIndex = 10;
+            this.lb_fec_all.Text = "Al";
+            // 
+            // tb_fec_fin
+            // 
+            this.tb_fec_fin.Location = new System.Drawing.Point(173, 80);
+            this.tb_fec_fin.Mask = "00/00/0000";
+            this.tb_fec_fin.Name = "tb_fec_fin";
+            this.tb_fec_fin.Size = new System.Drawing.Size(70, 20);
+            this.tb_fec_fin.TabIndex = 11;
+            this.tb_fec_fin.ValidatingType = typeof(System.DateTime);
+            // 
+            // lb_fec_del
+            // 
+            this.lb_fec_del.AutoSize = true;
+            this.lb_fec_del.Location = new System.Drawing.Point(54, 83);
+            this.lb_fec_del.Name = "lb_fec_del";
+            this.lb_fec_del.Size = new System.Drawing.Size(23, 13);
+            this.lb_fec_del.TabIndex = 8;
+            this.lb_fec_del.Text = "Del";
+            // 
+            // tb_fec_ini
+            // 
+            this.tb_fec_ini.Location = new System.Drawing.Point(83, 80);
+            this.tb_fec_ini.Mask = "00/00/0000";
+            this.tb_fec_ini.Name = "tb_fec_ini";
+            this.tb_fec_ini.Size = new System.Drawing.Size(70, 20);
+            this.tb_fec_ini.TabIndex = 9;
+            this.tb_fec_ini.ValidatingType = typeof(System.DateTime);
+            // 
+            // lb_us_fin
+            // 
+            this.lb_us_fin.AutoSize = true;
+            this.lb_us_fin.Location = new System.Drawing.Point(8, 49);
+            this.lb_us_fin.Name = "lb_us_fin";
+            this.lb_us_fin.Size = new System.Drawing.Size(68, 13);
+            this.lb_us_fin.TabIndex = 4;
+            this.lb_us_fin.Text = "Usuario Final";
+            // 
+            // tb_usr_fin
+            // 
+            this.tb_usr_fin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_usr_fin.Location = new System.Drawing.Point(87, 45);
+            this.tb_usr_fin.MaxLength = 3;
+            this.tb_usr_fin.Name = "tb_usr_fin";
+            this.tb_usr_fin.Size = new System.Drawing.Size(70, 20);
+            this.tb_usr_fin.TabIndex = 5;
+            this.tb_usr_fin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_usr_fin_KeyDown);
+            // 
+            // bt_usr_fin
+            // 
+            this.bt_usr_fin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_usr_fin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_usr_fin.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_usr_fin.Location = new System.Drawing.Point(156, 44);
+            this.bt_usr_fin.Name = "bt_usr_fin";
+            this.bt_usr_fin.Size = new System.Drawing.Size(16, 22);
+            this.bt_usr_fin.TabIndex = 6;
+            this.bt_usr_fin.TabStop = false;
+            this.bt_usr_fin.Text = "|";
+            this.bt_usr_fin.UseVisualStyleBackColor = false;
+            this.bt_usr_fin.Click += new System.EventHandler(this.bt_usr_fin_Click);
+            // 
+            // lb_usr_ini
+            // 
+            this.lb_usr_ini.AutoSize = true;
+            this.lb_usr_ini.Location = new System.Drawing.Point(8, 23);
+            this.lb_usr_ini.Name = "lb_usr_ini";
+            this.lb_usr_ini.Size = new System.Drawing.Size(73, 13);
+            this.lb_usr_ini.TabIndex = 0;
+            this.lb_usr_ini.Text = "Usuario Inicial";
+            // 
+            // tb_usr_ini
+            // 
+            this.tb_usr_ini.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_usr_ini.Location = new System.Drawing.Point(87, 19);
+            this.tb_usr_ini.MaxLength = 3;
+            this.tb_usr_ini.Name = "tb_usr_ini";
+            this.tb_usr_ini.Size = new System.Drawing.Size(70, 20);
+            this.tb_usr_ini.TabIndex = 1;
+            this.tb_usr_ini.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_usr_ini_KeyDown);
+            // 
+            // bt_usr_ini
+            // 
+            this.bt_usr_ini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_usr_ini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_usr_ini.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_usr_ini.Location = new System.Drawing.Point(156, 18);
+            this.bt_usr_ini.Name = "bt_usr_ini";
+            this.bt_usr_ini.Size = new System.Drawing.Size(16, 22);
+            this.bt_usr_ini.TabIndex = 2;
+            this.bt_usr_ini.TabStop = false;
+            this.bt_usr_ini.Text = "|";
+            this.bt_usr_ini.UseVisualStyleBackColor = false;
+            this.bt_usr_ini.Click += new System.EventHandler(this.bt_usr_ini_Click);
             // 
             // gb_ctr_btn
             // 
@@ -111,161 +264,6 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // lb_usr_ini
-            // 
-            this.lb_usr_ini.AutoSize = true;
-            this.lb_usr_ini.Location = new System.Drawing.Point(8, 23);
-            this.lb_usr_ini.Name = "lb_usr_ini";
-            this.lb_usr_ini.Size = new System.Drawing.Size(73, 13);
-            this.lb_usr_ini.TabIndex = 0;
-            this.lb_usr_ini.Text = "Usuario Inicial";
-            // 
-            // tb_usr_ini
-            // 
-            this.tb_usr_ini.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_usr_ini.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_usr_ini.Location = new System.Drawing.Point(87, 19);
-            this.tb_usr_ini.MaxLength = 3;
-            this.tb_usr_ini.Name = "tb_usr_ini";
-            this.tb_usr_ini.Size = new System.Drawing.Size(70, 20);
-            this.tb_usr_ini.TabIndex = 1;
-            this.tb_usr_ini.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_usr_ini_KeyDown);
-            // 
-            // bt_usr_ini
-            // 
-            this.bt_usr_ini.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_usr_ini.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_usr_ini.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_usr_ini.Location = new System.Drawing.Point(156, 18);
-            this.bt_usr_ini.Name = "bt_usr_ini";
-            this.bt_usr_ini.Size = new System.Drawing.Size(16, 22);
-            this.bt_usr_ini.TabIndex = 2;
-            this.bt_usr_ini.TabStop = false;
-            this.bt_usr_ini.Text = "|";
-            this.bt_usr_ini.UseVisualStyleBackColor = false;
-            this.bt_usr_ini.Click += new System.EventHandler(this.bt_usr_ini_Click);
-            // 
-            // lb_us_fin
-            // 
-            this.lb_us_fin.AutoSize = true;
-            this.lb_us_fin.Location = new System.Drawing.Point(8, 49);
-            this.lb_us_fin.Name = "lb_us_fin";
-            this.lb_us_fin.Size = new System.Drawing.Size(68, 13);
-            this.lb_us_fin.TabIndex = 4;
-            this.lb_us_fin.Text = "Usuario Final";
-            // 
-            // tb_usr_fin
-            // 
-            this.tb_usr_fin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_usr_fin.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_usr_fin.Location = new System.Drawing.Point(87, 45);
-            this.tb_usr_fin.MaxLength = 3;
-            this.tb_usr_fin.Name = "tb_usr_fin";
-            this.tb_usr_fin.Size = new System.Drawing.Size(70, 20);
-            this.tb_usr_fin.TabIndex = 5;
-            this.tb_usr_fin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_usr_fin_KeyDown);
-            // 
-            // bt_usr_fin
-            // 
-            this.bt_usr_fin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_usr_fin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_usr_fin.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_usr_fin.Location = new System.Drawing.Point(156, 44);
-            this.bt_usr_fin.Name = "bt_usr_fin";
-            this.bt_usr_fin.Size = new System.Drawing.Size(16, 22);
-            this.bt_usr_fin.TabIndex = 6;
-            this.bt_usr_fin.TabStop = false;
-            this.bt_usr_fin.Text = "|";
-            this.bt_usr_fin.UseVisualStyleBackColor = false;
-            this.bt_usr_fin.Click += new System.EventHandler(this.bt_usr_fin_Click);
-            // 
-            // tb_fec_ini
-            // 
-            this.tb_fec_ini.Location = new System.Drawing.Point(83, 80);
-            this.tb_fec_ini.Mask = "00/00/0000";
-            this.tb_fec_ini.Name = "tb_fec_ini";
-            this.tb_fec_ini.Size = new System.Drawing.Size(70, 20);
-            this.tb_fec_ini.TabIndex = 9;
-            this.tb_fec_ini.ValidatingType = typeof(System.DateTime);
-            // 
-            // lb_fec_del
-            // 
-            this.lb_fec_del.AutoSize = true;
-            this.lb_fec_del.Location = new System.Drawing.Point(54, 83);
-            this.lb_fec_del.Name = "lb_fec_del";
-            this.lb_fec_del.Size = new System.Drawing.Size(23, 13);
-            this.lb_fec_del.TabIndex = 8;
-            this.lb_fec_del.Text = "Del";
-            // 
-            // lb_fec_all
-            // 
-            this.lb_fec_all.AutoSize = true;
-            this.lb_fec_all.Location = new System.Drawing.Point(155, 83);
-            this.lb_fec_all.Name = "lb_fec_all";
-            this.lb_fec_all.Size = new System.Drawing.Size(16, 13);
-            this.lb_fec_all.TabIndex = 10;
-            this.lb_fec_all.Text = "Al";
-            // 
-            // tb_fec_fin
-            // 
-            this.tb_fec_fin.Location = new System.Drawing.Point(173, 80);
-            this.tb_fec_fin.Mask = "00/00/0000";
-            this.tb_fec_fin.Name = "tb_fec_fin";
-            this.tb_fec_fin.Size = new System.Drawing.Size(70, 20);
-            this.tb_fec_fin.TabIndex = 11;
-            this.tb_fec_fin.ValidatingType = typeof(System.DateTime);
-            // 
-            // rb_ord_fec
-            // 
-            this.rb_ord_fec.AutoSize = true;
-            this.rb_ord_fec.Location = new System.Drawing.Point(91, 15);
-            this.rb_ord_fec.Name = "rb_ord_fec";
-            this.rb_ord_fec.Size = new System.Drawing.Size(55, 17);
-            this.rb_ord_fec.TabIndex = 0;
-            this.rb_ord_fec.TabStop = true;
-            this.rb_ord_fec.Text = "Fecha";
-            this.rb_ord_fec.UseVisualStyleBackColor = true;
-            // 
-            // rb_ord_usr
-            // 
-            this.rb_ord_usr.AutoSize = true;
-            this.rb_ord_usr.Location = new System.Drawing.Point(162, 15);
-            this.rb_ord_usr.Name = "rb_ord_usr";
-            this.rb_ord_usr.Size = new System.Drawing.Size(61, 17);
-            this.rb_ord_usr.TabIndex = 1;
-            this.rb_ord_usr.TabStop = true;
-            this.rb_ord_usr.Text = "Usuario";
-            this.rb_ord_usr.UseVisualStyleBackColor = true;
-            // 
-            // gb_ord_por
-            // 
-            this.gb_ord_por.Controls.Add(this.rb_ord_usr);
-            this.gb_ord_por.Controls.Add(this.rb_ord_fec);
-            this.gb_ord_por.Location = new System.Drawing.Point(11, 106);
-            this.gb_ord_por.Name = "gb_ord_por";
-            this.gb_ord_por.Size = new System.Drawing.Size(340, 41);
-            this.gb_ord_por.TabIndex = 12;
-            this.gb_ord_por.TabStop = false;
-            this.gb_ord_por.Text = "Ordenado por";
-            // 
-            // lb_nus_ini
-            // 
-            this.lb_nus_ini.AutoSize = true;
-            this.lb_nus_ini.Location = new System.Drawing.Point(178, 23);
-            this.lb_nus_ini.Name = "lb_nus_ini";
-            this.lb_nus_ini.Size = new System.Drawing.Size(19, 13);
-            this.lb_nus_ini.TabIndex = 3;
-            this.lb_nus_ini.Text = "....";
-            // 
-            // lb_nus_fin
-            // 
-            this.lb_nus_fin.AutoSize = true;
-            this.lb_nus_fin.Location = new System.Drawing.Point(178, 49);
-            this.lb_nus_fin.Name = "lb_nus_fin";
-            this.lb_nus_fin.Size = new System.Drawing.Size(19, 13);
-            this.lb_nus_fin.TabIndex = 7;
-            this.lb_nus_fin.Text = "....";
-            // 
             // ads024_R01p
             // 
             this.AcceptButton = this.bt_ace_pta;
@@ -285,9 +283,9 @@
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.gb_ctr_btn.ResumeLayout(false);
             this.gb_ord_por.ResumeLayout(false);
             this.gb_ord_por.PerformLayout();
+            this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

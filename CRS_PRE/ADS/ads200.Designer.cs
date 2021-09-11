@@ -35,8 +35,10 @@
             this.mn_doc_ume = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_tal_ona = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_num_era = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_inf_bit = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_bit_ope = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_bit_ses = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_bit_doc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_reg_ini = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_def_par = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_par_inv = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_gru_bod = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +56,8 @@
             this.mn_per_son = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_gru_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_per_son1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_tip_atr = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_def_atr = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_tip_bus = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_par_ame = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ulo = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +73,7 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mn_def_rut = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +84,7 @@
             this.mn_usu_ari,
             this.mn_ges_tio,
             this.controlToolStripMenuItem,
-            this.mn_bit_ope,
+            this.mn_inf_bit,
             this.mn_def_par});
             this.m_mod_ulo.Location = new System.Drawing.Point(0, 0);
             this.m_mod_ulo.Name = "m_mod_ulo";
@@ -131,20 +136,36 @@
             this.mn_num_era.Text = "Numeracion";
             this.mn_num_era.Click += new System.EventHandler(this.Mn_num_era_Click);
             // 
+            // mn_inf_bit
+            // 
+            this.mn_inf_bit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_bit_ope,
+            this.mn_bit_doc,
+            this.mn_reg_ini});
+            this.mn_inf_bit.Name = "mn_inf_bit";
+            this.mn_inf_bit.Size = new System.Drawing.Size(62, 20);
+            this.mn_inf_bit.Text = "&Bitácora";
+            // 
             // mn_bit_ope
             // 
-            this.mn_bit_ope.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_bit_ses});
             this.mn_bit_ope.Name = "mn_bit_ope";
-            this.mn_bit_ope.Size = new System.Drawing.Size(67, 20);
-            this.mn_bit_ope.Text = "Bitácoras";
+            this.mn_bit_ope.Size = new System.Drawing.Size(218, 22);
+            this.mn_bit_ope.Text = "Bitacora de Operaciones";
+            this.mn_bit_ope.Click += new System.EventHandler(this.mn_bit_ope_Click);
             // 
-            // mn_bit_ses
+            // mn_bit_doc
             // 
-            this.mn_bit_ses.Name = "mn_bit_ses";
-            this.mn_bit_ses.Size = new System.Drawing.Size(218, 22);
-            this.mn_bit_ses.Text = "Bitácora de Inicio de Sesión";
-            this.mn_bit_ses.Click += new System.EventHandler(this.mn_bit_ses_Click);
+            this.mn_bit_doc.Name = "mn_bit_doc";
+            this.mn_bit_doc.Size = new System.Drawing.Size(218, 22);
+            this.mn_bit_doc.Text = "Bitacora de Documento";
+            this.mn_bit_doc.Click += new System.EventHandler(this.mn_bit_doc_Click);
+            // 
+            // mn_reg_ini
+            // 
+            this.mn_reg_ini.Name = "mn_reg_ini";
+            this.mn_reg_ini.Size = new System.Drawing.Size(218, 22);
+            this.mn_reg_ini.Text = "Registro de Inicio de Sesión";
+            this.mn_reg_ini.Click += new System.EventHandler(this.mn_reg_ini_Click);
             // 
             // mn_def_par
             // 
@@ -168,7 +189,7 @@
             this.mn_mar_ca,
             this.mn_und_med});
             this.mn_par_inv.Name = "mn_par_inv";
-            this.mn_par_inv.Size = new System.Drawing.Size(165, 22);
+            this.mn_par_inv.Size = new System.Drawing.Size(180, 22);
             this.mn_par_inv.Text = "&Inventario";
             // 
             // mn_gru_bod
@@ -222,7 +243,7 @@
             this.mn_ven_ded,
             this.mn_pla_vta});
             this.mn_com_erc.Name = "mn_com_erc";
-            this.mn_com_erc.Size = new System.Drawing.Size(165, 22);
+            this.mn_com_erc.Size = new System.Drawing.Size(180, 22);
             this.mn_com_erc.Text = "Comercializacion";
             // 
             // mn_lis_pre
@@ -264,29 +285,46 @@
             // 
             this.mn_per_son.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_gru_per,
-            this.mn_per_son1});
+            this.mn_per_son1,
+            this.mn_tip_atr,
+            this.mn_def_atr,
+            this.mn_def_rut});
             this.mn_per_son.Name = "mn_per_son";
-            this.mn_per_son.Size = new System.Drawing.Size(165, 22);
+            this.mn_per_son.Size = new System.Drawing.Size(180, 22);
             this.mn_per_son.Text = "&Persona";
             // 
             // mn_gru_per
             // 
             this.mn_gru_per.Name = "mn_gru_per";
-            this.mn_gru_per.Size = new System.Drawing.Size(168, 22);
+            this.mn_gru_per.Size = new System.Drawing.Size(191, 22);
             this.mn_gru_per.Text = "&Grupo de Persona";
             this.mn_gru_per.Click += new System.EventHandler(this.mn_gru_per_Click);
             // 
             // mn_per_son1
             // 
             this.mn_per_son1.Name = "mn_per_son1";
-            this.mn_per_son1.Size = new System.Drawing.Size(168, 22);
+            this.mn_per_son1.Size = new System.Drawing.Size(191, 22);
             this.mn_per_son1.Text = "&Persona";
             this.mn_per_son1.Click += new System.EventHandler(this.mn_per_son1_Click);
+            // 
+            // mn_tip_atr
+            // 
+            this.mn_tip_atr.Name = "mn_tip_atr";
+            this.mn_tip_atr.Size = new System.Drawing.Size(191, 22);
+            this.mn_tip_atr.Text = "&Tipo de Atributo";
+            this.mn_tip_atr.Click += new System.EventHandler(this.mn_tip_atr_Click);
+            // 
+            // mn_def_atr
+            // 
+            this.mn_def_atr.Name = "mn_def_atr";
+            this.mn_def_atr.Size = new System.Drawing.Size(191, 22);
+            this.mn_def_atr.Text = "&Definición de Atributo";
+            this.mn_def_atr.Click += new System.EventHandler(this.mn_def_atr_Click);
             // 
             // mn_tip_bus
             // 
             this.mn_tip_bus.Name = "mn_tip_bus";
-            this.mn_tip_bus.Size = new System.Drawing.Size(165, 22);
+            this.mn_tip_bus.Size = new System.Drawing.Size(180, 22);
             this.mn_tip_bus.Text = "T.C. Bs/Us";
             this.mn_tip_bus.Click += new System.EventHandler(this.mn_tip_bus_Click);
             // 
@@ -296,7 +334,7 @@
             this.mn_mod_ulo,
             this.mn_apl_ica});
             this.mn_par_ame.Name = "mn_par_ame";
-            this.mn_par_ame.Size = new System.Drawing.Size(165, 22);
+            this.mn_par_ame.Size = new System.Drawing.Size(180, 22);
             this.mn_par_ame.Text = "&Parametros";
             // 
             // mn_mod_ulo
@@ -411,6 +449,13 @@
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // mn_def_rut
+            // 
+            this.mn_def_rut.Name = "mn_def_rut";
+            this.mn_def_rut.Size = new System.Drawing.Size(191, 22);
+            this.mn_def_rut.Text = "Definición de Rutas";
+            this.mn_def_rut.Click += new System.EventHandler(this.mn_def_rut_Click);
+            // 
             // ads200
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,8 +520,13 @@
         private System.Windows.Forms.ToolStripMenuItem mn_tip_bus;
         private System.Windows.Forms.ToolStripMenuItem mn_par_ame;
         private System.Windows.Forms.ToolStripMenuItem mn_mod_ulo;
-        private System.Windows.Forms.ToolStripMenuItem mn_apl_ica;
+        private System.Windows.Forms.ToolStripMenuItem mn_apl_ica;       
+        private System.Windows.Forms.ToolStripMenuItem mn_tip_atr;
+        private System.Windows.Forms.ToolStripMenuItem mn_def_atr;
+        private System.Windows.Forms.ToolStripMenuItem mn_inf_bit;
         private System.Windows.Forms.ToolStripMenuItem mn_bit_ope;
-        private System.Windows.Forms.ToolStripMenuItem mn_bit_ses;
+        private System.Windows.Forms.ToolStripMenuItem mn_bit_doc;
+        private System.Windows.Forms.ToolStripMenuItem mn_reg_ini;
+        private System.Windows.Forms.ToolStripMenuItem mn_def_rut;
     }
 }

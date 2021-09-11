@@ -1283,6 +1283,9 @@ namespace CRS_PRE.CMR
             bt_adi_pro.Text = "&AGREGAR";
             bt_edi_tar.Enabled = true;
             bt_eli_min.Enabled = true;
+
+            // OBTIENE CODIGO TEMPORAL PARA EL DOCUMENTO
+            ve_cod_tmp = o_mg_glo_frm.fg_fec_act();
         }
 
         private void bt_edi_tar_Click(object sender, EventArgs e)
@@ -1403,20 +1406,20 @@ namespace CRS_PRE.CMR
         {
             Fi_obt_plv();
         }
+
+        /// <summary>
+        /// obtiene Plantilla de ventas y sus datos
+        /// </summary>
         private void Fi_obt_plv()
         {
-            int val = 0;
-            try
-            {
-                val = int.Parse(tb_cod_plv.Text);
-            }
-            catch (Exception)
+
+            if(cl_glo_bal.IsNumeric(tb_cod_plv.Text)== false)
             {
                 MessageBox.Show("Debe proporcionar una plantilla valida", "Error", MessageBoxButtons.OK);
             }
 
             // Obtiene plantilla de venta
-            tab_cmr004 = o_cmr004.Fe_con_plv(val.ToString());
+            tab_cmr004 = o_cmr004.Fe_con_plv(tb_cod_plv.Text);
             if (tab_cmr004.Rows.Count == 0)
             {
                 lb_nom_plv.Text = "No Existe";
@@ -1463,7 +1466,6 @@ namespace CRS_PRE.CMR
                     lb_raz_soc.Text = "** No Existe";
                 else
                     lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
-
 
 
                 // Obtiene bodega
