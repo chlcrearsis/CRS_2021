@@ -276,100 +276,100 @@ namespace CRS_PRE
 
 
 
-        //***************
-        //CLAVE
-        string clave;
+        ////***************
+        ////CLAVE
+        //string clave;
 
-        public string fg_obt_cla()
-        {
-            DateTime fec_srv;
+        //public string fg_obt_cla()
+        //{
+        //    DateTime fec_srv;
 
-            int vv_nro_dia; // numero de dia de la semana
-            int vv_nro_mes; //nro del mes
+        //    int vv_nro_dia; // numero de dia de la semana
+        //    int vv_nro_mes; //nro del mes
 
-            string vv_let_dia; //letra correspondiente al dia
-            string vv_let_mes; //letra correspondiente al mes
+        //    string vv_let_dia; //letra correspondiente al dia
+        //    string vv_let_mes; //letra correspondiente al mes
 
-            int vv_tmp_dia; //temporal del dia
-            int vv_tmp_mes; //temporal del mes
+        //    int vv_tmp_dia; //temporal del dia
+        //    int vv_tmp_mes; //temporal del mes
 
-            string[] vv_vec_dia = { "g", "a", "b", "c", "d", "e", "f" }; //dia ( 1=a ; 2=b ; 3=c ... ; 8=a ; 9=b ; 10=c ... 15=a ...; 28=a ...
-            string[] vv_vec_mes = { "m", "h", "i", "j", "k", "l" }; //meses (enero=h ; febrero=i ; marzo=j ; abril=k ...)
+        //    string[] vv_vec_dia = { "g", "a", "b", "c", "d", "e", "f" }; //dia ( 1=a ; 2=b ; 3=c ... ; 8=a ; 9=b ; 10=c ... 15=a ...; 28=a ...
+        //    string[] vv_vec_mes = { "m", "h", "i", "j", "k", "l" }; //meses (enero=h ; febrero=i ; marzo=j ; abril=k ...)
 
-            //'obtiene fecha del servidor
+        //    //'obtiene fecha del servidor
 
-            fec_srv = fg_fec_act();
-            //fec_srv = "14/08/2016"
+        //    fec_srv = fg_fec_act();
+        //    //fec_srv = "14/08/2016"
 
-            //'obtiene nro de dia de la fecha
-            vv_nro_dia = fec_srv.Day;
+        //    //'obtiene nro de dia de la fecha
+        //    vv_nro_dia = fec_srv.Day;
 
-            //obtiene nro de mes de la fecha
-            vv_nro_mes = fec_srv.Month;
+        //    //obtiene nro de mes de la fecha
+        //    vv_nro_mes = fec_srv.Month;
 
-            //obtiene letra del dia segun fecha
-            vv_tmp_dia = vv_nro_dia / 7;
-            vv_tmp_dia = 7 * vv_tmp_dia;
-            vv_tmp_dia = vv_nro_dia - vv_tmp_dia;
+        //    //obtiene letra del dia segun fecha
+        //    vv_tmp_dia = vv_nro_dia / 7;
+        //    vv_tmp_dia = 7 * vv_tmp_dia;
+        //    vv_tmp_dia = vv_nro_dia - vv_tmp_dia;
 
-            vv_let_dia = vv_vec_dia[vv_tmp_dia];
-            //obtiene letra del mes segun fecha
-            vv_tmp_mes = vv_nro_mes / 6;
-            vv_tmp_mes = 6 * vv_tmp_mes;
-            vv_tmp_mes = vv_nro_mes - vv_tmp_mes;
+        //    vv_let_dia = vv_vec_dia[vv_tmp_dia];
+        //    //obtiene letra del mes segun fecha
+        //    vv_tmp_mes = vv_nro_mes / 6;
+        //    vv_tmp_mes = 6 * vv_tmp_mes;
+        //    vv_tmp_mes = vv_nro_mes - vv_tmp_mes;
 
-            vv_let_mes = vv_vec_mes[vv_tmp_mes];
+        //    vv_let_mes = vv_vec_mes[vv_tmp_mes];
 
-            int a; //primer digito del dia
-            int b; //segundo digito del dia
+        //    int a; //primer digito del dia
+        //    int b; //segundo digito del dia
 
-            int c; //primer digito del mes
-            int d; //segundo digito del mes
+        //    int c; //primer digito del mes
+        //    int d; //segundo digito del mes
 
-            if (vv_nro_dia < 10)
-            {
-                a = 0;
-                b = vv_nro_dia;
-            }
-            else
-            {
-                string pate = Convert.ToString(vv_nro_dia);
-                a = Convert.ToInt32(pate.Substring(0, 1));
-                b = Convert.ToInt32(pate.Substring(1, 1));
-            }
+        //    if (vv_nro_dia < 10)
+        //    {
+        //        a = 0;
+        //        b = vv_nro_dia;
+        //    }
+        //    else
+        //    {
+        //        string pate = Convert.ToString(vv_nro_dia);
+        //        a = Convert.ToInt32(pate.Substring(0, 1));
+        //        b = Convert.ToInt32(pate.Substring(1, 1));
+        //    }
 
-            if (vv_nro_mes < 10)
-            {
-                c = 0;
-                d = vv_nro_mes;
-            }
-            else
-            {
-                string pate = Convert.ToString(vv_nro_mes);
-                c = Convert.ToInt32(pate.Substring(0, 1));
-                d = Convert.ToInt32(pate.Substring(1, 1));
-            }
+        //    if (vv_nro_mes < 10)
+        //    {
+        //        c = 0;
+        //        d = vv_nro_mes;
+        //    }
+        //    else
+        //    {
+        //        string pate = Convert.ToString(vv_nro_mes);
+        //        c = Convert.ToInt32(pate.Substring(0, 1));
+        //        d = Convert.ToInt32(pate.Substring(1, 1));
+        //    }
 
-            int suma_dia;
-            int suma_mes;
-            string suma_total;
+        //    int suma_dia;
+        //    int suma_mes;
+        //    string suma_total;
 
-            suma_dia = a + b;
+        //    suma_dia = a + b;
 
-            suma_mes = c + d;
+        //    suma_mes = c + d;
 
-            suma_total = Convert.ToString(suma_dia + suma_mes);
+        //    suma_total = Convert.ToString(suma_dia + suma_mes);
 
-            if (Convert.ToInt32(suma_total) < 10)
-            {
-                suma_total = "0" + suma_total;
-            }
+        //    if (Convert.ToInt32(suma_total) < 10)
+        //    {
+        //        suma_total = "0" + suma_total;
+        //    }
 
 
-            clave = vv_let_dia + "" + b + "-" + vv_let_mes + "" + a + "-" + suma_total;
+        //    clave = vv_let_dia + "" + b + "-" + vv_let_mes + "" + a + "-" + suma_total;
 
-            return clave;
-        }
+        //    return clave;
+        //}
 
     }
 }

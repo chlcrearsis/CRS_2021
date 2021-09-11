@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(res001_02b));
             this.tb_raz_soc = new System.Windows.Forms.TextBox();
             this.tb_cod_per = new System.Windows.Forms.TextBox();
             this.bt_bus_per = new System.Windows.Forms.Button();
@@ -90,6 +91,7 @@
             this.tb_cod_ven = new System.Windows.Forms.TextBox();
             this.gb_par_ame = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pb_img_qrf = new Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl();
             this.fp_der_ech.SuspendLayout();
             this.fp_lin_pro.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,6 +99,7 @@
             this.m_frm_hja.SuspendLayout();
             this.gb_par_ame.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_img_qrf)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_raz_soc
@@ -857,6 +860,19 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // pb_img_qrf
+            // 
+            this.pb_img_qrf.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M;
+            this.pb_img_qrf.Image = ((System.Drawing.Image)(resources.GetObject("pb_img_qrf.Image")));
+            this.pb_img_qrf.Location = new System.Drawing.Point(1100, 71);
+            this.pb_img_qrf.Name = "pb_img_qrf";
+            this.pb_img_qrf.QuietZoneModule = Gma.QrCodeNet.Encoding.Windows.Render.QuietZoneModules.Two;
+            this.pb_img_qrf.Size = new System.Drawing.Size(59, 59);
+            this.pb_img_qrf.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pb_img_qrf.TabIndex = 1;
+            this.pb_img_qrf.TabStop = false;
+            this.pb_img_qrf.Text = "qrCodeImgControl1";
+            // 
             // res001_02b
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -864,6 +880,7 @@
             this.ClientSize = new System.Drawing.Size(1109, 560);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.pb_img_qrf);
             this.Controls.Add(this.m_frm_hja);
             this.Controls.Add(this.gb_par_ame);
             this.Controls.Add(this.fp_der_ech);
@@ -890,6 +907,7 @@
             this.gb_par_ame.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_img_qrf)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -953,5 +971,6 @@
         private System.Windows.Forms.Button bt_cre_dit;
         private System.Windows.Forms.Button bt_con_tad;
         private System.Windows.Forms.GroupBox groupBox1;
+        private Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl pb_img_qrf;
     }
 }
