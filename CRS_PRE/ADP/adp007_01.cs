@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
-    public partial class adp003_01 : Form
+    public partial class adp007_01 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -16,16 +16,13 @@ namespace CRS_PRE
         string est_bus = "T";
 
         //Form frm_mdi;
-        public adp003_01()
+        public adp007_01()
         {
             InitializeComponent();
         }
 
         // instancia        
-        adp003 o_adp003 = new adp003();
-
-        // Variables
-        DataTable tabla = new DataTable();
+        adp007 o_adp007 = new adp007();
 
         private void frm_Load(object sender, EventArgs e)
         {
@@ -35,7 +32,7 @@ namespace CRS_PRE
         #region  [Funciones Internas]
         private void fi_ini_frm()
         {
-            tb_ide_tip.Text = "";
+            tb_ide_rut.Text = "";
            
             cb_prm_bus.SelectedIndex = 0;
             cb_est_bus.SelectedIndex = 0;
@@ -70,23 +67,23 @@ namespace CRS_PRE
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
-            tabla = o_adp003.Fe_bus_car(tex_bus, prm_bus, est_bus);
+            Tabla = o_adp007.Fe_bus_car(tex_bus, prm_bus, est_bus);
 
-            if (tabla.Rows.Count > 0)
+            if (Tabla.Rows.Count > 0)
             {
-                for (int i = 0; i < tabla.Rows.Count; i++)
+                for (int i = 0; i < Tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_ide_tip"].Value = tabla.Rows[i]["va_ide_tip"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_tip"].Value = tabla.Rows[i]["va_nom_tip"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_ide_rut"].Value = Tabla.Rows[i]["va_ide_rut"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_rut"].Value = Tabla.Rows[i]["va_nom_rut"].ToString();
                     
-                    if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
+                    if (Tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_ide_tip.Text = tabla.Rows[0]["va_ide_tip"].ToString();
-                lb_nom_tip.Text = tabla.Rows[0]["va_nom_tip"].ToString();
+                tb_ide_rut.Text = Tabla.Rows[0]["va_ide_rut"].ToString();
+                lb_nom_rut.Text = Tabla.Rows[0]["va_nom_rut"].ToString();
             }
 
         }
@@ -97,26 +94,24 @@ namespace CRS_PRE
         private void fi_con_sel()
         {
             //Verifica que los datos en pantallas sean correctos
-            if (tb_ide_tip.Text.Trim() == "")
-            {
-                lb_nom_tip.Text = "** NO existe";
+            if (tb_ide_rut.Text.Trim() == ""){
+                lb_nom_rut.Text = "** NO existe";
                 return;
             }
 
-            tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text));
-            if (tabla.Rows.Count == 0)
-            {
-                lb_nom_tip.Text = "** NO existe";
+            Tabla = o_adp007.Fe_con_rut(int.Parse(tb_ide_rut.Text));
+            if (Tabla.Rows.Count == 0){
+                lb_nom_rut.Text = "** NO existe";
                 return;
             }
 
-            lb_nom_tip.Text = Convert.ToString(tabla.Rows[0]["va_nom_tip"].ToString());
+            lb_nom_rut.Text = Convert.ToString(Tabla.Rows[0]["va_nom_rut"].ToString());
         }
 
         /// <summary>
         /// Función : Selecciona la fila en el Datagrid
         /// </summary>
-        private void fi_sel_fil(string ide_tip)
+        private void fi_sel_fil(string ide_rut)
         {
             if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
@@ -127,13 +122,13 @@ namespace CRS_PRE
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (ide_tip != null)
+            if (ide_rut != null)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_tip.ToUpper())
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_rut.ToUpper())
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
@@ -200,11 +195,11 @@ namespace CRS_PRE
             if (dg_res_ult.SelectedRows.Count != 0)
             {
                 if (dg_res_ult.SelectedRows[0].Cells[0].Value == null){
-                    tb_ide_tip.Text = "";
-                    lb_nom_tip.Text = "";
+                    tb_ide_rut.Text = "";
+                    lb_nom_rut.Text = "";
                 }else{
-                    tb_ide_tip.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString().Trim();
-                    lb_nom_tip.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString().Trim();
+                    tb_ide_rut.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString().Trim();
+                    lb_nom_rut.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString().Trim();
                 }
             }
         }
@@ -217,19 +212,19 @@ namespace CRS_PRE
             string res_fun = "";
             
             if(sel_ecc.Trim() == ""){
-                res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_ide_tip.Focus();
+                res_fun = "La Ruta que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Definición de Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_rut.Focus();
                 return false;
             }
 
 
-            Tabla = o_adp003.Fe_con_tip(int.Parse(sel_ecc));
-            if (tabla.Rows.Count == 0)
+            Tabla = o_adp007.Fe_con_rut(int.Parse(sel_ecc));
+            if (Tabla.Rows.Count == 0)
             {
-                res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_ide_tip.Focus();
+                res_fun = "La Ruta que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Definición de Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_rut.Focus();
                 return false;
             }
 
@@ -240,18 +235,18 @@ namespace CRS_PRE
             string res_fun = "";
 
             if (sel_ecc.Trim() == ""){
-                res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_ide_tip.Focus();
+                res_fun = "La Ruta que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Definición de Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_rut.Focus();
                 return false;
             }
 
 
-            Tabla = o_adp003.Fe_con_tip(int.Parse(sel_ecc));
-            if (tabla.Rows.Count == 0){
-                res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_ide_tip.Focus();
+            Tabla = o_adp007.Fe_con_rut(int.Parse(sel_ecc));
+            if (Tabla.Rows.Count == 0){
+                res_fun = "La Ruta que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Definición de Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_rut.Focus();
                 return false;
             }
 
@@ -262,32 +257,30 @@ namespace CRS_PRE
             string res_fun = "";
 
             if (sel_ecc.Trim() == ""){
-                res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_ide_tip.Focus();
+                res_fun = "La Ruta que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Definición de Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_rut.Focus();
                 return false;
             }
 
-            Tabla = o_adp003.Fe_con_tip(int.Parse(sel_ecc));
-            if (tabla.Rows.Count == 0){
-                res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_ide_tip.Focus();
+            Tabla = o_adp007.Fe_con_rut(int.Parse(sel_ecc));
+            if (Tabla.Rows.Count == 0){
+                res_fun = "La Ruta que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Edita Definición de Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_rut.Focus();
                 return false;
             }
 
             return true;
         }
 
-
-
         #endregion
 
-        private void tb_ide_tip_Validated(object sender, EventArgs e){
+        private void tb_ide_rut_Validated(object sender, EventArgs e){
             fi_con_sel();
-            if (lb_nom_tip.Text != "** NO existe")
+            if (lb_nom_rut.Text != "** NO existe")
             {
-                fi_sel_fil(tb_ide_tip.Text);
+                fi_sel_fil(tb_ide_rut.Text);
             }
         }
 
@@ -361,60 +354,60 @@ namespace CRS_PRE
 
         private void Mn_nue_reg_Click(object sender, EventArgs e)
         {
-            adp003_02 frm = new adp003_02();
+            adp007_02 frm = new adp007_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
         private void Mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
-            if (fi_ver_edi(tb_ide_tip.Text) == false)
+            if (fi_ver_edi(tb_ide_rut.Text) == false)
                 return;
 
-            adp003_03 frm = new adp003_03();
+            adp007_03 frm = new adp007_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
        
         private void Mn_hab_des_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para habilitar/deshabilitar
-            if (fi_ver_hds(tb_ide_tip.Text) == false)
+            if (fi_ver_hds(tb_ide_rut.Text) == false)
                 return;
 
-            adp003_04 frm = new adp003_04();
+            adp007_04 frm = new adp007_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(tb_ide_tip.Text) == false)
+            if (fi_ver_con(tb_ide_rut.Text) == false)
                 return;
 
-            adp003_05 frm = new adp003_05();
+            adp007_05 frm = new adp007_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(tb_ide_tip.Text) == false)
+            if (fi_ver_con(tb_ide_rut.Text) == false)
                 return;
 
-            adp003_06 frm = new adp003_06();
+            adp007_06 frm = new adp007_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
 
         private void Mn_rep_tip_Click(object sender, EventArgs e)
         {
-            adp003_R01p frm = new adp003_R01p();
+            adp007_R01p frm = new adp007_R01p();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
-        private void Mn_cer_rar_Click_1(object sender, EventArgs e)
+        private void Mn_cer_rar_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }       
-       
-        private void bt_ace_pta_Click_1(object sender, EventArgs e)
+        }               
+
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);

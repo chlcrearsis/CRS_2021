@@ -10,34 +10,33 @@ namespace CRS_NEG
 {
     /// <summary>
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase TIPO DE ATRIBUTO
+    ///  Clase DEFINICIÓN DE RUTAS
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class adp003
+    public class adp007
     {
         //######################################################################
-        //##       Tabla: adp003                                              ##
-        //##      Nombre: TIPO DE ATRIBUTO                                    ##
-        //## Descripcion: Tipo de Atributos de Persona                        ##         
+        //##       Tabla: adp007                                              ##
+        //##      Nombre: DEFINICIÓN DE RUTAS                                 ##
+        //## Descripcion: Rutas p/Asignar al Cliente                          ##         
         //##       Autor: JEJR  - (30-08-2021)                                ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 
         /// <summary>
-        /// Funcion "REGISTRA TIPO DE ATRIBUTO"
+        /// Funcion "NUEVA DEFINICIÓN DE RUTAS"
         /// </summary>
-        /// <param name="ide_tip">ID. Tipo Atributo</param>
-        /// <param name="nom_tip">Nombre Tipo de Atributo</param>
-        /// <param name="atr_def">ID. Atributo p/Defecto</param>
-        /// <param name="nom_def">Nombre Atributo p/Defecto</param>
+        /// <param name="ide_rut">ID. Ruta</param>
+        /// <param name="nom_rut">Nombre Ruta</param>
+        /// <param name="nom_cor">Nombre Corto</param>
         /// <returns></returns>
-        public void Fe_nue_tip(int ide_tip, string nom_tip, int atr_def, string nom_def)
+        public void Fe_nue_rut(int ide_rut, string nom_rut, string nom_cor)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE adp003_01a_p01 " + ide_tip + ", '" + nom_tip + "', " + atr_def + ", '" + nom_def + "'");
+                cadena.AppendLine("INSERT INTO adp007 VALUES (" + ide_rut + ", '" + nom_rut + "', '" + nom_cor + "', 'V'");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -47,17 +46,18 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "MODIFICA TIPO DE ATRIBUTO"
+        /// Funcion "MODIFICA DEFINICIÓN DE RUTA"
         /// </summary>
-        /// <param name="ide_tip">ID. Tipo de Atributo</param>
-        /// <param name="nom_tip">Nombre tipo de atributo</param>
+        /// <param name="ide_rut">ID. Ruta</param>
+        /// <param name="nom_rut">Nombre Ruta</param>
+        /// <param name="nom_cor">Nombre Corto</param>
         /// <returns></returns>
-        public void Fe_edi_tip(int ide_tip, string nom_tip, int atr_def)
+        public void Fe_edi_rut(int ide_rut, string nom_rut, string nom_cor)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE adp003 SET va_nom_tip = '" + nom_tip + "', va_atr_def = " + atr_def + " WHERE va_ide_tip = " + ide_tip + "");
+                cadena.AppendLine("UPDATE adp007 SET va_nom_rut = '" + nom_rut + "', va_nom_cor = '" + nom_cor + "' WHERE va_ide_rut = " + ide_rut + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -67,17 +67,17 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "HABILITA/DESHABILITA TIPO DE ATRIBUTO"
+        /// Funcion "HABILITA/DESHABILITA DEFINICIÓN DE RUTA"
         /// </summary>
-        /// <param name="ide_tip">ID. Tipo de Atributo</param>
-        /// <param name="est_ado">Estado de Tipo de Atributo</param>
+        /// <param name="ide_rut">ID. Ruta</param>
+        /// <param name="est_ado">Estado de la Ruta</param>
         /// <remarks></remarks>
-        public void Fe_hab_des(int ide_tip, string est_ado)
+        public void Fe_hab_des(int ide_rut, string est_ado)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE adp003 SET va_est_ado = '" + est_ado + "' WHERE va_ide_tip = " + ide_tip + "");
+                cadena.AppendLine("UPDATE adp007 SET va_est_ado = '" + est_ado + "' WHERE va_ide_rut = " + ide_rut + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
 
             }
@@ -88,16 +88,16 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "ELIMINA TIPO DE ATRIBUTOS"
+        /// Funcion "ELIMINA DEFINICIÓN DE RUTA"
         /// </summary>
-        /// <param name="ide_tip">ID. Tipo de Atributos</param>
+        /// <param name="ide_rut">ID. Ruta</param>
         /// <returns></returns>
-        public void Fe_eli_tip(int ide_tip)
+        public void Fe_eli_rut(int ide_rut)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("DELETE adp003 WHERE va_ide_tip = " + ide_tip + "");
+                cadena.AppendLine("DELETE adp007 WHERE va_ide_rut = " + ide_rut + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -107,21 +107,18 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "CONSULTA TIPO DE ATRIBUTO"
+        /// Funcion "CONSULTA DEFINICIÓN DE RUTA"
         /// </summary>
-        /// <param name="ide_tip">ID. Tipo de Atributo</param>
+        /// <param name="ide_rut">ID. Ruta</param>
         /// <returns></returns>
-        public DataTable Fe_con_tip(int ide_tip)
+        public DataTable Fe_con_rut(int ide_rut)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT adp003.va_ide_tip, adp003.va_nom_tip, adp003.va_atr_def,");
-                cadena.AppendLine("       adp004.va_nom_atr, adp003.va_est_ado");
-                cadena.AppendLine("  FROM adp003, adp004");
-                cadena.AppendLine(" WHERE adp003.va_ide_tip = adp004.va_ide_tip");
-                cadena.AppendLine("   AND adp003.va_atr_def = adp004.va_ide_atr");
-                cadena.AppendLine("   AND adp003.va_ide_tip = " + ide_tip + "");
+                cadena.AppendLine("SELECT va_ide_rut, va_nom_rut, va_nom_cor, va_est_ado");
+                cadena.AppendLine("  FROM adp007");
+                cadena.AppendLine(" WHERE va_ide_rut = " + ide_rut + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -131,18 +128,18 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "CONSULTA TIPO DE ATRIBUTO POR NOMBRE"
+        /// Funcion "CONSULTA DEFINICIÓN DE RUTA POR NOMBRE"
         /// </summary>
-        /// <param name="nom_tip">Nombre Ruta</param>
+        /// <param name="nom_rut">Nombre Ruta</param>
         /// <returns></returns>
-        public DataTable Fe_con_nom(string nom_tip)
+        public DataTable Fe_con_nom(string nom_rut)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tip, va_nom_tip, va_atr_def, va_est_ado");
-                cadena.AppendLine("  FROM adp003");
-                cadena.AppendLine(" WHERE va_nom_tip = '" + nom_tip + "'");
+                cadena.AppendLine("SELECT va_ide_rut, va_nom_rut, va_nom_cor, va_est_ado");
+                cadena.AppendLine("  FROM adp007");
+                cadena.AppendLine(" WHERE va_nom_rut = '" + nom_rut + "'");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -152,10 +149,10 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Función: "FILTRA TIPO DE ATRIBUTO"
+        /// Función: "FILTRA DEFINICIÓN DE RUTA"
         /// </summary>
         /// <param name="cri_bus">Criterio de Busqueda</param>
-        /// <param name="prm_bus">Parametros de Busqueda (0=va_ide_tip; 1=va_nom_tip)</param>
+        /// <param name="prm_bus">Parametros de Busqueda (0=va_ide_rut; 1=va_nom_rut)</param>
         /// <param name="est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
         /// <returns></returns>
         public DataTable Fe_bus_car(string cri_bus, int prm_bus, string est_bus)
@@ -163,12 +160,12 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tip, va_nom_tip, va_atr_def, va_est_ado");
-                cadena.AppendLine("  FROM adp003");
+                cadena.AppendLine("SELECT va_ide_rut, va_nom_rut, va_nom_cor, va_est_ado");
+                cadena.AppendLine("  FROM adp007");
 
                 switch (prm_bus){
-                    case 0: cadena.AppendLine(" WHERE va_ide_tip LIKE '" + cri_bus + "%' "); break;
-                    case 1: cadena.AppendLine(" WHERE va_nom_tip LIKE '" + cri_bus + "%' "); break;
+                    case 0: cadena.AppendLine(" WHERE va_ide_rut LIKE '" + cri_bus + "%' "); break;
+                    case 1: cadena.AppendLine(" WHERE va_nom_rut LIKE '" + cri_bus + "%' "); break;
 
                 }
                 switch (est_bus){
@@ -191,17 +188,17 @@ namespace CRS_NEG
         }                     
 
         /// <summary>
-        /// Funcion "LISTA TIPO DE ATRIBUTOS
+        /// Funcion "LISTA DEFINICIÓN DE RUTA
         /// </summary>
         /// <param name="est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
         /// <returns></returns>
-        public DataTable Fe_lis_tip(string est_bus)
+        public DataTable Fe_lis_rut(string est_bus)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tip, va_nom_tip, va_atr_def, va_est_ado");
-                cadena.AppendLine("  FROM adp003");
+                cadena.AppendLine("SELECT va_ide_rut, va_nom_rut, va_nom_cor, va_est_ado");
+                cadena.AppendLine("  FROM adp007");
                 switch (est_bus)
                 {
                     case "0": est_bus = "T"; break;
@@ -222,7 +219,7 @@ namespace CRS_NEG
         }        
 
         /// <summary>
-        /// Funcion "OBTIENE ULTIMO ID. TIPO DE ATRIBUTO"
+        /// Funcion "OBTIENE ULTIMO ID. DEFINICIÓN DE RUTA"
         /// </summary>
         /// <returns></returns>
         public DataTable Fe_obt_ide()
@@ -230,9 +227,9 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("DECLARE @va_ide_tip INT ");
-                cadena.AppendLine(" SELECT @va_ide_tip = ISNULL(MAX(va_ide_tip), 0) FROM adp003");
-                cadena.AppendLine(" SELECT @va_ide_tip + 1 AS va_ide_tip");
+                cadena.AppendLine("DECLARE @va_ide_rut INT ");
+                cadena.AppendLine(" SELECT @va_ide_rut = ISNULL(MAX(va_ide_rut), 0) FROM adp007");
+                cadena.AppendLine(" SELECT @va_ide_rut + 1 AS va_ide_rut");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

@@ -4,8 +4,8 @@
 
 adp001 = Grupo de personas										CHL	(ok)       
 adp002 = Persona												CHL	(ok)
-adp003 = Tipos de atributos										EJR	 
-adp004 = Atributo												EJR
+adp003 = Tipos de atributos										EJR	(ok)
+adp004 = Atributo												EJR (ok)
 adp005 = Atributo por persona									CHL	
 adp006 = Imagen de persona										FVM 
 adp007 = Rutas													EJR

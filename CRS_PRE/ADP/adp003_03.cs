@@ -62,9 +62,19 @@ namespace CRS_PRE
                 return "DEBE proporcionar el Atributo p/Defecto";
             }
 
+            // Verifica SI existe otro registro con el mismo ID
+            Tabla = new DataTable();
             Tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text));
             if (Tabla.Rows.Count == 0){
                 return "EL Tipo de Atributo NO se encuentra en la base de datos";
+            }
+
+            // Verifica SI existe otro registro con el mismo nombre
+            Tabla = new DataTable();
+            Tabla = o_adp003.Fe_con_nom(tb_nom_tip.Text.Trim());
+            if (Tabla.Rows.Count > 0){
+                tb_nom_tip.Focus();
+                return "YA existe otra Tipo de Atributo con el mismo nombre";
             }
 
             return "";

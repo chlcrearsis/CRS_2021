@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class adp003_01
+    partial class adp007_01
     {
         /// <summary>
         /// Required designer variable.
@@ -41,17 +41,17 @@
             this.mn_rep_tip = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lb_nom_tip = new System.Windows.Forms.Label();
+            this.lb_nom_rut = new System.Windows.Forms.Label();
             this.bt_bus_car = new System.Windows.Forms.Button();
             this.cb_est_bus = new System.Windows.Forms.ComboBox();
             this.cb_prm_bus = new System.Windows.Forms.ComboBox();
             this.tb_tex_bus = new System.Windows.Forms.TextBox();
-            this.lb_ide_tip = new System.Windows.Forms.Label();
-            this.tb_ide_tip = new System.Windows.Forms.TextBox();
+            this.lb_ide_rut = new System.Windows.Forms.Label();
+            this.tb_ide_rut = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_ide_rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
@@ -74,7 +74,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -143,31 +143,31 @@
             this.mn_cer_rar.Name = "mn_cer_rar";
             this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
-            this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
+            this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lb_nom_tip);
+            this.groupBox1.Controls.Add(this.lb_nom_rut);
             this.groupBox1.Controls.Add(this.bt_bus_car);
             this.groupBox1.Controls.Add(this.cb_est_bus);
             this.groupBox1.Controls.Add(this.cb_prm_bus);
             this.groupBox1.Controls.Add(this.tb_tex_bus);
-            this.groupBox1.Controls.Add(this.lb_ide_tip);
-            this.groupBox1.Controls.Add(this.tb_ide_tip);
+            this.groupBox1.Controls.Add(this.lb_ide_rut);
+            this.groupBox1.Controls.Add(this.tb_ide_rut);
             this.groupBox1.Location = new System.Drawing.Point(2, -5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(542, 59);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // lb_nom_tip
+            // lb_nom_rut
             // 
-            this.lb_nom_tip.AutoSize = true;
-            this.lb_nom_tip.Location = new System.Drawing.Point(123, 13);
-            this.lb_nom_tip.Name = "lb_nom_tip";
-            this.lb_nom_tip.Size = new System.Drawing.Size(19, 13);
-            this.lb_nom_tip.TabIndex = 2;
-            this.lb_nom_tip.Text = "....";
+            this.lb_nom_rut.AutoSize = true;
+            this.lb_nom_rut.Location = new System.Drawing.Point(87, 13);
+            this.lb_nom_rut.Name = "lb_nom_rut";
+            this.lb_nom_rut.Size = new System.Drawing.Size(19, 13);
+            this.lb_nom_rut.TabIndex = 2;
+            this.lb_nom_rut.Text = "....";
             // 
             // bt_bus_car
             // 
@@ -216,26 +216,26 @@
             this.tb_tex_bus.TabIndex = 3;
             this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
-            // lb_ide_tip
+            // lb_ide_rut
             // 
-            this.lb_ide_tip.AutoSize = true;
-            this.lb_ide_tip.Location = new System.Drawing.Point(9, 13);
-            this.lb_ide_tip.Name = "lb_ide_tip";
-            this.lb_ide_tip.Size = new System.Drawing.Size(67, 13);
-            this.lb_ide_tip.TabIndex = 0;
-            this.lb_ide_tip.Text = "Tipo Atributo";
+            this.lb_ide_rut.AutoSize = true;
+            this.lb_ide_rut.Location = new System.Drawing.Point(9, 13);
+            this.lb_ide_rut.Name = "lb_ide_rut";
+            this.lb_ide_rut.Size = new System.Drawing.Size(30, 13);
+            this.lb_ide_rut.TabIndex = 0;
+            this.lb_ide_rut.Text = "Ruta";
             // 
-            // tb_ide_tip
+            // tb_ide_rut
             // 
-            this.tb_ide_tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_tip.Location = new System.Drawing.Point(78, 10);
-            this.tb_ide_tip.MaxLength = 3;
-            this.tb_ide_tip.Name = "tb_ide_tip";
-            this.tb_ide_tip.Size = new System.Drawing.Size(42, 20);
-            this.tb_ide_tip.TabIndex = 1;
-            this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_ide_tip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
-            this.tb_ide_tip.Validated += new System.EventHandler(this.tb_ide_tip_Validated);
+            this.tb_ide_rut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ide_rut.Location = new System.Drawing.Point(42, 10);
+            this.tb_ide_rut.MaxLength = 3;
+            this.tb_ide_rut.Name = "tb_ide_rut";
+            this.tb_ide_rut.Size = new System.Drawing.Size(42, 20);
+            this.tb_ide_rut.TabIndex = 1;
+            this.tb_ide_rut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_ide_rut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_ide_rut.Validated += new System.EventHandler(this.tb_ide_rut_Validated);
             // 
             // groupBox2
             // 
@@ -265,8 +265,8 @@
             this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.va_ide_tip,
-            this.va_nom_tip,
+            this.va_ide_rut,
+            this.va_nom_rut,
             this.va_est_ado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -289,19 +289,19 @@
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             // 
-            // va_ide_tip
+            // va_ide_rut
             // 
-            this.va_ide_tip.HeaderText = "Codigo";
-            this.va_ide_tip.Name = "va_ide_tip";
-            this.va_ide_tip.ReadOnly = true;
-            this.va_ide_tip.Width = 60;
+            this.va_ide_rut.HeaderText = "Codigo";
+            this.va_ide_rut.Name = "va_ide_rut";
+            this.va_ide_rut.ReadOnly = true;
+            this.va_ide_rut.Width = 60;
             // 
-            // va_nom_tip
+            // va_nom_rut
             // 
-            this.va_nom_tip.HeaderText = "Nombre";
-            this.va_nom_tip.Name = "va_nom_tip";
-            this.va_nom_tip.ReadOnly = true;
-            this.va_nom_tip.Width = 350;
+            this.va_nom_rut.HeaderText = "Nombre";
+            this.va_nom_rut.Name = "va_nom_rut";
+            this.va_nom_rut.ReadOnly = true;
+            this.va_nom_rut.Width = 350;
             // 
             // va_est_ado
             // 
@@ -333,7 +333,7 @@
             this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
-            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click_1);
+            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 
@@ -349,7 +349,7 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // adp003_01
+            // adp007_01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -363,12 +363,12 @@
             this.MainMenuStrip = this.m_frm_hja;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "adp003_01";
+            this.Name = "adp007_01";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Tag = "Busca Tipo de Atributo";
-            this.Text = "Busca Tipo de Atributo";
+            this.Tag = "Busca Definición de Rutas";
+            this.Text = "Busca Definición de Rutas";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
             this.m_frm_hja.PerformLayout();
@@ -388,7 +388,7 @@
         private System.Windows.Forms.ComboBox cb_est_bus;
         private System.Windows.Forms.ComboBox cb_prm_bus;
         private System.Windows.Forms.TextBox tb_tex_bus;
-        private System.Windows.Forms.Label lb_ide_tip;
+        private System.Windows.Forms.Label lb_ide_rut;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dg_res_ult;
         private System.Windows.Forms.Button bt_can_cel;
@@ -402,12 +402,12 @@
         private System.Windows.Forms.ToolStripMenuItem mn_eli_min;
         private System.Windows.Forms.ToolStripMenuItem mn_rep_tip;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
-        public System.Windows.Forms.TextBox tb_ide_tip;
+        public System.Windows.Forms.TextBox tb_ide_rut;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
-        private System.Windows.Forms.Label lb_nom_tip;
+        private System.Windows.Forms.Label lb_nom_rut;
         private System.Windows.Forms.Button bt_ace_pta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_tip;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_rut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_rut;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }
 }
