@@ -253,6 +253,10 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
         }
 
-       
+        private void mn_tip_ima_Click(object sender, EventArgs e)
+        {
+            o_frm = new ads010_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
     }
 }
