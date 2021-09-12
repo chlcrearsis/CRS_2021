@@ -44,7 +44,7 @@ namespace CRS_PRE
                 lb_nom_tip.Text = Tabla.Rows[0]["va_nom_tip"].ToString().Trim();
             }
             else {
-                tb_ide_tip.Text = "0";
+                tb_ide_tip.Text = "1";
                 lb_nom_tip.Text = string.Empty;
             }
 
@@ -55,20 +55,19 @@ namespace CRS_PRE
             }else {
                 tb_ide_atr.Text = "0";
             }            
-            tb_nom_atr.Text = "";
+            tb_nom_atr.Text = string.Empty;
             tb_nom_atr.Focus();
         }
 
         // Valida los datos proporcionados
         protected string Fi_val_dat(){
-            int ide_tip = 0;
-            int ide_atr = 0;
-
-            if (tb_ide_tip.Text.Trim()==""){
+            if (tb_ide_tip.Text.Trim() == "")
+            {
                 tb_ide_tip.Focus();
                 return "DEBE proporcionar el Id para el Tipo de Atributo";
             }
 
+            int ide_tip;
             // Valida que el campo ID. Tipo NO este vacio
             int.TryParse(tb_ide_tip.Text, out ide_tip);
             if (ide_tip == 0){
@@ -82,6 +81,7 @@ namespace CRS_PRE
                 return "DEBE proporcionar el Nombre para el Atributo";
             }
 
+            int ide_atr;
             // Valida que el campo ID. Atributo NO este vacio
             int.TryParse(tb_ide_atr.Text, out ide_atr);
             if (ide_tip == 0){
@@ -90,11 +90,20 @@ namespace CRS_PRE
             }
 
             // Verifica SI existe otro registro con el mismo ID
+            Tabla = new DataTable();
             Tabla = o_adp004.Fe_con_atr(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_atr.Text));
             if(Tabla.Rows.Count > 0){
                 tb_ide_tip.Focus();
-                return "Ya existe otro registro con el mismo ID.";
-            }          
+                return "Ya existe otro Atributo con el mismo ID.";
+            }
+
+            // Verifica SI existe otro registro con el mismo nombre
+            Tabla = new DataTable();
+            Tabla = o_adp004.Fe_con_nom(int.Parse(tb_ide_tip.Text), tb_nom_atr.Text.Trim());
+            if (Tabla.Rows.Count > 0){
+                tb_nom_atr.Focus();
+                return "YA existe otro Atributo con el mismo nombre";
+            }
 
             return "";
         }
@@ -120,7 +129,7 @@ namespace CRS_PRE
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_ide_tip.Text = frm.tb_sel_bus.Text;
+                tb_ide_tip.Text = frm.tb_ide_tip.Text;
                 fi_obt_tip(Int32.Parse(tb_ide_tip.Text));
             }
         }
@@ -174,15 +183,9 @@ namespace CRS_PRE
         }
 
         // Evento Click: Button Cancelar
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-
-        // Evento Click: Salir del Menu Principal
-        private void mn_cer_rar_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
-        }        
+        }               
     }
 }

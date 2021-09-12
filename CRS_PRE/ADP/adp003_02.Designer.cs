@@ -151,7 +151,7 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
-            this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
             // adp003_02
             // 

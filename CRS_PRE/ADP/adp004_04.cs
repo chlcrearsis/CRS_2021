@@ -37,8 +37,7 @@ namespace CRS_PRE
         }
 
         // Función: Valida Datos
-        protected string Fi_val_dat()
-        {
+        protected string Fi_val_dat(){
             Tabla = new DataTable();
             Tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text));
             if (Tabla.Rows.Count == 0) {

@@ -276,7 +276,7 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK){
-                tb_ide_tip.Text = frm.tb_sel_bus.Text;
+                tb_ide_tip.Text = frm.tb_ide_tip.Text;
                 Fi_obt_tip(Int32.Parse(tb_ide_tip.Text));
             }
         }

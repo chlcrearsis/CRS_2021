@@ -167,7 +167,7 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
-            this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
             // adp004_02
             // 
@@ -182,7 +182,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "adp004_02";
-            this.Tag = "Crea documento";
+            this.Tag = "Crea Definición de Atributo";
             this.Text = "Crea Definición de Atributo";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);

@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Runtime.InteropServices;
 
 using CRS_NEG;
 
@@ -88,18 +80,26 @@ namespace CRS_PRE
             }
 
             // Valida que el campo Nombre del Atributo NO este vacio
-            if (tb_nom_tip.Text.Trim() == "")
-            {
+            if (tb_nom_tip.Text.Trim() == ""){
                 tb_nom_tip.Focus();
                 return "DEBE proporcionar el Nombre para el Atributo p/Defecto";
             }
 
             // Verifica SI existe otro registro con el mismo ID
+            Tabla = new DataTable();
             Tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text) );
-            if(Tabla.Rows.Count >0){
+            if(Tabla.Rows.Count > 0){
                 tb_ide_tip.Focus();
                 return "Ya existe otro registro con el mismo ID.";
-            }          
+            }
+
+            // Verifica SI existe otro registro con el mismo nombre
+            Tabla = new DataTable();
+            Tabla = o_adp003.Fe_con_nom(tb_nom_tip.Text.Trim());
+            if (Tabla.Rows.Count > 0){
+                tb_nom_tip.Focus();
+                return "YA existe otra Tipo de Atributo con el mismo nombre";
+            }
 
             return "";
         }
@@ -141,16 +141,10 @@ namespace CRS_PRE
         }
 
         // Evento Click: Button Cancelar
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
         }
-
-        // Evento Click: Salir del Menu Principal
-        private void mn_cer_rar_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
-        }
-        
+            
     }
 }

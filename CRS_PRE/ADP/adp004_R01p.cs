@@ -117,10 +117,10 @@ namespace CRS_PRE
 
             if (frm.DialogResult == DialogResult.OK){
                 if (ini_fin == 1){
-                    tb_tip_ini.Text = frm.tb_sel_bus.Text;
+                    tb_tip_ini.Text = frm.tb_ide_tip.Text;
                     Fi_obt_tip(1, int.Parse(tb_tip_ini.Text));
                 }else{
-                    tb_tip_fin.Text = frm.tb_sel_bus.Text;
+                    tb_tip_fin.Text = frm.tb_ide_tip.Text;
                     Fi_obt_tip(2, int.Parse(tb_tip_fin.Text));
                 }
             }

@@ -135,6 +135,28 @@ namespace CRS_NEG
         }
 
         /// <summary>
+        /// Funcion "CONSULTA DEFINICIÓN DE ATRIBUTO POR NOMBRE"
+        /// </summary>
+        /// <param name="nom_atr">Nombre Atributo</param>
+        /// <returns></returns>
+        public DataTable Fe_con_nom(int ide_tip, string nom_atr)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_tip, va_ide_atr, va_nom_tip, va_est_ado");
+                cadena.AppendLine("  FROM adp004");
+                cadena.AppendLine(" WHERE va_ide_tip =  " + ide_tip + "");
+                cadena.AppendLine("   AND va_nom_atr = '" + nom_atr + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Función: "FILTRA ATRIBUTO DE PERSONA"
         /// </summary>
         /// <param name="ide_tip">ID. Tipo de Atributo</param>
