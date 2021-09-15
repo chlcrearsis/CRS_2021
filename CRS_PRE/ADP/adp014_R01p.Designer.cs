@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class adp003_R01p
+    partial class adp014_R01p
     {
         /// <summary>
         /// Required designer variable.
@@ -64,7 +64,7 @@
             this.cb_est_ado.Location = new System.Drawing.Point(90, 24);
             this.cb_est_ado.Name = "cb_est_ado";
             this.cb_est_ado.Size = new System.Drawing.Size(105, 21);
-            this.cb_est_ado.TabIndex = 9;
+            this.cb_est_ado.TabIndex = 1;
             // 
             // lb_est_ado
             // 
@@ -72,7 +72,7 @@
             this.lb_est_ado.Location = new System.Drawing.Point(48, 27);
             this.lb_est_ado.Name = "lb_est_ado";
             this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
-            this.lb_est_ado.TabIndex = 8;
+            this.lb_est_ado.TabIndex = 0;
             this.lb_est_ado.Text = "Estado";
             // 
             // gb_ord_por
@@ -82,7 +82,7 @@
             this.gb_ord_por.Location = new System.Drawing.Point(11, 54);
             this.gb_ord_por.Name = "gb_ord_por";
             this.gb_ord_por.Size = new System.Drawing.Size(243, 41);
-            this.gb_ord_por.TabIndex = 10;
+            this.gb_ord_por.TabIndex = 2;
             this.gb_ord_por.TabStop = false;
             this.gb_ord_por.Text = "Ordenado por";
             // 
@@ -147,7 +147,7 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // adp003_R01p
+            // adp014_R01p
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,10 +158,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "adp003_R01p";
+            this.Name = "adp014_R01p";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Tag = "Informe Tipo de Atributos";
-            this.Text = "Informe Tipo de Atributos";
+            this.Tag = "Informe Tipo de Documento";
+            this.Text = "Informe Tipo de Documento";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

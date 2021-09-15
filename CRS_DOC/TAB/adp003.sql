@@ -7,13 +7,13 @@ FECHA:		25-08-2021
 
 CREATE TABLE adp003 
 (
---** Llave Primaria
-va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de atributo
+	--** Llave Primaria
+	va_ide_tip  INT		    NOT NULL DEFAULT(0),	--** ID. tipo de atributo
 
---** Atributos     
-va_nom_tip      VARCHAR(30)     NOT NULL,       --** Nombre
-va_atr_def      INT						,       --** ID. atributo por defecto (adp004)
-va_est_ado      CHAR(01)				        --** Estado (H=Habilitado; N=Deshabilitado)
+	--** Atributos     
+	va_nom_tip  VARCHAR(30) NOT NULL DEFAULT(''),   --** Nombre
+	va_atr_def  INT			NOT NULL DEFAULT(0),    --** ID. atributo por defecto (adp004)
+	va_est_ado  CHAR(01)    NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp003 PRIMARY KEY(va_ide_tip)
 )
