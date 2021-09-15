@@ -76,7 +76,8 @@ namespace CRS_PRE
                     dg_res_ult.Rows.Add();
                     dg_res_ult.Rows[i].Cells["va_ide_rut"].Value = Tabla.Rows[i]["va_ide_rut"].ToString();
                     dg_res_ult.Rows[i].Cells["va_nom_rut"].Value = Tabla.Rows[i]["va_nom_rut"].ToString();
-                    
+                    dg_res_ult.Rows[i].Cells["va_nom_cor"].Value = Tabla.Rows[i]["va_nom_cor"].ToString();
+
                     if (Tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else

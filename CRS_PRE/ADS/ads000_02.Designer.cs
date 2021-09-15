@@ -36,7 +36,6 @@
             this.bt_men_inv = new System.Windows.Forms.Button();
             this.bt_men_adm = new System.Windows.Forms.Button();
             this.lb_ide_usr = new System.Windows.Forms.Label();
-            this.lb_nro_ver = new System.Windows.Forms.Label();
             this.pb_ima_usr = new PictureBoxAbouAmmar.صورة_دائرة();
             this.lb_nom_usr = new System.Windows.Forms.Label();
             this.pn_men_pri = new System.Windows.Forms.Panel();
@@ -63,7 +62,7 @@
             this.bt_men_pri.Location = new System.Drawing.Point(164, 7);
             this.bt_men_pri.Name = "bt_men_pri";
             this.bt_men_pri.Size = new System.Drawing.Size(30, 30);
-            this.bt_men_pri.TabIndex = 7;
+            this.bt_men_pri.TabIndex = 0;
             this.bt_men_pri.UseVisualStyleBackColor = false;
             this.bt_men_pri.Click += new System.EventHandler(this.bt_men_pri_Click);
             // 
@@ -77,7 +76,7 @@
             this.lp_con_apl.Location = new System.Drawing.Point(-2, 164);
             this.lp_con_apl.Name = "lp_con_apl";
             this.lp_con_apl.Size = new System.Drawing.Size(205, 303);
-            this.lp_con_apl.TabIndex = 6;
+            this.lp_con_apl.TabIndex = 3;
             // 
             // bt_men_res
             // 
@@ -91,7 +90,7 @@
             this.bt_men_res.Location = new System.Drawing.Point(3, 3);
             this.bt_men_res.Name = "bt_men_res";
             this.bt_men_res.Size = new System.Drawing.Size(190, 36);
-            this.bt_men_res.TabIndex = 9;
+            this.bt_men_res.TabIndex = 0;
             this.bt_men_res.Text = "              Restaurant";
             this.bt_men_res.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_res.UseVisualStyleBackColor = false;
@@ -113,7 +112,7 @@
             this.bt_men_com.Location = new System.Drawing.Point(3, 45);
             this.bt_men_com.Name = "bt_men_com";
             this.bt_men_com.Size = new System.Drawing.Size(190, 36);
-            this.bt_men_com.TabIndex = 10;
+            this.bt_men_com.TabIndex = 1;
             this.bt_men_com.Text = "              Comercializacion";
             this.bt_men_com.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_com.UseVisualStyleBackColor = false;
@@ -135,7 +134,7 @@
             this.bt_men_inv.Location = new System.Drawing.Point(3, 87);
             this.bt_men_inv.Name = "bt_men_inv";
             this.bt_men_inv.Size = new System.Drawing.Size(190, 36);
-            this.bt_men_inv.TabIndex = 11;
+            this.bt_men_inv.TabIndex = 2;
             this.bt_men_inv.Text = "              Inventario";
             this.bt_men_inv.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_inv.UseVisualStyleBackColor = false;
@@ -157,7 +156,7 @@
             this.bt_men_adm.Location = new System.Drawing.Point(3, 129);
             this.bt_men_adm.Name = "bt_men_adm";
             this.bt_men_adm.Size = new System.Drawing.Size(190, 36);
-            this.bt_men_adm.TabIndex = 12;
+            this.bt_men_adm.TabIndex = 3;
             this.bt_men_adm.Text = "              Administrador";
             this.bt_men_adm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bt_men_adm.UseVisualStyleBackColor = false;
@@ -175,20 +174,9 @@
             this.lb_ide_usr.Name = "lb_ide_usr";
             this.lb_ide_usr.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lb_ide_usr.Size = new System.Drawing.Size(170, 20);
-            this.lb_ide_usr.TabIndex = 3;
+            this.lb_ide_usr.TabIndex = 2;
             this.lb_ide_usr.Text = "e.justiniano";
             this.lb_ide_usr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lb_nro_ver
-            // 
-            this.lb_nro_ver.AutoSize = true;
-            this.lb_nro_ver.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_nro_ver.ForeColor = System.Drawing.Color.DarkGray;
-            this.lb_nro_ver.Location = new System.Drawing.Point(404, 88);
-            this.lb_nro_ver.Name = "lb_nro_ver";
-            this.lb_nro_ver.Size = new System.Drawing.Size(16, 13);
-            this.lb_nro_ver.TabIndex = 3;
-            this.lb_nro_ver.Text = "...";
             // 
             // pb_ima_usr
             // 
@@ -210,7 +198,7 @@
             this.lb_nom_usr.Name = "lb_nom_usr";
             this.lb_nom_usr.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lb_nom_usr.Size = new System.Drawing.Size(170, 20);
-            this.lb_nom_usr.TabIndex = 5;
+            this.lb_nom_usr.TabIndex = 1;
             this.lb_nom_usr.Text = "Enmanuel Justiniano";
             this.lb_nom_usr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -226,7 +214,7 @@
             this.pn_men_pri.Location = new System.Drawing.Point(0, 0);
             this.pn_men_pri.Name = "pn_men_pri";
             this.pn_men_pri.Size = new System.Drawing.Size(200, 529);
-            this.pn_men_pri.TabIndex = 8;
+            this.pn_men_pri.TabIndex = 0;
             // 
             // lb_nom_equ
             // 
@@ -237,7 +225,7 @@
             this.lb_nom_equ.Name = "lb_nom_equ";
             this.lb_nom_equ.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lb_nom_equ.Size = new System.Drawing.Size(159, 20);
-            this.lb_nom_equ.TabIndex = 8;
+            this.lb_nom_equ.TabIndex = 4;
             this.lb_nom_equ.Text = "HP-1904";
             this.lb_nom_equ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lb_nom_equ.Click += new System.EventHandler(this.lb_nom_equ_Click);
@@ -262,7 +250,7 @@
             this.lb_val_lic.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
             this.lb_val_lic.Name = "lb_val_lic";
             this.lb_val_lic.Size = new System.Drawing.Size(193, 16);
-            this.lb_val_lic.TabIndex = 12;
+            this.lb_val_lic.TabIndex = 2;
             this.lb_val_lic.Text = "Validez de la Licencia: 17/03/2022";
             // 
             // lb_lic_act
@@ -274,7 +262,7 @@
             this.lb_lic_act.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
             this.lb_lic_act.Name = "lb_lic_act";
             this.lb_lic_act.Size = new System.Drawing.Size(102, 16);
-            this.lb_lic_act.TabIndex = 10;
+            this.lb_lic_act.TabIndex = 1;
             this.lb_lic_act.Text = "Licencia Activada";
             this.lb_lic_act.Click += new System.EventHandler(this.lb_lic_act_Click);
             // 
@@ -299,7 +287,6 @@
             this.Controls.Add(this.lb_val_lic);
             this.Controls.Add(this.lb_lic_act);
             this.Controls.Add(this.pn_men_pri);
-            this.Controls.Add(this.lb_nro_ver);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(806, 528);
@@ -322,7 +309,6 @@
 
         #endregion
         private System.Windows.Forms.Label lb_ide_usr;
-        private System.Windows.Forms.Label lb_nro_ver;
         private System.Windows.Forms.FlowLayoutPanel lp_con_apl;
         private System.Windows.Forms.Button bt_men_pri;
         private PictureBoxAbouAmmar.صورة_دائرة pb_ima_usr;

@@ -71,7 +71,7 @@ namespace CRS_PRE
 
             // Verifica SI existe otro registro con el mismo nombre
             Tabla = new DataTable();
-            Tabla = o_adp003.Fe_con_nom(tb_nom_tip.Text.Trim());
+            Tabla = o_adp003.Fe_con_nom(tb_nom_tip.Text.Trim(), int.Parse(tb_ide_tip.Text));
             if (Tabla.Rows.Count > 0){
                 tb_nom_tip.Focus();
                 return "YA existe otra Tipo de Atributo con el mismo nombre";
@@ -88,17 +88,23 @@ namespace CRS_PRE
 
             if (frm.DialogResult == DialogResult.OK){
                 Fi_obt_atr(Int32.Parse(tb_ide_tip.Text), Int32.Parse(frm.tb_ide_atr.Text));
+            }else{
+                frm.Close();
             }
         }
 
         // Evento KeyDown : Buscar Atributo p/Defecto
         private void tb_ide_atr_KeyDown(object sender, KeyEventArgs e){
-            Fi_bus_atr();
+            if (e.KeyCode == Keys.Down){
+                Fi_bus_atr();
+            }
         }
 
         // Evento KeyUp : Buscar Atributo p/Defecto
         private void tb_ide_atr_KeyUp(object sender, KeyEventArgs e){
-            Fi_bus_atr();
+            if (e.KeyCode == Keys.Up) { 
+                Fi_bus_atr();
+            }
         }
 
         // Evento Click : Buscar Atributo p/Defecto
