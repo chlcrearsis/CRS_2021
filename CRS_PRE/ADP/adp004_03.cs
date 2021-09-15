@@ -47,19 +47,19 @@ namespace CRS_PRE
             Tabla = new DataTable();
             Tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text));
             if (Tabla.Rows.Count == 0){
-                return "EL Tipo de Atributo NO se encuentra en la base de datos";
+                return "El Tipo de Atributo NO se encuentra en la base de datos";
             }
 
             // Verifica SI existe otro registro con el mismo id
             Tabla = new DataTable();
             Tabla = o_adp004.Fe_con_atr(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_atr.Text));
             if (Tabla.Rows.Count == 0){
-                return "EL Atributo NO se encuentra en la base de datos";
+                return "El Atributo NO se encuentra en la base de datos";
             }
 
             // Verifica SI existe otro registro con el mismo nombre
             Tabla = new DataTable();
-            Tabla = o_adp004.Fe_con_nom(int.Parse(tb_ide_tip.Text), tb_nom_atr.Text.Trim());
+            Tabla = o_adp004.Fe_con_nom(int.Parse(tb_ide_tip.Text), tb_nom_atr.Text.Trim(), int.Parse(tb_ide_atr.Text));
             if (Tabla.Rows.Count > 0){
                 tb_nom_atr.Focus();
                 return "YA existe otro Atributo con el mismo nombre";

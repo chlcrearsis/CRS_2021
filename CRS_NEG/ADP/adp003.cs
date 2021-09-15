@@ -135,7 +135,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="nom_tip">Nombre Ruta</param>
         /// <returns></returns>
-        public DataTable Fe_con_nom(string nom_tip)
+        public DataTable Fe_con_nom(string nom_tip, int ide_tip = 0)
         {
             try
             {
@@ -143,6 +143,8 @@ namespace CRS_NEG
                 cadena.AppendLine("SELECT va_ide_tip, va_nom_tip, va_atr_def, va_est_ado");
                 cadena.AppendLine("  FROM adp003");
                 cadena.AppendLine(" WHERE va_nom_tip = '" + nom_tip + "'");
+                if (ide_tip > 0)
+                    cadena.AppendLine(" AND va_ide_tip <> " + ide_tip + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
