@@ -32,7 +32,6 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-
             tb_ide_doc.Text = frm_dat.Rows[0]["va_ide_doc"].ToString();
             tb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
             tb_nro_tal.Text = frm_dat.Rows[0]["va_nro_tal"].ToString();
@@ -40,6 +39,7 @@ namespace CRS_PRE
             cb_tip_tal.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_tip_tal"].ToString());
             tb_for_mat.Text = frm_dat.Rows[0]["va_for_mat"].ToString();
             tb_nro_cop.Text = frm_dat.Rows[0]["va_nro_cop"].ToString();
+            tb_nro_aut.Text = frm_dat.Rows[0]["va_nro_aut"].ToString();
             cb_for_log.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_for_log"].ToString());
 
             tb_fir_ma1.Text = frm_dat.Rows[0]["va_fir_ma1"].ToString();
@@ -103,7 +103,7 @@ namespace CRS_PRE
             if (msg_res == DialogResult.OK)
             {
                 //Edita usuario
-                o_ads004.Fe_edi_tal(tb_ide_doc.Text,int.Parse(tb_nro_tal.Text),tb_nom_tal.Text,cb_tip_tal.SelectedIndex,0,
+                o_ads004.Fe_edi_tal(tb_ide_doc.Text,int.Parse(tb_nro_tal.Text),tb_nom_tal.Text,cb_tip_tal.SelectedIndex,int.Parse(tb_nro_aut.Text),
                     int.Parse(tb_for_mat.Text),int.Parse(tb_nro_cop.Text),tb_fir_ma1.Text, tb_fir_ma2.Text,
                     tb_fir_ma3.Text, tb_fir_ma4.Text, cb_for_log.SelectedIndex);
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Documento", MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -112,6 +112,11 @@ namespace CRS_PRE
                 cl_glo_frm.Cerrar(this);
             }
 
+        }
+
+        private void tb_nro_aut_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.IsNumeric(e);
         }
     }
 }

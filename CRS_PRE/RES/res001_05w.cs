@@ -65,7 +65,7 @@ namespace CRS_PRE
 
 
             // ** OBTIENE DATOS DE LA NOTA DE VENTA **\\
-            tab_not_vta = o_res001.Fe_con_vta(va_ide_vta, va_ges_vta);
+            //tab_not_vta = o_res001.Fe_con_vta(va_ide_vta, va_ges_vta);
 
             // Hacer grande la pantalla
             this.Dock = DockStyle.Fill;
