@@ -116,7 +116,7 @@ namespace CRS_PRE
 
         private void tb_nro_aut_KeyPress(object sender, KeyPressEventArgs e)
         {
-            cl_glo_bal.IsNumeric(e);
+            cl_glo_bal.IsNumeric(tb_nro_aut.Text);
         }
     }
 }
