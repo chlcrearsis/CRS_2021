@@ -66,6 +66,7 @@
     <Compile Include="ADS\ads003.cs" />
     <Compile Include="ADS\ads016.cs" />
     <Compile Include="ADS\ads022.cs" />
+    <Compile Include="CMR\cmr017.cs" />
     <Compile Include="CMR\cmr013.cs" />
     <Compile Include="CMR\cmr008.cs" />
     <Compile Include="CMR\cmr007.cs" />

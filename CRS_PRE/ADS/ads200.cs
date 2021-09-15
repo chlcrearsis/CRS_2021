@@ -265,6 +265,10 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm);
         }
 
-        
+        private void mn_dos_ifi_Click(object sender, EventArgs e)
+        {
+            o_frm = new ctb007_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
     }
 }

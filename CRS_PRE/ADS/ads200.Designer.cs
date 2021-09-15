@@ -75,6 +75,8 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mn_con_tad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_dos_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_tip_doc = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
@@ -100,13 +102,13 @@
             // mn_usu_ari
             // 
             this.mn_usu_ari.Name = "mn_usu_ari";
-            this.mn_usu_ari.Size = new System.Drawing.Size(59, 22);
+            this.mn_usu_ari.Size = new System.Drawing.Size(88, 29);
             this.mn_usu_ari.Text = "Usuario";
             // 
             // mn_ges_tio
             // 
             this.mn_ges_tio.Name = "mn_ges_tio";
-            this.mn_ges_tio.Size = new System.Drawing.Size(59, 22);
+            this.mn_ges_tio.Size = new System.Drawing.Size(88, 29);
             this.mn_ges_tio.Text = "Gestion";
             // 
             // controlToolStripMenuItem
@@ -116,27 +118,27 @@
             this.mn_tal_ona,
             this.mn_num_era});
             this.controlToolStripMenuItem.Name = "controlToolStripMenuItem";
-            this.controlToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.controlToolStripMenuItem.Size = new System.Drawing.Size(186, 29);
             this.controlToolStripMenuItem.Text = "Control Documento";
             // 
             // mn_doc_ume
             // 
             this.mn_doc_ume.Name = "mn_doc_ume";
-            this.mn_doc_ume.Size = new System.Drawing.Size(140, 22);
+            this.mn_doc_ume.Size = new System.Drawing.Size(210, 34);
             this.mn_doc_ume.Text = "Documento";
             this.mn_doc_ume.Click += new System.EventHandler(this.Mn_doc_ume_Click);
             // 
             // mn_tal_ona
             // 
             this.mn_tal_ona.Name = "mn_tal_ona";
-            this.mn_tal_ona.Size = new System.Drawing.Size(140, 22);
+            this.mn_tal_ona.Size = new System.Drawing.Size(210, 34);
             this.mn_tal_ona.Text = "Talonario";
             this.mn_tal_ona.Click += new System.EventHandler(this.TalonarioToolStripMenuItem_Click);
             // 
             // mn_num_era
             // 
             this.mn_num_era.Name = "mn_num_era";
-            this.mn_num_era.Size = new System.Drawing.Size(140, 22);
+            this.mn_num_era.Size = new System.Drawing.Size(210, 34);
             this.mn_num_era.Text = "Numeracion";
             this.mn_num_era.Click += new System.EventHandler(this.Mn_num_era_Click);
             // 
@@ -147,27 +149,27 @@
             this.mn_bit_doc,
             this.mn_reg_ini});
             this.mn_inf_bit.Name = "mn_inf_bit";
-            this.mn_inf_bit.Size = new System.Drawing.Size(62, 22);
+            this.mn_inf_bit.Size = new System.Drawing.Size(91, 29);
             this.mn_inf_bit.Text = "&Bitácora";
             // 
             // mn_bit_ope
             // 
             this.mn_bit_ope.Name = "mn_bit_ope";
-            this.mn_bit_ope.Size = new System.Drawing.Size(218, 22);
+            this.mn_bit_ope.Size = new System.Drawing.Size(333, 34);
             this.mn_bit_ope.Text = "Bitacora de Operaciones";
             this.mn_bit_ope.Click += new System.EventHandler(this.mn_bit_ope_Click);
             // 
             // mn_bit_doc
             // 
             this.mn_bit_doc.Name = "mn_bit_doc";
-            this.mn_bit_doc.Size = new System.Drawing.Size(218, 22);
+            this.mn_bit_doc.Size = new System.Drawing.Size(333, 34);
             this.mn_bit_doc.Text = "Bitacora de Documento";
             this.mn_bit_doc.Click += new System.EventHandler(this.mn_bit_doc_Click);
             // 
             // mn_reg_ini
             // 
             this.mn_reg_ini.Name = "mn_reg_ini";
-            this.mn_reg_ini.Size = new System.Drawing.Size(218, 22);
+            this.mn_reg_ini.Size = new System.Drawing.Size(333, 34);
             this.mn_reg_ini.Text = "Registro de Inicio de Sesión";
             this.mn_reg_ini.Click += new System.EventHandler(this.mn_reg_ini_Click);
             // 
@@ -177,10 +179,11 @@
             this.mn_par_inv,
             this.mn_com_erc,
             this.mn_per_son,
+            this.mn_con_tad,
             this.mn_tip_bus,
             this.mn_par_ame});
             this.mn_def_par.Name = "mn_def_par";
-            this.mn_def_par.Size = new System.Drawing.Size(84, 22);
+            this.mn_def_par.Size = new System.Drawing.Size(124, 29);
             this.mn_def_par.Text = "&Definiciones";
             // 
             // mn_par_inv
@@ -199,42 +202,42 @@
             // mn_gru_bod
             // 
             this.mn_gru_bod.Name = "mn_gru_bod";
-            this.mn_gru_bod.Size = new System.Drawing.Size(171, 22);
+            this.mn_gru_bod.Size = new System.Drawing.Size(261, 34);
             this.mn_gru_bod.Text = "&Grupo Bodegas";
             this.mn_gru_bod.Click += new System.EventHandler(this.mn_gru_bod_Click);
             // 
             // mn_bod_ega
             // 
             this.mn_bod_ega.Name = "mn_bod_ega";
-            this.mn_bod_ega.Size = new System.Drawing.Size(171, 22);
+            this.mn_bod_ega.Size = new System.Drawing.Size(261, 34);
             this.mn_bod_ega.Text = "&Bodegas";
             this.mn_bod_ega.Click += new System.EventHandler(this.mn_bod_ega_Click);
             // 
             // mn_fam_pro
             // 
             this.mn_fam_pro.Name = "mn_fam_pro";
-            this.mn_fam_pro.Size = new System.Drawing.Size(171, 22);
+            this.mn_fam_pro.Size = new System.Drawing.Size(261, 34);
             this.mn_fam_pro.Text = "&Familia Productos";
             this.mn_fam_pro.Click += new System.EventHandler(this.mn_fam_pro_Click);
             // 
             // mn_pro_duc
             // 
             this.mn_pro_duc.Name = "mn_pro_duc";
-            this.mn_pro_duc.Size = new System.Drawing.Size(171, 22);
+            this.mn_pro_duc.Size = new System.Drawing.Size(261, 34);
             this.mn_pro_duc.Text = "&Productos";
             this.mn_pro_duc.Click += new System.EventHandler(this.mn_pro_duc_Click);
             // 
             // mn_mar_ca
             // 
             this.mn_mar_ca.Name = "mn_mar_ca";
-            this.mn_mar_ca.Size = new System.Drawing.Size(171, 22);
+            this.mn_mar_ca.Size = new System.Drawing.Size(261, 34);
             this.mn_mar_ca.Text = "&Marca";
             this.mn_mar_ca.Click += new System.EventHandler(this.mn_mar_ca_Click);
             // 
             // mn_und_med
             // 
             this.mn_und_med.Name = "mn_und_med";
-            this.mn_und_med.Size = new System.Drawing.Size(171, 22);
+            this.mn_und_med.Size = new System.Drawing.Size(261, 34);
             this.mn_und_med.Text = "&Unidad de Medida";
             this.mn_und_med.Click += new System.EventHandler(this.mn_und_med_Click);
             // 
@@ -253,35 +256,35 @@
             // mn_lis_pre
             // 
             this.mn_lis_pre.Name = "mn_lis_pre";
-            this.mn_lis_pre.Size = new System.Drawing.Size(164, 22);
+            this.mn_lis_pre.Size = new System.Drawing.Size(247, 34);
             this.mn_lis_pre.Text = "Lista de Precios";
             this.mn_lis_pre.Click += new System.EventHandler(this.mn_lis_pre_Click);
             // 
             // mn_pre_cio
             // 
             this.mn_pre_cio.Name = "mn_pre_cio";
-            this.mn_pre_cio.Size = new System.Drawing.Size(164, 22);
+            this.mn_pre_cio.Size = new System.Drawing.Size(247, 34);
             this.mn_pre_cio.Text = "Precios";
             this.mn_pre_cio.Click += new System.EventHandler(this.mn_pre_cio_Click);
             // 
             // mn_del_ive
             // 
             this.mn_del_ive.Name = "mn_del_ive";
-            this.mn_del_ive.Size = new System.Drawing.Size(164, 22);
+            this.mn_del_ive.Size = new System.Drawing.Size(247, 34);
             this.mn_del_ive.Text = "Delivery";
             this.mn_del_ive.Click += new System.EventHandler(this.mn_del_ive_Click);
             // 
             // mn_ven_ded
             // 
             this.mn_ven_ded.Name = "mn_ven_ded";
-            this.mn_ven_ded.Size = new System.Drawing.Size(164, 22);
+            this.mn_ven_ded.Size = new System.Drawing.Size(247, 34);
             this.mn_ven_ded.Text = "&Vendedor";
             this.mn_ven_ded.Click += new System.EventHandler(this.mn_ven_ded_Click);
             // 
             // mn_pla_vta
             // 
             this.mn_pla_vta.Name = "mn_pla_vta";
-            this.mn_pla_vta.Size = new System.Drawing.Size(164, 22);
+            this.mn_pla_vta.Size = new System.Drawing.Size(247, 34);
             this.mn_pla_vta.Text = "Plantilla de venta";
             this.mn_pla_vta.Click += new System.EventHandler(this.mn_pla_vta_Click);
             // 
@@ -301,35 +304,35 @@
             // mn_gru_per
             // 
             this.mn_gru_per.Name = "mn_gru_per";
-            this.mn_gru_per.Size = new System.Drawing.Size(191, 22);
+            this.mn_gru_per.Size = new System.Drawing.Size(289, 34);
             this.mn_gru_per.Text = "&Grupo de Persona";
             this.mn_gru_per.Click += new System.EventHandler(this.mn_gru_per_Click);
             // 
             // mn_per_son1
             // 
             this.mn_per_son1.Name = "mn_per_son1";
-            this.mn_per_son1.Size = new System.Drawing.Size(191, 22);
+            this.mn_per_son1.Size = new System.Drawing.Size(289, 34);
             this.mn_per_son1.Text = "&Persona";
             this.mn_per_son1.Click += new System.EventHandler(this.mn_per_son1_Click);
             // 
             // mn_tip_atr
             // 
             this.mn_tip_atr.Name = "mn_tip_atr";
-            this.mn_tip_atr.Size = new System.Drawing.Size(191, 22);
+            this.mn_tip_atr.Size = new System.Drawing.Size(289, 34);
             this.mn_tip_atr.Text = "&Tipo de Atributo";
             this.mn_tip_atr.Click += new System.EventHandler(this.mn_tip_atr_Click);
             // 
             // mn_def_atr
             // 
             this.mn_def_atr.Name = "mn_def_atr";
-            this.mn_def_atr.Size = new System.Drawing.Size(191, 22);
+            this.mn_def_atr.Size = new System.Drawing.Size(289, 34);
             this.mn_def_atr.Text = "&Definición de Atributo";
             this.mn_def_atr.Click += new System.EventHandler(this.mn_def_atr_Click);
             // 
             // mn_def_rut
             // 
             this.mn_def_rut.Name = "mn_def_rut";
-            this.mn_def_rut.Size = new System.Drawing.Size(191, 22);
+            this.mn_def_rut.Size = new System.Drawing.Size(289, 34);
             this.mn_def_rut.Text = "Definición de Rutas";
             this.mn_def_rut.Click += new System.EventHandler(this.mn_def_rut_Click);
             // 
@@ -353,23 +356,16 @@
             // mn_mod_ulo
             // 
             this.mn_mod_ulo.Name = "mn_mod_ulo";
-            this.mn_mod_ulo.Size = new System.Drawing.Size(156, 22);
+            this.mn_mod_ulo.Size = new System.Drawing.Size(270, 34);
             this.mn_mod_ulo.Text = "&Modulo";
             this.mn_mod_ulo.Click += new System.EventHandler(this.mn_mod_ulo_Click);
             // 
             // mn_apl_ica
             // 
             this.mn_apl_ica.Name = "mn_apl_ica";
-            this.mn_apl_ica.Size = new System.Drawing.Size(156, 22);
+            this.mn_apl_ica.Size = new System.Drawing.Size(270, 34);
             this.mn_apl_ica.Text = "&Aplicación";
             this.mn_apl_ica.Click += new System.EventHandler(this.mn_apl_ica_Click);
-            // 
-            // mn_tip_ima
-            // 
-            this.mn_tip_ima.Name = "mn_tip_ima";
-            this.mn_tip_ima.Size = new System.Drawing.Size(156, 22);
-            this.mn_tip_ima.Text = "Tipo de Imagen";
-            this.mn_tip_ima.Click += new System.EventHandler(this.mn_tip_ima_Click);
             // 
             // m_frm_hja
             // 
@@ -396,9 +392,10 @@
             this.toolStripStatusLabel4,
             this.ts_rut_app});
             this.st_bar_pie.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.st_bar_pie.Location = new System.Drawing.Point(0, 467);
+            this.st_bar_pie.Location = new System.Drawing.Point(0, 742);
             this.st_bar_pie.Name = "st_bar_pie";
-            this.st_bar_pie.Size = new System.Drawing.Size(886, 20);
+            this.st_bar_pie.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
+            this.st_bar_pie.Size = new System.Drawing.Size(1329, 32);
             this.st_bar_pie.TabIndex = 6;
             this.st_bar_pie.Tag = "Adminstracion y Seguridad";
             this.st_bar_pie.Text = "statusStrip1";
@@ -438,7 +435,7 @@
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(10, 15);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(16, 25);
             this.toolStripStatusLabel3.Text = "|";
             // 
             // toolStripStatusLabel5
@@ -472,18 +469,18 @@
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // mn_tip_doc
+            // mn_tip_ima
             // 
-            this.mn_tip_doc.Name = "mn_tip_doc";
-            this.mn_tip_doc.Size = new System.Drawing.Size(191, 22);
-            this.mn_tip_doc.Text = "Tipo de Documento";
-            this.mn_tip_doc.Click += new System.EventHandler(this.mn_tip_doc_Click);
+            this.mn_tip_ima.Name = "mn_tip_ima";
+            this.mn_tip_ima.Size = new System.Drawing.Size(270, 34);
+            this.mn_tip_ima.Text = "Tipo de Imagen";
+            this.mn_tip_ima.Click += new System.EventHandler(this.mn_tip_ima_Click);
             // 
             // ads200
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 487);
+            this.ClientSize = new System.Drawing.Size(1329, 774);
             this.Controls.Add(this.st_bar_pie);
             this.Controls.Add(this.m_mod_ulo);
             this.Controls.Add(this.m_frm_hja);
@@ -552,6 +549,5 @@
         private System.Windows.Forms.ToolStripMenuItem mn_reg_ini;
         private System.Windows.Forms.ToolStripMenuItem mn_def_rut;
         private System.Windows.Forms.ToolStripMenuItem mn_tip_ima;
-        private System.Windows.Forms.ToolStripMenuItem mn_tip_doc;
     }
 }
