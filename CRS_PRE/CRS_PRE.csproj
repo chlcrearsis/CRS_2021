@@ -2785,6 +2785,7 @@
     <Content Include="ADP\ADP.txt" />
     <Content Include="ADS\ADS.txt" />
     <Content Include="CMR\CMR.txt" />
+    <Content Include="CTB\CTB.txt" />
     <None Include="Resources\fondotexto.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\telegram.png" />

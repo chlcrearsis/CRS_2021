@@ -1,6 +1,6 @@
 /*--**********************************************
 ARCHIVO:	cmr014.sql	
-TABLA:		Tabla de "Vendedor"
+TABLA:		Tabla de "Vendedor/Cobrador"
 AUTOR:		CREARSIS 3.0.0 (CHL)
 FECHA:		15/09/2020
 */--**********************************************
@@ -8,17 +8,22 @@ FECHA:		15/09/2020
 CREATE TABLE cmr014 
 (
 --** Llave Primaria
-va_cod_ven		SMALLINT			NOT NULL,		--** Codigo del Vendedor(4 numeros)
+va_ide_tip		SMALLINT			NOT NULL,		--** ID. Tipo (1= Vendedor ; 2= Cobrador)
+va_cod_ide		SMALLINT			NOT NULL,		--** Codigo identificador(4 numeros)
 
 --** Atributos     
-va_nom_ven		VARCHAR(50)			NOT NULL,		--** Nombre del Vendedor
-va_por_cms		DECIMAL(4,2)		NOT NULL,		--** Porcentaje Comisión
-va_tip_cms		TINYINT				NOT NULL,		--** Tipo comisión (0=Ventas, 1=Cobranzas)
+va_nom_bre		VARCHAR(50)			NOT NULL,		--** Nombre del Vendedor/Cobrador
+va_tel_cel		VARCHAR(15)					,		--** Telefono Celular
+va_ema_ail		VARCHAR(30)					,		--** Email
+va_pro_ced		INT					NOT NULL,		--** Procedencia (1=Empresa ; 2=Externo)
+va_tip_cms		TINYINT				NOT NULL,		--** Tipo comisión (1=General Venta; 2=Familia, 3=Producto)
+va_cms_con		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision general al contado
+va_cms_cre		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision general al credito      
 va_est_ado		CHAR(01)			NOT NULL,		--** Estado del Vendedor
       
 
-CONSTRAINT pk1_cmr014 PRIMARY KEY(va_cod_ven)
+CONSTRAINT pk1_cmr014 PRIMARY KEY(va_ide_tip,va_cod_ide)
 )
 GO
      
-     
+ 

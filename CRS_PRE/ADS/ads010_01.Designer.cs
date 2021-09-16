@@ -67,7 +67,6 @@
             // m_frm_hja
             // 
             this.m_frm_hja.Dock = System.Windows.Forms.DockStyle.None;
-            this.m_frm_hja.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.m_frm_hja.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.m_frm_hja.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_cre_ar,
@@ -75,17 +74,17 @@
             this.mn_con_sul,
             this.mn_rep_ort,
             this.mn_cer_rar});
-            this.m_frm_hja.Location = new System.Drawing.Point(212, 75);
+            this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.m_frm_hja.Size = new System.Drawing.Size(574, 33);
+            this.m_frm_hja.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.m_frm_hja.Size = new System.Drawing.Size(255, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
             // mn_cre_ar
             // 
             this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(63, 29);
+            this.mn_cre_ar.Size = new System.Drawing.Size(42, 22);
             this.mn_cre_ar.Text = "&Crea";
             this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
             // 
@@ -96,34 +95,34 @@
             this.mn_hab_des,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(67, 29);
+            this.mn_edi_tar.Size = new System.Drawing.Size(43, 22);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(268, 34);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(165, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(268, 34);
+            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(268, 34);
+            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(97, 29);
+            this.mn_con_sul.Size = new System.Drawing.Size(61, 22);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
@@ -132,20 +131,20 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_mod});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(90, 29);
+            this.mn_rep_ort.Size = new System.Drawing.Size(58, 22);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_mod
             // 
             this.mn_list_mod.Name = "mn_list_mod";
-            this.mn_list_mod.Size = new System.Drawing.Size(270, 34);
+            this.mn_list_mod.Size = new System.Drawing.Size(153, 22);
             this.mn_list_mod.Text = "&Lista de Módulos";
             this.mn_list_mod.Click += new System.EventHandler(this.mn_list_mod_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(69, 29);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 22);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -158,11 +157,9 @@
             this.groupBox1.Controls.Add(this.lb_des_bus);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tb_sel_bus);
-            this.groupBox1.Location = new System.Drawing.Point(3, -8);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(2, -5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(735, 91);
+            this.groupBox1.Size = new System.Drawing.Size(490, 59);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -172,10 +169,9 @@
             this.bt_bus_car.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_bus_car.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_bus_car.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_car.Location = new System.Drawing.Point(598, 49);
-            this.bt_bus_car.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bt_bus_car.Location = new System.Drawing.Point(399, 32);
             this.bt_bus_car.Name = "bt_bus_car";
-            this.bt_bus_car.Size = new System.Drawing.Size(112, 35);
+            this.bt_bus_car.Size = new System.Drawing.Size(75, 23);
             this.bt_bus_car.TabIndex = 30;
             this.bt_bus_car.Text = "&Buscar";
             this.bt_bus_car.UseVisualStyleBackColor = false;
@@ -189,10 +185,9 @@
             "Todos",
             "Habilitado",
             "Deshabilitado"});
-            this.cb_est_bus.Location = new System.Drawing.Point(426, 51);
-            this.cb_est_bus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_est_bus.Location = new System.Drawing.Point(284, 33);
             this.cb_est_bus.Name = "cb_est_bus";
-            this.cb_est_bus.Size = new System.Drawing.Size(169, 28);
+            this.cb_est_bus.Size = new System.Drawing.Size(114, 21);
             this.cb_est_bus.TabIndex = 25;
             // 
             // cb_prm_bus
@@ -203,29 +198,26 @@
             "Codigo",
             "Nombre",
             "Tabla"});
-            this.cb_prm_bus.Location = new System.Drawing.Point(274, 51);
-            this.cb_prm_bus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_prm_bus.Location = new System.Drawing.Point(183, 33);
             this.cb_prm_bus.Name = "cb_prm_bus";
-            this.cb_prm_bus.Size = new System.Drawing.Size(140, 28);
+            this.cb_prm_bus.Size = new System.Drawing.Size(95, 21);
             this.cb_prm_bus.TabIndex = 20;
             this.cb_prm_bus.SelectedIndexChanged += new System.EventHandler(this.cb_prm_bus_SelectedIndexChanged);
             // 
             // tb_tex_bus
             // 
             this.tb_tex_bus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_tex_bus.Location = new System.Drawing.Point(14, 51);
-            this.tb_tex_bus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_tex_bus.Location = new System.Drawing.Point(9, 33);
             this.tb_tex_bus.Name = "tb_tex_bus";
-            this.tb_tex_bus.Size = new System.Drawing.Size(251, 26);
+            this.tb_tex_bus.Size = new System.Drawing.Size(168, 20);
             this.tb_tex_bus.TabIndex = 15;
             this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
             // lb_des_bus
             // 
-            this.lb_des_bus.Location = new System.Drawing.Point(140, 20);
-            this.lb_des_bus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_des_bus.Location = new System.Drawing.Point(93, 13);
             this.lb_des_bus.Name = "lb_des_bus";
-            this.lb_des_bus.Size = new System.Drawing.Size(460, 20);
+            this.lb_des_bus.Size = new System.Drawing.Size(307, 13);
             this.lb_des_bus.TabIndex = 2;
             this.lb_des_bus.Text = ".";
             // 
@@ -233,21 +225,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 20);
+            this.label1.Size = new System.Drawing.Size(20, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "ID";
             // 
             // tb_sel_bus
             // 
             this.tb_sel_bus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_sel_bus.Location = new System.Drawing.Point(90, 15);
-            this.tb_sel_bus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_sel_bus.Location = new System.Drawing.Point(60, 10);
             this.tb_sel_bus.MaxLength = 3;
             this.tb_sel_bus.Name = "tb_sel_bus";
-            this.tb_sel_bus.Size = new System.Drawing.Size(44, 26);
+            this.tb_sel_bus.Size = new System.Drawing.Size(30, 20);
             this.tb_sel_bus.TabIndex = 10;
             this.tb_sel_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             this.tb_sel_bus.Validated += new System.EventHandler(this.Tb_sel_bus_Validated);
@@ -256,11 +246,9 @@
             // 
             this.groupBox2.Controls.Add(this.m_frm_hja);
             this.groupBox2.Controls.Add(this.dg_res_ult);
-            this.groupBox2.Location = new System.Drawing.Point(3, 74);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Location = new System.Drawing.Point(2, 48);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(735, 306);
+            this.groupBox2.Size = new System.Drawing.Size(490, 199);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
@@ -294,8 +282,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dg_res_ult.Location = new System.Drawing.Point(3, 11);
-            this.dg_res_ult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dg_res_ult.Location = new System.Drawing.Point(2, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
             this.dg_res_ult.ReadOnly = true;
@@ -303,7 +290,7 @@
             this.dg_res_ult.RowHeadersWidth = 62;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(722, 288);
+            this.dg_res_ult.Size = new System.Drawing.Size(481, 187);
             this.dg_res_ult.TabIndex = 35;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
@@ -346,11 +333,9 @@
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 371);
-            this.gb_ctr_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(2, 241);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gb_ctr_btn.Size = new System.Drawing.Size(735, 62);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(490, 40);
             this.gb_ctr_btn.TabIndex = 8;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -361,10 +346,9 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(604, 15);
-            this.bt_can_cel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bt_can_cel.Location = new System.Drawing.Point(403, 10);
             this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(112, 38);
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 45;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
@@ -376,10 +360,9 @@
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(464, 15);
-            this.bt_ace_pta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bt_ace_pta.Location = new System.Drawing.Point(309, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(112, 38);
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 40;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
@@ -388,17 +371,16 @@
             // ads010_01
             // 
             this.AcceptButton = this.bt_ace_pta;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(744, 442);
+            this.ClientSize = new System.Drawing.Size(496, 286);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gb_ctr_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.m_frm_hja;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ads010_01";

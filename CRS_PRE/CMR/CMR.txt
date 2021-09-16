@@ -16,10 +16,7 @@ cmr010 = detalle de proforma
 
 cmr012 = 
 cmr013 = Registro de Nit
-cmr014 = Vendedor
+cmr014 = Vendedor/Cobrador **
 cmr015 = Delivery
-
-
-** DOCUMENTOS QUE YA ESTAN REALIZADOS **
-- NOTA DE VENTA
-- PEDIDO
+cmr016 = Actividad Economica **
+cmr017 = Detalle de comision vendedor **

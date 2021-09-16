@@ -7,18 +7,18 @@ FECHA:		05-07-2017
 
 
 CREATE TABLE ctb007(
-	va_nro_aut DECIMAL(15,0)	 NOT NULL,
-	va_tip_fac int NOT NULL,		--//0=Computarizada; 1=Manual
-	va_fec_ini date NOT NULL,
-	va_fec_fin date NOT NULL,
-	va_nro_ini int NOT NULL,
-	va_nro_fin int NOT NULL,
-	va_cod_suc tinyint NOT NULL,	--2 numeros
-	va_cod_act tinyint NOT NULL,	--1 numeros
-	va_cod_ley tinyint NOT NULL,	--2 numeros
-	va_lla_vee varchar(500) NULL,
-	va_est_ado char(1) NOT NULL,
-	va_con_tad int	   NOT NULL,	-- Contador de factura
+	va_nro_aut DECIMAL(15,0)		NOT NULL,	--** Numero de Autorizació
+	va_tip_fac INT					NOT NULL,	--** Tipo de Factuta (0=Computarizada; 1=Manual)
+	va_fec_ini DATE					NOT NULL,	--** Fecha de tramite dosificacion
+	va_fec_fin DATE					NOT NULL,	--** Fecha limite de factura
+	va_nro_ini INT					NOT NULL,	--** Numero unicial
+	va_nro_fin INT					NOT NULL,	--** Numero final
+	va_cod_suc INT					NOT NULL,	--** Codigo de sucursal
+	va_cod_act INT					NOT NULL,	--** Cosigo de Actividad Economica
+	va_cod_ley INT					NOT NULL,	--** Codigo Leyenda
+	va_lla_vee VARCHAR(500)			NULL,		--** Llave dosificacion	
+	va_con_act INT					NOT NULL,	--** Contador Actual de la factura
+	va_est_ado CHAR(01)				NOT NULL,	--** Estado (H=habilitado ; N=deshabilitado)
 
 CONSTRAINT pk1_ctb007 PRIMARY KEY(va_nro_aut)
 )
