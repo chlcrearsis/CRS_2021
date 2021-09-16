@@ -16,5 +16,6 @@ adp010 = Contratos												EJR (opcional)
 adp011 = Descuento especial x persona							EJR
 adp012 = Personas relacionadas									CHL (opcional)
 adp013 = Contactos por persona									CHL 
+adp014 = Tipo de Documento                                      EJR
 
 

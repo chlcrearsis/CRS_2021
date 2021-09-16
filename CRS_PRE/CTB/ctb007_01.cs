@@ -239,18 +239,11 @@ namespace CRS_PRE
 
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
         }
 
-        private void Mn_cre_num_Click(object sender, EventArgs e)
-        {
-            ctb007_02 frm = new ctb007_02();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
-        }
-       
         private void Mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
@@ -289,6 +282,12 @@ namespace CRS_PRE
         private void Mn_list_tal_Click(object sender, EventArgs e)
         {
             ads004_R01p frm = new ads004_R01p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
+        private void mn_cre_ar_Click(object sender, EventArgs e)
+        {
+            ctb007_02 frm = new ctb007_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
     }

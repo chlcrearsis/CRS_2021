@@ -67,7 +67,7 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Gma.QrCodeNet.Encoding">
-      <HintPath>..\..\PROGRAMAS\QRCODENET\Gma.QrCodeNet.Encoding.dll</HintPath>
+      <HintPath>..\CRS_DOC\LIB\Gma.QrCodeNet.Encoding.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -94,6 +94,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADP\adp014_R01p.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp014_R01p.Designer.cs">
+      <DependentUpon>adp014_R01p.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp014_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp014_06.Designer.cs">
+      <DependentUpon>adp014_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp014_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp014_05.Designer.cs">
+      <DependentUpon>adp014_05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp014_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp014_04.Designer.cs">
+      <DependentUpon>adp014_04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp014_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp014_03.Designer.cs">
+      <DependentUpon>adp014_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp014_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp014_02.Designer.cs">
+      <DependentUpon>adp014_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp014_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp014_01.Designer.cs">
+      <DependentUpon>adp014_01.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADP\adp007_R01p.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -990,6 +1032,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="RES\res001_05c_p02.cs">
+      <DependentUpon>res001_05c_p02.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RES\res001_05c_p01.cs">
       <DependentUpon>res001_05c_p01.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1765,6 +1813,27 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ADP\adp014_R01p.resx">
+      <DependentUpon>adp014_R01p.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp014_06.resx">
+      <DependentUpon>adp014_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp014_05.resx">
+      <DependentUpon>adp014_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp014_04.resx">
+      <DependentUpon>adp014_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp014_03.resx">
+      <DependentUpon>adp014_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp014_02.resx">
+      <DependentUpon>adp014_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp014_01.resx">
+      <DependentUpon>adp014_01.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADP\adp007_R01p.resx">
       <DependentUpon>adp007_R01p.cs</DependentUpon>
     </EmbeddedResource>
@@ -2225,6 +2294,10 @@
     <EmbeddedResource Include="RES\res001_05a_p02.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>res001_05a_p02.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RES\res001_05c_p02.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>res001_05c_p02.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RES\res001_05c_p01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

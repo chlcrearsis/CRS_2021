@@ -89,13 +89,18 @@ namespace CRS_PRE
             // ** SELECCION DE FORMATO DE IMPRESION DEL DOCUMENTO NOTA DE VENTA ** \\
             switch (int.Parse(tabla.Rows[0]["va_for_mat"].ToString()))
             {
-                case 0: // Nota de venta en rollo
+                case 0: // FACTURA EN ROLLO PRODUCTOS
                     rd_con_vta = res001_05c_p01;
                     break;
-                case 1:
+                case 1: // FACTURA EN ROLLO PRODUCTOS
                     rd_con_vta = res001_05c_p01;
                     break;
-                default:
+
+                case 2: // FACTURA EN ROLLO SERVICIOS
+                    rd_con_vta = res001_05c_p02;
+                    break;
+
+                default: // FACTURA EN ROLLO PRODUCTOS
                     rd_con_vta = res001_05c_p01;
                     break;
             }

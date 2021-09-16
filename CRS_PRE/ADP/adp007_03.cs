@@ -47,7 +47,7 @@ namespace CRS_PRE
             }
 
             Tabla = new DataTable();
-            Tabla = o_adp007.Fe_con_nom(tb_nom_rut.Text.Trim());
+            Tabla = o_adp007.Fe_con_nom(tb_nom_rut.Text.Trim(), int.Parse(tb_ide_rut.Text));
             if (Tabla.Rows.Count > 0) {
                 tb_nom_cor.Focus();
                 return "YA existe otra Ruta con el mismo nombre";

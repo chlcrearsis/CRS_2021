@@ -37,7 +37,7 @@ namespace CRS_PRE
             tb_ide_doc.Clear();
             tb_nom_doc.Clear();
 
-            Fi_obt_ges();
+            cb_ges_tio.SelectedIndex = 0;
 
             tb_nro_tal.Text = "0";
             tb_nro_ini.Text = "0";
@@ -54,16 +54,6 @@ namespace CRS_PRE
             tb_nro_fin.Text = "0";
             tb_con_tad.Text = "0";
 
-        }
-
-        private void Fi_obt_ges()
-        {
-            tabla = o_ads016.Fe_obt_ges();
-
-            cb_ges_tio.DataSource = tabla;
-            cb_ges_tio.ValueMember = "va_ges_tio";
-            cb_ges_tio.DisplayMember = "va_ges_tio";
-            cb_ges_tio.Refresh();
         }
 
         protected string Fi_val_dat()

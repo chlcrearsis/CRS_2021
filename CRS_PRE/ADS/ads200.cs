@@ -193,6 +193,12 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm);
         }
 
+        private void mn_tip_doc_Click(object sender, EventArgs e)
+        {
+            o_frm = new adp014_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
         private void mn_def_atr_Click(object sender, EventArgs e)
         {
             o_frm = new adp004_01();
@@ -256,6 +262,12 @@ namespace CRS_PRE
         private void mn_tip_ima_Click(object sender, EventArgs e)
         {
             o_frm = new ads010_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_dos_ifi_Click(object sender, EventArgs e)
+        {
+            o_frm = new ctb007_01();
             cl_glo_frm.abrir(this, o_frm);
         }
     }

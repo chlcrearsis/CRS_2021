@@ -51,8 +51,7 @@ namespace CRS_PRE
 
         // Valida los datos proporcionados
         protected string Fi_val_dat(){
-            if (tb_ide_tip.Text.Trim() == "")
-            {
+            if (tb_ide_tip.Text.Trim() == ""){
                 tb_ide_tip.Focus();
                 return "DEBE proporcionar el Id para el Tipo de Atributo";
             }
@@ -80,8 +79,8 @@ namespace CRS_PRE
             }
 
             // Valida que el campo Nombre del Atributo NO este vacio
-            if (tb_nom_tip.Text.Trim() == ""){
-                tb_nom_tip.Focus();
+            if (tb_nom_atr.Text.Trim() == ""){
+                tb_nom_atr.Focus();
                 return "DEBE proporcionar el Nombre para el Atributo p/Defecto";
             }
 
@@ -90,7 +89,7 @@ namespace CRS_PRE
             Tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text) );
             if(Tabla.Rows.Count > 0){
                 tb_ide_tip.Focus();
-                return "Ya existe otro registro con el mismo ID.";
+                return "Ya existe otro Tipo de Atributo con el mismo ID.";
             }
 
             // Verifica SI existe otro registro con el mismo nombre

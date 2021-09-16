@@ -38,7 +38,7 @@
             this.mn_eli_min = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_rep_tip = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_rep_rut = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lb_nom_rut = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
             this.va_ide_rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_rut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_cor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
@@ -74,7 +75,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -126,17 +127,17 @@
             // mn_rep_ort
             // 
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_rep_tip});
+            this.mn_rep_rut});
             this.mn_rep_ort.Name = "mn_rep_ort";
             this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
-            // mn_rep_tip
+            // mn_rep_rut
             // 
-            this.mn_rep_tip.Name = "mn_rep_tip";
-            this.mn_rep_tip.Size = new System.Drawing.Size(192, 22);
-            this.mn_rep_tip.Text = "&Lista Tipo de Atributos";
-            this.mn_rep_tip.Click += new System.EventHandler(this.Mn_rep_tip_Click);
+            this.mn_rep_rut.Name = "mn_rep_rut";
+            this.mn_rep_rut.Size = new System.Drawing.Size(203, 22);
+            this.mn_rep_rut.Text = "&Lista Definición de Rutas";
+            this.mn_rep_rut.Click += new System.EventHandler(this.Mn_rep_tip_Click);
             // 
             // mn_cer_rar
             // 
@@ -267,6 +268,7 @@
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_rut,
             this.va_nom_rut,
+            this.va_nom_cor,
             this.va_est_ado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -301,7 +303,14 @@
             this.va_nom_rut.HeaderText = "Nombre";
             this.va_nom_rut.Name = "va_nom_rut";
             this.va_nom_rut.ReadOnly = true;
-            this.va_nom_rut.Width = 350;
+            this.va_nom_rut.Width = 285;
+            // 
+            // va_nom_cor
+            // 
+            this.va_nom_cor.HeaderText = "N. Corto";
+            this.va_nom_cor.Name = "va_nom_cor";
+            this.va_nom_cor.ReadOnly = true;
+            this.va_nom_cor.Width = 75;
             // 
             // va_est_ado
             // 
@@ -400,7 +409,7 @@
         private System.Windows.Forms.ToolStripMenuItem mn_mod_ifi;
         private System.Windows.Forms.ToolStripMenuItem mn_hab_des;
         private System.Windows.Forms.ToolStripMenuItem mn_eli_min;
-        private System.Windows.Forms.ToolStripMenuItem mn_rep_tip;
+        private System.Windows.Forms.ToolStripMenuItem mn_rep_rut;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         public System.Windows.Forms.TextBox tb_ide_rut;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
@@ -408,6 +417,7 @@
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_rut;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_rut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_cor;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }
 }

@@ -262,6 +262,7 @@
             this.MinimizeBox = false;
             this.Name = "adp004_R01p";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "Informe Definición de Atributos";
             this.Text = "Informe Definición de Atributos";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);

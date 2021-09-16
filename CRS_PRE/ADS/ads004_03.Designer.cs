@@ -56,6 +56,9 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.tb_nro_aut = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.bt_bus_dos = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
@@ -63,11 +66,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bt_bus_dos);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.cb_for_log);
             this.groupBox1.Controls.Add(this.cb_tip_tal);
             this.groupBox1.Controls.Add(this.tb_est_ado);
             this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tb_nom_doc);
@@ -76,12 +81,13 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tb_nro_cop);
             this.groupBox1.Controls.Add(this.tb_nom_tal);
+            this.groupBox1.Controls.Add(this.tb_nro_aut);
             this.groupBox1.Controls.Add(this.tb_for_mat);
             this.groupBox1.Controls.Add(this.tb_nro_tal);
             this.groupBox1.Controls.Add(this.tb_ide_doc);
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(398, 188);
+            this.groupBox1.Size = new System.Drawing.Size(398, 218);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
@@ -95,7 +101,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(7, 115);
+            this.groupBox2.Location = new System.Drawing.Point(7, 138);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(385, 70);
             this.groupBox2.TabIndex = 100;
@@ -187,7 +193,7 @@
             "Logo 1",
             "Logo 2",
             "Logo 3"});
-            this.cb_for_log.Location = new System.Drawing.Point(87, 91);
+            this.cb_for_log.Location = new System.Drawing.Point(87, 114);
             this.cb_for_log.Name = "cb_for_log";
             this.cb_for_log.Size = new System.Drawing.Size(197, 21);
             this.cb_for_log.TabIndex = 90;
@@ -207,7 +213,7 @@
             // tb_est_ado
             // 
             this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_est_ado.Location = new System.Drawing.Point(304, 92);
+            this.tb_est_ado.Location = new System.Drawing.Point(304, 115);
             this.tb_est_ado.MaxLength = 20;
             this.tb_est_ado.Name = "tb_est_ado";
             this.tb_est_ado.ReadOnly = true;
@@ -265,7 +271,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 94);
+            this.label10.Location = new System.Drawing.Point(3, 117);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 13);
             this.label10.TabIndex = 1;
@@ -278,7 +284,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Numeracion";
+            this.label1.Text = "Numeración";
             // 
             // tb_nro_cop
             // 
@@ -336,9 +342,9 @@
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 177);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 213);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(398, 35);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(398, 41);
             this.gb_ctr_btn.TabIndex = 5;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -350,7 +356,7 @@
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_can_cel.Location = new System.Drawing.Point(310, 9);
             this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 27);
             this.bt_can_cel.TabIndex = 20;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
@@ -363,11 +369,44 @@
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(229, 9);
             this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 27);
             this.bt_ace_pta.TabIndex = 10;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
+            // 
+            // tb_nro_aut
+            // 
+            this.tb_nro_aut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nro_aut.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_nro_aut.Location = new System.Drawing.Point(103, 88);
+            this.tb_nro_aut.MaxLength = 3;
+            this.tb_nro_aut.Name = "tb_nro_aut";
+            this.tb_nro_aut.Size = new System.Drawing.Size(132, 20);
+            this.tb_nro_aut.TabIndex = 70;
+            this.tb_nro_aut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_aut_KeyPress);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 90);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(99, 13);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "Nro de autorización";
+            // 
+            // bt_bus_dos
+            // 
+            this.bt_bus_dos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_bus_dos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_bus_dos.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_bus_dos.Location = new System.Drawing.Point(234, 87);
+            this.bt_bus_dos.Name = "bt_bus_dos";
+            this.bt_bus_dos.Size = new System.Drawing.Size(16, 22);
+            this.bt_bus_dos.TabIndex = 101;
+            this.bt_bus_dos.TabStop = false;
+            this.bt_bus_dos.Text = "|";
+            this.bt_bus_dos.UseVisualStyleBackColor = false;
             // 
             // ads004_03
             // 
@@ -375,7 +414,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(405, 214);
+            this.ClientSize = new System.Drawing.Size(405, 255);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -425,5 +464,8 @@
         private System.Windows.Forms.Button bt_can_cel;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.TextBox tb_est_ado;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tb_nro_aut;
+        private System.Windows.Forms.Button bt_bus_dos;
     }
 }

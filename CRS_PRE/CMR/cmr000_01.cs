@@ -38,7 +38,8 @@ namespace CRS_PRE.CMR
         string cod_doc = "";
         int ges_doc = 0;
         int nro_tal = 0;
-        
+        int nro_fac = 0;
+
         int cod_plv = 0;
         string imp_nom = "";
         int for_imp = 0;
@@ -66,6 +67,7 @@ namespace CRS_PRE.CMR
                 ges_doc = int.Parse(frm_dat.Rows[0]["va_ges_doc"].ToString());  // Gestion (0000)
                 nro_tal = int.Parse(frm_dat.Rows[0]["va_nro_tal"].ToString());  // Nro de talonario (0)
                 ide_doc = frm_dat.Rows[0]["va_ide_doc"].ToString();             // ID. Documento (xxx-000-000000)
+                nro_fac = int.Parse(frm_dat.Rows[0]["va_nro_fac"].ToString());  // Nro de fctura
                 cod_plv = int.Parse(frm_dat.Rows[0]["va_cod_plv"].ToString());  // Codigo de plantilla de venta (0)
 
                 // Obtiene formato de impresion y nro de copias
@@ -77,21 +79,37 @@ namespace CRS_PRE.CMR
                 ope_rac = frm_dat.Rows[0]["va_ope_rac"].ToString();
 
                 lb_ide_doc.Text = ide_doc;
-                lb_tit_ope.Text = ope_rac + ":";
+                
+                // Muestra la etiqueta Factura
+                if(ope_rac == "VENTA" && nro_fac > 0)
+                {
+                    lb_tit_ope.Text = "FACTURA:";
+                    lb_nro_fac.Text = "#" + nro_fac.ToString();
+                }
+                else
+                {
+                    lb_tit_ope.Text = ope_rac + ":";
+                    lb_nro_fac.Text = "";
+                }
+                
 
                 // Crea tabla para pasar datos p/impresion o mostrar documento
                 dat_doc = new DataTable();
                 dat_doc.Columns.Add("va_ide_doc");
                 dat_doc.Columns.Add("va_ges_doc");
+                dat_doc.Columns.Add("va_ide_vta");
+                dat_doc.Columns.Add("va_ges_vta");
 
                 dat_doc.Rows.Add();
                 dat_doc.Rows[0]["va_ide_doc"] = ide_doc;
                 dat_doc.Rows[0]["va_ges_doc"] = ges_doc;
+                dat_doc.Rows[0]["va_ide_vta"] = ide_doc;
+                dat_doc.Rows[0]["va_ges_vta"] = ges_doc;
 
 
                 switch (ope_rac.ToUpper())
                 {
-                    case "VENTA" :
+                    case "VENTA":
                         if (cod_doc.Substring(0,2) == "VR") // Restaurant
                         {
 
@@ -105,7 +123,6 @@ namespace CRS_PRE.CMR
                             // Obtiene impresora
                             tab_pla_vta = o_cmr004.Fe_con_plv(cod_plv.ToString());
                             imp_nom = tab_pla_vta.Rows[0]["va_imp_ntv"].ToString();
-                                                      
                         }
 
 
@@ -120,8 +137,6 @@ namespace CRS_PRE.CMR
                         tab_pla_vta = o_cmr004.Fe_con_plv(cod_plv.ToString());
                         imp_nom = tab_pla_vta.Rows[0]["va_imp_ped"].ToString();
                         break;
-
-
                 }
 
                 // Obtiene impresora para el documento               
@@ -167,7 +182,7 @@ namespace CRS_PRE.CMR
         {
             switch (ope_rac.ToUpper())
             {
-                case "VENTA":
+                case "VENTA": 
                     Fi_vta_imp();
                     break;
                 case "COMPRA":
@@ -189,25 +204,26 @@ namespace CRS_PRE.CMR
             }
         }
 
+        /// <summary>
+        /// PRE VISUALIZA EL DOCUMENTO DE VENTA
+        /// </summary>
         private void Fi_vta_ver()
         {
             Form frm = new Form();
 
-            if (cod_doc == "VRS") // Nota de Venta Restaurant
+            if (cod_doc == "VRS") // MUESTRA NOTA DE VENTA RESTAURANT
             {
-                //tab_dat = o_res001.Fe_con_vta(ide_doc, ges_doc); // Obtiene datos
                 frm = new res001_05w(); // Instancia ventana
-                tab_dat = o_res001.Fe_con_vta(ide_doc, ges_doc);
-                cl_glo_frm.abrir(this.frm_pad, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, tab_dat);
+                cl_glo_frm.abrir(this.frm_pad, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, dat_doc);
             }
-            if (cod_doc == "VRF") // Factura Restaurant
+            if (cod_doc == "VRF")  // MUESTRA NOTA DE VENTA RESTAURANT
             {
-
+                frm = new res001_05cw(); // Instancia ventana
+                cl_glo_frm.abrir(this.frm_pad, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, dat_doc);
             }
 
-            if (cod_doc == "VTS") // Nota de Venta
+            if (cod_doc == "VTS")  // MUESTRA NOTA DE VENTA
             {
-                /* ABRE FORMULARIO CONSULTA */
                 frm = new cmr005_05w();
                 cl_glo_frm.abrir(this.frm_pad, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, dat_doc);
             }
@@ -239,36 +255,36 @@ namespace CRS_PRE.CMR
         }
 
 
+        /// <summary>
+        /// IMPRIME EL DOCUMENTO DE VENTA
+        /// </summary>
         private void Fi_vta_imp()
         {
-            dynamic frm_imp = null;
-            dynamic frm_imp_avi = null;
+            dynamic frm_imp = null;     // Formulario de impresion
+            dynamic frm_imp_avi = null; // Formulario de impresion AVISO
 
-            if (cod_doc == "VRS") // Nota de Venta Restaurant
+            if (cod_doc == "VRS") // NOTA DE VENTA RESTAURANT
             {
-                // Obtiene datos
+                // PREPARA DATOS PARA EL AVISO
                 tab_dat_avi = o_res001.Fe_con_avi(ide_doc, ges_doc);
                 frm_imp_avi = new res001_05bw();
-                switch (for_imp)
-                {
-                    case 0: // Formato generico
-                        tab_dat = o_res001.Fe_con_vta(ide_doc, ges_doc);
-                        frm_imp = new res001_05w();
-                        break;
 
-                   default : // Cuando no pilla el formato, imprime el por defecto
-                        tab_dat = o_res001.Fe_con_vta(ide_doc, ges_doc);
-                        frm_imp = new res001_05w();
-                        break;
-                }
+                // MUESTRA NOTA DE VENTA RESTAURANT
+                frm_imp = new res001_05w();
+                frm_imp.frm_dat = dat_doc;
+                frm_imp.Fe_pob_rep();
+                frm_imp.Fe_imp_doc(cod_doc, nro_tal, imp_nom, nro_cop);
             }
-            if (cod_doc == "VRF") // Factura Restaurant
-            {}
-
-            if (cod_doc == "VTS") // Nota de Venta
+            if (cod_doc == "VRF") // FACTURA RESTAURANT
             {
-                // Obtiene datos
-                //tab_dat_avi = o_cmr005.Fe_con_vta(ide_doc, ges_doc);
+                frm_imp = new res001_05cw();
+                frm_imp.frm_dat = dat_doc;
+                frm_imp.Fe_pob_rep();
+                frm_imp.Fe_imp_doc(cod_doc, nro_tal, imp_nom, nro_cop);
+            }
+
+            if (cod_doc == "VTS") // NOTA DE VENTA
+            {
                 frm_imp_avi = new cmr005_05w();
                 
             }
@@ -278,17 +294,15 @@ namespace CRS_PRE.CMR
             }
 
 
-            frm_imp = new cmr005_05w();
-            frm_imp.frm_dat = dat_doc;
-            frm_imp.Fe_pob_rep();
-            frm_imp.Fe_imp_doc(cod_doc, nro_tal, imp_nom, nro_cop);
-
+            // SI EMPRIME AVISO 1
             if (ban_av1 == 1)
             {
                 frm_imp_avi.frm_dat = dat_doc;
                 frm_imp_avi.Fe_pob_rep();
                 frm_imp_avi.Fe_imp_doc(cod_doc, nro_tal, imp_av1, 0);
             }
+            
+            // SI EMPRIME AVISO 2
             if (ban_av2 == 1)
             {
                 frm_imp_avi.frm_dat = dat_doc;

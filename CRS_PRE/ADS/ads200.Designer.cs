@@ -63,6 +63,7 @@
             this.mn_par_ame = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ulo = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_apl_ica = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_tip_ima = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.st_bar_pie = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -74,14 +75,15 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mn_tip_ima = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_con_tad = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_dos_ifi = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_tip_doc = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_mod_ulo
             // 
-            this.m_mod_ulo.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.m_mod_ulo.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.m_mod_ulo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_usu_ari,
@@ -91,7 +93,8 @@
             this.mn_def_par});
             this.m_mod_ulo.Location = new System.Drawing.Point(0, 0);
             this.m_mod_ulo.Name = "m_mod_ulo";
-            this.m_mod_ulo.Size = new System.Drawing.Size(1329, 35);
+            this.m_mod_ulo.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.m_mod_ulo.Size = new System.Drawing.Size(886, 24);
             this.m_mod_ulo.TabIndex = 2;
             this.m_mod_ulo.Text = "menuStrip1";
             this.m_mod_ulo.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.M_ads100_ItemClicked);
@@ -176,6 +179,7 @@
             this.mn_par_inv,
             this.mn_com_erc,
             this.mn_per_son,
+            this.mn_con_tad,
             this.mn_tip_bus,
             this.mn_par_ame});
             this.mn_def_par.Name = "mn_def_par";
@@ -192,7 +196,7 @@
             this.mn_mar_ca,
             this.mn_und_med});
             this.mn_par_inv.Name = "mn_par_inv";
-            this.mn_par_inv.Size = new System.Drawing.Size(270, 34);
+            this.mn_par_inv.Size = new System.Drawing.Size(180, 22);
             this.mn_par_inv.Text = "&Inventario";
             // 
             // mn_gru_bod
@@ -246,7 +250,7 @@
             this.mn_ven_ded,
             this.mn_pla_vta});
             this.mn_com_erc.Name = "mn_com_erc";
-            this.mn_com_erc.Size = new System.Drawing.Size(270, 34);
+            this.mn_com_erc.Size = new System.Drawing.Size(180, 22);
             this.mn_com_erc.Text = "Comercializacion";
             // 
             // mn_lis_pre
@@ -291,9 +295,10 @@
             this.mn_per_son1,
             this.mn_tip_atr,
             this.mn_def_atr,
-            this.mn_def_rut});
+            this.mn_def_rut,
+            this.mn_tip_doc});
             this.mn_per_son.Name = "mn_per_son";
-            this.mn_per_son.Size = new System.Drawing.Size(270, 34);
+            this.mn_per_son.Size = new System.Drawing.Size(180, 22);
             this.mn_per_son.Text = "&Persona";
             // 
             // mn_gru_per
@@ -334,7 +339,7 @@
             // mn_tip_bus
             // 
             this.mn_tip_bus.Name = "mn_tip_bus";
-            this.mn_tip_bus.Size = new System.Drawing.Size(270, 34);
+            this.mn_tip_bus.Size = new System.Drawing.Size(180, 22);
             this.mn_tip_bus.Text = "T.C. Bs/Us";
             this.mn_tip_bus.Click += new System.EventHandler(this.mn_tip_bus_Click);
             // 
@@ -345,7 +350,7 @@
             this.mn_apl_ica,
             this.mn_tip_ima});
             this.mn_par_ame.Name = "mn_par_ame";
-            this.mn_par_ame.Size = new System.Drawing.Size(270, 34);
+            this.mn_par_ame.Size = new System.Drawing.Size(180, 22);
             this.mn_par_ame.Text = "&Parametros";
             // 
             // mn_mod_ulo
@@ -364,11 +369,11 @@
             // 
             // m_frm_hja
             // 
-            this.m_frm_hja.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.m_frm_hja.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.m_frm_hja.Location = new System.Drawing.Point(0, 0);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(1329, 37);
+            this.m_frm_hja.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.m_frm_hja.Size = new System.Drawing.Size(886, 24);
             this.m_frm_hja.TabIndex = 4;
             this.m_frm_hja.Text = "menuStrip1";
             this.m_frm_hja.Visible = false;
@@ -399,7 +404,7 @@
             // 
             this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(73, 21);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(50, 13);
             this.toolStripStatusLabel1.Text = "Usuario:";
             // 
             // ts_usr_usr
@@ -415,7 +420,7 @@
             // 
             this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(36, 21);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(25, 13);
             this.toolStripStatusLabel2.Text = "BD:";
             // 
             // ts_bas_dat
@@ -437,7 +442,7 @@
             // 
             this.toolStripStatusLabel5.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(45, 21);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(32, 13);
             this.toolStripStatusLabel5.Text = "App:";
             // 
             // ts_ide_app
@@ -453,14 +458,14 @@
             // 
             this.toolStripStatusLabel4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(49, 21);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(34, 13);
             this.toolStripStatusLabel4.Text = "Ruta:";
             // 
             // ts_rut_app
             // 
             this.ts_rut_app.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.ts_rut_app.Name = "ts_rut_app";
-            this.ts_rut_app.Size = new System.Drawing.Size(19, 21);
+            this.ts_rut_app.Size = new System.Drawing.Size(16, 13);
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -473,7 +478,7 @@
             // 
             // ads200
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1329, 774);
             this.Controls.Add(this.st_bar_pie);
@@ -481,7 +486,6 @@
             this.Controls.Add(this.m_frm_hja);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.m_frm_hja;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ads200";
             this.Tag = "Administracion y Seguridad";
             this.Text = "Administracion y Seguridad";

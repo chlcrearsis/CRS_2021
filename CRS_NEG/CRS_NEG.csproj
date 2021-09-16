@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADP\adp014.cs" />
     <Compile Include="ADS\ads010.cs" />
     <Compile Include="ADP\adp007.cs" />
     <Compile Include="ADP\adp004.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="ADS\ads003.cs" />
     <Compile Include="ADS\ads016.cs" />
     <Compile Include="ADS\ads022.cs" />
+    <Compile Include="CMR\cmr017.cs" />
     <Compile Include="CMR\cmr013.cs" />
     <Compile Include="CMR\cmr008.cs" />
     <Compile Include="CMR\cmr007.cs" />

@@ -144,12 +144,16 @@ namespace CRS_PRE
             cl_glo_bal.NotNumeric(e);
         }
 
-        private void tb_ide_tip_KeyDown(object sender, KeyEventArgs e){
-            Fi_bus_tip();
+        private void tb_ide_tip_KeyDown(object sender, KeyEventArgs e){           
+            if (e.KeyCode == Keys.Down){
+                Fi_bus_tip();
+            }
         }
 
         private void tb_ide_tip_KeyUp(object sender, KeyEventArgs e){
-            Fi_bus_tip();
+            if (e.KeyCode == Keys.Up){
+                Fi_bus_tip();
+            }
         }
 
         private void bt_bus_tip_Click(object sender, EventArgs e){
