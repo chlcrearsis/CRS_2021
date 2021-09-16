@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
+using CRS_NEG;
 
 namespace CRS_PRE
 {
@@ -21,6 +22,7 @@ namespace CRS_PRE
 
         //Instancias
         ads010 o_ads010 = new ads010();
+      
 
         DataTable tabla = new DataTable();
 
