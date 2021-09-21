@@ -8,8 +8,8 @@ FECHA:		15/09/2020
 CREATE TABLE cmr014 
 (
 --** Llave Primaria
-va_ide_tip		SMALLINT			NOT NULL,		--** ID. Tipo (1= Vendedor ; 2= Cobrador)
-va_cod_ide		SMALLINT			NOT NULL,		--** Codigo identificador(4 numeros)
+va_ide_tip		INT					NOT NULL,		--** ID. Tipo (1= Vendedor ; 2= Cobrador)
+va_cod_ide		INT					NOT NULL,		--** Codigo identificador(4 numeros)
 
 --** Atributos     
 va_nom_bre		VARCHAR(50)			NOT NULL,		--** Nombre del Vendedor/Cobrador
@@ -25,5 +25,7 @@ va_est_ado		CHAR(01)			NOT NULL,		--** Estado del Vendedor
 CONSTRAINT pk1_cmr014 PRIMARY KEY(va_ide_tip,va_cod_ide)
 )
 GO
+
+INSERT INTO cmr014 VALUES (1, 1, 'Vendedor 1', '','email@gmail.com',1, 1, 0,0,'H')
      
  

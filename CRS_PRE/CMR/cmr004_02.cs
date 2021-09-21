@@ -213,7 +213,7 @@ namespace CRS_PRE.CMR
                 return "Debe proporcionar un Vendedor valido";
             }
             tabla = new DataTable();
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 tc_pla_vta.SelectedIndex = 0;
@@ -433,7 +433,7 @@ namespace CRS_PRE.CMR
         }
         void Fi_abr_bus_ven()
         {
-            cmr014_01 frm = new cmr014_01();
+            cmr014_01b frm = new cmr014_01b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -451,6 +451,13 @@ namespace CRS_PRE.CMR
         /// </summary>
         void Fi_obt_ven()
         {
+            
+            if(cl_glo_bal.IsNumeric(tb_cod_ven.Text) ==false)
+            {
+
+            }
+
+
             int val = 0;
             try
             {
@@ -463,15 +470,15 @@ namespace CRS_PRE.CMR
             }
 
             // Obtiene ide y nombre documento
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 lb_nom_ven.Text = "";
             }
             else
             {
-                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_nom_ven.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_nom_ven.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
         }
 

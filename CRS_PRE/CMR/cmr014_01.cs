@@ -78,25 +78,33 @@ namespace CRS_PRE
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
-            tabla = o_cmr014.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus);
+            tabla = o_cmr014.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus,1);
 
             if (tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_cod_ven"].Value = tabla.Rows[i]["va_cod_ven"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_ven"].Value = tabla.Rows[i]["va_nom_ven"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_por_cms"].Value =tabla.Rows[i]["va_por_cms"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = tabla.Rows[i]["va_tip_cms"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_cod_ven"].Value = tabla.Rows[i]["va_cod_ide"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_ven"].Value = tabla.Rows[i]["va_nom_bre"].ToString();
+                   // dg_res_ult.Rows[i].Cells["va_por_cms"].Value =tabla.Rows[i]["va_por_cms"].ToString();
+                   // dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = tabla.Rows[i]["va_tip_cms"].ToString();
+
+                    if (tabla.Rows[i]["va_tip_cms"].ToString() == "1")
+                        dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = "x Vta. Gral.";
+                    if (tabla.Rows[i]["va_tip_cms"].ToString() == "2")
+                        dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = "x Fam. Produc.";
+                    if (tabla.Rows[i]["va_tip_cms"].ToString() == "3")
+                        dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = "x Producto";
+
 
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_sel_bus.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_des_bus.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_sel_bus.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_des_bus.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
 
         }
@@ -109,14 +117,14 @@ namespace CRS_PRE
                 return;
             }
 
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_sel_bus.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_sel_bus.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 lb_des_bus.Text = "** NO existe";
                 return;
             }
 
-            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_ven"].ToString());
+            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_bre"].ToString());
         }
         /// <summary>
         /// - > Función que selecciona la fila en el Datagrid que el documento Modificó
@@ -226,15 +234,15 @@ namespace CRS_PRE
         public bool fi_ver_edi(int sel_ecc)
         {
             string res_fun = "";
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
             if (tabla.Rows.Count == 0)
             {
-                res_fun = "El documento que desea editar, no se encuentra registrado";
+                res_fun = "El Vendedor que desea editar, no se encuentra registrado";
             }
 
             if (res_fun != "")
             {
-                MessageBox.Show(res_fun, "Edita documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, "Edita Vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -245,10 +253,10 @@ namespace CRS_PRE
         public bool fi_ver_hds(int sel_ecc)
         {
           
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL Vendedor ya no se encuentra registrado en la base de datos.", "Consulta Vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -257,10 +265,10 @@ namespace CRS_PRE
         }
         public bool fi_ver_con(int sel_ecc)
         {
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL Vendedor ya no se encuentra registrado en la base de datos.", "Consulta vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }

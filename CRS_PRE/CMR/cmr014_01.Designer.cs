@@ -50,14 +50,13 @@
             this.tb_sel_bus = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_cod_ven = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_ven = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_tip_cms = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_por_cms = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.va_cod_ven = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_ven = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_tip_cms = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -242,7 +241,7 @@
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(2, 48);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(455, 199);
+            this.groupBox2.Size = new System.Drawing.Size(465, 199);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
@@ -267,7 +266,6 @@
             this.va_cod_ven,
             this.va_nom_ven,
             this.va_tip_cms,
-            this.va_por_cms,
             this.va_est_ado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -277,52 +275,18 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
+            this.dg_res_ult.Location = new System.Drawing.Point(5, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
             this.dg_res_ult.ReadOnly = true;
             this.dg_res_ult.RowHeadersVisible = false;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(460, 187);
+            this.dg_res_ult.Size = new System.Drawing.Size(458, 187);
             this.dg_res_ult.TabIndex = 35;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
-            // 
-            // va_cod_ven
-            // 
-            this.va_cod_ven.HeaderText = "Codigo";
-            this.va_cod_ven.Name = "va_cod_ven";
-            this.va_cod_ven.ReadOnly = true;
-            this.va_cod_ven.Width = 50;
-            // 
-            // va_nom_ven
-            // 
-            this.va_nom_ven.HeaderText = "Vendedor";
-            this.va_nom_ven.Name = "va_nom_ven";
-            this.va_nom_ven.ReadOnly = true;
-            this.va_nom_ven.Width = 200;
-            // 
-            // va_tip_cms
-            // 
-            this.va_tip_cms.HeaderText = "Tipo Com.";
-            this.va_tip_cms.Name = "va_tip_cms";
-            this.va_tip_cms.ReadOnly = true;
-            // 
-            // va_por_cms
-            // 
-            this.va_por_cms.FillWeight = 40F;
-            this.va_por_cms.HeaderText = "%";
-            this.va_por_cms.Name = "va_por_cms";
-            this.va_por_cms.ReadOnly = true;
-            this.va_por_cms.Width = 50;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
             // 
             // gb_ctr_btn
             // 
@@ -361,6 +325,34 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
+            // 
+            // va_cod_ven
+            // 
+            this.va_cod_ven.HeaderText = "Codigo";
+            this.va_cod_ven.Name = "va_cod_ven";
+            this.va_cod_ven.ReadOnly = true;
+            this.va_cod_ven.Width = 50;
+            // 
+            // va_nom_ven
+            // 
+            this.va_nom_ven.HeaderText = "Vendedor";
+            this.va_nom_ven.Name = "va_nom_ven";
+            this.va_nom_ven.ReadOnly = true;
+            this.va_nom_ven.Width = 200;
+            // 
+            // va_tip_cms
+            // 
+            this.va_tip_cms.HeaderText = "Tipo Com.";
+            this.va_tip_cms.Name = "va_tip_cms";
+            this.va_tip_cms.ReadOnly = true;
+            this.va_tip_cms.Width = 110;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Width = 80;
             // 
             // cmr014_01
             // 
@@ -423,7 +415,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_ven;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_ven;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_tip_cms;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_por_cms;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }
 }

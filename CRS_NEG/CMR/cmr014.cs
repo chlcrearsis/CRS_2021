@@ -41,66 +41,70 @@ namespace CRS_NEG
             va_pas_usr = ob_con_ecA.va_pas_usr;
         }
  
-        public void Fe_crea(int ar_cod_ven, string ar_nom_ven,int ar_tip_cms, decimal ar_por_ven)
+        public void Fe_crea(int ar_cod_ven, string ar_nom_ven, string ar_tel_cel, string ar_ema_ail,
+                            int ar_pro_ced, int ar_tip_cms, decimal ar_por_con, decimal ar_por_cre, int ar_ide_tip)
         {
-            cadena = " INSERT INTO cmr014 VALUES(" + ar_cod_ven + ", '" + ar_nom_ven + "', " +
-                "'" + ar_por_ven + "',  "+ ar_tip_cms  + ", 'H')";
+            cadena = " INSERT INTO cmr014 VALUES( "+ ar_ide_tip  + ", " + ar_cod_ven + ", '" + ar_nom_ven + "', '" + ar_tel_cel + "',  '" + ar_ema_ail + "'," +
+                 + ar_pro_ced  + ", " + ar_tip_cms + ", '" + ar_por_con + "', '" + ar_por_cre + "', 'H')";
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
       
-        public void Fe_edi_ven(int ar_cod_ven, string ar_nom_ven, decimal ar_por_ven, int ar_tip_cms)
+        public void Fe_edi_ven(int ar_cod_ven, string ar_nom_ven, decimal ar_cms_con , decimal ar_cms_cre, int ar_tip_cms, int ar_pro_ced, int ar_ide_tip)
         {
-            cadena = " UPDATE cmr014 SET va_nom_ven = '" + ar_nom_ven + "' , " +
-                " va_por_cms = '" + ar_por_ven + "', va_tip_cms = " + ar_tip_cms +
-                    " WHERE va_cod_ven = " + ar_cod_ven;
+            cadena = " UPDATE cmr014 SET va_nom_bre = '" + ar_nom_ven + "' , " +
+                " va_cms_con = '" + ar_cms_con + "',va_cms_cre = '" + ar_cms_cre + "', va_tip_cms = " + ar_tip_cms +
+                ", va_pro_ced = " + ar_pro_ced +
+                " WHERE va_cod_ide = " + ar_cod_ven + " AND va_ide_tip = " + ar_ide_tip;
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
-        public void Fe_hab_ili(int ar_cod_ven )
+        public void Fe_hab_ili(int ar_cod_ven, int ar_ide_tip)
         {
             cadena = " UPDATE cmr014 SET va_est_ado = 'H'" +
-                    " WHERE va_cod_ven = " + ar_cod_ven;
+                    " WHERE va_cod_ide = " + ar_cod_ven + " AND va_ide_tip = " + ar_ide_tip;
             ob_con_ecA.fe_exe_sql(cadena);
         }
-        public void Fe_des_hab(int ar_cod_ven )
+        public void Fe_des_hab(int ar_cod_ven, int ar_ide_tip)
         {
             cadena = " UPDATE cmr014 SET va_est_ado = 'N'" ;
-            cadena += " WHERE va_cod_ven = '" + ar_cod_ven + "'";
+            cadena += " WHERE va_cod_ide = " + ar_cod_ven + " AND va_ide_tip = " + ar_ide_tip;
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
 
-        public void Fe_eli_ven(int ar_cod_ven)
+        public void Fe_eli_ven(int ar_cod_ven, int ar_ide_tip)
         {
             cadena = " DELETE cmr014 " ;
-            cadena += " WHERE va_cod_ven = '" + ar_cod_ven + "'";
+            cadena += " WHERE va_cod_ide = " + ar_cod_ven + " AND va_ide_tip = " + ar_ide_tip;
             ob_con_ecA.fe_exe_sql(cadena);
 
             
         }
 
-        public DataTable Fe_con_ven( int ar_cod_ven)
+        public DataTable Fe_con_ven( int ar_cod_ven, int ar_ide_tip)
         {
-            cadena = " SELECT * FROM cmr014 WHERE va_cod_ven = " + ar_cod_ven + " ";
+            cadena = " SELECT * FROM cmr014 WHERE va_cod_ide = " + ar_cod_ven + " AND va_ide_tip = " + ar_ide_tip;
             return ob_con_ecA.fe_exe_sql(cadena);
         }
        
-        public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado )
+        public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado, int ar_ide_tip)
         {
             cadena = " SELECT * FROM cmr014 ";
             if (ar_par_ame == 0)
-                cadena += " WHERE va_cod_ven like '" + ar_tex_bus + "%'";
+                cadena += " WHERE va_cod_ide like '" + ar_tex_bus + "%'";
             if (ar_par_ame == 1)
-                cadena += " WHERE va_nom_ven like '" + ar_tex_bus + "%'";
+                cadena += " WHERE va_nom_bre like '" + ar_tex_bus + "%'";
 
 
 
             if (ar_est_ado != "T")
                 cadena += " AND va_est_ado ='" + ar_est_ado + "'";
 
-           
+            cadena += " AND va_ide_tip ='" + ar_ide_tip + "'";
+
+
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 

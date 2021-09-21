@@ -429,15 +429,15 @@ namespace CRS_PRE.CMR
             }
 
             // Obtiene ide y nombre documento
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 lb_nom_ven.Text = "";
             }
             else
             {
-                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_nom_ven.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_nom_ven.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
         }
 
