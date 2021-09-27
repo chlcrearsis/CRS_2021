@@ -25,12 +25,16 @@ INSERT INTO ads003 VALUES(2,'AJI','Ajuste de ingreso','','H')
 INSERT INTO ads003 VALUES(2,'AJE','Ajuste de salida','','H')
 INSERT INTO ads003 VALUES(2,'AJC','Ajuste al costo','','H')
 INSERT INTO ads003 VALUES(2,'TRA','Traspaso entre bodegas','','H')
+INSERT INTO ads003 VALUES(2,'OPD','Orden de Producción','','H')
 
 --* Modulo Comercializacion
 INSERT INTO ads003 VALUES(3,'COT','Cotizacion','','H')
 INSERT INTO ads003 VALUES(3,'PED','Pedido','','H')
 INSERT INTO ads003 VALUES(3,'VTS','Nota de venta','','H')
 INSERT INTO ads003 VALUES(3,'VTF','Factura','','H')
+INSERT INTO ads003 VALUES(3,'VRS','Nota de venta Restaurant','','H')
+INSERT INTO ads003 VALUES(3,'VRF','Factura Restaurant','','H')
+INSERT INTO ads003 VALUES(3,'CON','Nota de Consumo','','H')
 
 --* Modulo Exigibles
 INSERT INTO ads003 VALUES(4,'CXC','Ctas por Cobrar','','H')
