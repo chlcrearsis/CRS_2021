@@ -59,6 +59,9 @@
             this.mn_tip_atr = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_def_atr = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_def_rut = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_tip_doc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_con_tab = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_dos_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_tip_bus = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_par_ame = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ulo = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,9 +78,8 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mn_con_tab = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_dos_ifi = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_tip_doc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_suc_cur = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_act_eco = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -256,35 +258,35 @@
             // mn_lis_pre
             // 
             this.mn_lis_pre.Name = "mn_lis_pre";
-            this.mn_lis_pre.Size = new System.Drawing.Size(156, 22);
+            this.mn_lis_pre.Size = new System.Drawing.Size(180, 22);
             this.mn_lis_pre.Text = "Lista de Precios";
             this.mn_lis_pre.Click += new System.EventHandler(this.mn_lis_pre_Click);
             // 
             // mn_pre_cio
             // 
             this.mn_pre_cio.Name = "mn_pre_cio";
-            this.mn_pre_cio.Size = new System.Drawing.Size(156, 22);
+            this.mn_pre_cio.Size = new System.Drawing.Size(180, 22);
             this.mn_pre_cio.Text = "Precios";
             this.mn_pre_cio.Click += new System.EventHandler(this.mn_pre_cio_Click);
             // 
             // mn_del_ive
             // 
             this.mn_del_ive.Name = "mn_del_ive";
-            this.mn_del_ive.Size = new System.Drawing.Size(156, 22);
+            this.mn_del_ive.Size = new System.Drawing.Size(180, 22);
             this.mn_del_ive.Text = "Delivery";
             this.mn_del_ive.Click += new System.EventHandler(this.mn_del_ive_Click);
             // 
             // mn_ven_ded
             // 
             this.mn_ven_ded.Name = "mn_ven_ded";
-            this.mn_ven_ded.Size = new System.Drawing.Size(156, 22);
+            this.mn_ven_ded.Size = new System.Drawing.Size(180, 22);
             this.mn_ven_ded.Text = "&Vendedor";
             this.mn_ven_ded.Click += new System.EventHandler(this.mn_ven_ded_Click);
             // 
             // mn_pla_vta
             // 
             this.mn_pla_vta.Name = "mn_pla_vta";
-            this.mn_pla_vta.Size = new System.Drawing.Size(156, 22);
+            this.mn_pla_vta.Size = new System.Drawing.Size(180, 22);
             this.mn_pla_vta.Text = "Plantilla de venta";
             this.mn_pla_vta.Click += new System.EventHandler(this.mn_pla_vta_Click);
             // 
@@ -304,37 +306,61 @@
             // mn_gru_per
             // 
             this.mn_gru_per.Name = "mn_gru_per";
-            this.mn_gru_per.Size = new System.Drawing.Size(180, 22);
+            this.mn_gru_per.Size = new System.Drawing.Size(177, 22);
             this.mn_gru_per.Text = "&Grupo de Persona";
             this.mn_gru_per.Click += new System.EventHandler(this.mn_gru_per_Click);
             // 
             // mn_per_son1
             // 
             this.mn_per_son1.Name = "mn_per_son1";
-            this.mn_per_son1.Size = new System.Drawing.Size(180, 22);
+            this.mn_per_son1.Size = new System.Drawing.Size(177, 22);
             this.mn_per_son1.Text = "&Persona";
             this.mn_per_son1.Click += new System.EventHandler(this.mn_per_son1_Click);
             // 
             // mn_tip_atr
             // 
             this.mn_tip_atr.Name = "mn_tip_atr";
-            this.mn_tip_atr.Size = new System.Drawing.Size(180, 22);
+            this.mn_tip_atr.Size = new System.Drawing.Size(177, 22);
             this.mn_tip_atr.Text = "&Tipo de Atributo";
             this.mn_tip_atr.Click += new System.EventHandler(this.mn_tip_atr_Click);
             // 
             // mn_def_atr
             // 
             this.mn_def_atr.Name = "mn_def_atr";
-            this.mn_def_atr.Size = new System.Drawing.Size(180, 22);
+            this.mn_def_atr.Size = new System.Drawing.Size(177, 22);
             this.mn_def_atr.Text = "&Definición de Atributo";
             this.mn_def_atr.Click += new System.EventHandler(this.mn_def_atr_Click);
             // 
             // mn_def_rut
             // 
             this.mn_def_rut.Name = "mn_def_rut";
-            this.mn_def_rut.Size = new System.Drawing.Size(180, 22);
+            this.mn_def_rut.Size = new System.Drawing.Size(177, 22);
             this.mn_def_rut.Text = "Definición de Rutas";
             this.mn_def_rut.Click += new System.EventHandler(this.mn_def_rut_Click);
+            // 
+            // mn_tip_doc
+            // 
+            this.mn_tip_doc.Name = "mn_tip_doc";
+            this.mn_tip_doc.Size = new System.Drawing.Size(177, 22);
+            this.mn_tip_doc.Text = "Ti&po Documento";
+            this.mn_tip_doc.Click += new System.EventHandler(this.mn_tip_doc_Click);
+            // 
+            // mn_con_tab
+            // 
+            this.mn_con_tab.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_dos_ifi,
+            this.mn_suc_cur,
+            this.mn_act_eco});
+            this.mn_con_tab.Name = "mn_con_tab";
+            this.mn_con_tab.Size = new System.Drawing.Size(180, 22);
+            this.mn_con_tab.Text = "Con&tabilidad";
+            // 
+            // mn_dos_ifi
+            // 
+            this.mn_dos_ifi.Name = "mn_dos_ifi";
+            this.mn_dos_ifi.Size = new System.Drawing.Size(180, 22);
+            this.mn_dos_ifi.Text = "&Dosificación";
+            this.mn_dos_ifi.Click += new System.EventHandler(this.mn_dos_ifi_Click);
             // 
             // mn_tip_bus
             // 
@@ -476,27 +502,18 @@
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // mn_con_tab
+            // mn_suc_cur
             // 
-            this.mn_con_tab.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_dos_ifi});
-            this.mn_con_tab.Name = "mn_con_tab";
-            this.mn_con_tab.Size = new System.Drawing.Size(180, 22);
-            this.mn_con_tab.Text = "Con&tabilidad";
+            this.mn_suc_cur.Name = "mn_suc_cur";
+            this.mn_suc_cur.Size = new System.Drawing.Size(180, 22);
+            this.mn_suc_cur.Text = "&Sucursal";
             // 
-            // mn_dos_ifi
+            // mn_act_eco
             // 
-            this.mn_dos_ifi.Name = "mn_dos_ifi";
-            this.mn_dos_ifi.Size = new System.Drawing.Size(180, 22);
-            this.mn_dos_ifi.Text = "&Dosificación";
-            this.mn_dos_ifi.Click += new System.EventHandler(this.mn_dos_ifi_Click);
-            // 
-            // mn_tip_doc
-            // 
-            this.mn_tip_doc.Name = "mn_tip_doc";
-            this.mn_tip_doc.Size = new System.Drawing.Size(180, 22);
-            this.mn_tip_doc.Text = "Ti&po Documento";
-            this.mn_tip_doc.Click += new System.EventHandler(this.mn_tip_doc_Click);
+            this.mn_act_eco.Name = "mn_act_eco";
+            this.mn_act_eco.Size = new System.Drawing.Size(180, 22);
+            this.mn_act_eco.Text = "&Actividad Económica";
+            this.mn_act_eco.Click += new System.EventHandler(this.mn_act_eco_Click);
             // 
             // ads200
             // 
@@ -574,5 +591,7 @@
         private System.Windows.Forms.ToolStripMenuItem mn_con_tab;
         private System.Windows.Forms.ToolStripMenuItem mn_dos_ifi;
         private System.Windows.Forms.ToolStripMenuItem mn_tip_doc;
+        private System.Windows.Forms.ToolStripMenuItem mn_suc_cur;
+        private System.Windows.Forms.ToolStripMenuItem mn_act_eco;
     }
 }

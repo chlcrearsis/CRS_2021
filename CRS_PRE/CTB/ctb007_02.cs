@@ -17,6 +17,8 @@ namespace CRS_PRE
         ads005 o_ads005 = new ads005();
         ads001 o_ads001 = new ads001();
         ads016 o_ads016 = new ads016();
+        
+        cmr016 o_cmr016 = new cmr016();
 
         DataTable tabla = new DataTable();
         DataTable tab_prm = new DataTable();
@@ -244,21 +246,20 @@ namespace CRS_PRE
             }
         }
 
-        private void Bt_bus_doc_Click(object sender, EventArgs e)
+        private void Bt_bus_suc_Click(object sender, EventArgs e)
         {
-            Fi_abr_bus_doc();
+            Fi_abr_bus_suc();
         }
-        private void Tb_ide_doc_KeyDown(object sender, KeyEventArgs e)
+        private void Tb_ide_suc_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
             {
                 // Abre la ventana Busca Documento
-                Fi_abr_bus_doc();
+                Fi_abr_bus_suc();
             }
         }
-
-        void Fi_abr_bus_doc()
+        void Fi_abr_bus_suc()
         {
             ads003_01 frm = new ads003_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
@@ -269,6 +270,74 @@ namespace CRS_PRE
                 Fi_obt_doc();
             }
         }
+
+        /// <summary>
+        /// Obtiene ide y nombre de scursal para colocar en los campos del formulario
+        /// </summary>
+        void Fi_obt_suc()
+        {
+            // Obtiene ide y nombre 
+            tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
+            if (tabla.Rows.Count == 0)
+            {
+                tb_nom_doc.Clear();
+            }
+            else
+            {
+                tb_ide_doc.Text = tabla.Rows[0]["va_ide_doc"].ToString();
+                tb_nom_doc.Text = tabla.Rows[0]["va_nom_doc"].ToString();
+            }
+        }
+
+
+
+
+        private void Bt_bus_act_Click(object sender, EventArgs e)
+        {
+            Fi_abr_bus_act();
+        }
+        private void Tb_ide_act_KeyDown(object sender, KeyEventArgs e)
+        {
+            //al presionar tecla para ARRIBA
+            if (e.KeyData == Keys.Up)
+            {
+                // Abre la ventana Busca Documento
+                Fi_abr_bus_act();
+            }
+        }
+        void Fi_abr_bus_act()
+        {
+            cmr016_01 frm = new cmr016_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                tb_cod_act.Text = frm.tb_sel_bus.Text;
+                Fi_obt_act();
+            }
+        }
+        /// <summary>
+        /// Obtiene ide y nombre de actividad economica para colocar en los campos del formulario
+        /// </summary>
+        void Fi_obt_act()
+        {
+            // Obtiene ide y nombre 
+            tabla = o_cmr016.Fe_con_act(tb_cod_act.Text);
+            if (tabla.Rows.Count == 0)
+            {
+                tb_nom_act.Clear();
+            }
+            else
+            {
+                tb_cod_act.Text = tabla.Rows[0]["va_cod_act"].ToString();
+                tb_nom_act.Text = tabla.Rows[0]["va_nom_act"].ToString();
+            }
+        }
+        private void Tb_cod_act_Validated(object sender, EventArgs e)
+        {
+            Fi_obt_act();
+        }
+
 
 
         private void Bt_bus_tal_Click(object sender, EventArgs e)
@@ -305,11 +374,12 @@ namespace CRS_PRE
                 Fi_obt_tal();
             }
         }
+
+
         private void Tb_nro_tal_Validated(object sender, EventArgs e)
         {
             Fi_obt_tal();
         }
-
         private void Tb_ide_doc_Validated(object sender, EventArgs e)
         {
             Fi_obt_doc();
