@@ -900,11 +900,41 @@
     <Compile Include="CMR\cmr003_02.Designer.cs">
       <DependentUpon>cmr003_02.cs</DependentUpon>
     </Compile>
+    <Compile Include="CMR\cmr014_01d.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_01d.Designer.cs">
+      <DependentUpon>cmr014_01d.cs</DependentUpon>
+    </Compile>
     <Compile Include="CMR\cmr014_01c.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CMR\cmr014_01c.Designer.cs">
       <DependentUpon>cmr014_01c.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_02b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_02b.Designer.cs">
+      <DependentUpon>cmr014_02b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_03b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_03b.Designer.cs">
+      <DependentUpon>cmr014_03b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_04b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_04b.Designer.cs">
+      <DependentUpon>cmr014_04b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_05b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_05b.Designer.cs">
+      <DependentUpon>cmr014_05b.cs</DependentUpon>
     </Compile>
     <Compile Include="CMR\cmr016_06.cs">
       <SubType>Form</SubType>
@@ -2285,8 +2315,23 @@
     <EmbeddedResource Include="CMR\cmr003_02.resx">
       <DependentUpon>cmr003_02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_01d.resx">
+      <DependentUpon>cmr014_01d.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr014_01c.resx">
       <DependentUpon>cmr014_01c.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_02b.resx">
+      <DependentUpon>cmr014_02b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_03b.resx">
+      <DependentUpon>cmr014_03b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_04b.resx">
+      <DependentUpon>cmr014_04b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_05b.resx">
+      <DependentUpon>cmr014_05b.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr016_06.resx">
       <DependentUpon>cmr016_06.cs</DependentUpon>
