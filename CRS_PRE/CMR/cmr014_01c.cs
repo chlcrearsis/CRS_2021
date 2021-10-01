@@ -117,7 +117,7 @@ namespace CRS_PRE
                 return;
             }
 
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_sel_bus.Text),1);
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_sel_bus.Text),2);
             if (tabla.Rows.Count == 0)
             {
                 lb_des_bus.Text = "** NO existe";
@@ -234,7 +234,7 @@ namespace CRS_PRE
         public bool fi_ver_edi(int sel_ecc)
         {
             string res_fun = "";
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,2);
             if (tabla.Rows.Count == 0)
             {
                 res_fun = "El Vendedor que desea editar, no se encuentra registrado";
@@ -253,7 +253,7 @@ namespace CRS_PRE
         public bool fi_ver_hds(int sel_ecc)
         {
           
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,2);
             if (tab_dat.Rows.Count == 0)
             {
                 MessageBox.Show("EL Vendedor ya no se encuentra registrado en la base de datos.", "Consulta Vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -265,7 +265,7 @@ namespace CRS_PRE
         }
         public bool fi_ver_con(int sel_ecc)
         {
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,2);
             if (tab_dat.Rows.Count == 0)
             {
                 MessageBox.Show("EL Vendedor ya no se encuentra registrado en la base de datos.", "Consulta vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -370,7 +370,7 @@ namespace CRS_PRE
             if (fi_ver_edi(int.Parse(tb_sel_bus.Text)) == false)
                 return;
 
-            cmr014_03 frm = new cmr014_03();
+            cmr014_03b frm = new cmr014_03b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
@@ -380,7 +380,7 @@ namespace CRS_PRE
             if (fi_ver_hds(int.Parse(tb_sel_bus.Text)) == false)
                 return;
 
-            cmr014_04 frm = new cmr014_04();
+            cmr014_04b frm = new cmr014_04b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
@@ -398,7 +398,7 @@ namespace CRS_PRE
             if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
                 return;
 
-            //cmr014_06 frm = new cmr014_06();
+            //cmr014_06b frm = new cmr014_06b();
             //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 

@@ -36,6 +36,9 @@ namespace CRS_PRE
         {
             tb_cod_ven.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
             tb_nom_ven.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
+            tb_tel_cel.Text = frm_dat.Rows[0]["va_tel_cel"].ToString();
+            tb_ema_ail.Text = frm_dat.Rows[0]["va_ema_ail"].ToString();
+
             tb_cms_con.Text = frm_dat.Rows[0]["va_cms_con"].ToString();
             tb_cms_cre.Text = frm_dat.Rows[0]["va_cms_cre"].ToString();
 
