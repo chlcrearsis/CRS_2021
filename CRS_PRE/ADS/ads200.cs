@@ -276,5 +276,17 @@ namespace CRS_PRE
             o_frm = new cmr016_01();
             cl_glo_frm.abrir(this, o_frm);
         }
+
+        private void mn_suc_urs_Click(object sender, EventArgs e)
+        {
+            o_frm = new cmr003_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_cob_rad_Click(object sender, EventArgs e)
+        {
+            o_frm = new cmr014_01c();
+            cl_glo_frm.abrir(this, o_frm);
+        }
     }
 }

@@ -876,6 +876,36 @@
     </Compile>
     <Compile Include="cl_glo_bal.cs" />
     <Compile Include="cl_glo_frm.cs" />
+    <Compile Include="CMR\cmr003_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_01.Designer.cs">
+      <DependentUpon>cmr003_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr003_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_04.Designer.cs">
+      <DependentUpon>cmr003_04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr003_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_03.Designer.cs">
+      <DependentUpon>cmr003_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr003_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_02.Designer.cs">
+      <DependentUpon>cmr003_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_01c.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_01c.Designer.cs">
+      <DependentUpon>cmr014_01c.cs</DependentUpon>
+    </Compile>
     <Compile Include="CMR\cmr016_06.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2242,6 +2272,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_02.resx">
       <DependentUpon>ads000_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_01.resx">
+      <DependentUpon>cmr003_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_04.resx">
+      <DependentUpon>cmr003_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_03.resx">
+      <DependentUpon>cmr003_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_02.resx">
+      <DependentUpon>cmr003_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_01c.resx">
+      <DependentUpon>cmr014_01c.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr016_06.resx">
       <DependentUpon>cmr016_06.cs</DependentUpon>

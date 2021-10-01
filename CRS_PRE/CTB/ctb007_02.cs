@@ -17,7 +17,8 @@ namespace CRS_PRE
         ads005 o_ads005 = new ads005();
         ads001 o_ads001 = new ads001();
         ads016 o_ads016 = new ads016();
-        
+
+        cmr003 o_cmr003 = new cmr003();
         cmr016 o_cmr016 = new cmr016();
 
         DataTable tabla = new DataTable();
@@ -284,8 +285,8 @@ namespace CRS_PRE
             }
             else
             {
-                tb_ide_doc.Text = tabla.Rows[0]["va_ide_doc"].ToString();
-                tb_nom_doc.Text = tabla.Rows[0]["va_nom_doc"].ToString();
+                tb_ide_doc.Text = tabla.Rows[0]["va_ide_suc"].ToString();
+                tb_nom_doc.Text = tabla.Rows[0]["va_nom_suc"].ToString();
             }
         }
 
