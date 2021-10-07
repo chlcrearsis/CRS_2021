@@ -82,6 +82,7 @@
     <Compile Include="CMR\cmr002.cs" />
     <Compile Include="CMR\cmr001.cs" />
     <Compile Include="ADP\adp002.cs" />
+    <Compile Include="CTB\ctb006.cs" />
     <Compile Include="CTB\ctb007.cs" />
     <Compile Include="General.cs" />
     <Compile Include="INV\inv099.cs" />

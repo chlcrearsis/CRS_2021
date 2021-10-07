@@ -81,6 +81,19 @@ namespace CRS_NEG
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        public Boolean Fe_ver_exi(string ar_cod_act)
+        {
+            bool ret_val = false;
+            cadena = " SELECT * FROM cmr016 WHERE va_cod_act =  " + ar_cod_act + " ";
+            Tabla = ob_con_ecA.fe_exe_sql(cadena);
+
+            if (Tabla.Rows.Count == 0)
+                ret_val = false;
+            else
+                ret_val = true;
+
+            return ret_val;
+        }
 
         public DataTable Fe_bus_car(string ar_tex_bus, int ar_par_ame)
         {

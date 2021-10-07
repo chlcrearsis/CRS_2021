@@ -882,6 +882,12 @@
     <Compile Include="CMR\cmr003_01.Designer.cs">
       <DependentUpon>cmr003_01.cs</DependentUpon>
     </Compile>
+    <Compile Include="CMR\cmr003_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_05.Designer.cs">
+      <DependentUpon>cmr003_05.cs</DependentUpon>
+    </Compile>
     <Compile Include="CMR\cmr003_04.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1104,11 +1110,23 @@
     <Compile Include="ADS\ads006_02.Designer.cs">
       <DependentUpon>ads006_02.cs</DependentUpon>
     </Compile>
+    <Compile Include="CTB\ctb006_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTB\ctb006_01.Designer.cs">
+      <DependentUpon>ctb006_01.cs</DependentUpon>
+    </Compile>
     <Compile Include="CTB\ctb007_01.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CTB\ctb007_01.Designer.cs">
       <DependentUpon>ctb007_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CTB\ctb007_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTB\ctb007_03.Designer.cs">
+      <DependentUpon>ctb007_03.cs</DependentUpon>
     </Compile>
     <Compile Include="CTB\ctb007_02.cs">
       <SubType>Form</SubType>
@@ -2306,6 +2324,9 @@
     <EmbeddedResource Include="CMR\cmr003_01.resx">
       <DependentUpon>cmr003_01.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_05.resx">
+      <DependentUpon>cmr003_05.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr003_04.resx">
       <DependentUpon>cmr003_04.cs</DependentUpon>
     </EmbeddedResource>
@@ -2423,8 +2444,14 @@
     <EmbeddedResource Include="ADS\ads006_02.resx">
       <DependentUpon>ads006_02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CTB\ctb006_01.resx">
+      <DependentUpon>ctb006_01.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CTB\ctb007_01.resx">
       <DependentUpon>ctb007_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTB\ctb007_03.resx">
+      <DependentUpon>ctb007_03.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CTB\ctb007_02.resx">
       <DependentUpon>ctb007_02.cs</DependentUpon>

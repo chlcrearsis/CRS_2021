@@ -50,14 +50,14 @@
             this.tb_sel_bus = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
             this.va_ide_suc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_suc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_ciu_suc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_dir_suc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,6 +83,7 @@
             // mn_cre_ar
             // 
             this.mn_cre_ar.Name = "mn_cre_ar";
+            this.mn_cre_ar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
             this.mn_cre_ar.Text = "&Crea";
             this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
@@ -100,26 +101,30 @@
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(180, 22);
+            this.mn_mod_ifi.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.mn_mod_ifi.Size = new System.Drawing.Size(204, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(180, 22);
+            this.mn_hab_des.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.mn_hab_des.Size = new System.Drawing.Size(204, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(180, 22);
+            this.mn_eli_min.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.mn_eli_min.Size = new System.Drawing.Size(204, 22);
             this.mn_eli_min.Text = "E&limina";
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
+            this.mn_con_sul.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
@@ -135,7 +140,7 @@
             // mn_list_suc
             // 
             this.mn_list_suc.Name = "mn_list_suc";
-            this.mn_list_suc.Size = new System.Drawing.Size(180, 22);
+            this.mn_list_suc.Size = new System.Drawing.Size(164, 22);
             this.mn_list_suc.Text = "&Lista de sucursales";
             this.mn_list_suc.Click += new System.EventHandler(this.Mn_list_usr_Click);
             // 
@@ -288,7 +293,43 @@
             this.dg_res_ult.Size = new System.Drawing.Size(639, 187);
             this.dg_res_ult.TabIndex = 35;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
+            this.dg_res_ult.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dg_res_ult_CellMouseDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
+            this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
+            // 
+            // va_ide_suc
+            // 
+            this.va_ide_suc.HeaderText = "ID.";
+            this.va_ide_suc.Name = "va_ide_suc";
+            this.va_ide_suc.ReadOnly = true;
+            this.va_ide_suc.Width = 30;
+            // 
+            // va_nom_suc
+            // 
+            this.va_nom_suc.HeaderText = "Sucursal";
+            this.va_nom_suc.Name = "va_nom_suc";
+            this.va_nom_suc.ReadOnly = true;
+            this.va_nom_suc.Width = 150;
+            // 
+            // va_ciu_suc
+            // 
+            this.va_ciu_suc.HeaderText = "Ciudad";
+            this.va_ciu_suc.Name = "va_ciu_suc";
+            this.va_ciu_suc.ReadOnly = true;
+            this.va_ciu_suc.Width = 150;
+            // 
+            // va_dir_suc
+            // 
+            this.va_dir_suc.HeaderText = "Dirección";
+            this.va_dir_suc.Name = "va_dir_suc";
+            this.va_dir_suc.ReadOnly = true;
+            this.va_dir_suc.Width = 200;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
             // 
             // gb_ctr_btn
             // 
@@ -326,40 +367,6 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
-            // 
-            // va_ide_suc
-            // 
-            this.va_ide_suc.HeaderText = "ID.";
-            this.va_ide_suc.Name = "va_ide_suc";
-            this.va_ide_suc.ReadOnly = true;
-            this.va_ide_suc.Width = 30;
-            // 
-            // va_nom_suc
-            // 
-            this.va_nom_suc.HeaderText = "Sucursal";
-            this.va_nom_suc.Name = "va_nom_suc";
-            this.va_nom_suc.ReadOnly = true;
-            this.va_nom_suc.Width = 150;
-            // 
-            // va_ciu_suc
-            // 
-            this.va_ciu_suc.HeaderText = "Ciudad";
-            this.va_ciu_suc.Name = "va_ciu_suc";
-            this.va_ciu_suc.ReadOnly = true;
-            this.va_ciu_suc.Width = 150;
-            // 
-            // va_dir_suc
-            // 
-            this.va_dir_suc.HeaderText = "Dirección";
-            this.va_dir_suc.Name = "va_dir_suc";
-            this.va_dir_suc.ReadOnly = true;
-            this.va_dir_suc.Width = 200;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
             // 
             // cmr003_01
             // 

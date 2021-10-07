@@ -23,4 +23,6 @@ va_est_ado		CHAR(01)		NOT NULL,	--Estado (H=habilitada; N=deshabilitada)
 CONSTRAINT pk1_cmr003 PRIMARY KEY(va_ide_suc)
 )
 
-go
+GO
+
+INSERT INTO cmr003 VALUES(1,'CENTRAL', '','SANTA CRUZ', 'SANTA CRUZ','Av. San Aurelio Nº 392','','3358694','72195985','123456789','null','H')

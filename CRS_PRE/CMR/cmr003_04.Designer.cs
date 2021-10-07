@@ -35,6 +35,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.tb_cla_wif = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_enc_suc = new System.Windows.Forms.TextBox();
@@ -50,7 +51,6 @@
             this.tb_ciu_suc = new System.Windows.Forms.TextBox();
             this.tb_tel_suc = new System.Windows.Forms.TextBox();
             this.tb_ide_suc = new System.Windows.Forms.TextBox();
-            this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -149,12 +149,24 @@
             this.label3.TabIndex = 29;
             this.label3.Text = "Telefono";
             // 
+            // tb_est_ado
+            // 
+            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_est_ado.Location = new System.Drawing.Point(310, 189);
+            this.tb_est_ado.MaxLength = 105;
+            this.tb_est_ado.Name = "tb_est_ado";
+            this.tb_est_ado.ReadOnly = true;
+            this.tb_est_ado.Size = new System.Drawing.Size(108, 20);
+            this.tb_est_ado.TabIndex = 105;
+            this.tb_est_ado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // tb_cla_wif
             // 
             this.tb_cla_wif.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_cla_wif.Location = new System.Drawing.Point(66, 166);
             this.tb_cla_wif.MaxLength = 15;
             this.tb_cla_wif.Name = "tb_cla_wif";
+            this.tb_cla_wif.ReadOnly = true;
             this.tb_cla_wif.Size = new System.Drawing.Size(352, 20);
             this.tb_cla_wif.TabIndex = 100;
             // 
@@ -173,6 +185,7 @@
             this.tb_enc_suc.Location = new System.Drawing.Point(66, 120);
             this.tb_enc_suc.MaxLength = 90;
             this.tb_enc_suc.Name = "tb_enc_suc";
+            this.tb_enc_suc.ReadOnly = true;
             this.tb_enc_suc.Size = new System.Drawing.Size(352, 20);
             this.tb_enc_suc.TabIndex = 70;
             // 
@@ -182,6 +195,7 @@
             this.tb_dir_suc.Location = new System.Drawing.Point(66, 93);
             this.tb_dir_suc.MaxLength = 90;
             this.tb_dir_suc.Name = "tb_dir_suc";
+            this.tb_dir_suc.ReadOnly = true;
             this.tb_dir_suc.Size = new System.Drawing.Size(352, 20);
             this.tb_dir_suc.TabIndex = 60;
             // 
@@ -200,6 +214,7 @@
             this.tb_cel_suc.Location = new System.Drawing.Point(277, 143);
             this.tb_cel_suc.MaxLength = 15;
             this.tb_cel_suc.Name = "tb_cel_suc";
+            this.tb_cel_suc.ReadOnly = true;
             this.tb_cel_suc.Size = new System.Drawing.Size(141, 20);
             this.tb_cel_suc.TabIndex = 90;
             // 
@@ -227,6 +242,7 @@
             this.tb_des_suc.Location = new System.Drawing.Point(66, 36);
             this.tb_des_suc.MaxLength = 90;
             this.tb_des_suc.Name = "tb_des_suc";
+            this.tb_des_suc.ReadOnly = true;
             this.tb_des_suc.Size = new System.Drawing.Size(352, 20);
             this.tb_des_suc.TabIndex = 30;
             // 
@@ -236,6 +252,7 @@
             this.tb_nom_suc.Location = new System.Drawing.Point(98, 13);
             this.tb_nom_suc.MaxLength = 30;
             this.tb_nom_suc.Name = "tb_nom_suc";
+            this.tb_nom_suc.ReadOnly = true;
             this.tb_nom_suc.Size = new System.Drawing.Size(320, 20);
             this.tb_nom_suc.TabIndex = 20;
             // 
@@ -245,6 +262,7 @@
             this.tb_dto_suc.Location = new System.Drawing.Point(277, 69);
             this.tb_dto_suc.MaxLength = 30;
             this.tb_dto_suc.Name = "tb_dto_suc";
+            this.tb_dto_suc.ReadOnly = true;
             this.tb_dto_suc.Size = new System.Drawing.Size(141, 20);
             this.tb_dto_suc.TabIndex = 50;
             // 
@@ -263,6 +281,7 @@
             this.tb_ciu_suc.Location = new System.Drawing.Point(66, 69);
             this.tb_ciu_suc.MaxLength = 30;
             this.tb_ciu_suc.Name = "tb_ciu_suc";
+            this.tb_ciu_suc.ReadOnly = true;
             this.tb_ciu_suc.Size = new System.Drawing.Size(129, 20);
             this.tb_ciu_suc.TabIndex = 40;
             // 
@@ -272,6 +291,7 @@
             this.tb_tel_suc.Location = new System.Drawing.Point(66, 143);
             this.tb_tel_suc.MaxLength = 15;
             this.tb_tel_suc.Name = "tb_tel_suc";
+            this.tb_tel_suc.ReadOnly = true;
             this.tb_tel_suc.Size = new System.Drawing.Size(144, 20);
             this.tb_tel_suc.TabIndex = 80;
             // 
@@ -285,18 +305,7 @@
             this.tb_ide_suc.Size = new System.Drawing.Size(30, 20);
             this.tb_ide_suc.TabIndex = 10;
             // 
-            // tb_est_ado
-            // 
-            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_est_ado.Location = new System.Drawing.Point(310, 189);
-            this.tb_est_ado.MaxLength = 105;
-            this.tb_est_ado.Name = "tb_est_ado";
-            this.tb_est_ado.ReadOnly = true;
-            this.tb_est_ado.Size = new System.Drawing.Size(108, 20);
-            this.tb_est_ado.TabIndex = 105;
-            this.tb_est_ado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cmr003_03
+            // cmr003_04
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -307,8 +316,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr003_03";
-            this.Text = "Edita sucursal";
+            this.Name = "cmr003_04";
+            this.Text = "Habilita/Deshabilita sucursal";
             this.Load += new System.EventHandler(this.frm_Load);
             this.gb_ctr_btn.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

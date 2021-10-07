@@ -288,5 +288,11 @@ namespace CRS_PRE
             o_frm = new cmr014_01c();
             cl_glo_frm.abrir(this, o_frm);
         }
+
+        private void mn_ley_end_Click(object sender, EventArgs e)
+        {
+            o_frm = new ctb006_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
     }
 }

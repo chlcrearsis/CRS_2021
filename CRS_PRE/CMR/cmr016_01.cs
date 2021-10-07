@@ -270,8 +270,11 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            if (gb_ctr_btn.Enabled == false)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
 
 
@@ -357,8 +360,11 @@ namespace CRS_PRE
 
         private void Bt_ace_pta_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            if (gb_ctr_btn.Enabled == false)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
 
         private void Bt_can_cel_Click(object sender, EventArgs e)
@@ -367,6 +373,13 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-    
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            if (gb_ctr_btn.Enabled == false)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
     }
 }

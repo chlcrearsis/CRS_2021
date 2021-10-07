@@ -56,28 +56,33 @@ namespace CRS_NEG
             string ar_ciu_suc, string ar_dir_suc, string ar_enc_suc, string ar_tel_suc, string ar_cel_suc, string ar_cla_wif)
         {
             cadena = " UPDATE cmr003 SET va_nom_suc = '" + ar_nom_suc + "', va_des_suc = '" + ar_des_suc + "', " +
-                  " va_dto_suc = '" + ar_dto_suc + "', va_for_mat = '" + ar_ciu_suc + "', va_dir_suc ='" + ar_dir_suc + "', " +
+                  " va_dto_suc = '" + ar_dto_suc + "', va_ciu_suc = '" + ar_ciu_suc + "', va_dir_suc ='" + ar_dir_suc + "', " +
                   " va_enc_suc = '" + ar_enc_suc + "', va_tel_suc = '" + ar_tel_suc + "', " +
                   " va_cel_suc ='" + ar_cel_suc + "' , va_cla_wif ='" + ar_cla_wif + "'" +
                   " WHERE va_ide_suc = " + ar_ide_suc + " " ;
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
-        public void Fe_hab_ili( string ar_ide_suc, int ar_nro_suc)
+        public void Fe_hab_ili( string ar_ide_suc)
         {
-            cadena = " cmr003_04a_p01 '" + ar_ide_suc + "'," + ar_nro_suc;
+            //cadena = " cmr003_04a_p01 '" + ar_ide_suc + "'";
+
+            cadena = " UPDATE cmr003 set va_est_ado = 'H' " +
+                " WHERE va_ide_suc = " + ar_ide_suc;
             ob_con_ecA.fe_exe_sql(cadena);
         }
-        public void Fe_des_hab(string ar_ide_suc, int ar_nro_suc)
+        public void Fe_des_hab(string ar_ide_suc)
         {
-            cadena = " cmr003_04a_p02 '" + ar_ide_suc + "'," + ar_nro_suc;
+            //cadena = " cmr003_04a_p02 '" + ar_ide_suc + "'" ;
+            cadena = " UPDATE cmr003 set va_est_ado = 'N' " +
+               " WHERE va_ide_suc = " + ar_ide_suc;
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
 
-        public void Fe_eli_suc(string ar_ide_suc, int ar_nro_suc)
+        public void Fe_eli_suc(string ar_ide_suc)
         {
-            cadena = " cmr003_06a_p01 '" + ar_ide_suc + "'," + ar_nro_suc;
+            cadena = " cmr003_06a_p01 '" + ar_ide_suc + "'";
             ob_con_ecA.fe_exe_sql(cadena);
         }
 

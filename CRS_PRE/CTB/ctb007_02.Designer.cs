@@ -43,17 +43,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tb_nom_act = new System.Windows.Forms.TextBox();
             this.tb_nro_aut = new System.Windows.Forms.TextBox();
-            this.tb_nom_doc = new System.Windows.Forms.TextBox();
+            this.tb_nom_suc = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tb_nom_tal = new System.Windows.Forms.TextBox();
+            this.tb_nom_ley = new System.Windows.Forms.TextBox();
             this.tb_nro_ini = new System.Windows.Forms.TextBox();
-            this.tb_nro_tal = new System.Windows.Forms.TextBox();
+            this.tb_cod_ley = new System.Windows.Forms.TextBox();
             this.tb_cod_act = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.tb_ide_doc = new System.Windows.Forms.TextBox();
+            this.tb_ide_suc = new System.Windows.Forms.TextBox();
             this.bt_bus_suc = new System.Windows.Forms.Button();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
@@ -78,17 +78,17 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tb_nom_act);
             this.groupBox1.Controls.Add(this.tb_nro_aut);
-            this.groupBox1.Controls.Add(this.tb_nom_doc);
+            this.groupBox1.Controls.Add(this.tb_nom_suc);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.tb_nom_tal);
+            this.groupBox1.Controls.Add(this.tb_nom_ley);
             this.groupBox1.Controls.Add(this.tb_nro_ini);
-            this.groupBox1.Controls.Add(this.tb_nro_tal);
+            this.groupBox1.Controls.Add(this.tb_cod_ley);
             this.groupBox1.Controls.Add(this.tb_cod_act);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.tb_ide_doc);
+            this.groupBox1.Controls.Add(this.tb_ide_suc);
             this.groupBox1.Controls.Add(this.bt_bus_suc);
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
@@ -144,6 +144,8 @@
             this.tb_con_tad.Name = "tb_con_tad";
             this.tb_con_tad.Size = new System.Drawing.Size(43, 20);
             this.tb_con_tad.TabIndex = 70;
+            this.tb_con_tad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_con_tad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_notNumeric_KeyPress);
             // 
             // tb_nro_fin
             // 
@@ -154,6 +156,8 @@
             this.tb_nro_fin.Name = "tb_nro_fin";
             this.tb_nro_fin.Size = new System.Drawing.Size(55, 20);
             this.tb_nro_fin.TabIndex = 60;
+            this.tb_nro_fin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_nro_fin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_notNumeric_KeyPress);
             // 
             // cb_ges_tio
             // 
@@ -179,7 +183,7 @@
             this.bt_bus_ley.TabStop = false;
             this.bt_bus_ley.Text = "|";
             this.bt_bus_ley.UseVisualStyleBackColor = false;
-            this.bt_bus_ley.Click += new System.EventHandler(this.Bt_bus_tal_Click);
+            this.bt_bus_ley.Click += new System.EventHandler(this.Bt_bus_ley_Click);
             // 
             // label7
             // 
@@ -238,17 +242,18 @@
             this.tb_nro_aut.Size = new System.Drawing.Size(282, 20);
             this.tb_nro_aut.TabIndex = 10;
             this.tb_nro_aut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_nro_aut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_notNumeric_KeyPress);
             // 
-            // tb_nom_doc
+            // tb_nom_suc
             // 
-            this.tb_nom_doc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_doc.Location = new System.Drawing.Point(116, 111);
-            this.tb_nom_doc.MaxLength = 30;
-            this.tb_nom_doc.Name = "tb_nom_doc";
-            this.tb_nom_doc.ReadOnly = true;
-            this.tb_nom_doc.Size = new System.Drawing.Size(277, 20);
-            this.tb_nom_doc.TabIndex = 30;
-            this.tb_nom_doc.TabStop = false;
+            this.tb_nom_suc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nom_suc.Location = new System.Drawing.Point(116, 111);
+            this.tb_nom_suc.MaxLength = 30;
+            this.tb_nom_suc.Name = "tb_nom_suc";
+            this.tb_nom_suc.ReadOnly = true;
+            this.tb_nom_suc.Size = new System.Drawing.Size(277, 20);
+            this.tb_nom_suc.TabIndex = 30;
+            this.tb_nom_suc.TabStop = false;
             // 
             // label10
             // 
@@ -286,17 +291,17 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Tipo de facturación";
             // 
-            // tb_nom_tal
+            // tb_nom_ley
             // 
-            this.tb_nom_tal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_tal.Location = new System.Drawing.Point(116, 195);
-            this.tb_nom_tal.MaxLength = 120;
-            this.tb_nom_tal.Multiline = true;
-            this.tb_nom_tal.Name = "tb_nom_tal";
-            this.tb_nom_tal.ReadOnly = true;
-            this.tb_nom_tal.Size = new System.Drawing.Size(277, 40);
-            this.tb_nom_tal.TabIndex = 50;
-            this.tb_nom_tal.TabStop = false;
+            this.tb_nom_ley.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nom_ley.Location = new System.Drawing.Point(116, 195);
+            this.tb_nom_ley.MaxLength = 120;
+            this.tb_nom_ley.Multiline = true;
+            this.tb_nom_ley.Name = "tb_nom_ley";
+            this.tb_nom_ley.ReadOnly = true;
+            this.tb_nom_ley.Size = new System.Drawing.Size(277, 40);
+            this.tb_nom_ley.TabIndex = 50;
+            this.tb_nom_ley.TabStop = false;
             // 
             // tb_nro_ini
             // 
@@ -307,18 +312,21 @@
             this.tb_nro_ini.Name = "tb_nro_ini";
             this.tb_nro_ini.Size = new System.Drawing.Size(55, 20);
             this.tb_nro_ini.TabIndex = 50;
+            this.tb_nro_ini.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_nro_ini.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_notNumeric_KeyPress);
             // 
-            // tb_nro_tal
+            // tb_cod_ley
             // 
-            this.tb_nro_tal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nro_tal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nro_tal.Location = new System.Drawing.Point(70, 195);
-            this.tb_nro_tal.MaxLength = 2;
-            this.tb_nro_tal.Name = "tb_nro_tal";
-            this.tb_nro_tal.Size = new System.Drawing.Size(29, 20);
-            this.tb_nro_tal.TabIndex = 100;
-            this.tb_nro_tal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_nro_tal_KeyDown);
-            this.tb_nro_tal.Validated += new System.EventHandler(this.Tb_nro_tal_Validated);
+            this.tb_cod_ley.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_cod_ley.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_cod_ley.Location = new System.Drawing.Point(70, 195);
+            this.tb_cod_ley.MaxLength = 2;
+            this.tb_cod_ley.Name = "tb_cod_ley";
+            this.tb_cod_ley.Size = new System.Drawing.Size(29, 20);
+            this.tb_cod_ley.TabIndex = 100;
+            this.tb_cod_ley.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cod_ley_KeyDown);
+            this.tb_cod_ley.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_notNumeric_KeyPress);
+            this.tb_cod_ley.Validated += new System.EventHandler(this.Tb_cod_ley_Validated);
             // 
             // tb_cod_act
             // 
@@ -329,7 +337,8 @@
             this.tb_cod_act.Name = "tb_cod_act";
             this.tb_cod_act.Size = new System.Drawing.Size(29, 20);
             this.tb_cod_act.TabIndex = 30;
-            this.tb_cod_act.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_ide_suc_KeyDown);
+            this.tb_cod_act.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cod_act_KeyDown);
+            this.tb_cod_act.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_notNumeric_KeyPress);
             this.tb_cod_act.Validated += new System.EventHandler(this.Tb_cod_act_Validated);
             // 
             // button2
@@ -346,17 +355,18 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Bt_bus_act_Click);
             // 
-            // tb_ide_doc
+            // tb_ide_suc
             // 
-            this.tb_ide_doc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_doc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_ide_doc.Location = new System.Drawing.Point(70, 111);
-            this.tb_ide_doc.MaxLength = 2;
-            this.tb_ide_doc.Name = "tb_ide_doc";
-            this.tb_ide_doc.Size = new System.Drawing.Size(29, 20);
-            this.tb_ide_doc.TabIndex = 40;
-            this.tb_ide_doc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_ide_suc_KeyDown);
-            this.tb_ide_doc.Validated += new System.EventHandler(this.Tb_ide_doc_Validated);
+            this.tb_ide_suc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ide_suc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_ide_suc.Location = new System.Drawing.Point(70, 111);
+            this.tb_ide_suc.MaxLength = 2;
+            this.tb_ide_suc.Name = "tb_ide_suc";
+            this.tb_ide_suc.Size = new System.Drawing.Size(29, 20);
+            this.tb_ide_suc.TabIndex = 40;
+            this.tb_ide_suc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_ide_suc_KeyDown);
+            this.tb_ide_suc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_notNumeric_KeyPress);
+            this.tb_ide_suc.Validated += new System.EventHandler(this.Tb_ide_suc_Validated);
             // 
             // bt_bus_suc
             // 
@@ -436,15 +446,15 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox tb_ide_doc;
+        private System.Windows.Forms.TextBox tb_ide_suc;
         private System.Windows.Forms.Button bt_can_cel;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb_nom_doc;
+        private System.Windows.Forms.TextBox tb_nom_suc;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_nom_tal;
+        private System.Windows.Forms.TextBox tb_nom_ley;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
-        private System.Windows.Forms.TextBox tb_nro_tal;
+        private System.Windows.Forms.TextBox tb_cod_ley;
         private System.Windows.Forms.Button bt_bus_suc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_nro_ini;

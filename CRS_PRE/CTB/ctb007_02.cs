@@ -21,12 +21,13 @@ namespace CRS_PRE
         cmr003 o_cmr003 = new cmr003();
         cmr016 o_cmr016 = new cmr016();
 
+        ctb006 o_ctb006 = new ctb006();
+        ctb007 o_ctb007 = new ctb007();
+
         DataTable tabla = new DataTable();
         DataTable tab_prm = new DataTable();
         DataTable tab_ges = new DataTable();
-        DateTime va_fec_ini_ges;
-        DateTime va_fec_fin_ges;
-
+     
 
         public ctb007_02()
         {
@@ -37,12 +38,14 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             // obtiene lista de 
-            tb_ide_doc.Clear();
-            tb_nom_doc.Clear();
+            tb_ide_suc.Clear();
+            tb_nom_suc.Clear();
 
             cb_ges_tio.SelectedIndex = 0;
 
-            tb_nro_tal.Text = "0";
+            tb_cod_act.Text = "0";
+            tb_ide_suc.Text = "0";
+            tb_cod_ley.Text = "0";
             tb_nro_ini.Text = "0";
             tb_nro_fin.Text = "99999";
             tb_con_tad.Text = "0";
@@ -61,153 +64,112 @@ namespace CRS_PRE
 
         protected string Fi_val_dat()
         {
-            // Variable usada para verificar datos numericos
-            int val = 0;
+           
 
-            //Verificar Documento
-            if (tb_ide_doc.Text.Trim()=="")
+            // Verifica campo nro autorizacion
+            if (tb_nro_aut.Text.Trim() == "")
             {
-                tb_ide_doc.Focus();
-                return "Debe proporcionar el Documento";
+                tb_nro_aut.Focus();
+                return "Debe proporcionar el numero de autorización";
             }
- 
-            tabla = new DataTable();
-            tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
-            if(tabla.Rows.Count==0)
+            if (cl_glo_bal.IsDecimal(tb_nro_aut.Text)==false)
             {
-                tb_ide_doc.Focus();
-                return "El Documento no se encuentra registrado";
+                tb_nro_aut.Focus();
+                return "El numero de autorización no es valido";
+            }
+
+            // Verifica actividad economica
+            if (cl_glo_bal.IsNumeric(tb_cod_act.Text) == false)
+            {
+                tb_cod_act.Focus();
+                return "La Actividad económica no es valida";
+            }
+
+            if( o_cmr016.Fe_ver_exi(tb_cod_act.Text) == false)
+            {
+                tb_cod_act.Focus();
+                return "La Actividad económica no existe";
+            }
+
+
+            //Verifica Sucursal
+            if (tb_ide_suc.Text.Trim()=="")
+            {
+                tb_ide_suc.Focus();
+                return "Debe proporcionar la sucursal";
+            }
+            
+            if (cl_glo_bal.IsNumeric(tb_ide_suc.Text) == false)
+            {
+                tb_ide_suc.Focus();
+                return "La Sucursal no es valida";
+            }
+            tabla = new DataTable();
+            tabla = o_cmr003.Fe_con_suc(tb_ide_suc.Text);
+            if (tabla.Rows.Count == 0)
+            {
+                tb_ide_suc.Focus();
+                return "La Sucursal no se encuentra registrada";
             }
             if (tabla.Rows[0]["va_est_ado"].ToString() == "N")
             {
-                tb_ide_doc.Focus();
-                return "El Documento se encuentra Deshabilitado";
+                tb_ide_suc.Focus();
+                return "La Sucursal se encuentra Deshabilitada";
             }
 
-            //Verificar Talonario
-            if (tb_nro_tal.Text.Trim() == "")
+
+            //Verifica Leyenda
+            if (tb_cod_ley.Text.Trim() == "")
             {
-                tb_nro_tal.Focus();
-                return "Debe proporcionar el nro de talonario";
+                tb_cod_ley.Focus();
+                return "Debe proporcionar la Leyenda";
             }
 
-            val = 0;
-            if (tb_nro_tal.Text.Trim() != "0")
+            if (cl_glo_bal.IsNumeric(tb_cod_ley.Text) == false)
             {
-                int.TryParse(tb_nro_tal.Text.Trim(), out val);
-                if (val == 0)
-                {
-                    tb_nro_tal.Focus();
-                    return "El nro de talonario debe ser numerico";
-                }
+                tb_cod_ley.Focus();
+                return "La Leyenda no es valida";
             }
-            tabla = new DataTable();
-            tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            if(tabla.Rows.Count == 0)
+            //tabla = new DataTable();
+            if (o_ctb006.Fe_ver_exi(tb_cod_ley.Text) == false)
             {
-                tb_nro_tal.Focus();
-                return "El Talonario no se encuentra registrado";
+                tb_cod_ley.Focus();
+                return "La Leyenda no se encuentra registrada";
             }
-            if (tabla.Rows[0]["va_est_ado"].ToString() == "N")
+           
+
+            // Verifica numero inicial y final
+            if (cl_glo_bal.IsNumeric(tb_nro_ini.Text) == false)
             {
-                tb_ide_doc.Focus();
-                return "El Talonario se encuentra Deshabilitado";
+                tb_nro_ini.Focus();
+                return "El numero inicial debe ser numerico";
+            }
+            if (cl_glo_bal.IsNumeric(tb_nro_fin.Text) == false)
+            {
+                tb_nro_fin.Focus();
+                return "El numero final debe ser numerico";
             }
 
-            // Verifica gestion
-            if (cb_ges_tio.Text == "")
-            {
-                cb_ges_tio.Focus();
-                return "Gestion no valida";
-            }
-
-            int.TryParse(tb_nro_ini.Text, out val);
-            val = 0;
-            if(tb_nro_ini.Text.Trim() != "0")
-            { 
-                int.TryParse(tb_nro_ini.Text.Trim(), out val);
-                if (val == 0)
-                {
-                    tb_nro_ini.Focus();
-                    return "El nro inicial debe ser numerico";
-                }
-            }
-
-            int.TryParse(tb_nro_fin.Text, out val);
-            val = 0;
-            if (tb_nro_fin.Text.Trim() != "0")
-            {
-                int.TryParse(tb_nro_fin.Text.Trim(), out val);
-                if (val == 0)
-                {
-                    tb_nro_fin.Focus();
-                    return "El nro final debe ser numerico";
-                }
-            }
 
             if(int.Parse(tb_nro_ini.Text) > int.Parse(tb_nro_fin.Text))
             {
-                tb_nro_fin.Focus();
-                return "El nro final debe ser mayor al nro inicial";
+                tb_nro_ini.Focus();
+                return "El Numero inicial debe ser menor al numero final";
             }
 
-
-            int.TryParse(tb_con_tad.Text, out val);
-            val = 0;
-            if (tb_con_tad.Text.Trim() != "0")
+            if (cl_glo_bal.IsNumeric(tb_con_tad.Text) == false)
             {
-                int.TryParse(tb_con_tad.Text.Trim(), out val);
-                if (val == 0)
-                {
-                    tb_con_tad.Focus();
-                    return "El contador debe ser numerico";
-                }
+                tb_con_tad.Focus();
+                return "El contador debe ser numerico";
             }
 
 
-            DateTime dval;
-            DateTime.TryParse(tb_fec_ini.Text, out dval);
-            if (dval == DateTime.Parse("01/01/0001"))
+            if(DateTime.Parse(tb_fec_ini.Text) > DateTime.Parse(tb_fec_fin.Text))
             {
                 tb_fec_ini.Focus();
-                return "Debe proporcionar una fecha inicial valida";
+                return "La fecha inicial debe ser mayor a la fecha final";
             }
-            DateTime.TryParse(tb_fec_fin.Text, out dval);
-            if (dval == DateTime.Parse("01/01/0001"))
-            {
-                tb_fec_fin.Focus();
-                return "Debe proporcionar una fecha final valida";
-            }
-
-            if (DateTime.Parse(tb_fec_ini.Text) > DateTime.Parse(tb_fec_fin.Text))
-            {
-                tb_fec_fin.Focus();
-                return "La fecha final debe ser mayor a la inicial";
-            }
-
-            // Verifica que las fechas esten dentro del rango de fechas de la gestion
-            va_fec_ini_ges = DateTime.Parse(o_ads016.Fe_con_per(int.Parse(cb_ges_tio.Text),1).Rows[0]["va_fec_ini"].ToString());
-            va_fec_fin_ges = DateTime.Parse(o_ads016.Fe_con_per(int.Parse(cb_ges_tio.Text), 12).Rows[0]["va_fec_fin"].ToString());
-
-            if(DateTime.Parse(tb_fec_ini.Text) < va_fec_ini_ges)
-            {
-                tb_fec_ini.Focus();
-                return "La fecha inicial no pertenece a la gestion";
-            }
-            if (DateTime.Parse(tb_fec_fin.Text) > va_fec_fin_ges)
-            {
-                tb_fec_fin.Focus();
-                return "La fecha final no pertenece a la gestion";
-            }
-
-            //Verifica que la numeracion no haya sido registrada antes
-            tabla = o_ads005.Fe_con_num(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text), int.Parse(cb_ges_tio.Text));
-            if (tabla.Rows.Count > 0)
-            {
-                if(! (tabla.Rows[0][0] is DBNull))
-                    return "La numeracion para talonario del documento, ya se encuentra registrada";
-            }
-               
+           
 
             return "";
         }
@@ -233,62 +195,22 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nueva Numeracion", MessageBoxButtons.OKCancel);
+            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nueva dosificación", MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
             {
-                //Registrar Talonario
-                o_ads005.Fe_crea(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text), int.Parse(cb_ges_tio.Text),DateTime.Parse(tb_fec_ini.Text), 
-                    DateTime.Parse(tb_fec_fin.Text), int.Parse(tb_nro_ini.Text), int.Parse(tb_nro_fin.Text), int.Parse(tb_con_tad.Text));
+                o_ctb007.Fe_crea(long.Parse(tb_nro_aut.Text), cb_ges_tio.SelectedIndex + 1, int.Parse(tb_ide_suc.Text), int.Parse(tb_cod_act.Text),
+                    int.Parse(tb_nro_ini.Text), int.Parse(tb_nro_fin.Text), DateTime.Parse(tb_fec_ini.Text), DateTime.Parse(tb_fec_fin.Text),
+                    int.Parse(tb_cod_ley.Text));
 
-                MessageBox.Show("Los datos se grabaron correctamente", "Nueva Numeracion", MessageBoxButtons.OK);
+                MessageBox.Show("Los datos se grabaron correctamente", "Nueva dosificación", MessageBoxButtons.OK);
                 
-                frm_pad.Fe_act_frm(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text),int.Parse(cb_ges_tio.Text) );
+                frm_pad.Fe_act_frm(long.Parse(tb_nro_aut.Text));
                 Fi_lim_pia();
             }
         }
 
-        private void Bt_bus_suc_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_suc();
-        }
-        private void Tb_ide_suc_KeyDown(object sender, KeyEventArgs e)
-        {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Documento
-                Fi_abr_bus_suc();
-            }
-        }
-        void Fi_abr_bus_suc()
-        {
-            ads003_01 frm = new ads003_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
-            if (frm.DialogResult == DialogResult.OK )
-            {
-                tb_ide_doc.Text = frm.tb_sel_bus.Text;
-                Fi_obt_doc();
-            }
-        }
 
-        /// <summary>
-        /// Obtiene ide y nombre de scursal para colocar en los campos del formulario
-        /// </summary>
-        void Fi_obt_suc()
-        {
-            // Obtiene ide y nombre 
-            tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
-            if (tabla.Rows.Count == 0)
-            {
-                tb_nom_doc.Clear();
-            }
-            else
-            {
-                tb_ide_doc.Text = tabla.Rows[0]["va_ide_suc"].ToString();
-                tb_nom_doc.Text = tabla.Rows[0]["va_nom_suc"].ToString();
-            }
-        }
 
 
 
@@ -297,7 +219,11 @@ namespace CRS_PRE
         {
             Fi_abr_bus_act();
         }
-        private void Tb_ide_act_KeyDown(object sender, KeyEventArgs e)
+        private void Tb_cod_act_Validated(object sender, EventArgs e)
+        {
+            Fi_obt_act();
+        }
+        private void Tb_cod_act_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
@@ -334,95 +260,114 @@ namespace CRS_PRE
                 tb_nom_act.Text = tabla.Rows[0]["va_nom_act"].ToString();
             }
         }
-        private void Tb_cod_act_Validated(object sender, EventArgs e)
+
+
+
+
+
+        private void Bt_bus_suc_Click(object sender, EventArgs e)
         {
-            Fi_obt_act();
+            Fi_abr_bus_suc();
+        }
+        private void Tb_ide_suc_KeyDown(object sender, KeyEventArgs e)
+        {
+            //al presionar tecla para ARRIBA
+            if (e.KeyData == Keys.Up)
+            {
+                // Abre la ventana Busca Documento
+                Fi_abr_bus_suc();
+            }
+        }
+        private void Tb_ide_suc_Validated(object sender, EventArgs e)
+        {
+             Fi_obt_suc();
+        }
+        void Fi_abr_bus_suc()
+        {
+            cmr003_01 frm = new cmr003_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.OK )
+            {
+                tb_ide_suc.Text = frm.tb_sel_bus.Text;
+                Fi_obt_suc();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene ide y nombre de scursal para colocar en los campos del formulario
+        /// </summary>
+        void Fi_obt_suc()
+        {
+            // Obtiene ide y nombre 
+            tabla = o_cmr003.Fe_con_suc(tb_ide_suc.Text);
+            if (tabla.Rows.Count == 0)
+            {
+                tb_nom_suc.Clear();
+            }
+            else
+            {
+                tb_ide_suc.Text = tabla.Rows[0]["va_ide_suc"].ToString();
+                tb_nom_suc.Text = tabla.Rows[0]["va_nom_suc"].ToString();
+            }
         }
 
 
 
-        private void Bt_bus_tal_Click(object sender, EventArgs e)
+
+        private void Bt_bus_ley_Click(object sender, EventArgs e)
         {
-            Fi_abr_bus_tal();
+            Fi_abr_bus_ley();
         }
-        private void Tb_nro_tal_KeyDown(object sender, KeyEventArgs e)
+
+        private void Tb_cod_ley_Validated(object sender, EventArgs e)
+        {
+            Fi_obt_ley();
+        }
+        private void Tb_cod_ley_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
             {
                 // Abre la ventana Busca Talonario
-                Fi_abr_bus_tal();
+                Fi_abr_bus_ley();
             }
         }
-        void Fi_abr_bus_tal()
+        void Fi_abr_bus_ley()
         {
-            // Construye tabla parametros
-            tab_prm = new DataTable();
-            tab_prm.Columns.Add("va_ide_doc");
-            tab_prm.Columns.Add("va_nom_doc");
-
-            tab_prm.Rows.Add();
-
-            tab_prm.Rows[0]["va_ide_doc"] = tb_ide_doc.Text;
-            tab_prm.Rows[0]["va_nom_doc"] = tb_nom_doc.Text;
-
-            ads004_01b frm = new ads004_01b();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_prm);
+          
+            ctb006_01 frm = new ctb006_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_nro_tal.Text = frm.tb_sel_tal.Text;
-                Fi_obt_tal();
+                tb_cod_ley.Text = frm.tb_sel_bus.Text;
+                Fi_obt_ley();
             }
-        }
-
-
-        private void Tb_nro_tal_Validated(object sender, EventArgs e)
-        {
-            Fi_obt_tal();
-        }
-        private void Tb_ide_doc_Validated(object sender, EventArgs e)
-        {
-            Fi_obt_doc();
         }
        
-
-
         /// <summary>
         /// Obtiene ide y nombre documento para colocar en los campos del formulario
         /// </summary>
-        void Fi_obt_doc()
+        void Fi_obt_ley()
         {
             // Obtiene ide y nombre documento
-            tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
+            tabla = o_ctb006.Fe_con_ley(tb_cod_ley.Text);
             if (tabla.Rows.Count == 0)
             {
-                tb_nom_doc.Clear();
+                tb_nom_ley.Clear();
             }
             else
             {
-                tb_ide_doc.Text = tabla.Rows[0]["va_ide_doc"].ToString();
-                tb_nom_doc.Text = tabla.Rows[0]["va_nom_doc"].ToString();
+                tb_cod_ley.Text = tabla.Rows[0]["va_cod_ley"].ToString();
+                tb_nom_ley.Text = tabla.Rows[0]["va_nom_ley"].ToString();
             }
         }
 
-
-        /// <summary>
-        /// Obtiene ide y nombre documento para colocar en los campos del formulario
-        /// </summary>
-        void Fi_obt_tal()
+        private void tb_notNumeric_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Obtiene ide y nombre documento
-            tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text,int.Parse(tb_nro_tal.Text));
-            if (tabla.Rows.Count == 0)
-            {
-                tb_nom_tal.Clear();
-            }
-            else
-            {
-                tb_nro_tal.Text = tabla.Rows[0]["va_nro_tal"].ToString();
-                tb_nom_tal.Text = tabla.Rows[0]["va_nom_tal"].ToString();
-            }
+            cl_glo_bal.NotNumeric(e);
         }
+
     }
 }

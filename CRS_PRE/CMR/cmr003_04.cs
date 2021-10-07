@@ -77,17 +77,26 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita sucursal", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
-            if (msg_res == DialogResult.OK)
-            {
-                //Edita sucursal
-                o_cmr003.Fe_edi_suc(tb_ide_suc.Text, tb_nom_suc.Text, tb_des_suc.Text, tb_dto_suc.Text, tb_ciu_suc.Text,
-                    tb_dir_suc.Text, tb_enc_suc.Text,tb_tel_suc.Text, tb_cel_suc.Text, tb_cla_wif.Text);
 
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita sucursal", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                
-                frm_pad.Fe_act_frm(tb_ide_suc.Text);
-                cl_glo_frm.Cerrar(this);
+            if(tb_est_ado.Text.ToUpper() == "HABILITADO")
+            {
+                msg_res = MessageBox.Show("Esta seguro de Deshabilitar la informacion?", "sucursal", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg_res == DialogResult.OK)
+                {
+                    o_cmr003.Fe_des_hab(tb_ide_suc.Text);
+                    frm_pad.Fe_act_frm(tb_ide_suc.Text);
+                    cl_glo_frm.Cerrar(this);
+                }
+            }
+            if (tb_est_ado.Text.ToUpper() == "DESHABILITADO")
+            {
+                msg_res = MessageBox.Show("Esta seguro de Habilitar la informacion?", "sucursal", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg_res == DialogResult.OK)
+                {
+                    o_cmr003.Fe_hab_ili(tb_ide_suc.Text);
+                    frm_pad.Fe_act_frm(tb_ide_suc.Text);
+                    cl_glo_frm.Cerrar(this);
+                }
             }
 
         }

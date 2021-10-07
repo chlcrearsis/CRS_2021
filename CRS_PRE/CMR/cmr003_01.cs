@@ -388,7 +388,6 @@ namespace CRS_PRE
 
         private void Mn_cre_ar_Click(object sender, EventArgs e)
         {
-            //ads007_02 frm = new ads007_02();
             cmr003_02 frm = new cmr003_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
@@ -409,7 +408,7 @@ namespace CRS_PRE
             if (fi_ver_hds(tb_sel_bus.Text) == false)
                 return;
 
-            ads007_04 frm = new ads007_04();
+            cmr003_04 frm = new cmr003_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
@@ -418,7 +417,7 @@ namespace CRS_PRE
             if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
-            ads007_05 frm = new ads007_05();
+            cmr003_05 frm = new cmr003_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
@@ -440,10 +439,29 @@ namespace CRS_PRE
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            if (gb_ctr_btn.Enabled == false)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
 
-     
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            if (gb_ctr_btn.Enabled == false)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
+
+        private void dg_res_ult_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (gb_ctr_btn.Enabled == false)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
     }
 }

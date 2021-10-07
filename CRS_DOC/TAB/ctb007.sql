@@ -18,7 +18,6 @@ CREATE TABLE ctb007(
 	va_cod_ley INT					NOT NULL,	--** Codigo Leyenda
 	va_lla_vee VARCHAR(500)			NULL,		--** Llave dosificacion	
 	va_con_act INT					NOT NULL,	--** Contador Actual de la factura
-	va_est_ado CHAR(01)				NOT NULL,	--** Estado (H=habilitado ; N=deshabilitado)
 
 CONSTRAINT pk1_ctb007 PRIMARY KEY(va_nro_aut)
 )
