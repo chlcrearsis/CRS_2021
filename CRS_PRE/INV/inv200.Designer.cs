@@ -38,6 +38,7 @@
             this.mn_fam_pro = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_pro_duc = new System.Windows.Forms.ToolStripMenuItem();
             this.parametrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_tra_spa = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.st_bar_pie = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -49,7 +50,6 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mn_tra_spa = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -136,6 +136,13 @@
             this.parametrosToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.parametrosToolStripMenuItem.Text = "Parame&tros";
             // 
+            // mn_tra_spa
+            // 
+            this.mn_tra_spa.Name = "mn_tra_spa";
+            this.mn_tra_spa.Size = new System.Drawing.Size(68, 20);
+            this.mn_tra_spa.Text = "Traspasos";
+            this.mn_tra_spa.Click += new System.EventHandler(this.mn_tra_spa_Click);
+            // 
             // m_frm_hja
             // 
             this.m_frm_hja.Location = new System.Drawing.Point(0, 0);
@@ -158,12 +165,13 @@
             this.toolStripStatusLabel4,
             this.ts_rut_app});
             this.st_bar_pie.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.st_bar_pie.Location = new System.Drawing.Point(0, 611);
+            this.st_bar_pie.Location = new System.Drawing.Point(0, 610);
             this.st_bar_pie.Name = "st_bar_pie";
-            this.st_bar_pie.Size = new System.Drawing.Size(1086, 18);
+            this.st_bar_pie.Size = new System.Drawing.Size(1086, 19);
             this.st_bar_pie.TabIndex = 6;
             this.st_bar_pie.Tag = "Adminstracion y Seguridad";
             this.st_bar_pie.Text = "statusStrip1";
+            this.st_bar_pie.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.st_bar_pie_MouseDoubleClick);
             // 
             // toolStripStatusLabel1
             // 
@@ -233,13 +241,6 @@
             this.ts_rut_app.Size = new System.Drawing.Size(16, 13);
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mn_tra_spa
-            // 
-            this.mn_tra_spa.Name = "mn_tra_spa";
-            this.mn_tra_spa.Size = new System.Drawing.Size(68, 20);
-            this.mn_tra_spa.Text = "Traspasos";
-            this.mn_tra_spa.Click += new System.EventHandler(this.mn_tra_spa_Click);
             // 
             // inv200
             // 

@@ -35,32 +35,34 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ads000_06));
             this.tb_pas_usr = new System.Windows.Forms.TextBox();
-            this.pb_mos_pas = new System.Windows.Forms.PictureBox();
-            this.pb_ima_pas = new System.Windows.Forms.PictureBox();
             this.pn_con_pas = new System.Windows.Forms.Label();
             this.pn_fon_pas = new System.Windows.Forms.Label();
-            this.ps_sel_pas = new System.Windows.Forms.PictureBox();
             this.gb_con_pri = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bt_bus_usr = new System.Windows.Forms.Button();
+            this.tb_ide_usr = new System.Windows.Forms.TextBox();
             this.pb_ima_usu = new System.Windows.Forms.PictureBox();
             this.pn_con_usr = new System.Windows.Forms.Label();
             this.pn_fon_usr = new System.Windows.Forms.Label();
             this.tb_usr_ges = new System.Windows.Forms.TextBox();
             this.ps_sel_rep = new System.Windows.Forms.PictureBox();
-            this.pb_rep_pas = new System.Windows.Forms.PictureBox();
             this.pn_rep_pas = new System.Windows.Forms.Label();
             this.pn_fon_rep = new System.Windows.Forms.Label();
+            this.pb_mos_pas = new System.Windows.Forms.PictureBox();
+            this.ps_sel_pas = new System.Windows.Forms.PictureBox();
+            this.pb_ima_pas = new System.Windows.Forms.PictureBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.lb_tit_ulo = new System.Windows.Forms.Label();
-            this.tb_ide_usr = new System.Windows.Forms.TextBox();
-            this.bt_bus_usr = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_mos_pas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_ima_pas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ps_sel_pas)).BeginInit();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.gb_con_pri.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ima_usu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ps_sel_rep)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_rep_pas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_mos_pas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ps_sel_pas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_ima_pas)).BeginInit();
+            this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_pas_usr
@@ -74,35 +76,11 @@
             this.tb_pas_usr.Location = new System.Drawing.Point(67, 80);
             this.tb_pas_usr.Name = "tb_pas_usr";
             this.tb_pas_usr.Size = new System.Drawing.Size(200, 19);
-            this.tb_pas_usr.TabIndex = 5;
+            this.tb_pas_usr.TabIndex = 20;
             this.tb_pas_usr.Text = "Contraseña";
             this.tb_pas_usr.UseSystemPasswordChar = true;
             this.tb_pas_usr.Enter += new System.EventHandler(this.tb_nue_pas_Enter);
             this.tb_pas_usr.Validated += new System.EventHandler(this.tb_nue_pas_Validated);
-            // 
-            // pb_mos_pas
-            // 
-            this.pb_mos_pas.BackColor = System.Drawing.Color.White;
-            this.pb_mos_pas.Image = ((System.Drawing.Image)(resources.GetObject("pb_mos_pas.Image")));
-            this.pb_mos_pas.Location = new System.Drawing.Point(278, 73);
-            this.pb_mos_pas.Name = "pb_mos_pas";
-            this.pb_mos_pas.Size = new System.Drawing.Size(20, 20);
-            this.pb_mos_pas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pb_mos_pas.TabIndex = 108;
-            this.pb_mos_pas.TabStop = false;
-            this.pb_mos_pas.MouseLeave += new System.EventHandler(this.pb_mos_pas_MouseLeave);
-            this.pb_mos_pas.MouseHover += new System.EventHandler(this.pb_mos_pas_MouseHover);
-            // 
-            // pb_ima_pas
-            // 
-            this.pb_ima_pas.BackColor = System.Drawing.Color.White;
-            this.pb_ima_pas.Image = ((System.Drawing.Image)(resources.GetObject("pb_ima_pas.Image")));
-            this.pb_ima_pas.Location = new System.Drawing.Point(35, 72);
-            this.pb_ima_pas.Name = "pb_ima_pas";
-            this.pb_ima_pas.Size = new System.Drawing.Size(22, 22);
-            this.pb_ima_pas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pb_ima_pas.TabIndex = 107;
-            this.pb_ima_pas.TabStop = false;
             // 
             // pn_con_pas
             // 
@@ -112,7 +90,7 @@
             this.pn_con_pas.AutoSize = true;
             this.pn_con_pas.BackColor = System.Drawing.Color.White;
             this.pn_con_pas.Font = new System.Drawing.Font("HP Simplified", 9.75F);
-            this.pn_con_pas.ForeColor = System.Drawing.Color.Silver;
+            this.pn_con_pas.ForeColor = System.Drawing.Color.Gray;
             this.pn_con_pas.Location = new System.Drawing.Point(24, 64);
             this.pn_con_pas.MaximumSize = new System.Drawing.Size(290, 40);
             this.pn_con_pas.MinimumSize = new System.Drawing.Size(290, 40);
@@ -137,17 +115,9 @@
             this.pn_fon_pas.Size = new System.Drawing.Size(292, 42);
             this.pn_fon_pas.TabIndex = 4;
             // 
-            // ps_sel_pas
-            // 
-            this.ps_sel_pas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.ps_sel_pas.Location = new System.Drawing.Point(331, 63);
-            this.ps_sel_pas.Name = "ps_sel_pas";
-            this.ps_sel_pas.Size = new System.Drawing.Size(10, 42);
-            this.ps_sel_pas.TabIndex = 110;
-            this.ps_sel_pas.TabStop = false;
-            // 
             // gb_con_pri
             // 
+            this.gb_con_pri.Controls.Add(this.pictureBox1);
             this.gb_con_pri.Controls.Add(this.bt_bus_usr);
             this.gb_con_pri.Controls.Add(this.tb_ide_usr);
             this.gb_con_pri.Controls.Add(this.pb_ima_usu);
@@ -155,7 +125,6 @@
             this.gb_con_pri.Controls.Add(this.pn_fon_usr);
             this.gb_con_pri.Controls.Add(this.tb_usr_ges);
             this.gb_con_pri.Controls.Add(this.ps_sel_rep);
-            this.gb_con_pri.Controls.Add(this.pb_rep_pas);
             this.gb_con_pri.Controls.Add(this.pn_rep_pas);
             this.gb_con_pri.Controls.Add(this.pn_fon_rep);
             this.gb_con_pri.Controls.Add(this.tb_pas_usr);
@@ -166,9 +135,47 @@
             this.gb_con_pri.Controls.Add(this.pn_fon_pas);
             this.gb_con_pri.Location = new System.Drawing.Point(12, 46);
             this.gb_con_pri.Name = "gb_con_pri";
-            this.gb_con_pri.Size = new System.Drawing.Size(340, 163);
+            this.gb_con_pri.Size = new System.Drawing.Size(340, 156);
             this.gb_con_pri.TabIndex = 1;
             this.gb_con_pri.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(35, 121);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 124;
+            this.pictureBox1.TabStop = false;
+            // 
+            // bt_bus_usr
+            // 
+            this.bt_bus_usr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_bus_usr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_bus_usr.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_bus_usr.Location = new System.Drawing.Point(282, 110);
+            this.bt_bus_usr.Name = "bt_bus_usr";
+            this.bt_bus_usr.Size = new System.Drawing.Size(32, 41);
+            this.bt_bus_usr.TabIndex = 102;
+            this.bt_bus_usr.TabStop = false;
+            this.bt_bus_usr.Text = "|";
+            this.bt_bus_usr.UseVisualStyleBackColor = false;
+            this.bt_bus_usr.Click += new System.EventHandler(this.bt_bus_usr_Click);
+            // 
+            // tb_ide_usr
+            // 
+            this.tb_ide_usr.AccessibleDescription = "";
+            this.tb_ide_usr.AccessibleName = "";
+            this.tb_ide_usr.BackColor = System.Drawing.Color.White;
+            this.tb_ide_usr.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_ide_usr.Font = new System.Drawing.Font("HP Simplified", 12F);
+            this.tb_ide_usr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tb_ide_usr.Location = new System.Drawing.Point(67, 32);
+            this.tb_ide_usr.Name = "tb_ide_usr";
+            this.tb_ide_usr.Size = new System.Drawing.Size(200, 19);
+            this.tb_ide_usr.TabIndex = 10;
             // 
             // pb_ima_usu
             // 
@@ -189,7 +196,7 @@
             this.pn_con_usr.AutoSize = true;
             this.pn_con_usr.BackColor = System.Drawing.Color.White;
             this.pn_con_usr.Font = new System.Drawing.Font("HP Simplified", 9.75F);
-            this.pn_con_usr.ForeColor = System.Drawing.Color.Silver;
+            this.pn_con_usr.ForeColor = System.Drawing.Color.Gray;
             this.pn_con_usr.Location = new System.Drawing.Point(24, 17);
             this.pn_con_usr.MaximumSize = new System.Drawing.Size(290, 40);
             this.pn_con_usr.MinimumSize = new System.Drawing.Size(290, 40);
@@ -225,8 +232,9 @@
             this.tb_usr_ges.Location = new System.Drawing.Point(67, 127);
             this.tb_usr_ges.Name = "tb_usr_ges";
             this.tb_usr_ges.Size = new System.Drawing.Size(200, 19);
-            this.tb_usr_ges.TabIndex = 8;
+            this.tb_usr_ges.TabIndex = 30;
             this.tb_usr_ges.Enter += new System.EventHandler(this.tb_rep_pas_Enter);
+            this.tb_usr_ges.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_usr_ges_KeyDown);
             this.tb_usr_ges.Validated += new System.EventHandler(this.tb_rep_pas_Validated);
             // 
             // ps_sel_rep
@@ -238,17 +246,6 @@
             this.ps_sel_rep.TabIndex = 119;
             this.ps_sel_rep.TabStop = false;
             // 
-            // pb_rep_pas
-            // 
-            this.pb_rep_pas.BackColor = System.Drawing.Color.White;
-            this.pb_rep_pas.Image = ((System.Drawing.Image)(resources.GetObject("pb_rep_pas.Image")));
-            this.pb_rep_pas.Location = new System.Drawing.Point(35, 119);
-            this.pb_rep_pas.Name = "pb_rep_pas";
-            this.pb_rep_pas.Size = new System.Drawing.Size(22, 22);
-            this.pb_rep_pas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pb_rep_pas.TabIndex = 117;
-            this.pb_rep_pas.TabStop = false;
-            // 
             // pn_rep_pas
             // 
             this.pn_rep_pas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -257,7 +254,7 @@
             this.pn_rep_pas.AutoSize = true;
             this.pn_rep_pas.BackColor = System.Drawing.Color.White;
             this.pn_rep_pas.Font = new System.Drawing.Font("HP Simplified", 9.75F);
-            this.pn_rep_pas.ForeColor = System.Drawing.Color.Silver;
+            this.pn_rep_pas.ForeColor = System.Drawing.Color.Gray;
             this.pn_rep_pas.Location = new System.Drawing.Point(24, 111);
             this.pn_rep_pas.MaximumSize = new System.Drawing.Size(290, 40);
             this.pn_rep_pas.MinimumSize = new System.Drawing.Size(290, 40);
@@ -282,6 +279,39 @@
             this.pn_fon_rep.Size = new System.Drawing.Size(292, 42);
             this.pn_fon_rep.TabIndex = 7;
             // 
+            // pb_mos_pas
+            // 
+            this.pb_mos_pas.BackColor = System.Drawing.Color.White;
+            this.pb_mos_pas.Image = ((System.Drawing.Image)(resources.GetObject("pb_mos_pas.Image")));
+            this.pb_mos_pas.Location = new System.Drawing.Point(278, 73);
+            this.pb_mos_pas.Name = "pb_mos_pas";
+            this.pb_mos_pas.Size = new System.Drawing.Size(20, 20);
+            this.pb_mos_pas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_mos_pas.TabIndex = 108;
+            this.pb_mos_pas.TabStop = false;
+            this.pb_mos_pas.MouseLeave += new System.EventHandler(this.pb_mos_pas_MouseLeave);
+            this.pb_mos_pas.MouseHover += new System.EventHandler(this.pb_mos_pas_MouseHover);
+            // 
+            // ps_sel_pas
+            // 
+            this.ps_sel_pas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.ps_sel_pas.Location = new System.Drawing.Point(331, 63);
+            this.ps_sel_pas.Name = "ps_sel_pas";
+            this.ps_sel_pas.Size = new System.Drawing.Size(10, 42);
+            this.ps_sel_pas.TabIndex = 110;
+            this.ps_sel_pas.TabStop = false;
+            // 
+            // pb_ima_pas
+            // 
+            this.pb_ima_pas.BackColor = System.Drawing.Color.White;
+            this.pb_ima_pas.Image = ((System.Drawing.Image)(resources.GetObject("pb_ima_pas.Image")));
+            this.pb_ima_pas.Location = new System.Drawing.Point(35, 72);
+            this.pb_ima_pas.Name = "pb_ima_pas";
+            this.pb_ima_pas.Size = new System.Drawing.Size(22, 22);
+            this.pb_ima_pas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pb_ima_pas.TabIndex = 107;
+            this.pb_ima_pas.TabStop = false;
+            // 
             // bt_can_cel
             // 
             this.bt_can_cel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -291,7 +321,7 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.bt_can_cel.ForeColor = System.Drawing.Color.White;
-            this.bt_can_cel.Location = new System.Drawing.Point(193, 215);
+            this.bt_can_cel.Location = new System.Drawing.Point(188, 12);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(110, 30);
             this.bt_can_cel.TabIndex = 3;
@@ -308,11 +338,11 @@
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.bt_ace_pta.ForeColor = System.Drawing.Color.White;
-            this.bt_ace_pta.Location = new System.Drawing.Point(63, 215);
+            this.bt_ace_pta.Location = new System.Drawing.Point(58, 12);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(110, 30);
             this.bt_ace_pta.TabIndex = 2;
-            this.bt_ace_pta.Text = "Actualizar";
+            this.bt_ace_pta.Text = "Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
@@ -327,32 +357,16 @@
             this.lb_tit_ulo.TabIndex = 0;
             this.lb_tit_ulo.Text = "Control de Acceso";
             // 
-            // tb_ide_usr
+            // gb_ctr_btn
             // 
-            this.tb_ide_usr.AccessibleDescription = "";
-            this.tb_ide_usr.AccessibleName = "";
-            this.tb_ide_usr.BackColor = System.Drawing.Color.White;
-            this.tb_ide_usr.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_ide_usr.Font = new System.Drawing.Font("HP Simplified", 12F);
-            this.tb_ide_usr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tb_ide_usr.Location = new System.Drawing.Point(67, 32);
-            this.tb_ide_usr.Name = "tb_ide_usr";
-            this.tb_ide_usr.Size = new System.Drawing.Size(200, 19);
-            this.tb_ide_usr.TabIndex = 6;
-            // 
-            // bt_bus_usr
-            // 
-            this.bt_bus_usr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_usr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_usr.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_usr.Location = new System.Drawing.Point(282, 111);
-            this.bt_bus_usr.Name = "bt_bus_usr";
-            this.bt_bus_usr.Size = new System.Drawing.Size(32, 40);
-            this.bt_bus_usr.TabIndex = 102;
-            this.bt_bus_usr.TabStop = false;
-            this.bt_bus_usr.Text = "|";
-            this.bt_bus_usr.UseVisualStyleBackColor = false;
-            this.bt_bus_usr.Click += new System.EventHandler(this.bt_bus_usr_Click);
+            this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
+            this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
+            this.gb_ctr_btn.Enabled = false;
+            this.gb_ctr_btn.Location = new System.Drawing.Point(12, 199);
+            this.gb_ctr_btn.Name = "gb_ctr_btn";
+            this.gb_ctr_btn.Size = new System.Drawing.Size(340, 48);
+            this.gb_ctr_btn.TabIndex = 76;
+            this.gb_ctr_btn.TabStop = false;
             // 
             // ads000_06
             // 
@@ -363,10 +377,9 @@
             this.CancelButton = this.bt_can_cel;
             this.ClientSize = new System.Drawing.Size(368, 257);
             this.ControlBox = false;
-            this.Controls.Add(this.bt_can_cel);
-            this.Controls.Add(this.bt_ace_pta);
             this.Controls.Add(this.gb_con_pri);
             this.Controls.Add(this.lb_tit_ulo);
+            this.Controls.Add(this.gb_ctr_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ads000_06";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -375,14 +388,15 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ads000_01_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ads000_01_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ads000_01_MouseUp);
-            ((System.ComponentModel.ISupportInitialize)(this.pb_mos_pas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_ima_pas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ps_sel_pas)).EndInit();
             this.gb_con_pri.ResumeLayout(false);
             this.gb_con_pri.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ima_usu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ps_sel_rep)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_rep_pas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_mos_pas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ps_sel_pas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_ima_pas)).EndInit();
+            this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,9 +410,7 @@
         private System.Windows.Forms.Label pn_fon_pas;
         internal System.Windows.Forms.PictureBox ps_sel_pas;
         private System.Windows.Forms.GroupBox gb_con_pri;
-        internal System.Windows.Forms.TextBox tb_usr_ges;
         internal System.Windows.Forms.PictureBox ps_sel_rep;
-        internal System.Windows.Forms.PictureBox pb_rep_pas;
         private System.Windows.Forms.Label pn_rep_pas;
         private System.Windows.Forms.Label pn_fon_rep;
         internal System.Windows.Forms.Button bt_can_cel;
@@ -409,5 +421,8 @@
         private System.Windows.Forms.Label lb_tit_ulo;
         internal System.Windows.Forms.TextBox tb_ide_usr;
         private System.Windows.Forms.Button bt_bus_usr;
+        internal System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.GroupBox gb_ctr_btn;
+        public System.Windows.Forms.TextBox tb_usr_ges;
     }
 }

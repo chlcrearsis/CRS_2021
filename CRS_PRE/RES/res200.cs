@@ -56,8 +56,9 @@ namespace CRS_PRE.CMR
             ts_ide_app.Text = this.Name;
             ts_rut_app.Text = this.Text;
 
-            //o_frm = new res001_02b();
-            //cl_glo_frm.abrir(this, o_frm);
+            // Verifica permisos/restricciones del Menú
+            m_mod_ulo = cl_glo_bal.fg_ver_mnu(ts_usr_usr.Text, Name, m_mod_ulo);
+
         }
 
         private void TalonarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,9 +72,16 @@ namespace CRS_PRE.CMR
             {
                 ts_ide_app.Text = this.Name;
                 ts_rut_app.Text = this.Text;
+
+                // Verifica permisos/restricciones del Menú
+                m_mod_ulo = cl_glo_bal.fg_ver_mnu(ts_usr_usr.Text, Name, m_mod_ulo);
+
             }
             else
             {
+                // Verifica permisos/restricciones del Menú
+                m_frm_hja = cl_glo_bal.fg_ver_mnu(ts_usr_usr.Text, this.ActiveMdiChild.Name, m_frm_hja);
+
                 // Ide de la app
                 ts_ide_app.Text = this.ActiveMdiChild.Name;
 
@@ -134,6 +142,54 @@ namespace CRS_PRE.CMR
         {
             o_frm = new res004_01();
             cl_glo_frm.abrir(this, o_frm);
+        }
+
+
+
+        private void st_bar_pie_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            o_frm = new ads000_06();        // Control de acceso para permitir/restringir oopciones del menú
+            Form frm_pad = new Form();      // Formulario activo
+
+            //verifica que exista un menu valido            
+            if (m_mod_ulo.Visible == true)
+            {
+                if (m_mod_ulo.Items.Count != 0)
+                    frm_pad = this;
+            }
+            else
+            {
+                if (m_frm_hja.Items.Count != 0)
+                    frm_pad = this.ActiveMdiChild;
+            }
+
+            if (frm_pad != null)
+                cl_glo_frm.abrir(frm_pad, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+            else
+                return;
+
+            if (o_frm.DialogResult == DialogResult.OK)
+                cl_glo_bal.fg_per_mnu(o_frm.tb_usr_ges.Text, frm_pad);
+        }
+
+
+        /// <summary>
+        ///   -> Verifica menu al Activarseel formulario
+        /// </summary>
+        /// <param name="ide_usr"></param>
+        /// <param name="frm_act"></param>
+        public void fu_ver_mnu(string ide_usr, Form frm_act)
+        {
+            if (m_mod_ulo.Visible == true)
+            {
+                //verifica Restricciones del menu de la aplicacion para el usuario
+                m_mod_ulo = cl_glo_bal.fg_ver_mnu(ide_usr, frm_act.Name, m_mod_ulo);
+            }
+            else
+            {
+                //verifica Restricciones del menu de la aplicacion para el usuario
+                m_frm_hja = cl_glo_bal.fg_ver_mnu(ide_usr, frm_act.Name, m_frm_hja);
+            }
         }
     }
 }

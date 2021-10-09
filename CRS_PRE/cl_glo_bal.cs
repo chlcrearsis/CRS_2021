@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CRS_NEG;
 
 namespace CRS_PRE
 {
@@ -91,6 +93,167 @@ namespace CRS_PRE
                 e.Handled = true;
             }
         }
+
+
+
+        #region -> VERIFICA OPCIONES RESTRINGIDAS DEL MENU PARA EL USUARIO
+
+
+       public static string glo_ide_usr;
+
+        private static string glo_ide_ven;
+        static DataTable tab_usm = new DataTable();
+        static ads012 o_ads012 = new ads012();
+
+        /// <summary>
+        ///  <example>
+        ///   FUNCION GLOBAL: verifica opciones restringidas del menu en la aplicacion para el usuario
+        ///  </example>
+        /// </summary>
+        /// <param name="ide_usr">Codigo del usuario a personalizar el menú</param>
+        /// <param name="ide_ven">Ide de la ventana de la cual se personalizara el menú</param>
+        /// <param name="menu">Requiere pasar el objeto menu strip</param>
+        /// <returns></returns>
+        public static MenuStrip fg_ver_mnu(string ide_usr, string ide_ven, MenuStrip menu)
+        {
+             glo_ide_usr = ide_usr;
+             glo_ide_ven = ide_ven;
+
+            //verifica restriccines del menu para el usuario
+
+            foreach (dynamic opcion_menu in menu.Items)
+            {
+
+                tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, opcion_menu.Name);
+
+                if (glo_ide_usr == Program.gl_usr_usr)
+                {
+                    if (tab_usm.Rows.Count != 0)
+                    {
+                        opcion_menu.Enabled = false;
+                    }
+                    else
+                    {
+                        opcion_menu.Enabled = true;
+                    }
+
+                    //if (opcion_menu is MenuStrip.)
+                    //verifica en las opciones Hijas
+                    fu_bus_hi1(opcion_menu);
+                }
+            }
+
+            return menu;
+
+        }
+
+
+        //barre el menu al 2do nivel
+
+        private static void fu_bus_hi1(ToolStripMenuItem itm_hi1)
+        {
+
+
+            foreach (dynamic hijo1 in itm_hi1.DropDownItems)
+            {
+
+                if (hijo1.Tag != null)
+                {
+                    if (hijo1.Tag.ToString() == "separador")
+                    {
+                        return;
+                    }
+                }
+
+
+                //ToolStripMenuItem h1 = hijo1;
+
+                //verifica que la opcion no este restringida
+                tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, hijo1.Name);
+
+                if (glo_ide_usr == Program.gl_usr_usr)
+                {
+                    //si existe = permiso restringido
+                    if (tab_usm.Rows.Count != 0)
+                    {
+                        hijo1.Enabled = false;
+                    }
+                    else
+                    {
+                        //si no existe = Tiene permiso
+                        hijo1.Enabled = true;
+                    }
+
+                    if (hijo1.DropDownItems.Count > 0)
+                    {
+                        fu_bus_hi2(itm_hi1, hijo1);
+                    }
+                }
+            }
+        }
+
+
+        //barre el menu al 3do nivel
+        private static void fu_bus_hi2(ToolStripMenuItem padre, ToolStripMenuItem itm_hi2)
+        {
+
+            foreach (dynamic hijo2 in itm_hi2.DropDownItems)
+            {
+                if (hijo2.Tag != null)
+                {
+                    if (hijo2.Tag.ToString() == "separador")
+                    {
+                        return;
+                    }
+                }
+
+
+                //verifica que la opcion no este restringida
+                tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, hijo2.Name);
+
+                if (glo_ide_usr == Program.gl_usr_usr)
+                {
+                    //si existe = permiso restringido
+                    if (tab_usm.Rows.Count != 0)
+                    {
+                        hijo2.Enabled = false;
+                    }
+                    else
+                    {
+                        //si no existe = Tiene permiso
+                        hijo2.Enabled = true;
+                    }
+                }
+
+            }
+        }
+        /// <summary>
+        /// Abre Personalizacion del menu actual para el usuario
+        /// </summary>
+        /// <param name="ide_usr">Usuario aquien se le personalizara el menú</param>
+        /// <remarks></remarks>
+        public static void fg_per_mnu(string ide_usr, dynamic frm_hja)
+        {
+
+            ads012_01 o_frm = new ads012_01();
+
+            //Si el formulario es MDI
+            if (frm_hja.IsMdiContainer == true)
+            {
+                o_frm.obtiene_menu(ide_usr, frm_hja.Name, frm_hja.m_mod_ulo);
+            }
+            else
+            {
+                //dynamic padre = frm_hja.MdiParent;
+                o_frm.obtiene_menu(ide_usr, frm_hja.Name, frm_hja.MdiParent.m_frm_hja);
+            }
+
+            cl_glo_frm.abrir(frm_hja, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+        }
+        #endregion
+
+
+
 
 
 

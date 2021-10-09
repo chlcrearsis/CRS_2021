@@ -30,7 +30,9 @@
         {
             this.m_mod_ulo = new System.Windows.Forms.MenuStrip();
             this.mn_ven_res = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_inf_vta = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_ges_doc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_ven_tas = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_ped_ido = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_def_par = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_par_inv = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_gru_bod = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +41,7 @@
             this.mn_pro_duc = new System.Windows.Forms.ToolStripMenuItem();
             this.parametrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_pla_vta = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_inf_vta = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.st_bar_pie = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -50,9 +53,6 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mn_ges_doc = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_ven_tas = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_ped_ido = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -78,12 +78,28 @@
             this.mn_ven_res.Text = "Ventas";
             this.mn_ven_res.Click += new System.EventHandler(this.mn_ven_res_Click);
             // 
-            // mn_inf_vta
+            // mn_ges_doc
             // 
-            this.mn_inf_vta.Name = "mn_inf_vta";
-            this.mn_inf_vta.Size = new System.Drawing.Size(112, 20);
-            this.mn_inf_vta.Text = "&Informacion Ventas";
-            this.mn_inf_vta.Click += new System.EventHandler(this.mn_inf_vta_Click);
+            this.mn_ges_doc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_ven_tas,
+            this.mn_ped_ido});
+            this.mn_ges_doc.Name = "mn_ges_doc";
+            this.mn_ges_doc.Size = new System.Drawing.Size(127, 20);
+            this.mn_ges_doc.Text = "&Gestionar Documentos";
+            // 
+            // mn_ven_tas
+            // 
+            this.mn_ven_tas.Name = "mn_ven_tas";
+            this.mn_ven_tas.Size = new System.Drawing.Size(111, 22);
+            this.mn_ven_tas.Text = "&Ventas";
+            this.mn_ven_tas.Click += new System.EventHandler(this.mn_inf_vta_Click);
+            // 
+            // mn_ped_ido
+            // 
+            this.mn_ped_ido.Name = "mn_ped_ido";
+            this.mn_ped_ido.Size = new System.Drawing.Size(111, 22);
+            this.mn_ped_ido.Text = "&Pedidos";
+            this.mn_ped_ido.Click += new System.EventHandler(this.mn_inf_ped_Click);
             // 
             // mn_def_par
             // 
@@ -147,6 +163,13 @@
             this.mn_pla_vta.Text = "Plantilla de ventas";
             this.mn_pla_vta.Click += new System.EventHandler(this.mn_pla_vta_Click);
             // 
+            // mn_inf_vta
+            // 
+            this.mn_inf_vta.Name = "mn_inf_vta";
+            this.mn_inf_vta.Size = new System.Drawing.Size(112, 20);
+            this.mn_inf_vta.Text = "&Informacion Ventas";
+            this.mn_inf_vta.Click += new System.EventHandler(this.mn_inf_vta_Click);
+            // 
             // m_frm_hja
             // 
             this.m_frm_hja.Location = new System.Drawing.Point(0, 0);
@@ -169,12 +192,13 @@
             this.toolStripStatusLabel4,
             this.ts_rut_app});
             this.st_bar_pie.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.st_bar_pie.Location = new System.Drawing.Point(0, 611);
+            this.st_bar_pie.Location = new System.Drawing.Point(0, 610);
             this.st_bar_pie.Name = "st_bar_pie";
-            this.st_bar_pie.Size = new System.Drawing.Size(1086, 18);
+            this.st_bar_pie.Size = new System.Drawing.Size(1086, 19);
             this.st_bar_pie.TabIndex = 6;
             this.st_bar_pie.Tag = "Adminstracion y Seguridad";
             this.st_bar_pie.Text = "statusStrip1";
+            this.st_bar_pie.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.st_bar_pie_MouseDoubleClick);
             // 
             // toolStripStatusLabel1
             // 
@@ -244,29 +268,6 @@
             this.ts_rut_app.Size = new System.Drawing.Size(16, 13);
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mn_ges_doc
-            // 
-            this.mn_ges_doc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_ven_tas,
-            this.mn_ped_ido});
-            this.mn_ges_doc.Name = "mn_ges_doc";
-            this.mn_ges_doc.Size = new System.Drawing.Size(127, 20);
-            this.mn_ges_doc.Text = "&Gestionar Documentos";
-            // 
-            // mn_ven_tas
-            // 
-            this.mn_ven_tas.Name = "mn_ven_tas";
-            this.mn_ven_tas.Size = new System.Drawing.Size(180, 22);
-            this.mn_ven_tas.Text = "&Ventas";
-            this.mn_ven_tas.Click += new System.EventHandler(this.mn_inf_vta_Click);
-            // 
-            // mn_ped_ido
-            // 
-            this.mn_ped_ido.Name = "mn_ped_ido";
-            this.mn_ped_ido.Size = new System.Drawing.Size(180, 22);
-            this.mn_ped_ido.Text = "&Pedidos";
-            this.mn_ped_ido.Click += new System.EventHandler(this.mn_inf_ped_Click);
             // 
             // cmr200
             // 

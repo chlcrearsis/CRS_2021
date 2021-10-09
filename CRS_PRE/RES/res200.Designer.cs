@@ -71,14 +71,14 @@
             // mn_ven_res
             // 
             this.mn_ven_res.Name = "mn_ven_res";
-            this.mn_ven_res.Size = new System.Drawing.Size(54, 20);
+            this.mn_ven_res.Size = new System.Drawing.Size(52, 20);
             this.mn_ven_res.Text = "Ventas";
             this.mn_ven_res.Click += new System.EventHandler(this.mn_ven_res_Click);
             // 
             // mn_inf_vta
             // 
             this.mn_inf_vta.Name = "mn_inf_vta";
-            this.mn_inf_vta.Size = new System.Drawing.Size(122, 20);
+            this.mn_inf_vta.Size = new System.Drawing.Size(112, 20);
             this.mn_inf_vta.Text = "&Informacion Ventas";
             this.mn_inf_vta.Click += new System.EventHandler(this.mn_inf_vta_Click);
             // 
@@ -89,7 +89,7 @@
             this.mn_pla_vta,
             this.familiasAutorizadasARestaurantToolStripMenuItem});
             this.mn_def_par.Name = "mn_def_par";
-            this.mn_def_par.Size = new System.Drawing.Size(84, 20);
+            this.mn_def_par.Size = new System.Drawing.Size(76, 20);
             this.mn_def_par.Text = "&Definiciones";
             // 
             // mn_par_inv
@@ -101,51 +101,51 @@
             this.mn_pro_duc,
             this.parametrosToolStripMenuItem});
             this.mn_par_inv.Name = "mn_par_inv";
-            this.mn_par_inv.Size = new System.Drawing.Size(250, 22);
+            this.mn_par_inv.Size = new System.Drawing.Size(237, 22);
             this.mn_par_inv.Text = "&Inventario";
             // 
             // mn_gru_bod
             // 
             this.mn_gru_bod.Name = "mn_gru_bod";
-            this.mn_gru_bod.Size = new System.Drawing.Size(169, 22);
+            this.mn_gru_bod.Size = new System.Drawing.Size(157, 22);
             this.mn_gru_bod.Text = "&Grupo Bodegas";
             this.mn_gru_bod.Click += new System.EventHandler(this.mn_gru_bod_Click);
             // 
             // mn_bod_ega
             // 
             this.mn_bod_ega.Name = "mn_bod_ega";
-            this.mn_bod_ega.Size = new System.Drawing.Size(169, 22);
+            this.mn_bod_ega.Size = new System.Drawing.Size(157, 22);
             this.mn_bod_ega.Text = "&Bodegas";
             // 
             // mn_fam_pro
             // 
             this.mn_fam_pro.Name = "mn_fam_pro";
-            this.mn_fam_pro.Size = new System.Drawing.Size(169, 22);
+            this.mn_fam_pro.Size = new System.Drawing.Size(157, 22);
             this.mn_fam_pro.Text = "&Familia Productos";
             // 
             // mn_pro_duc
             // 
             this.mn_pro_duc.Name = "mn_pro_duc";
-            this.mn_pro_duc.Size = new System.Drawing.Size(169, 22);
+            this.mn_pro_duc.Size = new System.Drawing.Size(157, 22);
             this.mn_pro_duc.Text = "&Productos";
             // 
             // parametrosToolStripMenuItem
             // 
             this.parametrosToolStripMenuItem.Name = "parametrosToolStripMenuItem";
-            this.parametrosToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.parametrosToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.parametrosToolStripMenuItem.Text = "Parame&tros";
             // 
             // mn_pla_vta
             // 
             this.mn_pla_vta.Name = "mn_pla_vta";
-            this.mn_pla_vta.Size = new System.Drawing.Size(250, 22);
+            this.mn_pla_vta.Size = new System.Drawing.Size(237, 22);
             this.mn_pla_vta.Text = "Plantilla de ventas Restaurant";
             this.mn_pla_vta.Click += new System.EventHandler(this.mn_pla_vta_Click);
             // 
             // familiasAutorizadasARestaurantToolStripMenuItem
             // 
             this.familiasAutorizadasARestaurantToolStripMenuItem.Name = "familiasAutorizadasARestaurantToolStripMenuItem";
-            this.familiasAutorizadasARestaurantToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.familiasAutorizadasARestaurantToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
             this.familiasAutorizadasARestaurantToolStripMenuItem.Text = "Familias Autorizadas a Restaurant";
             // 
             // m_frm_hja
@@ -170,12 +170,13 @@
             this.toolStripStatusLabel4,
             this.ts_rut_app});
             this.st_bar_pie.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.st_bar_pie.Location = new System.Drawing.Point(0, 609);
+            this.st_bar_pie.Location = new System.Drawing.Point(0, 610);
             this.st_bar_pie.Name = "st_bar_pie";
-            this.st_bar_pie.Size = new System.Drawing.Size(1086, 20);
+            this.st_bar_pie.Size = new System.Drawing.Size(1086, 19);
             this.st_bar_pie.TabIndex = 6;
             this.st_bar_pie.Tag = "Adminstracion y Seguridad";
             this.st_bar_pie.Text = "statusStrip1";
+            this.st_bar_pie.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.st_bar_pie_MouseDoubleClick);
             // 
             // toolStripStatusLabel1
             // 
@@ -212,7 +213,7 @@
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(10, 15);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(11, 13);
             this.toolStripStatusLabel3.Text = "|";
             // 
             // toolStripStatusLabel5
