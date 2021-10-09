@@ -709,8 +709,8 @@ namespace CRS_PRE.CMR
         }
         private void Tb_cod_pro_Validated(object sender, EventArgs e)
         {
-            //if(tb_cod_pro.Text.Trim()=="")
-            //    Fi_obt_pro();
+            if (tb_cod_pro.Text.Trim() == "")
+                Fi_obt_pro();
         }
         private void Fi_obt_pro()
         {

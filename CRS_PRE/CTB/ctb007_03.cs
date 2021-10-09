@@ -11,6 +11,7 @@ namespace CRS_PRE
 
         public dynamic frm_pad;
         public int frm_tip;
+        public DataTable frm_dat;
         //Instancias
       
         cmr003 o_cmr003 = new cmr003();
@@ -31,21 +32,26 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-            // obtiene lista de 
-            tb_ide_suc.Clear();
-            tb_nom_suc.Clear();
+            tb_nro_aut.Text = frm_dat.Rows[0]["va_nro_aut"].ToString();
+            cb_tip_fac.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_tip_fac"].ToString()) - 1;
 
-            cb_ges_tio.SelectedIndex = 0;
+            tb_cod_act.Text = frm_dat.Rows[0]["va_cod_act"].ToString();
+            Fi_obt_act();
 
-            tb_cod_act.Text = "0";
-            tb_ide_suc.Text = "0";
-            tb_cod_ley.Text = "0";
-            tb_nro_ini.Text = "0";
-            tb_nro_fin.Text = "99999";
-            tb_con_tad.Text = "0";
-            tb_fec_ini.Text = DateTime.Today.ToString();
-            tb_fec_fin.Text = DateTime.Today.ToString(); 
+            tb_ide_suc.Text = frm_dat.Rows[0]["va_cod_suc"].ToString();
+            Fi_obt_suc();
 
+            tb_nro_ini.Text = frm_dat.Rows[0]["va_nro_ini"].ToString();
+            tb_nro_fin.Text = frm_dat.Rows[0]["va_nro_fin"].ToString();
+            tb_con_tad.Text = frm_dat.Rows[0]["va_con_tad"].ToString();
+
+            tb_fec_ini.Text = frm_dat.Rows[0]["va_fec_ini"].ToString();
+            tb_fec_fin.Text = frm_dat.Rows[0]["va_fec_fin"].ToString();
+
+            tb_cod_ley.Text = frm_dat.Rows[0]["va_cod_ley"].ToString();
+            Fi_obt_ley();
+
+            cb_tip_fac.Focus();
         }
 
         private void fi_ini_frm()
@@ -67,6 +73,13 @@ namespace CRS_PRE
             {
                 tb_nro_aut.Focus();
                 return "El numero de autorización no es valido";
+            }
+            tabla = new DataTable();
+            tabla = o_ctb007.Fe_con_sul(long.Parse(tb_nro_aut.Text));
+            if (tabla.Rows.Count == 0)
+            {
+                tb_nro_aut.Focus();
+                return "La información a cambiado, el numero de autorización no se encuentra registrado";
             }
 
             // Verifica actividad economica
@@ -186,17 +199,17 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nueva dosificación", MessageBoxButtons.OKCancel);
+            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita dosificación", MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
             {
-                o_ctb007.Fe_crea(long.Parse(tb_nro_aut.Text), cb_ges_tio.SelectedIndex + 1, int.Parse(tb_ide_suc.Text), int.Parse(tb_cod_act.Text),
-                    int.Parse(tb_nro_ini.Text), int.Parse(tb_nro_fin.Text), DateTime.Parse(tb_fec_ini.Text), DateTime.Parse(tb_fec_fin.Text),
+                o_ctb007.Fe_edi_tar(long.Parse(tb_nro_aut.Text), cb_tip_fac.SelectedIndex + 1, int.Parse(tb_ide_suc.Text), int.Parse(tb_cod_act.Text),
+                    int.Parse(tb_nro_ini.Text), int.Parse(tb_nro_fin.Text), int.Parse(tb_con_tad.Text), DateTime.Parse(tb_fec_ini.Text), DateTime.Parse(tb_fec_fin.Text),
                     int.Parse(tb_cod_ley.Text));
 
-                MessageBox.Show("Los datos se grabaron correctamente", "Nueva dosificación", MessageBoxButtons.OK);
+                //MessageBox.Show("Los datos se grabaron correctamente", "Edita dosificación", MessageBoxButtons.OK);
                 
                 frm_pad.Fe_act_frm(long.Parse(tb_nro_aut.Text));
-                Fi_lim_pia();
+                cl_glo_frm.Cerrar(this);
             }
         }
 

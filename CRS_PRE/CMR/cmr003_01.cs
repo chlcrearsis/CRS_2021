@@ -439,16 +439,7 @@ namespace CRS_PRE
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            if (gb_ctr_btn.Enabled == false)
-            {
-                this.DialogResult = DialogResult.OK;
-                cl_glo_frm.Cerrar(this);
-            }
-        }
-
-        private void dg_res_ult_Enter(object sender, EventArgs e)
-        {
-            if (gb_ctr_btn.Enabled == false)
+            if (gb_ctr_btn.Enabled == true)
             {
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
@@ -457,7 +448,7 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (gb_ctr_btn.Enabled == false)
+            if (gb_ctr_btn.Enabled == true)
             {
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);

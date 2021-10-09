@@ -6,18 +6,14 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class ctb007_02 : Form
+    public partial class ctb007_06 : Form
     {
 
         public dynamic frm_pad;
         public int frm_tip;
+        public DataTable frm_dat;
         //Instancias
-        ads003 o_ads003 = new ads003();
-        ads004 o_ads004 = new ads004();
-        ads005 o_ads005 = new ads005();
-        ads001 o_ads001 = new ads001();
-        ads016 o_ads016 = new ads016();
-
+      
         cmr003 o_cmr003 = new cmr003();
         cmr016 o_cmr016 = new cmr016();
 
@@ -26,10 +22,9 @@ namespace CRS_PRE
 
         DataTable tabla = new DataTable();
         DataTable tab_prm = new DataTable();
-        DataTable tab_ges = new DataTable();
      
 
-        public ctb007_02()
+        public ctb007_06()
         {
             InitializeComponent();
         }
@@ -37,21 +32,26 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-            // obtiene lista de 
-            tb_ide_suc.Clear();
-            tb_nom_suc.Clear();
+            tb_nro_aut.Text = frm_dat.Rows[0]["va_nro_aut"].ToString();
+            cb_tip_fac.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_tip_fac"].ToString()) - 1;
 
-            cb_ges_tio.SelectedIndex = 0;
+            tb_cod_act.Text = frm_dat.Rows[0]["va_cod_act"].ToString();
+            Fi_obt_act();
 
-            tb_cod_act.Text = "0";
-            tb_ide_suc.Text = "0";
-            tb_cod_ley.Text = "0";
-            tb_nro_ini.Text = "0";
-            tb_nro_fin.Text = "99999";
-            tb_con_tad.Text = "0";
-            tb_fec_ini.Text = DateTime.Today.ToString();
-            tb_fec_fin.Text = DateTime.Today.ToString(); 
+            tb_ide_suc.Text = frm_dat.Rows[0]["va_cod_suc"].ToString();
+            Fi_obt_suc();
 
+            tb_nro_ini.Text = frm_dat.Rows[0]["va_nro_ini"].ToString();
+            tb_nro_fin.Text = frm_dat.Rows[0]["va_nro_fin"].ToString();
+            tb_con_tad.Text = frm_dat.Rows[0]["va_con_tad"].ToString();
+
+            tb_fec_ini.Text = frm_dat.Rows[0]["va_fec_ini"].ToString();
+            tb_fec_fin.Text = frm_dat.Rows[0]["va_fec_fin"].ToString();
+
+            tb_cod_ley.Text = frm_dat.Rows[0]["va_cod_ley"].ToString();
+            Fi_obt_ley();
+
+            cb_tip_fac.Focus();
         }
 
         private void fi_ini_frm()
@@ -59,13 +59,10 @@ namespace CRS_PRE
             tb_nro_ini.Text = "0";
             tb_nro_fin.Text = "0";
             tb_con_tad.Text = "0";
-
         }
 
         protected string Fi_val_dat()
         {
-           
-
             // Verifica campo nro autorizacion
             if (tb_nro_aut.Text.Trim() == "")
             {
@@ -79,12 +76,11 @@ namespace CRS_PRE
             }
             tabla = new DataTable();
             tabla = o_ctb007.Fe_con_sul(long.Parse(tb_nro_aut.Text));
-            if (tabla.Rows.Count > 0)
+            if (tabla.Rows.Count == 0)
             {
                 tb_nro_aut.Focus();
-                return "El numero de autorización ya se encuentra registrado";
+                return "La información a cambiado, el numero de autorización no se encuentra registrado";
             }
-
 
             // Verifica actividad economica
             if (cl_glo_bal.IsNumeric(tb_cod_act.Text) == false)
@@ -182,10 +178,6 @@ namespace CRS_PRE
             return "";
         }
 
-        private void Fi_lim_pia()
-        {
-            fi_ini_frm();
-        }
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -203,54 +195,17 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nueva dosificación", MessageBoxButtons.OKCancel);
+            msg_res = MessageBox.Show("Esta seguro de eliminar la informacion?", "Elimina dosificación", MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
             {
-                o_ctb007.Fe_crea(long.Parse(tb_nro_aut.Text), cb_ges_tio.SelectedIndex + 1, int.Parse(tb_ide_suc.Text), int.Parse(tb_cod_act.Text),
-                    int.Parse(tb_nro_ini.Text), int.Parse(tb_nro_fin.Text), DateTime.Parse(tb_fec_ini.Text), DateTime.Parse(tb_fec_fin.Text),
-                    int.Parse(tb_cod_ley.Text));
+                o_ctb007.Fe_eli_min(long.Parse(tb_nro_aut.Text));
 
-                MessageBox.Show("Los datos se grabaron correctamente", "Nueva dosificación", MessageBoxButtons.OK);
-                
                 frm_pad.Fe_act_frm(long.Parse(tb_nro_aut.Text));
-                Fi_lim_pia();
+                cl_glo_frm.Cerrar(this);
             }
         }
 
 
-
-
-
-
-
-        private void Bt_bus_act_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_act();
-        }
-        private void Tb_cod_act_Validated(object sender, EventArgs e)
-        {
-            Fi_obt_act();
-        }
-        private void Tb_cod_act_KeyDown(object sender, KeyEventArgs e)
-        {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Documento
-                Fi_abr_bus_act();
-            }
-        }
-        void Fi_abr_bus_act()
-        {
-            cmr016_01 frm = new cmr016_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_act.Text = frm.tb_sel_bus.Text;
-                Fi_obt_act();
-            }
-        }
         /// <summary>
         /// Obtiene ide y nombre de actividad economica para colocar en los campos del formulario
         /// </summary>
@@ -266,39 +221,6 @@ namespace CRS_PRE
             {
                 tb_cod_act.Text = tabla.Rows[0]["va_cod_act"].ToString();
                 tb_nom_act.Text = tabla.Rows[0]["va_nom_act"].ToString();
-            }
-        }
-
-
-
-
-
-        private void Bt_bus_suc_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_suc();
-        }
-        private void Tb_ide_suc_KeyDown(object sender, KeyEventArgs e)
-        {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Documento
-                Fi_abr_bus_suc();
-            }
-        }
-        private void Tb_ide_suc_Validated(object sender, EventArgs e)
-        {
-             Fi_obt_suc();
-        }
-        void Fi_abr_bus_suc()
-        {
-            cmr003_01 frm = new cmr003_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-            if (frm.DialogResult == DialogResult.OK )
-            {
-                tb_ide_suc.Text = frm.tb_sel_bus.Text;
-                Fi_obt_suc();
             }
         }
 
@@ -320,39 +242,6 @@ namespace CRS_PRE
             }
         }
 
-
-
-
-        private void Bt_bus_ley_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_ley();
-        }
-
-        private void Tb_cod_ley_Validated(object sender, EventArgs e)
-        {
-            Fi_obt_ley();
-        }
-        private void Tb_cod_ley_KeyDown(object sender, KeyEventArgs e)
-        {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Talonario
-                Fi_abr_bus_ley();
-            }
-        }
-        void Fi_abr_bus_ley()
-        {
-          
-            ctb006_01 frm = new ctb006_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_ley.Text = frm.tb_sel_bus.Text;
-                Fi_obt_ley();
-            }
-        }
        
         /// <summary>
         /// Obtiene ide y nombre documento para colocar en los campos del formulario

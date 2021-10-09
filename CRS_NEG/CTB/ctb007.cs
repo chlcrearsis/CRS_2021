@@ -114,23 +114,17 @@ namespace CRS_NEG
         /// <param name="fec_fin"></param>
         /// <param name="cod_ley"></param>
         /// <returns></returns>
-        public void _03(long nro_dos, int tip_fac, int cod_sucu, int cod_act, int nro_ini, int nro_fin, DateTime fec_ini, DateTime fec_fin, int cod_ley, string lla_ve)
+        public void Fe_edi_tar(long nro_dos, int tip_fac, int cod_suc, int cod_act, int nro_ini, int nro_fin, int con_tad, DateTime fec_ini, DateTime fec_fin, int cod_ley)
         {
             try
             {
                 
-                cadena = " EXECUTE ctb007_03p1 " + "'" + nro_dos + "'," + tip_fac + ",";
-                cadena += "'" + fec_ini.ToShortDateString() + "','" + fec_fin.ToShortDateString() + "',";
-                cadena += nro_ini + "," + nro_fin + "," + cod_sucu + "," + cod_act + "," + cod_ley + ",";
-
-                switch (tip_fac)
-                {
-                    case 0: cadena += "'" + lla_ve + "'"; break;
-
-                    case 1: cadena += "''"; break;
-                }
-
-
+                cadena = " UPDATE ctb007 SET va_tip_fac = " + tip_fac + ",";
+                cadena += "va_fec_ini = '" + fec_ini.ToShortDateString() + "', va_fec_fin = '" + fec_fin.ToShortDateString() + "',";
+                cadena += " va_nro_ini = "+ nro_ini + ", va_nro_fin = " + nro_fin + ",  va_con_tad = " + con_tad + " , " +
+                         "va_cod_suc = " + cod_suc + "," + cod_act + ", va_cod_ley = " + cod_ley + " ";
+                cadena += "WHERE va_nro_aut = '" + nro_dos + "'";
+               
 
                  ob_con_ecA.fe_exe_sql(cadena);
             }
@@ -145,14 +139,13 @@ namespace CRS_NEG
         /// <param name="nro_dos">Numero de dosificacion</param>
         /// <param name="lla_vee"></param>
         /// <returns></returns>
-        public void _03(long nro_dos, string lla_vee)
+        public void Fe_edi_tar(long nro_dos, string lla_vee)
         {
             try
             {
 
                 cadena = " UPDATE ctb007 SET va_lla_vee = '" + lla_vee + "' ";
                 cadena += " WHERE va_nro_aut = " + nro_dos + " ";
-                //cadena = " EXECUTE ctb007_03ap1 " + "'" + nro_dos + "','" + lla_vee + "'");
 
                 ob_con_ecA.fe_exe_sql(cadena);
             }
@@ -162,34 +155,12 @@ namespace CRS_NEG
             }
         }
 
-        /// <summary>
-        /// Funcion "Consulta dosificacion"
-        /// </summary>
-        /// <param name="nro_dos">Codigo de la dosificacion</param>
-        /// <returns></returns>
-        public DataTable _055(string proc, long nro_dos)
+        public DataTable Fe_con_sul(long nro_dos)
         {
             try
             {
-               
-                cadena = " EXECUTE " + proc + " '" + nro_dos + "'";
-
-
-                return ob_con_ecA.fe_exe_sql(cadena);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public DataTable _05(long nro_dos)
-        {
-            try
-            {
-                
-                cadena = " SELECT ctb007.va_nro_aut, ctb007.va_cod_suc, 'Nombre sucursal' as va_nom_suc, ctb007.va_fec_ini,  " +
-                    "ctb007.va_fec_fin, ctb007.va_con_tad FROM ctb007 ";
-                cadena += " WHERE  ctb007.va_nro_aut = " + nro_dos ;
+                cadena = " SELECT * FROM ctb007";
+                cadena += " WHERE  va_nro_aut = " + nro_dos ;
 
                 return ob_con_ecA.fe_exe_sql(cadena);
             }
@@ -203,12 +174,12 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="nro_dos">codigo de Dosificacion</param>
         /// <returns></returns>
-        public void _06(long nro_dos)
+        public void Fe_eli_min(long nro_dos)
         {
             try
             {
                 
-                cadena = " EXECUTE ctb007_06p1 " + "'" + nro_dos + "'";
+                cadena = " DELETE ctb007 WHERE va_nro_aut ='" + nro_dos + "'";
 
                  ob_con_ecA.fe_exe_sql(cadena);
             }

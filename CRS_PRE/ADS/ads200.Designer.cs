@@ -65,6 +65,7 @@
             this.mn_con_tab = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_dos_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_act_eco = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_ley_end = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_tip_bus = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_par_ame = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ulo = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,6 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mn_ley_end = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -200,7 +200,7 @@
             this.mn_mar_ca,
             this.mn_und_med});
             this.mn_par_inv.Name = "mn_par_inv";
-            this.mn_par_inv.Size = new System.Drawing.Size(180, 22);
+            this.mn_par_inv.Size = new System.Drawing.Size(152, 22);
             this.mn_par_inv.Text = "&Inventario";
             // 
             // mn_gru_bod
@@ -256,7 +256,7 @@
             this.mn_cob_rad,
             this.mn_pla_vta});
             this.mn_com_erc.Name = "mn_com_erc";
-            this.mn_com_erc.Size = new System.Drawing.Size(180, 22);
+            this.mn_com_erc.Size = new System.Drawing.Size(152, 22);
             this.mn_com_erc.Text = "Comercializacion";
             // 
             // mn_suc_urs
@@ -318,7 +318,7 @@
             this.mn_def_rut,
             this.mn_tip_doc});
             this.mn_per_son.Name = "mn_per_son";
-            this.mn_per_son.Size = new System.Drawing.Size(180, 22);
+            this.mn_per_son.Size = new System.Drawing.Size(152, 22);
             this.mn_per_son.Text = "&Persona";
             // 
             // mn_gru_per
@@ -370,27 +370,34 @@
             this.mn_act_eco,
             this.mn_ley_end});
             this.mn_con_tab.Name = "mn_con_tab";
-            this.mn_con_tab.Size = new System.Drawing.Size(180, 22);
+            this.mn_con_tab.Size = new System.Drawing.Size(152, 22);
             this.mn_con_tab.Text = "Con&tabilidad";
             // 
             // mn_dos_ifi
             // 
             this.mn_dos_ifi.Name = "mn_dos_ifi";
-            this.mn_dos_ifi.Size = new System.Drawing.Size(180, 22);
+            this.mn_dos_ifi.Size = new System.Drawing.Size(171, 22);
             this.mn_dos_ifi.Text = "&Dosificación";
             this.mn_dos_ifi.Click += new System.EventHandler(this.mn_dos_ifi_Click);
             // 
             // mn_act_eco
             // 
             this.mn_act_eco.Name = "mn_act_eco";
-            this.mn_act_eco.Size = new System.Drawing.Size(180, 22);
+            this.mn_act_eco.Size = new System.Drawing.Size(171, 22);
             this.mn_act_eco.Text = "&Actividad Económica";
             this.mn_act_eco.Click += new System.EventHandler(this.mn_act_eco_Click);
+            // 
+            // mn_ley_end
+            // 
+            this.mn_ley_end.Name = "mn_ley_end";
+            this.mn_ley_end.Size = new System.Drawing.Size(171, 22);
+            this.mn_ley_end.Text = "&Leyenda";
+            this.mn_ley_end.Click += new System.EventHandler(this.mn_ley_end_Click);
             // 
             // mn_tip_bus
             // 
             this.mn_tip_bus.Name = "mn_tip_bus";
-            this.mn_tip_bus.Size = new System.Drawing.Size(180, 22);
+            this.mn_tip_bus.Size = new System.Drawing.Size(152, 22);
             this.mn_tip_bus.Text = "T.C. Bs/Us";
             this.mn_tip_bus.Click += new System.EventHandler(this.mn_tip_bus_Click);
             // 
@@ -401,7 +408,7 @@
             this.mn_apl_ica,
             this.mn_tip_ima});
             this.mn_par_ame.Name = "mn_par_ame";
-            this.mn_par_ame.Size = new System.Drawing.Size(180, 22);
+            this.mn_par_ame.Size = new System.Drawing.Size(152, 22);
             this.mn_par_ame.Text = "&Parametros";
             // 
             // mn_mod_ulo
@@ -450,13 +457,14 @@
             this.toolStripStatusLabel4,
             this.ts_rut_app});
             this.st_bar_pie.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.st_bar_pie.Location = new System.Drawing.Point(0, 734);
+            this.st_bar_pie.Location = new System.Drawing.Point(0, 733);
             this.st_bar_pie.Name = "st_bar_pie";
             this.st_bar_pie.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.st_bar_pie.Size = new System.Drawing.Size(1329, 18);
+            this.st_bar_pie.Size = new System.Drawing.Size(1329, 19);
             this.st_bar_pie.TabIndex = 6;
             this.st_bar_pie.Tag = "Adminstracion y Seguridad";
             this.st_bar_pie.Text = "statusStrip1";
+            this.st_bar_pie.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.st_bar_pie_MouseDoubleClick);
             // 
             // toolStripStatusLabel1
             // 
@@ -526,13 +534,6 @@
             this.ts_rut_app.Size = new System.Drawing.Size(16, 13);
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mn_ley_end
-            // 
-            this.mn_ley_end.Name = "mn_ley_end";
-            this.mn_ley_end.Size = new System.Drawing.Size(180, 22);
-            this.mn_ley_end.Text = "&Leyenda";
-            this.mn_ley_end.Click += new System.EventHandler(this.mn_ley_end_Click);
             // 
             // ads200
             // 

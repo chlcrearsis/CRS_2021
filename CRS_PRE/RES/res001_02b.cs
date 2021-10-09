@@ -615,7 +615,7 @@ namespace CRS_PRE.CMR
             cod_caj = 0;
             cod_lcr = 0;
             tip_cam = 1m;
-            mon_ope = tab_res004.Rows[0]["va_mon_vta"].ToString();
+            mon_ope = "B"; // tab_res004.Rows[0]["va_mon_vta"].ToString();
 
 
             // Instacia de formulario para completar la operacion
@@ -668,7 +668,7 @@ namespace CRS_PRE.CMR
                     tip_tal = int.Parse(tab_ads004.Rows[0]["va_tip_tal"].ToString());
 
                     // Obtiene datos de la dosificacion
-                    tab_ctb007 = o_ctb007._05(va_nro_aut);
+                    tab_ctb007 = o_ctb007.Fe_con_sul(va_nro_aut);
                     if (tab_ctb007.Rows.Count == 0)
                     {
                         MessageBox.Show("La dosificacion no se encuentra registrada","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);

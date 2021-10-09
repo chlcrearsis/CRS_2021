@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bt_bus_dos = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tb_fir_ma4 = new System.Windows.Forms.TextBox();
             this.tb_fir_ma3 = new System.Windows.Forms.TextBox();
@@ -42,6 +43,7 @@
             this.cb_tip_tal = new System.Windows.Forms.ComboBox();
             this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_nom_doc = new System.Windows.Forms.TextBox();
@@ -50,15 +52,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tb_nro_cop = new System.Windows.Forms.TextBox();
             this.tb_nom_tal = new System.Windows.Forms.TextBox();
+            this.tb_nro_aut = new System.Windows.Forms.TextBox();
             this.tb_for_mat = new System.Windows.Forms.TextBox();
             this.tb_nro_tal = new System.Windows.Forms.TextBox();
             this.tb_ide_doc = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.tb_nro_aut = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.bt_bus_dos = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
@@ -90,6 +90,20 @@
             this.groupBox1.Size = new System.Drawing.Size(398, 218);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // bt_bus_dos
+            // 
+            this.bt_bus_dos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_bus_dos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_bus_dos.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_bus_dos.Location = new System.Drawing.Point(234, 87);
+            this.bt_bus_dos.Name = "bt_bus_dos";
+            this.bt_bus_dos.Size = new System.Drawing.Size(16, 22);
+            this.bt_bus_dos.TabIndex = 101;
+            this.bt_bus_dos.TabStop = false;
+            this.bt_bus_dos.Text = "|";
+            this.bt_bus_dos.UseVisualStyleBackColor = false;
+            this.bt_bus_dos.Click += new System.EventHandler(this.Bt_bus_dos_Click);
             // 
             // groupBox2
             // 
@@ -230,6 +244,15 @@
             this.label5.TabIndex = 29;
             this.label5.Text = "Copia(s)";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 90);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(99, 13);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "Nro de autorización";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -305,6 +328,18 @@
             this.tb_nom_tal.Size = new System.Drawing.Size(288, 20);
             this.tb_nom_tal.TabIndex = 50;
             // 
+            // tb_nro_aut
+            // 
+            this.tb_nro_aut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nro_aut.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_nro_aut.Location = new System.Drawing.Point(103, 88);
+            this.tb_nro_aut.MaxLength = 3;
+            this.tb_nro_aut.Name = "tb_nro_aut";
+            this.tb_nro_aut.Size = new System.Drawing.Size(132, 20);
+            this.tb_nro_aut.TabIndex = 85;
+            this.tb_nro_aut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_nro_aut_KeyDown);
+            this.tb_nro_aut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_aut_KeyPress);
+            // 
             // tb_for_mat
             // 
             this.tb_for_mat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -374,39 +409,6 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
-            // 
-            // tb_nro_aut
-            // 
-            this.tb_nro_aut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nro_aut.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nro_aut.Location = new System.Drawing.Point(103, 88);
-            this.tb_nro_aut.MaxLength = 3;
-            this.tb_nro_aut.Name = "tb_nro_aut";
-            this.tb_nro_aut.Size = new System.Drawing.Size(132, 20);
-            this.tb_nro_aut.TabIndex = 70;
-            this.tb_nro_aut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_aut_KeyPress);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 90);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(99, 13);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "Nro de autorización";
-            // 
-            // bt_bus_dos
-            // 
-            this.bt_bus_dos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_dos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_dos.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_dos.Location = new System.Drawing.Point(234, 87);
-            this.bt_bus_dos.Name = "bt_bus_dos";
-            this.bt_bus_dos.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_dos.TabIndex = 101;
-            this.bt_bus_dos.TabStop = false;
-            this.bt_bus_dos.Text = "|";
-            this.bt_bus_dos.UseVisualStyleBackColor = false;
             // 
             // ads004_03
             // 

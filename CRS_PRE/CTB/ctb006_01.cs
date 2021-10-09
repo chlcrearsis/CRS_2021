@@ -270,7 +270,7 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (gb_ctr_btn.Enabled == false)
+            if (gb_ctr_btn.Enabled == true)
             {
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
@@ -360,7 +360,7 @@ namespace CRS_PRE
 
         private void Bt_ace_pta_Click(object sender, EventArgs e)
         {
-            if (gb_ctr_btn.Enabled == false)
+            if (gb_ctr_btn.Enabled == true)
             {
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
@@ -373,13 +373,5 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-        private void dg_res_ult_Enter(object sender, EventArgs e)
-        {
-            if (gb_ctr_btn.Enabled == false)
-            {
-                this.DialogResult = DialogResult.OK;
-                cl_glo_frm.Cerrar(this);
-            }
-        }
     }
 }

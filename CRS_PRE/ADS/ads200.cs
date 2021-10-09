@@ -294,5 +294,31 @@ namespace CRS_PRE
             o_frm = new ctb006_01();
             cl_glo_frm.abrir(this, o_frm);
         }
+
+        private void st_bar_pie_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+           
+            o_frm = new ads000_06();
+            cl_glo_frm.abrir(this, o_frm);
+
+
+            //verifica que exista un menu valido            
+            if (m_mod_ulo.Visible == true)
+            {
+                if (m_mod_ulo.Items.Count != 0)
+                {
+                    cl_glo_frm.abrir(this, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+                }
+            }
+            else
+            {
+                if (m_frm_hja.Items.Count != 0)
+                {
+                    //abre ventana de autentificacion
+                    cl_glo_frm.abrir(this, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+                }
+
+            }
+        }
     }
 }
