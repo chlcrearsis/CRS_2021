@@ -52,14 +52,18 @@
             this.tb_nom_pro = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tb_des_pro = new System.Windows.Forms.TextBox();
             this.tb_cod_pro = new System.Windows.Forms.TextBox();
             this.tb_nom_fam = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
-            this.tb_des_pro = new System.Windows.Forms.TextBox();
+            this.gb_ser_lot = new System.Windows.Forms.GroupBox();
+            this.ch_ges_lot = new System.Windows.Forms.CheckBox();
+            this.ch_ges_ser = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
+            this.gb_ser_lot.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -329,6 +333,17 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Familia";
             // 
+            // tb_des_pro
+            // 
+            this.tb_des_pro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_des_pro.Location = new System.Drawing.Point(15, 66);
+            this.tb_des_pro.MaxLength = 200;
+            this.tb_des_pro.Multiline = true;
+            this.tb_des_pro.Name = "tb_des_pro";
+            this.tb_des_pro.ReadOnly = true;
+            this.tb_des_pro.Size = new System.Drawing.Size(376, 58);
+            this.tb_des_pro.TabIndex = 50;
+            // 
             // tb_cod_pro
             // 
             this.tb_cod_pro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -357,9 +372,9 @@
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 229);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 263);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(401, 35);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(401, 42);
             this.gb_ctr_btn.TabIndex = 20;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -370,7 +385,7 @@
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(229, 9);
             this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 26);
             this.bt_ace_pta.TabIndex = 21;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
@@ -384,31 +399,52 @@
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_can_cel.Location = new System.Drawing.Point(310, 9);
             this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 26);
             this.bt_can_cel.TabIndex = 20;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
             // 
-            // tb_des_pro
+            // gb_ser_lot
             // 
-            this.tb_des_pro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_des_pro.Location = new System.Drawing.Point(15, 66);
-            this.tb_des_pro.MaxLength = 200;
-            this.tb_des_pro.Multiline = true;
-            this.tb_des_pro.Name = "tb_des_pro";
-            this.tb_des_pro.ReadOnly = true;
-            this.tb_des_pro.Size = new System.Drawing.Size(376, 58);
-            this.tb_des_pro.TabIndex = 50;
+            this.gb_ser_lot.Controls.Add(this.ch_ges_lot);
+            this.gb_ser_lot.Controls.Add(this.ch_ges_ser);
+            this.gb_ser_lot.Enabled = false;
+            this.gb_ser_lot.Location = new System.Drawing.Point(4, 231);
+            this.gb_ser_lot.Name = "gb_ser_lot";
+            this.gb_ser_lot.Size = new System.Drawing.Size(401, 35);
+            this.gb_ser_lot.TabIndex = 21;
+            this.gb_ser_lot.TabStop = false;
+            // 
+            // ch_ges_lot
+            // 
+            this.ch_ges_lot.AutoSize = true;
+            this.ch_ges_lot.Location = new System.Drawing.Point(275, 11);
+            this.ch_ges_lot.Name = "ch_ges_lot";
+            this.ch_ges_lot.Size = new System.Drawing.Size(90, 17);
+            this.ch_ges_lot.TabIndex = 160;
+            this.ch_ges_lot.Text = "Maneja Lotes";
+            this.ch_ges_lot.UseVisualStyleBackColor = true;
+            // 
+            // ch_ges_ser
+            // 
+            this.ch_ges_ser.AutoSize = true;
+            this.ch_ges_ser.Location = new System.Drawing.Point(32, 11);
+            this.ch_ges_ser.Name = "ch_ges_ser";
+            this.ch_ges_ser.Size = new System.Drawing.Size(111, 17);
+            this.ch_ges_ser.TabIndex = 150;
+            this.ch_ges_ser.Text = "Maneja Nro. Serie";
+            this.ch_ges_ser.UseVisualStyleBackColor = true;
             // 
             // inv004_06
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(411, 268);
+            this.ClientSize = new System.Drawing.Size(411, 309);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gb_ser_lot);
             this.Controls.Add(this.gb_ctr_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -420,6 +456,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gb_ctr_btn.ResumeLayout(false);
+            this.gb_ser_lot.ResumeLayout(false);
+            this.gb_ser_lot.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -455,5 +493,8 @@
         private System.Windows.Forms.TextBox tb_eqv_vta;
         private System.Windows.Forms.TextBox tb_eqv_cmp;
         private System.Windows.Forms.TextBox tb_des_pro;
+        public System.Windows.Forms.GroupBox gb_ser_lot;
+        private System.Windows.Forms.CheckBox ch_ges_lot;
+        private System.Windows.Forms.CheckBox ch_ges_ser;
     }
 }
