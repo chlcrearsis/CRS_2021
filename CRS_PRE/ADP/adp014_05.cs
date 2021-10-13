@@ -19,11 +19,16 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             tb_ide_tip.Text = frm_dat.Rows[0]["va_ide_tip"].ToString().Trim();
-            tb_nom_tip.Text = frm_dat.Rows[0]["va_nom_tip"].ToString().Trim();
+            tb_des_tip.Text = frm_dat.Rows[0]["va_des_tip"].ToString().Trim();
+
+            if (frm_dat.Rows[0]["va_ext_doc"].ToString() == "S")
+                cb_ext_doc.Checked = true;
+            else
+                cb_ext_doc.Checked = false;
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
-            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
+            else
                 tb_est_ado.Text = "Deshabilitado";
         }
 

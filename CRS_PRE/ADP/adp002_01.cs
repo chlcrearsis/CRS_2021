@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -20,7 +12,9 @@ namespace CRS_PRE
         public DataTable tab_dat;
         public dynamic frm_MDI;
 
+        string tip_per = "T";
         string est_bus = "T";
+        string Titulo = "Registro de Persona";
 
         //Form frm_mdi;
         public adp002_01()
@@ -28,309 +22,332 @@ namespace CRS_PRE
             InitializeComponent();
         }
 
-        // instancia
+        // Instancia
         adp002 o_adp002 = new adp002();
         adp001 o_adp001 = new adp001();
 
-
-
         // Variables
-        DataTable tabla = new DataTable();
+        DataTable Tabla = new DataTable();
 
         private void frm_Load(object sender, EventArgs e)
         {
             fi_ini_frm();
         }
-
-        #region  [Funciones Internas]
+        
         private void fi_ini_frm()
         {
-            tb_sel_bus.Text = "";
-
-            // obtiene lista de 
+            // Iniciliza Campos en Pantalla
+            tb_cod_per.Text = "";
             tb_cod_gru.Text = "0";
-            lb_nom_gru.Text = "Todos";
-
+            lb_nom_gru.Text = "TODOS";
+            cb_tip_per.Text = "TODOS";
             cb_prm_bus.SelectedIndex = 0;
             cb_est_bus.SelectedIndex = 0;
 
-            fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
-
+            // Obtiene datos de la consulta
+            fi_bus_car(int.Parse(tb_cod_gru.Text), tip_per, tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
+            
+            // Limpia el texto a buscar
             tb_tex_bus.Focus();
             tb_tex_bus.SelectAll();
-
-            SelectNextControl(tb_tex_bus,true,true,false,true);
-
+            SelectNextControl(tb_tex_bus, true, true, false, true);
         }
 
-        //public enum parametro
-        //{
-        //    codigo = 1, nombre = 2
-        //}
-        //protected enum estado
-        //{
-        //    Todos = 0, Habilitado = 1, Deshabilitado = 2
-        //}
-
         /// <summary>
-        /// Funcion interna buscar
+        /// Funcion : Filtra lista de persona de acuerdo a los criterios de búsqueda
         /// </summary>
-        /// <param name="ar_tex_bus">Texto a buscar</param>
-        /// <param name="ar_prm_bus">Parametro a buscar</param>
-        /// <param name="ar_est_bus">Estado a buscar</param>
-        private void fi_bus_car(string ar_tex_bus = "", int ar_prm_bus = 0, string ar_est_bus = "T", int ar_gru_per =0)
+        /// <param name="gru_per">Código Grupo</param>
+        /// <param name="tip_per">Tipo de Cliente (P=Particular; E=Empresa; T=Todos)</param>
+        /// <param name="tex_bus">Texto a ser buscado</param>
+        /// <param name="prm_bus">Criterio de Busqueda (0=Cod. Persona; 1=Razon Social; 2=Nombre; 3=Ape. Paterno; 4=Ape. Materno; 5=NIT; 6=Documento; 7=Teléfono)</param>
+        /// <param name="est_bus">Estado (H=Habilitado; N=Deshabilitado; T=Todos)</param>
+        private void fi_bus_car(int gru_per = 0, string tip_per = "T", string tex_bus = "", int prm_bus = 0, string est_bus = "T")
         {
-            //Limpia Grilla
+            // Limpia Grilla
             dg_res_ult.Rows.Clear();
 
-           
+            // Obtiene el Tipo de Persona
+            if (cb_tip_per.SelectedIndex == 0)
+                tip_per = "T";  // Todos
+            if (cb_tip_per.SelectedIndex == 1)
+                tip_per = "P";  // Particular
+            if (cb_tip_per.SelectedIndex == 2)
+                tip_per = "E";  // Empresa
 
-            tabla = o_adp002.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus, ar_gru_per );
+            // Obtiene el Estado de la Persona
+            if (cb_est_bus.SelectedIndex == 0)
+                est_bus = "T";  // Todos
+            if (cb_est_bus.SelectedIndex == 1)
+                est_bus = "H";  // Habilitados
+            if (cb_est_bus.SelectedIndex == 2)
+                est_bus = "N";  // Deshabilitado
 
-            if (tabla.Rows.Count > 0)
-            {
-                for (int i = 0; i < tabla.Rows.Count; i++)
-                {
+            // Obtiene Datos de la consulta
+            Tabla = new DataTable();
+            Tabla = o_adp002.Fe_bus_car(gru_per, tip_per, tex_bus, prm_bus, est_bus);
+            if (Tabla.Rows.Count > 0){
+                for (int i = 0; i < Tabla.Rows.Count; i++){
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_cod_gru"].Value = tabla.Rows[i]["va_cod_gru"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_gru"].Value = tabla.Rows[i]["va_nom_gru"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_cod_per"].Value = tabla.Rows[i]["va_cod_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_raz_soc"].Value = tabla.Rows[i]["va_raz_soc"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_com"].Value = tabla.Rows[i]["va_nom_com"].ToString();
-
-                    dg_res_ult.Rows[i].Cells["va_nit_per"].Value = tabla.Rows[i]["va_nit_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_car_net"].Value = tabla.Rows[i]["va_car_net"].ToString();
-
-
-                    dg_res_ult.Rows[i].Cells["va_dir_per"].Value = tabla.Rows[i]["va_dir_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_tel_per"].Value = tabla.Rows[i]["va_tel_per"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_cel_per"].Value = tabla.Rows[i]["va_cel_per"].ToString();
-                    //dg_res_ult.Rows[i].Cells["va_ema_per"].Value = tabla.Rows[i]["va_ema_per"].ToString();
-
-                    if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
+                    dg_res_ult.Rows[i].Cells["va_cod_per"].Value = Tabla.Rows[i]["va_cod_per"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_raz_soc"].Value = Tabla.Rows[i]["va_raz_soc"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_ruc_nit"].Value = Tabla.Rows[i]["va_ruc_nit"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_nom_bre"].Value = Tabla.Rows[i]["va_nom_bre"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_ape_pat"].Value = Tabla.Rows[i]["va_ape_pat"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_ape_mat"].Value = Tabla.Rows[i]["va_ape_mat"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_tip_doc"].Value = Tabla.Rows[i]["va_tip_doc"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_nro_doc"].Value = Tabla.Rows[i]["va_nro_doc"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_tel_per"].Value = Tabla.Rows[i]["va_tel_per"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_cel_ula"].Value = Tabla.Rows[i]["va_cel_ula"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_tel_fij"].Value = Tabla.Rows[i]["va_tel_fij"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_dir_pri"].Value = Tabla.Rows[i]["va_dir_pri"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_ema_ail"].Value = Tabla.Rows[i]["va_ema_ail"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_nom_ven"].Value = Tabla.Rows[i]["va_nom_ven"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_nom_cob"].Value = Tabla.Rows[i]["va_nom_cob"].ToString().Trim();
+                    if (Tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_sel_bus.Text = tabla.Rows[0]["va_cod_per"].ToString();
-                lb_des_bus.Text = tabla.Rows[0]["va_raz_soc"].ToString();
-
+                tb_cod_per.Text = Tabla.Rows[0]["va_cod_per"].ToString().Trim();
+                lb_raz_soc.Text = Tabla.Rows[0]["va_raz_soc"].ToString().Trim();
                 tb_tex_bus.Focus();
                 tb_tex_bus.SelectAll();
             }
-
         }
         private void fi_con_sel()
         {
-            //Verifica que los datos en pantallas sean correctos
-            if (tb_sel_bus.Text.Trim() == "")
-            {
-                lb_des_bus.Text = "** NO existe";
+            // Verifica que los datos en pantallas sean correctos
+            if (tb_cod_per.Text.Trim() == "") {
+                lb_raz_soc.Text = "No Existe";
                 return;
             }
 
-            tabla = o_adp002.Fe_con_per(int.Parse(tb_sel_bus.Text));
-             if (tabla.Rows.Count == 0)
-            {
-                lb_des_bus.Text = "** NO existe";
+            Tabla = new DataTable();
+            Tabla = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
+            if (Tabla.Rows.Count == 0) {
+                lb_raz_soc.Text = "No Existe";
                 return;
             }
-
-            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_com"].ToString());
+            
+            lb_raz_soc.Text = Tabla.Rows[0]["va_raz_soc"].ToString().Trim();
         }
+
         /// <summary>
-        /// - > Función que selecciona la fila en el Datagrid que la persona Modificó
+        /// Función : Selecciona la fila en el Datagrid
         /// </summary>
         private void fi_sel_fil(string cod_per)
         {
+            // Obtiene el Tipo de Persona
+            if (cb_tip_per.SelectedIndex == 0)
+                tip_per = "T";  // Todos
+            if (cb_tip_per.SelectedIndex == 1)
+                tip_per = "P";  // Particular
+            if (cb_tip_per.SelectedIndex == 2)
+                tip_per = "E";  // Empresa
+
+            // Obtiene el Estado de la Persona
             if (cb_est_bus.SelectedIndex == 0)
-                est_bus = "T";
+                est_bus = "T";  // Todos
             if (cb_est_bus.SelectedIndex == 1)
-                est_bus = "H";
+                est_bus = "H";  // Habilitado
             if (cb_est_bus.SelectedIndex == 2)
-                est_bus = "N";
+                est_bus = "N";  // Deshabilitado            
 
-            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
-
-            if (cod_per != null)
-            {
-                try
-                {
-                    for (int i = 0; i < dg_res_ult.Rows.Count; i++)
-                    {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == cod_per.ToUpper())
-                        {
+            Tabla = new DataTable();
+            fi_bus_car(int.Parse(tb_cod_gru.Text), tip_per, tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
+            if (cod_per != null){
+                try{
+                    for (int i = 0; i < dg_res_ult.Rows.Count; i++){
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == cod_per.ToUpper()) {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             tb_tex_bus.Focus();
         }
-
-        private void fi_sub_baj_fil_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (dg_res_ult.Rows.Count != 0)
-            {
-                try
-                {
-                    //al presionar tecla para ABAJO
-                    if (e.KeyData == Keys.Down)
-                    {
-                        dg_res_ult.Show();
-
-                        if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1)
-                        {
-                            //Establece el foco en el Datagrid
-                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index + 1];
-
-                            //Llama a función que actualiza datos en Textbox de Selección
-                            fi_fil_act();
-
-                        }
-                    }
-                    //al presionar tecla para ARRIBA
-                    else if (e.KeyData == Keys.Up)
-                    {
-                        dg_res_ult.Show();
-
-                        if (dg_res_ult.SelectedRows[0].Index != 0)
-                        {
-                            //Establece el foco en el Datagrid
-                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index - 1];
-
-                            //Llama a función que actualiza datos en Textbox de Selección
-                            fi_fil_act();
-
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-                }
-            }
-        }
-
-
+       
         /// <summary>
         /// Método para obtener fila actual seleccionada
         /// </summary>
         public void fi_fil_act()
         {
-            if (dg_res_ult.SelectedRows.Count != 0)
-            {
-                if (dg_res_ult.SelectedRows[0].Cells[0].Value == null)
-                {
-                    tb_sel_bus.Text = "";
-                    lb_des_bus.Text = "";
+            if (dg_res_ult.SelectedRows.Count != 0) {
+                if (dg_res_ult.SelectedRows[0].Cells[0].Value == null) {
+                    tb_cod_per.Text = "";
+                    lb_raz_soc.Text = "";
+                } else {
+                    tb_cod_per.Text = dg_res_ult.SelectedRows[0].Cells["va_cod_per"].Value.ToString();
+                    lb_raz_soc.Text = dg_res_ult.SelectedRows[0].Cells["va_raz_soc"].Value.ToString();
                 }
-                else
-                {
-                    tb_sel_bus.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString();
-                    lb_des_bus.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString();
-                }
-
             }
         }
 
         /// <summary>
-        /// Método para verificar concurrencia de datos para editar
+        /// Método : Verifica concurrencia de datos para editar
         /// </summary>
-        public bool fi_ver_edi(int sel_ecc)
+        public bool fi_ver_dat(string cod_per)
         {
-            string res_fun = "";
-            tab_dat = o_adp002.Fe_con_per(sel_ecc);
-            if (tabla.Rows.Count == 0)
-            {
-                res_fun = "La persona que desea editar, NO se encuentra registrada";
-            }
-
-            if (res_fun != "")
-            {
-                MessageBox.Show(res_fun, "Edita persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_sel_bus.Focus();
+            string res_fun;
+            if (cod_per.Trim() == ""){
+                res_fun = "La Persona que desea editar, NO se encuentra registrado";
+                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_cod_per.Focus();
                 return false;
             }
 
-
-            return true;
-        }
-        public bool fi_ver_hds(string sel_ecc)
-        {
-          
-            tab_dat = o_adp002.Fe_con_per(int.Parse(sel_ecc));
-            if (tab_dat.Rows.Count == 0)
-            {
-                MessageBox.Show("la persona ya no se encuentra registrada en la base de datos.", "Consulta persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_sel_bus.Focus();
+            Tabla = new DataTable();
+            Tabla = o_adp002.Fe_con_per(int.Parse(cod_per));
+            if (Tabla.Rows.Count == 0){
+                res_fun = "La Persona que desea editar, NO se encuentra registrado";
+                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_cod_per.Focus();
                 return false;
             }
-
             return true;
         }
-        public bool fi_ver_con(string sel_ecc)
+
+        private void Fi_obt_gru()
         {
-            tab_dat = o_adp002.Fe_con_per(int.Parse(sel_ecc));
-            if (tab_dat.Rows.Count == 0)
-            {
-                MessageBox.Show("la persona ya no se encuentra registrada en la base de datos.", "Consulta persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_sel_bus.Focus();
-                return false;
+            if (tb_cod_gru.Text.Trim() == ""){
+                MessageBox.Show("DEBE proporcionar un Grupo de Persona válido", Titulo, MessageBoxButtons.OK);
+                tb_cod_gru.Focus();
             }
 
-            return true;
+            if (tb_cod_gru.Text.Trim() == "" || tb_cod_gru.Text.Trim() == "0" || tb_cod_gru.Text.Trim() == "00"){
+                tb_cod_gru.Text = "0";
+                lb_nom_gru.Text = "TODOS";
+            }else{
+                int dat_num;
+                int.TryParse(tb_cod_gru.Text, out dat_num);
+                if (dat_num == 0){
+                    MessageBox.Show("DEBE proporcionar un Grupo de persona valido", Titulo, MessageBoxButtons.OK);
+                    tb_cod_gru.Focus();
+                }
+
+                Tabla = new DataTable();
+                Tabla = o_adp001.Fe_con_gru(dat_num);
+                if (Tabla.Rows.Count == 0)
+                    lb_nom_gru.Text = "No Existe";
+                else
+                    lb_nom_gru.Text = Tabla.Rows[0]["va_nom_gru"].ToString();
+            }
         }
 
+        private void tb_tex_bus_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (dg_res_ult.Rows.Count != 0){
+                try{
+                    // Al presionar tecla para ABAJO
+                    if (e.KeyData == Keys.Down){
+                        dg_res_ult.Show();
+                        if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1){
+                            // Establece el foco en el Datagrid
+                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index + 1];
+                            // Llama a función que actualiza datos en Textbox de Selección
+                            fi_fil_act();
+                        }
+                    }
+                    //al presionar tecla para ARRIBA
+                    else if (e.KeyData == Keys.Up){
+                        dg_res_ult.Show();
+                        if (dg_res_ult.SelectedRows[0].Index != 0){
+                            // Establece el foco en el Datagrid
+                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index - 1];
+                            // Llama a función que actualiza datos en Textbox de Selección
+                            fi_fil_act();
+                        }
+                    }
+                }catch (Exception ex){
+                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK);
+                }
+            }
+        }
 
-
-        #endregion
-
-        private void Tb_sel_bus_Validated(object sender, EventArgs e)
+        private void tb_cod_per_Validated(object sender, EventArgs e)
         {
             fi_con_sel();
-            if (lb_des_bus.Text != "** NO existe")
-            {
-                fi_sel_fil(tb_sel_bus.Text);
+            if (lb_raz_soc.Text != "No Existe"){
+                fi_sel_fil(tb_cod_per.Text);
             }
         }
 
-        private void dg_res_ult_SelectionChanged(object sender, EventArgs e)
+        private void tb_cod_per_KeyPress(object sender, KeyPressEventArgs e)
         {
+            cl_glo_bal.NotNumeric(e);
+        }
+
+        private void tb_cod_gru_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Al presionar tecla para ARRIBA
+            if (e.KeyData == Keys.Up || e.KeyData == Keys.Down){
+                // Abre la ventana Busca Persona
+                Fi_bus_gru();
+            }
+        }
+
+        private void tb_cod_gru_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotNumeric(e);
+        }
+
+        private void tb_cod_gru_Validated(object sender, EventArgs e)
+        {
+            Fi_obt_gru();
+        }
+
+        private void bt_bus_gru_Click(object sender, EventArgs e)
+        {
+            Fi_bus_gru();
+        }
+
+        private void Fi_bus_gru()
+        {
+            adp001_01 frm = new adp001_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.OK){
+                tb_cod_gru.Text = frm.tb_sel_bus.Text;
+                lb_nom_gru.Text = frm.lb_des_bus.Text;
+            }
+        }
+
+        private void dg_res_ult_SelectionChanged(object sender, EventArgs e){
             fi_fil_act();
         }
 
-        private void dg_res_ult_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        private void dg_res_ult_CellClick(object sender, DataGridViewCellEventArgs e){
             fi_fil_act();
         }
 
-        private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (bt_ace_pta.Enabled == false)
-                return;
-
+        private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e){
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
-        private void Bt_bus_car_Click(object sender, EventArgs e)
+
+        private void bt_bus_car_Click(object sender, EventArgs e)
         {
+            // Obtiene el Tipo de Persona
+            if (cb_tip_per.SelectedIndex == 0)
+                tip_per = "T";  // Todos
+            if (cb_tip_per.SelectedIndex == 1)
+                tip_per = "P";  // Particular
+            if (cb_tip_per.SelectedIndex == 2)
+                tip_per = "E";  // Empresa
+
+            // Obtiene el Estado de la Persona
             if (cb_est_bus.SelectedIndex == 0)
-                est_bus = "T";
+                est_bus = "T";  // Todos
             if (cb_est_bus.SelectedIndex == 1)
-                est_bus = "H";
+                est_bus = "H";  // Habilitado
             if (cb_est_bus.SelectedIndex == 2)
-                est_bus = "N";
+                est_bus = "N";  // Deshabilitado 
 
-            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
-
+            fi_bus_car(int.Parse(tb_cod_gru.Text), tip_per, tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
         }
 
 
@@ -339,35 +356,35 @@ namespace CRS_PRE
         /// </summary>
         public void Fe_act_frm( int cod_per)
         {
-         if (cb_est_bus.SelectedIndex == 0)
-                est_bus = "T";
+            // Obtiene el Tipo de Persona
+            if (cb_tip_per.SelectedIndex == 0)
+                tip_per = "T";  // Todos
+            if (cb_tip_per.SelectedIndex == 1)
+                tip_per = "P";  // Particular
+            if (cb_tip_per.SelectedIndex == 2)
+                tip_per = "E";  // Empresa
+
+            // Obtiene el Estado de la Persona
+            if (cb_est_bus.SelectedIndex == 0)
+                est_bus = "T";  // Todos
             if (cb_est_bus.SelectedIndex == 1)
-                est_bus = "H";
+                est_bus = "H";  // Habilitado
             if (cb_est_bus.SelectedIndex == 2)
-                est_bus = "N";
+                est_bus = "N";  // Deshabilitado 
 
-            fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus, int.Parse(tb_cod_gru.Text));
+            fi_bus_car(int.Parse(tb_cod_gru.Text), tip_per, tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (cod_per.ToString() != null)
-            {
-                try
-                {
-                    for (int i = 0; i < dg_res_ult.Rows.Count; i++)
-                    {
-                        if ( dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_per.ToString())
-                        {
+            if (cod_per.ToString() != null){
+                try{
+                    for (int i = 0; i < dg_res_ult.Rows.Count; i++){
+                        if ( dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_per.ToString()){
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
-
                             return;
                         }
                     }
-                }
-
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.Message, "Error");
+                }catch (Exception ex){
+                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -381,39 +398,39 @@ namespace CRS_PRE
         private void Mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
-            if (fi_ver_edi(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_dat(tb_cod_per.Text) == false)
                 return;
 
             adp002_03 frm = new adp002_03();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
        
         private void Mn_hab_des_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para habilitar/deshabilitar
-            if (fi_ver_hds(tb_sel_bus.Text) == false)
+            if (fi_ver_dat(tb_cod_per.Text) == false)
                 return;
 
             adp002_04 frm = new adp002_04();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(tb_sel_bus.Text) == false)
+            if (fi_ver_dat(tb_cod_per.Text) == false)
                 return;
 
             adp002_05 frm = new adp002_05();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {
-            // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(tb_sel_bus.Text) == false)
+            // Verifica concurrencia de datos para eliminar
+            if (fi_ver_dat(tb_cod_per.Text) == false)
                 return;
 
-            //adp002_06 frm = new adp002_06();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            adp002_06 frm = new adp002_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
@@ -421,13 +438,13 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
@@ -440,82 +457,15 @@ namespace CRS_PRE
         }
 
  
-        private void Bt_bus_gru_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_gru();
-        }
-
-        private void Tb_cod_gru_KeyDown(object sender, KeyEventArgs e)
-        {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Persona
-                Fi_abr_bus_gru();
-            }
-
-        }
+        
 
 
-        void Fi_abr_bus_gru()
-        {
-            adp001_01 frm = new adp001_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+        
+        
 
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_gru.Text = frm.tb_sel_bus.Text;
-                lb_nom_gru.Text = frm.lb_des_bus.Text;
-            }
-
-
-        }
-
-
-        private void Tb_cod_gru_Validated(object sender, EventArgs e)
-        {
-            Fi_obt_gru();
-        }
-        private void Fi_obt_gru()
-        {
-            if(tb_cod_gru.Text.Trim() == "")
-            {
-                MessageBox.Show("DEbe proporcionar un Grupo de persona valido", "Error", MessageBoxButtons.OK);
-                tb_cod_gru.Focus();
-            }
-            int val = 0;
-            if (tb_cod_gru.Text.Trim() == "0" || tb_cod_gru.Text.Trim() == "00")
-            {
-                lb_nom_gru.Text = "Todos";
-            }
-            else
-            {
-                int.TryParse(tb_cod_gru.Text, out val);
-                if(val == 0)
-                {
-                    MessageBox.Show("DEbe proporcionar un Grupo de persona valido", "Error", MessageBoxButtons.OK);
-                    tb_cod_gru.Focus();
-                }
-
-                tabla = o_adp001.Fe_con_gru(val);
-                if(tabla.Rows.Count== 0)
-                {
-                    lb_nom_gru.Text = "No Existe";
-                }
-                else
-                {
-                    lb_nom_gru.Text = tabla.Rows[0]["va_nom_gru"].ToString();
-                }
-            }
-            
-
-
-        }
-
-        private void dg_res_ult_Enter(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
-        }
+        private void dg_res_ult_Enter(object sender, EventArgs e){
+            /*this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);*/
+        }       
     }
 }

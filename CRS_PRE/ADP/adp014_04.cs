@@ -24,18 +24,23 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             tb_ide_tip.Text = frm_dat.Rows[0]["va_ide_tip"].ToString().Trim();
-            tb_nom_tip.Text = frm_dat.Rows[0]["va_nom_tip"].ToString().Trim();
+            tb_des_tip.Text = frm_dat.Rows[0]["va_des_tip"].ToString().Trim();
+
+            if (frm_dat.Rows[0]["va_ext_doc"].ToString() == "S")
+                cb_ext_doc.Checked = true;
+            else
+                cb_ext_doc.Checked = false;
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
-            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
+            else
                 tb_est_ado.Text = "Deshabilitado";
         }
 
         // Función: Valida Datos
         protected string Fi_val_dat(){
             Tabla = new DataTable();
-            Tabla = o_adp014.Fe_con_tip(int.Parse(tb_ide_tip.Text));
+            Tabla = o_adp014.Fe_con_tip(tb_ide_tip.Text);
             if (Tabla.Rows.Count == 0){
                 return "EL Tipo de Documento NO se encuentra en la base de datos";
             }
@@ -64,14 +69,14 @@ namespace CRS_PRE
 
                 if (msg_res == DialogResult.OK){
                     if (tb_est_ado.Text == "Habilitado")
-                        o_adp014.Fe_hab_des(int.Parse(tb_ide_tip.Text), "N");
+                        o_adp014.Fe_hab_des(tb_ide_tip.Text.Trim(), "N");
                     else
-                        o_adp014.Fe_hab_des(int.Parse(tb_ide_tip.Text), "H");
+                        o_adp014.Fe_hab_des(tb_ide_tip.Text.Trim(), "H");
 
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Actualiza Ventana Buscar
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
+                    frm_pad.Fe_act_frm(tb_ide_tip.Text.Trim());
                     // Cierra la Ventana
                     cl_glo_frm.Cerrar(this);
                 }

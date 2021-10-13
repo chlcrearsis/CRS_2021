@@ -96,16 +96,14 @@ namespace CRS_PRE
         /// </summary>
         private void fi_con_sel()
         {
-            //Verifica que los datos en pantallas sean correctos
-            if (tb_ide_tip.Text.Trim() == "")
-            {
+            // Verifica que los datos en pantallas sean correctos
+            if (tb_ide_tip.Text.Trim() == ""){
                 lb_nom_tip.Text = "** NO existe";
                 return;
             }
 
             tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text));
-            if (tabla.Rows.Count == 0)
-            {
+            if (tabla.Rows.Count == 0){
                 lb_nom_tip.Text = "** NO existe";
                 return;
             }
@@ -125,6 +123,7 @@ namespace CRS_PRE
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
+            Tabla = new DataTable();
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
             if (ide_tip != null)
@@ -213,17 +212,16 @@ namespace CRS_PRE
         /// Método para verificar concurrencia de datos para editar
         /// </summary>
         public bool fi_ver_edi(string sel_ecc)
-        { 
-            string res_fun = "";
-            
-            if(sel_ecc.Trim() == ""){
+        {
+            string res_fun;
+            if (sel_ecc.Trim() == ""){
                 res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_tip.Focus();
                 return false;
             }
 
-
+            Tabla = new DataTable();
             Tabla = o_adp003.Fe_con_tip(int.Parse(sel_ecc));
             if (tabla.Rows.Count == 0)
             {
@@ -259,8 +257,7 @@ namespace CRS_PRE
         }
         public bool fi_ver_con(string sel_ecc)
         {
-            string res_fun = "";
-
+            string res_fun;
             if (sel_ecc.Trim() == ""){
                 res_fun = "El Tipo de Atributo que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Edita Tipo de Atributo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -317,7 +314,6 @@ namespace CRS_PRE
                 est_bus = "N";
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
-
         }
 
 
@@ -345,15 +341,10 @@ namespace CRS_PRE
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
-
                             return;
                         }
                     }
-                }
-
-                catch (Exception ex)
-                {
-
+                }catch (Exception ex){
                     MessageBox.Show(ex.Message, "Error");
                 }
             }

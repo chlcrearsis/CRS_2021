@@ -41,16 +41,7 @@ namespace CRS_PRE
             cb_est_bus.SelectedIndex = 0;
 
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
-        }
-
-        public enum parametro
-        {
-            codigo = 1, nombre = 2
-        }
-        protected enum estado
-        {
-            Todos = 0, Habilitado = 1, Deshabilitado = 2
-        }
+        }       
 
         /// <summary>
         /// Funcion interna buscar
@@ -77,18 +68,23 @@ namespace CRS_PRE
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_ide_tip"].Value = tabla.Rows[i]["va_ide_tip"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_tip"].Value = tabla.Rows[i]["va_nom_tip"].ToString();
-                    
+                    dg_res_ult.Rows[i].Cells["va_ide_tip"].Value = tabla.Rows[i]["va_ide_tip"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_des_tip"].Value = tabla.Rows[i]["va_des_tip"].ToString().Trim();
+
+
+                    if (tabla.Rows[i]["va_ext_doc"].ToString() == "S")
+                        dg_res_ult.Rows[i].Cells["va_ext_doc"].Value = true;
+                    else
+                        dg_res_ult.Rows[i].Cells["va_ext_doc"].Value = false;
+
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_ide_tip.Text = tabla.Rows[0]["va_ide_tip"].ToString();
-                lb_nom_tip.Text = tabla.Rows[0]["va_nom_tip"].ToString();
+                tb_ide_tip.Text = tabla.Rows[0]["va_ide_tip"].ToString().Trim();
+                lb_des_tip.Text = tabla.Rows[0]["va_des_tip"].ToString().Trim();
             }
-
         }
 
         /// <summary>
@@ -99,18 +95,18 @@ namespace CRS_PRE
             //Verifica que los datos en pantallas sean correctos
             if (tb_ide_tip.Text.Trim() == "")
             {
-                lb_nom_tip.Text = "** NO existe";
+                lb_des_tip.Text = "NO Existe";
                 return;
             }
 
-            tabla = o_adp014.Fe_con_tip(int.Parse(tb_ide_tip.Text));
+            tabla = o_adp014.Fe_con_tip(tb_ide_tip.Text);
             if (tabla.Rows.Count == 0)
             {
-                lb_nom_tip.Text = "** NO existe";
+                lb_des_tip.Text = "NO Existe";
                 return;
             }
 
-            lb_nom_tip.Text = Convert.ToString(tabla.Rows[0]["va_nom_tip"].ToString());
+            lb_des_tip.Text = Convert.ToString(tabla.Rows[0]["va_des_tip"].ToString());
         }
 
         /// <summary>
@@ -201,10 +197,10 @@ namespace CRS_PRE
             {
                 if (dg_res_ult.SelectedRows[0].Cells[0].Value == null){
                     tb_ide_tip.Text = "";
-                    lb_nom_tip.Text = "";
+                    lb_des_tip.Text = "";
                 }else{
                     tb_ide_tip.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString().Trim();
-                    lb_nom_tip.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString().Trim();
+                    lb_des_tip.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString().Trim();
                 }
             }
         }
@@ -212,10 +208,10 @@ namespace CRS_PRE
         /// <summary>
         /// Método para verificar concurrencia de datos para editar
         /// </summary>
-        public bool fi_ver_edi(string sel_ecc)
+        public bool fi_ver_edi(string ide_tip)
         {
             string res_fun;
-            if (sel_ecc.Trim() == ""){
+            if (ide_tip.Trim() == ""){
                 res_fun = "El Tipo de Documento que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Edita Tipo de Documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_tip.Focus();
@@ -223,7 +219,7 @@ namespace CRS_PRE
             }
 
 
-            Tabla = o_adp014.Fe_con_tip(int.Parse(sel_ecc));
+            Tabla = o_adp014.Fe_con_tip(ide_tip);
             if (tabla.Rows.Count == 0)
             {
                 res_fun = "El Tipo de Documento que desea editar, no se encuentra registrado";
@@ -234,10 +230,10 @@ namespace CRS_PRE
 
             return true;
         }
-        public bool fi_ver_hds(string sel_ecc)
+        public bool fi_ver_hds(string ide_tip)
         {
             string res_fun;
-            if (sel_ecc.Trim() == ""){
+            if (ide_tip.Trim() == ""){
                 res_fun = "El Tipo de Documento que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Edita Tipo de Documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_tip.Focus();
@@ -245,7 +241,7 @@ namespace CRS_PRE
             }
 
 
-            Tabla = o_adp014.Fe_con_tip(int.Parse(sel_ecc));
+            Tabla = o_adp014.Fe_con_tip(ide_tip);
             if (tabla.Rows.Count == 0){
                 res_fun = "El Tipo de Documento que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Edita Tipo de Documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -255,17 +251,17 @@ namespace CRS_PRE
 
             return true;
         }
-        public bool fi_ver_con(string sel_ecc)
+        public bool fi_ver_con(string ide_tip)
         {
             string res_fun;
-            if (sel_ecc.Trim() == ""){
+            if (ide_tip.Trim() == ""){
                 res_fun = "El Tipo de Documento que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Edita Tipo de Documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_tip.Focus();
                 return false;
             }
 
-            Tabla = o_adp014.Fe_con_tip(int.Parse(sel_ecc));
+            Tabla = o_adp014.Fe_con_tip(ide_tip);
             if (tabla.Rows.Count == 0){
                 res_fun = "El Tipo de Documento que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Edita Tipo de Documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -275,14 +271,11 @@ namespace CRS_PRE
 
             return true;
         }
-
-
-
         #endregion
 
         private void tb_ide_tip_Validated(object sender, EventArgs e){
             fi_con_sel();
-            if (lb_nom_tip.Text != "** NO existe")
+            if (lb_des_tip.Text != "NO Existe")
             {
                 fi_sel_fil(tb_ide_tip.Text);
             }
@@ -319,7 +312,7 @@ namespace CRS_PRE
         /// <summary>
         /// Funcion Externa : Actualiza la ventana con los datos que tenga, despues de realizar alguna operacion.
         /// </summary>
-        public void Fe_act_frm(int ide_gru)
+        public void Fe_act_frm(string ide_tip)
         {
          if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
@@ -330,13 +323,13 @@ namespace CRS_PRE
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (ide_gru.ToString() != null)
+            if (ide_tip.ToString() != null)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == ide_gru.ToString())
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == ide_tip.ToString())
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
@@ -345,7 +338,6 @@ namespace CRS_PRE
                         }
                     }
                 }
-
                 catch (Exception ex)
                 {
 

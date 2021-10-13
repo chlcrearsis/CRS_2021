@@ -41,7 +41,7 @@
             this.mn_rep_tip = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lb_nom_tip = new System.Windows.Forms.Label();
+            this.lb_des_tip = new System.Windows.Forms.Label();
             this.bt_bus_car = new System.Windows.Forms.Button();
             this.cb_est_bus = new System.Windows.Forms.ComboBox();
             this.cb_prm_bus = new System.Windows.Forms.ComboBox();
@@ -50,12 +50,13 @@
             this.tb_ide_tip = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
+            this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_des_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_ext_doc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -147,7 +148,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lb_nom_tip);
+            this.groupBox1.Controls.Add(this.lb_des_tip);
             this.groupBox1.Controls.Add(this.bt_bus_car);
             this.groupBox1.Controls.Add(this.cb_est_bus);
             this.groupBox1.Controls.Add(this.cb_prm_bus);
@@ -160,14 +161,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // lb_nom_tip
+            // lb_des_tip
             // 
-            this.lb_nom_tip.AutoSize = true;
-            this.lb_nom_tip.Location = new System.Drawing.Point(140, 13);
-            this.lb_nom_tip.Name = "lb_nom_tip";
-            this.lb_nom_tip.Size = new System.Drawing.Size(19, 13);
-            this.lb_nom_tip.TabIndex = 2;
-            this.lb_nom_tip.Text = "....";
+            this.lb_des_tip.AutoSize = true;
+            this.lb_des_tip.Location = new System.Drawing.Point(140, 13);
+            this.lb_des_tip.Name = "lb_des_tip";
+            this.lb_des_tip.Size = new System.Drawing.Size(19, 13);
+            this.lb_des_tip.TabIndex = 2;
+            this.lb_des_tip.Text = "....";
             // 
             // bt_bus_car
             // 
@@ -233,7 +234,7 @@
             this.tb_ide_tip.Name = "tb_ide_tip";
             this.tb_ide_tip.Size = new System.Drawing.Size(42, 20);
             this.tb_ide_tip.TabIndex = 1;
-            this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_ide_tip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             this.tb_ide_tip.Validated += new System.EventHandler(this.tb_ide_tip_Validated);
             // 
@@ -266,7 +267,8 @@
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_tip,
-            this.va_nom_tip,
+            this.va_des_tip,
+            this.va_ext_doc,
             this.va_est_ado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -288,27 +290,6 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
-            // 
-            // va_ide_tip
-            // 
-            this.va_ide_tip.HeaderText = "Codigo";
-            this.va_ide_tip.Name = "va_ide_tip";
-            this.va_ide_tip.ReadOnly = true;
-            this.va_ide_tip.Width = 60;
-            // 
-            // va_nom_tip
-            // 
-            this.va_nom_tip.HeaderText = "Nombre";
-            this.va_nom_tip.Name = "va_nom_tip";
-            this.va_nom_tip.ReadOnly = true;
-            this.va_nom_tip.Width = 350;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
-            this.va_est_ado.Width = 95;
             // 
             // gb_ctr_btn
             // 
@@ -348,6 +329,36 @@
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
+            // 
+            // va_ide_tip
+            // 
+            this.va_ide_tip.HeaderText = "Codigo";
+            this.va_ide_tip.Name = "va_ide_tip";
+            this.va_ide_tip.ReadOnly = true;
+            this.va_ide_tip.Width = 60;
+            // 
+            // va_des_tip
+            // 
+            this.va_des_tip.HeaderText = "Descripción";
+            this.va_des_tip.Name = "va_des_tip";
+            this.va_des_tip.ReadOnly = true;
+            this.va_des_tip.Width = 315;
+            // 
+            // va_ext_doc
+            // 
+            this.va_ext_doc.HeaderText = "Ext.";
+            this.va_ext_doc.Name = "va_ext_doc";
+            this.va_ext_doc.ReadOnly = true;
+            this.va_ext_doc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_ext_doc.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.va_ext_doc.Width = 35;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Width = 95;
             // 
             // adp014_01
             // 
@@ -404,10 +415,11 @@
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         public System.Windows.Forms.TextBox tb_ide_tip;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
-        private System.Windows.Forms.Label lb_nom_tip;
+        private System.Windows.Forms.Label lb_des_tip;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_tip;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_des_tip;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn va_ext_doc;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }
 }

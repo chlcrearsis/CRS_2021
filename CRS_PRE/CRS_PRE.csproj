@@ -94,6 +94,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADP\adp002_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp002_06.Designer.cs">
+      <DependentUpon>adp002_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp015_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp015_01.Designer.cs">
+      <DependentUpon>adp015_01.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADP\adp014_R01p.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1813,6 +1825,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ADP\adp002_06.resx">
+      <DependentUpon>adp002_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp015_01.resx">
+      <DependentUpon>adp015_01.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADP\adp014_R01p.resx">
       <DependentUpon>adp014_R01p.cs</DependentUpon>
     </EmbeddedResource>

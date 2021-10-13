@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Globalization;
+using System.Text.RegularExpressions;
+
 namespace CRS_PRE
 {
     class cl_glo_bal
@@ -45,6 +48,28 @@ namespace CRS_PRE
                 return false;
             }
         }
+
+        /// <summary>
+        /// Verifica que el valor sea FECHA valida
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static bool IsDateTime(string date)
+        {
+            Regex regex = new Regex(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$");
+
+            // Verifique si la fecha ingresada en formato dd/MM/yyyy.
+            bool isValid = regex.IsMatch(date);
+
+            // Verifique si la fecha ingresada es una fecha válida.
+            DateTime dt;
+            isValid = DateTime.TryParseExact(date, "dd/MM/yyyy", new CultureInfo("es-MX"), DateTimeStyles.None, out dt);
+            if (isValid)            
+                return true;            
+            else
+                return false;
+        }
+
         /// <summary>
         /// No permite digitar otro caractero que no sea numeros en el key press del control
         /// </summary>
@@ -91,7 +116,6 @@ namespace CRS_PRE
                 e.Handled = true;
             }
         }
-
 
 
 

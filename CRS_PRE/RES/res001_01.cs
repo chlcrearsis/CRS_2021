@@ -553,8 +553,8 @@ namespace CRS_PRE.CMR
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_cod_per.Text = frm.tb_sel_bus.Text;
-                lb_raz_soc.Text = frm.lb_des_bus.Text;
+                tb_cod_per.Text = frm.tb_cod_per.Text;
+                lb_raz_soc.Text = frm.lb_raz_soc.Text;
             }
         }
         private void Tb_cod_per_Validated(object sender, EventArgs e)

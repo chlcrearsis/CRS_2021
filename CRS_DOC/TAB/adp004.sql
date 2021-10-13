@@ -83,26 +83,14 @@ INSERT INTO adp004 VALUES (6, 9, 'Empleado', 'H')
 INSERT INTO adp004 VALUES (6, 10, 'Militar', 'H')
 INSERT INTO adp004 VALUES (6, 99, 'N/A', 'H')
 
---** Inserta Atributos : Vendedor
-INSERT INTO adp004 VALUES (10, 1, 'Vendedor 1', 'H')
-INSERT INTO adp004 VALUES (10, 2, 'Vendedor 2', 'H')
-INSERT INTO adp004 VALUES (10, 3, 'Vendedor 3', 'H')
-INSERT INTO adp004 VALUES (10, 99, 'N/A', 'H')
-
---** Inserta Atributos : Cobrador
-INSERT INTO adp004 VALUES (11, 1, 'Cobrador 1', 'H')
-INSERT INTO adp004 VALUES (11, 2, 'Cobrador 2', 'H')
-INSERT INTO adp004 VALUES (11, 3, 'Cobrador 3', 'H')
-INSERT INTO adp004 VALUES (11, 99, 'N/A', 'H')
-
 --** Inserta Atributos : Distribuidor
-INSERT INTO adp004 VALUES (12, 1, 'Distribuidor 1', 'H')
-INSERT INTO adp004 VALUES (12, 2, 'Distribuidor 2', 'H')
-INSERT INTO adp004 VALUES (12, 3, 'Distribuidor 3', 'H')
-INSERT INTO adp004 VALUES (12, 99, 'N/A', 'H')
+INSERT INTO adp004 VALUES (7, 1, 'Distribuidor 1', 'H')
+INSERT INTO adp004 VALUES (7, 2, 'Distribuidor 2', 'H')
+INSERT INTO adp004 VALUES (7, 3, 'Distribuidor 3', 'H')
+INSERT INTO adp004 VALUES (7, 99, 'N/A', 'H')
 
 --** Inserta Atributos : Despacho
-INSERT INTO adp004 VALUES (13, 1, 'Despacho 1', 'H')
-INSERT INTO adp004 VALUES (13, 2, 'Despacho 2', 'H')
-INSERT INTO adp004 VALUES (13, 3, 'Despacho 3', 'H')
-INSERT INTO adp004 VALUES (13, 99, 'N/A', 'H')
+INSERT INTO adp004 VALUES (8, 1, 'Despacho 1', 'H')
+INSERT INTO adp004 VALUES (8, 2, 'Despacho 2', 'H')
+INSERT INTO adp004 VALUES (8, 3, 'Despacho 3', 'H')
+INSERT INTO adp004 VALUES (8, 99, 'N/A', 'H')
