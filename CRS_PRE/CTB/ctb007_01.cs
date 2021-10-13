@@ -33,8 +33,13 @@ namespace CRS_PRE
         #region  [Funciones Internas]
         private void fi_ini_frm()
         {
+            DateTime fec_ini;
+            
             tb_sel_ecc.Text = "";
-
+            fec_ini = DateTime.Today;
+            fec_ini = fec_ini.AddMonths(-3);
+            tb_fec_ini.Value = fec_ini;
+            tb_fec_fin.Value = DateTime.Today;
             cb_prm_bus.SelectedIndex = 0;
 
             fi_bus_car();
@@ -51,9 +56,8 @@ namespace CRS_PRE
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
             string ar_tex_bus = tb_tex_bus.Text;
-            int ar_prm_bus = cb_prm_bus.SelectedIndex;
 
-            tabla = o_ctb007.Fe_bus_car(ar_tex_bus, ar_prm_bus, tb_fec_ini.Value, tb_fec_fin.Value,"H");
+            tabla = o_ctb007.Fe_bus_car(ar_tex_bus,  tb_fec_ini.Value, tb_fec_fin.Value);
 
             if (tabla.Rows.Count > 0)
             {
@@ -61,9 +65,10 @@ namespace CRS_PRE
                 {
                     dg_res_ult.Rows.Add();
                     dg_res_ult.Rows[i].Cells["va_nro_dos"].Value = tabla.Rows[i]["va_nro_aut"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_cod_suc"].Value = tabla.Rows[i]["va_cod_suc"].ToString();
-                    // dg_res_ult.Rows[i].Cells["va_nom_suc"].Value = tabla.Rows[i]["va_nom_suc"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_tip_fac"].Value = tabla.Rows[i]["va_tip_fac"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_ide_suc"].Value = tabla.Rows[i]["va_ide_suc"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_suc"].Value = tabla.Rows[i]["va_nom_suc"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_tip_nom"].Value = tabla.Rows[i]["va_tip_nom"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_fec_fin"].Value = tabla.Rows[i]["va_fec_fin"].ToString();
                     dg_res_ult.Rows[i].Cells["va_con_tad"].Value = tabla.Rows[i]["va_con_tad"].ToString();
                 }
                 tb_sel_ecc.Text = tabla.Rows[0]["va_nro_aut"].ToString();
@@ -76,7 +81,7 @@ namespace CRS_PRE
         /// <summary>
         /// - > Función que selecciona la fila en el Datagrid que el talonario Modificó
         /// </summary>
-        private void fi_sel_fil(int nro_dos)
+        private void fi_sel_fil(long nro_dos)
         {
             fi_bus_car();
 
@@ -167,10 +172,10 @@ namespace CRS_PRE
         {
             string res_fun = "";
 
-            if(cl_glo_bal.IsNumeric(tb_sel_ecc.Text) ==false)
+            if(cl_glo_bal.IsDecimal(tb_sel_ecc.Text) ==false)
                 res_fun = "El numero de autorizacion de la dosificación no es valido.";
             
-            tab_dat = o_ctb007._05(int.Parse(tb_sel_ecc.Text));
+            tab_dat = o_ctb007.Fe_con_sul(long.Parse(tb_sel_ecc.Text));
             if (tabla.Rows.Count == 0)
             {
                 res_fun = "El numero de autorización no se encuentra registrado";
@@ -191,8 +196,8 @@ namespace CRS_PRE
 
         private void Tb_sel_bus_Validated(object sender, EventArgs e)
         {
-            if(cl_glo_bal.IsNumeric(tb_sel_ecc.Text) ==true)
-            fi_sel_fil(int.Parse(tb_sel_ecc.Text));
+            if(cl_glo_bal.IsDecimal(tb_sel_ecc.Text) ==true)
+            fi_sel_fil(long.Parse(tb_sel_ecc.Text));
           
         }
 
@@ -215,17 +220,17 @@ namespace CRS_PRE
         /// <summary>
         /// Funcion Externa que actualiza la ventana con los datos que tenga, despues de realizar alguna operacion.
         /// </summary>
-        public void Fe_act_frm(int ide_doc)
+        public void Fe_act_frm(long nro_aut)
         {
             fi_bus_car();
 
-            if (ide_doc != 0)
+            if (nro_aut != 0)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == ide_doc.ToString())
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == nro_aut.ToString())
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
@@ -250,8 +255,8 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            //ctb007_03 frm = new ctb007_03();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ctb007_03 frm = new ctb007_03();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
       
@@ -261,8 +266,8 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            //ctb007_05 frm = new ctb007_05();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ctb007_05 frm = new ctb007_05();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {
@@ -270,8 +275,8 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            //ctb007_06 frm = new ctb007_06();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ctb007_06 frm = new ctb007_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
@@ -289,6 +294,24 @@ namespace CRS_PRE
         {
             ctb007_02 frm = new ctb007_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
+        private void bt_ace_pta_Click(object sender, EventArgs e)
+        {
+            if (gb_ctr_btn.Enabled == true)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
+
+        private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gb_ctr_btn.Enabled == true)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
     }
 }

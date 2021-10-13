@@ -61,6 +61,12 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
@@ -286,6 +292,12 @@
     <Compile Include="ADS\ads000_00.Designer.cs">
       <DependentUpon>ads000_00.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads000_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads000_06.Designer.cs">
+      <DependentUpon>ads000_06.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads000_01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +339,12 @@
     </Compile>
     <Compile Include="ADS\ads000_03.Designer.cs">
       <DependentUpon>ads000_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads012_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads012_01.Designer.cs">
+      <DependentUpon>ads012_01.cs</DependentUpon>
     </Compile>
     <Compile Include="ADS\ads010_06.cs">
       <SubType>Form</SubType>
@@ -882,6 +900,102 @@
     </Compile>
     <Compile Include="cl_glo_bal.cs" />
     <Compile Include="cl_glo_frm.cs" />
+    <Compile Include="CMR\cmr003_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_01.Designer.cs">
+      <DependentUpon>cmr003_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr003_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_05.Designer.cs">
+      <DependentUpon>cmr003_05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr003_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_04.Designer.cs">
+      <DependentUpon>cmr003_04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr003_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_03.Designer.cs">
+      <DependentUpon>cmr003_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr003_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr003_02.Designer.cs">
+      <DependentUpon>cmr003_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_01d.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_01d.Designer.cs">
+      <DependentUpon>cmr014_01d.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_01c.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_01c.Designer.cs">
+      <DependentUpon>cmr014_01c.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_02b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_02b.Designer.cs">
+      <DependentUpon>cmr014_02b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_03b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_03b.Designer.cs">
+      <DependentUpon>cmr014_03b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_04b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_04b.Designer.cs">
+      <DependentUpon>cmr014_04b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr014_05b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr014_05b.Designer.cs">
+      <DependentUpon>cmr014_05b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr016_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr016_06.Designer.cs">
+      <DependentUpon>cmr016_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr016_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr016_05.Designer.cs">
+      <DependentUpon>cmr016_05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr016_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr016_03.Designer.cs">
+      <DependentUpon>cmr016_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr016_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr016_02.Designer.cs">
+      <DependentUpon>cmr016_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr016_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr016_01.Designer.cs">
+      <DependentUpon>cmr016_01.cs</DependentUpon>
+    </Compile>
     <Compile Include="CMR\cmr001_01b.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1020,11 +1134,35 @@
     <Compile Include="ADS\ads006_02.Designer.cs">
       <DependentUpon>ads006_02.cs</DependentUpon>
     </Compile>
+    <Compile Include="CTB\ctb006_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTB\ctb006_01.Designer.cs">
+      <DependentUpon>ctb006_01.cs</DependentUpon>
+    </Compile>
     <Compile Include="CTB\ctb007_01.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CTB\ctb007_01.Designer.cs">
       <DependentUpon>ctb007_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CTB\ctb007_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTB\ctb007_06.Designer.cs">
+      <DependentUpon>ctb007_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CTB\ctb007_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTB\ctb007_05.Designer.cs">
+      <DependentUpon>ctb007_05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CTB\ctb007_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTB\ctb007_03.Designer.cs">
+      <DependentUpon>ctb007_03.cs</DependentUpon>
     </Compile>
     <Compile Include="CTB\ctb007_02.cs">
       <SubType>Form</SubType>
@@ -1921,6 +2059,9 @@
     <EmbeddedResource Include="ADS\ads000_00.resx">
       <DependentUpon>ads000_00.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads000_06.resx">
+      <DependentUpon>ads000_06.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_01.resx">
       <DependentUpon>ads000_01.cs</DependentUpon>
     </EmbeddedResource>
@@ -1942,6 +2083,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_03.resx">
       <DependentUpon>ads000_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads012_01.resx">
+      <DependentUpon>ads012_01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads010_06.resx">
       <DependentUpon>ads010_06.cs</DependentUpon>
@@ -2225,6 +2369,54 @@
     <EmbeddedResource Include="ADS\ads000_02.resx">
       <DependentUpon>ads000_02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_01.resx">
+      <DependentUpon>cmr003_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_05.resx">
+      <DependentUpon>cmr003_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_04.resx">
+      <DependentUpon>cmr003_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_03.resx">
+      <DependentUpon>cmr003_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr003_02.resx">
+      <DependentUpon>cmr003_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_01d.resx">
+      <DependentUpon>cmr014_01d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_01c.resx">
+      <DependentUpon>cmr014_01c.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_02b.resx">
+      <DependentUpon>cmr014_02b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_03b.resx">
+      <DependentUpon>cmr014_03b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_04b.resx">
+      <DependentUpon>cmr014_04b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr014_05b.resx">
+      <DependentUpon>cmr014_05b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr016_06.resx">
+      <DependentUpon>cmr016_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr016_05.resx">
+      <DependentUpon>cmr016_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr016_03.resx">
+      <DependentUpon>cmr016_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr016_02.resx">
+      <DependentUpon>cmr016_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr016_01.resx">
+      <DependentUpon>cmr016_01.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr001_01b.resx">
       <DependentUpon>cmr001_01b.cs</DependentUpon>
     </EmbeddedResource>
@@ -2300,8 +2492,20 @@
     <EmbeddedResource Include="ADS\ads006_02.resx">
       <DependentUpon>ads006_02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CTB\ctb006_01.resx">
+      <DependentUpon>ctb006_01.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CTB\ctb007_01.resx">
       <DependentUpon>ctb007_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTB\ctb007_06.resx">
+      <DependentUpon>ctb007_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTB\ctb007_05.resx">
+      <DependentUpon>ctb007_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTB\ctb007_03.resx">
+      <DependentUpon>ctb007_03.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CTB\ctb007_02.resx">
       <DependentUpon>ctb007_02.cs</DependentUpon>
@@ -2723,6 +2927,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2803,6 +3008,7 @@
     <Content Include="ADP\ADP.txt" />
     <Content Include="ADS\ADS.txt" />
     <Content Include="CMR\CMR.txt" />
+    <Content Include="CTB\CTB.txt" />
     <None Include="Resources\fondotexto.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\telegram.png" />

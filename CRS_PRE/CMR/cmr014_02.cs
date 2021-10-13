@@ -33,8 +33,10 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
+            cb_pro_ced.SelectedIndex = 0;
             cb_tip_cms.SelectedIndex = 0;
-            tb_por_cms.Text = "0";
+            tb_cms_con.Text = "0";
+            tb_cms_cre.Text = "0";
 
             tb_cod_ven.Focus();
         }
@@ -48,8 +50,7 @@ namespace CRS_PRE
                 return "Debe proporcionar el Codigo";
             }
 
-            //Verificar 
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count > 0)
             {
                 tb_cod_ven.Focus();
@@ -58,28 +59,24 @@ namespace CRS_PRE
             if (tb_nom_ven.Text.Trim() == "")
             {
                 tb_nom_ven.Focus();
-                return "Debe proporcionar el Nombre";
+                return "Debe proporcionar el Nombre del vendedor";
             }
 
-            double val;
-            double.TryParse(tb_por_cms.Text, out val);
-            if (double.Parse(tb_por_cms.Text) != 0)
+            // Revisa Porcentaje al contado
+            if (cl_glo_bal.IsDecimal(tb_cms_con.Text) ==false )
             {
-                if (val == 0)
-                {
-                    tb_por_cms.Focus();
-                    return "El porcentaje es incorrecto";
-                }
+                tb_cms_con.Focus();
+                return "El porcentaje de comisión al contado es incorrecto";
             }
-
-
-            if (val < 0 || val > 30)
+            // Revisa Porcentaje al crédito
+            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
             {
-                tb_por_cms.Focus();
-                return "El porcentaje correspondiente debe estar entre 0-30";
+                tb_cms_cre.Focus();
+                return "El porcentaje de comisión al crédito es incorrecto";
             }
 
-           return "";
+
+            return "";
         }
 
         private void Fi_lim_pia()
@@ -87,8 +84,9 @@ namespace CRS_PRE
            
             tb_cod_ven.Clear(); 
             tb_nom_ven.Clear();
-            tb_por_cms.Text="0";
-           
+            tb_cms_con.Text="0";
+            tb_cms_cre.Text = "0";
+
             tb_cod_ven.Focus();
         }
         private void Bt_can_cel_Click(object sender, EventArgs e)
@@ -112,11 +110,56 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar 
-                o_cmr014.Fe_crea(int.Parse(tb_cod_ven.Text), tb_nom_ven.Text, cb_tip_cms.SelectedIndex , decimal.Parse(tb_por_cms.Text));
-                //MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Vendedor", MessageBoxButtons.OK);
+                o_cmr014.Fe_crea(int.Parse(tb_cod_ven.Text), tb_nom_ven.Text, tb_tel_cel.Text, tb_ema_ail.Text,
+                    (cb_pro_ced.SelectedIndex + 1), (cb_tip_cms.SelectedIndex +1), decimal.Parse(tb_cms_con.Text), 
+                    decimal.Parse(tb_cms_cre.Text),1 );
+                
                 frm_pad.Fe_act_frm(int.Parse(tb_cod_ven.Text));
                 Fi_lim_pia();
             }
+
+        }
+
+        private void tb_cod_ven_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotNumeric(e);
+        }
+
+        private void tb_cms_con_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotDecimal(e, tb_cms_con.Text);
+        }
+
+        private void tb_cms_cre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotDecimal(e, tb_cms_cre.Text);
+        }
+
+        private void tb_cms_con_Validated(object sender, EventArgs e)
+        {
+            if(cl_glo_bal.IsDecimal(tb_cms_con.Text) == false)
+            {
+                MessageBox.Show("El porcentaje de comision al contado no es valido","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                tb_cms_con.Focus();
+            }
+
+            // Formatea para mostrar decimal
+            tb_cms_con.Text = decimal.Round(decimal.Parse(tb_cms_con.Text), 2).ToString();
+            tb_cms_con.Text = decimal.Parse(tb_cms_con.Text).ToString("N2");
+
+        }
+
+        private void tb_cms_cre_Validated(object sender, EventArgs e)
+        {
+            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
+            {
+                MessageBox.Show("El porcentaje de comision al crédito no es valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_cms_cre.Focus();
+            }
+
+            // Formatea para mostrar decimal
+            tb_cms_cre.Text = decimal.Round(decimal.Parse(tb_cms_cre.Text), 2).ToString();
+            tb_cms_cre.Text = decimal.Parse(tb_cms_cre.Text).ToString("N2");
 
         }
     }

@@ -58,6 +58,7 @@
     <Compile Include="ADS\ads002.cs" />
     <Compile Include="ADS\ads005.cs" />
     <Compile Include="ADS\ads004.cs" />
+    <Compile Include="ADS\ads012.cs" />
     <Compile Include="ADS\ads024.cs" />
     <Compile Include="ADS\ads009.cs" />
     <Compile Include="ADS\ads008.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="ADS\ads003.cs" />
     <Compile Include="ADS\ads016.cs" />
     <Compile Include="ADS\ads022.cs" />
+    <Compile Include="CMR\cmr003.cs" />
+    <Compile Include="CMR\cmr016.cs" />
     <Compile Include="CMR\cmr017.cs" />
     <Compile Include="CMR\cmr013.cs" />
     <Compile Include="CMR\cmr008.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="CMR\cmr002.cs" />
     <Compile Include="CMR\cmr001.cs" />
     <Compile Include="ADP\adp002.cs" />
+    <Compile Include="CTB\ctb006.cs" />
     <Compile Include="CTB\ctb007.cs" />
     <Compile Include="General.cs" />
     <Compile Include="INV\inv099.cs" />

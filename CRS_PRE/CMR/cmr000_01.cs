@@ -101,7 +101,7 @@ namespace CRS_PRE.CMR
                 dat_doc.Columns.Add("va_ges_vta");
 
                 dat_doc.Rows.Add();
-                dat_doc.Rows[0]["va_ide_doc"] = ide_doc;
+                dat_doc.Rows[0]["va_ide_doc"] = cod_doc;
                 dat_doc.Rows[0]["va_ges_doc"] = ges_doc;
                 dat_doc.Rows[0]["va_ide_vta"] = ide_doc;
                 dat_doc.Rows[0]["va_ges_vta"] = ges_doc;

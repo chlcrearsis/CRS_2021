@@ -48,8 +48,6 @@ namespace CRS_PRE.CMR
         void Fi_ini_frm()
         {
             
-            cb_mon_vta.SelectedIndex = 0;
-            cb_cam_mon.SelectedIndex = 0;
             cb_cam_ven.SelectedIndex = 0;
             cb_for_pag.SelectedIndex = 0;
             cb_bus_pro.SelectedIndex = 0;
@@ -57,8 +55,7 @@ namespace CRS_PRE.CMR
             //Obtiene impresora por defecto
             va_imp_def = printDocument.PrinterSettings.PrinterName;
 
-            tb_imp_cot.Text = va_imp_def;
-            tb_imp_ped.Text = va_imp_def;
+            tb_imp_con.Text = va_imp_def;
             tb_imp_nvt.Text = va_imp_def;
             tb_imp_fac.Text = va_imp_def;
 
@@ -91,30 +88,10 @@ namespace CRS_PRE.CMR
 
         }
 
-        private void creaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mn_cer_rar_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar( this);
-        }
-
-        private void mn_edi_tar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         protected string Fi_val_dat()
         {
-            int val = 0;
-            try
-            {
-                val = int.Parse(tb_cod_plv.Text);
-            }
-            catch (Exception)
+
+            if(cl_glo_bal.IsNumeric(tb_cod_plv.Text) == false)
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_plv.Focus();
@@ -123,7 +100,7 @@ namespace CRS_PRE.CMR
 
             //Verifica si el codigo no esta en la base de datos
             tabla = new DataTable();
-            tabla = o_res004.Fe_con_plv(val.ToString());
+            tabla = o_res004.Fe_con_plv(tb_cod_plv.Text);
             if(tabla.Rows.Count !=0)
             {
                 tc_pla_vta.SelectedIndex = 0;
@@ -140,16 +117,13 @@ namespace CRS_PRE.CMR
             }
 
             //Verifica Bodega
-            try
-            {
-                val = int.Parse(tb_cod_bod.Text);
-            }
-            catch (Exception)
+            if (cl_glo_bal.IsNumeric(tb_cod_bod.Text) == false)
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_bod.Focus();
                 return "Debe proporcionar una bodega valida";
             }
+
             tabla = new DataTable();
             tabla = o_inv002.Fe_con_bod(int.Parse(tb_cod_bod.Text));
             if (tabla.Rows.Count == 0)
@@ -167,11 +141,7 @@ namespace CRS_PRE.CMR
 
 
             //Verifica Lista de Precio
-            try
-            {
-                val = int.Parse(tb_cod_lis.Text);
-            }
-            catch (Exception)
+            if (cl_glo_bal.IsNumeric(tb_cod_lis.Text) == false)
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_lis.Focus();
@@ -193,18 +163,15 @@ namespace CRS_PRE.CMR
             }
 
             //Verifica Vendedor
-            try
-            {
-                val = int.Parse(tb_cod_ven.Text);
-            }
-            catch (Exception)
+            if (cl_glo_bal.IsNumeric(tb_cod_ven.Text) == false)
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_ven.Focus();
                 return "Debe proporcionar un Vendedor valido";
             }
+
             tabla = new DataTable();
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 tc_pla_vta.SelectedIndex = 0;
@@ -219,16 +186,13 @@ namespace CRS_PRE.CMR
             }
 
             //Verifica Delivery
-            try
-            {
-                val = int.Parse(tb_cod_del.Text);
-            }
-            catch (Exception)
+            if (cl_glo_bal.IsNumeric(tb_cod_del.Text) == false)
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_del.Focus();
                 return "Debe proporcionar un Vendedor valido";
             }
+
             tabla = new DataTable();
             tabla = o_cmr015.Fe_con_del(int.Parse(tb_cod_del.Text));
             if (tabla.Rows.Count == 0)
@@ -245,16 +209,13 @@ namespace CRS_PRE.CMR
             }
 
             //Verifica Cliente (persona)
-            try
-            {
-                val = int.Parse(tb_cod_per.Text);
-            }
-            catch (Exception)
+            if (cl_glo_bal.IsNumeric(tb_cod_per.Text) == false)
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_per.Focus();
                 return "Debe proporcionar una persona valida";
             }
+
             tabla = new DataTable();
             tabla = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
             if (tabla.Rows.Count == 0)
@@ -335,7 +296,7 @@ namespace CRS_PRE.CMR
                 return;
             }
 
-            // Obtiene ide y nombre documento
+            // Obtiene ide y nombre de la bodega
             tabla = o_inv002.Fe_con_bod(int.Parse(tb_cod_bod.Text));
             if (tabla.Rows.Count == 0)
             {
@@ -454,15 +415,15 @@ namespace CRS_PRE.CMR
             }
 
             // Obtiene ide y nombre documento
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 lb_nom_ven.Text = "";
             }
             else
             {
-                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_nom_ven.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_nom_ven.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
         }
 
@@ -591,12 +552,12 @@ namespace CRS_PRE.CMR
 
        
         //******* TALONARIO *******\\
-        private void bt_bus_tal_cot_Click(object sender, EventArgs e)
+        private void bt_bus_tal_con_Click(object sender, EventArgs e)
         {
             opc_doc = 1;
             Fi_abr_bus_tal();
         }
-        private void tb_nro_tal_cot_KeyDown(object sender, KeyEventArgs e)
+        private void tb_nro_tal_con_KeyDown(object sender, KeyEventArgs e)
         {
             opc_doc = 1;
             //al presionar tecla para ARRIBA
@@ -606,20 +567,20 @@ namespace CRS_PRE.CMR
                 Fi_abr_bus_tal();
             }
         }
-        private void Tb_nro_tal_cot_Validated(object sender, EventArgs e)
+        private void Tb_nro_tal_con_Validated(object sender, EventArgs e)
         {
             opc_doc = 1;
             Fi_obt_tal();
         }
-        private void bt_bus_tal_ped_Click(object sender, EventArgs e)
-        {
-            opc_doc = 2;
-            Fi_abr_bus_tal();
-        }
-        private void tb_nro_tal_ped_KeyDown(object sender, KeyEventArgs e)
-        {
-            opc_doc = 2;
 
+        private void bt_bus_tal_opd_Click(object sender, EventArgs e)
+        {
+            opc_doc = 2;
+            Fi_abr_bus_tal();
+        }
+        private void tb_nro_tal_opd_KeyDown(object sender, KeyEventArgs e)
+        {
+            opc_doc = 2;
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
             {
@@ -627,11 +588,13 @@ namespace CRS_PRE.CMR
                 Fi_abr_bus_tal();
             }
         }
-        private void Tb_nro_tal_ped_Validated(object sender, EventArgs e)
+        private void Tb_nro_tal_opd_Validated(object sender, EventArgs e)
         {
             opc_doc = 2;
             Fi_obt_tal();
         }
+
+
         private void bt_bus_tal_nvt_Click(object sender, EventArgs e)
         {
             opc_doc = 3;
@@ -684,13 +647,10 @@ namespace CRS_PRE.CMR
             switch (opc_doc)
             {
                 case 1: // COT
-                    tab_prm.Rows[0]["va_ide_doc"] = tb_cod_doc_cot.Text;
-                    tab_prm.Rows[0]["va_nom_doc"] = "COTIZACION";
+                    tab_prm.Rows[0]["va_ide_doc"] = tb_cod_doc_con.Text;
+                    tab_prm.Rows[0]["va_nom_doc"] = "NOTA DE CONSUMO";
                     break;
-                case 2: // PED
-                    tab_prm.Rows[0]["va_ide_doc"] = tb_cod_doc_ped.Text;
-                    tab_prm.Rows[0]["va_nom_doc"] = "PEDIDO";
-                    break;
+              
                 case 3: // NTV
                     tab_prm.Rows[0]["va_ide_doc"] = tb_cod_doc_nvt.Text;
                     tab_prm.Rows[0]["va_nom_doc"] = "NOTA DE VENTA";
@@ -709,12 +669,10 @@ namespace CRS_PRE.CMR
             {
                 switch(opc_doc)
                 {
-                    case 1: // COT
-                        tb_nro_tal_cot.Text = frm.tb_sel_tal.Text;
+                    case 1: // CON
+                        tb_nro_tal_con.Text = frm.tb_sel_tal.Text;
                         break;
-                    case 2: // PED
-                        tb_nro_tal_ped.Text = frm.tb_sel_tal.Text;
-                        break;
+                   
                     case 3: // NTV
                         tb_nro_tal_nvt.Text = frm.tb_sel_tal.Text;
                         break;
@@ -739,13 +697,13 @@ namespace CRS_PRE.CMR
             {
                 switch (opc_doc)
                 {
-                    case 1: // COT
-                        val = int.Parse(tb_nro_tal_cot.Text);
-                        cod_doc = tb_cod_doc_cot.Text;
+                    case 1: // CON
+                        val = int.Parse(tb_nro_tal_con.Text);
+                        cod_doc = tb_cod_doc_con.Text;
                         break;
-                    case 2: // PED
-                        val = int.Parse(tb_nro_tal_ped.Text);
-                        cod_doc = tb_cod_doc_ped.Text;
+                    case 2: // OPD
+                        val = int.Parse(tb_nro_tal_con.Text);
+                        cod_doc = tb_cod_doc_opd.Text;
                         break;
                     case 3: // NTV
                         val = int.Parse(tb_nro_tal_nvt.Text);
@@ -762,11 +720,11 @@ namespace CRS_PRE.CMR
             {
                 switch (opc_doc)
                 {
-                    case 1: // COT
-                        tb_nom_tal_cot.Text = "";
+                    case 1: // CON
+                        tb_nom_tal_con.Text = "";
                         break;
-                    case 2: // PED
-                        tb_nom_tal_ped.Text = "";
+                    case 2:
+                        tb_nom_tal_opd.Text = "";
                         break;
                     case 3: // NTV
                         tb_nom_tal_nvt.Text = "";
@@ -785,11 +743,11 @@ namespace CRS_PRE.CMR
             {
                 switch (opc_doc)
                 {
-                    case 1: // COT
-                        tb_nom_tal_cot.Text = "";
+                    case 1: // CON
+                        tb_nom_tal_con.Text = "";
                         break;
-                    case 2: // PED
-                        tb_nom_tal_ped.Text = "";
+                    case 2: // OPD
+                        tb_nom_tal_opd.Text = "";
                         break;
                     case 3: // NTV
                         tb_nom_tal_nvt.Text = "";
@@ -803,13 +761,13 @@ namespace CRS_PRE.CMR
             {
                 switch (opc_doc)
                 {
-                    case 1: // COT
-                        tb_nro_tal_cot.Text = tabla.Rows[0]["va_nro_tal"].ToString();
-                        tb_nom_tal_cot.Text = tabla.Rows[0]["va_nom_tal"].ToString();
+                    case 1: // CON
+                        tb_nro_tal_con.Text = tabla.Rows[0]["va_nro_tal"].ToString();
+                        tb_nom_tal_con.Text = tabla.Rows[0]["va_nom_tal"].ToString();
                         break;
-                    case 2: // PED
-                        tb_nro_tal_ped.Text = tabla.Rows[0]["va_nro_tal"].ToString();
-                        tb_nom_tal_ped.Text = tabla.Rows[0]["va_nom_tal"].ToString();
+                    case 2: // OPD
+                        tb_nro_tal_opd.Text = tabla.Rows[0]["va_nro_tal"].ToString();
+                        tb_nom_tal_opd.Text = tabla.Rows[0]["va_nom_tal"].ToString();
                         break;
                     case 3: // NTV
                         tb_nro_tal_nvt.Text = tabla.Rows[0]["va_nro_tal"].ToString();
@@ -837,7 +795,7 @@ namespace CRS_PRE.CMR
             string msg_val = "";
             DialogResult msg_res;
             int cam_bod = 0, cam_lis = 0, cam_fpg = 0, cam_del = 0,
-                des_srv = 0, pro_rep = 0, imp_av1 = 0, imp_av2 = 0;
+                img_pro = 0, imp_av1 = 0, imp_av2 = 0;
            
 
 
@@ -851,11 +809,7 @@ namespace CRS_PRE.CMR
             msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Crea Plantilla de venta", MessageBoxButtons.OKCancel);
             if(msg_res== DialogResult.OK)
             {
-                string mon_vta = "";
-                if (cb_mon_vta.SelectedIndex == 0)
-                    mon_vta = "B";
-                else
-                    mon_vta = "U";
+               
 
                 string variable =  ch_cam_bod.Checked.ToString() ;
                 if (ch_cam_bod.Checked == true)
@@ -866,10 +820,9 @@ namespace CRS_PRE.CMR
                     cam_del = 1;
                 if (ch_cam_fpg.Checked == true)
                     cam_fpg = 1;
-                if (ch_des_srv.Checked == true)
-                    des_srv = 1;
-                if (ch_pro_rep.Checked == true)
-                    pro_rep = 1;
+
+                if (ch_img_pro.Checked == true)
+                    img_pro = 1;
                 if (ch_imp_av1.Checked == true)
                     imp_av1 = 1;
                 if (ch_imp_av2.Checked == true)
@@ -877,15 +830,16 @@ namespace CRS_PRE.CMR
 
 
                 o_res004.Fe_crea(tb_cod_plv.Text, tb_nom_plv.Text, tb_des_plv.Text, tb_cod_bod.Text,cam_bod.ToString(), tb_cod_per.Text,
-                    "0", "0", tb_cod_lis.Text,cam_lis.ToString(), mon_vta, cb_cam_mon.SelectedIndex.ToString(), tb_cod_ven.Text, cb_cam_ven.SelectedIndex.ToString(),
+                    "0", "0", tb_cod_lis.Text,cam_lis.ToString(), tb_cod_ven.Text, cb_cam_ven.SelectedIndex.ToString(),
                     tb_cod_del.Text, cam_del.ToString(), tb_dia_ret.Text, cb_for_pag.SelectedIndex.ToString(),cam_fpg.ToString(),
-                    "0", "2", "0", "0", cb_bus_pro.SelectedIndex.ToString(),des_srv.ToString(), pro_rep.ToString(),
-                    "VRF", tb_nro_tal_fac.Text, "VRS", tb_nro_tal_nvt.Text, "PED", tb_nro_tal_ped.Text, "COT", tb_nro_tal_cot.Text, "", "0", "", "0",
-                    tb_imp_fac.Text, tb_imp_nvt.Text, tb_imp_ped.Text, tb_imp_cot.Text, "", "",imp_av1.ToString(), tb_imp_av1.Text,
+                    "0", "2", "0", "0", cb_bus_pro.SelectedIndex.ToString(), img_pro.ToString(),
+                    tb_cod_doc_fac.Text, tb_nro_tal_fac.Text, tb_cod_doc_nvt.Text, tb_nro_tal_nvt.Text, tb_cod_doc_opd.Text, tb_nro_tal_opd.Text,
+                    tb_cod_doc_con.Text, tb_nro_tal_con.Text, "", "0", "", "0",
+                    tb_imp_fac.Text, tb_imp_nvt.Text, tb_imp_opd.Text, tb_imp_con.Text, "", "",imp_av1.ToString(), tb_imp_av1.Text,
                     imp_av2.ToString(), tb_imp_av2.Text, "2");
 
                 MessageBox.Show("Los datos se grabaron satisfactoriamente", "Crea Plantilla de venta", MessageBoxButtons.OK);
-
+                frm_pad.Fe_act_frm(int.Parse(tb_cod_plv.Text));
                 Fi_lim_pia();
             
             }
@@ -900,19 +854,20 @@ namespace CRS_PRE.CMR
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_imp_cot.Text= frm.dg_res_ult.Rows[frm.dg_res_ult.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                tb_imp_con.Text= frm.dg_res_ult.Rows[frm.dg_res_ult.CurrentCell.RowIndex].Cells[0].Value.ToString();
             }
         }
 
-        private void bt_bus_imp_ped_Click(object sender, EventArgs e)
+        private void bt_bus_imp_opd_Click(object sender, EventArgs e)
         {
             ads000_12 frm = new ads000_12();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_imp_ped.Text = frm.dg_res_ult.Rows[frm.dg_res_ult.CurrentCell.RowIndex].Cells[0].Value.ToString();
+                tb_imp_opd.Text = frm.dg_res_ult.Rows[frm.dg_res_ult.CurrentCell.RowIndex].Cells[0].Value.ToString();
             }
         }
+
 
         private void bt_bus_imp_nvt_Click(object sender, EventArgs e)
         {
@@ -966,7 +921,6 @@ namespace CRS_PRE.CMR
                 bt_bus_imp_av1.Enabled = false;
                 tb_imp_av1.Enabled = false ;
             }
-            
         }
 
         private void ch_imp_av2_CheckedChanged(object sender, EventArgs e)

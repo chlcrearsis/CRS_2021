@@ -16,6 +16,7 @@ namespace CRS_PRE
 
         //Instancias
         ads010 o_ads010 = new ads010();
+      
 
         DataTable tabla = new DataTable();
 

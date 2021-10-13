@@ -56,6 +56,9 @@ namespace CRS_PRE
             ts_bas_dat.Text = o_ads013.va_nom_bda;
             ts_ide_app.Text = this.Name;
             ts_rut_app.Text = this.Text;
+
+            m_mod_ulo = cl_glo_bal.fg_ver_mnu(ts_usr_usr.Text, Name, m_mod_ulo);
+
         }
 
         private void Mn_doc_ume_Click(object sender, EventArgs e)
@@ -74,9 +77,15 @@ namespace CRS_PRE
             {
                 ts_ide_app.Text = this.Name;
                 ts_rut_app.Text = this.Text;
+
+                // Verifica permisos/restricciones del Menú
+                m_mod_ulo = cl_glo_bal.fg_ver_mnu(ts_usr_usr.Text, Name, m_mod_ulo);
             }
             else
             {
+                // Verifica permisos/restricciones del Menú
+                m_frm_hja = cl_glo_bal.fg_ver_mnu(ts_usr_usr.Text, this.ActiveMdiChild.Name, m_frm_hja);
+
                 // Ide de la app
                 ts_ide_app.Text = this.ActiveMdiChild.Name;
 
@@ -92,7 +101,6 @@ namespace CRS_PRE
                    i = i + 1;
                    ruta[i] = frm.frm_pad.Text;
                    frm = frm.frm_pad;
-
                   
                     dynamic aa = frm.frm_pad;
                 } while (frm.frm_pad != null);
@@ -281,6 +289,77 @@ namespace CRS_PRE
         {
             o_frm = new ctb007_01();
             cl_glo_frm.abrir(this, o_frm);
-        }        
+        }
+
+        private void mn_act_eco_Click(object sender, EventArgs e)
+        {
+            o_frm = new cmr016_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_suc_urs_Click(object sender, EventArgs e)
+        {
+            o_frm = new cmr003_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_cob_rad_Click(object sender, EventArgs e)
+        {
+            o_frm = new cmr014_01c();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_ley_end_Click(object sender, EventArgs e)
+        {
+            o_frm = new ctb006_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void st_bar_pie_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            o_frm = new ads000_06();
+            Form frm_pad = new Form();
+
+            //verifica que exista un menu valido            
+            if (m_mod_ulo.Visible == true)
+            {
+                if (m_mod_ulo.Items.Count != 0)
+                    frm_pad = this;
+            }
+            else
+            {
+                if (m_frm_hja.Items.Count != 0)
+                    frm_pad = this.ActiveMdiChild;
+            }
+            
+            if (frm_pad != null)
+                cl_glo_frm.abrir(frm_pad, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+            else
+                return;
+
+            if (o_frm.DialogResult == DialogResult.OK)
+                cl_glo_bal.fg_per_mnu(o_frm.tb_usr_ges.Text, frm_pad);
+        }
+
+
+        /// <summary>
+        ///   -> Verifica menu al Activarseel formulario
+        /// </summary>
+        /// <param name="ide_usr"></param>
+        /// <param name="frm_act"></param>
+        public void fu_ver_mnu(string ide_usr, Form frm_act)
+        {
+            if (m_mod_ulo.Visible == true)
+            {
+                //verifica Restricciones del menu de la aplicacion para el usuario
+                m_mod_ulo = cl_glo_bal.fg_ver_mnu(ide_usr, frm_act.Name, m_mod_ulo);
+            }
+            else
+            {
+                //verifica Restricciones del menu de la aplicacion para el usuario
+                m_frm_hja = cl_glo_bal.fg_ver_mnu(ide_usr, frm_act.Name, m_frm_hja);
+            }
+        }
+
     }
 }

@@ -35,12 +35,16 @@ INSERT INTO ads004 VALUES('AJI',0,'Talonario anual',1,0,0,0,'Elaborado por','Rev
 INSERT INTO ads004 VALUES('AJE',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('AJC',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('TRA',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('OPD',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 
 --* Modulo Comercializacion
 INSERT INTO ads004 VALUES('COT',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('PED',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('VTS',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('VTF',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('VRS',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('VRF',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('CON',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 
 --* Modulo Exigibles
 INSERT INTO ads004 VALUES('CXC',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')

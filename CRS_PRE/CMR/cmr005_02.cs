@@ -709,8 +709,8 @@ namespace CRS_PRE.CMR
         }
         private void Tb_cod_pro_Validated(object sender, EventArgs e)
         {
-            //if(tb_cod_pro.Text.Trim()=="")
-            //    Fi_obt_pro();
+            if (tb_cod_pro.Text.Trim() == "")
+                Fi_obt_pro();
         }
         private void Fi_obt_pro()
         {
@@ -1567,10 +1567,10 @@ namespace CRS_PRE.CMR
                 // Obtiene Vendedor
                 tb_cod_ven.Text = tab_cmr004.Rows[0]["va_cod_ven"].ToString();
                 // Obtiene nombre de Vendedor
-                tab_cmr014 = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+                tab_cmr014 = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
 
                 if (tab_cmr001.Rows.Count > 0)
-                    lb_nom_ven.Text = tab_cmr014.Rows[0]["va_nom_ven"].ToString();
+                    lb_nom_ven.Text = tab_cmr014.Rows[0]["va_nom_bre"].ToString();
 
                 // Verifica si permite cambiar vendedor
                 if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "0") // No cambia
@@ -2017,15 +2017,15 @@ namespace CRS_PRE.CMR
             }
 
             // Obtiene ide y nombre documento
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 lb_nom_ven.Text = "";
             }
             else
             {
-                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_nom_ven.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_nom_ven.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
         }
 

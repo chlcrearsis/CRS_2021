@@ -21,6 +21,7 @@ namespace CRS_PRE
         //Instancias
         ads003 o_ads003 = new ads003();
         ads004 o_ads004 = new ads004();
+        ctb007 o_ctb007 = new ctb007();
 
         DataTable tabla = new DataTable();
 
@@ -81,7 +82,44 @@ namespace CRS_PRE
             return "";
 
         }
-             
+
+
+
+
+
+
+        private void Bt_bus_dos_Click(object sender, EventArgs e)
+        {
+            Fi_abr_bus_dos();
+        }
+       
+        private void Tb_nro_aut_KeyDown(object sender, KeyEventArgs e)
+        {
+            //al presionar tecla para ARRIBA
+            if (e.KeyData == Keys.Up)
+            {
+                // Abre la ventana Busca Documento
+                Fi_abr_bus_dos();
+            }
+        }
+        void Fi_abr_bus_dos()
+        {
+            ctb007_01 frm = new ctb007_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                tb_nro_aut.Text = frm.tb_sel_ecc.Text;
+               
+            }
+        }
+      
+
+
+
+
+
+
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -118,5 +156,8 @@ namespace CRS_PRE
         {
             cl_glo_bal.NotNumeric(e);
         }
+
+
+
     }
 }

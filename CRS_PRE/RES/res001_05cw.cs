@@ -34,6 +34,7 @@ namespace CRS_PRE
 
         string va_nom_emp="";
         string va_dir_emp = "";
+        string va_nit_emp = "";
         string va_tel_emp = "";
         string va_cla_wif = "";
 
@@ -71,9 +72,14 @@ namespace CRS_PRE
 
             //obtener direccion de la empresa
             tab_ads013 = new DataTable();
+            tab_ads013 = o_ads013.Fe_obt_glo(1, 6);
+            va_nit_emp = tab_ads013.Rows[0]["va_glo_dec"].ToString();
+
+            //obtener NIT de la empresa
+            tab_ads013 = new DataTable();
             tab_ads013 = o_ads013.Fe_obt_glo(1, 10);
             va_dir_emp = tab_ads013.Rows[0]["va_glo_car"].ToString();
-            
+
             //obtener Telefono de la empresa
             tab_ads013 = new DataTable();
             tab_ads013 = o_ads013.Fe_obt_glo(1, 8);
@@ -117,6 +123,7 @@ namespace CRS_PRE
             rd_con_vta.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
             rd_con_vta.SetParameterValue("vc_nom_emp", va_nom_emp);
             rd_con_vta.SetParameterValue("vc_dir_emp", va_dir_emp);
+            rd_con_vta.SetParameterValue("vc_nit_emp", va_nit_emp);
             rd_con_vta.SetParameterValue("vc_tel_emp", va_tel_emp);
             rd_con_vta.SetParameterValue("vc_cla_wif", va_cla_wif);
 

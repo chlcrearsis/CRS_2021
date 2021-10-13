@@ -62,8 +62,12 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.gb_ser_lot = new System.Windows.Forms.GroupBox();
+            this.ch_ges_ser = new System.Windows.Forms.CheckBox();
+            this.ch_ges_lot = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
+            this.gb_ser_lot.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -443,9 +447,9 @@
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 229);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 259);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(401, 35);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(401, 45);
             this.gb_ctr_btn.TabIndex = 20;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -455,9 +459,9 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(310, 9);
+            this.bt_can_cel.Location = new System.Drawing.Point(310, 12);
             this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 26);
             this.bt_can_cel.TabIndex = 20;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
@@ -468,13 +472,44 @@
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(229, 9);
+            this.bt_ace_pta.Location = new System.Drawing.Point(229, 12);
             this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 26);
             this.bt_ace_pta.TabIndex = 10;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
+            // 
+            // gb_ser_lot
+            // 
+            this.gb_ser_lot.Controls.Add(this.ch_ges_lot);
+            this.gb_ser_lot.Controls.Add(this.ch_ges_ser);
+            this.gb_ser_lot.Enabled = false;
+            this.gb_ser_lot.Location = new System.Drawing.Point(4, 229);
+            this.gb_ser_lot.Name = "gb_ser_lot";
+            this.gb_ser_lot.Size = new System.Drawing.Size(401, 35);
+            this.gb_ser_lot.TabIndex = 15;
+            this.gb_ser_lot.TabStop = false;
+            // 
+            // ch_ges_ser
+            // 
+            this.ch_ges_ser.AutoSize = true;
+            this.ch_ges_ser.Location = new System.Drawing.Point(32, 11);
+            this.ch_ges_ser.Name = "ch_ges_ser";
+            this.ch_ges_ser.Size = new System.Drawing.Size(111, 17);
+            this.ch_ges_ser.TabIndex = 150;
+            this.ch_ges_ser.Text = "Maneja Nro. Serie";
+            this.ch_ges_ser.UseVisualStyleBackColor = true;
+            // 
+            // ch_ges_lot
+            // 
+            this.ch_ges_lot.AutoSize = true;
+            this.ch_ges_lot.Location = new System.Drawing.Point(275, 11);
+            this.ch_ges_lot.Name = "ch_ges_lot";
+            this.ch_ges_lot.Size = new System.Drawing.Size(90, 17);
+            this.ch_ges_lot.TabIndex = 160;
+            this.ch_ges_lot.Text = "Maneja Lotes";
+            this.ch_ges_lot.UseVisualStyleBackColor = true;
             // 
             // inv004_02
             // 
@@ -482,9 +517,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(411, 268);
+            this.ClientSize = new System.Drawing.Size(411, 306);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gb_ser_lot);
             this.Controls.Add(this.gb_ctr_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -496,6 +532,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gb_ctr_btn.ResumeLayout(false);
+            this.gb_ser_lot.ResumeLayout(false);
+            this.gb_ser_lot.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -535,5 +573,8 @@
         private System.Windows.Forms.MaskedTextBox tb_nro_dec;
         private System.Windows.Forms.MaskedTextBox tb_eqv_vta;
         private System.Windows.Forms.MaskedTextBox tb_eqv_cmp;
+        public System.Windows.Forms.GroupBox gb_ser_lot;
+        private System.Windows.Forms.CheckBox ch_ges_lot;
+        private System.Windows.Forms.CheckBox ch_ges_ser;
     }
 }

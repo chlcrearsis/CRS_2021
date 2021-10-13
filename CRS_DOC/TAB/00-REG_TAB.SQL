@@ -12,11 +12,18 @@ va_cod_gru		TINYINT			NOT NULL,		--** Codigo de Grupo de persona (2 NUMEROS)
 
 --** Atributos     
 va_nom_gru		VARCHAR(50)	    NOT NULL,		--** Nombre de Grupo de persona
-va_est_ado      CHAR(01)        NOT NULL,       --** Estado
+va_est_ado      CHAR(01)        NOT NULL,       --** Estadoo
 
 CONSTRAINT pk1_adp001 PRIMARY KEY(va_cod_gru)
 )
 GO
+
+
+--** INSERTA GRUPO DE PERSONA POR DEFECTO
+INSERT INTO adp001 VALUES (1, 'Clientes', 'H')
+INSERT INTO adp001 VALUES (20, 'Empleados', 'H')
+INSERT INTO adp001 VALUES (30, 'Proveedores', 'H')
+INSERT INTO adp001 VALUES (40, 'Socios', 'H')
   
 /*--**********************************************
 ARCHIVO:	adp002.sql	
@@ -27,30 +34,38 @@ FECHA:		03-01-2018
 	 
 CREATE TABLE adp002 
 (
---** Llave Primaria
-va_cod_per		INT				NOT NULL	DEFAULT(0),			--** Codigo Persona (2 de Grup. Per y 5 de Persona)
+	--** Llave Primaria
+	va_cod_per  INT			NOT NULL DEFAULT(0),	--** Codigo Persona (2 de Grup. Per y 5 de Persona)
 
---** Llave Secundaria
-va_cod_gru		TINYINT				NOT NULL	DEFAULT(0),		--** Cod Grupo Persona
+	--** Llave Secundaria
+	va_cod_gru	TINYINT		NOT NULL DEFAULT(0),	--** Cod Grupo Persona
 																
---** Atributos
-va_raz_soc		VARCHAR(120)	NOT NULL	DEFAULT(''),		--** Razon social de la persona
-va_nom_com		VARCHAR(100)	NOT NULL	DEFAULT(''),		--** Nombre comercial de la persona
-	      	  
-va_nit_per		BIGINT,											--** Nit de la persona
-va_car_net		BIGINT,											--** Carnet de la persona
-va_dir_per		VARCHAR(80)	    NOT NULL	DEFAULT(''),		--** Direccion de la persona
-va_tel_per		VARCHAR(15)				    DEFAULT(''),		--// Telefono de la persona
-va_cel_per		VARCHAR(15)				    DEFAULT(''),		--// Celular de la persona
-va_ema_per		VARCHAR(30)				    DEFAULT(''),		--// Email de la persona
-va_ubi_gps		GEOGRAPHY								,		--// uBICACION GEOGRAFICA DEL CLIENTE
--- Llaves FOraneas
-va_cod_lpr		INT							DEFAULT(0),			--// Codigo de lista de precio(8 numeros)
-va_cod_ven		SMALLINT					DEFAULT(0),			--// Codigo de Vendedor asociado(4 numeros)
+	--** Atributos
+	va_tip_per  CHAR(01)    NOT NULL DEFAULT(''),   --** Tipo de Cliente (P=Particular; E=Empresa)
+	va_nom_bre  VARCHAR(30) NOT NULL DEFAULT(''),   --** Nombre
+	va_ape_pat  VARCHAR(20) NOT NULL DEFAULT(''),   --** Apellido Paterno
+	va_ape_mat  VARCHAR(20) NOT NULL DEFAULT(''),   --** Apellido Materno
+	va_raz_soc	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Razon Social
+	va_nom_fac	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Nombre a Facturar
+	va_ruc_nit	BIGINT      NOT NULL DEFAULT(0),	--** RUC/NIT
+	va_sex_per  CHAR(01)    NOT NULL DEFAULT(''),   --** Sexo (H=Hombre; M=Mujer)   
+	va_tip_doc  INT         NOT NULL DEFAULT(0),    --** Tipo Documento	
+	va_nro_doc	BIGINT      NOT NULL DEFAULT(0),	--** Carnet de Identidad	
+	va_tel_per	VARCHAR(15)	NOT NULL DEFAULT(''),	--** Telefono Personal
+	va_cel_ula	VARCHAR(15)	NOT NULL DEFAULT(''),	--** Telefono Celular
+	va_tel_fij	VARCHAR(15)	NOT NULL DEFAULT(''),	--** Telefono Fijo
+	va_dir_pri	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Direccion Principal
+	va_dir_ent	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Direccion de Entrega
+	va_ema_per	VARCHAR(30)	NOT NULL DEFAULT(''),	--** Email
+	va_ubi_gps	GEOGRAPHY,		                    --** Ubicación Geografica
+
+	-- Llaves FOraneas
+	va_cod_lpr	INT					 DEFAULT(0),	--** Codigo de lista de precio(8 numeros)
+	va_cod_ven	SMALLINT			 DEFAULT(0),	--** Codigo de Vendedor asociado(4 numeros)
 	   	    	  	   		
-va_est_ado		CHAR(1)			NOT NULL	DEFAULT(''),		--** Estado(H=Habilitado; N=Deshabilitado)
+	va_est_ado	CHAR(1)		NOT NULL DEFAULT(''),	--** Estado(H=Habilitado; N=Deshabilitado)
      
-CONSTRAINT pk1_adp002 PRIMARY KEY(va_cod_per,va_cod_gru)
+CONSTRAINT pk1_adp002 PRIMARY KEY(va_cod_per, va_cod_gru)
   
 )
 GO
@@ -64,17 +79,28 @@ FECHA:		25-08-2021
 
 CREATE TABLE adp003 
 (
---** Llave Primaria
-va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de atributo
+	--** Llave Primaria
+	va_ide_tip  INT		    NOT NULL DEFAULT(0),	--** ID. tipo de atributo
 
---** Atributos     
-va_nom_tip      VARCHAR(30)     NOT NULL,       --** Nombre
-va_atr_def      INT						,       --** ID. atributo por defecto (adp004)
-va_est_ado      CHAR(01)				        --** Estado
+	--** Atributos     
+	va_nom_tip  VARCHAR(30) NOT NULL DEFAULT(''),   --** Nombre
+	va_atr_def  INT			NOT NULL DEFAULT(0),    --** ID. atributo por defecto (adp004)
+	va_est_ado  CHAR(01)    NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp003 PRIMARY KEY(va_ide_tip)
 )
 GO
+
+
+--** Inserta los tipo de atributos iniciales
+INSERT INTO adp003 VALUES (1, 'Ciudad', 1, 'H')
+INSERT INTO adp003 VALUES (2, 'Zona', 1, 'H')
+INSERT INTO adp003 VALUES (3, 'Sector', 2, 'H')
+INSERT INTO adp003 VALUES (4, 'Canal', 99, 'H')
+INSERT INTO adp003 VALUES (5, 'Calificación', 1, 'H')
+INSERT INTO adp003 VALUES (6, 'Profesión', 99, 'H')
+INSERT INTO adp003 VALUES (12, 'Distribuidor', 1, 'H')
+INSERT INTO adp003 VALUES (13, 'Despacho', 1, 'H')
   
 /*--**********************************************
 ARCHIVO:	adp004.sql	
@@ -96,7 +122,94 @@ va_est_ado      CHAR(01)				        --** Estado
 CONSTRAINT pk1_adp004 PRIMARY KEY(va_ide_tip, va_ide_atr)
 )
 GO
-  
+
+--** Inserta Atributo : Ciudad
+INSERT INTO adp004 VALUES (1, 1, 'Santa Cruz', 'H')
+INSERT INTO adp004 VALUES (1, 2, 'Cochabamba', 'H')
+INSERT INTO adp004 VALUES (1, 3, 'La Paz', 'H')
+INSERT INTO adp004 VALUES (1, 4, 'Tarija', 'H')
+INSERT INTO adp004 VALUES (1, 5, 'Potosi', 'H')
+INSERT INTO adp004 VALUES (1, 6, 'Pando', 'H')
+INSERT INTO adp004 VALUES (1, 7, 'Beni', 'H')
+INSERT INTO adp004 VALUES (1, 8, 'Oruro', 'H')
+INSERT INTO adp004 VALUES (1, 9, 'Sucre', 'H')
+
+--** Inserta Atributo : Zona
+INSERT INTO adp004 VALUES (2, 1, 'Zona Central', 'H')
+INSERT INTO adp004 VALUES (2, 2, 'Zona Norte', 'H')
+INSERT INTO adp004 VALUES (2, 3, 'Zona Sur', 'H')
+INSERT INTO adp004 VALUES (2, 4, 'Zona Este', 'H')
+INSERT INTO adp004 VALUES (2, 5, 'Zona Oeste', 'H')
+INSERT INTO adp004 VALUES (2, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Sector
+INSERT INTO adp004 VALUES (3, 1, 'Agricultura', 'H')
+INSERT INTO adp004 VALUES (3, 2, 'Comercial', 'H')
+INSERT INTO adp004 VALUES (3, 3, 'Industrial', 'H')
+INSERT INTO adp004 VALUES (3, 4, 'Ganadero', 'H')
+INSERT INTO adp004 VALUES (3, 5, 'Servicios', 'H')
+INSERT INTO adp004 VALUES (3, 6, 'Dependientes', 'H')
+INSERT INTO adp004 VALUES (3, 7, 'Socios', 'H')
+INSERT INTO adp004 VALUES (3, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Canal
+INSERT INTO adp004 VALUES (4, 1, 'Mayorista', 'H')
+INSERT INTO adp004 VALUES (4, 2, 'Agencias', 'H')
+INSERT INTO adp004 VALUES (4, 3, 'Mercados', 'H')
+INSERT INTO adp004 VALUES (4, 4, 'Supermercado', 'H')
+INSERT INTO adp004 VALUES (4, 5, 'Tienda de Barrio', 'H')
+INSERT INTO adp004 VALUES (4, 6, 'Fabrica', 'H')
+INSERT INTO adp004 VALUES (4, 7, 'Restaurant', 'H')
+INSERT INTO adp004 VALUES (4, 8, 'Hotel', 'H')
+INSERT INTO adp004 VALUES (4, 9, 'Frial', 'H')
+INSERT INTO adp004 VALUES (4, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Calificación
+INSERT INTO adp004 VALUES (5, 1, 'Normal', 'H')
+INSERT INTO adp004 VALUES (5, 2, 'Problema', 'H')
+INSERT INTO adp004 VALUES (5, 3, 'Riesgo', 'H')
+INSERT INTO adp004 VALUES (5, 4, 'Legal', 'H')
+INSERT INTO adp004 VALUES (5, 5, 'Perdido', 'H')
+INSERT INTO adp004 VALUES (5, 6, 'Eventual', 'H')
+INSERT INTO adp004 VALUES (5, 7, 'Inactivo', 'H')
+INSERT INTO adp004 VALUES (5, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Profesión
+INSERT INTO adp004 VALUES (6, 1, 'Licenciado', 'H')
+INSERT INTO adp004 VALUES (6, 2, 'Medico', 'H')
+INSERT INTO adp004 VALUES (6, 3, 'Ingeniero', 'H')
+INSERT INTO adp004 VALUES (6, 4, 'Abogado', 'H')
+INSERT INTO adp004 VALUES (6, 5, 'Obrero', 'H')
+INSERT INTO adp004 VALUES (6, 6, 'Comerciante', 'H')
+INSERT INTO adp004 VALUES (6, 7, 'Chofer', 'H')
+INSERT INTO adp004 VALUES (6, 8, 'Secretario', 'H')
+INSERT INTO adp004 VALUES (6, 9, 'Empleado', 'H')
+INSERT INTO adp004 VALUES (6, 10, 'Militar', 'H')
+INSERT INTO adp004 VALUES (6, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Vendedor
+INSERT INTO adp004 VALUES (10, 1, 'Vendedor 1', 'H')
+INSERT INTO adp004 VALUES (10, 2, 'Vendedor 2', 'H')
+INSERT INTO adp004 VALUES (10, 3, 'Vendedor 3', 'H')
+INSERT INTO adp004 VALUES (10, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Cobrador
+INSERT INTO adp004 VALUES (11, 1, 'Cobrador 1', 'H')
+INSERT INTO adp004 VALUES (11, 2, 'Cobrador 2', 'H')
+INSERT INTO adp004 VALUES (11, 3, 'Cobrador 3', 'H')
+INSERT INTO adp004 VALUES (11, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Distribuidor
+INSERT INTO adp004 VALUES (12, 1, 'Distribuidor 1', 'H')
+INSERT INTO adp004 VALUES (12, 2, 'Distribuidor 2', 'H')
+INSERT INTO adp004 VALUES (12, 3, 'Distribuidor 3', 'H')
+INSERT INTO adp004 VALUES (12, 99, 'N/A', 'H')
+
+--** Inserta Atributos : Despacho
+INSERT INTO adp004 VALUES (13, 1, 'Despacho 1', 'H')
+INSERT INTO adp004 VALUES (13, 2, 'Despacho 2', 'H')
+INSERT INTO adp004 VALUES (13, 3, 'Despacho 3', 'H')
+INSERT INTO adp004 VALUES (13, 99, 'N/A', 'H')  
 /*--**********************************************
 ARCHIVO:	adp005.sql	
 TABLA:		Tabla de "Atributos por persona"
@@ -147,7 +260,7 @@ GO
   
 /*--**********************************************
 ARCHIVO:	adp007.sql	
-TABLA:		Tabla de "imagenes por persona"
+TABLA:		Tabla de "Rutas"
 AUTOR:		CREARSIS 3.0.0 (CHL)
 FECHA:		25-08-2021
 */--**********************************************
@@ -159,20 +272,22 @@ va_ide_rut		INT				NOT NULL	DEFAULT(0),			--** ID. Ruta
 
 --** Atributos
 va_nom_rut		VARCHAR(30)		NOT NULL	DEFAULT(''),		--** Nombre de la ruta
-va_nom_cor		VARCHAR(30)		NOT NULL	DEFAULT(''),		--** Nombre corto
+va_nom_cor		VARCHAR(15)		NOT NULL	DEFAULT(''),		--** Nombre corto
 va_est_ado		CHAR(01)		NOT NULL	DEFAULT('')		--** Estado (H=habilitado; N= deshabilitado)
 
 CONSTRAINT pk1_adp007 PRIMARY KEY(va_ide_rut)
 )
 GO
 
-INSERT INTO adp007 VALUES (1,'LUNES','LUN','H')
-INSERT INTO adp007 VALUES (2,'MARTES','MAR','H')
-INSERT INTO adp007 VALUES (3,'MIERCOLES','MIE','H')
-INSERT INTO adp007 VALUES (4,'JUEVES','JUE','H')
-INSERT INTO adp007 VALUES (5,'VIERNES','VIE','H')
-INSERT INTO adp007 VALUES (6,'SABADO','SAB','H')
-INSERT INTO adp007 VALUES (7,'DOMINGO','DOM','H')
+
+--** Inserta Registro por Defecto
+INSERT INTO adp007 VALUES (1, 'Lunes','LUN','H')
+INSERT INTO adp007 VALUES (2, 'Martes','MAR','H')
+INSERT INTO adp007 VALUES (3, 'Miercoles','MIE','H')
+INSERT INTO adp007 VALUES (4, 'Jueves','JUE','H')
+INSERT INTO adp007 VALUES (5, 'Viernes','VIE','H')
+INSERT INTO adp007 VALUES (6, 'Sábado','SAB','H')
+INSERT INTO adp007 VALUES (7, 'Domingo','DOM','H')
 GO
 
 
@@ -223,6 +338,34 @@ va_obs_con      VARCHAR(160)			,       --** Observacion del contacto
 CONSTRAINT pk1_adp010 PRIMARY KEY(va_cod_per,va_cod_con)
 )
 GO
+  
+/*--**********************************************
+ARCHIVO:	adp014.sql	
+TABLA:		Tabla de "Tipo de Documento"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		15-09-2021
+*/--**********************************************
+
+CREATE TABLE adp014 
+(
+	--** Llave Primaria
+	va_ide_tip  INT		    NOT NULL DEFAULT(0),	--** ID. Tipo de Documento
+
+	--** Atributos     
+	va_nom_tip  VARCHAR(30) NOT NULL DEFAULT(''),   --** Nombre
+	va_est_ado  CHAR(01)    NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
+
+CONSTRAINT pk1_adp014 PRIMARY KEY(va_ide_tip)
+)
+GO
+
+
+--** Inserta los tipo de atributos iniciales
+INSERT INTO adp014 VALUES (1, 'Carnet de Identidad', 'H')
+INSERT INTO adp014 VALUES (2, 'Licencia de Conducir', 'H')
+INSERT INTO adp014 VALUES (3, 'Libreta Servicio Militar', 'H')
+INSERT INTO adp014 VALUES (4, 'Pasaporte', 'H')
+
   
 /*########################################################
 ARCHIVO:	ads001.sql
@@ -292,12 +435,16 @@ INSERT INTO ads003 VALUES(2,'AJI','Ajuste de ingreso','','H')
 INSERT INTO ads003 VALUES(2,'AJE','Ajuste de salida','','H')
 INSERT INTO ads003 VALUES(2,'AJC','Ajuste al costo','','H')
 INSERT INTO ads003 VALUES(2,'TRA','Traspaso entre bodegas','','H')
+INSERT INTO ads003 VALUES(2,'OPD','Orden de Producción','','H')
 
 --* Modulo Comercializacion
 INSERT INTO ads003 VALUES(3,'COT','Cotizacion','','H')
 INSERT INTO ads003 VALUES(3,'PED','Pedido','','H')
 INSERT INTO ads003 VALUES(3,'VTS','Nota de venta','','H')
 INSERT INTO ads003 VALUES(3,'VTF','Factura','','H')
+INSERT INTO ads003 VALUES(3,'VRS','Nota de venta Restaurant','','H')
+INSERT INTO ads003 VALUES(3,'VRF','Factura Restaurant','','H')
+INSERT INTO ads003 VALUES(3,'CON','Nota de Consumo','','H')
 
 --* Modulo Exigibles
 INSERT INTO ads003 VALUES(4,'CXC','Ctas por Cobrar','','H')
@@ -348,12 +495,16 @@ INSERT INTO ads004 VALUES('AJI',0,'Talonario anual',1,0,0,0,'Elaborado por','Rev
 INSERT INTO ads004 VALUES('AJE',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('AJC',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('TRA',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('OPD',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 
 --* Modulo Comercializacion
 INSERT INTO ads004 VALUES('COT',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('PED',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('VTS',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 INSERT INTO ads004 VALUES('VTF',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('VRS',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('VRF',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('CON',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
 
 --* Modulo Exigibles
 INSERT INTO ads004 VALUES('CXC',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
@@ -677,6 +828,28 @@ va_val_buf		DECIMAL(8,6)				NOT NULL	--Valor Bs / Ufv
 CONSTRAINT pk1_ads023 PRIMARY KEY(va_fec_buf)
 )  
 /*--**********************************************
+ARCHIVO:	ads024.sql	
+TABLA:		Tabla de "Bitacora de Inicio de Sesion"
+AUTOR:		CREARSIS 3.0.0 (JEJR)
+FECHA:		26-08-2021
+*/--**********************************************
+
+CREATE TABLE ads024 
+(
+--** Llave Primaria
+va_ide_uni      CHAR(32),                   --** Identificador Unico
+
+--** Atributos     
+va_ide_usr 		VARCHAR(15) 	NOT NULL,	--** Identificador Usuario
+va_fec_reg		DATETIME,					--** Fecha Actual Sin hh:MM:ss
+va_nom_maq      VARCHAR(30)     NOT NULL,   --** Nombre de la Maquina
+va_fec_ini      DATETIME,                   --** Fecha y Hora de Inicio
+va_fec_fin      DATETIME,                   --** Fecha y Hora de Cierre
+
+CONSTRAINT pk1_ads024 PRIMARY KEY(va_ide_uni)
+)
+GO  
+/*--**********************************************
 ARCHIVO:	cmr001.sql
 TABLA:		Tabla Lista de Precios
 AUTOR:		CHL-CREARSIS-ALDA
@@ -723,10 +896,10 @@ FECHA:		06/11/2019
 
 CREATE TABLE cmr003
 (
-va_suc_urs 		INT			 	NOT NULL,	--Identificador sucursal
+va_ide_suc 		INT			 	NOT NULL,	--ID. sucursal
 va_nom_suc		VARCHAR(30)		NOT NULL,	--Nombre sucursal
 va_des_suc		VARCHAR(90)		NOT NULL,	--Descripcion sucursal
-va_dto_suc		INT				NOT NULL,	--Departamento sucursal
+va_dto_suc		VARCHAR(30)		NOT NULL,	--Departamento sucursal
 va_ciu_suc		VARCHAR(30)		NOT NULL,	--Ciudad sucursal
 va_dir_suc		VARCHAR(90)		NOT NULL,	--Direccion sucursal
 va_enc_suc		VARCHAR(90)				,	--Encargdo sucursal
@@ -736,11 +909,12 @@ va_cla_wif		VARCHAR(15)				,	--Clave wifi
 va_ubi_suc		GEOGRAPHY				,	--Ubicacion
 va_est_ado		CHAR(01)		NOT NULL,	--Estado (H=habilitada; N=deshabilitada)
 
-CONSTRAINT pk1_cmr003 PRIMARY KEY(va_suc_urs)
+CONSTRAINT pk1_cmr003 PRIMARY KEY(va_ide_suc)
 )
 
-go
-  
+GO
+
+INSERT INTO cmr003 VALUES(1,'CENTRAL', '','SANTA CRUZ', 'SANTA CRUZ','Av. San Aurelio Nº 392','','3358694','72195985','123456789','null','H')  
 /*--**********************************************
 ARCHIVO:	cmr004.sql
 TABLA:		Tabla de Plantilla de Venta(leo)
@@ -948,6 +1122,38 @@ CONSTRAINT pk1_cmr006 PRIMARY KEY(va_doc_vta,va_nro_tal,va_nro_vta,va_itm_vta)
 )
 
   
+/*--**********************************************
+ARCHIVO:	cmr006tmp.sql
+TABLA:		Tabla detalle de VENTA RESTAURANT temporal
+AUTOR:		CREARSIS(chl)
+FECHA:		12-10-2018
+*/--*********************************************
+CREATE TABLE cmr006tmp(
+	--PRIMARY key
+	-- Atributos
+	--Llaves primarias
+	va_cod_usr		VARCHAR(15)		NOT NULL,	--Codigo del usuario
+	va_cod_tmp		DATETIME		NOT NULL,	--Codigo temporal (fecha y hora)
+
+	--Llave Foránea
+	va_nro_itm		INT				not null,	--Numero de item 
+	va_cod_pro		VARCHAR(15)		NOT NULL,	--Codigo Producto
+	va_des_pro		varchar(80)		not null,	--Descripcion del Producto	 
+	va_opc_und		INT						,	--Codigo de la Unidad de Medida
+	
+	va_can_tid		DECIMAL(14,4),				--Cantidad de producto
+	va_pre_uni		DECIMAL(14,4),				--Precio Unitario en la moneda del documento (digitado x usuario)
+	va_pre_tot		DECIMAL(16,2),				--Importe Total en la moneda del documento (va_pre_uni * va_can_tid
+	
+	va_pre_lis		DECIMAL(14,4),				--Precio definido en la lista de precio
+	va_des_cue		DECIMAL(14,4),				--Descuento en moneda del documento
+	va_por_cen		DECIMAL(14,4),				--Porcentaje de descuento
+	
+		
+		
+	CONSTRAINT pk1_cmr006tmp PRIMARY KEY(va_cod_usr,va_cod_tmp,va_nro_itm)
+
+)  
 /*--**********************************************
 ARCHIVO:	cmr007.sql
 TABLA:		Tabla de Encabezado de Pedido
@@ -1196,7 +1402,7 @@ go
   
 /*--**********************************************
 ARCHIVO:	cmr014.sql	
-TABLA:		Tabla de "Vendedor"
+TABLA:		Tabla de "Vendedor/Cobrador"
 AUTOR:		CREARSIS 3.0.0 (CHL)
 FECHA:		15/09/2020
 */--**********************************************
@@ -1204,20 +1410,27 @@ FECHA:		15/09/2020
 CREATE TABLE cmr014 
 (
 --** Llave Primaria
-va_cod_ven		SMALLINT			NOT NULL,		--** Codigo del Vendedor(4 numeros)
+va_ide_tip		INT					NOT NULL,		--** ID. Tipo (1= Vendedor ; 2= Cobrador)
+va_cod_ide		INT					NOT NULL,		--** Codigo identificador(4 numeros)
 
 --** Atributos     
-va_nom_ven		VARCHAR(50)			NOT NULL,		--** Nombre del Vendedor
-va_por_cms		DECIMAL(4,2)		NOT NULL,		--** Porcentaje Comisión
-va_tip_cms		TINYINT				NOT NULL,		--** Tipo comisión (0=Ventas, 1=Cobranzas)
+va_nom_bre		VARCHAR(50)			NOT NULL,		--** Nombre del Vendedor/Cobrador
+va_tel_cel		VARCHAR(15)					,		--** Telefono Celular
+va_ema_ail		VARCHAR(30)					,		--** Email
+va_pro_ced		INT					NOT NULL,		--** Procedencia (1=Empresa ; 2=Externo)
+va_tip_cms		TINYINT				NOT NULL,		--** Tipo comisión (1=General Venta; 2=Familia, 3=Producto)
+va_cms_con		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision general al contado
+va_cms_cre		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision general al credito      
 va_est_ado		CHAR(01)			NOT NULL,		--** Estado del Vendedor
       
 
-CONSTRAINT pk1_cmr014 PRIMARY KEY(va_cod_ven)
+CONSTRAINT pk1_cmr014 PRIMARY KEY(va_ide_tip,va_cod_ide)
 )
 GO
+
+INSERT INTO cmr014 VALUES (1, 1, 'Vendedor 1', '','email@gmail.com',1, 1, 0,0,'H')
      
-       
+   
 /*--**********************************************
 ARCHIVO:	cmr015.sql
 TABLA:		Tabla Deliverys
@@ -1237,6 +1450,43 @@ CONSTRAINT pk1_cmr015 PRIMARY KEY(va_cod_del)
 
 
   
+/*--**********************************************
+ARCHIVO:	cmr016.sql
+TABLA:		Tabla Actividad economica
+AUTOR:		CREARSIS
+FECHA:		12-09-2021
+*/--**********************************************
+
+CREATE TABLE cmr016(
+	va_cod_act		tinyint			NOT NULL,	-- Codigo actividad economica
+	va_nom_act		varchar(200)	NOT NULL,	-- Nombre actividad economica
+	
+	CONSTRAINT pk1_cmr016 PRIMARY KEY(va_cod_act)
+) 
+
+GO
+
+INSERT INTO cmr016 VALUES (0,'ACTIVIDAD ECONOMICA PRINCIPAL')  
+/*--**********************************************
+ARCHIVO:	cmr017.sql	
+TABLA:		Tabla de " Detalle de comision"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		15/09/2021
+*/--**********************************************
+
+CREATE TABLE cmr017 
+(
+--** Llave Primaria
+va_cod_ven		SMALLINT			NOT NULL,		--** Codigo Vendedor(4 numeros)
+va_ite_cms		VARCHAR(15)			NOT NULL,		--** Codigo Familia/Producto
+--** Atributos     
+va_cms_con		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision al contado
+va_cms_cre		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision al credito      
+
+CONSTRAINT pk1_cmr017 PRIMARY KEY(va_cod_ven, va_ite_cms)
+)
+GO
+       
 /*--**********************************************
 ARCHIVO:	ctb001.sql
 TABLA:		Tabla de Regional de la empresa
@@ -1266,11 +1516,11 @@ FECHA:		03-12-2017
 	
 CREATE TABLE ctb002 
 (
-va_cod_cap		TINYINT			NOT NULL,	--Capitulo/Agrupador (1 Número)
+va_cod_cap		INT				NOT NULL,	--Capitulo/Agrupador (1 Número)
 va_nom_cap		VARCHAR(20)		NOT NULL,	--Nombre Capitulo/Agrupador
 va_tip_cap		CHAR(01)		NOT NULL,	--Tipo de capitulo (A=activo; P=pasivo; T=patrimonio; I=ingreso; E=egreso; C=costo)
 va_tra_cap		CHAR(1)			NOT NULL,	--Tratamiento (D=Deudor ; A=Acreedor)
-va_cen_cto		TINYINT			NOT NULL,	--Usa Centro de Costo(0=No ; 1=Si Usa)
+va_cen_cto		INT				NOT NULL,	--Usa Centro de Costo(0=No ; 1=Si Usa)
 va_est_ado		CHAR(1)			NOT NULL	--Estado (H=Habilitado ; N=Deshabilitado)		  
       
 CONSTRAINT pk1_ctb002 PRIMARY KEY(va_cod_cap)
@@ -1294,7 +1544,7 @@ FECHA:		26-08-2021
 CREATE TABLE ctb003
 (
 --Llave Primaria
-va_cod_cct		SMALLINT		NOT NULL,	--Codigo del centro de Costos (4 numeros)
+va_cod_cct		INT				NOT NULL,	--Codigo del centro de Costos (4 numeros)
 
 --Atributos
 va_nom_cct		VARCHAR(50)		NOT NULL,	--Nombre del centro de Costos
@@ -1312,7 +1562,7 @@ FECHA:		26-08-2021
 	
 CREATE TABLE ctb004 
 (
-va_cod_cta		VARCHAR(12)		NOT NULL,	--Codigo Plan de Cuentas (#.#.#.##.###)(12 caracteres)
+va_cod_cta		VARCHAR(12)		NOT NULL,	--Codigo Plan de Cuentas (#.#.##.##)(6 caracteres)
 va_nom_cta		VARCHAR(40)		NOT NULL,	--Nombre Plan de Cuentas
 va_tip_cta		CHAR(1)			NOT NULL,	--Tipo (M=Matriz ; A=Analitica)
 va_uso_cta		CHAR(1)			NOT NULL,	--Uso (S=Sistema ; N=normal)
@@ -1323,7 +1573,7 @@ CONSTRAINT pk1_ctb004 PRIMARY KEY(va_cod_cta)
 )
   
 /*--**********************************************
-ARCHIVO:	ctb007.sql
+ARCHIVO:	ctb006.sql
 TABLA:		Tabla de leyendas
 AUTOR:		FVM-CREARSIS
 FECHA:		05-07-2017
@@ -1336,6 +1586,77 @@ CREATE TABLE ctb006(
 	CONSTRAINT pk1_ctb006 PRIMARY KEY(va_cod_ley)
 ) 
 
+GO
+	 INSERT ctb006 VALUES(1,  'Ley N° 453: Si se te ha vulnerado algún derecho puedes exigir la reposición o restauración.') 
+     INSERT ctb006 VALUES(2,  'Ley N° 453: El proveedor deberá dar cumplimiento a las condiciones ofertadas.') 
+     INSERT ctb006 VALUES(3,  'Ley N° 453: Están prohibidas las prácticas comerciales abusivas, tienes derecho a denunciarlas.') 
+     INSERT ctb006 VALUES(4,  'Ley N° 453: Tienes derecho a recibir información que te proteja de la publicidad engañosa.') 
+     INSERT ctb006 VALUES(5,  'Ley N° 453: Puedes acceder a la reclamación cuando tus derechos han sido vulnerados.')
+     INSERT ctb006 VALUES(6,  'Ley N° 453: Los contratos de adhesión deben redactarse en términos claros, comprensibles, ' + 
+     'legibles y deben informar todas las facilidades y limitaciones.')
+     INSERT ctb006 VALUES(7,  'Ley N° 453: Se debe promover el consumo solidario,justo, en armonía con la Madre Tierra y ' + 
+     'precautelando el hábitat, en el marco del Vivir Bien.')
+     INSERT ctb006 VALUES(8,  'Ley N° 453: El proveedor de productos debe habilitar medios e instrumentos para efectuar ' + 
+     'consultas y reclamaciones.')
+     INSERT ctb006 VALUES(9,  'Ley N° 453: El proveedor debe brindar atención sin discriminación, con respeto, calidez ' + 
+     'y cordialidad a los usuarios y consumidores.')
+     INSERT ctb006 VALUES(10,  'Ley N° 453: Los servicios deben suministrarse en condiciones de inocuidad, calidad y seguridad.')
+     INSERT ctb006 VALUES(11,  'Ley N° 453: Tienes derecho a un trato equitativo sin discriminación en la oferta de servicios.')
+     INSERT ctb006 VALUES(12,  'Ley N° 453: El proveedor deberá suministrar  el servicio en las modalidades y términos ' + 
+     'ofertados o convenidos.')
+     INSERT ctb006 VALUES(13,  'Ley N° 453: En caso de incumplimiento a lo ofertado o convenido, el proveedor debe reparar ' + 
+     'o sustituir el servicio.')
+     INSERT ctb006 VALUES(14,  'Ley N° 453: Tienes derecho a recibir información sobre las características y contenidos ' + 
+     'de los servicios que utilices.')
+     INSERT ctb006 VALUES(15,  'Ley N° 453: La interrupción del servicio debe comunicarse con anterioridad a las ' + 
+     'Autoridades que correspondan y a los usuarios afectados.')
+     INSERT ctb006 VALUES(16,  'Ley N° 453: El proveedor de servicios debe habilitar medios e instrumentos para efectuar ' + 
+     'consultas y reclamaciones.')
+     INSERT ctb006 VALUES(17,  'Ley N° 453: El proveedor debe exhibir certificaciones de habilitación o documentos que ' + 
+     'acrediten las capacidades u ofertas de servicios especializados.')
+     INSERT ctb006 VALUES(18,  'Ley N° 453: Los productos deben suministrarse en condiciones de inocuidad, calidad ' + 
+     'y seguridad.')
+     INSERT ctb006 VALUES(19,  'Ley N° 453: Está prohibido importar, distribuir o comercializar productos expirados ' + 
+     'o prontos a expirar.')
+     INSERT ctb006 VALUES(20,  'Ley N° 453: Está prohibido importar, distribuir o comercializar productos prohibidos o ' +
+     'retirados en el país de origen por atentar a la integridad física y a la salud.')
+     INSERT ctb006 VALUES(21,  'Ley N° 453: Tienes derecho a recibir información sobre las características y ' + 
+     'contenidos de los productos que consumes.')
+     INSERT ctb006 VALUES(22,  'Ley N° 453: Tienes derecho a un trato equitativo sin discriminación en la oferta ' + 
+     'de productos.')
+     INSERT ctb006 VALUES(23,  'Ley N° 453: El proveedor deberá entregar el producto en las modalidades y términos ' + 
+     'ofertados o convenidos.')
+     INSERT ctb006 VALUES(24,  'Ley N° 453: En caso de incumplimiento a lo ofertado o convenido, el proveedor debe ' + 
+     'reparar o sustituir el producto.')
+     INSERT ctb006 VALUES(25,  'Ley N° 453: Los alimentos declarados de primera necesidad deben ser suministrados de ' + 
+     'manera adecuada, oportuna, continua y a precio justo.')
+     INSERT ctb006 VALUES(26,  'Ley N° 453: El prestador de servicio médico debe brindar atención de calidad al paciente.')
+     INSERT ctb006 VALUES(27,  'Ley N° 453: Cuando lo solicite el paciente, se debe informar los resultados de exámenes, ' + 
+     'diagnósticos y estudios de laboratorio.')
+     INSERT ctb006 VALUES(28,  'Ley N° 453: El prestador de servicio médico debe prescribir medicamentos debidamente ' + 
+     'autorizados por el Ministerio de Salud.')
+     INSERT ctb006 VALUES(29,  'Ley N° 453: Se debe otorgar el auxilio y atención necesarios en casos de urgencia o ' + 
+     'emergencia hospitalaria, sin aducir excusa alguna.')
+     INSERT ctb006 VALUES(30,  'Ley N° 453: Se debe brindar alternativas de pago por servicios utilizados en emergencia ' + 
+     'médica u hospitalaria, no pudiendo retenerse al usuario por deuda.')
+     INSERT ctb006 VALUES(31,  'Ley N° 453: Tienes derecho a denunciar la existencia de productos y servicios que pongan ' + 
+     'en riesgo tu salud o integridad física.')
+     INSERT ctb006 VALUES(32,  'Ley N° 453: La entidad financiera tiene la obligación de promover la educación ' + 
+     'financiera.')
+     INSERT ctb006 VALUES(33,  'Ley N° 453: La entidad financiera debe facilitar en cualquier momento y gratuitamente, ' + 
+     'toda la información de los movimientos bancarios, financieros o de crédito.')
+     INSERT ctb006 VALUES(34,  'Ley N° 453: La entidad financiera debe informar por escrito los motivos por los cuales ' + 
+     'se denegó un crédito.')
+     INSERT ctb006 VALUES(35, 'Ley N° 453: Los medios de comunicación deben difundir mensajes o programas de ' + 
+     'educación de consumo responsable y sustentable.')
+     INSERT ctb006 VALUES(36, 'Ley N° 453: Los medios de comunicación deben promover el respeto de los derechos de ' + 
+     'los usuarios y consumidores.')
+     INSERT ctb006 VALUES(37, 'Ley N° 453: Las publicaciones, mensajes e imágenes no deben promover la sumisión o ' + 
+     'explotación de las mujeres.')
+     INSERT ctb006 VALUES(38, 'Ley N° 453: Las publicaciones, mensajes e imágenes no deben deshonrar y atentar ' + 
+     'contra la dignidad e imagen de la mujer.')
+     INSERT ctb006 VALUES(39, 'Ley N° 453: Los medios de comunicación deben evitar contenidos inapropiados que ' + 
+     'vulneren la protección de niñas, niños y adolescentes.')
 GO  
 /*--**********************************************
 ARCHIVO:	ctb007.sql
@@ -1346,18 +1667,17 @@ FECHA:		05-07-2017
 
 
 CREATE TABLE ctb007(
-	va_nro_aut DECIMAL(15,0)	 NOT NULL,
-	va_tip_fac int NOT NULL,		--//0=Computarizada; 1=Manual
-	va_fec_ini date NOT NULL,
-	va_fec_fin date NOT NULL,
-	va_nro_ini int NOT NULL,
-	va_nro_fin int NOT NULL,
-	va_cod_suc tinyint NOT NULL,	--2 numeros
-	va_cod_act tinyint NOT NULL,	--1 numeros
-	va_cod_ley tinyint NOT NULL,	--2 numeros
-	va_lla_vee varchar(500) NULL,
-	va_est_ado char(1) NOT NULL,
-	va_con_tad int	   NOT NULL,	-- Contador de factura
+	va_nro_aut DECIMAL(15,0)		NOT NULL,	--** Numero de Autorizació
+	va_tip_fac INT					NOT NULL,	--** Tipo de Factuta (0=Computarizada; 1=Manual)
+	va_fec_ini DATE					NOT NULL,	--** Fecha de tramite dosificacion
+	va_fec_fin DATE					NOT NULL,	--** Fecha limite de factura
+	va_nro_ini INT					NOT NULL,	--** Numero unicial
+	va_nro_fin INT					NOT NULL,	--** Numero final
+	va_cod_suc INT					NOT NULL,	--** Codigo de sucursal
+	va_cod_act INT					NOT NULL,	--** Cosigo de Actividad Economica
+	va_cod_ley INT					NOT NULL,	--** Codigo Leyenda
+	va_lla_vee VARCHAR(500)			NULL,		--** Llave dosificacion	
+	va_con_act INT					NOT NULL,	--** Contador Actual de la factura
 
 CONSTRAINT pk1_ctb007 PRIMARY KEY(va_nro_aut)
 )
@@ -2094,23 +2414,22 @@ CREATE TABLE res004
 	va_cod_plv		SMALLINT		NOT NULL,	--Codigo de plantilla de venta (3 números)
 	va_nom_plv		VARCHAR(30)		NOT NULL,	--Nombre de la plantilla
 	va_des_plv		VARCHAR(120)	NOT NULL,	--Descripcion de la plantilla
-	--LLAVE FORANEA
+	
 	va_cod_bod		INT						,	--Codigo de almacen (inv002) (##-##-###) -> compuesto por (va_cod_gru , va_nro_alm)	
 	va_cam_bod		TINYINT					,	--Bandera cambia almacen ? (0=NO ; 1=SI)
-	--LLAVE FORANEA
+	
 	va_cod_cli		VARCHAR(07)				,	--Cliente por defecto (adm013) (##-#####) (2 de Grup. Per y 5 de Persona)
 	va_cod_caj		INT						,	--Caja para las ventas al contado (tes001) (5 Números)
 	va_cam_caj		TINYINT					,	--Bandera cambia caja ? (0=NO ; 1=SI)
-	--LLAVE FORANEA
-	va_cod_lis		INT						,	--Lista de precio por defecto (cmr001)  (8 numeros)
-
+	
+	va_cod_lis		INT						,	--Lista de precio por defecto (cmr001)  
 	va_cam_lis		TINYINT					,	--Bandera, cambia lista ? (0=NO; 1=CAMBIA ; 2=Si o si la Asignada al cliente)
-	va_mon_vta		CHAR(1)					,	--Moneda de la venta (B=Bolivianos; U= Dolares)
-	va_cam_mon		TINYINT					,	--cambia moneda ? ( 0=NO; 1=CAMBIA; 2=Obtiene moneda de la lista fija)
+	--va_mon_vta		CHAR(1)					,	--Moneda de la venta (B=Bolivianos; U= Dolares)
+	--va_cam_mon		TINYINT					,	--cambia moneda ? ( 0=NO; 1=CAMBIA; 2=Obtiene moneda de la lista fija)
 
 	--LLAVE FORANEA
-	va_cod_ven		SMALLINT				,	--Codigo del vendedor por defecto (cmr003) (4 numeros)
-	va_cam_ven		TINYINT					,	--Cambia vendedor ? (0=NO; 1=CAMBIA; 2=Obtiene el asignado DEL cliente)
+	va_cod_ven		SMALLINT				,	--Codigo del vendedor por defecto (cmr014)
+	va_cam_ven		TINYINT					,	--Cambia vendedor ? (0=NO; 1=CAMBIA; 2=Obtiene el asignado del cliente)
 
 	va_cod_del		SMALLINT				,	--Codigo del delivery por defecto (cmr010) 
 	va_cam_del		TINYINT					,	--Cambia delivery ? (0=NO; 1=CAMBIA)
@@ -2119,25 +2438,25 @@ CREATE TABLE res004
 	va_for_pgo		TINYINT					,	--Forma de pago (1=Contado; 2=Credito)
 	va_cam_fpg		TINYINT					,	--Cambia forma de pago ? (0=NO; 1=CAMBIA)
 	va_pgo_cta		TINYINT					,	--en la forma de pago Credito, Permite pago a cuenta ? (0=NO; 1= SI)
-	va_ope_def		TINYINT					,	--Operacion por defecto (1=Factura; 2=Nota de Venta; 3=Pedido; 4=Cotizacion)
+	va_ope_def		TINYINT					,	--Operacion por defecto (1=Factura; 2=Nota de Venta; 3=Nota de Consumo)
 
 	--LLAVE FORANEA
 	va_lib_cre		INT						,	--Codigo Libreta para ventas al credito (ecp006) (5 Numeros)
 	va_lib_dev		INT						,	--Codigo Libreta para devoluciones de ventas (ecp006) (5 Numeros)
 
 	va_bus_pro		TINYINT					,	--Busqueda rapida de producto por (1=nombre; 2= Descripcion; 3=Codigo)
-	va_des_srv		TINYINT					,	--Permite escribir descripcion en productos de servicio ? (0=NO; 1=SI)
-	va_pro_rep		TINYINT					,	--Permite productos repetidos ? (0=NO; 1=SI)
+	--va_des_srv		TINYINT					,	--Permite escribir descripcion en productos de servicio ? (0=NO; 1=SI)
+	--va_img_pro		TINYINT					,	--Panel de venta con imagen en producto? (0=NO; 1=SI)
 
-	--LLAVE FORANEA
+	
 	va_doc_fac		CHAR(3)					,	--Documento factura (adm003) (3 Letras)
 	va_tal_fac		TINYINT					,	--Talonario factura  (adm004) (2 numeros)
 	va_doc_ntv		CHAR(3)					,	--Documento Nota de Venta (adm003) (3 Letras)
 	va_tal_ntv		TINYINT					,	--Talonario Nota de venta (adm004) (2 numeros)
-	va_doc_ped		CHAR(3)					,	--Documento Pedido (adm003) (3 Letras)
-	va_tal_ped		TINYINT					,	--Talonario Pedido (adm004) (2 numeros)
-	va_doc_cot		CHAR(3)					,	--Documento Cotizacion (adm003) (3 Letras)
-	va_tal_cot		TINYINT					,	--Talonario Cotizacion (adm004) (2 numeros)
+	va_doc_opd		CHAR(3)					,	--Documento Orden de Produccion (ads003) (3 Letras)
+	va_tal_opd		TINYINT					,	--Talonario Orden de Produccion (ads004) (2 numeros)
+	va_doc_con		CHAR(3)					,	--Documento Nota de Cosumo (adm003) (3 Letras)
+	va_tal_con		TINYINT					,	--Talonario Nota de Cosumo (adm004) (2 numeros)
 	va_doc_dcf		CHAR(3)					,	--Documento DeV C/F (adm003) (3 Letras)
 	va_tal_dcf		TINYINT					,	--Talonario DeV C/F (adm004) (2 numeros)
 	va_doc_dsf		CHAR(3)					,	--Documento DeV S/F (adm003) (3 Letras)
@@ -2145,8 +2464,8 @@ CREATE TABLE res004
 
 	va_imp_fac		VARCHAR(80)				,	--Impresora por defecto para factura
 	va_imp_ntv		VARCHAR(80)				,	--Impresora por defecto para Nota de venta
-	va_imp_ped		VARCHAR(80)				,	--Impresora para pedido
-	va_imp_cot		VARCHAR(80)				,	--Impresora para cotizacion
+	va_imp_opd		VARCHAR(80)				,	--Impresora para Orden de Produccion
+	va_imp_con		VARCHAR(80)				,	--Impresora para Nota de Cosumo
 	va_imp_dcf		VARCHAR(80)				,	--Impresora para DeV C/F
 	va_imp_dsf		VARCHAR(80)				,	--Impresora para DeV S/F
 	va_ban_av1		TINYINT					,	--Imprime aviso de venta 1? (0=NO; 1=SI)
@@ -2154,7 +2473,9 @@ CREATE TABLE res004
 	va_ban_av2		TINYINT					,	--Imprime aviso de venta 2? (0=NO; 1=SI)
 	va_imp_av2		VARCHAR(80)				,	--Impresora para aviso de venta 2
 	va_ban_imp		TINYINT					,	--Bandera de impresion (0=No imprime; 1=Imprime directo ; 2=Pregunta para imprimir)
-
+	
+	va_img_pro		INT						,	--Bandera que muestra los productos con imagenes(0=sin imagen; 1=con imagen)
+	
 	va_est_ado		CHAR(01)					--Estado de la planilla de Venta
 
 

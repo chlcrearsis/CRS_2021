@@ -72,19 +72,19 @@ namespace CRS_PRE.CMR
             dg_res_ult.Rows.Clear();
 
             
-            tabla = o_cmr014.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus);
+            tabla = o_cmr014.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus, 1);
 
             if (tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_cod_ven"].Value = tabla.Rows[i]["va_cod_ven"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_ven"].Value = tabla.Rows[i]["va_nom_ven"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_cod_ven"].Value = tabla.Rows[i]["va_cod_ide"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_ven"].Value = tabla.Rows[i]["va_nom_bre"].ToString();
                     
                 }
-                tb_sel_bus.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_des_bus.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_sel_bus.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_des_bus.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
 
         }
@@ -97,14 +97,14 @@ namespace CRS_PRE.CMR
                 return;
             }
 
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_sel_bus.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_sel_bus.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 lb_des_bus.Text = "** NO existe";
                 return;
             }
 
-            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_ven"].ToString());
+            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_bre"].ToString());
         }
         /// <summary>
         /// - > Función que selecciona la fila en el Datagrid que el documento Modificó
@@ -207,15 +207,15 @@ namespace CRS_PRE.CMR
         public bool fi_ver_edi(int sel_ecc)
         {
             string res_fun = "";
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
             if (tabla.Rows.Count == 0)
             {
-                res_fun = "El documento que desea editar, no se encuentra registrado";
+                res_fun = "El vendedor que desea editar, no se encuentra registrado";
             }
 
             if (res_fun != "")
             {
-                MessageBox.Show(res_fun, "Edita documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, "Edita vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -226,10 +226,10 @@ namespace CRS_PRE.CMR
         public bool fi_ver_hds(int sel_ecc)
         {
           
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL VEndedor ya no se encuentra registrado en la base de datos.", "Consulta vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -238,10 +238,10 @@ namespace CRS_PRE.CMR
         }
         public bool fi_ver_con(int sel_ecc)
         {
-            tab_dat = o_cmr014.Fe_con_ven(sel_ecc);
+            tab_dat = o_cmr014.Fe_con_ven(sel_ecc,1);
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("EL Vendedor ya no se encuentra registrado en la base de datos.", "Consulta vendedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }

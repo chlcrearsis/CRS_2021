@@ -42,14 +42,10 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.cb_cam_ven = new System.Windows.Forms.ComboBox();
-            this.cb_cam_mon = new System.Windows.Forms.ComboBox();
             this.cb_bus_pro = new System.Windows.Forms.ComboBox();
             this.cb_for_pag = new System.Windows.Forms.ComboBox();
-            this.cb_mon_vta = new System.Windows.Forms.ComboBox();
             this.ch_pro_rep = new System.Windows.Forms.CheckBox();
-            this.ch_des_srv = new System.Windows.Forms.CheckBox();
             this.ch_cam_fpg = new System.Windows.Forms.CheckBox();
             this.ch_cam_del = new System.Windows.Forms.CheckBox();
             this.ch_cam_lis = new System.Windows.Forms.CheckBox();
@@ -92,34 +88,30 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tb_nom_tal_fac = new System.Windows.Forms.TextBox();
             this.tb_nom_tal_nvt = new System.Windows.Forms.TextBox();
-            this.tb_nom_tal_ped = new System.Windows.Forms.TextBox();
+            this.tb_nom_tal_opd = new System.Windows.Forms.TextBox();
             this.tb_nom_tal_cot = new System.Windows.Forms.TextBox();
             this.bt_bus_imp_av2 = new System.Windows.Forms.Button();
             this.bt_bus_imp_av1 = new System.Windows.Forms.Button();
             this.bt_bus_imp_fac = new System.Windows.Forms.Button();
             this.bt_bus_imp_nvt = new System.Windows.Forms.Button();
-            this.bt_bus_imp_ped = new System.Windows.Forms.Button();
+            this.bt_bus_imp_opd = new System.Windows.Forms.Button();
             this.bt_bus_imp_cot = new System.Windows.Forms.Button();
-            this.bt_bus_tal_fac = new System.Windows.Forms.Button();
-            this.bt_bus_tal_nvt = new System.Windows.Forms.Button();
-            this.bt_bus_tal_ped = new System.Windows.Forms.Button();
-            this.bt_bus_tal_cot = new System.Windows.Forms.Button();
             this.tb_imp_av2 = new System.Windows.Forms.TextBox();
             this.tb_imp_av1 = new System.Windows.Forms.TextBox();
             this.tb_imp_fac = new System.Windows.Forms.TextBox();
             this.tb_imp_nvt = new System.Windows.Forms.TextBox();
-            this.tb_imp_ped = new System.Windows.Forms.TextBox();
+            this.tb_imp_opd = new System.Windows.Forms.TextBox();
             this.tb_imp_cot = new System.Windows.Forms.TextBox();
             this.tb_nro_tal_fac = new System.Windows.Forms.TextBox();
             this.tb_nro_tal_nvt = new System.Windows.Forms.TextBox();
-            this.tb_nro_tal_ped = new System.Windows.Forms.TextBox();
+            this.tb_nro_tal_opd = new System.Windows.Forms.TextBox();
             this.tb_nro_tal_cot = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.tb_cod_doc_fac = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.tb_cod_doc_nvt = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.tb_cod_doc_ped = new System.Windows.Forms.TextBox();
+            this.tb_cod_doc_opd = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_cod_doc_cot = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
@@ -162,14 +154,10 @@
             this.tp_gen_era.Controls.Add(this.label16);
             this.tp_gen_era.Controls.Add(this.label21);
             this.tp_gen_era.Controls.Add(this.label19);
-            this.tp_gen_era.Controls.Add(this.label10);
             this.tp_gen_era.Controls.Add(this.cb_cam_ven);
-            this.tp_gen_era.Controls.Add(this.cb_cam_mon);
             this.tp_gen_era.Controls.Add(this.cb_bus_pro);
             this.tp_gen_era.Controls.Add(this.cb_for_pag);
-            this.tp_gen_era.Controls.Add(this.cb_mon_vta);
             this.tp_gen_era.Controls.Add(this.ch_pro_rep);
-            this.tp_gen_era.Controls.Add(this.ch_des_srv);
             this.tp_gen_era.Controls.Add(this.ch_cam_fpg);
             this.tp_gen_era.Controls.Add(this.ch_cam_del);
             this.tp_gen_era.Controls.Add(this.ch_cam_lis);
@@ -321,15 +309,6 @@
             this.label19.TabIndex = 43;
             this.label19.Text = "Forma de pago";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(400, 110);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 13);
-            this.label10.TabIndex = 43;
-            this.label10.Text = "Moneda";
-            // 
             // cb_cam_ven
             // 
             this.cb_cam_ven.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -343,20 +322,6 @@
             this.cb_cam_ven.Name = "cb_cam_ven";
             this.cb_cam_ven.Size = new System.Drawing.Size(82, 21);
             this.cb_cam_ven.TabIndex = 130;
-            // 
-            // cb_cam_mon
-            // 
-            this.cb_cam_mon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_cam_mon.Enabled = false;
-            this.cb_cam_mon.FormattingEnabled = true;
-            this.cb_cam_mon.Items.AddRange(new object[] {
-            "No cambia",
-            "Cambia",
-            "Segun lista"});
-            this.cb_cam_mon.Location = new System.Drawing.Point(497, 106);
-            this.cb_cam_mon.Name = "cb_cam_mon";
-            this.cb_cam_mon.Size = new System.Drawing.Size(82, 21);
-            this.cb_cam_mon.TabIndex = 110;
             // 
             // cb_bus_pro
             // 
@@ -385,40 +350,16 @@
             this.cb_for_pag.Size = new System.Drawing.Size(70, 21);
             this.cb_for_pag.TabIndex = 180;
             // 
-            // cb_mon_vta
-            // 
-            this.cb_mon_vta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_mon_vta.Enabled = false;
-            this.cb_mon_vta.FormattingEnabled = true;
-            this.cb_mon_vta.Items.AddRange(new object[] {
-            "Bs.",
-            "Us."});
-            this.cb_mon_vta.Location = new System.Drawing.Point(449, 106);
-            this.cb_mon_vta.Name = "cb_mon_vta";
-            this.cb_mon_vta.Size = new System.Drawing.Size(42, 21);
-            this.cb_mon_vta.TabIndex = 100;
-            // 
             // ch_pro_rep
             // 
             this.ch_pro_rep.AutoSize = true;
             this.ch_pro_rep.Enabled = false;
-            this.ch_pro_rep.Location = new System.Drawing.Point(451, 203);
+            this.ch_pro_rep.Location = new System.Drawing.Point(318, 204);
             this.ch_pro_rep.Name = "ch_pro_rep";
             this.ch_pro_rep.Size = new System.Drawing.Size(163, 17);
             this.ch_pro_rep.TabIndex = 220;
             this.ch_pro_rep.Text = "Permite productos repetidos?";
             this.ch_pro_rep.UseVisualStyleBackColor = true;
-            // 
-            // ch_des_srv
-            // 
-            this.ch_des_srv.AutoSize = true;
-            this.ch_des_srv.Enabled = false;
-            this.ch_des_srv.Location = new System.Drawing.Point(302, 203);
-            this.ch_des_srv.Name = "ch_des_srv";
-            this.ch_des_srv.Size = new System.Drawing.Size(148, 17);
-            this.ch_des_srv.TabIndex = 210;
-            this.ch_des_srv.Text = "Permite describir servicio?";
-            this.ch_des_srv.UseVisualStyleBackColor = true;
             // 
             // ch_cam_fpg
             // 
@@ -760,34 +701,30 @@
             this.tp_doc_ume.Controls.Add(this.label4);
             this.tp_doc_ume.Controls.Add(this.tb_nom_tal_fac);
             this.tp_doc_ume.Controls.Add(this.tb_nom_tal_nvt);
-            this.tp_doc_ume.Controls.Add(this.tb_nom_tal_ped);
+            this.tp_doc_ume.Controls.Add(this.tb_nom_tal_opd);
             this.tp_doc_ume.Controls.Add(this.tb_nom_tal_cot);
             this.tp_doc_ume.Controls.Add(this.bt_bus_imp_av2);
             this.tp_doc_ume.Controls.Add(this.bt_bus_imp_av1);
             this.tp_doc_ume.Controls.Add(this.bt_bus_imp_fac);
             this.tp_doc_ume.Controls.Add(this.bt_bus_imp_nvt);
-            this.tp_doc_ume.Controls.Add(this.bt_bus_imp_ped);
+            this.tp_doc_ume.Controls.Add(this.bt_bus_imp_opd);
             this.tp_doc_ume.Controls.Add(this.bt_bus_imp_cot);
-            this.tp_doc_ume.Controls.Add(this.bt_bus_tal_fac);
-            this.tp_doc_ume.Controls.Add(this.bt_bus_tal_nvt);
-            this.tp_doc_ume.Controls.Add(this.bt_bus_tal_ped);
-            this.tp_doc_ume.Controls.Add(this.bt_bus_tal_cot);
             this.tp_doc_ume.Controls.Add(this.tb_imp_av2);
             this.tp_doc_ume.Controls.Add(this.tb_imp_av1);
             this.tp_doc_ume.Controls.Add(this.tb_imp_fac);
             this.tp_doc_ume.Controls.Add(this.tb_imp_nvt);
-            this.tp_doc_ume.Controls.Add(this.tb_imp_ped);
+            this.tp_doc_ume.Controls.Add(this.tb_imp_opd);
             this.tp_doc_ume.Controls.Add(this.tb_imp_cot);
             this.tp_doc_ume.Controls.Add(this.tb_nro_tal_fac);
             this.tp_doc_ume.Controls.Add(this.tb_nro_tal_nvt);
-            this.tp_doc_ume.Controls.Add(this.tb_nro_tal_ped);
+            this.tp_doc_ume.Controls.Add(this.tb_nro_tal_opd);
             this.tp_doc_ume.Controls.Add(this.tb_nro_tal_cot);
             this.tp_doc_ume.Controls.Add(this.label23);
             this.tp_doc_ume.Controls.Add(this.tb_cod_doc_fac);
             this.tp_doc_ume.Controls.Add(this.label22);
             this.tp_doc_ume.Controls.Add(this.tb_cod_doc_nvt);
             this.tp_doc_ume.Controls.Add(this.label20);
-            this.tp_doc_ume.Controls.Add(this.tb_cod_doc_ped);
+            this.tp_doc_ume.Controls.Add(this.tb_cod_doc_opd);
             this.tp_doc_ume.Controls.Add(this.label1);
             this.tp_doc_ume.Controls.Add(this.tb_cod_doc_cot);
             this.tp_doc_ume.Location = new System.Drawing.Point(4, 22);
@@ -931,16 +868,16 @@
             this.tb_nom_tal_nvt.TabIndex = 330;
             this.tb_nom_tal_nvt.TabStop = false;
             // 
-            // tb_nom_tal_ped
+            // tb_nom_tal_opd
             // 
-            this.tb_nom_tal_ped.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_tal_ped.Location = new System.Drawing.Point(157, 108);
-            this.tb_nom_tal_ped.MaxLength = 290;
-            this.tb_nom_tal_ped.Name = "tb_nom_tal_ped";
-            this.tb_nom_tal_ped.ReadOnly = true;
-            this.tb_nom_tal_ped.Size = new System.Drawing.Size(206, 20);
-            this.tb_nom_tal_ped.TabIndex = 290;
-            this.tb_nom_tal_ped.TabStop = false;
+            this.tb_nom_tal_opd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nom_tal_opd.Location = new System.Drawing.Point(157, 108);
+            this.tb_nom_tal_opd.MaxLength = 290;
+            this.tb_nom_tal_opd.Name = "tb_nom_tal_opd";
+            this.tb_nom_tal_opd.ReadOnly = true;
+            this.tb_nom_tal_opd.Size = new System.Drawing.Size(206, 20);
+            this.tb_nom_tal_opd.TabIndex = 290;
+            this.tb_nom_tal_opd.TabStop = false;
             // 
             // tb_nom_tal_cot
             // 
@@ -1013,20 +950,20 @@
             this.bt_bus_imp_nvt.UseVisualStyleBackColor = false;
             this.bt_bus_imp_nvt.Click += new System.EventHandler(this.bt_bus_imp_nvt_Click);
             // 
-            // bt_bus_imp_ped
+            // bt_bus_imp_opd
             // 
-            this.bt_bus_imp_ped.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_imp_ped.Enabled = false;
-            this.bt_bus_imp_ped.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_imp_ped.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_imp_ped.Location = new System.Drawing.Point(576, 107);
-            this.bt_bus_imp_ped.Name = "bt_bus_imp_ped";
-            this.bt_bus_imp_ped.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_imp_ped.TabIndex = 305;
-            this.bt_bus_imp_ped.TabStop = false;
-            this.bt_bus_imp_ped.Text = "|";
-            this.bt_bus_imp_ped.UseVisualStyleBackColor = false;
-            this.bt_bus_imp_ped.Click += new System.EventHandler(this.bt_bus_imp_ped_Click);
+            this.bt_bus_imp_opd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_bus_imp_opd.Enabled = false;
+            this.bt_bus_imp_opd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_bus_imp_opd.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_bus_imp_opd.Location = new System.Drawing.Point(576, 107);
+            this.bt_bus_imp_opd.Name = "bt_bus_imp_opd";
+            this.bt_bus_imp_opd.Size = new System.Drawing.Size(16, 22);
+            this.bt_bus_imp_opd.TabIndex = 305;
+            this.bt_bus_imp_opd.TabStop = false;
+            this.bt_bus_imp_opd.Text = "|";
+            this.bt_bus_imp_opd.UseVisualStyleBackColor = false;
+            this.bt_bus_imp_opd.Click += new System.EventHandler(this.bt_bus_imp_ped_Click);
             // 
             // bt_bus_imp_cot
             // 
@@ -1041,67 +978,7 @@
             this.bt_bus_imp_cot.TabStop = false;
             this.bt_bus_imp_cot.Text = "|";
             this.bt_bus_imp_cot.UseVisualStyleBackColor = false;
-            this.bt_bus_imp_cot.Click += new System.EventHandler(this.bt_bus_imp_cot_Click);
-            // 
-            // bt_bus_tal_fac
-            // 
-            this.bt_bus_tal_fac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_tal_fac.Enabled = false;
-            this.bt_bus_tal_fac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_tal_fac.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_tal_fac.Location = new System.Drawing.Point(139, 151);
-            this.bt_bus_tal_fac.Name = "bt_bus_tal_fac";
-            this.bt_bus_tal_fac.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_tal_fac.TabIndex = 365;
-            this.bt_bus_tal_fac.TabStop = false;
-            this.bt_bus_tal_fac.Text = "|";
-            this.bt_bus_tal_fac.UseVisualStyleBackColor = false;
-            this.bt_bus_tal_fac.Click += new System.EventHandler(this.bt_bus_tal_fac_Click);
-            // 
-            // bt_bus_tal_nvt
-            // 
-            this.bt_bus_tal_nvt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_tal_nvt.Enabled = false;
-            this.bt_bus_tal_nvt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_tal_nvt.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_tal_nvt.Location = new System.Drawing.Point(139, 129);
-            this.bt_bus_tal_nvt.Name = "bt_bus_tal_nvt";
-            this.bt_bus_tal_nvt.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_tal_nvt.TabIndex = 325;
-            this.bt_bus_tal_nvt.TabStop = false;
-            this.bt_bus_tal_nvt.Text = "|";
-            this.bt_bus_tal_nvt.UseVisualStyleBackColor = false;
-            this.bt_bus_tal_nvt.Click += new System.EventHandler(this.bt_bus_tal_nvt_Click);
-            // 
-            // bt_bus_tal_ped
-            // 
-            this.bt_bus_tal_ped.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_tal_ped.Enabled = false;
-            this.bt_bus_tal_ped.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_tal_ped.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_tal_ped.Location = new System.Drawing.Point(139, 107);
-            this.bt_bus_tal_ped.Name = "bt_bus_tal_ped";
-            this.bt_bus_tal_ped.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_tal_ped.TabIndex = 285;
-            this.bt_bus_tal_ped.TabStop = false;
-            this.bt_bus_tal_ped.Text = "|";
-            this.bt_bus_tal_ped.UseVisualStyleBackColor = false;
-            this.bt_bus_tal_ped.Click += new System.EventHandler(this.Tb_nro_tal_ped_Validated);
-            // 
-            // bt_bus_tal_cot
-            // 
-            this.bt_bus_tal_cot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_tal_cot.Enabled = false;
-            this.bt_bus_tal_cot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_tal_cot.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_tal_cot.Location = new System.Drawing.Point(139, 85);
-            this.bt_bus_tal_cot.Name = "bt_bus_tal_cot";
-            this.bt_bus_tal_cot.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_tal_cot.TabIndex = 245;
-            this.bt_bus_tal_cot.TabStop = false;
-            this.bt_bus_tal_cot.Text = "|";
-            this.bt_bus_tal_cot.UseVisualStyleBackColor = false;
-            this.bt_bus_tal_cot.Click += new System.EventHandler(this.bt_bus_tal_cot_Click);
+            this.bt_bus_imp_cot.Click += new System.EventHandler(this.bt_bus_imp_con_Click);
             // 
             // tb_imp_av2
             // 
@@ -1149,16 +1026,16 @@
             this.tb_imp_nvt.Size = new System.Drawing.Size(184, 20);
             this.tb_imp_nvt.TabIndex = 340;
             // 
-            // tb_imp_ped
+            // tb_imp_opd
             // 
-            this.tb_imp_ped.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_imp_ped.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_imp_ped.Location = new System.Drawing.Point(393, 108);
-            this.tb_imp_ped.MaxLength = 3;
-            this.tb_imp_ped.Name = "tb_imp_ped";
-            this.tb_imp_ped.ReadOnly = true;
-            this.tb_imp_ped.Size = new System.Drawing.Size(184, 20);
-            this.tb_imp_ped.TabIndex = 300;
+            this.tb_imp_opd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_imp_opd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_imp_opd.Location = new System.Drawing.Point(393, 108);
+            this.tb_imp_opd.MaxLength = 3;
+            this.tb_imp_opd.Name = "tb_imp_opd";
+            this.tb_imp_opd.ReadOnly = true;
+            this.tb_imp_opd.Size = new System.Drawing.Size(184, 20);
+            this.tb_imp_opd.TabIndex = 300;
             // 
             // tb_imp_cot
             // 
@@ -1175,7 +1052,7 @@
             // 
             this.tb_nro_tal_fac.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_nro_tal_fac.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nro_tal_fac.Location = new System.Drawing.Point(119, 152);
+            this.tb_nro_tal_fac.Location = new System.Drawing.Point(131, 152);
             this.tb_nro_tal_fac.MaxLength = 3;
             this.tb_nro_tal_fac.Name = "tb_nro_tal_fac";
             this.tb_nro_tal_fac.ReadOnly = true;
@@ -1190,7 +1067,7 @@
             // 
             this.tb_nro_tal_nvt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_nro_tal_nvt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nro_tal_nvt.Location = new System.Drawing.Point(119, 130);
+            this.tb_nro_tal_nvt.Location = new System.Drawing.Point(131, 130);
             this.tb_nro_tal_nvt.MaxLength = 3;
             this.tb_nro_tal_nvt.Name = "tb_nro_tal_nvt";
             this.tb_nro_tal_nvt.ReadOnly = true;
@@ -1201,26 +1078,26 @@
             this.tb_nro_tal_nvt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_nro_tal_nvt_KeyDown);
             this.tb_nro_tal_nvt.Validated += new System.EventHandler(this.Tb_nro_tal_nvt_Validated);
             // 
-            // tb_nro_tal_ped
+            // tb_nro_tal_opd
             // 
-            this.tb_nro_tal_ped.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nro_tal_ped.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nro_tal_ped.Location = new System.Drawing.Point(119, 108);
-            this.tb_nro_tal_ped.MaxLength = 3;
-            this.tb_nro_tal_ped.Name = "tb_nro_tal_ped";
-            this.tb_nro_tal_ped.ReadOnly = true;
-            this.tb_nro_tal_ped.Size = new System.Drawing.Size(21, 20);
-            this.tb_nro_tal_ped.TabIndex = 280;
-            this.tb_nro_tal_ped.Text = "0";
-            this.tb_nro_tal_ped.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_nro_tal_ped.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_nro_tal_ped_KeyDown);
-            this.tb_nro_tal_ped.Validated += new System.EventHandler(this.Tb_nro_tal_ped_Validated);
+            this.tb_nro_tal_opd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nro_tal_opd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_nro_tal_opd.Location = new System.Drawing.Point(131, 108);
+            this.tb_nro_tal_opd.MaxLength = 3;
+            this.tb_nro_tal_opd.Name = "tb_nro_tal_opd";
+            this.tb_nro_tal_opd.ReadOnly = true;
+            this.tb_nro_tal_opd.Size = new System.Drawing.Size(21, 20);
+            this.tb_nro_tal_opd.TabIndex = 280;
+            this.tb_nro_tal_opd.Text = "0";
+            this.tb_nro_tal_opd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_nro_tal_opd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_nro_tal_ped_KeyDown);
+            this.tb_nro_tal_opd.Validated += new System.EventHandler(this.Tb_nro_tal_ped_Validated);
             // 
             // tb_nro_tal_cot
             // 
             this.tb_nro_tal_cot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_nro_tal_cot.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nro_tal_cot.Location = new System.Drawing.Point(119, 86);
+            this.tb_nro_tal_cot.Location = new System.Drawing.Point(131, 86);
             this.tb_nro_tal_cot.MaxLength = 3;
             this.tb_nro_tal_cot.Name = "tb_nro_tal_cot";
             this.tb_nro_tal_cot.ReadOnly = true;
@@ -1228,13 +1105,13 @@
             this.tb_nro_tal_cot.TabIndex = 240;
             this.tb_nro_tal_cot.Text = "0";
             this.tb_nro_tal_cot.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_nro_tal_cot.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_nro_tal_cot_KeyDown);
-            this.tb_nro_tal_cot.Validated += new System.EventHandler(this.Tb_nro_tal_cot_Validated);
+            this.tb_nro_tal_cot.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_nro_tal_con_KeyDown);
+            this.tb_nro_tal_cot.Validated += new System.EventHandler(this.Tb_nro_tal_con_Validated);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(12, 155);
+            this.label23.Location = new System.Drawing.Point(21, 155);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(43, 13);
             this.label23.TabIndex = 30;
@@ -1244,7 +1121,7 @@
             // 
             this.tb_cod_doc_fac.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_cod_doc_fac.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_doc_fac.Location = new System.Drawing.Point(88, 152);
+            this.tb_cod_doc_fac.Location = new System.Drawing.Point(100, 152);
             this.tb_cod_doc_fac.MaxLength = 3;
             this.tb_cod_doc_fac.Name = "tb_cod_doc_fac";
             this.tb_cod_doc_fac.ReadOnly = true;
@@ -1255,7 +1132,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(12, 133);
+            this.label22.Location = new System.Drawing.Point(21, 133);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(76, 13);
             this.label22.TabIndex = 30;
@@ -1265,7 +1142,7 @@
             // 
             this.tb_cod_doc_nvt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_cod_doc_nvt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_doc_nvt.Location = new System.Drawing.Point(88, 130);
+            this.tb_cod_doc_nvt.Location = new System.Drawing.Point(100, 130);
             this.tb_cod_doc_nvt.MaxLength = 3;
             this.tb_cod_doc_nvt.Name = "tb_cod_doc_nvt";
             this.tb_cod_doc_nvt.ReadOnly = true;
@@ -1276,38 +1153,38 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(12, 111);
+            this.label20.Location = new System.Drawing.Point(21, 111);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(40, 13);
+            this.label20.Size = new System.Drawing.Size(75, 13);
             this.label20.TabIndex = 30;
-            this.label20.Text = "Pedido";
+            this.label20.Text = "O. Producción";
             // 
-            // tb_cod_doc_ped
+            // tb_cod_doc_opd
             // 
-            this.tb_cod_doc_ped.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_cod_doc_ped.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_doc_ped.Location = new System.Drawing.Point(88, 108);
-            this.tb_cod_doc_ped.MaxLength = 3;
-            this.tb_cod_doc_ped.Name = "tb_cod_doc_ped";
-            this.tb_cod_doc_ped.ReadOnly = true;
-            this.tb_cod_doc_ped.Size = new System.Drawing.Size(29, 20);
-            this.tb_cod_doc_ped.TabIndex = 270;
-            this.tb_cod_doc_ped.Text = "PED";
+            this.tb_cod_doc_opd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_cod_doc_opd.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_cod_doc_opd.Location = new System.Drawing.Point(100, 108);
+            this.tb_cod_doc_opd.MaxLength = 3;
+            this.tb_cod_doc_opd.Name = "tb_cod_doc_opd";
+            this.tb_cod_doc_opd.ReadOnly = true;
+            this.tb_cod_doc_opd.Size = new System.Drawing.Size(29, 20);
+            this.tb_cod_doc_opd.TabIndex = 270;
+            this.tb_cod_doc_opd.Text = "OPD";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 89);
+            this.label1.Location = new System.Drawing.Point(21, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 30;
-            this.label1.Text = "Cotizacion";
+            this.label1.Text = "Nota Consumo";
             // 
             // tb_cod_doc_cot
             // 
             this.tb_cod_doc_cot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_cod_doc_cot.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_doc_cot.Location = new System.Drawing.Point(88, 86);
+            this.tb_cod_doc_cot.Location = new System.Drawing.Point(100, 86);
             this.tb_cod_doc_cot.MaxLength = 3;
             this.tb_cod_doc_cot.Name = "tb_cod_doc_cot";
             this.tb_cod_doc_cot.ReadOnly = true;
@@ -1390,13 +1267,9 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cb_cam_mon;
         private System.Windows.Forms.ComboBox cb_bus_pro;
         private System.Windows.Forms.ComboBox cb_for_pag;
-        private System.Windows.Forms.ComboBox cb_mon_vta;
         private System.Windows.Forms.CheckBox ch_pro_rep;
-        private System.Windows.Forms.CheckBox ch_des_srv;
         private System.Windows.Forms.CheckBox ch_cam_fpg;
         private System.Windows.Forms.CheckBox ch_cam_del;
         private System.Windows.Forms.CheckBox ch_cam_lis;
@@ -1424,7 +1297,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_cod_doc_cot;
-        private System.Windows.Forms.Button bt_bus_tal_cot;
         private System.Windows.Forms.TextBox tb_nro_tal_cot;
         private System.Windows.Forms.CheckBox ch_imp_av2;
         private System.Windows.Forms.CheckBox ch_imp_av1;
@@ -1432,32 +1304,29 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_nom_tal_fac;
         private System.Windows.Forms.TextBox tb_nom_tal_nvt;
-        private System.Windows.Forms.TextBox tb_nom_tal_ped;
+        private System.Windows.Forms.TextBox tb_nom_tal_opd;
         private System.Windows.Forms.TextBox tb_nom_tal_cot;
         private System.Windows.Forms.Button bt_bus_imp_av2;
         private System.Windows.Forms.Button bt_bus_imp_av1;
         private System.Windows.Forms.Button bt_bus_imp_fac;
         private System.Windows.Forms.Button bt_bus_imp_nvt;
-        private System.Windows.Forms.Button bt_bus_imp_ped;
+        private System.Windows.Forms.Button bt_bus_imp_opd;
         private System.Windows.Forms.Button bt_bus_imp_cot;
-        private System.Windows.Forms.Button bt_bus_tal_fac;
-        private System.Windows.Forms.Button bt_bus_tal_nvt;
-        private System.Windows.Forms.Button bt_bus_tal_ped;
         private System.Windows.Forms.TextBox tb_imp_av2;
         private System.Windows.Forms.TextBox tb_imp_av1;
         private System.Windows.Forms.TextBox tb_imp_fac;
         private System.Windows.Forms.TextBox tb_imp_nvt;
-        private System.Windows.Forms.TextBox tb_imp_ped;
+        private System.Windows.Forms.TextBox tb_imp_opd;
         private System.Windows.Forms.TextBox tb_imp_cot;
         private System.Windows.Forms.TextBox tb_nro_tal_fac;
         private System.Windows.Forms.TextBox tb_nro_tal_nvt;
-        private System.Windows.Forms.TextBox tb_nro_tal_ped;
+        private System.Windows.Forms.TextBox tb_nro_tal_opd;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox tb_cod_doc_fac;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox tb_cod_doc_nvt;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox tb_cod_doc_ped;
+        private System.Windows.Forms.TextBox tb_cod_doc_opd;
         private System.Windows.Forms.ComboBox cb_cam_ven;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tb_cod_plv;

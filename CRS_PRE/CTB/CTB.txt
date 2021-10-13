@@ -1,0 +1,14 @@
+********		ESTRUCTURA		********
+******** IDENTIFICADOR: CTB			********
+******** MODULO: CONTABILIDAD	********
+
+ctb001 = Regional
+ctb002 = Capitulo/Agrupador
+ctb003 = Centro de Costo
+ctb004 = Plan de Cuentas
+ctb005 = 
+ctb006 = Leyenda
+ctb007 = Dosificación
+ctb008 = Debito Fiscal  (ya esta)
+ctb009 = Credito Fiscal
+

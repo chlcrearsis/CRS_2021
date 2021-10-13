@@ -375,7 +375,7 @@ namespace CRS_PRE.CMR
                 tb_cod_ven.Focus();
                 return "Debe proporcionar un vendedor valido";
             }
-            tab_cmr014 = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tab_cmr014 = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
            
             if (tab_cmr014.Rows.Count == 0)
             {
@@ -615,7 +615,7 @@ namespace CRS_PRE.CMR
             cod_caj = 0;
             cod_lcr = 0;
             tip_cam = 1m;
-            mon_ope = tab_res004.Rows[0]["va_mon_vta"].ToString();
+            mon_ope = "B"; // tab_res004.Rows[0]["va_mon_vta"].ToString();
 
 
             // Instacia de formulario para completar la operacion
@@ -668,7 +668,7 @@ namespace CRS_PRE.CMR
                     tip_tal = int.Parse(tab_ads004.Rows[0]["va_tip_tal"].ToString());
 
                     // Obtiene datos de la dosificacion
-                    tab_ctb007 = o_ctb007._05(va_nro_aut);
+                    tab_ctb007 = o_ctb007.Fe_con_sul(va_nro_aut);
                     if (tab_ctb007.Rows.Count == 0)
                     {
                         MessageBox.Show("La dosificacion no se encuentra registrada","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
@@ -1118,10 +1118,10 @@ namespace CRS_PRE.CMR
                 // Obtiene Vendedor
                 tb_cod_ven.Text = tab_res004.Rows[0]["va_cod_ven"].ToString();
                 // Obtiene nombre de Vendedor
-                tab_cmr014 = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+                tab_cmr014 = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
 
                 if (tab_cmr001.Rows.Count > 0)
-                    lb_nom_ven.Text = tab_cmr014.Rows[0]["va_nom_ven"].ToString();
+                    lb_nom_ven.Text = tab_cmr014.Rows[0]["va_nom_bre"].ToString();
  
                 // Verifica si permite cambiar vendedor
                 if (tab_res004.Rows[0]["va_cam_ven"].ToString() == "0") // No cambia
@@ -1464,15 +1464,15 @@ namespace CRS_PRE.CMR
             }
 
             // Obtiene ide y nombre Vendedor
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
             if (tabla.Rows.Count == 0)
             {
                 lb_nom_ven.Text = "";
             }
             else
             {
-                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_nom_ven.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_nom_ven.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
         }
 

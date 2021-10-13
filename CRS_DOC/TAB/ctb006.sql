@@ -1,5 +1,5 @@
 /*--**********************************************
-ARCHIVO:	ctb007.sql
+ARCHIVO:	ctb006.sql
 TABLA:		Tabla de leyendas
 AUTOR:		FVM-CREARSIS
 FECHA:		05-07-2017

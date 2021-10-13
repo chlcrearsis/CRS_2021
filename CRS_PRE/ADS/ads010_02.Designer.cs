@@ -48,41 +48,36 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_ide_tab);
             this.groupBox1.Controls.Add(this.tb_ide_tip);
-            this.groupBox1.Location = new System.Drawing.Point(6, -6);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(504, 144);
+            this.groupBox1.Size = new System.Drawing.Size(336, 94);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 105);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(17, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 20);
+            this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 41;
             this.label1.Text = "Tabla";
             // 
             // tb_nom_tip
             // 
             this.tb_nom_tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_tip.Location = new System.Drawing.Point(18, 65);
-            this.tb_nom_tip.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_nom_tip.Location = new System.Drawing.Point(12, 42);
             this.tb_nom_tip.MaxLength = 20;
             this.tb_nom_tip.Name = "tb_nom_tip";
-            this.tb_nom_tip.Size = new System.Drawing.Size(468, 26);
+            this.tb_nom_tip.Size = new System.Drawing.Size(313, 20);
             this.tb_nom_tip.TabIndex = 30;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 29);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(9, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 20);
+            this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 27;
             this.label2.Text = "Codigo";
             // 
@@ -90,22 +85,20 @@
             // 
             this.tb_ide_tab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ide_tab.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_ide_tab.Location = new System.Drawing.Point(81, 102);
-            this.tb_ide_tab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_ide_tab.Location = new System.Drawing.Point(54, 66);
             this.tb_ide_tab.MaxLength = 6;
             this.tb_ide_tab.Name = "tb_ide_tab";
-            this.tb_ide_tab.Size = new System.Drawing.Size(119, 26);
+            this.tb_ide_tab.Size = new System.Drawing.Size(80, 20);
             this.tb_ide_tab.TabIndex = 20;
             // 
             // tb_ide_tip
             // 
             this.tb_ide_tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ide_tip.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_ide_tip.Location = new System.Drawing.Point(81, 25);
-            this.tb_ide_tip.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_ide_tip.Location = new System.Drawing.Point(54, 16);
             this.tb_ide_tip.MaxLength = 3;
             this.tb_ide_tip.Name = "tb_ide_tip";
-            this.tb_ide_tip.Size = new System.Drawing.Size(53, 26);
+            this.tb_ide_tip.Size = new System.Drawing.Size(36, 20);
             this.tb_ide_tip.TabIndex = 10;
             this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_ide_tip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_mod_KeyPress);
@@ -115,11 +108,9 @@
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(6, 135);
-            this.gb_ctr_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 88);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gb_ctr_btn.Size = new System.Drawing.Size(504, 68);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(336, 44);
             this.gb_ctr_btn.TabIndex = 2;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -130,10 +121,9 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(368, 18);
-            this.bt_can_cel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bt_can_cel.Location = new System.Drawing.Point(245, 12);
             this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(112, 40);
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 26);
             this.bt_can_cel.TabIndex = 20;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
@@ -145,10 +135,9 @@
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(231, 18);
-            this.bt_ace_pta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bt_ace_pta.Location = new System.Drawing.Point(154, 12);
             this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(112, 40);
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 26);
             this.bt_ace_pta.TabIndex = 10;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
@@ -157,15 +146,14 @@
             // ads010_02
             // 
             this.AcceptButton = this.bt_ace_pta;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(512, 204);
+            this.ClientSize = new System.Drawing.Size(341, 134);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ads010_02";

@@ -34,13 +34,19 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-            tb_cod_ven.Text = frm_dat.Rows[0]["va_cod_ven"].ToString();
-            tb_nom_ven.Text = frm_dat.Rows[0]["va_nom_ven"].ToString();
-            tb_por_cms.Text = frm_dat.Rows[0]["va_por_cms"].ToString();
+            tb_cod_ven.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
+            tb_nom_ven.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
+            tb_tel_cel.Text = frm_dat.Rows[0]["va_tel_cel"].ToString();
+            tb_ema_ail.Text = frm_dat.Rows[0]["va_ema_ail"].ToString();
 
-            cb_tip_cms.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_tip_cms"].ToString());
+            tb_cms_con.Text = frm_dat.Rows[0]["va_cms_con"].ToString();
+            tb_cms_cre.Text = frm_dat.Rows[0]["va_cms_cre"].ToString();
 
-            tb_nom_ven.Focus(); frm_dat.Rows[0]["va_por_cms"].ToString();
+            cb_tip_cms.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_tip_cms"].ToString()) - 1;
+            cb_pro_ced.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_pro_ced"].ToString()) - 1;
+
+            tb_tel_cel.Focus(); frm_dat.Rows[0]["va_tel_cel"].ToString();
+            tb_ema_ail.Focus(); frm_dat.Rows[0]["va_ema_ail"].ToString();
         }
 
 
@@ -48,56 +54,35 @@ namespace CRS_PRE
 
         protected string Fi_val_dat()
         {
-            //if (tb_ide_doc.Text.Trim()=="")
-            //{
-            //    tb_ide_doc.Focus();
-            //    return "Debe proporcionar el Codigo de la Lista de Precio";
-            //}
 
-            //Verificar 
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text));
-            if(tabla.Rows.Count ==0)
+            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text), 1);
+            if (tabla.Rows.Count == 0)
             {
                 tb_cod_ven.Focus();
-                return "El Vendedor que desea crear ya NO se encuentra registrado";
+                return "El Vendedor que desea editar NO se encuentra registrado";
             }
             if (tb_nom_ven.Text.Trim() == "")
             {
                 tb_nom_ven.Focus();
-                return "Debe proporcionar el Nombre";
+                return "Debe proporcionar el Nombre del vendedor";
             }
 
-            double val;
-            double.TryParse(tb_por_cms.Text, out val);
-            if (double.Parse(tb_por_cms.Text) != 0 )
+            // Revisa Porcentaje al contado
+            if (cl_glo_bal.IsDecimal(tb_cms_con.Text) == false)
             {
-                if(val==0)
-                {
-                    tb_por_cms.Focus();
-                    return "El porcentaje es incorrecto";
-                }
+                tb_cms_con.Focus();
+                return "El porcentaje de comisión al contado es incorrecto";
             }
-
-            if (val <0 || val > 30)
+            // Revisa Porcentaje al crédito
+            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
             {
-                tb_por_cms.Focus();
-                return "El porcentaje debe estar entre 0-30";
+                tb_cms_cre.Focus();
+                return "El porcentaje de comisión al crédito es incorrecto";
             }
-
 
             return "";
         }
 
-        private void Fi_lim_pia()
-        {
-           
-            tb_cod_ven.Clear(); 
-            tb_nom_ven.Clear();
-            //tb_des_cri.Clear();
-           
-
-            tb_cod_ven.Focus();
-        }
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -119,13 +104,57 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar usuario
-                o_cmr014.Fe_edi_ven(int.Parse(tb_cod_ven.Text), tb_nom_ven.Text, decimal.Parse(tb_por_cms.Text),cb_tip_cms.SelectedIndex);
+                o_cmr014.Fe_edi_ven(int.Parse(tb_cod_ven.Text), tb_nom_ven.Text,decimal.Parse(tb_cms_con.Text), 
+                    decimal.Parse(tb_cms_cre.Text),(cb_tip_cms.SelectedIndex +1), (cb_pro_ced.SelectedIndex +1), 1);
 
                 frm_pad.Fe_act_frm(int.Parse(tb_cod_ven.Text));
 
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Vendedor", MessageBoxButtons.OK);
                 cl_glo_frm.Cerrar(this);
             }
+
+        }
+
+        private void tb_cod_ven_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotNumeric(e);
+        }
+
+        private void tb_cms_con_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotDecimal(e, tb_cms_con.Text);
+        }
+
+        private void tb_cms_cre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotDecimal(e, tb_cms_cre.Text);
+        }
+
+        private void tb_cms_con_Validated(object sender, EventArgs e)
+        {
+            if (cl_glo_bal.IsDecimal(tb_cms_con.Text) == false)
+            {
+                MessageBox.Show("El porcentaje de comision al contado no es valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_cms_con.Focus();
+            }
+
+            // Formatea para mostrar decimal
+            tb_cms_con.Text = decimal.Round(decimal.Parse(tb_cms_con.Text), 2).ToString();
+            tb_cms_con.Text = decimal.Parse(tb_cms_con.Text).ToString("N2");
+
+        }
+
+        private void tb_cms_cre_Validated(object sender, EventArgs e)
+        {
+            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
+            {
+                MessageBox.Show("El porcentaje de comision al crédito no es valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_cms_cre.Focus();
+            }
+
+            // Formatea para mostrar decimal
+            tb_cms_cre.Text = decimal.Round(decimal.Parse(tb_cms_cre.Text), 2).ToString();
+            tb_cms_cre.Text = decimal.Parse(tb_cms_cre.Text).ToString("N2");
 
         }
     }

@@ -53,11 +53,14 @@
             this.va_cod_ven = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_ven = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_tip_cms = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_por_cms = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.mn_mod_com = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_def_ini = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_com_fam = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_com_pro = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,10 +76,11 @@
             this.mn_edi_tar,
             this.mn_con_sul,
             this.mn_rep_ort,
+            this.mn_def_ini,
             this.mn_cer_rar});
-            this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
+            this.m_frm_hja.Location = new System.Drawing.Point(93, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(257, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(333, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -91,6 +95,7 @@
             // 
             this.mn_edi_tar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_mod_ifi,
+            this.mn_mod_com,
             this.mn_hab_des,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
@@ -100,21 +105,21 @@
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(165, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(181, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(181, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(181, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
@@ -136,7 +141,7 @@
             // mn_list_del
             // 
             this.mn_list_del.Name = "mn_list_del";
-            this.mn_list_del.Size = new System.Drawing.Size(152, 22);
+            this.mn_list_del.Size = new System.Drawing.Size(180, 22);
             this.mn_list_del.Text = "&Lista de delivery";
             // 
             // mn_cer_rar
@@ -242,7 +247,7 @@
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(2, 48);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(455, 199);
+            this.groupBox2.Size = new System.Drawing.Size(465, 199);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
@@ -267,7 +272,6 @@
             this.va_cod_ven,
             this.va_nom_ven,
             this.va_tip_cms,
-            this.va_por_cms,
             this.va_est_ado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -277,14 +281,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
+            this.dg_res_ult.Location = new System.Drawing.Point(5, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
             this.dg_res_ult.ReadOnly = true;
             this.dg_res_ult.RowHeadersVisible = false;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(460, 187);
+            this.dg_res_ult.Size = new System.Drawing.Size(458, 187);
             this.dg_res_ult.TabIndex = 35;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
@@ -309,20 +313,14 @@
             this.va_tip_cms.HeaderText = "Tipo Com.";
             this.va_tip_cms.Name = "va_tip_cms";
             this.va_tip_cms.ReadOnly = true;
-            // 
-            // va_por_cms
-            // 
-            this.va_por_cms.FillWeight = 40F;
-            this.va_por_cms.HeaderText = "%";
-            this.va_por_cms.Name = "va_por_cms";
-            this.va_por_cms.ReadOnly = true;
-            this.va_por_cms.Width = 50;
+            this.va_tip_cms.Width = 110;
             // 
             // va_est_ado
             // 
             this.va_est_ado.HeaderText = "Estado";
             this.va_est_ado.Name = "va_est_ado";
             this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Width = 80;
             // 
             // gb_ctr_btn
             // 
@@ -361,6 +359,33 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
+            // 
+            // mn_mod_com
+            // 
+            this.mn_mod_com.Name = "mn_mod_com";
+            this.mn_mod_com.Size = new System.Drawing.Size(181, 22);
+            this.mn_mod_com.Text = "Modifica Tipo Comisión";
+            // 
+            // mn_def_ini
+            // 
+            this.mn_def_ini.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_com_fam,
+            this.mn_com_pro});
+            this.mn_def_ini.Name = "mn_def_ini";
+            this.mn_def_ini.Size = new System.Drawing.Size(76, 20);
+            this.mn_def_ini.Text = "&Definiciones";
+            // 
+            // mn_com_fam
+            // 
+            this.mn_com_fam.Name = "mn_com_fam";
+            this.mn_com_fam.Size = new System.Drawing.Size(231, 22);
+            this.mn_com_fam.Text = "Define Comision Familia Producto";
+            // 
+            // mn_com_pro
+            // 
+            this.mn_com_pro.Name = "mn_com_pro";
+            this.mn_com_pro.Size = new System.Drawing.Size(231, 22);
+            this.mn_com_pro.Text = "Define Comisón Producto";
             // 
             // cmr014_01
             // 
@@ -423,7 +448,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_ven;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_ven;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_tip_cms;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_por_cms;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
+        private System.Windows.Forms.ToolStripMenuItem mn_mod_com;
+        private System.Windows.Forms.ToolStripMenuItem mn_def_ini;
+        private System.Windows.Forms.ToolStripMenuItem mn_com_fam;
+        private System.Windows.Forms.ToolStripMenuItem mn_com_pro;
     }
 }
