@@ -82,6 +82,7 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mn_val_reg = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -200,7 +201,7 @@
             this.mn_mar_ca,
             this.mn_und_med});
             this.mn_par_inv.Name = "mn_par_inv";
-            this.mn_par_inv.Size = new System.Drawing.Size(152, 22);
+            this.mn_par_inv.Size = new System.Drawing.Size(180, 22);
             this.mn_par_inv.Text = "&Inventario";
             // 
             // mn_gru_bod
@@ -256,7 +257,7 @@
             this.mn_cob_rad,
             this.mn_pla_vta});
             this.mn_com_erc.Name = "mn_com_erc";
-            this.mn_com_erc.Size = new System.Drawing.Size(152, 22);
+            this.mn_com_erc.Size = new System.Drawing.Size(180, 22);
             this.mn_com_erc.Text = "Comercializacion";
             // 
             // mn_suc_urs
@@ -319,48 +320,48 @@
             this.mn_tip_doc,
             this.mn_val_reg});
             this.mn_per_son.Name = "mn_per_son";
-            this.mn_per_son.Size = new System.Drawing.Size(152, 22);
+            this.mn_per_son.Size = new System.Drawing.Size(180, 22);
             this.mn_per_son.Text = "&Persona";
             // 
             // mn_gru_per
             // 
             this.mn_gru_per.Name = "mn_gru_per";
-            this.mn_gru_per.Size = new System.Drawing.Size(177, 22);
+            this.mn_gru_per.Size = new System.Drawing.Size(180, 22);
             this.mn_gru_per.Text = "&Grupo de Persona";
             this.mn_gru_per.Click += new System.EventHandler(this.mn_gru_per_Click);
             // 
             // mn_per_son1
             // 
             this.mn_per_son1.Name = "mn_per_son1";
-            this.mn_per_son1.Size = new System.Drawing.Size(177, 22);
+            this.mn_per_son1.Size = new System.Drawing.Size(180, 22);
             this.mn_per_son1.Text = "&Persona";
             this.mn_per_son1.Click += new System.EventHandler(this.mn_per_son1_Click);
             // 
             // mn_tip_atr
             // 
             this.mn_tip_atr.Name = "mn_tip_atr";
-            this.mn_tip_atr.Size = new System.Drawing.Size(177, 22);
+            this.mn_tip_atr.Size = new System.Drawing.Size(180, 22);
             this.mn_tip_atr.Text = "&Tipo de Atributo";
             this.mn_tip_atr.Click += new System.EventHandler(this.mn_tip_atr_Click);
             // 
             // mn_def_atr
             // 
             this.mn_def_atr.Name = "mn_def_atr";
-            this.mn_def_atr.Size = new System.Drawing.Size(177, 22);
+            this.mn_def_atr.Size = new System.Drawing.Size(180, 22);
             this.mn_def_atr.Text = "&Definición de Atributo";
             this.mn_def_atr.Click += new System.EventHandler(this.mn_def_atr_Click);
             // 
             // mn_def_rut
             // 
             this.mn_def_rut.Name = "mn_def_rut";
-            this.mn_def_rut.Size = new System.Drawing.Size(177, 22);
+            this.mn_def_rut.Size = new System.Drawing.Size(180, 22);
             this.mn_def_rut.Text = "Definición de Rutas";
             this.mn_def_rut.Click += new System.EventHandler(this.mn_def_rut_Click);
             // 
             // mn_tip_doc
             // 
             this.mn_tip_doc.Name = "mn_tip_doc";
-            this.mn_tip_doc.Size = new System.Drawing.Size(177, 22);
+            this.mn_tip_doc.Size = new System.Drawing.Size(180, 22);
             this.mn_tip_doc.Text = "Ti&po Documento";
             this.mn_tip_doc.Click += new System.EventHandler(this.mn_tip_doc_Click);
             // 
@@ -371,7 +372,7 @@
             this.mn_act_eco,
             this.mn_ley_end});
             this.mn_con_tab.Name = "mn_con_tab";
-            this.mn_con_tab.Size = new System.Drawing.Size(152, 22);
+            this.mn_con_tab.Size = new System.Drawing.Size(180, 22);
             this.mn_con_tab.Text = "Con&tabilidad";
             // 
             // mn_dos_ifi
@@ -398,7 +399,7 @@
             // mn_tip_bus
             // 
             this.mn_tip_bus.Name = "mn_tip_bus";
-            this.mn_tip_bus.Size = new System.Drawing.Size(152, 22);
+            this.mn_tip_bus.Size = new System.Drawing.Size(180, 22);
             this.mn_tip_bus.Text = "T.C. Bs/Us";
             this.mn_tip_bus.Click += new System.EventHandler(this.mn_tip_bus_Click);
             // 
@@ -409,7 +410,7 @@
             this.mn_apl_ica,
             this.mn_tip_ima});
             this.mn_par_ame.Name = "mn_par_ame";
-            this.mn_par_ame.Size = new System.Drawing.Size(152, 22);
+            this.mn_par_ame.Size = new System.Drawing.Size(180, 22);
             this.mn_par_ame.Text = "&Parametros";
             // 
             // mn_mod_ulo
@@ -458,10 +459,10 @@
             this.toolStripStatusLabel4,
             this.ts_rut_app});
             this.st_bar_pie.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.st_bar_pie.Location = new System.Drawing.Point(0, 733);
+            this.st_bar_pie.Location = new System.Drawing.Point(0, 734);
             this.st_bar_pie.Name = "st_bar_pie";
             this.st_bar_pie.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.st_bar_pie.Size = new System.Drawing.Size(1329, 19);
+            this.st_bar_pie.Size = new System.Drawing.Size(1329, 18);
             this.st_bar_pie.TabIndex = 6;
             this.st_bar_pie.Tag = "Adminstracion y Seguridad";
             this.st_bar_pie.Text = "statusStrip1";
@@ -535,6 +536,13 @@
             this.ts_rut_app.Size = new System.Drawing.Size(16, 13);
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mn_val_reg
+            // 
+            this.mn_val_reg.Name = "mn_val_reg";
+            this.mn_val_reg.Size = new System.Drawing.Size(180, 22);
+            this.mn_val_reg.Text = "&Valida Reg. Persona";
+            this.mn_val_reg.Click += new System.EventHandler(this.mn_val_reg_Click);
             // 
             // ads200
             // 
@@ -616,5 +624,6 @@
         private System.Windows.Forms.ToolStripMenuItem mn_cob_rad;
         private System.Windows.Forms.ToolStripMenuItem mn_suc_urs;
         private System.Windows.Forms.ToolStripMenuItem mn_ley_end;
+        private System.Windows.Forms.ToolStripMenuItem mn_val_reg;
     }
 }
