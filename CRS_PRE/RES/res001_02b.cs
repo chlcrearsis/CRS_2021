@@ -911,7 +911,7 @@ namespace CRS_PRE.CMR
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_cod_per.Text = frm.tb_sel_bus.Text;
+                tb_cod_per.Text = frm.tb_cod_per.Text;
                 Fi_obt_per();
                 //tb_raz_soc.Text = frm.lb_des_bus.Text;
             }

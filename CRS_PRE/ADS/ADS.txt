@@ -20,8 +20,8 @@ ads016 = Gestion Periodos										CHL
 ads022 = Tipo de cambio Bs/Us									CHL
 ads023 = Tipo de cambio Bs/Ufv		 (Pendiente)	
 ads024 = Bitacora inicio de sesion   (pendiente)				EJR
-ads025 = Bitacora de operaciones	 (pendiente)				EJR
-ads026 = Bitacora de documentos		 (pendiente)				EJR
+ads025 = Bitacora p/Operaciones	     (pendiente)				EJR
+ads026 = Bitacora P/Documentos		 (pendiente)				EJR
 ads027 = Licencias					            				EJR
 
 

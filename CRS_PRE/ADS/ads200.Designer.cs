@@ -316,7 +316,8 @@
             this.mn_tip_atr,
             this.mn_def_atr,
             this.mn_def_rut,
-            this.mn_tip_doc});
+            this.mn_tip_doc,
+            this.mn_val_reg});
             this.mn_per_son.Name = "mn_per_son";
             this.mn_per_son.Size = new System.Drawing.Size(152, 22);
             this.mn_per_son.Text = "&Persona";

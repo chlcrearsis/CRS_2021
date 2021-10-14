@@ -251,14 +251,14 @@ namespace CRS_PRE.INV
             {
                 if (opc_per == 1)
                 {
-                    tb_cod_pe1.Text = frm.tb_sel_bus.Text;
-                    lb_nom_pe1.Text = frm.lb_des_bus.Text;
+                    tb_cod_pe1.Text = frm.tb_cod_per.Text;
+                    lb_nom_pe1.Text = frm.lb_raz_soc.Text;
                     tb_cod_pe1.Focus();
                 }
                 if (opc_per == 2)
                 {
-                    tb_cod_pe2.Text = frm.tb_sel_bus.Text;
-                    lb_nom_pe2.Text = frm.lb_des_bus.Text;
+                    tb_cod_pe2.Text = frm.tb_cod_per.Text;
+                    lb_nom_pe2.Text = frm.lb_raz_soc.Text;
                     tb_cod_pe2.Focus();
                 }
 

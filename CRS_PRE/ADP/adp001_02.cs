@@ -121,7 +121,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar
-                o_adp001.Fe_crea(int.Parse(tb_ide_gru.Text), tb_nom_gru.Text);
+                o_adp001.Fe_nue_gru(int.Parse(tb_ide_gru.Text), tb_nom_gru.Text);
                 frm_pad.Fe_act_frm( int.Parse(tb_ide_gru.Text));
                 //MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Grupo de persona", MessageBoxButtons.OK);
                 Fi_lim_pia();

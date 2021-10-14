@@ -25,35 +25,40 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             tb_ide_tip.Text = frm_dat.Rows[0]["va_ide_tip"].ToString().Trim();
-            tb_nom_tip.Text = frm_dat.Rows[0]["va_nom_tip"].ToString().Trim();
+            tb_des_tip.Text = frm_dat.Rows[0]["va_des_tip"].ToString().Trim();
+
+            if (frm_dat.Rows[0]["va_ext_doc"].ToString() == "S")
+                cb_ext_doc.Checked = true;
+            else
+                cb_ext_doc.Checked = false;
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
-            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
+            else
                 tb_est_ado.Text = "Deshabilitado";
         }
       
         // Función Valida datos proporcionado
         protected string Fi_val_dat()
         {
-            if (tb_nom_tip.Text.Trim()==""){
-                tb_nom_tip.Focus();
+            if (tb_des_tip.Text.Trim()==""){
+                tb_des_tip.Focus();
                 return "DEBE proporcionar el nombre para el Tipo de Documento";
             }           
 
             // Verifica SI existe otro registro con el mismo ID
             Tabla = new DataTable();
-            Tabla = o_adp014.Fe_con_tip(int.Parse(tb_ide_tip.Text));
+            Tabla = o_adp014.Fe_con_tip(tb_ide_tip.Text.Trim());
             if (Tabla.Rows.Count == 0){
                 return "EL Tipo de Documento NO se encuentra en la base de datos";
             }
 
-            // Verifica SI existe otro registro con el mismo nombre
+            // Verifica SI existe otro registro con el mismo descripción
             Tabla = new DataTable();
-            Tabla = o_adp014.Fe_con_nom(tb_nom_tip.Text.Trim(), int.Parse(tb_ide_tip.Text));
+            Tabla = o_adp014.Fe_con_nom(tb_des_tip.Text.Trim(), tb_ide_tip.Text.Trim());
             if (Tabla.Rows.Count > 0){
-                tb_nom_tip.Focus();
-                return "YA existe otra Tipo de Documento con el mismo nombre";
+                tb_des_tip.Focus();
+                return "YA existe otra Tipo de Documento con el misma descripción";
             }
 
             return "";
@@ -62,6 +67,7 @@ namespace CRS_PRE
         // Evento Click: Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e){
             DialogResult msg_res;
+                  string ext_doc;
 
             try
             {
@@ -72,12 +78,17 @@ namespace CRS_PRE
                     return;
                 }
                 msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (msg_res == DialogResult.OK)
-                {
+                if (msg_res == DialogResult.OK){
+                    // Obtiene la bandera si usa la extensión documento
+                    if (cb_ext_doc.Checked){
+                        ext_doc = "S";
+                    }else{
+                        ext_doc = "N";
+                    }
                     // Edita Tipo de Documento
-                    o_adp014.Fe_edi_tip(int.Parse(tb_ide_tip.Text), tb_nom_tip.Text);
+                    o_adp014.Fe_edi_tip(tb_ide_tip.Text.Trim(), tb_des_tip.Text.Trim(), ext_doc);
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
+                    frm_pad.Fe_act_frm(tb_ide_tip.Text.Trim());
                     cl_glo_frm.Cerrar(this);
                 }
             }

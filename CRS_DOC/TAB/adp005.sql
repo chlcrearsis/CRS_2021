@@ -8,13 +8,10 @@ FECHA:		25-08-2021
 CREATE TABLE adp005 
 (
 --** Llave Primaria
+va_cod_per		INT				NOT NULL	DEFAULT(0),			--** Codigo Persona
 va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de atributo
 va_ide_atr		INT				NOT NULL	DEFAULT(0),			--** ID. Atributo
-va_cod_per		INT				NOT NULL	DEFAULT(0),			--** Codigo Persona (2 de Grup. Per y 5 de Persona)
 
-CONSTRAINT pk1_adp005 PRIMARY KEY(va_ide_tip, va_ide_atr, va_cod_per)
+CONSTRAINT pk1_adp005 PRIMARY KEY(va_cod_per, va_ide_tip, va_ide_atr)
 )
 GO
-
-
-

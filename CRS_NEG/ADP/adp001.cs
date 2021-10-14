@@ -21,76 +21,22 @@ namespace CRS_NEG
         //## Descripcion:                                                     ##         
         //##       Autor: CHL  - (22-07-2020)                                 ##
         //######################################################################
-        conexion_a ob_con_ecA = new conexion_a();
 
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
-        StringBuilder cadena;
-
-
-
-        public adp001()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
-
-        public DataTable Fe_bus_car(string val_bus, int prm_bus, string est_bus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine(" select * from adp001  ");
-
-                switch (prm_bus)
-                {
-                    case 0: cadena.AppendLine(" where va_cod_gru like '" + val_bus + "%' "); break;
-                    case 1: cadena.AppendLine(" where va_nom_gru like '" + val_bus + "%' "); break;
-
-                }
-                switch (est_bus)
-                {
-                    case "0": est_bus = "T"; break;
-                    case "1": est_bus = "H"; break;
-                    case "2": est_bus = "N"; break;
-                }
-
-                if (est_bus != "T")
-                {
-                    cadena.AppendLine(" and va_est_ado ='" + est_bus + "'");
-                }
-
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        //}
+        conexion_a ob_con_ecA = new conexion_a();       
+        StringBuilder cadena;       
+     
         /// <summary>
         /// Funcion "Registrar GRUPO DE PERSONA"
         /// </summary>
         /// <param name="cod_gru">Codigo del GRUPO de persona</param>
         /// <param name="nom_gru">nombre del GRUPO de persona</param>
         /// <returns></returns>
-        public void Fe_crea(int cod_gru, string nom_gru)
+        public void Fe_nue_gru(int cod_gru, string nom_gru)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" INSERT INTO adp001 VALUES ");
-                cadena.AppendLine(" (" + cod_gru + ", '" + nom_gru + "','H')");
-
+                cadena.AppendLine("INSERT INTO adp001 VALUES (" + cod_gru + ", '" + nom_gru + "','H')");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -98,6 +44,7 @@ namespace CRS_NEG
                 throw ex;
             }
         }
+
         /// <summary>
         /// Funcion "Modifica Grupo de Persona"
         /// </summary>
@@ -109,10 +56,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE adp001 SET ");
-                cadena.AppendLine(" va_nom_gru='" + nom_gru + "'");
-                cadena.AppendLine(" WHERE va_cod_gru =" + cod_gru);
-
+                cadena.AppendLine("UPDATE adp001 SET va_nom_gru = '" + nom_gru + "' WHERE va_cod_gru =" + cod_gru +"");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -132,10 +76,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE adp001 SET ");
-                cadena.AppendLine(" va_est_ado='" + est_ado + "' ");
-                cadena.AppendLine(" WHERE  va_cod_gru = '" + cod_gru + "'");
-
+                cadena.AppendLine("UPDATE adp001 SET va_est_ado='" + est_ado + "' WHERE  va_cod_gru = " + cod_gru + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
 
             }
@@ -144,6 +85,44 @@ namespace CRS_NEG
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Función: "FILTRA TIPO DE ATRIBUTO"
+        /// </summary>
+        /// <param name="cri_bus">Criterio de Busqueda</param>
+        /// <param name="prm_bus">Parametros de Busqueda (0=va_cod_gru; 1=va_nom_gru)</param>
+        /// <param name="est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
+        /// <returns></returns>
+        public DataTable Fe_bus_car(string cri_bus, int prm_bus, string est_bus)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_cod_gru, va_nom_gru, va_est_ado");
+                cadena.AppendLine("  FROM adp001");
+                switch (prm_bus){
+                    case 0: cadena.AppendLine(" WHERE va_cod_gru like '" + cri_bus + "%'"); break;
+                    case 1: cadena.AppendLine(" WHERE va_nom_gru like '" + cri_bus + "%'"); break;
+
+                }
+                switch (est_bus){
+                    case "0": est_bus = "T"; break;
+                    case "1": est_bus = "H"; break;
+                    case "2": est_bus = "N"; break;
+                }
+
+                if (est_bus != "T"){
+                    cadena.AppendLine(" AND va_est_ado ='" + est_bus + "'");
+                }
+
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// Funcion consultar "GRUPO DE PERSONA"
         /// </summary>
@@ -154,8 +133,9 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM adp001   ");
-                cadena.AppendLine(" WHERE va_cod_gru =" + cod_gru + " ");
+                cadena.AppendLine("SELECT va_cod_gru, va_nom_gru, va_est_ado");
+                cadena.AppendLine("  FROM adp001");
+                cadena.AppendLine(" WHERE va_cod_gru = " + cod_gru + "");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -165,17 +145,29 @@ namespace CRS_NEG
             }
         }
 
-        public DataTable Fe_obt_gru()
+        /// <summary>
+        /// Funcion consultar "LISTA GRUPO DE PERSONA"
+        /// </summary>
+        /// <param name="est_ado">est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
+        /// <returns></returns>
+        public DataTable Fe_lis_gru(string est_ado = "0")
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM adp001   ");
+                cadena.AppendLine("SELECT va_cod_gru, va_nom_gru, va_est_ado");
+                cadena.AppendLine("  FROM adp001");
+                switch (est_ado){
+                    case "0": est_ado = "T"; break;
+                    case "1": est_ado = "H"; break;
+                    case "2": est_ado = "N"; break;
+                }
 
+                if (est_ado != "T"){
+                    cadena.AppendLine(" WHERE va_est_ado ='" + est_ado + "'");
+                }
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 throw ex;
             }
         }

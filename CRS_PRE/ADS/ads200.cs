@@ -219,6 +219,18 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm);
         }
 
+        private void mn_tip_doc_Click_1(object sender, EventArgs e)
+        {
+            o_frm = new adp014_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_val_reg_Click(object sender, EventArgs e)
+        {
+            o_frm = new adp015_01();
+            cl_glo_frm.abrir(this, o_frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
         private void mn_pla_vta_Click(object sender, EventArgs e)
         {
             o_frm = new cmr004_01();
