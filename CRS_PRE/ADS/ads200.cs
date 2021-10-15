@@ -207,6 +207,12 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm);
         }
 
+        private void mn_val_reg_Click_1(object sender, EventArgs e)
+        {
+            o_frm = new adp015_01();
+            cl_glo_frm.abrir(this, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+        }
+
         private void mn_def_atr_Click(object sender, EventArgs e)
         {
             o_frm = new adp004_01();
@@ -361,5 +367,6 @@ namespace CRS_PRE
             }
         }
 
+       
     }
 }

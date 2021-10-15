@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -20,27 +15,8 @@ namespace CRS_NEG
         //##       Autor: CHL  - (15-09-2020)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
         string cadena = "";
-
-
-
-        public cmr014()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
- 
+         
         public void Fe_crea(int ar_cod_ven, string ar_nom_ven, string ar_tel_cel, string ar_ema_ail,
                             int ar_pro_ced, int ar_tip_cms, decimal ar_por_con, decimal ar_por_cre, int ar_ide_tip)
         {
@@ -78,9 +54,7 @@ namespace CRS_NEG
         {
             cadena = " DELETE cmr014 " ;
             cadena += " WHERE va_cod_ide = " + ar_cod_ven + " AND va_ide_tip = " + ar_ide_tip;
-            ob_con_ecA.fe_exe_sql(cadena);
-
-            
+            ob_con_ecA.fe_exe_sql(cadena);            
         }
 
         public DataTable Fe_con_ven( int ar_cod_ven, int ar_ide_tip)
