@@ -326,42 +326,42 @@
             // mn_gru_per
             // 
             this.mn_gru_per.Name = "mn_gru_per";
-            this.mn_gru_per.Size = new System.Drawing.Size(191, 22);
+            this.mn_gru_per.Size = new System.Drawing.Size(180, 22);
             this.mn_gru_per.Text = "&Grupo de Persona";
             this.mn_gru_per.Click += new System.EventHandler(this.mn_gru_per_Click);
             // 
             // mn_per_son1
             // 
             this.mn_per_son1.Name = "mn_per_son1";
-            this.mn_per_son1.Size = new System.Drawing.Size(191, 22);
+            this.mn_per_son1.Size = new System.Drawing.Size(180, 22);
             this.mn_per_son1.Text = "&Persona";
             this.mn_per_son1.Click += new System.EventHandler(this.mn_per_son1_Click);
             // 
             // mn_tip_atr
             // 
             this.mn_tip_atr.Name = "mn_tip_atr";
-            this.mn_tip_atr.Size = new System.Drawing.Size(191, 22);
+            this.mn_tip_atr.Size = new System.Drawing.Size(180, 22);
             this.mn_tip_atr.Text = "&Tipo de Atributo";
             this.mn_tip_atr.Click += new System.EventHandler(this.mn_tip_atr_Click);
             // 
             // mn_def_atr
             // 
             this.mn_def_atr.Name = "mn_def_atr";
-            this.mn_def_atr.Size = new System.Drawing.Size(191, 22);
+            this.mn_def_atr.Size = new System.Drawing.Size(180, 22);
             this.mn_def_atr.Text = "&Definición de Atributo";
             this.mn_def_atr.Click += new System.EventHandler(this.mn_def_atr_Click);
             // 
             // mn_def_rut
             // 
             this.mn_def_rut.Name = "mn_def_rut";
-            this.mn_def_rut.Size = new System.Drawing.Size(191, 22);
+            this.mn_def_rut.Size = new System.Drawing.Size(180, 22);
             this.mn_def_rut.Text = "Definición de Rutas";
             this.mn_def_rut.Click += new System.EventHandler(this.mn_def_rut_Click);
             // 
             // mn_tip_doc
             // 
             this.mn_tip_doc.Name = "mn_tip_doc";
-            this.mn_tip_doc.Size = new System.Drawing.Size(191, 22);
+            this.mn_tip_doc.Size = new System.Drawing.Size(180, 22);
             this.mn_tip_doc.Text = "Ti&po Documento";
             this.mn_tip_doc.Click += new System.EventHandler(this.mn_tip_doc_Click);
             // 
@@ -459,10 +459,10 @@
             this.toolStripStatusLabel4,
             this.ts_rut_app});
             this.st_bar_pie.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.st_bar_pie.Location = new System.Drawing.Point(0, 729);
+            this.st_bar_pie.Location = new System.Drawing.Point(0, 734);
             this.st_bar_pie.Name = "st_bar_pie";
             this.st_bar_pie.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.st_bar_pie.Size = new System.Drawing.Size(1329, 20);
+            this.st_bar_pie.Size = new System.Drawing.Size(1329, 18);
             this.st_bar_pie.TabIndex = 6;
             this.st_bar_pie.Tag = "Adminstracion y Seguridad";
             this.st_bar_pie.Text = "statusStrip1";
@@ -540,9 +540,9 @@
             // mn_val_reg
             // 
             this.mn_val_reg.Name = "mn_val_reg";
-            this.mn_val_reg.Size = new System.Drawing.Size(191, 22);
-            this.mn_val_reg.Text = "Valida Registro";
-            this.mn_val_reg.Click += new System.EventHandler(this.mn_val_reg_Click_1);
+            this.mn_val_reg.Size = new System.Drawing.Size(180, 22);
+            this.mn_val_reg.Text = "&Valida Reg. Persona";
+            this.mn_val_reg.Click += new System.EventHandler(this.mn_val_reg_Click);
             // 
             // ads200
             // 

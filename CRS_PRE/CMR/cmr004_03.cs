@@ -571,8 +571,8 @@ namespace CRS_PRE.CMR
             }
             else
             {
-                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ven"].ToString();
-                lb_nom_ven.Text = tabla.Rows[0]["va_nom_ven"].ToString();
+                tb_cod_ven.Text = tabla.Rows[0]["va_cod_ide"].ToString();
+                lb_nom_ven.Text = tabla.Rows[0]["va_nom_bre"].ToString();
             }
         }
 
