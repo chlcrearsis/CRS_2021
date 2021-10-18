@@ -534,7 +534,7 @@ namespace CRS_PRE.CMR
         }
         void Fi_abr_bus_ven()
         {
-            cmr014_01 frm = new cmr014_01();
+            cmr014_01b frm = new cmr014_01b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)

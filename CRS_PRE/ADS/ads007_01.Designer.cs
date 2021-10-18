@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_cre_ar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +39,7 @@
             this.mn_ini_psw = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rei_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cam_tus = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_mod_pin = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_list_usr = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +72,7 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.mn_ini_pin = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -91,14 +93,14 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(436, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(531, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
             // mn_cre_ar
             // 
             this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
+            this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
             this.mn_cre_ar.Text = "&Crea";
             this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
             // 
@@ -110,56 +112,65 @@
             this.mn_eli_min,
             this.mn_ini_psw,
             this.mn_rei_per,
-            this.mn_cam_tus});
+            this.mn_cam_tus,
+            this.mn_mod_pin,
+            this.mn_ini_pin});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
+            this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(200, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(186, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(200, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(186, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(200, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(186, 22);
             this.mn_eli_min.Text = "E&limina";
             // 
             // mn_ini_psw
             // 
             this.mn_ini_psw.Name = "mn_ini_psw";
-            this.mn_ini_psw.Size = new System.Drawing.Size(200, 22);
+            this.mn_ini_psw.Size = new System.Drawing.Size(186, 22);
             this.mn_ini_psw.Text = "&Inicializa contraseña";
             this.mn_ini_psw.Click += new System.EventHandler(this.mn_ini_psw_Click);
             // 
             // mn_rei_per
             // 
             this.mn_rei_per.Name = "mn_rei_per";
-            this.mn_rei_per.Size = new System.Drawing.Size(200, 22);
+            this.mn_rei_per.Size = new System.Drawing.Size(186, 22);
             this.mn_rei_per.Text = "&Reinicia Permisos";
             this.mn_rei_per.Click += new System.EventHandler(this.mn_rei_per_Click);
             // 
             // mn_cam_tus
             // 
             this.mn_cam_tus.Name = "mn_cam_tus";
-            this.mn_cam_tus.Size = new System.Drawing.Size(200, 22);
+            this.mn_cam_tus.Size = new System.Drawing.Size(186, 22);
             this.mn_cam_tus.Text = "Cambia &Tipo de Usuario";
             this.mn_cam_tus.Click += new System.EventHandler(this.mn_cam_tus_Click);
+            // 
+            // mn_mod_pin
+            // 
+            this.mn_mod_pin.Name = "mn_mod_pin";
+            this.mn_mod_pin.Size = new System.Drawing.Size(186, 22);
+            this.mn_mod_pin.Text = "Modifica &PIN";
+            this.mn_mod_pin.Click += new System.EventHandler(this.mn_mod_pin_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
@@ -168,13 +179,13 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_usr});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_usr
             // 
             this.mn_list_usr.Name = "mn_list_usr";
-            this.mn_list_usr.Size = new System.Drawing.Size(161, 22);
+            this.mn_list_usr.Size = new System.Drawing.Size(154, 22);
             this.mn_list_usr.Text = "&Lista de usuarios";
             this.mn_list_usr.Click += new System.EventHandler(this.Mn_list_usr_Click);
             // 
@@ -187,55 +198,55 @@
             this.mn_per_apl,
             this.mn_per_lis});
             this.mn_per_usu.Name = "mn_per_usu";
-            this.mn_per_usu.Size = new System.Drawing.Size(67, 20);
+            this.mn_per_usu.Size = new System.Drawing.Size(61, 20);
             this.mn_per_usu.Text = "&Permisos";
             // 
             // mn_per_tal
             // 
             this.mn_per_tal.Name = "mn_per_tal";
-            this.mn_per_tal.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_tal.Size = new System.Drawing.Size(268, 22);
             this.mn_per_tal.Text = "Permiso de Talonaios";
             this.mn_per_tal.Click += new System.EventHandler(this.mn_per_tal_Click);
             // 
             // mn_per_plv
             // 
             this.mn_per_plv.Name = "mn_per_plv";
-            this.mn_per_plv.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_plv.Size = new System.Drawing.Size(268, 22);
             this.mn_per_plv.Text = "Permiso de Plantilla de Venta";
             this.mn_per_plv.Click += new System.EventHandler(this.mn_per_plv_Click);
             // 
             // mn_per_plv_res
             // 
             this.mn_per_plv_res.Name = "mn_per_plv_res";
-            this.mn_per_plv_res.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_plv_res.Size = new System.Drawing.Size(268, 22);
             this.mn_per_plv_res.Text = "Permiso de Plantilla de Venta Restaurant";
             this.mn_per_plv_res.Click += new System.EventHandler(this.mn_per_plv_res_Click);
             // 
             // mn_per_apl
             // 
             this.mn_per_apl.Name = "mn_per_apl";
-            this.mn_per_apl.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_apl.Size = new System.Drawing.Size(268, 22);
             this.mn_per_apl.Text = "Permiso de aplicaciones";
             this.mn_per_apl.Click += new System.EventHandler(this.mn_per_apl_Click);
             // 
             // mn_per_lis
             // 
             this.mn_per_lis.Name = "mn_per_lis";
-            this.mn_per_lis.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_lis.Size = new System.Drawing.Size(268, 22);
             this.mn_per_lis.Text = "S/Lista de precios";
             this.mn_per_lis.Click += new System.EventHandler(this.mn_per_lis_Click);
             // 
             // mn_tip_usu
             // 
             this.mn_tip_usu.Name = "mn_tip_usu";
-            this.mn_tip_usu.Size = new System.Drawing.Size(101, 20);
+            this.mn_tip_usu.Size = new System.Drawing.Size(93, 20);
             this.mn_tip_usu.Text = "&Tipo de Usuario";
             this.mn_tip_usu.Click += new System.EventHandler(this.mn_tip_usu_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -369,15 +380,15 @@
             this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_usr,
@@ -386,14 +397,14 @@
             this.va_tel_usr,
             this.va_car_usr,
             this.va_est_ado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle4;
             this.dg_res_ult.Location = new System.Drawing.Point(4, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -482,6 +493,13 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
+            // mn_ini_pin
+            // 
+            this.mn_ini_pin.Name = "mn_ini_pin";
+            this.mn_ini_pin.Size = new System.Drawing.Size(186, 22);
+            this.mn_ini_pin.Text = "Inicializa PIN";
+            this.mn_ini_pin.Click += new System.EventHandler(this.mn_ini_pin_Click);
+            // 
             // ads007_01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -553,5 +571,7 @@
         private System.Windows.Forms.ToolStripMenuItem mn_rei_per;
         private System.Windows.Forms.ToolStripMenuItem mn_cam_tus;
         public System.Windows.Forms.TextBox tb_sel_bus;
+        private System.Windows.Forms.ToolStripMenuItem mn_mod_pin;
+        private System.Windows.Forms.ToolStripMenuItem mn_ini_pin;
     }
 }

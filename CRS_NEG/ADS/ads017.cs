@@ -10,9 +10,9 @@ namespace CRS_NEG
     {
         //######################################################################
         //##       Tabla: ads017_01                                           ##
-        //##      Nombre: Usuario                                             ##
-        //## Descripcion: Inicio Sesion Usuario                               ##         
-        //##       Autor: JEJR - (05-01-2019)                                 ##
+        //##      Nombre: PIN Usuario                                         ##
+        //## Descripcion: PIN Usuario                                         ##         
+        //##       Autor: CHL - (15-10-2010)                                  ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
 
@@ -24,7 +24,7 @@ namespace CRS_NEG
         public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
 
         string cadena = "";
-
+        DataTable Tabla = new DataTable();
 
         public ads017()
         {
@@ -35,64 +35,44 @@ namespace CRS_NEG
             va_pas_usr = ob_con_ecA.va_pas_usr;
         }
 
-        #region "PERMISO SOBRE PLANTILLA DE VENTA"
+        //#region ""
 
-        /// <summary>
-        /// Obtiene Permiso sobre Plantilla de ventas
-        /// </summary>
-        /// <param name="ag_ide_usr">Ide Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_ads017_01(string ag_ide_usr)
+        //public DataTable Fe_obt_mod()
+        //{
+        //    cadena = "SELECT * FROM ads017 " +
+        //        " WHERE va_ide_usr = '' ";
+        //    Tabla = ob_con_ecA.fe_exe_sql(cadena);
+
+        //    return Tabla;
+        //}
+
+        public void Fe_crea(string ar_ide_usr, int ar_pin_usr, DateTime ar_fec_reg, DateTime ar_fec_exp, string nom_eqp)
         {
-            cadena = " SELECT * FROM ads017 ";
-            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "'";
+            cadena = " INSERT INTO ads017 VALUES('" + ar_ide_usr + "'," + ar_pin_usr + " ," +
+                " '" + ar_fec_reg + "', '" + ar_fec_exp + "','" + nom_eqp + "')";
+
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+
+        public void Fe_edi_pin(string ar_ide_usr, int ar_pin_usr, DateTime ar_fec_reg, DateTime ar_fec_exp, string nom_eqp)
+        {
+            cadena = " UPDATE ads017 SET va_pin_usr = " + ar_pin_usr + " , va_fec_reg = '" + ar_fec_reg + "', va_fec_exp = '" + ar_fec_exp + "', va_nom_eqp = '" + nom_eqp + "' " +
+                    " WHERE va_ide_usr = '" + ar_ide_usr + "'" ;
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        public void Fe_eli_pin(string ar_ide_usr)
+        {
+            cadena = " DELETE ads017 WHERE va_ide_usr = '" + ar_ide_usr + "'";
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        public DataTable Fe_con_pin(string ar_ide_usr)
+        {
+            cadena = " SELECT * FROM ads017 WHERE va_ide_usr =  '" + ar_ide_usr + "' ";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
-        /// <summary>
-        /// Consulta si el usuario tiene permiso sobre una  Plantilla especifico
-        /// </summary>
-        /// <param name="ag_ide_usr">Ide Usuario</param>
-        /// <param name="ag_cod_plv">Cod de plantilla </param>
-        /// <returns></returns>
-        public Boolean Fe_ads017_02(string ag_ide_usr, int ag_cod_plv)
-        {
-            bool resul = false;
-
-            cadena = " SELECT * FROM ads017 ";
-            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_cod_plv =" + ag_cod_plv;
-            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
-
-            if (tabla.Rows.Count == 0)
-                resul = false;
-            if (tabla.Rows.Count > 0)
-                resul = true;
-
-            return resul;
-        }
-
-        /// <summary>
-        /// Registra permiso sobre Talonario
-        /// </summary>
-        /// <returns></returns>
-        public DataTable Fe_ads017_03(string ag_ide_usr, int ag_cod_plv)
-        {
-            cadena = " INSERT INTO ads017 VALUES ";
-            cadena += " ('" + ag_ide_usr + "', " + ag_cod_plv + ") ";
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        /// <summary>
-        /// Elimna permiso sobre talonario
-        /// </summary>
-        /// <returns></returns>
-        public DataTable Fe_ads017_04(string ag_ide_usr, int ag_cod_plv)
-        {
-            cadena = " DELETE ads017 ";
-            cadena += " WHERE va_ide_usr ='" + ag_ide_usr + "' AND va_cod_plv = " + ag_cod_plv;
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        #endregion
     }
 }

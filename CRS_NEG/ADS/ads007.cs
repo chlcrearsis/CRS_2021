@@ -82,6 +82,24 @@ namespace CRS_NEG
             return msg_ret;
         }
 
+        /// <summary>
+        /// Función para verificar segundas conexiones
+        /// </summary>
+        /// <param name="ag_ide_usr"></param>
+        /// <param name="ag_pas_usr"></param>
+        /// <returns></returns>
+        public string Login_2(string ag_ide_usr, string ag_pas_usr)
+        {
+            string msg_ret = "";
+            msg_ret = ob_con_ecA.Fe_loguin_2(ag_ide_usr, ag_pas_usr);
+
+            if (msg_ret == "OK")
+            {
+                msg_ret = Fi_log_bdo(ag_ide_usr);
+            }
+
+            return msg_ret;
+        }
 
         private string Fi_log_bdo( string ag_ser_bda)
         {

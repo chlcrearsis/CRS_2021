@@ -108,18 +108,16 @@ namespace CRS_NEG
         /// Función: "FILTRA TIPO DE DOCUMENTO"
         /// </summary>
         /// <param name="cri_bus">Criterio de Busqueda</param>
-        /// <param name="prm_bus">Parametros de Busqueda (0=va_ide_tip; 1=va_nom_tip)</param>
+        /// <param name="prm_bus">Parametros de Busqueda (1=va_cod_plg; 2=va_des_plg)</param>
         /// <param name="est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
         /// <returns></returns>
-        public DataTable Fe_bus_car(string val_bus, int prm_bus, string est_bus, int tipo = 1)
+        public DataTable Fe_bus_car(string val_bus, int prm_bus, string est_bus)
         {
             try
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine(" select * from ecp005 ");
 
-                if (tipo == 1)
-                {
                     switch (prm_bus)
                     {
                         case 1: cadena.AppendLine(" where va_cod_plg like '" + val_bus + "%' "); break;
@@ -137,12 +135,8 @@ namespace CRS_NEG
                     {
                         cadena.AppendLine(" and va_est_ado ='" + est_bus + "'");
                     }
-                }
-                else if (tipo == 2)
-                {
-                    cadena.AppendLine(" where va_cod_plg = '" + val_bus + "' ");
-                }
-
+              
+            
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }

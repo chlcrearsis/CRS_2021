@@ -141,26 +141,28 @@ namespace CRS_PRE
         {
             string ide_usr = tb_ide_usr.Text;
             string pas_usr = tb_pas_usr.Text.Trim();
-
+            string msn_res = "";
             try
             {
                 // Valida los datos de proporcionado por el usuario
                 if (ValidaDatos() == true){
-                    
-                    DataTable Tabla = new DataTable();
-                    string instancia = o_ads007.va_ins_bda;
-                    string servidor = o_ads007.va_ser_bda;
-                    string basedatos = o_ads007.va_nom_bda;
-
-
-                    string str_con = servidor + "\\" + instancia + ":" + basedatos;
-
-                    string msn_res = o_ads007.Login(Program.gl_ide_uni, str_con, ide_usr, pas_usr);
+                  
+                    // VALIDA LOGUIN DEL USUARIO
+                    if (tb_pas_usr.Text.Trim() == "")
+                    {
+                        tb_pas_usr.Focus();
+                        MessageBox.Show("ERROR: Debe proporcionar su contraseña.", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return ;
+                    }
+                    msn_res = o_ads007.Login_2(tb_ide_usr.Text, tb_pas_usr.Text);
                     if (msn_res != "OK")
                     {
+                        tb_pas_usr.Focus();
                         MessageBox.Show("ERROR '" + msn_res + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        return ;
                     }
+
+
 
                     this.DialogResult = DialogResult.OK;
                     cl_glo_frm.Cerrar(this);

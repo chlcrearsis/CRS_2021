@@ -77,9 +77,46 @@ namespace CRS_DAT
             }
             catch (System.Exception ex)
             {
-                return ex.ToString();
+                return ex.Message;
             }
         }
+
+
+        /// <summary>
+        /// Función para comprobar segundas conecciones
+        /// </summary>
+        /// <param name="ar_ide_usr"></param>
+        /// <param name="ar_pas_usr"></param>
+        /// <returns></returns>
+        public string Fe_loguin_2(string ar_ide_usr, string ar_pas_usr)
+        {
+            try
+            {
+                //Obtiene los argumentos de conexion
+                va_ser_bda = Settings.Default.va_ser_bda;
+                va_ins_bda = Settings.Default.va_ins_bda;
+                va_nom_bda = Settings.Default.va_nom_bda;
+                va_ide_usr = ar_ide_usr;
+                va_pas_usr = ar_pas_usr;
+                //Obtiene la Cadena de Conexion
+                Cadena = ("Data Source=" + va_ser_bda + "\\" + va_ins_bda + "; Initial Catalog = " + va_nom_bda + "; User Id = " + va_ide_usr + "; Password = " + va_pas_usr + "");
+                //Coneta con el Servidor
+                if (va_cxn_sql.State == ConnectionState.Closed)
+                {
+                    va_cxn_sql.ConnectionString = Cadena;
+                    va_cxn_sql.Open();
+
+                    va_cxn_sql.Close();
+                }
+
+                return "OK";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
 
         /// <summary>
         /// Cierra la coneccion
