@@ -1,0 +1,6 @@
+********		ESTRUCTURA		********
+******** IDENTIFICADOR: ECP			********
+******** MODULO: EXIGIBLE POR COBRAR Y PAGAR	********
+
+ecp001 = Plan de Pago
+ecp002 = 

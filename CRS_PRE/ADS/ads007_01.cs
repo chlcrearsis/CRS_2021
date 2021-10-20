@@ -531,6 +531,24 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-     
+        private void mn_mod_pin_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para editar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
+            ads007_03f frm = new ads007_03f();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void mn_ini_pin_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para editar
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
+            ads007_03g frm = new ads007_03g();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
     }
 }

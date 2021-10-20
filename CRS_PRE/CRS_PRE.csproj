@@ -340,6 +340,18 @@
     <Compile Include="ADS\ads000_03.Designer.cs">
       <DependentUpon>ads000_03.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads007_03g.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads007_03g.Designer.cs">
+      <DependentUpon>ads007_03g.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads007_03f.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads007_03f.Designer.cs">
+      <DependentUpon>ads007_03f.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads012_01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1205,6 +1217,24 @@
     </Compile>
     <Compile Include="CTB\ctb007_02.Designer.cs">
       <DependentUpon>ctb007_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ECP\ecp001_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ECP\ecp001_03.Designer.cs">
+      <DependentUpon>ecp001_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ECP\ecp001_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ECP\ecp001_02.Designer.cs">
+      <DependentUpon>ecp001_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ECP\ecp001_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ECP\ecp001_01.Designer.cs">
+      <DependentUpon>ecp001_01.cs</DependentUpon>
     </Compile>
     <Compile Include="INV\inv003_06.cs">
       <SubType>Form</SubType>
@@ -2120,6 +2150,12 @@
     <EmbeddedResource Include="ADS\ads000_03.resx">
       <DependentUpon>ads000_03.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads007_03g.resx">
+      <DependentUpon>ads007_03g.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads007_03f.resx">
+      <DependentUpon>ads007_03f.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads012_01.resx">
       <DependentUpon>ads012_01.cs</DependentUpon>
     </EmbeddedResource>
@@ -2563,6 +2599,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CTB\ctb007_02.resx">
       <DependentUpon>ctb007_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ECP\ecp001_03.resx">
+      <DependentUpon>ecp001_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ECP\ecp001_02.resx">
+      <DependentUpon>ecp001_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ECP\ecp001_01.resx">
+      <DependentUpon>ecp001_01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV\inv003_06.resx">
       <DependentUpon>inv003_06.cs</DependentUpon>
@@ -3063,6 +3108,7 @@
     <Content Include="ADS\ADS.txt" />
     <Content Include="CMR\CMR.txt" />
     <Content Include="CTB\CTB.txt" />
+    <Content Include="ECP\ECP.txt" />
     <None Include="Resources\fondotexto.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\telegram.png" />

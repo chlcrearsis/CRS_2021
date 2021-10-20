@@ -320,6 +320,11 @@ namespace CRS_PRE
             o_frm = new ctb006_01();
             cl_glo_frm.abrir(this, o_frm);
         }
+        private void mn_pla_pago_Click(object sender, EventArgs e)
+        {
+            o_frm = new ecp001_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
 
         private void st_bar_pie_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -349,7 +354,7 @@ namespace CRS_PRE
 
 
         /// <summary>
-        ///   -> Verifica menu al Activarseel formulario
+        ///   -> Verifica menu al Activarse el formulario
         /// </summary>
         /// <param name="ide_usr"></param>
         /// <param name="frm_act"></param>
