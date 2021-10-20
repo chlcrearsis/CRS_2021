@@ -75,7 +75,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" DELETE ecp005 ");
+                cadena.AppendLine(" DELETE ecp001 ");
                 cadena.AppendLine(" WHERE  va_cod_plg = '" + cod_plg + "'");
                 
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
@@ -95,7 +95,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM ecp005 ");
+                cadena.AppendLine(" SELECT * FROM ecp001 ");
                 cadena.AppendLine(" WHERE  va_cod_plg = " + "'" + cod_plg + "'");
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
@@ -116,7 +116,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" select * from ecp005 ");
+                cadena.AppendLine(" select * from ecp001 ");
 
                     switch (prm_bus)
                     {
