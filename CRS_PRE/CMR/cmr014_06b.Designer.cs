@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class cmr014_03
+    partial class cmr014_06b
     {
         /// <summary>
         /// Required designer variable.
@@ -28,25 +28,162 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.bt_can_cel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tb_pro_ced = new System.Windows.Forms.TextBox();
             this.lb_est_ado = new System.Windows.Forms.Label();
             this.tb_est_ado = new System.Windows.Forms.TextBox();
-            this.lb_cod_ven = new System.Windows.Forms.Label();
+            this.lb_cod_cob = new System.Windows.Forms.Label();
             this.lb_pro_ced = new System.Windows.Forms.Label();
             this.tb_ema_ail = new System.Windows.Forms.TextBox();
             this.tb_tel_cel = new System.Windows.Forms.TextBox();
             this.lb_tel_cel = new System.Windows.Forms.Label();
-            this.cb_pro_ced = new System.Windows.Forms.ComboBox();
-            this.tb_nom_ven = new System.Windows.Forms.TextBox();
+            this.tb_nom_cob = new System.Windows.Forms.TextBox();
             this.lb_ema_ail = new System.Windows.Forms.Label();
-            this.lb_nom_ven = new System.Windows.Forms.Label();
-            this.tb_cod_ven = new System.Windows.Forms.TextBox();
-            this.gb_ctr_btn.SuspendLayout();
+            this.lb_nom_cob = new System.Windows.Forms.Label();
+            this.tb_cod_cob = new System.Windows.Forms.TextBox();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_can_cel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tb_pro_ced);
+            this.groupBox1.Controls.Add(this.lb_est_ado);
+            this.groupBox1.Controls.Add(this.tb_est_ado);
+            this.groupBox1.Controls.Add(this.lb_cod_cob);
+            this.groupBox1.Controls.Add(this.lb_pro_ced);
+            this.groupBox1.Controls.Add(this.tb_ema_ail);
+            this.groupBox1.Controls.Add(this.tb_tel_cel);
+            this.groupBox1.Controls.Add(this.lb_tel_cel);
+            this.groupBox1.Controls.Add(this.tb_nom_cob);
+            this.groupBox1.Controls.Add(this.lb_ema_ail);
+            this.groupBox1.Controls.Add(this.lb_nom_cob);
+            this.groupBox1.Controls.Add(this.tb_cod_cob);
+            this.groupBox1.Location = new System.Drawing.Point(4, -4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(351, 122);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            // 
+            // tb_pro_ced
+            // 
+            this.tb_pro_ced.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_pro_ced.Location = new System.Drawing.Point(246, 66);
+            this.tb_pro_ced.MaxLength = 3;
+            this.tb_pro_ced.Name = "tb_pro_ced";
+            this.tb_pro_ced.ReadOnly = true;
+            this.tb_pro_ced.Size = new System.Drawing.Size(83, 20);
+            this.tb_pro_ced.TabIndex = 12;
+            this.tb_pro_ced.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_est_ado
+            // 
+            this.lb_est_ado.AutoSize = true;
+            this.lb_est_ado.Location = new System.Drawing.Point(204, 20);
+            this.lb_est_ado.Name = "lb_est_ado";
+            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
+            this.lb_est_ado.TabIndex = 2;
+            this.lb_est_ado.Text = "Estado";
+            // 
+            // tb_est_ado
+            // 
+            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_est_ado.Location = new System.Drawing.Point(246, 17);
+            this.tb_est_ado.MaxLength = 3;
+            this.tb_est_ado.Name = "tb_est_ado";
+            this.tb_est_ado.ReadOnly = true;
+            this.tb_est_ado.Size = new System.Drawing.Size(83, 20);
+            this.tb_est_ado.TabIndex = 3;
+            this.tb_est_ado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_cod_cob
+            // 
+            this.lb_cod_cob.AutoSize = true;
+            this.lb_cod_cob.Location = new System.Drawing.Point(29, 20);
+            this.lb_cod_cob.Name = "lb_cod_cob";
+            this.lb_cod_cob.Size = new System.Drawing.Size(40, 13);
+            this.lb_cod_cob.TabIndex = 0;
+            this.lb_cod_cob.Text = "Código";
+            // 
+            // lb_pro_ced
+            // 
+            this.lb_pro_ced.AutoSize = true;
+            this.lb_pro_ced.Location = new System.Drawing.Point(177, 69);
+            this.lb_pro_ced.Name = "lb_pro_ced";
+            this.lb_pro_ced.Size = new System.Drawing.Size(67, 13);
+            this.lb_pro_ced.TabIndex = 8;
+            this.lb_pro_ced.Text = "Procedencia";
+            // 
+            // tb_ema_ail
+            // 
+            this.tb_ema_ail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ema_ail.Location = new System.Drawing.Point(71, 90);
+            this.tb_ema_ail.MaxLength = 30;
+            this.tb_ema_ail.Name = "tb_ema_ail";
+            this.tb_ema_ail.ReadOnly = true;
+            this.tb_ema_ail.Size = new System.Drawing.Size(258, 20);
+            this.tb_ema_ail.TabIndex = 11;
+            // 
+            // tb_tel_cel
+            // 
+            this.tb_tel_cel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_tel_cel.Location = new System.Drawing.Point(71, 65);
+            this.tb_tel_cel.MaxLength = 30;
+            this.tb_tel_cel.Name = "tb_tel_cel";
+            this.tb_tel_cel.ReadOnly = true;
+            this.tb_tel_cel.Size = new System.Drawing.Size(89, 20);
+            this.tb_tel_cel.TabIndex = 7;
+            // 
+            // lb_tel_cel
+            // 
+            this.lb_tel_cel.AutoSize = true;
+            this.lb_tel_cel.Location = new System.Drawing.Point(20, 68);
+            this.lb_tel_cel.Name = "lb_tel_cel";
+            this.lb_tel_cel.Size = new System.Drawing.Size(49, 13);
+            this.lb_tel_cel.TabIndex = 6;
+            this.lb_tel_cel.Text = "Telefono";
+            // 
+            // tb_nom_cob
+            // 
+            this.tb_nom_cob.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nom_cob.Location = new System.Drawing.Point(71, 41);
+            this.tb_nom_cob.MaxLength = 30;
+            this.tb_nom_cob.Name = "tb_nom_cob";
+            this.tb_nom_cob.ReadOnly = true;
+            this.tb_nom_cob.Size = new System.Drawing.Size(258, 20);
+            this.tb_nom_cob.TabIndex = 5;
+            // 
+            // lb_ema_ail
+            // 
+            this.lb_ema_ail.AutoSize = true;
+            this.lb_ema_ail.Location = new System.Drawing.Point(37, 93);
+            this.lb_ema_ail.Name = "lb_ema_ail";
+            this.lb_ema_ail.Size = new System.Drawing.Size(32, 13);
+            this.lb_ema_ail.TabIndex = 10;
+            this.lb_ema_ail.Text = "Email";
+            // 
+            // lb_nom_cob
+            // 
+            this.lb_nom_cob.AutoSize = true;
+            this.lb_nom_cob.Location = new System.Drawing.Point(19, 45);
+            this.lb_nom_cob.Name = "lb_nom_cob";
+            this.lb_nom_cob.Size = new System.Drawing.Size(50, 13);
+            this.lb_nom_cob.TabIndex = 4;
+            this.lb_nom_cob.Text = "Cobrador";
+            // 
+            // tb_cod_cob
+            // 
+            this.tb_cod_cob.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_cod_cob.Location = new System.Drawing.Point(71, 17);
+            this.tb_cod_cob.MaxLength = 3;
+            this.tb_cod_cob.Name = "tb_cod_cob";
+            this.tb_cod_cob.ReadOnly = true;
+            this.tb_cod_cob.Size = new System.Drawing.Size(45, 20);
+            this.tb_cod_cob.TabIndex = 1;
+            this.tb_cod_cob.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gb_ctr_btn
             // 
@@ -56,7 +193,7 @@
             this.gb_ctr_btn.Location = new System.Drawing.Point(4, 113);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(351, 39);
-            this.gb_ctr_btn.TabIndex = 1;
+            this.gb_ctr_btn.TabIndex = 5;
             this.gb_ctr_btn.TabStop = false;
             // 
             // bt_ace_pta
@@ -87,143 +224,7 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lb_est_ado);
-            this.groupBox1.Controls.Add(this.tb_est_ado);
-            this.groupBox1.Controls.Add(this.lb_cod_ven);
-            this.groupBox1.Controls.Add(this.lb_pro_ced);
-            this.groupBox1.Controls.Add(this.tb_ema_ail);
-            this.groupBox1.Controls.Add(this.tb_tel_cel);
-            this.groupBox1.Controls.Add(this.lb_tel_cel);
-            this.groupBox1.Controls.Add(this.cb_pro_ced);
-            this.groupBox1.Controls.Add(this.tb_nom_ven);
-            this.groupBox1.Controls.Add(this.lb_ema_ail);
-            this.groupBox1.Controls.Add(this.lb_nom_ven);
-            this.groupBox1.Controls.Add(this.tb_cod_ven);
-            this.groupBox1.Location = new System.Drawing.Point(4, -4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 122);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            // 
-            // lb_est_ado
-            // 
-            this.lb_est_ado.AutoSize = true;
-            this.lb_est_ado.Location = new System.Drawing.Point(204, 20);
-            this.lb_est_ado.Name = "lb_est_ado";
-            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
-            this.lb_est_ado.TabIndex = 2;
-            this.lb_est_ado.Text = "Estado";
-            // 
-            // tb_est_ado
-            // 
-            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_est_ado.Location = new System.Drawing.Point(246, 17);
-            this.tb_est_ado.MaxLength = 3;
-            this.tb_est_ado.Name = "tb_est_ado";
-            this.tb_est_ado.ReadOnly = true;
-            this.tb_est_ado.Size = new System.Drawing.Size(83, 20);
-            this.tb_est_ado.TabIndex = 3;
-            this.tb_est_ado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lb_cod_ven
-            // 
-            this.lb_cod_ven.AutoSize = true;
-            this.lb_cod_ven.Location = new System.Drawing.Point(29, 20);
-            this.lb_cod_ven.Name = "lb_cod_ven";
-            this.lb_cod_ven.Size = new System.Drawing.Size(40, 13);
-            this.lb_cod_ven.TabIndex = 0;
-            this.lb_cod_ven.Text = "Código";
-            // 
-            // lb_pro_ced
-            // 
-            this.lb_pro_ced.AutoSize = true;
-            this.lb_pro_ced.Location = new System.Drawing.Point(177, 69);
-            this.lb_pro_ced.Name = "lb_pro_ced";
-            this.lb_pro_ced.Size = new System.Drawing.Size(67, 13);
-            this.lb_pro_ced.TabIndex = 8;
-            this.lb_pro_ced.Text = "Procedencia";
-            // 
-            // tb_ema_ail
-            // 
-            this.tb_ema_ail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ema_ail.Location = new System.Drawing.Point(71, 90);
-            this.tb_ema_ail.MaxLength = 30;
-            this.tb_ema_ail.Name = "tb_ema_ail";
-            this.tb_ema_ail.Size = new System.Drawing.Size(258, 20);
-            this.tb_ema_ail.TabIndex = 11;
-            // 
-            // tb_tel_cel
-            // 
-            this.tb_tel_cel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_tel_cel.Location = new System.Drawing.Point(71, 65);
-            this.tb_tel_cel.MaxLength = 30;
-            this.tb_tel_cel.Name = "tb_tel_cel";
-            this.tb_tel_cel.Size = new System.Drawing.Size(89, 20);
-            this.tb_tel_cel.TabIndex = 7;
-            // 
-            // lb_tel_cel
-            // 
-            this.lb_tel_cel.AutoSize = true;
-            this.lb_tel_cel.Location = new System.Drawing.Point(20, 68);
-            this.lb_tel_cel.Name = "lb_tel_cel";
-            this.lb_tel_cel.Size = new System.Drawing.Size(49, 13);
-            this.lb_tel_cel.TabIndex = 6;
-            this.lb_tel_cel.Text = "Telefono";
-            // 
-            // cb_pro_ced
-            // 
-            this.cb_pro_ced.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_pro_ced.FormattingEnabled = true;
-            this.cb_pro_ced.Items.AddRange(new object[] {
-            "Interno",
-            "Externo"});
-            this.cb_pro_ced.Location = new System.Drawing.Point(246, 65);
-            this.cb_pro_ced.Name = "cb_pro_ced";
-            this.cb_pro_ced.Size = new System.Drawing.Size(83, 21);
-            this.cb_pro_ced.TabIndex = 9;
-            // 
-            // tb_nom_ven
-            // 
-            this.tb_nom_ven.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_ven.Location = new System.Drawing.Point(71, 41);
-            this.tb_nom_ven.MaxLength = 30;
-            this.tb_nom_ven.Name = "tb_nom_ven";
-            this.tb_nom_ven.Size = new System.Drawing.Size(258, 20);
-            this.tb_nom_ven.TabIndex = 5;
-            // 
-            // lb_ema_ail
-            // 
-            this.lb_ema_ail.AutoSize = true;
-            this.lb_ema_ail.Location = new System.Drawing.Point(37, 93);
-            this.lb_ema_ail.Name = "lb_ema_ail";
-            this.lb_ema_ail.Size = new System.Drawing.Size(32, 13);
-            this.lb_ema_ail.TabIndex = 10;
-            this.lb_ema_ail.Text = "Email";
-            // 
-            // lb_nom_ven
-            // 
-            this.lb_nom_ven.AutoSize = true;
-            this.lb_nom_ven.Location = new System.Drawing.Point(16, 45);
-            this.lb_nom_ven.Name = "lb_nom_ven";
-            this.lb_nom_ven.Size = new System.Drawing.Size(53, 13);
-            this.lb_nom_ven.TabIndex = 4;
-            this.lb_nom_ven.Text = "Vendedor";
-            // 
-            // tb_cod_ven
-            // 
-            this.tb_cod_ven.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_cod_ven.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_ven.Location = new System.Drawing.Point(71, 17);
-            this.tb_cod_ven.MaxLength = 3;
-            this.tb_cod_ven.Name = "tb_cod_ven";
-            this.tb_cod_ven.ReadOnly = true;
-            this.tb_cod_ven.Size = new System.Drawing.Size(45, 20);
-            this.tb_cod_ven.TabIndex = 1;
-            this.tb_cod_ven.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cmr014_03
+            // cmr014_06b
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -234,33 +235,34 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr014_03";
-            this.Tag = "Edita Vendedor";
-            this.Text = "Edita Vendedor";
+            this.Name = "cmr014_06b";
+            this.Tag = "Elimina Cobrador";
+            this.Text = "Elimina Cobrador";
             this.Load += new System.EventHandler(this.frm_Load);
-            this.gb_ctr_btn.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        public System.Windows.Forms.GroupBox gb_ctr_btn;
-        private System.Windows.Forms.Button bt_ace_pta;
-        private System.Windows.Forms.Button bt_can_cel;
+
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tb_pro_ced;
         private System.Windows.Forms.Label lb_est_ado;
         private System.Windows.Forms.TextBox tb_est_ado;
-        private System.Windows.Forms.Label lb_cod_ven;
+        private System.Windows.Forms.Label lb_cod_cob;
         private System.Windows.Forms.Label lb_pro_ced;
         private System.Windows.Forms.TextBox tb_ema_ail;
         private System.Windows.Forms.TextBox tb_tel_cel;
         private System.Windows.Forms.Label lb_tel_cel;
-        private System.Windows.Forms.ComboBox cb_pro_ced;
-        private System.Windows.Forms.TextBox tb_nom_ven;
+        private System.Windows.Forms.TextBox tb_nom_cob;
         private System.Windows.Forms.Label lb_ema_ail;
-        private System.Windows.Forms.Label lb_nom_ven;
-        private System.Windows.Forms.TextBox tb_cod_ven;
+        private System.Windows.Forms.Label lb_nom_cob;
+        private System.Windows.Forms.TextBox tb_cod_cob;
+        public System.Windows.Forms.GroupBox gb_ctr_btn;
+        private System.Windows.Forms.Button bt_ace_pta;
+        private System.Windows.Forms.Button bt_can_cel;
     }
 }

@@ -15,7 +15,7 @@ namespace CRS_NEG
         //######################################################################
         //##       Tabla: ads008_01                                           ##
         //##      Nombre: Aplicaciones                                        ##
-        //## Descripcion:Permiso sobre Aplicaciones                           ##         
+        //## Descripcion: Permiso sobre Aplicaciones                           ##         
         //##       Autor: JEJR - (05-01-2019)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();      
@@ -141,7 +141,7 @@ namespace CRS_NEG
         public DataTable Fe_ads008_03(string ag_ide_usr, string ag_ide_tab, string ag_ide_uno, string ag_ide_dos = "", string ag_ide_tre = "" )
         {
             cadena = " INSERT INTO ads008 VALUES ";
-            cadena += " ('" + ag_ide_usr + "', '" + ag_ide_tab + "', '" + ag_ide_uno + "','" + ag_ide_dos + "','" + ag_ide_tre + "',0) ";
+            cadena += " ('" + ag_ide_usr + "', '" + ag_ide_tab + "', '" + ag_ide_uno + "','" + ag_ide_dos + "','" + ag_ide_tre + "', 0) ";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 

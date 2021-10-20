@@ -85,17 +85,17 @@ namespace CRS_PRE
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_cod_ven"].Value = tabla.Rows[i]["va_cod_ide"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_ven"].Value = tabla.Rows[i]["va_nom_bre"].ToString();
-                   // dg_res_ult.Rows[i].Cells["va_por_cms"].Value =tabla.Rows[i]["va_por_cms"].ToString();
-                   // dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = tabla.Rows[i]["va_tip_cms"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_cod_ven"].Value = tabla.Rows[i]["va_cod_ide"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_nom_ven"].Value = tabla.Rows[i]["va_nom_bre"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_tel_cel"].Value = tabla.Rows[i]["va_tel_cel"].ToString().Trim();
+                    dg_res_ult.Rows[i].Cells["va_ema_ail"].Value = tabla.Rows[i]["va_ema_ail"].ToString().Trim();
 
-                    if (tabla.Rows[i]["va_tip_cms"].ToString() == "1")
+                    /*if (tabla.Rows[i]["va_tip_cms"].ToString() == "1")
                         dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = "x Vta. Gral.";
                     if (tabla.Rows[i]["va_tip_cms"].ToString() == "2")
                         dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = "x Fam. Produc.";
                     if (tabla.Rows[i]["va_tip_cms"].ToString() == "3")
-                        dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = "x Producto";
+                        dg_res_ult.Rows[i].Cells["va_tip_cms"].Value = "x Producto";*/
 
 
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
@@ -306,7 +306,7 @@ namespace CRS_PRE
         }
 
 
-        private void Bt_bus_car_Click(object sender, EventArgs e)
+        private void bt_bus_car_Click(object sender, EventArgs e)
         {
             if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
@@ -398,8 +398,28 @@ namespace CRS_PRE
             if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
                 return;
 
-            //cmr014_06 frm = new cmr014_06();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            cmr014_06 frm = new cmr014_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void mn_mod_com_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
+                return;
+
+            cmr014_07 frm = new cmr014_07();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
+        private void mn_per_usr_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
+                return;
+
+            cmr014_08 frm = new cmr014_08();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
@@ -407,17 +427,16 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
-        }
-
+        }        
     }
 }

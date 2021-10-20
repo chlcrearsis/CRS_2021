@@ -18,6 +18,7 @@ namespace CRS_PRE
         adp005 o_adp005 = new adp005();
         adp014 o_adp014 = new adp014();
         adp015 o_adp015 = new adp015();
+        cmr014 o_cmr014 = new cmr014();
         DataTable Tabla = new DataTable();
         General general = new General();
         string Titulo = "Edita Persona";
@@ -250,67 +251,23 @@ namespace CRS_PRE
         {
             /* Obtiene Lista de Vendedores */
             Tabla = new DataTable();
-            Tabla.Columns.Add("va_ide_ven");
-            Tabla.Columns.Add("va_nom_ven");
-            Tabla.Rows.Add();
-            Tabla.Rows[0][0] = 1;
-            Tabla.Rows[0][1] = "José Miguel Peralta";
-            Tabla.Rows.Add();
-            Tabla.Rows[1][0] = 2;
-            Tabla.Rows[1][1] = "Ricardo Flores Yucra";
-            Tabla.Rows.Add();
-            Tabla.Rows[2][0] = 3;
-            Tabla.Rows[2][1] = "Nohemi Gutierrez Llanque";
-            Tabla.Rows.Add();
-            Tabla.Rows[3][0] = 4;
-            Tabla.Rows[3][1] = "Carlos Eduardo Fernandez";
-            Tabla.Rows.Add();
-            Tabla.Rows[4][0] = 5;
-            Tabla.Rows[4][1] = "Luis Miguel Santelices";
-            Tabla.Rows.Add();
-            Tabla.Rows[5][0] = 6;
-            Tabla.Rows[5][1] = "Lidia Patzi Flores";
-            Tabla.Rows.Add();
-            Tabla.Rows[6][0] = 7;
-            Tabla.Rows[6][1] = "Juanito Choque Mamani";
+            Tabla = o_cmr014.Fe_lis_tip(1, "H");
 
             // Carga la lista de Vendedor
             cb_nom_ven.DataSource = Tabla;
-            cb_nom_ven.DisplayMember = "va_nom_ven";
-            cb_nom_ven.ValueMember = "va_ide_ven";
-            cb_nom_ven.SelectedValue = vp_cod_ven;
+            cb_nom_ven.DisplayMember = "va_nom_bre";
+            cb_nom_ven.ValueMember = "va_cod_ide";
+            cb_nom_ven.SelectedValue = int.Parse(Tabla.Rows[0]["va_cod_ide"].ToString());
 
             /* Obtiene Lista de Cobradores */
             Tabla = new DataTable();
-            Tabla.Columns.Add("va_ide_cob");
-            Tabla.Columns.Add("va_nom_cob");
-            Tabla.Rows.Add();
-            Tabla.Rows[0][0] = 1;
-            Tabla.Rows[0][1] = "Juanito Choque Mamani";
-            Tabla.Rows.Add();
-            Tabla.Rows[1][0] = 2;
-            Tabla.Rows[1][1] = "Lidia Patzi Flores";
-            Tabla.Rows.Add();
-            Tabla.Rows[2][0] = 3;
-            Tabla.Rows[2][1] = "Luis Miguel Santelices";
-            Tabla.Rows.Add();
-            Tabla.Rows[3][0] = 4;
-            Tabla.Rows[3][1] = "Carlos Eduardo Fernandez";
-            Tabla.Rows.Add();
-            Tabla.Rows[4][0] = 5;
-            Tabla.Rows[4][1] = "Nohemi Gutierrez Llanque";
-            Tabla.Rows.Add();
-            Tabla.Rows[5][0] = 6;
-            Tabla.Rows[5][1] = "Ricardo Flores Yucra";
-            Tabla.Rows.Add();
-            Tabla.Rows[6][0] = 7;
-            Tabla.Rows[6][1] = "José Miguel Peralta";
+            Tabla = o_cmr014.Fe_lis_tip(2, "H");
 
             // Carga la lista de Cobrador
             cb_nom_cob.DataSource = Tabla;
-            cb_nom_cob.DisplayMember = "va_nom_cob";
-            cb_nom_cob.ValueMember = "va_ide_cob";
-            cb_nom_cob.SelectedValue = vp_cod_cob;
+            cb_nom_cob.DisplayMember = "va_nom_bre";
+            cb_nom_cob.ValueMember = "va_cod_ide";
+            cb_nom_cob.SelectedValue = int.Parse(Tabla.Rows[1]["va_cod_ide"].ToString());
         }
 
         /// <summary>
@@ -495,7 +452,7 @@ namespace CRS_PRE
             }
 
             // Verifica que no haya otra persona con ese RUC/NIT
-            if (tb_ruc_nit.Text.Trim().CompareTo("0") == 0 && tb_ruc_nit.Text.Trim().CompareTo("") != 0)
+            if (tb_ruc_nit.Text.Trim().CompareTo("0") != 0 && tb_ruc_nit.Text.Trim().CompareTo("") != 0)
             {
                 Tabla = new DataTable();
                 Tabla = o_adp002.Fe_con_nit(long.Parse(tb_ruc_nit.Text), int.Parse(tb_cod_per.Text));
@@ -510,7 +467,7 @@ namespace CRS_PRE
             }
 
             // Verifica que no haya otra persona con ese mismo Nro. de Documento
-            if (tb_nro_doc.Text.Trim().CompareTo("0") == 0 && tb_tip_doc.Text.Trim().CompareTo("") != 0){
+            if (tb_nro_doc.Text.Trim().CompareTo("0") != 0 && tb_tip_doc.Text.Trim().CompareTo("") != 0){
                 Tabla = new DataTable();
                 Tabla = o_adp002.Fe_con_doc(tb_tip_doc.Text.Trim(), long.Parse(tb_nro_doc.Text), int.Parse(tb_cod_per.Text));
                 if (Tabla.Rows.Count > 0){

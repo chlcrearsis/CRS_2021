@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -20,11 +13,8 @@ namespace CRS_PRE
         public DataTable frm_dat;
 
         //Instancias
-        cmr014 o_cmr014 = new cmr014();
-        
-
-        DataTable tabla = new DataTable();
-
+        cmr014 o_cmr014 = new cmr014();       
+        DataTable Tabla = new DataTable();
 
         public cmr014_05b()
         {
@@ -34,27 +24,39 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-            tb_cod_ven.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
-            tb_nom_ven.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
+            // Limpia Campos
+            Fi_lim_pia();
+            // Despliega Datos
+            tb_cod_cob.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
+            tb_nom_cob.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
             tb_tel_cel.Text = frm_dat.Rows[0]["va_tel_cel"].ToString();
             tb_ema_ail.Text = frm_dat.Rows[0]["va_ema_ail"].ToString();
-
             tb_cms_cre.Text = frm_dat.Rows[0]["va_cms_cre"].ToString();
 
-            cb_pro_ced.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_pro_ced"].ToString()) - 1;
-
-            tb_tel_cel.Focus(); frm_dat.Rows[0]["va_tel_cel"].ToString();
-            tb_ema_ail.Focus(); frm_dat.Rows[0]["va_ema_ail"].ToString();
+            if (frm_dat.Rows[0]["va_pro_ced"].ToString() == "1")
+                tb_pro_ced.Text = "Interno";
+            else
+                tb_pro_ced.Text = "Externo";           
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
-            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
+            else
                 tb_est_ado.Text = "Deshabilitado";
         }
 
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {
+            tb_cod_cob.Text = string.Empty;
+            tb_nom_cob.Text = string.Empty;
+            tb_tel_cel.Text = string.Empty;
+            tb_ema_ail.Text = string.Empty;
+            tb_pro_ced.Text = string.Empty;
+            tb_est_ado.Text = string.Empty;
+            tb_cms_cre.Text = string.Empty;
+        }
 
-
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
         }

@@ -6,7 +6,7 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class cmr014_04 : Form
+    public partial class cmr014_06 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -15,9 +15,9 @@ namespace CRS_PRE
         //Instancias
         cmr014 o_cmr014 = new cmr014();
         DataTable Tabla = new DataTable();
-        string Titulo = "Habilita/Deshabilita Vendedor";
+        string Titulo = "Elimina Vendedor";
 
-        public cmr014_04()
+        public cmr014_06()
         {
             InitializeComponent();
         }
@@ -51,19 +51,25 @@ namespace CRS_PRE
             tb_nom_ven.Text = string.Empty;
             tb_tel_cel.Text = string.Empty;
             tb_ema_ail.Text = string.Empty;
-            tb_pro_ced.Text = string.Empty;            
+            tb_pro_ced.Text = string.Empty;
             tb_est_ado.Text = string.Empty;
         }
 
         // Función: Valida Datos
         protected string Fi_val_dat()
         {
-            // Verifica si existe el registro
+            // Valida que este definido en la base de datos
             Tabla = new DataTable();
             Tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text), 1);
-            if (Tabla.Rows.Count == 0){
-                return "EL Vendedor NO se encuentra registrado";
-            }
+            if (Tabla.Rows.Count == 0)
+                return "EL Vendedor NO se encuentra registado";
+            
+            // Valida que este Deshabilitado
+            if (tb_est_ado.Text == "Habilitado")
+                return "EL Vendedor se encuentra Habilitado, NO se puede Eliminar";
+
+            // Valida que no se haya realizado ningun documento con ese vendedor
+
 
             return "";
         }        
@@ -79,18 +85,11 @@ namespace CRS_PRE
                     return;
                 }
 
-                if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H"){
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Vendedor?", "Deshabilita Vendedor", MessageBoxButtons.OKCancel);
-                    if (msg_res == DialogResult.OK){
-                        // Deshabilita Vendedor
-                        o_cmr014.Fe_des_hab(1, int.Parse(tb_cod_ven.Text));
-                    }
-                }else{
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Vendedor?", "Habilita Vendedor", MessageBoxButtons.OKCancel);
-                    if (msg_res == DialogResult.OK){
-                        // Habilita Vendedor
-                        o_cmr014.Fe_hab_ili(1, int.Parse(tb_cod_ven.Text));
-                    }
+                msg_res = MessageBox.Show("Esta seguro de Eliminar el Vendedor?", Titulo, MessageBoxButtons.OKCancel);
+                if (msg_res == DialogResult.OK)
+                {
+                    // Elimina Vendedor
+                    o_cmr014.Fe_eli_ven(1, int.Parse(tb_cod_ven.Text));
                 }
                 MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
                 frm_pad.Fe_act_frm(int.Parse(tb_cod_ven.Text));

@@ -1,123 +1,97 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
 {
     public partial class cmr014_02 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
         cmr014 o_cmr014 = new cmr014();
-        //ads001 o_ads001 = new ads001();
 
-        DataTable tabla = new DataTable();
-
+        DataTable Tabla = new DataTable();
+        string Titulo = "Nuevo Vendedor";
 
         public cmr014_02()
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {
-            cb_pro_ced.SelectedIndex = 0;
-            cb_tip_cms.SelectedIndex = 0;
-            tb_cms_con.Text = "0";
-            tb_cms_cre.Text = "0";
-
-            tb_cod_ven.Focus();
+            Fi_lim_pia();            
         }
 
-        protected string Fi_val_dat()
-        {
-
-            if (tb_cod_ven.Text.Trim() == "")
-            {
-                tb_cod_ven.Focus();
-                return "Debe proporcionar el Codigo";
-            }
-
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
-            if (tabla.Rows.Count > 0)
-            {
-                tb_cod_ven.Focus();
-                return "El Vendedor que desea crear ya se encuentra registrado";
-            }
-            if (tb_nom_ven.Text.Trim() == "")
-            {
-                tb_nom_ven.Focus();
-                return "Debe proporcionar el Nombre del vendedor";
-            }
-
-            // Revisa Porcentaje al contado
-            if (cl_glo_bal.IsDecimal(tb_cms_con.Text) ==false )
-            {
-                tb_cms_con.Focus();
-                return "El porcentaje de comisión al contado es incorrecto";
-            }
-            // Revisa Porcentaje al crédito
-            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
-            {
-                tb_cms_cre.Focus();
-                return "El porcentaje de comisión al crédito es incorrecto";
-            }
-
-
-            return "";
-        }
-
+        // Limpia e Iniciliza los campos
         private void Fi_lim_pia()
         {
-           
-            tb_cod_ven.Clear(); 
-            tb_nom_ven.Clear();
-            tb_cms_con.Text="0";
-            tb_cms_cre.Text = "0";
-
-            tb_cod_ven.Focus();
-        }
-        private void Bt_can_cel_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
+            // Limpia Campos
+            tb_cod_ven.Text = string.Empty;
+            tb_nom_ven.Text = string.Empty;
+            tb_tel_cel.Text = string.Empty;
+            tb_ema_ail.Text = string.Empty;
+            cb_pro_ced.SelectedIndex = 0;
+            tb_nom_ven.Focus();
+            // Inicializa Datos
+            Fi_ini_pan();
         }
 
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        // Inicializa los campos en pantalla
+        private void Fi_ini_pan()
         {
-            string msg_val = "";
-            DialogResult msg_res;
+            // Obtiene el Código que corresponde
+            Tabla = new DataTable();
+            Tabla = o_cmr014.Fe_obt_ide(1);
+            if (Tabla.Rows.Count > 0)
+                tb_cod_ven.Text = Tabla.Rows[0]["va_cod_ide"].ToString();
+            else
+                tb_cod_ven.Text = "0";                        
+        }
 
-            // funcion para validar datos
-            msg_val = Fi_val_dat();
-            if (msg_val != "")
-            {
-                MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
-                return;
-            }
-            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nuevo Vendedor", MessageBoxButtons.OKCancel);
-                if (msg_res == DialogResult.OK)
-            {
-                //Registrar 
-                o_cmr014.Fe_crea(int.Parse(tb_cod_ven.Text), tb_nom_ven.Text, tb_tel_cel.Text, tb_ema_ail.Text,
-                    (cb_pro_ced.SelectedIndex + 1), (cb_tip_cms.SelectedIndex +1), decimal.Parse(tb_cms_con.Text), 
-                    decimal.Parse(tb_cms_cre.Text),1 );
-                
-                frm_pad.Fe_act_frm(int.Parse(tb_cod_ven.Text));
-                Fi_lim_pia();
+        // Valida los datos proporcionados
+        protected string Fi_val_dat()
+        {
+            if (tb_cod_ven.Text.Trim() == "") {
+                tb_cod_ven.Focus();
+                return "DEBE proporcionar el Código del Venddor";
             }
 
+            // Valida que el campo Código NO este vacio
+            int cod_ven;            
+            int.TryParse(tb_cod_ven.Text, out cod_ven);
+            if (cod_ven == 0)
+            {
+                tb_cod_ven.Focus();
+                return "ID del Código del Vendedor NO es valido";
+            }
+
+            // Valida que el campo Nombre del Tipo NO este vacio
+            if (tb_nom_ven.Text.Trim() == ""){
+                tb_nom_ven.Focus();
+                return "DEBE proporcionar el Nombre del Vendedor";
+            }         
+
+            // Verifica SI existe otro registro con el mismo ID
+            Tabla = new DataTable();
+            Tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text), 1);
+            if (Tabla.Rows.Count > 0){
+                tb_cod_ven.Focus();
+                return "Ya existe otro Vendedor con el mismo Código";
+            }
+
+            // Verifica SI existe otro vendedor con el mismo nombre
+            Tabla = new DataTable();
+            Tabla = o_cmr014.Fe_con_nom(1, tb_nom_ven.Text.Trim());
+            if (Tabla.Rows.Count > 0){
+                tb_nom_ven.Focus();
+                return "YA existe otro Vendedor con el mismo nombre";
+            }
+
+            return "";
         }
 
         private void tb_cod_ven_KeyPress(object sender, KeyPressEventArgs e)
@@ -125,42 +99,40 @@ namespace CRS_PRE
             cl_glo_bal.NotNumeric(e);
         }
 
-        private void tb_cms_con_KeyPress(object sender, KeyPressEventArgs e)
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            cl_glo_bal.NotDecimal(e, tb_cms_con.Text);
-        }
-
-        private void tb_cms_cre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            cl_glo_bal.NotDecimal(e, tb_cms_cre.Text);
-        }
-
-        private void tb_cms_con_Validated(object sender, EventArgs e)
-        {
-            if(cl_glo_bal.IsDecimal(tb_cms_con.Text) == false)
+            DialogResult msg_res;
+            try
             {
-                MessageBox.Show("El porcentaje de comision al contado no es valido","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                tb_cms_con.Focus();
+                string nom_ven = tb_nom_ven.Text.Trim();
+                string tel_cel = tb_tel_cel.Text.Trim();
+                string ema_ail = tb_ema_ail.Text.Trim();
+                   int ide_tip = 1; // Vendedor
+                   int cod_ven = int.Parse(tb_cod_ven.Text);
+                   int pro_ced = cb_pro_ced.SelectedIndex + 1;
+
+                // funcion para validar datos
+                string msg_val = Fi_val_dat();
+                if (msg_val != ""){
+                    MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
+                    return;
+                }
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                if (msg_res == DialogResult.OK){
+                    // Registra Nuevo Vendeor 
+                    o_cmr014.Fe_nue_reg(ide_tip, cod_ven, nom_ven, tel_cel, ema_ail, pro_ced, 0, 0m, 0m);
+
+                    frm_pad.Fe_act_frm(int.Parse(tb_cod_ven.Text));
+                    Fi_lim_pia();
+                }
+            }catch (Exception ex) {
+                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // Formatea para mostrar decimal
-            tb_cms_con.Text = decimal.Round(decimal.Parse(tb_cms_con.Text), 2).ToString();
-            tb_cms_con.Text = decimal.Parse(tb_cms_con.Text).ToString("N2");
-
         }
 
-        private void tb_cms_cre_Validated(object sender, EventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
-            {
-                MessageBox.Show("El porcentaje de comision al crédito no es valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_cms_cre.Focus();
-            }
-
-            // Formatea para mostrar decimal
-            tb_cms_cre.Text = decimal.Round(decimal.Parse(tb_cms_cre.Text), 2).ToString();
-            tb_cms_cre.Text = decimal.Parse(tb_cms_cre.Text).ToString("N2");
-
+            cl_glo_frm.Cerrar(this);
         }
     }
 }

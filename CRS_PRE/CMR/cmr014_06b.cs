@@ -6,7 +6,7 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class cmr014_04 : Form
+    public partial class cmr014_06b : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -15,21 +15,20 @@ namespace CRS_PRE
         //Instancias
         cmr014 o_cmr014 = new cmr014();
         DataTable Tabla = new DataTable();
-        string Titulo = "Habilita/Deshabilita Vendedor";
+        string Titulo = "Elimina Cobrador";
 
-        public cmr014_04()
+        public cmr014_06b()
         {
             InitializeComponent();
-        }
-      
+        }      
         private void frm_Load(object sender, EventArgs e)
         {
             // Limpia los datos en pantalla
             Fi_lim_pia();
 
             // Despliega Informacion
-            tb_cod_ven.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
-            tb_nom_ven.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
+            tb_cod_cob.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
+            tb_nom_cob.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
             tb_tel_cel.Text = frm_dat.Rows[0]["va_tel_cel"].ToString();
             tb_ema_ail.Text = frm_dat.Rows[0]["va_ema_ail"].ToString();
 
@@ -47,31 +46,39 @@ namespace CRS_PRE
         // Limpia e Iniciliza los campos
         private void Fi_lim_pia()
         {
-            tb_cod_ven.Text = string.Empty;
-            tb_nom_ven.Text = string.Empty;
+            tb_cod_cob.Text = string.Empty;
+            tb_nom_cob.Text = string.Empty;
             tb_tel_cel.Text = string.Empty;
             tb_ema_ail.Text = string.Empty;
-            tb_pro_ced.Text = string.Empty;            
+            tb_pro_ced.Text = string.Empty;
             tb_est_ado.Text = string.Empty;
         }
+
 
         // Función: Valida Datos
         protected string Fi_val_dat()
         {
-            // Verifica si existe el registro
+            // Valida que este definido en la base de datos
             Tabla = new DataTable();
-            Tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text), 1);
-            if (Tabla.Rows.Count == 0){
-                return "EL Vendedor NO se encuentra registrado";
-            }
+            Tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_cob.Text), 2);
+            if (Tabla.Rows.Count == 0)
+                return "EL Cobrador NO se encuentra en la base de datos";
+
+            // Valida que este Deshabilitado
+            if (tb_est_ado.Text == "Habilitado")
+                return "EL Cobrador se encuentra Habilitado, NO se puede Eliminar";
+
+            // Valida que no se haya realizado ningun documento con ese cobrador
+
 
             return "";
-        }        
+        }
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
-            try {
+            try
+            {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
                 if (msg_val != ""){
@@ -79,24 +86,17 @@ namespace CRS_PRE
                     return;
                 }
 
-                if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H"){
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Vendedor?", "Deshabilita Vendedor", MessageBoxButtons.OKCancel);
-                    if (msg_res == DialogResult.OK){
-                        // Deshabilita Vendedor
-                        o_cmr014.Fe_des_hab(1, int.Parse(tb_cod_ven.Text));
-                    }
-                }else{
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Vendedor?", "Habilita Vendedor", MessageBoxButtons.OKCancel);
-                    if (msg_res == DialogResult.OK){
-                        // Habilita Vendedor
-                        o_cmr014.Fe_hab_ili(1, int.Parse(tb_cod_ven.Text));
-                    }
+                msg_res = MessageBox.Show("Esta seguro de Eliminar el Vendedor?", Titulo, MessageBoxButtons.OKCancel);
+                if (msg_res == DialogResult.OK){
+                    // Elimina Cobrador
+                    o_cmr014.Fe_eli_ven(2, int.Parse(tb_cod_cob.Text));
                 }
                 MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
-                frm_pad.Fe_act_frm(int.Parse(tb_cod_ven.Text));
+                frm_pad.Fe_act_frm(int.Parse(tb_cod_cob.Text));
                 cl_glo_frm.Cerrar(this);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

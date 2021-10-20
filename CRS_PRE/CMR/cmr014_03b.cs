@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -21,113 +14,118 @@ namespace CRS_PRE
 
         //Instancias
         cmr014 o_cmr014 = new cmr014();
-        //ads001 o_ads001 = new ads001();
-
-        DataTable tabla = new DataTable();
-
+        DataTable Tabla = new DataTable();
+        string Titulo = "Edita Cobrador";
 
         public cmr014_03b()
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {
-            tb_cod_ven.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
-            tb_nom_ven.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
+            // Limpia los datos en pantalla
+            Fi_lim_pia();
+
+            // Despliega Informacion
+            tb_cod_cob.Text = frm_dat.Rows[0]["va_cod_ide"].ToString();
+            tb_nom_cob.Text = frm_dat.Rows[0]["va_nom_bre"].ToString();
             tb_tel_cel.Text = frm_dat.Rows[0]["va_tel_cel"].ToString();
             tb_ema_ail.Text = frm_dat.Rows[0]["va_ema_ail"].ToString();
-
-            tb_cms_cre.Text = frm_dat.Rows[0]["va_cms_cre"].ToString();
-
             cb_pro_ced.SelectedIndex = int.Parse(frm_dat.Rows[0]["va_pro_ced"].ToString()) - 1;
 
-            tb_tel_cel.Focus(); frm_dat.Rows[0]["va_tel_cel"].ToString();
-            tb_ema_ail.Focus(); frm_dat.Rows[0]["va_ema_ail"].ToString();
+            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
+                tb_est_ado.Text = "Habilitado";
+            else
+                tb_est_ado.Text = "Deshabilitado";
         }
 
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {            
+            tb_cod_cob.Text = string.Empty;
+            tb_nom_cob.Text = string.Empty;
+            tb_tel_cel.Text = string.Empty;
+            tb_ema_ail.Text = string.Empty;
+            tb_est_ado.Text = string.Empty;
+            cb_pro_ced.SelectedIndex = 0;
+        }
 
-      
-
+        // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
+            if (tb_cod_cob.Text.Trim() == ""){
+                tb_cod_cob.Focus();
+                return "DEBE proporcionar el Código del Cobrador";
+            }
 
-            tabla = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text), 1);
-            if (tabla.Rows.Count == 0)
-            {
-                tb_cod_ven.Focus();
-                return "El cobrador que desea editar NO se encuentra registrado";
+            // Valida que el campo Código NO este vacio
+            int cod_cob;            
+            int.TryParse(tb_cod_cob.Text, out cod_cob);
+            if (cod_cob == 0){
+                tb_cod_cob.Focus();
+                return "ID del Código del Cobrador NO es valido";
             }
-            if (tb_nom_ven.Text.Trim() == "")
-            {
-                tb_nom_ven.Focus();
-                return "Debe proporcionar el Nombre del cobrador";
+
+            // Verifica si el registro esta habilitado
+            if (tb_est_ado.Text == "Deshabilitado") {
+                return "El Cobrador se encuentra Deshabilitado";
             }
-            
-            // Revisa Porcentaje al crédito
-            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
-            {
-                tb_cms_cre.Focus();
-                return "El porcentaje de comisión al crédito es incorrecto";
+
+            // Valida que el campo Nombre del cobrador NO este vacio
+            if (tb_nom_cob.Text.Trim() == ""){
+                tb_nom_cob.Focus();
+                return "DEBE proporcionar el Nombre del Cobrador";
+            }
+
+            // Verifica SI existe otro cobrador con el mismo nombre
+            Tabla = new DataTable();
+            Tabla = o_cmr014.Fe_con_nom(2, tb_nom_cob.Text.Trim(), int.Parse(tb_cod_cob.Text));
+            if (Tabla.Rows.Count > 0){
+                tb_nom_cob.Focus();
+                return "YA existe otro Cobrador con el mismo nombre";
             }
 
             return "";
         }
 
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        private void bt_ace_pta_Click(object sender, EventArgs e)
+        {
+            DialogResult msg_res;
+            try
+            {
+                string nom_cob = tb_nom_cob.Text.Trim();
+                string tel_cel = tb_tel_cel.Text.Trim();
+                string ema_ail = tb_ema_ail.Text.Trim();
+                   int ide_tip = 2; // Cobrador
+                   int cod_cob = int.Parse(tb_cod_cob.Text);
+                   int pro_ced = cb_pro_ced.SelectedIndex + 1;
+
+                // funcion para validar datos
+                string msg_val = Fi_val_dat();
+                if (msg_val != ""){
+                    MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
+                    return;
+                }
+                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                if (msg_res == DialogResult.OK){
+                    // Edita Cobrador
+                    o_cmr014.Fe_edi_reg(ide_tip, cod_cob, nom_cob, tel_cel, ema_ail, pro_ced);
+                    frm_pad.Fe_act_frm(int.Parse(tb_cod_cob.Text));
+
+                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    cl_glo_frm.Cerrar(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
-        {
-            string msg_val = "";
-            DialogResult msg_res;
-
-            // funcion para validar datos
-            msg_val = Fi_val_dat();
-            if (msg_val != "")
-            {
-                MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
-                return;
-            }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita cobrador", MessageBoxButtons.OKCancel);
-                if (msg_res == DialogResult.OK)
-            {
-                //Edita 
-                o_cmr014.Fe_edi_ven(int.Parse(tb_cod_ven.Text), tb_nom_ven.Text , 0m, 
-                    decimal.Parse(tb_cms_cre.Text),2, (cb_pro_ced.SelectedIndex +1), 2);
-
-                frm_pad.Fe_act_frm(int.Parse(tb_cod_ven.Text));
-
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita cobrador", MessageBoxButtons.OK);
-                cl_glo_frm.Cerrar(this);
-            }
-        }
-
-        private void tb_cod_ven_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            cl_glo_bal.NotNumeric(e);
-        }
-      
-        private void tb_cms_cre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            cl_glo_bal.NotDecimal(e, tb_cms_cre.Text);
-        }
-
-        private void tb_cms_cre_Validated(object sender, EventArgs e)
-        {
-            if (cl_glo_bal.IsDecimal(tb_cms_cre.Text) == false)
-            {
-                MessageBox.Show("El porcentaje de comision al crédito no es valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_cms_cre.Focus();
-            }
-
-            // Formatea para mostrar decimal
-            tb_cms_cre.Text = decimal.Round(decimal.Parse(tb_cms_cre.Text), 2).ToString();
-            tb_cms_cre.Text = decimal.Parse(tb_cms_cre.Text).ToString("N2");
-
         }
     }
 }
