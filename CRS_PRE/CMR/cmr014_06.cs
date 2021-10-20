@@ -14,6 +14,7 @@ namespace CRS_PRE
 
         //Instancias
         cmr014 o_cmr014 = new cmr014();
+        adp002 o_adp002 = new adp002();
         DataTable Tabla = new DataTable();
         string Titulo = "Elimina Vendedor";
 
@@ -68,8 +69,11 @@ namespace CRS_PRE
             if (tb_est_ado.Text == "Habilitado")
                 return "EL Vendedor se encuentra Habilitado, NO se puede Eliminar";
 
-            // Valida que no se haya realizado ningun documento con ese vendedor
-
+            // Valida que no este asignado en ninguna persona
+            Tabla = new DataTable();
+            Tabla = o_adp002.Fe_con_ven(int.Parse(tb_cod_ven.Text));
+            if (Tabla.Rows.Count > 0)
+                return "EL Vendedor esta asignado en " + Tabla.Rows.Count + " registro de Persona";
 
             return "";
         }        

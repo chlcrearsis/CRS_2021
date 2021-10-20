@@ -293,6 +293,46 @@ namespace CRS_NEG
         }
 
         /// <summary>
+        /// Funcion "Consulta persona por Vendedor"
+        /// </summary>
+        /// <param name="cod_ven">Codigo Vendedor</param>
+        /// <returns></returns>
+        public DataTable Fe_con_ven(int cod_ven)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT * FROM adp002");
+                cadena.AppendLine(" WHERE va_cod_ven = " + cod_ven + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion "Consulta persona por Cobrador"
+        /// </summary>
+        /// <param name="cod_cob">Codigo Cobrador</param>
+        /// <returns></returns>
+        public DataTable Fe_con_cob(int cod_cob)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT * FROM adp002");
+                cadena.AppendLine(" WHERE va_cod_cob = " + cod_cob + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Funcion : Obtiene el Codigo de Persona según el Grupo de Persona
         /// </summary>
         /// <param name="cod_gru">Codigo del Grupo de persona</param>

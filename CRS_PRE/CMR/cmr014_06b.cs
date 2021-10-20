@@ -14,6 +14,7 @@ namespace CRS_PRE
 
         //Instancias
         cmr014 o_cmr014 = new cmr014();
+        adp002 o_adp002 = new adp002();
         DataTable Tabla = new DataTable();
         string Titulo = "Elimina Cobrador";
 
@@ -67,9 +68,12 @@ namespace CRS_PRE
             // Valida que este Deshabilitado
             if (tb_est_ado.Text == "Habilitado")
                 return "EL Cobrador se encuentra Habilitado, NO se puede Eliminar";
-
-            // Valida que no se haya realizado ningun documento con ese cobrador
-
+            
+            // Valida que no este asignado en ninguna persona
+            Tabla = new DataTable();
+            Tabla = o_adp002.Fe_con_cob(int.Parse(tb_cod_cob.Text));
+            if (Tabla.Rows.Count > 0)
+                return "EL Cobrador esta asignado en " + Tabla.Rows.Count + " registro de Persona";
 
             return "";
         }
