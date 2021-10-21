@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADP\adp005.cs" />
+    <Compile Include="ADP\adp008.cs" />
+    <Compile Include="ADP\adp009.cs" />
     <Compile Include="ADP\adp015.cs" />
     <Compile Include="ADP\adp014.cs" />
     <Compile Include="ADS\ads025.cs" />

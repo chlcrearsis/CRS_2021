@@ -106,6 +106,12 @@
     <Compile Include="ADP\adp002_06.Designer.cs">
       <DependentUpon>adp002_06.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADP\adp008_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp008_01.Designer.cs">
+      <DependentUpon>adp008_01.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADP\adp015_01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +291,12 @@
     </Compile>
     <Compile Include="ADP\adp004_R01p.Designer.cs">
       <DependentUpon>adp004_R01p.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp009_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp009_01.Designer.cs">
+      <DependentUpon>adp009_01.cs</DependentUpon>
     </Compile>
     <Compile Include="ADS\ads000_00.cs">
       <SubType>Form</SubType>
@@ -2032,6 +2044,9 @@
     <EmbeddedResource Include="ADP\adp002_06.resx">
       <DependentUpon>adp002_06.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp008_01.resx">
+      <DependentUpon>adp008_01.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADP\adp015_01.resx">
       <DependentUpon>adp015_01.cs</DependentUpon>
     </EmbeddedResource>
@@ -2121,6 +2136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADP\adp004_R01p.resx">
       <DependentUpon>adp004_R01p.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp009_01.resx">
+      <DependentUpon>adp009_01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_00.resx">
       <DependentUpon>ads000_00.cs</DependentUpon>
