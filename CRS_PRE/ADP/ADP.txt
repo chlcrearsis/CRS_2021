@@ -3,20 +3,19 @@
 ******** MODULO: Administración de Personas	********
 
 adp001 = Grupo de personas										CHL	(ok)       
-adp002 = Persona												CHL	(ok)
+adp002 = Persona												EJR	(ok)
 adp003 = Tipos de atributos										EJR	(ok)
 adp004 = Atributo												EJR (ok)
-adp005 = Atributo por persona									CHL	
+adp005 = Atributo por persona									EJR (ok)	
 adp006 = Imagen de persona										FVM 
-adp007 = Rutas													EJR
+adp007 = Rutas													EJR (ok)
 adp008 = Rutas por persona										EJR
-
-adp009 = Lista de precios por persona							CHL
+adp009 = Lista de precios por persona							EJR (ok)
 adp010 = Contratos												EJR (opcional)
 adp011 = Descuento especial x persona							EJR
 adp012 = Personas relacionadas									CHL (opcional)
 adp013 = Contactos por persona									CHL 
-adp014 = Tipo de Documento                                      EJR
-adp015 = Validación Registro Persona                            EJR
+adp014 = Tipo de Documento                                      EJR (ok)
+adp015 = Validación Registro Persona                            EJR (ok)
 
 
