@@ -292,6 +292,12 @@
     <Compile Include="ADS\ads000_00.Designer.cs">
       <DependentUpon>ads000_00.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads000_07.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads000_07.Designer.cs">
+      <DependentUpon>ads000_07.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads000_06.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2124,6 +2130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_00.resx">
       <DependentUpon>ads000_00.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads000_07.resx">
+      <DependentUpon>ads000_07.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_06.resx">
       <DependentUpon>ads000_06.cs</DependentUpon>

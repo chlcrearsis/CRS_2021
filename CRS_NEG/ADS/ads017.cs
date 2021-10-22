@@ -37,15 +37,6 @@ namespace CRS_NEG
 
         //#region ""
 
-        //public DataTable Fe_obt_mod()
-        //{
-        //    cadena = "SELECT * FROM ads017 " +
-        //        " WHERE va_ide_usr = '' ";
-        //    Tabla = ob_con_ecA.fe_exe_sql(cadena);
-
-        //    return Tabla;
-        //}
-
         public void Fe_crea(string ar_ide_usr, int ar_pin_usr, DateTime ar_fec_reg, DateTime ar_fec_exp, string nom_eqp)
         {
             cadena = " INSERT INTO ads017 VALUES('" + ar_ide_usr + "'," + ar_pin_usr + " ," +
