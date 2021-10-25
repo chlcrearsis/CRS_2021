@@ -404,12 +404,20 @@ namespace CRS_PRE
 
         private void mn_mod_com_Click(object sender, EventArgs e)
         {
+            // Despliega ventana que que solicita PIN para acceder
+            ads000_07 frm = new ads000_07();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.Cancel)
+                return;
+
+
             // Verifica concurrencia de datos para consultar
             if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
                 return;
 
-            cmr014_07 frm = new cmr014_07();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            cmr014_07 frm2 = new cmr014_07();
+            cl_glo_frm.abrir(this, frm2, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void mn_per_usr_Click(object sender, EventArgs e)

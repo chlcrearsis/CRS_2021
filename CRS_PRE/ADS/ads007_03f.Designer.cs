@@ -98,9 +98,12 @@
             this.tb_pin_rep.PasswordChar = '*';
             this.tb_pin_rep.Size = new System.Drawing.Size(240, 20);
             this.tb_pin_rep.TabIndex = 70;
+            this.tb_pin_rep.Text = "Contraseña";
             this.tb_pin_rep.UseSystemPasswordChar = true;
             this.tb_pin_rep.WordWrap = false;
+            this.tb_pin_rep.Enter += new System.EventHandler(this.tb_pin_rep_Enter);
             this.tb_pin_rep.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_pin_KeyPress);
+            this.tb_pin_rep.Validated += new System.EventHandler(this.tb_pin_rep_Validated);
             // 
             // label9
             // 
@@ -123,15 +126,19 @@
             // tb_pin_new
             // 
             this.tb_pin_new.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_pin_new.HideSelection = false;
             this.tb_pin_new.Location = new System.Drawing.Point(87, 168);
             this.tb_pin_new.MaxLength = 4;
             this.tb_pin_new.Name = "tb_pin_new";
             this.tb_pin_new.PasswordChar = '*';
             this.tb_pin_new.Size = new System.Drawing.Size(240, 20);
             this.tb_pin_new.TabIndex = 60;
+            this.tb_pin_new.Text = "Contraseña";
             this.tb_pin_new.UseSystemPasswordChar = true;
             this.tb_pin_new.WordWrap = false;
+            this.tb_pin_new.Enter += new System.EventHandler(this.tb_pin_new_Enter);
             this.tb_pin_new.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_pin_KeyPress);
+            this.tb_pin_new.Validated += new System.EventHandler(this.tb_pin_new_Validated);
             // 
             // label7
             // 
@@ -211,9 +218,12 @@
             this.tb_pin_act.PasswordChar = '*';
             this.tb_pin_act.Size = new System.Drawing.Size(245, 20);
             this.tb_pin_act.TabIndex = 50;
+            this.tb_pin_act.Text = "Contraseña";
             this.tb_pin_act.UseSystemPasswordChar = true;
             this.tb_pin_act.WordWrap = false;
+            this.tb_pin_act.Enter += new System.EventHandler(this.tb_pin_act_Enter);
             this.tb_pin_act.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_pin_KeyPress);
+            this.tb_pin_act.Validated += new System.EventHandler(this.tb_pin_act_Validated);
             // 
             // label4
             // 
@@ -234,8 +244,11 @@
             this.tb_pas_usr.PasswordChar = '*';
             this.tb_pas_usr.Size = new System.Drawing.Size(245, 20);
             this.tb_pas_usr.TabIndex = 40;
+            this.tb_pas_usr.Text = "Contraseña";
             this.tb_pas_usr.UseSystemPasswordChar = true;
             this.tb_pas_usr.WordWrap = false;
+            this.tb_pas_usr.Enter += new System.EventHandler(this.tb_pas_usr_Enter);
+            this.tb_pas_usr.Validated += new System.EventHandler(this.tb_pas_usr_Validated);
             // 
             // label3
             // 

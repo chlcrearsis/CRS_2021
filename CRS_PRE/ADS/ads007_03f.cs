@@ -165,5 +165,53 @@ namespace CRS_PRE
             cl_glo_bal.NotNumeric(e);
 
         }
+
+        private void tb_pas_usr_Enter(object sender, EventArgs e)
+        {
+            if (tb_pas_usr.Text == "Contraseña")
+                tb_pas_usr.Text = "";
+        }
+
+        private void tb_pin_act_Enter(object sender, EventArgs e)
+        {
+            if (tb_pin_act.Text == "Contraseña")
+                tb_pin_act.Text = "";
+        }
+
+        private void tb_pin_new_Enter(object sender, EventArgs e)
+        {
+            if (tb_pin_new.Text == "Contraseña")
+                tb_pin_new.Text = "";
+        }
+
+        private void tb_pin_rep_Enter(object sender, EventArgs e)
+        {
+            if (tb_pin_rep.Text == "Contraseña")
+                tb_pin_rep.Text = "";
+        }
+
+        private void tb_pas_usr_Validated(object sender, EventArgs e)
+        {
+            if (tb_pas_usr.Text.Trim() == "")
+                tb_pas_usr.Text = "Contraseña";
+        }
+
+        private void tb_pin_act_Validated(object sender, EventArgs e)
+        {
+            if (tb_pin_act.Text.Trim() == "")
+                tb_pin_act.Text = "Contraseña";
+        }
+
+        private void tb_pin_new_Validated(object sender, EventArgs e)
+        {
+            if (tb_pin_new.Text.Trim() == "")
+                tb_pin_new.Text = "Contraseña";
+        }
+
+        private void tb_pin_rep_Validated(object sender, EventArgs e)
+        {
+            if (tb_pin_rep.Text.Trim() == "")
+                tb_pin_rep.Text = "Contraseña";
+        }
     }
 }
