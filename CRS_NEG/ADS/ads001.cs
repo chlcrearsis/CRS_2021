@@ -19,30 +19,8 @@ namespace CRS_NEG
         //##       Autor: CHL - (07-11-2019)                                  ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-
-
-
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
-
         DataTable Tabla = new DataTable();
-        string cadena;
-        public ads001()
-        {
-
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda  = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
-
-
+        string cadena;        
 
         public DataTable Fe_obt_mod()
         {

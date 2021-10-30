@@ -17,7 +17,7 @@ namespace CRS_PRE
     {
         public dynamic frm_pad;
         public int frm_tip;
-        public DataTable tab_dat;
+        public DataTable Tabla;
         public dynamic frm_MDI;
 
         string est_bus = "T";
@@ -30,9 +30,6 @@ namespace CRS_PRE
 
         // instancia
         ads010 o_ads010 = new ads010();        
-
-        // Variables
-        DataTable Tabla = new DataTable();
 
         private void frm_Load(object sender, EventArgs e)
         {
@@ -90,7 +87,6 @@ namespace CRS_PRE
                             dg_res_ult.Rows[i].Cells["va_ide_tab"].Value = "Producto";
                             break;
                     }
-
                 }
                 tb_ide_tip.Text = Tabla.Rows[0]["va_ide_tip"].ToString();
                 lb_nom_tip.Text = Tabla.Rows[0]["va_nom_tip"].ToString();
@@ -143,7 +139,8 @@ namespace CRS_PRE
             if (ide_tip != null){
                 try{
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++){
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_tip.ToUpper()){
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_tip.ToUpper())
+                        {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;

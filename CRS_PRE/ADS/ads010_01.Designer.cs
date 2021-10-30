@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_ide_tab = new System.Windows.Forms.Label();
+            this.cb_ide_tab = new System.Windows.Forms.ComboBox();
             this.bt_bus_car = new System.Windows.Forms.Button();
             this.cb_est_bus = new System.Windows.Forms.ComboBox();
             this.cb_prm_bus = new System.Windows.Forms.ComboBox();
@@ -51,15 +53,13 @@
             this.mn_rep_tip = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.cb_ide_tab = new System.Windows.Forms.ComboBox();
-            this.lb_ide_tab = new System.Windows.Forms.Label();
             this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_ide_tab = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_can_cel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_frm_hja.SuspendLayout();
@@ -83,6 +83,28 @@
             this.groupBox1.Size = new System.Drawing.Size(542, 63);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lb_ide_tab
+            // 
+            this.lb_ide_tab.AutoSize = true;
+            this.lb_ide_tab.Location = new System.Drawing.Point(370, 15);
+            this.lb_ide_tab.Name = "lb_ide_tab";
+            this.lb_ide_tab.Size = new System.Drawing.Size(49, 13);
+            this.lb_ide_tab.TabIndex = 3;
+            this.lb_ide_tab.Text = "Relación";
+            // 
+            // cb_ide_tab
+            // 
+            this.cb_ide_tab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_ide_tab.FormattingEnabled = true;
+            this.cb_ide_tab.Items.AddRange(new object[] {
+            "Todos",
+            "Persona",
+            "Producto"});
+            this.cb_ide_tab.Location = new System.Drawing.Point(422, 11);
+            this.cb_ide_tab.Name = "cb_ide_tab";
+            this.cb_ide_tab.Size = new System.Drawing.Size(113, 21);
+            this.cb_ide_tab.TabIndex = 4;
             // 
             // bt_bus_car
             // 
@@ -129,6 +151,7 @@
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(240, 20);
             this.tb_tex_bus.TabIndex = 5;
+            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
             // lb_nom_tip
             // 
@@ -157,6 +180,7 @@
             this.tb_ide_tip.Size = new System.Drawing.Size(27, 20);
             this.tb_ide_tip.TabIndex = 1;
             this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_ide_tip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
             // groupBox2
             // 
@@ -256,29 +280,29 @@
             this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_tip,
             this.va_nom_tip,
             this.va_ide_tab,
             this.va_est_ado});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle6;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -290,6 +314,35 @@
             this.dg_res_ult.TabIndex = 0;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
+            // 
+            // va_ide_tip
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_ide_tip.DefaultCellStyle = dataGridViewCellStyle5;
+            this.va_ide_tip.HeaderText = "Codigo";
+            this.va_ide_tip.Name = "va_ide_tip";
+            this.va_ide_tip.ReadOnly = true;
+            this.va_ide_tip.Width = 60;
+            // 
+            // va_nom_tip
+            // 
+            this.va_nom_tip.HeaderText = "Nombre";
+            this.va_nom_tip.Name = "va_nom_tip";
+            this.va_nom_tip.ReadOnly = true;
+            this.va_nom_tip.Width = 250;
+            // 
+            // va_ide_tab
+            // 
+            this.va_ide_tab.HeaderText = "Relación";
+            this.va_ide_tab.Name = "va_ide_tab";
+            this.va_ide_tab.ReadOnly = true;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Width = 95;
             // 
             // gb_ctr_btn
             // 
@@ -329,57 +382,6 @@
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
-            // 
-            // cb_ide_tab
-            // 
-            this.cb_ide_tab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_ide_tab.FormattingEnabled = true;
-            this.cb_ide_tab.Items.AddRange(new object[] {
-            "Todos",
-            "Persona",
-            "Producto"});
-            this.cb_ide_tab.Location = new System.Drawing.Point(422, 11);
-            this.cb_ide_tab.Name = "cb_ide_tab";
-            this.cb_ide_tab.Size = new System.Drawing.Size(113, 21);
-            this.cb_ide_tab.TabIndex = 4;
-            // 
-            // lb_ide_tab
-            // 
-            this.lb_ide_tab.AutoSize = true;
-            this.lb_ide_tab.Location = new System.Drawing.Point(370, 15);
-            this.lb_ide_tab.Name = "lb_ide_tab";
-            this.lb_ide_tab.Size = new System.Drawing.Size(49, 13);
-            this.lb_ide_tab.TabIndex = 3;
-            this.lb_ide_tab.Text = "Relación";
-            // 
-            // va_ide_tip
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_ide_tip.DefaultCellStyle = dataGridViewCellStyle2;
-            this.va_ide_tip.HeaderText = "Codigo";
-            this.va_ide_tip.Name = "va_ide_tip";
-            this.va_ide_tip.ReadOnly = true;
-            this.va_ide_tip.Width = 60;
-            // 
-            // va_nom_tip
-            // 
-            this.va_nom_tip.HeaderText = "Nombre";
-            this.va_nom_tip.Name = "va_nom_tip";
-            this.va_nom_tip.ReadOnly = true;
-            this.va_nom_tip.Width = 250;
-            // 
-            // va_ide_tab
-            // 
-            this.va_ide_tab.HeaderText = "Relación";
-            this.va_ide_tab.Name = "va_ide_tab";
-            this.va_ide_tab.ReadOnly = true;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
-            this.va_est_ado.Width = 95;
             // 
             // ads010_01
             // 
