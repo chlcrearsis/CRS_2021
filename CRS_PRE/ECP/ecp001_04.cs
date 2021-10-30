@@ -13,7 +13,7 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class ecp001_03 : Form
+    public partial class ecp001_04 : Form
     {
 
         public dynamic frm_pad;
@@ -26,7 +26,7 @@ namespace CRS_PRE
         DataTable tabla = new DataTable();
 
 
-        public ecp001_03()
+        public ecp001_04()
         {
             InitializeComponent();
         }
@@ -39,6 +39,11 @@ namespace CRS_PRE
             tb_nro_cuo.Text = frm_dat.Rows[0]["va_nro_cuo"].ToString();
             tb_int_dia.Text = frm_dat.Rows[0]["va_int_dia"].ToString();
             tb_dia_ini.Text = frm_dat.Rows[0]["va_dia_ini"].ToString();
+
+            if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
+                tb_est_ado.Text = "HABILITADO";
+            else
+                tb_est_ado.Text = "DESHABILITADO";
 
             tb_cod_plg.Focus();
         }
@@ -59,47 +64,8 @@ namespace CRS_PRE
                 tb_cod_plg.Focus();
                 return "El plan de pago que desea crear NO se encuentra registrado";
             }
-            if (tb_nom_plg.Text.Trim() == "")
-            {
-                tb_nom_plg.Focus();
-                return "Debe proporcionar la descripción";
-            }
-
+           
          
-            if (cl_glo_bal.IsNumeric(tb_nro_cuo.Text) == false)
-            {
-                tb_nro_cuo.Focus();
-                return "El numero de cuotas es incorrecto";
-            }
-             
-            if(int.Parse(tb_nro_cuo.Text) == 0)
-            {
-                tb_nro_cuo.Focus();
-                return "El numero de cuotas debe de ser mayor a cero";
-            }
-
-            if (cl_glo_bal.IsNumeric(tb_int_dia.Text) == false)
-            {
-                tb_int_dia.Focus();
-                return "El numero de intervalo de dias entre cuotas es incorrecto";
-            }
-
-            if (int.Parse(tb_int_dia.Text) == 0)
-            {
-                tb_int_dia.Focus();
-                return "El numero de intervalo de dias entre cuotas debe de ser mayor a cero";
-            }
-            if (cl_glo_bal.IsNumeric(tb_dia_ini.Text) == false)
-            {
-                tb_dia_ini.Focus();
-                return "El numero de del primer vencimiento es incorrecto";
-            }
-
-            if (int.Parse(tb_dia_ini.Text) == 0)
-            {
-                tb_dia_ini.Focus();
-                return "El numero de dias del primer vencimiento debe de ser mayor a cero";
-            }
 
             return "";
         }
@@ -133,15 +99,30 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de Editar la información?", "Edita plan de pago", MessageBoxButtons.OKCancel);
-                if (msg_res == DialogResult.OK)
+            if(tb_est_ado.Text == "HABILITADO")
             {
-                //Registrar 
-                o_ecp001.Fe_edi_plg(int.Parse(tb_cod_plg.Text), tb_nom_plg.Text,int.Parse(tb_nro_cuo.Text),int.Parse(tb_int_dia.Text),int.Parse(tb_dia_ini.Text));
-                MessageBox.Show("Los datos se Editaron correctamente", "Edita plan de pago", MessageBoxButtons.OK);
-                cl_glo_frm.Cerrar(this);
-                frm_pad.Fe_act_frm(int.Parse(tb_cod_plg.Text));
+                msg_res = MessageBox.Show("Esta seguro de Deshabilitar el plan de pago?", "deshabilita plan de pago", MessageBoxButtons.OKCancel);
+                if (msg_res == DialogResult.OK)
+                {
+                    //Registrar 
+                    o_ecp001.Fe_dhb_plg(int.Parse(tb_cod_plg.Text));
+                    MessageBox.Show("El plan de pago se deshabilito correctamente", "Deshabilita plan de pago", MessageBoxButtons.OK);
+                    cl_glo_frm.Cerrar(this);
+                    frm_pad.Fe_act_frm(int.Parse(tb_cod_plg.Text));
+                }
+            }else
+            {
+                msg_res = MessageBox.Show("Esta seguro de Habilitar el plan de pago?", "Habilita plan de pago", MessageBoxButtons.OKCancel);
+                if (msg_res == DialogResult.OK)
+                {
+                    //Registrar 
+                    o_ecp001.Fe_hab_plg(int.Parse(tb_cod_plg.Text));
+                    MessageBox.Show("El plan de pago se Habilito correctamente", "Habilita plan de pago", MessageBoxButtons.OK);
+                    cl_glo_frm.Cerrar(this);
+                    frm_pad.Fe_act_frm(int.Parse(tb_cod_plg.Text));
+                }
             }
+
 
         }
         private void tb_nro_KeyPress(object sender, KeyPressEventArgs e)
