@@ -61,14 +61,13 @@ namespace CRS_PRE
 
         protected string Fi_val_dat()
         {
-            int val = 0;
-
-            if (tb_ide_gru.Text.Trim()=="")
+            if (tb_ide_gru.Text.Trim() == "")
             {
                 tb_ide_gru.Focus();
                 return "Debe proporcionar el Id para el Grupo de persona";
             }
 
+            int val;
             int.TryParse(tb_ide_gru.Text, out val);
             if (val == 0)
             {
@@ -78,7 +77,7 @@ namespace CRS_PRE
 
             //Verificar 
             tabla = o_adp001.Fe_con_gru(int.Parse(tb_ide_gru.Text) );
-            if(tabla.Rows.Count >0)
+            if(tabla.Rows.Count > 0)
             {
                 tb_ide_gru.Focus();
                 return "El Grupo de persona que desea crear ya se encuentra registrado";

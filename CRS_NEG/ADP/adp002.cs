@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 using Microsoft.SqlServer.Types;
@@ -22,11 +19,9 @@ namespace CRS_NEG
         //##      Nombre: PERSONAS                                            ##
         //## Descripcion: Registro de Persona                                 ##         
         //##       Autor: CHL  - (22-07-2020)                                 ##
-        //######################################################################        
+        //######################################################################                
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
-        DataTable tabla = new DataTable();
-
 
         /// <summary>
         /// Registrar "PERSONA"

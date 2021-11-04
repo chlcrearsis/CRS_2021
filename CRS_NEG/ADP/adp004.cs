@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -80,7 +77,6 @@ namespace CRS_NEG
                 cadena = new StringBuilder();
                 cadena.AppendLine("UPDATE adp004 SET va_est_ado = '" + est_ado + "' WHERE va_ide_tip = " + ide_tip + " AND va_ide_atr = " + ide_atr + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
-
             }
             catch (Exception ex)
             {
@@ -125,7 +121,6 @@ namespace CRS_NEG
                 cadena.AppendLine(" WHERE adp003.va_ide_tip = adp004.va_ide_tip");
                 cadena.AppendLine("   AND adp004.va_ide_tip = " + ide_tip + "");
                 cadena.AppendLine("   AND adp004.va_ide_atr = " + ide_atr + "");
-
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -254,6 +249,5 @@ namespace CRS_NEG
                 throw ex;
             }
         }
-
     }
 }

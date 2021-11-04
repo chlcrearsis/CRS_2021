@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -79,7 +76,6 @@ namespace CRS_NEG
                 cadena = new StringBuilder();
                 cadena.AppendLine("UPDATE adp003 SET va_est_ado = '" + est_ado + "' WHERE va_ide_tip = " + ide_tip + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
-
             }
             catch (Exception ex)
             {

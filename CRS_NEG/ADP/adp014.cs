@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -129,6 +126,7 @@ namespace CRS_NEG
                 cadena.AppendLine(" WHERE va_des_tip = '" + des_tip + "'");
                 if (ide_tip.CompareTo("") != 0)
                     cadena.AppendLine(" AND va_ide_tip <> '" + ide_tip + "'");
+
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
                 throw ex;

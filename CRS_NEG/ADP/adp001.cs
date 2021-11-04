@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -18,7 +15,7 @@ namespace CRS_NEG
         //######################################################################
         //##       Tabla: adp001                                              ##
         //##      Nombre: GRUPO DE PERSONAS                                   ##
-        //## Descripcion:                                                     ##         
+        //## Descripcion: Definición de Grupos de Persona                     ##         
         //##       Autor: CHL  - (22-07-2020)                                 ##
         //######################################################################
 
