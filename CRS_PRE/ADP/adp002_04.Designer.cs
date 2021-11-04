@@ -46,6 +46,8 @@
             this.lb_nom_cob = new System.Windows.Forms.Label();
             this.lb_nom_ven = new System.Windows.Forms.Label();
             this.dg_atr_per = new System.Windows.Forms.DataGridView();
+            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_atr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_nom_fac = new System.Windows.Forms.GroupBox();
             this.tb_ruc_nit = new System.Windows.Forms.TextBox();
             this.tb_nom_fac = new System.Windows.Forms.TextBox();
@@ -80,8 +82,6 @@
             this.lb_tel_per = new System.Windows.Forms.Label();
             this.lb_tel_cel = new System.Windows.Forms.Label();
             this.tb_fec_nac = new System.Windows.Forms.MaskedTextBox();
-            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_atr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -267,7 +267,7 @@
             this.lb_nom_cob.Name = "lb_nom_cob";
             this.lb_nom_cob.Size = new System.Drawing.Size(85, 21);
             this.lb_nom_cob.TabIndex = 4;
-            this.lb_nom_cob.Text = "Vendedor";
+            this.lb_nom_cob.Text = "Cobrador";
             this.lb_nom_cob.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lb_nom_ven
@@ -320,6 +320,22 @@
             this.dg_atr_per.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dg_atr_per.Size = new System.Drawing.Size(253, 240);
             this.dg_atr_per.TabIndex = 1;
+            // 
+            // va_nom_tip
+            // 
+            this.va_nom_tip.HeaderText = "Tipo Atributo";
+            this.va_nom_tip.Name = "va_nom_tip";
+            this.va_nom_tip.ReadOnly = true;
+            this.va_nom_tip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_nom_tip.Width = 85;
+            // 
+            // va_nom_atr
+            // 
+            this.va_nom_atr.HeaderText = "Atributo";
+            this.va_nom_atr.Name = "va_nom_atr";
+            this.va_nom_atr.ReadOnly = true;
+            this.va_nom_atr.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.va_nom_atr.Width = 165;
             // 
             // gb_nom_fac
             // 
@@ -683,22 +699,6 @@
             this.tb_fec_nac.TabIndex = 11;
             this.tb_fec_nac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_fec_nac.ValidatingType = typeof(System.DateTime);
-            // 
-            // va_nom_tip
-            // 
-            this.va_nom_tip.HeaderText = "Tipo Atributo";
-            this.va_nom_tip.Name = "va_nom_tip";
-            this.va_nom_tip.ReadOnly = true;
-            this.va_nom_tip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_nom_tip.Width = 85;
-            // 
-            // va_nom_atr
-            // 
-            this.va_nom_atr.HeaderText = "Atributo";
-            this.va_nom_atr.Name = "va_nom_atr";
-            this.va_nom_atr.ReadOnly = true;
-            this.va_nom_atr.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.va_nom_atr.Width = 165;
             // 
             // adp002_04
             // 

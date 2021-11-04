@@ -251,7 +251,7 @@
             this.lb_nom_cob.Name = "lb_nom_cob";
             this.lb_nom_cob.Size = new System.Drawing.Size(85, 21);
             this.lb_nom_cob.TabIndex = 4;
-            this.lb_nom_cob.Text = "Vendedor";
+            this.lb_nom_cob.Text = "Cobrador";
             this.lb_nom_cob.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lb_nom_ven

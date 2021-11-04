@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tb_tip_per = new System.Windows.Forms.TextBox();
             this.tb_est_ado = new System.Windows.Forms.TextBox();
@@ -38,9 +38,14 @@
             this.tb_cod_gru = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lb_atr_seg = new System.Windows.Forms.Label();
+            this.cb_nom_cob = new System.Windows.Forms.ComboBox();
             this.lb_nom_cob = new System.Windows.Forms.Label();
+            this.cb_nom_ven = new System.Windows.Forms.ComboBox();
             this.lb_nom_ven = new System.Windows.Forms.Label();
             this.dg_atr_per = new System.Windows.Forms.DataGridView();
+            this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_atr = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.gb_nom_fac = new System.Windows.Forms.GroupBox();
             this.tb_ruc_nit = new System.Windows.Forms.TextBox();
             this.tb_nom_fac = new System.Windows.Forms.TextBox();
@@ -49,8 +54,10 @@
             this.lb_raz_soc = new System.Windows.Forms.Label();
             this.tb_cod_per = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cb_ext_doc = new System.Windows.Forms.ComboBox();
             this.tb_dir_ent = new System.Windows.Forms.TextBox();
             this.lb_dir_ent = new System.Windows.Forms.Label();
+            this.cb_sex_per = new System.Windows.Forms.ComboBox();
             this.lb_ape_mat = new System.Windows.Forms.Label();
             this.lb_nom_bre = new System.Windows.Forms.Label();
             this.lb_sex_per = new System.Windows.Forms.Label();
@@ -62,6 +69,7 @@
             this.tb_ape_pat = new System.Windows.Forms.TextBox();
             this.tb_nro_doc = new System.Windows.Forms.TextBox();
             this.tb_tel_fij = new System.Windows.Forms.TextBox();
+            this.bt_bus_tip = new System.Windows.Forms.Button();
             this.lb_tel_fij = new System.Windows.Forms.Label();
             this.tb_tip_doc = new System.Windows.Forms.TextBox();
             this.tb_dir_pri = new System.Windows.Forms.TextBox();
@@ -76,14 +84,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
-            this.va_nom_atr = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cb_nom_cob = new System.Windows.Forms.ComboBox();
-            this.cb_nom_ven = new System.Windows.Forms.ComboBox();
-            this.cb_sex_per = new System.Windows.Forms.ComboBox();
-            this.cb_ext_doc = new System.Windows.Forms.ComboBox();
-            this.bt_bus_tip = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_atr_per)).BeginInit();
@@ -195,6 +195,15 @@
             this.lb_atr_seg.Text = "ATRIBUTOS DE SEGMENTACIÓN";
             this.lb_atr_seg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cb_nom_cob
+            // 
+            this.cb_nom_cob.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_nom_cob.FormattingEnabled = true;
+            this.cb_nom_cob.Location = new System.Drawing.Point(91, 294);
+            this.cb_nom_cob.Name = "cb_nom_cob";
+            this.cb_nom_cob.Size = new System.Drawing.Size(167, 21);
+            this.cb_nom_cob.TabIndex = 5;
+            // 
             // lb_nom_cob
             // 
             this.lb_nom_cob.AutoSize = true;
@@ -205,8 +214,17 @@
             this.lb_nom_cob.Name = "lb_nom_cob";
             this.lb_nom_cob.Size = new System.Drawing.Size(85, 21);
             this.lb_nom_cob.TabIndex = 4;
-            this.lb_nom_cob.Text = "Vendedor";
+            this.lb_nom_cob.Text = "Cobrador";
             this.lb_nom_cob.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cb_nom_ven
+            // 
+            this.cb_nom_ven.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_nom_ven.FormattingEnabled = true;
+            this.cb_nom_ven.Location = new System.Drawing.Point(91, 271);
+            this.cb_nom_ven.Name = "cb_nom_ven";
+            this.cb_nom_ven.Size = new System.Drawing.Size(167, 21);
+            this.cb_nom_ven.TabIndex = 3;
             // 
             // lb_nom_ven
             // 
@@ -229,29 +247,29 @@
             this.dg_atr_per.AllowUserToResizeRows = false;
             this.dg_atr_per.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dg_atr_per.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_atr_per.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_atr_per.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_atr_per.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_atr_per.ColumnHeadersVisible = false;
             this.dg_atr_per.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_tip,
             this.va_nom_tip,
             this.va_nom_atr});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_atr_per.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_atr_per.DefaultCellStyle = dataGridViewCellStyle2;
             this.dg_atr_per.Location = new System.Drawing.Point(5, 29);
             this.dg_atr_per.Name = "dg_atr_per";
             this.dg_atr_per.RowHeadersVisible = false;
@@ -259,6 +277,30 @@
             this.dg_atr_per.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dg_atr_per.Size = new System.Drawing.Size(253, 240);
             this.dg_atr_per.TabIndex = 1;
+            // 
+            // va_ide_tip
+            // 
+            this.va_ide_tip.HeaderText = "ID. Tipo";
+            this.va_ide_tip.Name = "va_ide_tip";
+            this.va_ide_tip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_ide_tip.Visible = false;
+            this.va_ide_tip.Width = 65;
+            // 
+            // va_nom_tip
+            // 
+            this.va_nom_tip.HeaderText = "Tipo Atributo";
+            this.va_nom_tip.Name = "va_nom_tip";
+            this.va_nom_tip.ReadOnly = true;
+            this.va_nom_tip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_nom_tip.Width = 85;
+            // 
+            // va_nom_atr
+            // 
+            this.va_nom_atr.HeaderText = "Atributo";
+            this.va_nom_atr.Name = "va_nom_atr";
+            this.va_nom_atr.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.va_nom_atr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.va_nom_atr.Width = 165;
             // 
             // gb_nom_fac
             // 
@@ -366,6 +408,25 @@
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             // 
+            // cb_ext_doc
+            // 
+            this.cb_ext_doc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_ext_doc.FormattingEnabled = true;
+            this.cb_ext_doc.Items.AddRange(new object[] {
+            "LP",
+            "CB",
+            "SC",
+            "PT",
+            "OR",
+            "TJ",
+            "BE",
+            "PD",
+            "CH"});
+            this.cb_ext_doc.Location = new System.Drawing.Point(227, 57);
+            this.cb_ext_doc.Name = "cb_ext_doc";
+            this.cb_ext_doc.Size = new System.Drawing.Size(48, 21);
+            this.cb_ext_doc.TabIndex = 10;
+            // 
             // tb_dir_ent
             // 
             this.tb_dir_ent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -384,6 +445,18 @@
             this.lb_dir_ent.Size = new System.Drawing.Size(92, 13);
             this.lb_dir_ent.TabIndex = 25;
             this.lb_dir_ent.Text = "Dirección Entrega";
+            // 
+            // cb_sex_per
+            // 
+            this.cb_sex_per.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_sex_per.FormattingEnabled = true;
+            this.cb_sex_per.Items.AddRange(new object[] {
+            "Hombre",
+            "Mujer"});
+            this.cb_sex_per.Location = new System.Drawing.Point(96, 81);
+            this.cb_sex_per.Name = "cb_sex_per";
+            this.cb_sex_per.Size = new System.Drawing.Size(84, 21);
+            this.cb_sex_per.TabIndex = 14;
             // 
             // lb_ape_mat
             // 
@@ -484,6 +557,20 @@
             this.tb_tel_fij.Name = "tb_tel_fij";
             this.tb_tel_fij.Size = new System.Drawing.Size(130, 20);
             this.tb_tel_fij.TabIndex = 20;
+            // 
+            // bt_bus_tip
+            // 
+            this.bt_bus_tip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_bus_tip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_bus_tip.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_bus_tip.Location = new System.Drawing.Point(124, 56);
+            this.bt_bus_tip.Name = "bt_bus_tip";
+            this.bt_bus_tip.Size = new System.Drawing.Size(16, 22);
+            this.bt_bus_tip.TabIndex = 8;
+            this.bt_bus_tip.TabStop = false;
+            this.bt_bus_tip.Text = "|";
+            this.bt_bus_tip.UseVisualStyleBackColor = false;
+            this.bt_bus_tip.Click += new System.EventHandler(this.bt_bus_tip_Click);
             // 
             // lb_tel_fij
             // 
@@ -627,93 +714,6 @@
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
-            // 
-            // va_nom_atr
-            // 
-            this.va_nom_atr.HeaderText = "Atributo";
-            this.va_nom_atr.Name = "va_nom_atr";
-            this.va_nom_atr.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.va_nom_atr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.va_nom_atr.Width = 165;
-            // 
-            // va_nom_tip
-            // 
-            this.va_nom_tip.HeaderText = "Tipo Atributo";
-            this.va_nom_tip.Name = "va_nom_tip";
-            this.va_nom_tip.ReadOnly = true;
-            this.va_nom_tip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_nom_tip.Width = 85;
-            // 
-            // va_ide_tip
-            // 
-            this.va_ide_tip.HeaderText = "ID. Tipo";
-            this.va_ide_tip.Name = "va_ide_tip";
-            this.va_ide_tip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_ide_tip.Visible = false;
-            this.va_ide_tip.Width = 65;
-            // 
-            // cb_nom_cob
-            // 
-            this.cb_nom_cob.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_nom_cob.FormattingEnabled = true;
-            this.cb_nom_cob.Location = new System.Drawing.Point(91, 294);
-            this.cb_nom_cob.Name = "cb_nom_cob";
-            this.cb_nom_cob.Size = new System.Drawing.Size(167, 21);
-            this.cb_nom_cob.TabIndex = 5;
-            // 
-            // cb_nom_ven
-            // 
-            this.cb_nom_ven.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_nom_ven.FormattingEnabled = true;
-            this.cb_nom_ven.Location = new System.Drawing.Point(91, 271);
-            this.cb_nom_ven.Name = "cb_nom_ven";
-            this.cb_nom_ven.Size = new System.Drawing.Size(167, 21);
-            this.cb_nom_ven.TabIndex = 3;
-            // 
-            // cb_sex_per
-            // 
-            this.cb_sex_per.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_sex_per.FormattingEnabled = true;
-            this.cb_sex_per.Items.AddRange(new object[] {
-            "Hombre",
-            "Mujer"});
-            this.cb_sex_per.Location = new System.Drawing.Point(96, 81);
-            this.cb_sex_per.Name = "cb_sex_per";
-            this.cb_sex_per.Size = new System.Drawing.Size(84, 21);
-            this.cb_sex_per.TabIndex = 14;
-            // 
-            // cb_ext_doc
-            // 
-            this.cb_ext_doc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_ext_doc.FormattingEnabled = true;
-            this.cb_ext_doc.Items.AddRange(new object[] {
-            "LP",
-            "CB",
-            "SC",
-            "PT",
-            "OR",
-            "TJ",
-            "BE",
-            "PD",
-            "CH"});
-            this.cb_ext_doc.Location = new System.Drawing.Point(227, 57);
-            this.cb_ext_doc.Name = "cb_ext_doc";
-            this.cb_ext_doc.Size = new System.Drawing.Size(48, 21);
-            this.cb_ext_doc.TabIndex = 10;
-            // 
-            // bt_bus_tip
-            // 
-            this.bt_bus_tip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_tip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_tip.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_tip.Location = new System.Drawing.Point(124, 56);
-            this.bt_bus_tip.Name = "bt_bus_tip";
-            this.bt_bus_tip.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_tip.TabIndex = 8;
-            this.bt_bus_tip.TabStop = false;
-            this.bt_bus_tip.Text = "|";
-            this.bt_bus_tip.UseVisualStyleBackColor = false;
-            this.bt_bus_tip.Click += new System.EventHandler(this.bt_bus_tip_Click);
             // 
             // adp002_03
             // 
