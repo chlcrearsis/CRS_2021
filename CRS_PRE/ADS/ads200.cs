@@ -326,6 +326,12 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm);
         }
 
+        private void mn_lib_ret_Click(object sender, EventArgs e)
+        {
+            o_frm = new ecp002_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
         private void st_bar_pie_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             o_frm = new ads000_06();
@@ -372,6 +378,5 @@ namespace CRS_PRE
             }
         }
 
-       
     }
 }

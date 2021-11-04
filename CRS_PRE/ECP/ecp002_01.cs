@@ -5,21 +5,22 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
-    public partial class ecp001_01 : Form
+    public partial class ecp002_01 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable tab_dat;
         public dynamic frm_MDI;
 
-        public ecp001_01()
+        public ecp002_01()
         {
             InitializeComponent();
         }
 
         // instancia
-        ecp001 o_ecp001 = new ecp001();
         
+        ecp002 o_ecp002 = new ecp002();
+
 
         // Variables
         DataTable tabla = new DataTable();
@@ -37,6 +38,7 @@ namespace CRS_PRE
            
             cb_prm_bus.SelectedIndex = 0;
             cb_est_ado.SelectedIndex = 0;
+            cb_tip_lib.SelectedIndex = 0;
 
             fi_bus_car();
         }
@@ -52,27 +54,51 @@ namespace CRS_PRE
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
             string ar_tex_bus = tb_tex_bus.Text;
+            string ar_est_ado = "T";
+            int ar_tip_lib = 0;
 
-            tabla = o_ecp001.Fe_bus_car(ar_tex_bus,cb_prm_bus.SelectedIndex + 1, "T");
+            if (cb_est_ado.SelectedIndex == 0)
+                ar_est_ado = "T";
+            if (cb_est_ado.SelectedIndex == 1)
+                ar_est_ado = "H";
+            if (cb_est_ado.SelectedIndex == 2)
+                ar_est_ado = "N";
+
+            ar_tip_lib = cb_tip_lib.SelectedIndex ;
+           
+
+            tabla = o_ecp002.Fe_bus_car(ar_tex_bus,cb_prm_bus.SelectedIndex + 1, ar_est_ado, ar_tip_lib);
 
             if (tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_cod_plg"].Value = tabla.Rows[i]["va_cod_plg"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_des_plg"].Value = tabla.Rows[i]["va_des_plg"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nro_cuo"].Value = tabla.Rows[i]["va_nro_cuo"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_int_dia"].Value = tabla.Rows[i]["va_int_dia"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_dia_ini"].Value = tabla.Rows[i]["va_dia_ini"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_cod_lib"].Value = tabla.Rows[i]["va_cod_lib"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_des_lib"].Value = tabla.Rows[i]["va_des_lib"].ToString();
+
+                    if (tabla.Rows[i]["va_tip_lib"].ToString() == "1")
+                        dg_res_ult.Rows[i].Cells["va_tip_lib"].Value = "Cta. x Cob.";
+                    if (tabla.Rows[i]["va_tip_lib"].ToString() == "2")
+                        dg_res_ult.Rows[i].Cells["va_tip_lib"].Value = "Cta. x Pag.";
+                    if (tabla.Rows[i]["va_tip_lib"].ToString() == "3")
+                        dg_res_ult.Rows[i].Cells["va_tip_lib"].Value = "Tesoreria";
+
+
+                    if (tabla.Rows[i]["va_mon_lib"].ToString() == "B")
+                        dg_res_ult.Rows[i].Cells["va_mon_lib"].Value = "Boliviano";
+                    else
+                        dg_res_ult.Rows[i].Cells["va_mon_lib"].Value = "Dólares";
+
+
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 
                 }
-                tb_sel_ecc.Text = tabla.Rows[0]["va_cod_plg"].ToString();
-                lb_des_plg.Text = tabla.Rows[0]["va_des_plg"].ToString();
+                tb_sel_ecc.Text = tabla.Rows[0]["va_cod_lib"].ToString();
+                lb_des_plg.Text = tabla.Rows[0]["va_des_lib"].ToString();
 
             }
 
@@ -177,7 +203,7 @@ namespace CRS_PRE
             if(cl_glo_bal.IsDecimal(tb_sel_ecc.Text) ==false)
                 res_fun = "El plan de pago no es valido.";
             
-            tab_dat = o_ecp001.Fe_con_plg(int.Parse(tb_sel_ecc.Text));
+            tab_dat = o_ecp002.Fe_con_lib( int.Parse(tb_sel_ecc.Text));
             if (tabla.Rows.Count == 0)
             {
                 res_fun = "El plan de pago no se encuentra registrado";
@@ -222,17 +248,17 @@ namespace CRS_PRE
         /// <summary>
         /// Funcion Externa que actualiza la ventana con los datos que tenga, despues de realizar alguna operacion.
         /// </summary>
-        public void Fe_act_frm(long cod_plg)
+        public void Fe_act_frm(long cod_lib)
         {
             fi_bus_car();
 
-            if (cod_plg != 0)
+            if (cod_lib != 0)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_plg.ToString())
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_lib.ToString())
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
@@ -292,7 +318,7 @@ namespace CRS_PRE
         }
         private void mn_cre_ar_Click(object sender, EventArgs e)
         {
-            ecp001_02 frm = new ecp001_02();
+            ecp002_02 frm = new ecp002_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
@@ -300,6 +326,7 @@ namespace CRS_PRE
         {
             cl_glo_frm.Cerrar(this);
         }
+
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
