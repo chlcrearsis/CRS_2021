@@ -30,17 +30,17 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tb_nom_plg = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tb_dia_ini = new System.Windows.Forms.TextBox();
+            this.tb_int_dia = new System.Windows.Forms.TextBox();
             this.tb_nro_cuo = new System.Windows.Forms.TextBox();
             this.tb_cod_plg = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.tb_int_dia = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tb_dia_ini = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -58,23 +58,41 @@
             this.groupBox1.Controls.Add(this.tb_cod_plg);
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(398, 77);
+            this.groupBox1.Size = new System.Drawing.Size(398, 69);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // tb_nom_plg
             // 
             this.tb_nom_plg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_plg.Location = new System.Drawing.Point(125, 16);
+            this.tb_nom_plg.Location = new System.Drawing.Point(125, 13);
             this.tb_nom_plg.MaxLength = 30;
             this.tb_nom_plg.Name = "tb_nom_plg";
             this.tb_nom_plg.Size = new System.Drawing.Size(263, 20);
             this.tb_nom_plg.TabIndex = 20;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(273, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Nro. dia inicial";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(127, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Intervalo de dias";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 51);
+            this.label4.Location = new System.Drawing.Point(11, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 27;
@@ -83,17 +101,39 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 19);
+            this.label2.Location = new System.Drawing.Point(11, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 27;
-            this.label2.Text = "Plan de pago";
+            this.label2.Text = "Libreta";
+            // 
+            // tb_dia_ini
+            // 
+            this.tb_dia_ini.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_dia_ini.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_dia_ini.Location = new System.Drawing.Point(350, 38);
+            this.tb_dia_ini.MaxLength = 3;
+            this.tb_dia_ini.Name = "tb_dia_ini";
+            this.tb_dia_ini.Size = new System.Drawing.Size(38, 20);
+            this.tb_dia_ini.TabIndex = 50;
+            this.tb_dia_ini.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_KeyPress);
+            // 
+            // tb_int_dia
+            // 
+            this.tb_int_dia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_int_dia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_int_dia.Location = new System.Drawing.Point(215, 38);
+            this.tb_int_dia.MaxLength = 3;
+            this.tb_int_dia.Name = "tb_int_dia";
+            this.tb_int_dia.Size = new System.Drawing.Size(38, 20);
+            this.tb_int_dia.TabIndex = 40;
+            this.tb_int_dia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_KeyPress);
             // 
             // tb_nro_cuo
             // 
             this.tb_nro_cuo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_nro_cuo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nro_cuo.Location = new System.Drawing.Point(80, 47);
+            this.tb_nro_cuo.Location = new System.Drawing.Point(80, 38);
             this.tb_nro_cuo.MaxLength = 2;
             this.tb_nro_cuo.Name = "tb_nro_cuo";
             this.tb_nro_cuo.Size = new System.Drawing.Size(38, 20);
@@ -104,10 +144,10 @@
             // 
             this.tb_cod_plg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_cod_plg.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_cod_plg.Location = new System.Drawing.Point(80, 16);
+            this.tb_cod_plg.Location = new System.Drawing.Point(62, 13);
             this.tb_cod_plg.MaxLength = 4;
             this.tb_cod_plg.Name = "tb_cod_plg";
-            this.tb_cod_plg.Size = new System.Drawing.Size(38, 20);
+            this.tb_cod_plg.Size = new System.Drawing.Size(49, 20);
             this.tb_cod_plg.TabIndex = 10;
             this.tb_cod_plg.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_cod_plg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_KeyPress);
@@ -117,7 +157,7 @@
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 69);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 61);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(398, 42);
             this.gb_ctr_btn.TabIndex = 2;
@@ -150,53 +190,13 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // tb_int_dia
-            // 
-            this.tb_int_dia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_int_dia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_int_dia.Location = new System.Drawing.Point(215, 47);
-            this.tb_int_dia.MaxLength = 3;
-            this.tb_int_dia.Name = "tb_int_dia";
-            this.tb_int_dia.Size = new System.Drawing.Size(38, 20);
-            this.tb_int_dia.TabIndex = 40;
-            this.tb_int_dia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(127, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Intervalo de dias";
-            // 
-            // tb_dia_ini
-            // 
-            this.tb_dia_ini.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_dia_ini.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_dia_ini.Location = new System.Drawing.Point(350, 47);
-            this.tb_dia_ini.MaxLength = 3;
-            this.tb_dia_ini.Name = "tb_dia_ini";
-            this.tb_dia_ini.Size = new System.Drawing.Size(38, 20);
-            this.tb_dia_ini.TabIndex = 50;
-            this.tb_dia_ini.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nro_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(273, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Nro. dia inicial";
-            // 
             // ecp001_02
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(404, 116);
+            this.ClientSize = new System.Drawing.Size(404, 106);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -204,8 +204,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ecp001_02";
-            this.Tag = "Crea Plan de pago";
-            this.Text = "Crea Plan de pago";
+            this.Tag = "Crea Plan de Pago";
+            this.Text = "Crea Plan de Pago";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

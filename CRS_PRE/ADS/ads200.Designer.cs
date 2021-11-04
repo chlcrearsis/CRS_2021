@@ -63,6 +63,7 @@
             this.mn_def_rut = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_tip_doc = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_val_reg = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_pla_pago = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_tab = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_dos_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_act_eco = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +84,7 @@
             this.ts_ide_app = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ts_rut_app = new System.Windows.Forms.ToolStripStatusLabel();
-            this.mn_pla_pago = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_lib_ret = new System.Windows.Forms.ToolStripMenuItem();
             this.m_mod_ulo.SuspendLayout();
             this.st_bar_pie.SuspendLayout();
             this.SuspendLayout();
@@ -320,7 +321,8 @@
             this.mn_def_rut,
             this.mn_tip_doc,
             this.mn_val_reg,
-            this.mn_pla_pago});
+            this.mn_pla_pago,
+            this.mn_lib_ret});
             this.mn_per_son.Name = "mn_per_son";
             this.mn_per_son.Size = new System.Drawing.Size(180, 22);
             this.mn_per_son.Text = "&Persona";
@@ -374,6 +376,13 @@
             this.mn_val_reg.Text = "&Valida Reg. Persona";
             this.mn_val_reg.Click += new System.EventHandler(this.mn_val_reg_Click);
             // 
+            // mn_pla_pago
+            // 
+            this.mn_pla_pago.Name = "mn_pla_pago";
+            this.mn_pla_pago.Size = new System.Drawing.Size(180, 22);
+            this.mn_pla_pago.Text = "Plan de pa&go";
+            this.mn_pla_pago.Click += new System.EventHandler(this.mn_pla_pago_Click);
+            // 
             // mn_con_tab
             // 
             this.mn_con_tab.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -387,21 +396,21 @@
             // mn_dos_ifi
             // 
             this.mn_dos_ifi.Name = "mn_dos_ifi";
-            this.mn_dos_ifi.Size = new System.Drawing.Size(180, 22);
+            this.mn_dos_ifi.Size = new System.Drawing.Size(171, 22);
             this.mn_dos_ifi.Text = "&Dosificación";
             this.mn_dos_ifi.Click += new System.EventHandler(this.mn_dos_ifi_Click);
             // 
             // mn_act_eco
             // 
             this.mn_act_eco.Name = "mn_act_eco";
-            this.mn_act_eco.Size = new System.Drawing.Size(180, 22);
+            this.mn_act_eco.Size = new System.Drawing.Size(171, 22);
             this.mn_act_eco.Text = "&Actividad Económica";
             this.mn_act_eco.Click += new System.EventHandler(this.mn_act_eco_Click);
             // 
             // mn_ley_end
             // 
             this.mn_ley_end.Name = "mn_ley_end";
-            this.mn_ley_end.Size = new System.Drawing.Size(180, 22);
+            this.mn_ley_end.Size = new System.Drawing.Size(171, 22);
             this.mn_ley_end.Text = "&Leyenda";
             this.mn_ley_end.Click += new System.EventHandler(this.mn_ley_end_Click);
             // 
@@ -425,21 +434,21 @@
             // mn_mod_ulo
             // 
             this.mn_mod_ulo.Name = "mn_mod_ulo";
-            this.mn_mod_ulo.Size = new System.Drawing.Size(180, 22);
+            this.mn_mod_ulo.Size = new System.Drawing.Size(148, 22);
             this.mn_mod_ulo.Text = "&Modulo";
             this.mn_mod_ulo.Click += new System.EventHandler(this.mn_mod_ulo_Click);
             // 
             // mn_apl_ica
             // 
             this.mn_apl_ica.Name = "mn_apl_ica";
-            this.mn_apl_ica.Size = new System.Drawing.Size(180, 22);
+            this.mn_apl_ica.Size = new System.Drawing.Size(148, 22);
             this.mn_apl_ica.Text = "&Aplicación";
             this.mn_apl_ica.Click += new System.EventHandler(this.mn_apl_ica_Click);
             // 
             // mn_tip_ima
             // 
             this.mn_tip_ima.Name = "mn_tip_ima";
-            this.mn_tip_ima.Size = new System.Drawing.Size(180, 22);
+            this.mn_tip_ima.Size = new System.Drawing.Size(148, 22);
             this.mn_tip_ima.Text = "Tipo de Imagen";
             this.mn_tip_ima.Click += new System.EventHandler(this.mn_tip_ima_Click);
             // 
@@ -546,12 +555,12 @@
             this.ts_rut_app.Text = "...";
             this.ts_rut_app.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // mn_pla_pago
+            // mn_lib_ret
             // 
-            this.mn_pla_pago.Name = "mn_pla_pago";
-            this.mn_pla_pago.Size = new System.Drawing.Size(180, 22);
-            this.mn_pla_pago.Text = "Plan de pa&go";
-            this.mn_pla_pago.Click += new System.EventHandler(this.mn_pla_pago_Click);
+            this.mn_lib_ret.Name = "mn_lib_ret";
+            this.mn_lib_ret.Size = new System.Drawing.Size(180, 22);
+            this.mn_lib_ret.Text = "&Libreta";
+            this.mn_lib_ret.Click += new System.EventHandler(this.mn_lib_ret_Click);
             // 
             // ads200
             // 
@@ -635,5 +644,6 @@
         private System.Windows.Forms.ToolStripMenuItem mn_ley_end;
         private System.Windows.Forms.ToolStripMenuItem mn_val_reg;
         private System.Windows.Forms.ToolStripMenuItem mn_pla_pago;
+        private System.Windows.Forms.ToolStripMenuItem mn_lib_ret;
     }
 }
