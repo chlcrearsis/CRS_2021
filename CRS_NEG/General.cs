@@ -27,6 +27,26 @@ namespace CRS_NEG
         }
 
         /// <summary>
+        /// FUNCION GLOBAL: Obtiene la fecha actual del servidor Formato (dd/MM/yyyy)
+        /// </summary>
+        /// <returns></returns>
+        public string Fe_fch_act()
+        {
+            string StrSql = "SELECT CONVERT(CHAR(10), GETDATE(), 103) AS Fecha";
+            return ob_con_ecA.fe_exe_sql(StrSql).Rows[0][0].ToString();
+        }
+
+        /// <summary>
+        /// FUNCION GLOBAL: Obtiene la hora actual del servidor Formato (HH:mm:ss)
+        /// </summary>
+        /// <returns></returns>
+        public string Fe_hor_act()
+        {
+            string StrSql = "SELECT CONVERT(CHAR(08), GETDATE(), 108) AS Hora";
+            return ob_con_ecA.fe_exe_sql(StrSql).Rows[0][0].ToString();
+        }
+
+        /// <summary>
         /// Genera un Codigo Unico de 32 dígitos
         /// </summary>
         /// <returns></returns>

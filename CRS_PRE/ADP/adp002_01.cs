@@ -451,7 +451,17 @@ namespace CRS_PRE
 
             adp009_01 frm = new adp009_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }       
+        }
+
+        private void mn_ima_per_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para eliminar
+            if (fi_ver_dat(tb_cod_per.Text) == false)
+                return;
+
+            adp006_01 frm = new adp006_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
+        }
 
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
         {
@@ -480,7 +490,5 @@ namespace CRS_PRE
             /*this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);*/
         }
-
-        
     }
 }

@@ -10,6 +10,7 @@ using CRS_NEG;
 
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace CRS_PRE
 {
@@ -300,11 +301,17 @@ namespace CRS_PRE
         /// </summary>
         /// <param name="byteArrayIn">Array de byte a convertir en image</param>
         /// <returns></returns>
-        public static Image fg_byt_img(byte[] byteArrayIn)
+        public static Image fg_byt_img(byte[] byt_ima)
         {
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(byteArrayIn);
+            /*System.IO.MemoryStream ms = new System.IO.MemoryStream(byteArrayIn);
             Image returnImage = Image.FromStream(ms);
-            return returnImage;
+            return returnImage;*/
+
+            MemoryStream mStream = new MemoryStream();
+            mStream.Write(byt_ima, 0, Convert.ToInt32(byt_ima.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
         }
 
         #endregion

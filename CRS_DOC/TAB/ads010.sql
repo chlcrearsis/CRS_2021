@@ -19,8 +19,8 @@ GO
 
 --** PERSONAS (adp002)
 INSERT INTO ads010 VALUES ('FP','Foto Persona','adp002','H')
-INSERT INTO ads010 VALUES ('CI','CI','adp002','H')
-INSERT INTO ads010 VALUES ('NI','Nit','adp002','H')
+INSERT INTO ads010 VALUES ('CI','Carnet de Identidad','adp002','H')
+INSERT INTO ads010 VALUES ('NI','NIT/RUC','adp002','H')
 INSERT INTO ads010 VALUES ('CQ','Croquis','adp002','H')
 INSERT INTO ads010 VALUES ('FT','Frotis','adp002','H')
  
