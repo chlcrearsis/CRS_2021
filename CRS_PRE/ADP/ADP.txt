@@ -17,5 +17,6 @@ adp012 = Personas relacionadas									CHL (opcional)
 adp013 = Contactos por persona									CHL 
 adp014 = Tipo de Documento                                      EJR (ok)
 adp015 = Validación Registro Persona                            EJR (ok)
+adp016 = Inscripción Automatica Libreta p/Grupo de Persona      EJR (ok)
 
 

@@ -8,7 +8,7 @@ FECHA:		03-01-2018
 CREATE TABLE adp001 
 (
 --** Llave Primaria
-va_cod_gru		TINYINT			NOT NULL,		--** Codigo de Grupo de persona (2 NUMEROS)
+va_cod_gru		INT			NOT NULL,		   --** Codigo de Grupo de persona
 
 --** Atributos     
 va_nom_gru		VARCHAR(50)	    NOT NULL,		--** Nombre de Grupo de persona
