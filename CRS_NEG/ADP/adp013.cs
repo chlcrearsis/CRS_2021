@@ -150,7 +150,8 @@ namespace CRS_NEG
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT adp013.va_cod_per, adp002.va_raz_soc, adp013.va_cod_con, adp013.va_nom_bre,");
                 cadena.AppendLine("       adp013.va_ape_pat, adp013.va_ape_mat, adp013.va_nro_cid, adp013.va_ext_doc,");
-                cadena.AppendLine("       adp013.va_sex_con, adp013.va_par_con, adp013.va_tel_per, adp013.va_cel_ula, adp013.va_ema_ail, adp013.va_dir_ubi, adp013.va_obs_con, adp013.va_est_ado");
+                cadena.AppendLine("       adp013.va_sex_con, adp013.va_par_con, adp013.va_tel_per, adp013.va_cel_ula,");
+                cadena.AppendLine("       adp013.va_ema_ail, adp013.va_dir_ubi, adp013.va_obs_con, adp013.va_est_ado");
                 cadena.AppendLine("  FROM adp013, adp002");
                 cadena.AppendLine(" WHERE adp013.va_cod_per = adp002.va_cod_per");
                 cadena.AppendLine("   AND adp013.va_cod_per = " + cod_per + "");
@@ -162,74 +163,109 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "LISTA ATRIBUTO DE PERSONA POR PERSONA"
+        /// Funcion "LISTA CONTACTO P/PERSONA"
+        /// </summary>
+        /// <param name="cod_per">Código de Persona</param>
+        /// <param name="est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
+        /// <returns></returns>
+        public DataTable Fe_lis_per(int cod_per, string est_bus)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT adp013.va_cod_per, adp002.va_raz_soc, adp013.va_cod_con, adp013.va_nom_bre,");
+                cadena.AppendLine("       adp013.va_ape_pat, adp013.va_ape_mat, adp013.va_nro_cid, adp013.va_ext_doc,");
+                cadena.AppendLine("       adp013.va_sex_con, adp013.va_par_con, adp013.va_tel_per, adp013.va_cel_ula,");
+                cadena.AppendLine("       adp013.va_ema_ail, adp013.va_dir_ubi, adp013.va_obs_con, adp013.va_est_ado");
+                cadena.AppendLine("  FROM adp013, adp002");
+                cadena.AppendLine(" WHERE adp013.va_cod_per = adp002.va_cod_per");
+                cadena.AppendLine("   AND adp013.va_cod_per = " + cod_per + "");
+                switch (est_bus)
+                {
+                    case "0": est_bus = "T"; break;
+                    case "1": est_bus = "H"; break;
+                    case "2": est_bus = "N"; break;
+                }
+
+                if (est_bus != "T")
+                {
+                    cadena.AppendLine(" AND adp013.va_est_ado = '" + est_bus + "'");
+                }
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }catch (Exception ex){
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Función: "FILTRA CONTACTO P/PERSONA"
+        /// </summary>
+        /// <param name="cod_per">Código de Persona</param>
+        /// <param name="cri_bus">Criterio de Busqueda</param>
+        /// <param name="prm_bus">Parametros de Busqueda</param>
+        /// <param name="est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
+        /// <returns></returns>
+        public DataTable Fe_bus_car(int cod_per, string cri_bus, int prm_bus, string est_bus)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT adp013.va_cod_per, adp002.va_raz_soc, adp013.va_cod_con, adp013.va_nom_bre,");
+                cadena.AppendLine("       adp013.va_ape_pat, adp013.va_ape_mat, adp013.va_nro_cid, adp013.va_ext_doc,");
+                cadena.AppendLine("       adp013.va_sex_con, adp013.va_par_con, adp013.va_tel_per, adp013.va_cel_ula,");
+                cadena.AppendLine("       adp013.va_ema_ail, adp013.va_dir_ubi, adp013.va_obs_con, adp013.va_est_ado");
+                cadena.AppendLine("  FROM adp013, adp002");
+                cadena.AppendLine(" WHERE adp013.va_cod_per = adp002.va_cod_per");
+                cadena.AppendLine("   AND adp013.va_cod_per = " + cod_per + "");
+                switch (prm_bus)
+                {
+                    case 0: cadena.AppendLine(" AND adp013.va_cod_con LIKE '" + cri_bus + "%'"); break;
+                    case 1: cadena.AppendLine(" AND adp013.va_nom_bre LIKE '" + cri_bus + "%'"); break;
+                    case 2: cadena.AppendLine(" AND adp013.va_ape_pat LIKE '" + cri_bus + "%'"); break;
+                    case 3: cadena.AppendLine(" AND adp013.va_ape_mat LIKE '" + cri_bus + "%'"); break;
+                    case 4: cadena.AppendLine(" AND adp013.va_nro_cid LIKE '" + cri_bus + "%'"); break;
+                }
+                switch (est_bus)
+                {
+                    case "0": est_bus = "T"; break;
+                    case "1": est_bus = "H"; break;
+                    case "2": est_bus = "N"; break;
+                }
+
+                if (est_bus != "T")
+                {
+                    cadena.AppendLine(" AND adp013.va_est_ado = '" + est_bus + "'");
+                }
+
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion "OBTIENE ULTIMO ID. CONTACTO P/PERSONA"
         /// </summary>
         /// <param name="cod_per">Código de Persona</param>
         /// <returns></returns>
-        public DataTable Fe_lis_per(int cod_per)
+        public DataTable Fe_obt_ide(int cod_per)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT adp013.va_cod_per, adp013.va_ide_tip, adp003.va_nom_tip,");
-                cadena.AppendLine("       adp013.va_ide_atr, adp004.va_nom_atr");
-                cadena.AppendLine("  FROM adp013, adp003, adp004");
-                cadena.AppendLine(" WHERE adp013.va_ide_tip = adp003.va_ide_tip");
-                cadena.AppendLine("   AND adp013.va_ide_tip = adp004.va_ide_tip");
-                cadena.AppendLine("   AND adp013.va_ide_atr = adp004.va_ide_atr");
-                cadena.AppendLine("   AND adp013.va_cod_per = " + cod_per + "");
+                cadena.AppendLine("DECLARE @va_cod_con INT ");
+                cadena.AppendLine(" SELECT @va_cod_con = ISNULL(MAX(va_cod_con), 0) FROM adp013 WHERE va_cod_per = " + cod_per + "");
+                cadena.AppendLine(" SELECT @va_cod_con + 1 AS va_cod_con");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }catch (Exception ex){
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
 
-        /// <summary>
-        /// Funcion "LISTA ATRIBUTO DE PERSONA POR TIPO DE ATRIBUTO"
-        /// </summary>
-        /// <param name="ide_tip">ID. Tipo Atributo</param>
-        /// <returns></returns>
-        public DataTable Fe_lis_tip(int ide_tip)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT adp013.va_cod_per, adp013.va_ide_tip, adp003.va_nom_tip,");
-                cadena.AppendLine("       adp013.va_ide_atr, adp004.va_nom_atr");
-                cadena.AppendLine("  FROM adp013, adp003, adp004");
-                cadena.AppendLine(" WHERE adp013.va_ide_tip = adp003.va_ide_tip");
-                cadena.AppendLine("   AND adp013.va_ide_tip = adp004.va_ide_tip");
-                cadena.AppendLine("   AND adp013.va_ide_atr = adp004.va_ide_atr");
-                cadena.AppendLine("   AND adp013.va_ide_tip = " + ide_tip + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }catch (Exception ex){
-                throw ex;
-            }
-        }
 
-        /// <summary>
-        /// Funcion "LISTA ATRIBUTO DE PERSONA POR ATRIBUTO"
-        /// </summary>
-        /// <param name="ide_tip">ID. Tipo Atributo</param>
-        /// <param name="ide_atr">ID. Atributo</param>
-        /// <returns></returns>
-        public DataTable Fe_lis_atr(int ide_tip, int ide_atr)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT adp013.va_cod_per, adp013.va_ide_tip, adp003.va_nom_tip,");
-                cadena.AppendLine("       adp013.va_ide_atr, adp004.va_nom_atr");
-                cadena.AppendLine("  FROM adp013, adp003, adp004");
-                cadena.AppendLine(" WHERE adp013.va_ide_tip = adp003.va_ide_tip");
-                cadena.AppendLine("   AND adp013.va_ide_tip = adp004.va_ide_tip");
-                cadena.AppendLine("   AND adp013.va_ide_atr = adp004.va_ide_atr");
-                cadena.AppendLine("   AND adp013.va_ide_tip = " + ide_tip + "");
-                cadena.AppendLine("   AND adp013.va_ide_atr = " + ide_atr + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }catch (Exception ex){
-                throw ex;
-            }
-        }
     }
 }
