@@ -3,4 +3,4 @@
 ******** MODULO: EXIGIBLE POR COBRAR Y PAGAR	********
 
 ecp001 = Plan de Pago
-ecp002 = 
+ecp002 = Libreta (falta habilita/deshabilita y elimina) 

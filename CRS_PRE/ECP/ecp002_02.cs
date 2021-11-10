@@ -128,9 +128,8 @@ namespace CRS_PRE
 
                 //Registrar 
                 o_ecp002.Fe_nue_lib(int.Parse(tb_cod_lib.Text), tb_nom_lib.Text, cb_tip_lib.SelectedIndex + 1 , mon_lib);
-                MessageBox.Show("Los datos se grabaron correctamente", "Nuevo libreta", MessageBoxButtons.OK);
                 Fi_lim_pia();
-                frm_pad.Fe_act_frm(int.Parse(tb_nro_lib.Text));
+                frm_pad.Fe_act_frm(int.Parse(tb_cod_lib.Text));
             }
 
         }

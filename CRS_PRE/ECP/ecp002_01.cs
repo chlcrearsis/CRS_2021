@@ -86,9 +86,9 @@ namespace CRS_PRE
 
 
                     if (tabla.Rows[i]["va_mon_lib"].ToString() == "B")
-                        dg_res_ult.Rows[i].Cells["va_mon_lib"].Value = "Boliviano";
+                        dg_res_ult.Rows[i].Cells["va_mon_lib"].Value = "Bs.";
                     else
-                        dg_res_ult.Rows[i].Cells["va_mon_lib"].Value = "Dólares";
+                        dg_res_ult.Rows[i].Cells["va_mon_lib"].Value = "Us.";
 
 
                     if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
@@ -283,7 +283,7 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            ecp001_03 frm = new ecp001_03();
+            ecp002_03 frm = new ecp002_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
@@ -294,7 +294,7 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            ecp001_05 frm = new ecp001_05();
+            ecp002_05 frm = new ecp002_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 

@@ -224,21 +224,21 @@
             // mn_edi_tar
             // 
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(165, 22);
+            this.mn_edi_tar.Size = new System.Drawing.Size(180, 22);
             this.mn_edi_tar.Text = "&Edita";
             this.mn_edi_tar.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(180, 22);
             this.mn_hab_des.Text = "Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(180, 22);
             this.mn_eli_min.Text = "Elimi&na";
             this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
@@ -373,7 +373,7 @@
             // 
             // va_tip_lib
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.va_tip_lib.DefaultCellStyle = dataGridViewCellStyle4;
             this.va_tip_lib.HeaderText = "Tipo";
             this.va_tip_lib.Name = "va_tip_lib";
@@ -381,7 +381,7 @@
             // 
             // va_mon_lib
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.va_mon_lib.DefaultCellStyle = dataGridViewCellStyle5;
             this.va_mon_lib.HeaderText = "Moneda";
             this.va_mon_lib.Name = "va_mon_lib";

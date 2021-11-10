@@ -48,14 +48,13 @@ namespace CRS_NEG
         /// <param name="cod_lib">Codigo del Libreta</param>
         /// <param name="des_pgl">Descripcion</param>
         /// <returns></returns>
-        public void Fe_edi_lib(int cod_lib, string des_pgl, int tip_lib, string mon_lib)
+        public void Fe_edi_lib(int cod_lib, string des_pgl)
         {
             try
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("UPDATE ecp002 SET " +
-                    " va_des_lib='" + des_pgl + "', va_tip_lib= " + tip_lib + "," +
-                    " va_mon_lib='" + mon_lib + "' " +
+                    " va_des_lib='" + des_pgl + "' " +
                     " WHERE va_cod_lib = '" + cod_lib + "'");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
