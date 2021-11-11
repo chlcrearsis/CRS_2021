@@ -160,9 +160,9 @@ namespace CRS_NEG
                     case "2": est_ado = "N"; break;
                 }
 
-                if (est_ado != "T"){
+                if (est_ado != "T")
                     cadena.AppendLine(" WHERE va_est_ado ='" + est_ado + "'");
-                }
+                
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
                 throw ex;
@@ -182,7 +182,6 @@ namespace CRS_NEG
                 cadena = new StringBuilder();
                 cadena.AppendLine(" DELETE adp001 ");
                 cadena.AppendLine(" WHERE va_cod_gru ='" + cod_gru + "' ");
-
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

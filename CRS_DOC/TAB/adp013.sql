@@ -18,6 +18,7 @@ CREATE TABLE adp013
 	va_nro_cid  VARCHAR(10)  NOT NULL DEFAULT(''),   --** Nro. Carnet de Identida
 	va_ext_doc  CHAR(02)     NOT NULL DEFAULT(''),   --** Extensión Documento	
 	va_sex_con  CHAR(01)     NOT NULL DEFAULT(''),   --** Sexo (H=Hombre; M=Mujer)
+	va_fec_nac  DATETIME,                            --** Fecha de Nacimiento
 	va_par_con  CHAR(15)     NOT NULL DEFAULT(''),   --** Parentesco	
 	va_tel_per	VARCHAR(15)	 NOT NULL DEFAULT(''),	 --** Telefono Personal
 	va_cel_ula	VARCHAR(15)	 NOT NULL DEFAULT(''),	 --** Telefono Celular

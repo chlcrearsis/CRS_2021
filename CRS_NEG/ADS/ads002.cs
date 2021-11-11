@@ -16,29 +16,11 @@ namespace CRS_NEG
         //######################################################################
         //##       Tabla: ads002                                              ##
         //##      Nombre: Aplicaciones                                        ##
-        //## Descripcion:                                                     ##         
+        //## Descripcion: Aplicaciones del Sistema                            ##         
         //##       Autor: CHL  - (07-04-2020)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-
-        public string va_ser_bda;
-        public string va_ins_bda;
-        public string va_nom_bda;
-        public string va_ide_usr;
-        public string va_pas_usr;
-
         string cadena = "";
-
-
-
-        public ads002()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
  
         public void Fe_crea(int ar_ide_mod, string ar_ide_apl, string ar_nom_apl)
         {

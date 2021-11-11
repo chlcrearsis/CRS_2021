@@ -530,32 +530,6 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
-        {
-            string msg_val = "";
-            DialogResult msg_res;
-
-            // funcion para validar datos
-            msg_val = Fi_val_dat();
-            if (msg_val != "")
-            {
-                MessageBox.Show(msg_val, Titulo, MessageBoxButtons.OK);
-                return;
-            }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita Persona", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
-            if (msg_res == DialogResult.OK)
-            {
-                //Edita persona
-                /*o_adp002.Fe_edi_per(int.Parse(tb_cod_per.Text),tb_raz_soc.Text, tb_nom_com.Text,decimal.Parse(tb_nit_per.Text), int.Parse(tb_car_net.Text),
-                                    tb_dir_per.Text,tb_tel_per.Text,tb_cel_per.Text,tb_ema_per.Text, int.Parse(tb_cod_ven.Text));
-                */MessageBox.Show("Los datos se grabaron correctamente", "Edita Persona", MessageBoxButtons.OK,MessageBoxIcon.Information);
-
-                frm_pad.Fe_act_frm(int.Parse(tb_cod_per.Text));
-                cl_glo_frm.Cerrar(this);
-            }
-
-        }
-
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {            
             DialogResult msg_res;

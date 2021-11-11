@@ -34,7 +34,7 @@ CREATE TABLE adp002
 	va_ubi_gps	GEOGRAPHY,		                    --** Ubicación Geografica
 	va_cod_ven	INT			 NOT NULL DEFAULT(0),	--** Código de Vendedor Asignado
 	va_cod_cob	INT			 NOT NULL DEFAULT(0),	--** Código de Cobrador Asignado	   	    	  	   		
-	va_est_ado	CHAR(1)		 NOT NULL DEFAULT(''),	--** Estado(H=Habilitado; N=Deshabilitado)
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado(H=Habilitado; N=Deshabilitado)
      
 CONSTRAINT pk1_adp002 PRIMARY KEY(va_cod_per)
 )
