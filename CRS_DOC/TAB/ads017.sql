@@ -1,6 +1,6 @@
 /*--**********************************************
 ARCHIVO:	ads017.sql	
-TABLA:		Tabla de "Grupo de Persona"
+TABLA:		Tabla de "PIN Usuario"
 AUTOR:		CREARSIS 1.0.0
 FECHA:		16-10-2021
 */--**********************************************

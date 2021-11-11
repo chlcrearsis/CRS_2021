@@ -7,10 +7,10 @@ namespace CRS_NEG
     /// <summary>
     /// Clase RELACIÓN CONTACTO DE PERSONA
     /// </summary>
-    public class ads018
+    public class adp017
     {
         //######################################################################
-        //##       Tabla: ads018                                              ##
+        //##       Tabla: adp017                                              ##
         //##      Nombre: RELACIÓN CONTACTO DE PERSONA                        ##
         //## Descripcion: Relación Contacto de Persona                        ##         
         //##       Autor: JEJR  - (30-08-2021)                                ##
@@ -31,7 +31,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("INSERT INTO ads018 VALUES (" + ide_rel + ", '" + nre_hom + "', '" + nre_muj + "', 'H'");
+                cadena.AppendLine("INSERT INTO adp017 VALUES (" + ide_rel + ", '" + nre_hom + "', '" + nre_muj + "', 'H'");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE ads018 SET va_nre_hom = '" + nre_hom + "', va_nre_muj = '" + nre_muj + "' WHERE va_ide_rel = " + ide_rel + "");
+                cadena.AppendLine("UPDATE adp017 SET va_nre_hom = '" + nre_hom + "', va_nre_muj = '" + nre_muj + "' WHERE va_ide_rel = " + ide_rel + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE ads018 SET va_est_ado = '" + est_ado + "' WHERE va_ide_rel = " + ide_rel + "");
+                cadena.AppendLine("UPDATE adp017 SET va_est_ado = '" + est_ado + "' WHERE va_ide_rel = " + ide_rel + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("DELETE ads018 WHERE va_ide_rel = " + ide_rel + "");
+                cadena.AppendLine("DELETE adp017 WHERE va_ide_rel = " + ide_rel + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_rel, va_nre_hom, va_nre_muj, va_est_ado");
-                cadena.AppendLine("  FROM ads018");
+                cadena.AppendLine("  FROM adp017");
                 cadena.AppendLine(" WHERE va_ide_rel = " + ide_rel + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -133,7 +133,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_rel, va_nre_hom, va_nre_muj, va_est_ado");
-                cadena.AppendLine("  FROM ads018");
+                cadena.AppendLine("  FROM adp017");
                 cadena.AppendLine(" WHERE va_nre_hom = '" + nre_hom + "'");
                 if (ide_rel > 0)
                     cadena.AppendLine(" AND va_ide_rel <> " + ide_rel + "");
@@ -158,7 +158,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_rel, va_nre_hom, va_nre_muj, va_est_ado");
-                cadena.AppendLine("  FROM ads018");
+                cadena.AppendLine("  FROM adp017");
                 cadena.AppendLine(" WHERE va_nre_muj = '" + nre_muj + "'");
                 if (ide_rel > 0)
                     cadena.AppendLine(" AND va_ide_rel <> " + ide_rel + "");
@@ -184,12 +184,12 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_rel, va_nre_hom, va_nre_muj, va_est_ado");
-                cadena.AppendLine("  FROM ads018");
+                cadena.AppendLine("  FROM adp017");
 
                 switch (prm_bus)
                 {
                     case 0: cadena.AppendLine(" WHERE va_ide_rel LIKE '" + cri_bus + "%'"); break;
-                    case 1: cadena.AppendLine(" WHERE (va_nre_hom LIKE '" + cri_bus + "%' OR va_nre_muj LIKE '" + cri_bus + "%'"); break;
+                    case 1: cadena.AppendLine(" WHERE (va_nre_hom LIKE '" + cri_bus + "%' OR va_nre_muj LIKE '" + cri_bus + "%')"); break;
 
                 }
                 switch (est_bus)
@@ -223,7 +223,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_rel, va_nre_hom, va_nre_muj, va_est_ado");
-                cadena.AppendLine("  FROM ads018");
+                cadena.AppendLine("  FROM adp017");
                 switch (est_bus)
                 {
                     case "0": est_bus = "T"; break;
@@ -253,7 +253,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("DECLARE @va_ide_rel INT ");
-                cadena.AppendLine(" SELECT @va_ide_rel = ISNULL(MAX(va_ide_rel), 0) FROM ads018");
+                cadena.AppendLine(" SELECT @va_ide_rel = ISNULL(MAX(va_ide_rel), 0) FROM adp017");
                 cadena.AppendLine(" SELECT @va_ide_rel + 1 AS va_ide_rel");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }

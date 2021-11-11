@@ -14,8 +14,8 @@ namespace CRS_NEG
     {
         //######################################################################
         //##       Tabla: ads019_01                                           ##
-        //##      Nombre: Permiso S/Lista de precio                           ##
-        //## Descripcion:Permiso sobre Lista de precio                        ##         
+        //##      Nombre: Permiso Usuario s/Lista de Precio                   ##
+        //## Descripcion: Permiso al Usuario s/Lista de precios               ##         
         //##       Autor: CHL - (19-02-2021)                                  ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();      
