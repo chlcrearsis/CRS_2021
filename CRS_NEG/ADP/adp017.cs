@@ -31,7 +31,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("INSERT INTO adp017 VALUES (" + ide_rel + ", '" + nre_hom + "', '" + nre_muj + "', 'H'");
+                cadena.AppendLine("INSERT INTO adp017 VALUES (" + ide_rel + ", '" + nre_hom + "', '" + nre_muj + "', 'H')");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
