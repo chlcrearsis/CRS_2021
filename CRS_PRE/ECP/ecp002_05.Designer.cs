@@ -62,11 +62,11 @@
             // tb_est_ado
             // 
             this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_est_ado.Location = new System.Drawing.Point(293, 15);
+            this.tb_est_ado.Location = new System.Drawing.Point(286, 15);
             this.tb_est_ado.MaxLength = 4;
             this.tb_est_ado.Name = "tb_est_ado";
             this.tb_est_ado.ReadOnly = true;
-            this.tb_est_ado.Size = new System.Drawing.Size(95, 20);
+            this.tb_est_ado.Size = new System.Drawing.Size(102, 20);
             this.tb_est_ado.TabIndex = 43;
             this.tb_est_ado.TabStop = false;
             this.tb_est_ado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -74,11 +74,11 @@
             // tb_mon_lib
             // 
             this.tb_mon_lib.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_mon_lib.Location = new System.Drawing.Point(208, 15);
+            this.tb_mon_lib.Location = new System.Drawing.Point(204, 15);
             this.tb_mon_lib.MaxLength = 4;
             this.tb_mon_lib.Name = "tb_mon_lib";
             this.tb_mon_lib.ReadOnly = true;
-            this.tb_mon_lib.Size = new System.Drawing.Size(41, 20);
+            this.tb_mon_lib.Size = new System.Drawing.Size(75, 20);
             this.tb_mon_lib.TabIndex = 42;
             this.tb_mon_lib.TabStop = false;
             this.tb_mon_lib.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -86,11 +86,11 @@
             // tb_tip_lib
             // 
             this.tb_tip_lib.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_tip_lib.Location = new System.Drawing.Point(43, 15);
+            this.tb_tip_lib.Location = new System.Drawing.Point(39, 15);
             this.tb_tip_lib.MaxLength = 4;
             this.tb_tip_lib.Name = "tb_tip_lib";
             this.tb_tip_lib.ReadOnly = true;
-            this.tb_tip_lib.Size = new System.Drawing.Size(100, 20);
+            this.tb_tip_lib.Size = new System.Drawing.Size(111, 20);
             this.tb_tip_lib.TabIndex = 41;
             this.tb_tip_lib.TabStop = false;
             this.tb_tip_lib.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -108,7 +108,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(158, 18);
+            this.label6.Location = new System.Drawing.Point(154, 18);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
             this.label6.TabIndex = 27;

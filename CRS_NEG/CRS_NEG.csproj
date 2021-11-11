@@ -94,6 +94,7 @@
     <Compile Include="ADP\adp002.cs" />
     <Compile Include="CTB\ctb006.cs" />
     <Compile Include="CTB\ctb007.cs" />
+    <Compile Include="ECP\ecp003.cs" />
     <Compile Include="ECP\ecp002.cs" />
     <Compile Include="ECP\ecp001.cs" />
     <Compile Include="General.cs" />

@@ -65,11 +65,11 @@
             this.cb_mon_lib.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_mon_lib.FormattingEnabled = true;
             this.cb_mon_lib.Items.AddRange(new object[] {
-            "Bolivianos",
-            "Dólares"});
-            this.cb_mon_lib.Location = new System.Drawing.Point(207, 15);
+            "Bs.",
+            "Us."});
+            this.cb_mon_lib.Location = new System.Drawing.Point(218, 15);
             this.cb_mon_lib.Name = "cb_mon_lib";
-            this.cb_mon_lib.Size = new System.Drawing.Size(98, 21);
+            this.cb_mon_lib.Size = new System.Drawing.Size(71, 21);
             this.cb_mon_lib.TabIndex = 20;
             this.cb_mon_lib.SelectedIndexChanged += new System.EventHandler(this.cb_mon_lib_SelectedIndexChanged);
             // 
@@ -79,11 +79,10 @@
             this.cb_tip_lib.FormattingEnabled = true;
             this.cb_tip_lib.Items.AddRange(new object[] {
             "Ctas. x Cob.",
-            "Ctas. x Pag.",
-            "Tesoreria"});
+            "Ctas. x Pag."});
             this.cb_tip_lib.Location = new System.Drawing.Point(43, 15);
             this.cb_tip_lib.Name = "cb_tip_lib";
-            this.cb_tip_lib.Size = new System.Drawing.Size(108, 21);
+            this.cb_tip_lib.Size = new System.Drawing.Size(117, 21);
             this.cb_tip_lib.TabIndex = 10;
             this.cb_tip_lib.SelectedIndexChanged += new System.EventHandler(this.cb_tip_lib_SelectedIndexChanged);
             // 
@@ -99,7 +98,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(159, 18);
+            this.label6.Location = new System.Drawing.Point(170, 18);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
             this.label6.TabIndex = 27;
@@ -199,8 +198,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ecp002_02";
-            this.Tag = "Crea Libreta";
-            this.Text = "Crea Libreta";
+            this.Tag = "Crea Libreta Cta. x Cobrar/Pagar";
+            this.Text = "Crea Libreta Cta. x Cobrar/Pagar";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -15,7 +15,7 @@ namespace CRS_NEG
         //######################################################################
         //##       Tabla: ads008_01                                           ##
         //##      Nombre: Aplicaciones                                        ##
-        //## Descripcion: Permiso sobre Aplicaciones                           ##         
+        //## Descripcion: Permiso Usuarios sobre el sistema                   ##         
         //##       Autor: JEJR - (05-01-2019)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();      

@@ -43,7 +43,13 @@ namespace CRS_PRE
                     tb_tip_lib.Text = "Ctas. x Pagar";
                     break;
                 case "3":
-                    tb_tip_lib.Text = "Tesoreria";
+                    tb_tip_lib.Text = "Caja General";
+                    break;
+                case "4":
+                    tb_tip_lib.Text = "Caja Recaudación";
+                    break;
+                case "5":
+                    tb_tip_lib.Text = "Banco";
                     break;
                 default:
                     break;

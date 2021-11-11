@@ -43,7 +43,13 @@ namespace CRS_PRE
                     tb_tip_lib.Text = "Ctas. x Pagar";
                     break;
                 case "3":
-                    tb_tip_lib.Text = "Tesoreria";
+                    tb_tip_lib.Text = "Caja General";
+                    break;
+                case "4":
+                    tb_tip_lib.Text = "Caja Recaudación";
+                    break;
+                case "5":
+                    tb_tip_lib.Text = "Banco";
                     break;
                 default:
                     break;
@@ -52,10 +58,10 @@ namespace CRS_PRE
             switch (frm_dat.Rows[0]["va_mon_lib"].ToString())
             {
                 case "B":
-                    tb_mon_lib.Text = "Boliviano";
+                    tb_mon_lib.Text = "Bs.";
                     break;
                 case "U":
-                    tb_mon_lib.Text = "Dólares";
+                    tb_mon_lib.Text = "Us.";
                     break;
                 default:
                     break;

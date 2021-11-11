@@ -5,14 +5,14 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
-    public partial class ecp002_01 : Form
+    public partial class ecp003_01 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable tab_dat;
         public dynamic frm_MDI;
 
-        public ecp002_01()
+        public ecp003_01()
         {
             InitializeComponent();
         }
