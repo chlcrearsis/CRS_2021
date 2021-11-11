@@ -3315,7 +3315,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CCP\" />
     <Folder Include="TES\" />
   </ItemGroup>
   <ItemGroup>
@@ -3374,11 +3373,6 @@
     <None Include="Resources\ultimo1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ADP\ADP.txt" />
-    <Content Include="ADS\ADS.txt" />
-    <Content Include="CMR\CMR.txt" />
-    <Content Include="CTB\CTB.txt" />
-    <Content Include="ECP\ECP.txt" />
     <None Include="Resources\fondotexto.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\telegram.png" />

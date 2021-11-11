@@ -7,7 +7,7 @@ namespace CRS_NEG
 {
     /// <summary>
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase TIPO DE DOCUMENTO
+    ///  Clase VALIDACIÓN REGISTRO DE PERSONA
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
     public class adp015
