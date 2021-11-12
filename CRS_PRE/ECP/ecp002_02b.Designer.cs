@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class ecp002_02
+    partial class ecp002_02b
     {
         /// <summary>
         /// Required designer variable.
@@ -67,9 +67,9 @@
             this.cb_mon_lib.Items.AddRange(new object[] {
             "Bs.",
             "Us."});
-            this.cb_mon_lib.Location = new System.Drawing.Point(218, 15);
+            this.cb_mon_lib.Location = new System.Drawing.Point(213, 15);
             this.cb_mon_lib.Name = "cb_mon_lib";
-            this.cb_mon_lib.Size = new System.Drawing.Size(71, 21);
+            this.cb_mon_lib.Size = new System.Drawing.Size(83, 21);
             this.cb_mon_lib.TabIndex = 20;
             this.cb_mon_lib.SelectedIndexChanged += new System.EventHandler(this.cb_mon_lib_SelectedIndexChanged);
             // 
@@ -78,11 +78,12 @@
             this.cb_tip_lib.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_tip_lib.FormattingEnabled = true;
             this.cb_tip_lib.Items.AddRange(new object[] {
-            "Ctas. x Cob.",
-            "Ctas. x Pag."});
+            "Caja General",
+            "Caja Recaudación",
+            "Banco"});
             this.cb_tip_lib.Location = new System.Drawing.Point(43, 15);
             this.cb_tip_lib.Name = "cb_tip_lib";
-            this.cb_tip_lib.Size = new System.Drawing.Size(117, 21);
+            this.cb_tip_lib.Size = new System.Drawing.Size(118, 21);
             this.cb_tip_lib.TabIndex = 10;
             this.cb_tip_lib.SelectedIndexChanged += new System.EventHandler(this.cb_tip_lib_SelectedIndexChanged);
             // 
@@ -98,7 +99,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(170, 18);
+            this.label6.Location = new System.Drawing.Point(165, 18);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
             this.label6.TabIndex = 27;
@@ -186,7 +187,7 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // ecp002_02
+            // ecp002_02b
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -197,9 +198,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ecp002_02";
-            this.Tag = "Crea Libreta Cta. x Cobrar/Pagar";
-            this.Text = "Crea Libreta Cta. x Cobrar/Pagar";
+            this.Name = "ecp002_02b";
+            this.Tag = "Crea Libreta tesoreria";
+            this.Text = "Crea Libreta tesoreria";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

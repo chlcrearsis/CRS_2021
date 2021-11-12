@@ -13,7 +13,7 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class ecp002_02 : Form
+    public partial class ecp002_02b : Form
     {
 
         public dynamic frm_pad;
@@ -24,7 +24,7 @@ namespace CRS_PRE
         DataTable tabla = new DataTable();
 
 
-        public ecp002_02()
+        public ecp002_02b()
         {
             InitializeComponent();
         }
@@ -49,10 +49,12 @@ namespace CRS_PRE
         private void Fi_obt_cod()
         {
             int tip_lib = cb_tip_lib.SelectedIndex + 1;
+            tip_lib = tip_lib + 2;
             int mon_lib = cb_mon_lib.SelectedIndex + 1;
             int nro_lib = int.Parse(tb_nro_lib.Text);
             int cod_lib = int.Parse(tip_lib.ToString() + mon_lib.ToString());
 
+            
             cod_lib = cod_lib * 1000;
             cod_lib = cod_lib + nro_lib;
 
@@ -127,7 +129,7 @@ namespace CRS_PRE
                     mon_lib = "U";
 
                 //Registrar 
-                o_ecp002.Fe_nue_lib(int.Parse(tb_cod_lib.Text), tb_nom_lib.Text, cb_tip_lib.SelectedIndex + 1 , mon_lib);
+                o_ecp002.Fe_nue_lib(int.Parse(tb_cod_lib.Text), tb_nom_lib.Text, cb_tip_lib.SelectedIndex + 3 , mon_lib);
                 Fi_lim_pia();
                 frm_pad.Fe_act_frm(int.Parse(tb_cod_lib.Text));
             }

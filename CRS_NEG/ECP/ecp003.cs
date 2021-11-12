@@ -10,15 +10,15 @@ namespace CRS_NEG
 {
     /// <summary>
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase LIBRETA
+    ///  Clase INSCRIPCION PERSONA-LIBRETA
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
-    public class ecp002
+    public class ecp003
     {
         //######################################################################
-        //##       Tabla: ecp002                                              ##
-        //##      Nombre: LIBRETA                                             ##
-        //## Descripcion: libreta de cuentas por cobrar/pagar                 ##         
+        //##       Tabla: ecp003                                              ##
+        //##      Nombre: INSCRIPCION PERSONA-LIBRETA                         ##
+        //## Descripcion: Inscripcion de Persona-Libreta                      ##         
         //##       Autor: CHL  - (11-10-2021)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();

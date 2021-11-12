@@ -110,7 +110,7 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Graba el registro en la BD.
-                    o_adp017.Fe_nue_rel(int.Parse(tb_ide_rel.Text), tb_nre_hom.Text.Trim(), tb_nre_muj.Text.Trim());
+                    o_adp017.Fe_edi_rel(int.Parse(tb_ide_rel.Text), tb_nre_hom.Text.Trim(), tb_nre_muj.Text.Trim());
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rel.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);

@@ -68,8 +68,6 @@
     <Compile Include="ADS\ads024.cs" />
     <Compile Include="ADS\ads009.cs" />
     <Compile Include="ADS\ads008.cs" />
-    <Compile Include="ADS\ads019.cs" />
-    <Compile Include="ADS\ads018.cs" />
     <Compile Include="ADS\ads017.cs" />
     <Compile Include="ADS\ads007.cs" />
     <Compile Include="ADS\ads001.cs" />
@@ -95,6 +93,7 @@
     <Compile Include="ADP\adp002.cs" />
     <Compile Include="CTB\ctb006.cs" />
     <Compile Include="CTB\ctb007.cs" />
+    <Compile Include="ECP\ecp003.cs" />
     <Compile Include="ECP\ecp002.cs" />
     <Compile Include="ECP\ecp001.cs" />
     <Compile Include="General.cs" />
@@ -117,11 +116,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CCP\" />
     <Folder Include="TES\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ADP\ADP.txt" />
+    <Content Include="ADS\ADS.txt" />
+    <Content Include="CMR\CMR.txt" />
+    <Content Include="CTB\CTB.txt" />
+    <Content Include="ECP\ECP.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
