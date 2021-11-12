@@ -3343,6 +3343,10 @@
     <Content Include="CMR\CMR.txt" />
     <Content Include="CTB\CTB.txt" />
     <Content Include="ECP\ECP.txt" />
+    <None Include="Resources\im_usr_muj1.png" />
+    <None Include="Resources\im_usr_hom1.png" />
+    <None Include="Resources\im_usr_muj.png" />
+    <None Include="Resources\im_usr_hom.png" />
     <None Include="Resources\fondotexto.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\telegram.png" />

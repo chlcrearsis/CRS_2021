@@ -8,6 +8,8 @@ using CRS_NEG;
 using CRS_PRE.INV;
 using CRS_PRE.CMR;
 using CRS_PRE.ADS;
+using System.IO;
+using System.Drawing;
 
 namespace CRS_PRE
 {
@@ -15,11 +17,12 @@ namespace CRS_PRE
     {
         ToolTip va_tol_tip = new ToolTip();
         DataTable Tabla = new DataTable();
-        ads002 o_ads002 = new ads002();
+        adp002 o_adp002 = new adp002();
+        adp006 o_adp006 = new adp006();
+        ads002 o_ads002 = new ads002();        
         ads007 o_ads007 = new ads007();
         ads013 o_ads013 = new ads013();
-        ads008 o_ads008 = new ads008();
-        adp002 o_adp002 = new adp002();
+        ads008 o_ads008 = new ads008();        
         ads024 o_ads024 = new ads024();        
         General general = new General();
 
@@ -39,6 +42,8 @@ namespace CRS_PRE
             lb_ide_usr.Text = "";
             lb_nom_usr.Text = "";
             lb_nom_equ.Text = "";
+             string sex_per = "H";
+                int per_ide = 0;
 
             // Lee datos del Usuario Logueado
             Tabla = new DataTable();
@@ -46,15 +51,31 @@ namespace CRS_PRE
             if (Tabla.Rows.Count > 0){
                 lb_ide_usr.Text = Tabla.Rows[0]["va_ide_usr"].ToString();
                 lb_nom_usr.Text = Tabla.Rows[0]["va_nom_usr"].ToString();
+                per_ide = int.Parse(Tabla.Rows[0]["va_ide_per"].ToString());
             }
 
-            // Obtiene Datos de la Persona Usuario
-            /*Tabla = new DataTable();
-            Tabla = o_adp002.Fe_con_per(ide_per);
-            if (Tabla.Rows.Count > 0)
-            {
-                
-            }  */          
+            // Lee Datos de la Perona
+            Tabla = new DataTable();
+            Tabla = o_adp002.Fe_con_per(per_ide);
+            if (Tabla.Rows.Count > 0){
+                sex_per = Tabla.Rows[0]["va_sex_per"].ToString();
+            }
+       
+            // Despliega Imagen de la Persona
+            Tabla = new DataTable();
+            Tabla = o_adp006.Fe_con_ima(per_ide, "FP");
+            if (Tabla.Rows.Count > 0){
+                byte[] byt_ima = new byte[0];
+                byt_ima = (byte[])Tabla.Rows[0]["va_img_arc"];
+                MemoryStream men_str = new MemoryStream(byt_ima);
+                pb_ima_usr.Image = Image.FromStream(men_str);
+            }
+            else {
+                if (sex_per.CompareTo("H") == 0)
+                    pb_ima_usr.Image = Properties.Resources.im_usr_hom;
+                else
+                    pb_ima_usr.Image = Properties.Resources.im_usr_muj;
+            }                     
 
             // Obtiene nombre de la empresa (1-4)
             Tabla = new DataTable();

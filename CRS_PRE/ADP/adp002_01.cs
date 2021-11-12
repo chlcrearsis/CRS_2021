@@ -497,8 +497,8 @@ namespace CRS_PRE
         }
 
         private void dg_res_ult_Enter(object sender, EventArgs e){
-            /*this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);*/
+            this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);
         }       
     }
 }
