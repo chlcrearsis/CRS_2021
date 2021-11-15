@@ -23,7 +23,6 @@ namespace CRS_PRE
             InitializeComponent();
         }
 
-
         private void frm_Load(object sender, EventArgs e)
         {
             tb_ide_tip.Text = frm_dat.Rows[0]["va_ide_tip"].ToString().Trim();

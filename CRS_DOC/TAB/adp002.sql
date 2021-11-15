@@ -14,13 +14,13 @@ CREATE TABLE adp002
 	va_cod_gru	INT	   	     NOT NULL DEFAULT(0),	--** Cod Grupo Persona
 																
 	--** Atributos
-	va_tip_per  CHAR(01)     NOT NULL DEFAULT(''),   --** Tipo de Cliente (P=Particular; E=Empresa)
-	va_nom_bre  VARCHAR(30)  NOT NULL DEFAULT(''),   --** Nombre
-	va_ape_pat  VARCHAR(20)  NOT NULL DEFAULT(''),   --** Apellido Paterno
-	va_ape_mat  VARCHAR(20)  NOT NULL DEFAULT(''),   --** Apellido Materno
+	va_tip_per  CHAR(01)     NOT NULL DEFAULT(''),  --** Tipo de Cliente (P=Particular; E=Empresa)
+	va_nom_bre  VARCHAR(30)  NOT NULL DEFAULT(''),  --** Nombre
+	va_ape_pat  VARCHAR(20)  NOT NULL DEFAULT(''),  --** Apellido Paterno
+	va_ape_mat  VARCHAR(20)  NOT NULL DEFAULT(''),  --** Apellido Materno
 	va_raz_soc	VARCHAR(80)	 NOT NULL DEFAULT(''),	--** Razon Social
 	va_ruc_nit	BIGINT       NOT NULL DEFAULT(0),	--** RUC/NIT
-	va_sex_per  CHAR(01)     NOT NULL DEFAULT(''),   --** Sexo (H=Hombre; M=Mujer)
+	va_sex_per  CHAR(01)     NOT NULL DEFAULT(''),  --** Sexo (H=Hombre; M=Mujer)
 	va_fec_nac  DATETIME,                           --** Fecha de Nacimiento
 	va_tip_doc  CHAR(02)     NOT NULL DEFAULT(''),  --** Tipo Documento	
 	va_nro_doc	BIGINT       NOT NULL DEFAULT(0),	--** Carnet de Identidad

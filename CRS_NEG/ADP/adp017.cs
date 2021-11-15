@@ -24,7 +24,6 @@ namespace CRS_NEG
         /// <param name="ide_rel">ID. Relacion Contacto</param>
         /// <param name="nre_hom">Nombre Relación p/Hombre</param>
         /// <param name="nre_muj">Nombre Relación p/Mujer</param>
-        /// <param name="est_ado">Estado (H=Habilitado; N=Deshabilitado)</param>
         /// <returns></returns>
         public void Fe_nue_rel(int ide_rel, string nre_hom, string nre_muj)
         {

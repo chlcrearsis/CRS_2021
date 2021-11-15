@@ -13,11 +13,12 @@ adp008 = Rutas por persona										EJR (ok)
 adp009 = Lista de precios por persona							EJR (ok)
 adp010 = Contratos												EJR (opcional)
 adp011 = Descuento especial x persona							EJR
-adp012 = Personas relacionadas									CHL (opcional)
+adp012 = Personas Relacionadas a Grupo Empresarial   			EJR (ok)
 adp013 = Contactos por persona									EJR (ok) 
 adp014 = Tipo de Documento                                      EJR (ok)
 adp015 = Validación Registro Persona                            EJR (ok)
 adp016 = Inscripción Automatica Libreta p/Grupo de Persona      EJR (ok)
 adp017 = Relación Contacto de Persona                           EJR (ok)
+adp018 = Grupo Empresarial                                      EJR (ok)
 
 
