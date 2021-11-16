@@ -19,7 +19,7 @@ namespace CRS_PRE
 
         // instancia
         
-        ecp002 o_ecp002 = new ecp002();
+        ecp003 o_ecp003 = new ecp003();
 
 
         // Variables
@@ -36,7 +36,6 @@ namespace CRS_PRE
             
             tb_sel_ecc.Text = "";
            
-            cb_prm_bus.SelectedIndex = 0;
             cb_est_ado.SelectedIndex = 0;
             cb_tip_lib.SelectedIndex = 0;
 
@@ -46,14 +45,11 @@ namespace CRS_PRE
         /// <summary>
         /// Funcion interna buscar
         /// </summary>
-        /// <param name="ar_tex_bus">Texto a buscar</param>
-        /// <param name="ar_prm_bus">Parametro a buscar</param>
-        /// <param name="ar_est_bus">Estado a buscar</param>
         private void fi_bus_car(  )
         {
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
-            string ar_tex_bus = tb_tex_bus.Text;
+            //string ar_tex_bus = tb_tex_bus.Text;
             string ar_est_ado = "T";
             int ar_tip_lib = 0;
 
@@ -67,7 +63,7 @@ namespace CRS_PRE
             ar_tip_lib = cb_tip_lib.SelectedIndex ;
            
 
-            tabla = o_ecp002.Fe_bus_car(ar_tex_bus,cb_prm_bus.SelectedIndex + 1, ar_est_ado, ar_tip_lib);
+            tabla = o_ecp003.Fe_lis_tar(int.Parse(tb_sel_ecc.Text), ar_est_ado);
 
             if (tabla.Rows.Count > 0)
             {
@@ -104,8 +100,6 @@ namespace CRS_PRE
                 lb_des_plg.Text = tabla.Rows[0]["va_des_lib"].ToString();
 
             }
-
-            tb_tex_bus.Focus();
 
         }
       
@@ -204,17 +198,17 @@ namespace CRS_PRE
             string res_fun = "";
 
             if(cl_glo_bal.IsDecimal(tb_sel_ecc.Text) ==false)
-                res_fun = "El plan de pago no es valido.";
+                res_fun = "la suscripción no es valido.";
             
-            tab_dat = o_ecp002.Fe_con_lib( int.Parse(tb_sel_ecc.Text));
+            tab_dat = o_ecp003.Fe_con_sus(0, int.Parse(tb_sel_ecc.Text));
             if (tabla.Rows.Count == 0)
             {
-                res_fun = "El plan de pago no se encuentra registrado";
+                res_fun = "la suscripción no se encuentra registrado";
             }
 
             if (res_fun != "")
             {
-                MessageBox.Show(res_fun, "plan de pago", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, "suscripción", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_ecc.Focus();
                 return false;
             }
@@ -269,8 +263,6 @@ namespace CRS_PRE
                             return;
                         }
                     }
-
-                    tb_tex_bus.Focus();
                 }
 
                 catch (Exception ex)
@@ -286,8 +278,8 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            ecp002_03 frm = new ecp002_03();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            //ecp003_03 frm = new ecp003_03();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
       
@@ -297,8 +289,8 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            ecp002_05 frm = new ecp002_05();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            //ecp003_05 frm = new ecp003_05();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void mn_hab_des_Click(object sender, EventArgs e)
@@ -321,13 +313,13 @@ namespace CRS_PRE
         }
         private void mn_nue_ccp_Click(object sender, EventArgs e)
         {
-            ecp002_02 frm = new ecp002_02();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            //ecp003_02 frm = new ecp003_02();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
         private void mn_nue_tes_Click(object sender, EventArgs e)
         {
-            ecp002_02b frm = new ecp002_02b();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            //ecp003_02b frm = new ecp003_02b();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
         private void mn_atr_ass_Click(object sender, EventArgs e)

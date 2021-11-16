@@ -25,17 +25,21 @@ namespace CRS_NEG
         StringBuilder cadena;
 
         /// <summary>
-        /// Funcion "REGISTRA LIBRETA"
+        /// Funcion "REGISTRA SUSCRIPCION LIBRETA"
         /// </summary>
-        /// <param name="ide_tip">ID. Tipo de Documento</param>
-        /// <param name="nom_tip">Nombre Tipo de Documento</param>
-        /// <returns></returns>
-        public void Fe_nue_lib(int cod_lib, string des_pgl, int tip_lib, string mon_lib)
+        /// <param name="cod_lib">Codigo de libreta</param>
+        /// <param name="cod_per">Codigo de persona</param>
+        /// <param name="cod_plg">Codigo de plan de pago</param>
+        /// <param name="mto_lim">Monto limite de credito</param>
+        /// <param name="sal_act">Saldo actual del monto limite</param>
+        /// <param name="max_cuo">Maximo de cuotas vencidas</param>
+        /// <param name="fec_exp">Fecha de expiración de la suscripcion de la libreta</param>
+        public void Fe_nue_sus(int cod_lib, int cod_per, int cod_plg, decimal mto_lim, decimal sal_act, int max_cuo, DateTime fec_exp)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("INSERT INTO ecp002 VALUES (" + cod_lib + ", '" + des_pgl + "','', " + tip_lib + ", '" + mon_lib + "', 'H')");
+                cadena.AppendLine("INSERT INTO ecp003 VALUES (" + cod_lib + ", " + cod_per + ", '" + mto_lim + "', '" + sal_act + "', " + max_cuo + ", '" + fec_exp + "', 'H')");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
                 throw ex;
@@ -43,37 +47,50 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// funcion "Modifica Libreta"
+        /// Funcion "EDITA SUSCRIPCION LIBRETA"
         /// </summary>
-        /// <param name="cod_lib">Codigo del Libreta</param>
-        /// <param name="des_pgl">Descripcion</param>
-        /// <returns></returns>
-        public void Fe_edi_lib(int cod_lib, string des_pgl)
+        /// <param name="cod_lib">Codigo de libreta</param>
+        /// <param name="cod_per">Codigo de persona</param>
+        /// <param name="cod_plg">Codigo de plan de pago</param>
+        /// <param name="mto_lim">Monto limite de credito</param>
+        /// <param name="sal_act">Saldo actual del monto limite</param>
+        /// <param name="max_cuo">Maximo de cuotas vencidas</param>
+        /// <param name="fec_exp">Fecha de expiración de la suscripcion de la libreta</param>
+        public void Fe_edi_sus(int cod_lib, int cod_per, int cod_plg, decimal mto_lim, decimal sal_act, int max_cuo, DateTime fec_exp)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE ecp002 SET " +
-                    " va_des_lib='" + des_pgl + "' " +
-                    " WHERE va_cod_lib = '" + cod_lib + "'");
+                cadena.AppendLine("UPDATE ecp003 SET va_cod_plg = " + cod_plg + ", va_mto_lim = '" + mto_lim + "',  va_sal_act = '" + sal_act + "',  va_max_cuo = '" + max_cuo + "',  va_fec_exp = '" + fec_exp + "' ");
+                cadena.AppendLine(" WHERE va_cod_lib = '" + cod_lib + "' AND va_cod_per = " + cod_per ); 
+
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
                 throw ex;
             }
         }
-
         /// <summary>
-        /// funcion "Habilita Libreta"
+        /// 
         /// </summary>
         /// <param name="cod_lib">Codigo del Libreta</param>
         /// <returns></returns>
-        public void Fe_hab_lib(int cod_lib)
+        /// 
+        //--asdfasd
+
+
+
+        /// <summary>
+        /// funcion "Habilita SUSCRIPCION PERSONA"
+        /// </summary>
+        /// <param name="cod_lib">Codigo de Libreta</param>
+        /// <param name="cod_per">Codigo de persona</param>
+        public void Fe_hab_sus(int cod_lib, int cod_per)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE ecp002 SET va_est_ado = 'H'");
-                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib );
+                cadena.AppendLine(" UPDATE ecp003 SET va_est_ado = 'H'");
+                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib + " AND  va_cod_per = " + cod_per  );
 
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
@@ -87,17 +104,18 @@ namespace CRS_NEG
         /// <summary>
         /// funcion "Deshabilita Libreta"
         /// </summary>
-        /// <param name="cod_lib">Codigo del Libreta</param>
+        /// <param name="cod_lib">Codigo de Libreta</param>
+        /// <param name="cod_per">Codigo de persona</param>
         /// <returns></returns>
-        public void Fe_dhb_lib(int cod_lib)
+        public void Fe_dhb_sus(int cod_lib, int cod_per)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" UPDATE ecp002 SET va_est_ado = 'N'");
-                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib );
+                cadena.AppendLine(" UPDATE ecp003 SET va_est_ado = 'N'");
+                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib + " AND  va_cod_per = " + cod_per);
 
-                //ob_con_ecA.fe_exe_sql(cadena.ToString());
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
             {
@@ -110,35 +128,37 @@ namespace CRS_NEG
         /// <summary>
         /// funcion "Elimina Libreta"
         /// </summary>
-        /// <param name="cod_lib">Codigo del Libreta</param>
+        /// <param name="cod_lib">Codigo de Libreta</param>
+        /// <param name="cod_per">Codigo de persona</param>
         /// <returns></returns>
-        public void Fe_eli_lib(int cod_lib)
+        public void Fe_eli_sus(int cod_lib, int cod_per)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" DELETE ecp002 ");
-                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib );
-                
+                cadena.AppendLine(" DELETE ecp003 ");
+                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib + " AND  va_cod_per = " + cod_per);
                 //ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }catch (Exception ex){
+            }
+            catch (Exception ex){
                 throw ex;
             }
         }
 
 
         /// <summary>
-        /// funcion "Consulta Libreta"
+        /// funcion "Consulta Suscripcion Libreta"
         /// </summary>
-        /// <param name="cod_lib">Codigo del Libreta</param>
+        /// <param name="cod_lib">Codigo de Libreta</param>
+        /// <param name="cod_per">Codigo de persona</param>
         /// <returns></returns>
-        public DataTable Fe_con_lib(int cod_lib)
+        public DataTable Fe_con_sus(int cod_lib, int cod_per)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" SELECT * FROM ecp002 ");
-                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib  );
+                cadena.AppendLine(" SELECT * FROM ecp003 ");
+                cadena.AppendLine(" WHERE  va_cod_lib = " + cod_lib + " AND  va_cod_per = " + cod_per);
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
@@ -147,32 +167,22 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Función: "FILTRA LIBRETA"
+        /// Función: "FILTRA SUSCRIPCION LIBRETA"
         /// </summary>
         /// <param name="cri_bus">Criterio de Busqueda</param>
         /// <param name="prm_bus">Parametros de Busqueda (1=va_cod_lib; 2=va_des_lib)</param>
         /// <param name="est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
         /// <returns></returns>
-        public DataTable Fe_bus_car(string val_bus, int prm_bus, string est_bus, int tip_lib)
+        public DataTable Fe_lis_tar( int cod_per, string est_ado)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" select * from ecp002 ");
-
-                switch (prm_bus)
-                {
-                    case 1: cadena.AppendLine(" where va_cod_lib like '" + val_bus + "%' "); break;
-                    case 2: cadena.AppendLine(" where va_des_lib like '" + val_bus + "%' "); break;
-                }
-
-                if (tip_lib != 0)
-                    cadena.AppendLine(" and va_tip_lib = " + tip_lib );
-
-                if (est_bus != "T")
-                    cadena.AppendLine(" and va_est_ado ='" + est_bus + "'");
-              
-            
+                cadena.AppendLine(" select * from ecp003 ");
+                cadena.AppendLine(" WHERE va_cod_per =  "+ cod_per);
+                cadena.AppendLine(" AND va_cod_per =  " + cod_per);
+                if (est_ado != "T")
+                    cadena.AppendLine(" AND va_est_ado =  " + cod_per);
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
