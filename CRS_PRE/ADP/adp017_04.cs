@@ -78,11 +78,10 @@ namespace CRS_PRE
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            string msg_val = "";
             DialogResult msg_res;
             try
             {
-                msg_val = Fi_val_dat();
+                string msg_val = Fi_val_dat();
                 if (msg_val != ""){
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;

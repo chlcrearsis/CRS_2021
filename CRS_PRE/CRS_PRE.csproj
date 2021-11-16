@@ -370,6 +370,42 @@
     <Compile Include="ADP\adp009_01.Designer.cs">
       <DependentUpon>adp009_01.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADP\adp018_06.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_06.Designer.cs">
+      <DependentUpon>adp018_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp018_05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_05.Designer.cs">
+      <DependentUpon>adp018_05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp018_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_04.Designer.cs">
+      <DependentUpon>adp018_04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp018_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_03.Designer.cs">
+      <DependentUpon>adp018_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp018_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_02.Designer.cs">
+      <DependentUpon>adp018_02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp018_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_01.Designer.cs">
+      <DependentUpon>adp018_01.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADP\adp017_06.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2344,6 +2380,24 @@
     <EmbeddedResource Include="ADP\adp009_01.resx">
       <DependentUpon>adp009_01.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_06.resx">
+      <DependentUpon>adp018_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_05.resx">
+      <DependentUpon>adp018_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_04.resx">
+      <DependentUpon>adp018_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_03.resx">
+      <DependentUpon>adp018_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_02.resx">
+      <DependentUpon>adp018_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_01.resx">
+      <DependentUpon>adp018_01.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADP\adp017_06.resx">
       <DependentUpon>adp017_06.cs</DependentUpon>
     </EmbeddedResource>
@@ -3373,6 +3427,10 @@
     <None Include="Resources\ultimo1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\im_usr_muj1.png" />
+    <None Include="Resources\im_usr_hom1.png" />
+    <None Include="Resources\im_usr_muj.png" />
+    <None Include="Resources\im_usr_hom.png" />
     <None Include="Resources\fondotexto.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\telegram.png" />

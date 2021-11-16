@@ -101,7 +101,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(405, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(420, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -184,7 +184,7 @@
             // mn_con_per
             // 
             this.mn_con_per.Name = "mn_con_per";
-            this.mn_con_per.Size = new System.Drawing.Size(123, 22);
+            this.mn_con_per.Size = new System.Drawing.Size(128, 22);
             this.mn_con_per.Text = "Con&tactos";
             this.mn_con_per.Click += new System.EventHandler(this.mn_con_per_Click);
             // 
@@ -584,6 +584,7 @@
             this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
+            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 

@@ -207,6 +207,12 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, o_frm);
         }
 
+        private void mn_gru_emp_Click(object sender, EventArgs e)
+        {
+            o_frm = new adp018_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
         private void mn_rel_con_Click(object sender, EventArgs e)
         {
             o_frm = new adp017_01();
@@ -326,15 +332,16 @@ namespace CRS_PRE
             o_frm = new ctb006_01();
             cl_glo_frm.abrir(this, o_frm);
         }
-        private void mn_pla_pago_Click(object sender, EventArgs e)
-        {
-            o_frm = new ecp001_01();
-            cl_glo_frm.abrir(this, o_frm);
-        }
 
         private void mn_lib_ret_Click(object sender, EventArgs e)
         {
             o_frm = new ecp002_01();
+            cl_glo_frm.abrir(this, o_frm);
+        }
+
+        private void mn_pla_pgo_Click(object sender, EventArgs e)
+        {
+            o_frm = new ecp001_01();
             cl_glo_frm.abrir(this, o_frm);
         }
 

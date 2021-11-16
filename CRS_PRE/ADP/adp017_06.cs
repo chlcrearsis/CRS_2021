@@ -80,36 +80,28 @@ namespace CRS_PRE
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            string msg_val = "";
             DialogResult msg_res;
             try
             {
-                msg_val = Fi_val_dat();
-                if (msg_val != ""){
+                // funcion para validar datos
+                string msg_val = Fi_val_dat();
+                if (msg_val != "")
+                {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-
-                if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar la Relación Contacto de Persona?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar la Relación Contacto de Persona?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                if (msg_res == DialogResult.OK){
-                    if (tb_est_ado.Text == "Habilitado")
-                        o_adp017.Fe_hab_des(int.Parse(tb_ide_rel.Text), "N");
-                    else
-                        o_adp017.Fe_hab_des(int.Parse(tb_ide_rel.Text), "H");
-
-                    MessageBox.Show("Los datos se grabaron correctamente", "Habilita/Deshabilita Relación Contacto de Persona", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Actualiza ventana buscar
+                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg_res == DialogResult.OK)
+                {
+                    // Elimina Tipo de Documento
+                    o_adp017.Fe_eli_rel(int.Parse(tb_ide_rel.Text));
+                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rel.Text));
-
                     cl_glo_frm.Cerrar(this);
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

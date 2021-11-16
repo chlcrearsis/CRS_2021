@@ -52,7 +52,7 @@ namespace CRS_NEG
         /// <param name="ide_atr">Array tributo Seleccionado</param>        
         /// <returns></returns>
         public void Fe_nue_per(int cod_per,    int cod_gru, string tip_per, string nom_bre, string ape_pat,
-                            string ape_mat, string raz_soc, string nom_fac,   long ruc_nit,  string sex_per,
+                            string ape_mat, string raz_soc, string nom_fac,   long ruc_nit, string sex_per,
                             string fec_nac, string tip_doc, double nro_doc, string ext_doc, string tel_per, 
                             string cel_ula, string tel_fij, string dir_pri, string dir_ent, string ema_ail, SqlGeography ubi_gps, 
                                int cod_ven,    int cod_cob, string tip_atr, string ide_atr){

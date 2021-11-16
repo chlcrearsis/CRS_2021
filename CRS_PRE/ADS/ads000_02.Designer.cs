@@ -181,7 +181,7 @@
             // pb_ima_usr
             // 
             this.pb_ima_usr.BackColor = System.Drawing.Color.DarkGray;
-            this.pb_ima_usr.Image = ((System.Drawing.Image)(resources.GetObject("pb_ima_usr.Image")));
+            this.pb_ima_usr.Image = global::CRS_PRE.Properties.Resources.im_usr_hom;
             this.pb_ima_usr.Location = new System.Drawing.Point(49, 19);
             this.pb_ima_usr.Name = "pb_ima_usr";
             this.pb_ima_usr.Size = new System.Drawing.Size(100, 100);
