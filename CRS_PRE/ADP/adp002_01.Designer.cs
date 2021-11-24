@@ -122,55 +122,55 @@
             this.mn_per_lis,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
+            this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(206, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(192, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(206, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(192, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_act_rut
             // 
             this.mn_act_rut.Name = "mn_act_rut";
-            this.mn_act_rut.Size = new System.Drawing.Size(206, 22);
+            this.mn_act_rut.Size = new System.Drawing.Size(192, 22);
             this.mn_act_rut.Text = "Ac&tuali&za Rutas";
             this.mn_act_rut.Click += new System.EventHandler(this.mn_act_rut_Click);
             // 
             // mn_per_lis
             // 
             this.mn_per_lis.Name = "mn_per_lis";
-            this.mn_per_lis.Size = new System.Drawing.Size(206, 22);
+            this.mn_per_lis.Size = new System.Drawing.Size(192, 22);
             this.mn_per_lis.Text = "&Permiso s/Lista de Precio";
             this.mn_per_lis.Click += new System.EventHandler(this.mn_per_lis_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(206, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(192, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
             // mn_ima_per
             // 
             this.mn_ima_per.Name = "mn_ima_per";
-            this.mn_ima_per.Size = new System.Drawing.Size(70, 20);
+            this.mn_ima_per.Size = new System.Drawing.Size(66, 20);
             this.mn_ima_per.Text = "&Imagenes";
             this.mn_ima_per.Click += new System.EventHandler(this.mn_ima_per_Click);
             // 
@@ -202,20 +202,20 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_per});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_per
             // 
             this.mn_list_per.Name = "mn_list_per";
-            this.mn_list_per.Size = new System.Drawing.Size(162, 22);
+            this.mn_list_per.Size = new System.Drawing.Size(155, 22);
             this.mn_list_per.Text = "&Lista de bodegas";
             this.mn_list_per.Click += new System.EventHandler(this.mn_list_per_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.mn_cer_rar_Click);
             // 

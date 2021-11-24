@@ -40,13 +40,13 @@
             this.lb_des_plg = new System.Windows.Forms.Label();
             this.bt_bus_car = new System.Windows.Forms.Button();
             this.cb_est_ado = new System.Windows.Forms.ComboBox();
-            this.cb_prm_bus = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tb_tex_bus = new System.Windows.Forms.TextBox();
             this.tb_sel_ecc = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_cre_ar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_nue_ccp = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_nue_tes = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,17 +56,16 @@
             this.mn_list_mod = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_nue_ccp = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_nue_tes = new System.Windows.Forms.ToolStripMenuItem();
             this.va_cod_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_des_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_tip_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_mon_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_frm_hja.SuspendLayout();
@@ -76,13 +75,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.cb_tip_lib);
             this.groupBox1.Controls.Add(this.lb_des_plg);
             this.groupBox1.Controls.Add(this.bt_bus_car);
             this.groupBox1.Controls.Add(this.cb_est_ado);
-            this.groupBox1.Controls.Add(this.cb_prm_bus);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.tb_tex_bus);
             this.groupBox1.Controls.Add(this.tb_sel_ecc);
             this.groupBox1.Location = new System.Drawing.Point(2, -5);
             this.groupBox1.Name = "groupBox1";
@@ -107,7 +105,7 @@
             // 
             this.lb_des_plg.AutoSize = true;
             this.lb_des_plg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_des_plg.Location = new System.Drawing.Point(96, 14);
+            this.lb_des_plg.Location = new System.Drawing.Point(112, 14);
             this.lb_des_plg.Name = "lb_des_plg";
             this.lb_des_plg.Size = new System.Drawing.Size(10, 13);
             this.lb_des_plg.TabIndex = 31;
@@ -139,44 +137,23 @@
             this.cb_est_ado.Size = new System.Drawing.Size(108, 21);
             this.cb_est_ado.TabIndex = 20;
             // 
-            // cb_prm_bus
-            // 
-            this.cb_prm_bus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_prm_bus.FormattingEnabled = true;
-            this.cb_prm_bus.Items.AddRange(new object[] {
-            "Codigo",
-            "Descripción"});
-            this.cb_prm_bus.Location = new System.Drawing.Point(236, 35);
-            this.cb_prm_bus.Name = "cb_prm_bus";
-            this.cb_prm_bus.Size = new System.Drawing.Size(105, 21);
-            this.cb_prm_bus.TabIndex = 20;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(6, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Libreta";
-            // 
-            // tb_tex_bus
-            // 
-            this.tb_tex_bus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_tex_bus.Location = new System.Drawing.Point(9, 35);
-            this.tb_tex_bus.Name = "tb_tex_bus";
-            this.tb_tex_bus.Size = new System.Drawing.Size(223, 20);
-            this.tb_tex_bus.TabIndex = 15;
-            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.label1.Text = "Persona";
             // 
             // tb_sel_ecc
             // 
             this.tb_sel_ecc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_sel_ecc.Location = new System.Drawing.Point(54, 9);
+            this.tb_sel_ecc.Location = new System.Drawing.Point(61, 9);
             this.tb_sel_ecc.MaxLength = 3;
             this.tb_sel_ecc.Name = "tb_sel_ecc";
-            this.tb_sel_ecc.Size = new System.Drawing.Size(42, 20);
+            this.tb_sel_ecc.Size = new System.Drawing.Size(49, 20);
             this.tb_sel_ecc.TabIndex = 10;
             this.tb_sel_ecc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             this.tb_sel_ecc.Validated += new System.EventHandler(this.Tb_sel_bus_Validated);
@@ -214,6 +191,20 @@
             this.mn_cre_ar.Name = "mn_cre_ar";
             this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
             this.mn_cre_ar.Text = "&Crea";
+            // 
+            // mn_nue_ccp
+            // 
+            this.mn_nue_ccp.Name = "mn_nue_ccp";
+            this.mn_nue_ccp.Size = new System.Drawing.Size(228, 22);
+            this.mn_nue_ccp.Text = "Libreta de Ctas. x Cobrar/Pagar";
+            this.mn_nue_ccp.Click += new System.EventHandler(this.mn_nue_ccp_Click);
+            // 
+            // mn_nue_tes
+            // 
+            this.mn_nue_tes.Name = "mn_nue_tes";
+            this.mn_nue_tes.Size = new System.Drawing.Size(228, 22);
+            this.mn_nue_tes.Text = "Libreta de Tesoreria";
+            this.mn_nue_tes.Click += new System.EventHandler(this.mn_nue_tes_Click);
             // 
             // mn_mod_ifi
             // 
@@ -317,6 +308,46 @@
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             // 
+            // va_cod_lib
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.va_cod_lib.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_cod_lib.HeaderText = "Codigo";
+            this.va_cod_lib.Name = "va_cod_lib";
+            this.va_cod_lib.Width = 50;
+            // 
+            // va_des_lib
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_des_lib.DefaultCellStyle = dataGridViewCellStyle3;
+            this.va_des_lib.HeaderText = "Descripción";
+            this.va_des_lib.Name = "va_des_lib";
+            this.va_des_lib.Width = 235;
+            // 
+            // va_tip_lib
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_tip_lib.DefaultCellStyle = dataGridViewCellStyle4;
+            this.va_tip_lib.HeaderText = "Tipo";
+            this.va_tip_lib.Name = "va_tip_lib";
+            this.va_tip_lib.Width = 110;
+            // 
+            // va_mon_lib
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_mon_lib.DefaultCellStyle = dataGridViewCellStyle5;
+            this.va_mon_lib.HeaderText = "Moneda";
+            this.va_mon_lib.Name = "va_mon_lib";
+            this.va_mon_lib.Width = 55;
+            // 
+            // va_est_ado
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle6;
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.Width = 75;
+            // 
             // gb_ctr_btn
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
@@ -359,61 +390,16 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             // 
-            // mn_nue_ccp
+            // textBox1
             // 
-            this.mn_nue_ccp.Name = "mn_nue_ccp";
-            this.mn_nue_ccp.Size = new System.Drawing.Size(228, 22);
-            this.mn_nue_ccp.Text = "Libreta de Ctas. x Cobrar/Pagar";
-            this.mn_nue_ccp.Click += new System.EventHandler(this.mn_nue_ccp_Click);
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Location = new System.Drawing.Point(61, 36);
+            this.textBox1.MaxLength = 3;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(49, 20);
+            this.textBox1.TabIndex = 33;
             // 
-            // mn_nue_tes
-            // 
-            this.mn_nue_tes.Name = "mn_nue_tes";
-            this.mn_nue_tes.Size = new System.Drawing.Size(228, 22);
-            this.mn_nue_tes.Text = "Libreta de Tesoreria";
-            this.mn_nue_tes.Click += new System.EventHandler(this.mn_nue_tes_Click);
-            // 
-            // va_cod_lib
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.va_cod_lib.DefaultCellStyle = dataGridViewCellStyle2;
-            this.va_cod_lib.HeaderText = "Codigo";
-            this.va_cod_lib.Name = "va_cod_lib";
-            this.va_cod_lib.Width = 50;
-            // 
-            // va_des_lib
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.va_des_lib.DefaultCellStyle = dataGridViewCellStyle3;
-            this.va_des_lib.HeaderText = "Descripción";
-            this.va_des_lib.Name = "va_des_lib";
-            this.va_des_lib.Width = 235;
-            // 
-            // va_tip_lib
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_tip_lib.DefaultCellStyle = dataGridViewCellStyle4;
-            this.va_tip_lib.HeaderText = "Tipo";
-            this.va_tip_lib.Name = "va_tip_lib";
-            this.va_tip_lib.Width = 110;
-            // 
-            // va_mon_lib
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_mon_lib.DefaultCellStyle = dataGridViewCellStyle5;
-            this.va_mon_lib.HeaderText = "Moneda";
-            this.va_mon_lib.Name = "va_mon_lib";
-            this.va_mon_lib.Width = 55;
-            // 
-            // va_est_ado
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle6;
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.Width = 75;
-            // 
-            // ecp002_01
+            // ecp003_01
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,10 +413,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ecp002_01";
+            this.Name = "ecp003_01";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Tag = "Busca Libreta";
-            this.Text = "Busca Libreta";
+            this.Tag = "Busca Inscripción Persona";
+            this.Text = "Busca Inscripción Persona";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -447,8 +433,6 @@
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bt_bus_car;
-        private System.Windows.Forms.ComboBox cb_prm_bus;
-        private System.Windows.Forms.TextBox tb_tex_bus;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dg_res_ult;
         private System.Windows.Forms.Button bt_can_cel;
@@ -477,5 +461,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn va_tip_lib;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_mon_lib;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }
