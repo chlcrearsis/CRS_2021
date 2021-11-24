@@ -10,17 +10,12 @@ namespace CRS_PRE
 {
     public partial class adp006_05 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-        adp002 o_adp002 = new adp002();
+        // Instancias
         adp006 o_adp006 = new adp006();
-        ads010 o_ads010 = new ads010();
         DataTable Tabla = new DataTable();
-        General general = new General();
-        string Titulo = "Elimina Imagen Persona";
 
         public adp006_05(){
             InitializeComponent();
@@ -84,8 +79,6 @@ namespace CRS_PRE
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-
-        
+        }        
     }
 }

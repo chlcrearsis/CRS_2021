@@ -47,7 +47,7 @@ namespace CRS_NEG
         /// <param name="ide_tip">ID. Tipo Atributo</param>
         /// <param name="ide_atr">ID. Atributo</param>
         /// <returns></returns>
-        public void Fe_edi_reg(int cod_per, int ide_tip, int ide_atr)
+        public void Fe_edi_tar(int cod_per, int ide_tip, int ide_atr)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace CRS_NEG
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="ide_tip">ID. Tipo Atributo</param>
         /// <returns></returns>
-        public void Fe_eli_tip(int cod_per, int ide_tip)
+        public void Fe_eli_min(int cod_per, int ide_tip)
         {
             try
             {

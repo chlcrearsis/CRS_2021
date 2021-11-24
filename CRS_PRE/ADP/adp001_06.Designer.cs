@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class adp001_04
+    partial class adp001_06
     {
         /// <summary>
         /// Required designer variable.
@@ -154,7 +154,7 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // adp001_04
+            // adp001_06
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -165,9 +165,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "adp001_04";
-            this.Tag = "Elimina Grupo de Persona";
-            this.Text = "Elimina Grupo de Persona";
+            this.Name = "adp001_06";
+            this.Tag = "Habilita/Deshabilita Grupo de Persona";
+            this.Text = "Habilita/Deshabilita Grupo de Persona";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

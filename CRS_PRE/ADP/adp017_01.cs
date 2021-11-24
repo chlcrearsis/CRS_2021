@@ -12,27 +12,23 @@ namespace CRS_PRE
         public int frm_tip;
         public DataTable frm_dat;
         public dynamic frm_MDI;
-
+        // Instancia        
+        adp017 o_adp017 = new adp017();
+        // Variables
+        DataTable Tabla = new DataTable();
         string est_bus = "T";
+        string Titulo = "Relación Contacto Persona";
 
-        //Form frm_mdi;
         public adp017_01()
         {
             InitializeComponent();
-        }
-
-        // instancia        
-        adp017 o_adp017 = new adp017();
-
-        // Variables
-        DataTable Tabla = new DataTable();
+        }        
 
         private void frm_Load(object sender, EventArgs e)
         {
             fi_ini_frm();
         }
 
-        #region  [Funciones Internas]
         private void fi_ini_frm()
         {
             tb_ide_rel.Text = "";           
@@ -80,7 +76,6 @@ namespace CRS_PRE
                 lb_nom_rel.Text = Tabla.Rows[0]["va_nre_hom"].ToString() + " - " + 
                                   Tabla.Rows[0]["va_nre_muj"].ToString();
             }
-
         }
 
         /// <summary>
@@ -172,7 +167,6 @@ namespace CRS_PRE
 
                             // Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
-
                         }
                     }
                 }
@@ -182,7 +176,6 @@ namespace CRS_PRE
                 }
             }
         }
-
 
         /// <summary>
         /// Método para obtener fila actual seleccionada
@@ -210,7 +203,7 @@ namespace CRS_PRE
             string res_fun;
             if (sel_ecc.Trim() == ""){
                 res_fun = "La Relación Contacto Persona que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Relación Contacto Persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_rel.Focus();
                 return false;
             }
@@ -220,14 +213,13 @@ namespace CRS_PRE
             if (Tabla.Rows.Count == 0)
             {
                 res_fun = "La Relación Contacto Persona que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, "Edita Relación Contacto Persona", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_rel.Focus();
                 return false;
             }
 
             return true;
         }        
-        #endregion
 
         private void tb_ide_rel_Validated(object sender, EventArgs e){
             fi_con_sel();
@@ -237,7 +229,8 @@ namespace CRS_PRE
             }
         }
 
-        private void dg_res_ult_SelectionChanged(object sender, EventArgs e){
+        private void dg_res_ult_SelectionChanged(object sender, EventArgs e)
+        {
             fi_fil_act();
         }
 
@@ -252,6 +245,7 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
+        // Evento Click: Buscar
         private void bt_bus_car_Click(object sender, EventArgs e)
         {
             if (cb_est_bus.SelectedIndex == 0)
@@ -297,12 +291,12 @@ namespace CRS_PRE
             }
         }
 
-        private void Mn_nue_reg_Click(object sender, EventArgs e)
+        private void mn_nue_reg_Click(object sender, EventArgs e)
         {
             adp017_02 frm = new adp017_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
-        private void Mn_mod_ifi_Click(object sender, EventArgs e)
+        private void mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
             if (fi_ver_edi(tb_ide_rel.Text) == false)
@@ -311,7 +305,7 @@ namespace CRS_PRE
             adp017_03 frm = new adp017_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }       
-        private void Mn_hab_des_Click(object sender, EventArgs e)
+        private void mn_hab_des_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para habilitar/deshabilitar
             if (fi_ver_edi(tb_ide_rel.Text) == false)
@@ -320,7 +314,7 @@ namespace CRS_PRE
             adp017_04 frm = new adp017_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void Mn_con_sul_Click(object sender, EventArgs e)
+        private void mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
             if (fi_ver_edi(tb_ide_rel.Text) == false)
@@ -329,7 +323,7 @@ namespace CRS_PRE
             adp017_05 frm = new adp017_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void Mn_eli_min_Click(object sender, EventArgs e)
+        private void mn_eli_min_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
             if (fi_ver_edi(tb_ide_rel.Text) == false)
@@ -338,22 +332,31 @@ namespace CRS_PRE
             adp017_06 frm = new adp017_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void Mn_rep_tip_Click(object sender, EventArgs e)
+        private void mn_rep_tip_Click(object sender, EventArgs e)
         {
             //adp017_R01p frm = new adp017_R01p();
             //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
-        private void Mn_cer_rar_Click(object sender, EventArgs e)
+        private void mn_cer_rar_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }       
-       
+        }
+
+        // Evento Enter: Lista de Resultado
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);
+        }
+
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

@@ -8,15 +8,11 @@ namespace CRS_PRE
 {
     public partial class adp004_R01p : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
-        General general = new General();
+        // Instancias
         adp003 o_adp003 = new adp003();
-        adp004 o_adp004 = new adp004();
         DataTable Tabla = new DataTable();
-
 
         public adp004_R01p()
         {
@@ -146,6 +142,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             // funcion para validar datos
@@ -163,6 +160,7 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);*/
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             // Cierra Formulario

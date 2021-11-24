@@ -13,12 +13,11 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-
-        //Instancias
+        // Instancias
         adp002 o_adp002 = new adp002();
         adp013 o_adp013 = new adp013();
         adp017 o_adp017 = new adp017();
-
+        // Variables
         DataTable Tabla = new DataTable();
         General general = new General();
         string Titulo = "Nueva Contacto Persona";
@@ -115,8 +114,7 @@ namespace CRS_PRE
                 cb_par_con.ValueMember = "va_ide_rel";
                 cb_par_con.SelectedValue = int.Parse(Tabla.Rows[0]["va_ide_rel"].ToString());
             }                       
-        }
-              
+        }              
 
         /// <summary>
         /// Metodo : Valida datos proporcionados por el usuario
@@ -258,6 +256,7 @@ namespace CRS_PRE
             Fi_obt_par(cb_sex_per.Text.Substring(0, 1));
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -299,7 +298,7 @@ namespace CRS_PRE
 
 
                     // Registrar Contacto Persona
-                    o_adp013.Fe_nue_con(cod_per, cod_con, nom_bre, ape_pat, ape_mat, nro_cid,
+                    o_adp013.Fe_nue_reg(cod_per, cod_con, nom_bre, ape_pat, ape_mat, nro_cid,
                                         ext_doc, sex_per, fec_nac, par_con, tel_per, cel_ula,
                                         ema_ail, dir_ubi, obs_con, "H");
 
@@ -311,7 +310,7 @@ namespace CRS_PRE
                 MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

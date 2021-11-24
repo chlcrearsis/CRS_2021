@@ -33,7 +33,7 @@ namespace CRS_NEG
         /// <param name="fec_reg">Fecha y hora de registro</param>
         /// <param name="nom_equ">Nombre Equipo</param>
         /// <returns></returns>       
-        public void Fe_reg_ima(int cod_per, string ide_tip, byte[] img_arc, string ext_arc, decimal tam_arc, string ide_usr, string fec_reg, string nom_equ)
+        public void Fe_nue_reg(int cod_per, string ide_tip, byte[] img_arc, string ext_arc, decimal tam_arc, string ide_usr, string fec_reg, string nom_equ)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace CRS_NEG
         /// <param name="fec_reg">Fecha y hora de registro</param>
         /// <param name="nom_equ">Nombre Equipo</param>
         /// <returns></returns>
-        public void Fe_act_ima(int cod_per, string ide_tip, byte[] img_arc, string ext_arc, decimal tam_arc, string ide_usr, string fec_reg, string nom_equ)
+        public void Fe_edi_tar(int cod_per, string ide_tip, byte[] img_arc, string ext_arc, decimal tam_arc, string ide_usr, string fec_reg, string nom_equ)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace CRS_NEG
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="ide_tip">ID. tipo de imagen</param>
         /// <returns></returns>
-        public void Fe_eli_ima(int cod_per, string ide_tip)
+        public void Fe_eli_min(int cod_per, string ide_tip)
         {
             try
             {

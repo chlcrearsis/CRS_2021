@@ -1,6 +1,6 @@
 /*--**********************************************
 ARCHIVO:	adp012.sql	
-TABLA:		Tabla de "Personas Relacionadas a Grupo Empresarial"
+TABLA:		Tabla de "Asig. Grupo Empresarial"
 AUTOR:		CREARSIS 3.0.0 (CHL)
 FECHA:		25-08-2021
 */--**********************************************

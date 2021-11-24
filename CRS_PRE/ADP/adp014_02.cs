@@ -8,12 +8,11 @@ namespace CRS_PRE
 {
     public partial class adp014_02 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
-        
+        // Instancias        
         adp014 o_adp014 = new adp014();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Crea Tipo de Documento";
 
@@ -93,7 +92,7 @@ namespace CRS_PRE
                         ext_doc = "N";
                     }
                     // Graba el registro en la BD.
-                    o_adp014.Fe_nue_tip(tb_ide_tip.Text.Trim(), tb_des_tip.Text.Trim(), ext_doc);
+                    o_adp014.Fe_nue_reg(tb_ide_tip.Text.Trim(), tb_des_tip.Text.Trim(), ext_doc);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
                     Fi_lim_pia();
@@ -108,7 +107,6 @@ namespace CRS_PRE
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-            
+        }            
     }
 }

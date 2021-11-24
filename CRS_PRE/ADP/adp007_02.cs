@@ -8,12 +8,12 @@ namespace CRS_PRE
 {
     public partial class adp007_02 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
-        
+
+        // Instancias        
         adp007 o_adp007 = new adp007();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Crea Definición de Ruta";
 
@@ -73,8 +73,7 @@ namespace CRS_PRE
             if (tb_nom_cor.Text.Trim() == ""){
                 tb_nom_cor.Focus();
                 return "DEBE proporcionar el Nombre corto para la Ruta";
-            }
-                    
+            }                    
 
             // Verifica SI existe otro registro con el mismo ID
             Tabla = o_adp007.Fe_con_rut(int.Parse(tb_ide_rut.Text) );
@@ -112,7 +111,7 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Graba el registro en la BD.
-                    o_adp007.Fe_nue_rut(int.Parse(tb_ide_rut.Text), tb_nom_rut.Text, tb_nom_cor.Text);
+                    o_adp007.Fe_nue_reg(int.Parse(tb_ide_rut.Text), tb_nom_rut.Text, tb_nom_cor.Text);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rut.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
                     Fi_lim_pia();

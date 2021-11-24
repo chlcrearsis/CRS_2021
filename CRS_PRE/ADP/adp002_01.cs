@@ -11,23 +11,19 @@ namespace CRS_PRE
         public int frm_tip;
         public DataTable tab_dat;
         public dynamic frm_MDI;
-
+        // Instancia
+        adp002 o_adp002 = new adp002();
+        adp001 o_adp001 = new adp001();
+        // Variables
+        DataTable Tabla = new DataTable();
         string tip_per = "T";
         string est_bus = "T";
         string Titulo = "Registro de Persona";
 
-        //Form frm_mdi;
         public adp002_01()
         {
             InitializeComponent();
-        }
-
-        // Instancia
-        adp002 o_adp002 = new adp002();
-        adp001 o_adp001 = new adp001();
-
-        // Variables
-        DataTable Tabla = new DataTable();
+        }        
 
         private void frm_Load(object sender, EventArgs e)
         {
@@ -211,6 +207,9 @@ namespace CRS_PRE
             return true;
         }
 
+        /// <summary>
+        /// Método : Obtiene Datos del Grupo de Persona
+        /// </summary>
         private void Fi_obt_gru()
         {
             if (tb_cod_gru.Text.Trim() == ""){
@@ -238,6 +237,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento KeyDown: Texto a Buscar
         private void tb_tex_bus_KeyDown(object sender, KeyEventArgs e)
         {
             if (dg_res_ult.Rows.Count != 0){
@@ -268,6 +268,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Validated: Codigo de Persona
         private void tb_cod_per_Validated(object sender, EventArgs e)
         {
             fi_con_sel();
@@ -276,11 +277,13 @@ namespace CRS_PRE
             }
         }
 
+        // Evento KeyPress: Codigo de Persona
         private void tb_cod_per_KeyPress(object sender, KeyPressEventArgs e)
         {
             cl_glo_bal.NotNumeric(e);
         }
 
+        // Evento KeyDown: Codigo Grupo Persona
         private void tb_cod_gru_KeyDown(object sender, KeyEventArgs e)
         {
             // Al presionar tecla para ARRIBA
@@ -290,29 +293,35 @@ namespace CRS_PRE
             }
         }
 
+        // Evento KeyPress: Codigo Grupo Persona
         private void tb_cod_gru_KeyPress(object sender, KeyPressEventArgs e)
         {
             cl_glo_bal.NotNumeric(e);
         }
 
+        // Evento Validated: Codigo Grupo Persona
         private void tb_cod_gru_Validated(object sender, EventArgs e)
         {
             Fi_obt_gru();
         }
 
+        // Evento Click: Buscar Grupo Persona
         private void bt_bus_gru_Click(object sender, EventArgs e)
         {
             Fi_bus_gru();
         }
 
+        /// <summary>
+        /// Función : Buscar Grupo Persona
+        /// </summary>
         private void Fi_bus_gru()
         {
             adp001_01 frm = new adp001_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK){
-                tb_cod_gru.Text = frm.tb_sel_bus.Text;
-                lb_nom_gru.Text = frm.lb_des_bus.Text;
+                tb_cod_gru.Text = frm.tb_cod_gru.Text;
+                lb_nom_gru.Text = frm.lb_nom_gru.Text;
             }
         }
 
@@ -329,6 +338,7 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
+        // Evento Click: Buscar
         private void bt_bus_car_Click(object sender, EventArgs e)
         {
             // Obtiene el Tipo de Persona
@@ -389,13 +399,12 @@ namespace CRS_PRE
             }
         }
 
-        private void Mn_cre_ar_Click(object sender, EventArgs e)
+        private void mn_nue_reg_Click(object sender, EventArgs e)
         {
             adp002_02 frm = new adp002_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
-
-        private void Mn_mod_ifi_Click(object sender, EventArgs e)
+        private void mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
             if (fi_ver_dat(tb_cod_per.Text) == false)
@@ -403,9 +412,8 @@ namespace CRS_PRE
 
             adp002_03 frm = new adp002_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }
-       
-        private void Mn_hab_des_Click(object sender, EventArgs e)
+        }       
+        private void mn_hab_des_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para habilitar/deshabilitar
             if (fi_ver_dat(tb_cod_per.Text) == false)
@@ -414,7 +422,7 @@ namespace CRS_PRE
             adp002_04 frm = new adp002_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void Mn_con_sul_Click(object sender, EventArgs e)
+        private void mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
             if (fi_ver_dat(tb_cod_per.Text) == false)
@@ -423,7 +431,7 @@ namespace CRS_PRE
             adp002_05 frm = new adp002_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void Mn_eli_min_Click(object sender, EventArgs e)
+        private void mn_eli_min_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
             if (fi_ver_dat(tb_cod_per.Text) == false)
@@ -432,7 +440,6 @@ namespace CRS_PRE
             adp002_06 frm = new adp002_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-
         private void mn_act_rut_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
@@ -442,7 +449,6 @@ namespace CRS_PRE
             adp008_01 frm = new adp008_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-
         private void mn_per_lis_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
@@ -452,7 +458,6 @@ namespace CRS_PRE
             adp009_01 frm = new adp009_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-
         private void mn_ima_per_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
@@ -462,7 +467,6 @@ namespace CRS_PRE
             adp006_01 frm = new adp006_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
-
         private void mn_con_per_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
@@ -472,33 +476,44 @@ namespace CRS_PRE
             adp013_01 frm = new adp013_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
+        private void mn_asi_emp_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para eliminar
+            if (fi_ver_dat(tb_cod_per.Text) == false)
+                return;
 
-        private void Mn_cer_rar_Click_1(object sender, EventArgs e)
+            adp012_02 frm = new adp012_02();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
+        }
+        private void mn_list_per_Click(object sender, EventArgs e)
+        {
+            //adp002_R01p frm = new adp002_R01p();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+        private void mn_cer_rar_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
         }
 
+        // Evento Enter: Lista de Resultado
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);
+        }
+
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
-        }
-
-        private void mn_list_per_Click(object sender, EventArgs e)
-        {
-            //adp002_R01p frm = new adp002_R01p();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
-        }
-
-        private void dg_res_ult_Enter(object sender, EventArgs e){
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
-        }       
+        }                     
     }
 }

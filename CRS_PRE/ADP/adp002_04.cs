@@ -2,7 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 
-
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -159,8 +158,9 @@ namespace CRS_PRE
             }
            
             return "";
-        }        
+        }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -202,6 +202,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

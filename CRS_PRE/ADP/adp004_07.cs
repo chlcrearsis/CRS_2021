@@ -3,7 +3,6 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-
 namespace CRS_PRE
 {
     public partial class adp004_07 : Form
@@ -13,21 +12,18 @@ namespace CRS_PRE
         public DataTable Tabla;
         public dynamic frm_MDI;
 
+        // Instancia        
+        DataTable tabla = new DataTable();
+        adp003 o_adp003 = new adp003();
+        adp004 o_adp004 = new adp004();
+        // Variables
         string est_bus = "T";
         public int vp_ide_tip = 0;
 
-        //Form frm_mdi;
         public adp004_07()
         {
             InitializeComponent();
         }
-
-        // instancia        
-        adp003 o_adp003 = new adp003();
-        adp004 o_adp004 = new adp004();
-
-        // Variables
-        DataTable tabla = new DataTable();
 
         private void frm_Load(object sender, EventArgs e)
         {
@@ -246,15 +242,17 @@ namespace CRS_PRE
             }
         }
 
-        private void bt_can_cel_Click(object sender, EventArgs e){
-            this.DialogResult = DialogResult.Cancel;
-            cl_glo_frm.Cerrar(this);
-        }
-
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
+
+        // Evento Click: Button Cancelar
+        private void bt_can_cel_Click(object sender, EventArgs e){
+            this.DialogResult = DialogResult.Cancel;
+            cl_glo_frm.Cerrar(this);
+        }        
     }
 }

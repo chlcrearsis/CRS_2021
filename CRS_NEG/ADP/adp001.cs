@@ -28,7 +28,7 @@ namespace CRS_NEG
         /// <param name="cod_gru">Codigo del GRUPO de persona</param>
         /// <param name="nom_gru">nombre del GRUPO de persona</param>
         /// <returns></returns>
-        public void Fe_nue_gru(int cod_gru, string nom_gru)
+        public void Fe_nue_reg(int cod_gru, string nom_gru)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace CRS_NEG
         /// <param name="cod_gru">Codigo de actividad</param>
         /// <param name="nom_gru">nombre de actividad</param>
         /// <returns></returns>
-        public void Fe_edi_gru(int cod_gru, string nom_gru)
+        public void Fe_edi_tar(int cod_gru, string nom_gru)
         {
             try
             {
@@ -76,6 +76,25 @@ namespace CRS_NEG
                 cadena.AppendLine("UPDATE adp001 SET va_est_ado='" + est_ado + "' WHERE  va_cod_gru = " + cod_gru + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion "Elimina GRUPO DE PERSONA DEL SISTEMA"
+        /// </summary>
+        /// <param name="cod_gru">Codigo del GRUPO de persona</param>
+        /// <returns></returns>
+        public void Fe_eli_min(int cod_gru)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("DELETE adp001 WHERE va_cod_gru ='" + cod_gru + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
             {
@@ -143,6 +162,30 @@ namespace CRS_NEG
         }
 
         /// <summary>
+        /// Funcion "CONSULTA GRUPO DE PERSONA POR NOMBRE"
+        /// </summary>
+        /// <param name="nom_gru">Nombre Grupo Persona</param>
+        /// <param name="cod_gru">Código Grupo Persona</param>
+        /// <returns></returns>
+        public DataTable Fe_con_nom(string nom_gru, int cod_gru = 0)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_cod_gru, va_nom_gru, va_est_ado");
+                cadena.AppendLine("  FROM adp001");
+                cadena.AppendLine(" WHERE va_nom_gru = '" + nom_gru + "'");
+                if (cod_gru > 0)
+                    cadena.AppendLine(" AND va_cod_gru <> " + cod_gru + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Funcion consultar "LISTA GRUPO DE PERSONA"
         /// </summary>
         /// <param name="est_ado">est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
@@ -168,21 +211,21 @@ namespace CRS_NEG
                 throw ex;
             }
         }
-
+        
 
         /// <summary>
-        /// Funcion "Elimina GRUPO DE PERSONA DEL SISTEMA"
+        /// Funcion "OBTIENE ULTIMO ID. GRUPO PERSONA"
         /// </summary>
-        /// <param name="cod_gru">Codigo del GRUPO de persona</param>
         /// <returns></returns>
-        public void Fe_eli_gru(int cod_gru)
+        public DataTable Fe_obt_ide()
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" DELETE adp001 ");
-                cadena.AppendLine(" WHERE va_cod_gru ='" + cod_gru + "' ");
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
+                cadena.AppendLine("DECLARE @va_cod_gru INT ");
+                cadena.AppendLine(" SELECT @va_cod_gru = ISNULL(MAX(va_cod_gru), 0) FROM adp001");
+                cadena.AppendLine(" SELECT @va_cod_gru + 1 AS va_cod_gru");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
             {

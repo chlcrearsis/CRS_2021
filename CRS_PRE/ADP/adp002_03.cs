@@ -524,12 +524,7 @@ namespace CRS_PRE
             }
         }
 
-
-        private void Bt_can_cel_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
-        }
-
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {            
             DialogResult msg_res;
@@ -580,7 +575,7 @@ namespace CRS_PRE
 
 
                     // Registrar Persona
-                    o_adp002.Fe_edi_per(cod_per, nom_bre, ape_pat, ape_mat, raz_soc, nom_fac,
+                    o_adp002.Fe_edi_tar(cod_per, nom_bre, ape_pat, ape_mat, raz_soc, nom_fac,
                                         ruc_nit, sex_per, fec_nac, tip_doc, nro_doc, ext_doc,
                                         tel_per, cel_ula, tel_fij, dir_pri, dir_ent, ema_ail,
                                         cod_ven, cod_cob, tip_atr, ide_atr);
@@ -593,6 +588,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

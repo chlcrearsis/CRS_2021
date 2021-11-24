@@ -9,21 +9,18 @@ namespace CRS_PRE
 {
     public partial class adp015_01 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
-        
+        // Instancias        
         adp015 o_adp015 = new adp015();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Valida Registro Persona";
 
         public adp015_01()
         {
             InitializeComponent();
-        }
-
-      
+        }      
         private void frm_Load(object sender, EventArgs e)
         {
             // Desplega Datos
@@ -79,8 +76,8 @@ namespace CRS_PRE
                 dg_res_ult.Rows[e.RowIndex].Cells["va_des_col"].Style.ForeColor = Color.Black;
             }           
         }
-          
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -106,11 +103,10 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-
-        
+        }        
     }
 }

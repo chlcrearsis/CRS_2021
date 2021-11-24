@@ -25,7 +25,7 @@ namespace CRS_NEG
         /// <param name="nre_hom">Nombre Relación p/Hombre</param>
         /// <param name="nre_muj">Nombre Relación p/Mujer</param>
         /// <returns></returns>
-        public void Fe_nue_rel(int ide_rel, string nre_hom, string nre_muj)
+        public void Fe_nue_reg(int ide_rel, string nre_hom, string nre_muj)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace CRS_NEG
         /// <param name="nre_hom">Nombre Relación p/Hombre</param>
         /// <param name="nre_muj">Nombre Relación p/Mujer</param>
         /// <returns></returns>
-        public void Fe_edi_rel(int ide_rel, string nre_hom, string nre_muj)
+        public void Fe_edi_tar(int ide_rel, string nre_hom, string nre_muj)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="ide_rel">ID. RELACIÓN CONTACTO DE PERSONAs</param>
         /// <returns></returns>
-        public void Fe_eli_rel(int ide_rel)
+        public void Fe_eli_min(int ide_rel)
         {
             try
             {

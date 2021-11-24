@@ -256,6 +256,7 @@ namespace CRS_PRE
             Fi_obt_par(cb_sex_per.Text.Substring(0, 1));
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -296,7 +297,7 @@ namespace CRS_PRE
                         ext_doc = "";
 
                     // Edita Contacto Persona
-                    o_adp013.Fe_edi_con(cod_per, cod_con, nom_bre, ape_pat, ape_mat, nro_cid,
+                    o_adp013.Fe_edi_tar(cod_per, cod_con, nom_bre, ape_pat, ape_mat, nro_cid,
                                         ext_doc, sex_per, fec_nac, par_con, tel_per, cel_ula,
                                         ema_ail, dir_ubi, obs_con);
 
@@ -309,6 +310,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

@@ -22,7 +22,6 @@ namespace CRS_PRE
             InitializeComponent();
         }
 
-
         private void frm_Load(object sender, EventArgs e)
         {
             tb_ide_tip.Text = frm_dat.Rows[0]["va_ide_tip"].ToString().Trim();
@@ -56,6 +55,7 @@ namespace CRS_PRE
             return "";
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -71,7 +71,7 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Está seguro de eliminar la información?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK){
                     // Elimina Tipo de Atributo
-                    o_adp003.Fe_eli_tip(int.Parse(tb_ide_tip.Text));
+                    o_adp003.Fe_eli_min(int.Parse(tb_ide_tip.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
                     cl_glo_frm.Cerrar(this);
@@ -81,6 +81,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

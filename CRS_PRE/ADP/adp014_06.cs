@@ -11,10 +11,11 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp002 o_adp002 = new adp002();
         adp014 o_adp014 = new adp014();
-        adp004 o_adp004 = new adp004();        
+        adp004 o_adp004 = new adp004();  
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Elimina Tipo de Documento";
 
@@ -61,6 +62,7 @@ namespace CRS_PRE
             return "";
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -75,7 +77,7 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Está seguro de eliminar la información?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK){
                     // Elimina Tipo de Documento
-                    o_adp014.Fe_eli_tip(tb_ide_tip.Text.Trim());
+                    o_adp014.Fe_eli_min(tb_ide_tip.Text.Trim());
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(tb_ide_tip.Text.Trim());
                     cl_glo_frm.Cerrar(this);
@@ -85,6 +87,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

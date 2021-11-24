@@ -11,9 +11,10 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp014 o_adp014 = new adp014();
-        adp004 o_adp004 = new adp004();        
+        adp004 o_adp004 = new adp004(); 
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Edita Tipo de Documento";
 
@@ -62,9 +63,9 @@ namespace CRS_PRE
             }
 
             return "";
-        }             
+        }
 
-        // Evento Click: Aceptar
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e){
             DialogResult msg_res;
                   string ext_doc;
@@ -86,7 +87,7 @@ namespace CRS_PRE
                         ext_doc = "N";
                     }
                     // Edita Tipo de Documento
-                    o_adp014.Fe_edi_tip(tb_ide_tip.Text.Trim(), tb_des_tip.Text.Trim(), ext_doc);
+                    o_adp014.Fe_edi_tar(tb_ide_tip.Text.Trim(), tb_des_tip.Text.Trim(), ext_doc);
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(tb_ide_tip.Text.Trim());
                     cl_glo_frm.Cerrar(this);
@@ -97,10 +98,9 @@ namespace CRS_PRE
             }            
         }
 
-        // Evento Click: Cancelar
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e){
             cl_glo_frm.Cerrar(this);
-        }
-       
+        }       
     }
 }

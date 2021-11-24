@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
-            this.mn_cre_ar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +43,7 @@
             this.mn_ima_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_otr_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_per = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_asi_emp = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_list_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +93,7 @@
             // 
             this.m_frm_hja.Dock = System.Windows.Forms.DockStyle.None;
             this.m_frm_hja.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_cre_ar,
+            this.mn_nue_reg,
             this.mn_edi_tar,
             this.mn_con_sul,
             this.mn_ima_per,
@@ -101,16 +102,16 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(420, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(540, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
-            // mn_cre_ar
+            // mn_nue_reg
             // 
-            this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
-            this.mn_cre_ar.Text = "&Crea";
-            this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
+            this.mn_nue_reg.Name = "mn_nue_reg";
+            this.mn_nue_reg.Size = new System.Drawing.Size(43, 20);
+            this.mn_nue_reg.Text = "&Crea";
+            this.mn_nue_reg.Click += new System.EventHandler(this.mn_nue_reg_Click);
             // 
             // mn_edi_tar
             // 
@@ -129,14 +130,14 @@
             this.mn_mod_ifi.Name = "mn_mod_ifi";
             this.mn_mod_ifi.Size = new System.Drawing.Size(206, 22);
             this.mn_mod_ifi.Text = "&Modifica";
-            this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
+            this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
             this.mn_hab_des.Size = new System.Drawing.Size(206, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
-            this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
+            this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_act_rut
             // 
@@ -157,14 +158,14 @@
             this.mn_eli_min.Name = "mn_eli_min";
             this.mn_eli_min.Size = new System.Drawing.Size(206, 22);
             this.mn_eli_min.Text = "E&limina";
-            this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
+            this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
             this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
-            this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
+            this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
             // mn_ima_per
             // 
@@ -176,7 +177,8 @@
             // mn_otr_tar
             // 
             this.mn_otr_tar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_con_per});
+            this.mn_con_per,
+            this.mn_asi_emp});
             this.mn_otr_tar.Name = "mn_otr_tar";
             this.mn_otr_tar.Size = new System.Drawing.Size(82, 20);
             this.mn_otr_tar.Text = "&Otras Tareas";
@@ -184,9 +186,16 @@
             // mn_con_per
             // 
             this.mn_con_per.Name = "mn_con_per";
-            this.mn_con_per.Size = new System.Drawing.Size(128, 22);
+            this.mn_con_per.Size = new System.Drawing.Size(200, 22);
             this.mn_con_per.Text = "Con&tactos";
             this.mn_con_per.Click += new System.EventHandler(this.mn_con_per_Click);
+            // 
+            // mn_asi_emp
+            // 
+            this.mn_asi_emp.Name = "mn_asi_emp";
+            this.mn_asi_emp.Size = new System.Drawing.Size(200, 22);
+            this.mn_asi_emp.Text = "Asig. Grupo Empresarial";
+            this.mn_asi_emp.Click += new System.EventHandler(this.mn_asi_emp_Click);
             // 
             // mn_rep_ort
             // 
@@ -208,7 +217,7 @@
             this.mn_cer_rar.Name = "mn_cer_rar";
             this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
-            this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
+            this.mn_cer_rar.Click += new System.EventHandler(this.mn_cer_rar_Click);
             // 
             // groupBox1
             // 
@@ -644,7 +653,7 @@
         private System.Windows.Forms.DataGridView dg_res_ult;
         private System.Windows.Forms.Button bt_can_cel;
         public System.Windows.Forms.MenuStrip m_frm_hja;
-        private System.Windows.Forms.ToolStripMenuItem mn_cre_ar;
+        private System.Windows.Forms.ToolStripMenuItem mn_nue_reg;
         private System.Windows.Forms.ToolStripMenuItem mn_edi_tar;
         private System.Windows.Forms.ToolStripMenuItem mn_rep_ort;
         private System.Windows.Forms.ToolStripMenuItem mn_cer_rar;
@@ -684,5 +693,6 @@
         private System.Windows.Forms.ToolStripMenuItem mn_ima_per;
         private System.Windows.Forms.ToolStripMenuItem mn_otr_tar;
         private System.Windows.Forms.ToolStripMenuItem mn_con_per;
+        private System.Windows.Forms.ToolStripMenuItem mn_asi_emp;
     }
 }

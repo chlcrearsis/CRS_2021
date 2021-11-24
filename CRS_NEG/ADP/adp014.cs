@@ -27,7 +27,7 @@ namespace CRS_NEG
         /// <param name="ide_tip">ID. Tipo de Documento</param>
         /// <param name="nom_tip">Nombre Tipo de Documento</param>
         /// <returns></returns>
-        public void Fe_nue_tip(string ide_tip, string nom_tip, string ext_doc)
+        public void Fe_nue_reg(string ide_tip, string nom_tip, string ext_doc)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace CRS_NEG
         /// <param name="ide_tip">ID. Tipo de Documento</param>
         /// <param name="nom_tip">Nombre Tipo de Documento</param>
         /// <returns></returns>
-        public void Fe_edi_tip(string ide_tip, string des_tip, string ext_doc)
+        public void Fe_edi_tar(string ide_tip, string des_tip, string ext_doc)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="ide_tip">ID. Tipo de Documento</param>
         /// <returns></returns>
-        public void Fe_eli_tip(string ide_tip)
+        public void Fe_eli_min(string ide_tip)
         {
             try
             {

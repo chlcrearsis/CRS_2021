@@ -6,17 +6,18 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class adp001_03 : Form
+    public partial class adp001_06 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
         //Instancias
         adp001 o_adp001 = new adp001();
+        adp002 o_adp002 = new adp002();
         DataTable Tabla = new DataTable();
-        string Titulo = "Edita Grupo Persona";
+        string Titulo = "Elimina Grupo de Persona";
 
-        public adp001_03()
+        public adp001_06()
         {
             InitializeComponent();
         }
@@ -28,7 +29,7 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_cod_gru.Text = frm_dat.Rows[0]["va_cod_gru"].ToString().Trim();
-            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString().Trim();                        
+            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString().Trim();
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
@@ -55,29 +56,24 @@ namespace CRS_PRE
             if (cod_gru == 0){
                 return "El Código Grupo Persona NO es valido";
             }
-
-            // Valida que el campo Nombre del Grupo Persona NO este vacio
-            if (tb_nom_gru.Text.Trim() == ""){
-                return "DEBE proporcionar el Nombre para el Grupo Persona";
-            }
-
-            // Valida que el campo Nombre del Grupo Persona NO este vacio
-            if (tb_est_ado.Text.Trim() == "Deshabilitado"){
-                return "El Grupo de Persona se encuentra Deshabilitado";
-            }
-
-            // Verifica SI el grupo de persona se encuentra registrado
+                       
+            // Verifica SI el grupo persona se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_adp001.Fe_con_gru(int.Parse(tb_cod_gru.Text));
-            if (Tabla.Rows.Count == 0){
+            if (Tabla.Rows.Count > 0){
                 return "El Grupo Persona NO se encuentra registrado en el Sistema";
             }
 
-            // Verifica SI existe otro registro con el mismo nombre
+            // Verifica SI el estado se encuentra Deshabilitado
+            if (tb_est_ado.Text == "Deshabilitado") {
+                return "El Grupo Persona se encuentra Deshabilitado";
+            }
+
+            // Verifica SI el grupo persona se encuentra asignado a registro de Persona
             Tabla = new DataTable();
-            Tabla = o_adp001.Fe_con_nom(tb_nom_gru.Text.Trim(), int.Parse(tb_cod_gru.Text));
+            Tabla = o_adp002.Fe_con_gru(int.Parse(tb_cod_gru.Text));
             if (Tabla.Rows.Count > 0){
-                return "YA existe otra Grupo Persona con el mismo nombre";
+                return "Existen '" + Tabla.Rows.Count + "' registro en Persona que dependen del Grupo de Persona";
             }
 
             return "";
@@ -92,23 +88,19 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "")
-                {
+                if (msg_val != ""){
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (msg_res == DialogResult.OK)
-                {
-                    // Edita Tipo de Atributo
-                    o_adp001.Fe_edi_tar(int.Parse(tb_cod_gru.Text), tb_nom_gru.Text);
+                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg_res == DialogResult.OK){
+                    // Elimina Tipo de Atributo
+                    o_adp001.Fe_eli_min(int.Parse(tb_cod_gru.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_cod_gru.Text));
                     cl_glo_frm.Cerrar(this);
                 }
-            }
-            catch (Exception ex)
-            {
+            }catch (Exception ex){
                 MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

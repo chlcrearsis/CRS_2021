@@ -8,13 +8,12 @@ namespace CRS_PRE
 {
     public partial class adp017_04 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-
+        // Instancias
         adp017 o_adp017 = new adp017();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Habilita/Deshabilita Relación Contacto de Persona";
 
@@ -73,7 +72,7 @@ namespace CRS_PRE
             
 
             return "";
-        }       
+        }
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)

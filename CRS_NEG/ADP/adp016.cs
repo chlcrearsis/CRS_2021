@@ -27,7 +27,7 @@ namespace CRS_NEG
         /// <param name="cod_gru">Código de Grupo de Persona</param>
         /// <param name="cod_lib">Código de la Libreta</param>
         /// <returns></returns>
-        public void Fe_reg_ins(int cod_gru, int cod_lib)
+        public void Fe_nue_reg(int cod_gru, int cod_lib)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace CRS_NEG
         /// <param name="cod_gru">Código de Grupo de Persona</param>
         /// <param name="cod_lib">Código de la Libreta</param>
         /// <returns></returns>
-        public void Fe_eli_ins(int cod_gru, int cod_lib)
+        public void Fe_eli_min(int cod_gru, int cod_lib)
         {
             try
             {

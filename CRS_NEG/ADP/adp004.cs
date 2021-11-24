@@ -28,7 +28,7 @@ namespace CRS_NEG
         /// <param name="ide_atr">ID. Atributo</param>
         /// <param name="nom_atr">Nombre Atributo</param>
         /// <returns></returns>
-        public void Fe_nue_atr(int ide_tip, int ide_atr, string nom_atr)
+        public void Fe_nue_reg(int ide_tip, int ide_atr, string nom_atr)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace CRS_NEG
         /// <param name="ide_atr">ID. Atributo</param>
         /// <param name="nom_atr">Nombre Atributo</param>
         /// <returns></returns>
-        public void Fe_edi_atr(int ide_tip, int ide_atr, string nom_atr)
+        public void Fe_edi_tar(int ide_tip, int ide_atr, string nom_atr)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace CRS_NEG
         /// <param name="ide_tip">ID. Tipo de Atributo</param>
         /// <param name="ide_atr">ID. Atributo</param>
         /// <returns></returns>
-        public void Fe_eli_atr(int ide_tip, int ide_atr)
+        public void Fe_eli_min(int ide_tip, int ide_atr)
         {
             try
             {

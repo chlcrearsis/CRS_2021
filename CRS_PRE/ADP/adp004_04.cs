@@ -11,7 +11,8 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+
+        // Instancias
         adp003 o_adp003 = new adp003();
         adp004 o_adp004 = new adp004();
         DataTable Tabla = new DataTable();
@@ -21,7 +22,6 @@ namespace CRS_PRE
         {
             InitializeComponent();
         }
-
 
         private void frm_Load(object sender, EventArgs e)
         {
@@ -58,8 +58,8 @@ namespace CRS_PRE
             return "";
         }
 
-
-        private void bt_ace_pta_Click_1(object sender, EventArgs e)
+        // Evento Click: Button Aceptar
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
 
@@ -97,6 +97,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             // Cierra la Ventana

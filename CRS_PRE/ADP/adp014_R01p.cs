@@ -8,21 +8,13 @@ namespace CRS_PRE
 {
     public partial class adp014_R01p : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
-        General general = new General();
-        adp014 o_adp014 = new adp014();
-        adp004 o_adp004 = new adp004();
-        DataTable Tabla = new DataTable();
-
 
         public adp014_R01p()
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {     
@@ -42,7 +34,8 @@ namespace CRS_PRE
                 return "Los datos proporcionados NO pasaron el proceso de validación.";
             }            
         }
-         
+
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             // funcion para validar datos
@@ -60,6 +53,7 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);*/
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             // Cierra Formulario
