@@ -9,7 +9,8 @@ namespace CRS_PRE
     {
         public dynamic frm_pad;
         public int frm_tip;
-        public DataTable tab_dat;
+        public DataTable frm_dat;
+        //public DataTable tab_dat;
         public dynamic frm_MDI;
 
         public ecp003_01()
@@ -18,7 +19,8 @@ namespace CRS_PRE
         }
 
         // instancia
-        
+
+        adp002 o_adp002 = new adp002();
         ecp003 o_ecp003 = new ecp003();
 
 
@@ -33,14 +35,37 @@ namespace CRS_PRE
         #region  [Funciones Internas]
         private void fi_ini_frm()
         {
-            
-            tb_sel_ecc.Text = "";
-           
+            tb_sel_ecc.Text = frm_dat.Rows[0]["va_cod_per"].ToString();
+            Fi_obt_per();
             cb_est_ado.SelectedIndex = 0;
-            cb_tip_lib.SelectedIndex = 0;
-
-            fi_bus_car();
+            //fi_bus_car();
         }
+        private void Fi_obt_per()
+        {
+            if (tb_sel_ecc.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
+                //tb_cod_per.Focus();
+            }
+
+            if (cl_glo_bal.IsNumeric(tb_sel_ecc.Text) == false)
+            {
+                tb_raz_soc.Text = "No Existe";
+                tb_nom_per.Text = "";
+            }
+            tabla = o_adp002.Fe_con_per(int.Parse(tb_sel_ecc.Text));
+            if (tabla.Rows.Count == 0)
+            {
+                tb_raz_soc.Text = "No Existe";
+            }
+            else
+            {
+                tb_raz_soc.Text = tabla.Rows[0]["va_raz_soc"].ToString();
+                tb_nom_per.Text = tabla.Rows[0]["va_ape_pat"].ToString() + " " + tabla.Rows[0]["va_ape_mat"].ToString() + ", " + tabla.Rows[0]["va_nom_bre"].ToString();
+
+            }
+        }
+
 
         /// <summary>
         /// Funcion interna buscar
@@ -51,7 +76,6 @@ namespace CRS_PRE
             dg_res_ult.Rows.Clear();
             //string ar_tex_bus = tb_tex_bus.Text;
             string ar_est_ado = "T";
-            int ar_tip_lib = 0;
 
             if (cb_est_ado.SelectedIndex == 0)
                 ar_est_ado = "T";
@@ -60,10 +84,9 @@ namespace CRS_PRE
             if (cb_est_ado.SelectedIndex == 2)
                 ar_est_ado = "N";
 
-            ar_tip_lib = cb_tip_lib.SelectedIndex ;
-           
-
             tabla = o_ecp003.Fe_lis_tar(int.Parse(tb_sel_ecc.Text), ar_est_ado);
+
+             
 
             if (tabla.Rows.Count > 0)
             {
@@ -72,6 +95,9 @@ namespace CRS_PRE
                     dg_res_ult.Rows.Add();
                     dg_res_ult.Rows[i].Cells["va_cod_lib"].Value = tabla.Rows[i]["va_cod_lib"].ToString();
                     dg_res_ult.Rows[i].Cells["va_des_lib"].Value = tabla.Rows[i]["va_des_lib"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_mto_lim"].Value = tabla.Rows[i]["va_mto_lim"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_sal_act"].Value = tabla.Rows[i]["va_sal_act"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_fec_exp"].Value = tabla.Rows[i]["va_fec_exp"].ToString();
 
                     if (tabla.Rows[i]["va_tip_lib"].ToString() == "1")
                         dg_res_ult.Rows[i].Cells["va_tip_lib"].Value = "Cta. x Cob.";
@@ -96,8 +122,7 @@ namespace CRS_PRE
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 
                 }
-                tb_sel_ecc.Text = tabla.Rows[0]["va_cod_lib"].ToString();
-                lb_des_plg.Text = tabla.Rows[0]["va_des_lib"].ToString();
+                //tb_sel_ecc.Text = tabla.Rows[0]["va_cod_lib"].ToString();
 
             }
 
@@ -199,8 +224,8 @@ namespace CRS_PRE
 
             if(cl_glo_bal.IsDecimal(tb_sel_ecc.Text) ==false)
                 res_fun = "la suscripción no es valido.";
-            
-            tab_dat = o_ecp003.Fe_con_sus(0, int.Parse(tb_sel_ecc.Text));
+
+            frm_dat = o_ecp003.Fe_con_sus(0, int.Parse(tb_sel_ecc.Text));
             if (tabla.Rows.Count == 0)
             {
                 res_fun = "la suscripción no se encuentra registrado";
@@ -236,11 +261,10 @@ namespace CRS_PRE
             fi_fil_act();
         }
 
-        private void Bt_bus_car_Click(object sender, EventArgs e)
+        private void cb_est_ado_SelectedIndexChanged(object sender, EventArgs e)
         {
             fi_bus_car();
         }
-
 
         /// <summary>
         /// Funcion Externa que actualiza la ventana con los datos que tenga, despues de realizar alguna operacion.
@@ -300,7 +324,7 @@ namespace CRS_PRE
                 return;
 
             ecp001_04 frm = new ecp001_04();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, frm_dat);
         }
         private void mn_eli_min_Click(object sender, EventArgs e)
         {
@@ -309,7 +333,7 @@ namespace CRS_PRE
                 return;
 
             ecp001_06 frm = new ecp001_06();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, frm_dat);
         }
         private void mn_nue_ccp_Click(object sender, EventArgs e)
         {
@@ -346,6 +370,6 @@ namespace CRS_PRE
             }
         }
 
-       
+      
     }
 }

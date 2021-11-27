@@ -41,6 +41,7 @@
             this.mn_eli_min = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_ima_per = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_sus_cri = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_otr_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,12 +97,13 @@
             this.mn_edi_tar,
             this.mn_con_sul,
             this.mn_ima_per,
+            this.mn_sus_cri,
             this.mn_otr_tar,
             this.mn_rep_ort,
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(420, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(595, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -173,6 +175,13 @@
             this.mn_ima_per.Text = "&Imagenes";
             this.mn_ima_per.Click += new System.EventHandler(this.mn_ima_per_Click);
             // 
+            // mn_sus_cri
+            // 
+            this.mn_sus_cri.Name = "mn_sus_cri";
+            this.mn_sus_cri.Size = new System.Drawing.Size(70, 20);
+            this.mn_sus_cri.Text = "&Inscripción";
+            this.mn_sus_cri.Click += new System.EventHandler(this.mn_ins_lib_Click);
+            // 
             // mn_otr_tar
             // 
             this.mn_otr_tar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -184,7 +193,7 @@
             // mn_con_per
             // 
             this.mn_con_per.Name = "mn_con_per";
-            this.mn_con_per.Size = new System.Drawing.Size(128, 22);
+            this.mn_con_per.Size = new System.Drawing.Size(123, 22);
             this.mn_con_per.Text = "Con&tactos";
             this.mn_con_per.Click += new System.EventHandler(this.mn_con_per_Click);
             // 
@@ -684,5 +693,6 @@
         private System.Windows.Forms.ToolStripMenuItem mn_ima_per;
         private System.Windows.Forms.ToolStripMenuItem mn_otr_tar;
         private System.Windows.Forms.ToolStripMenuItem mn_con_per;
+        private System.Windows.Forms.ToolStripMenuItem mn_sus_cri;
     }
 }

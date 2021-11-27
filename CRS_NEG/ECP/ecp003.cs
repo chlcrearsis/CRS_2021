@@ -167,7 +167,7 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Función: "FILTRA SUSCRIPCION LIBRETA"
+        /// Función: "LISTA SUSCRIPCION LIBRETA"
         /// </summary>
         /// <param name="cri_bus">Criterio de Busqueda</param>
         /// <param name="prm_bus">Parametros de Busqueda (1=va_cod_lib; 2=va_des_lib)</param>
@@ -178,12 +178,9 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine(" select * from ecp003 ");
-                cadena.AppendLine(" WHERE va_cod_per =  "+ cod_per);
-                cadena.AppendLine(" AND va_cod_per =  " + cod_per);
-                if (est_ado != "T")
-                    cadena.AppendLine(" AND va_est_ado =  " + cod_per);
-
+                cadena.AppendLine(" EXEC ecp003_01a_p01 ");
+                cadena.AppendLine(cod_per + ", '" + est_ado + "'");
+               
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

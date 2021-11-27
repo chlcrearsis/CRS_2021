@@ -1380,6 +1380,12 @@
     <Compile Include="CTB\ctb007_02.Designer.cs">
       <DependentUpon>ctb007_02.cs</DependentUpon>
     </Compile>
+    <Compile Include="ECP\ecp003_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ECP\ecp003_02.Designer.cs">
+      <DependentUpon>ecp003_02.cs</DependentUpon>
+    </Compile>
     <Compile Include="ECP\ecp003_01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2896,6 +2902,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CTB\ctb007_02.resx">
       <DependentUpon>ctb007_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ECP\ecp003_02.resx">
+      <DependentUpon>ecp003_02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ECP\ecp003_01.resx">
       <DependentUpon>ecp003_01.cs</DependentUpon>

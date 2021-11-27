@@ -388,8 +388,11 @@ namespace CRS_PRE
 
         private void Mn_cre_ar_Click(object sender, EventArgs e)
         {
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
+                return;
+
             cmr003_02 frm = new cmr003_02();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         private void Mn_mod_ifi_Click(object sender, EventArgs e)

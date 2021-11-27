@@ -472,7 +472,16 @@ namespace CRS_PRE
             adp013_01 frm = new adp013_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
+      
+        private void mn_ins_lib_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos
+            if (fi_ver_dat(tb_cod_per.Text) == false)
+                return;
 
+            ecp003_01 frm = new ecp003_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
+        }
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -499,6 +508,8 @@ namespace CRS_PRE
         private void dg_res_ult_Enter(object sender, EventArgs e){
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
-        }       
+        }
+
+       
     }
 }

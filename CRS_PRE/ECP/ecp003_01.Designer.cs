@@ -36,9 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cb_tip_lib = new System.Windows.Forms.ComboBox();
-            this.lb_des_plg = new System.Windows.Forms.Label();
-            this.bt_bus_car = new System.Windows.Forms.Button();
+            this.tb_nom_per = new System.Windows.Forms.TextBox();
+            this.tb_raz_soc = new System.Windows.Forms.TextBox();
             this.cb_est_ado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_sel_ecc = new System.Windows.Forms.TextBox();
@@ -56,16 +55,18 @@
             this.mn_list_mod = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_cod_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_des_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_tip_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_mon_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.va_cod_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_des_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_mto_lim = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_sal_act = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_tip_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_mon_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_fec_exp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_frm_hja.SuspendLayout();
@@ -75,10 +76,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.cb_tip_lib);
-            this.groupBox1.Controls.Add(this.lb_des_plg);
-            this.groupBox1.Controls.Add(this.bt_bus_car);
+            this.groupBox1.Controls.Add(this.tb_nom_per);
+            this.groupBox1.Controls.Add(this.tb_raz_soc);
             this.groupBox1.Controls.Add(this.cb_est_ado);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tb_sel_ecc);
@@ -88,41 +87,27 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
-            // cb_tip_lib
+            // tb_nom_per
             // 
-            this.cb_tip_lib.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_tip_lib.FormattingEnabled = true;
-            this.cb_tip_lib.Items.AddRange(new object[] {
-            "Todos",
-            "Ctas. x Cob.",
-            "Ctas. x Pag."});
-            this.cb_tip_lib.Location = new System.Drawing.Point(428, 9);
-            this.cb_tip_lib.Name = "cb_tip_lib";
-            this.cb_tip_lib.Size = new System.Drawing.Size(108, 21);
-            this.cb_tip_lib.TabIndex = 32;
+            this.tb_nom_per.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nom_per.Location = new System.Drawing.Point(61, 33);
+            this.tb_nom_per.MaxLength = 3;
+            this.tb_nom_per.Name = "tb_nom_per";
+            this.tb_nom_per.ReadOnly = true;
+            this.tb_nom_per.Size = new System.Drawing.Size(353, 20);
+            this.tb_nom_per.TabIndex = 34;
+            this.tb_nom_per.TabStop = false;
             // 
-            // lb_des_plg
+            // tb_raz_soc
             // 
-            this.lb_des_plg.AutoSize = true;
-            this.lb_des_plg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_des_plg.Location = new System.Drawing.Point(112, 14);
-            this.lb_des_plg.Name = "lb_des_plg";
-            this.lb_des_plg.Size = new System.Drawing.Size(10, 13);
-            this.lb_des_plg.TabIndex = 31;
-            this.lb_des_plg.Text = ".";
-            // 
-            // bt_bus_car
-            // 
-            this.bt_bus_car.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_car.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_bus_car.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_car.Location = new System.Drawing.Point(461, 34);
-            this.bt_bus_car.Name = "bt_bus_car";
-            this.bt_bus_car.Size = new System.Drawing.Size(75, 23);
-            this.bt_bus_car.TabIndex = 30;
-            this.bt_bus_car.Text = "&Buscar";
-            this.bt_bus_car.UseVisualStyleBackColor = false;
-            this.bt_bus_car.Click += new System.EventHandler(this.Bt_bus_car_Click);
+            this.tb_raz_soc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_raz_soc.Location = new System.Drawing.Point(116, 9);
+            this.tb_raz_soc.MaxLength = 3;
+            this.tb_raz_soc.Name = "tb_raz_soc";
+            this.tb_raz_soc.ReadOnly = true;
+            this.tb_raz_soc.Size = new System.Drawing.Size(298, 20);
+            this.tb_raz_soc.TabIndex = 33;
+            this.tb_raz_soc.TabStop = false;
             // 
             // cb_est_ado
             // 
@@ -132,10 +117,11 @@
             "Todos",
             "Habilitado",
             "Deshabilitado"});
-            this.cb_est_ado.Location = new System.Drawing.Point(349, 35);
+            this.cb_est_ado.Location = new System.Drawing.Point(428, 10);
             this.cb_est_ado.Name = "cb_est_ado";
             this.cb_est_ado.Size = new System.Drawing.Size(108, 21);
             this.cb_est_ado.TabIndex = 20;
+            this.cb_est_ado.SelectedIndexChanged += new System.EventHandler(this.cb_est_ado_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -153,8 +139,10 @@
             this.tb_sel_ecc.Location = new System.Drawing.Point(61, 9);
             this.tb_sel_ecc.MaxLength = 3;
             this.tb_sel_ecc.Name = "tb_sel_ecc";
+            this.tb_sel_ecc.ReadOnly = true;
             this.tb_sel_ecc.Size = new System.Drawing.Size(49, 20);
             this.tb_sel_ecc.TabIndex = 10;
+            this.tb_sel_ecc.TabStop = false;
             this.tb_sel_ecc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             this.tb_sel_ecc.Validated += new System.EventHandler(this.Tb_sel_bus_Validated);
             // 
@@ -285,8 +273,11 @@
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_cod_lib,
             this.va_des_lib,
+            this.va_mto_lim,
+            this.va_sal_act,
             this.va_tip_lib,
             this.va_mon_lib,
+            this.va_fec_exp,
             this.va_est_ado});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -307,46 +298,6 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
-            // 
-            // va_cod_lib
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.va_cod_lib.DefaultCellStyle = dataGridViewCellStyle2;
-            this.va_cod_lib.HeaderText = "Codigo";
-            this.va_cod_lib.Name = "va_cod_lib";
-            this.va_cod_lib.Width = 50;
-            // 
-            // va_des_lib
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.va_des_lib.DefaultCellStyle = dataGridViewCellStyle3;
-            this.va_des_lib.HeaderText = "Descripción";
-            this.va_des_lib.Name = "va_des_lib";
-            this.va_des_lib.Width = 235;
-            // 
-            // va_tip_lib
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_tip_lib.DefaultCellStyle = dataGridViewCellStyle4;
-            this.va_tip_lib.HeaderText = "Tipo";
-            this.va_tip_lib.Name = "va_tip_lib";
-            this.va_tip_lib.Width = 110;
-            // 
-            // va_mon_lib
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_mon_lib.DefaultCellStyle = dataGridViewCellStyle5;
-            this.va_mon_lib.HeaderText = "Moneda";
-            this.va_mon_lib.Name = "va_mon_lib";
-            this.va_mon_lib.Width = 55;
-            // 
-            // va_est_ado
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle6;
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.Width = 75;
             // 
             // gb_ctr_btn
             // 
@@ -390,14 +341,61 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
             // 
-            // textBox1
+            // va_cod_lib
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(61, 36);
-            this.textBox1.MaxLength = 3;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(49, 20);
-            this.textBox1.TabIndex = 33;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.va_cod_lib.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_cod_lib.HeaderText = "Codigo";
+            this.va_cod_lib.Name = "va_cod_lib";
+            this.va_cod_lib.Width = 50;
+            // 
+            // va_des_lib
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_des_lib.DefaultCellStyle = dataGridViewCellStyle3;
+            this.va_des_lib.HeaderText = "Descripción";
+            this.va_des_lib.Name = "va_des_lib";
+            this.va_des_lib.Width = 235;
+            // 
+            // va_mto_lim
+            // 
+            this.va_mto_lim.HeaderText = "Monto Limite";
+            this.va_mto_lim.Name = "va_mto_lim";
+            // 
+            // va_sal_act
+            // 
+            this.va_sal_act.HeaderText = "Saldo";
+            this.va_sal_act.Name = "va_sal_act";
+            // 
+            // va_tip_lib
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_tip_lib.DefaultCellStyle = dataGridViewCellStyle4;
+            this.va_tip_lib.HeaderText = "Tipo";
+            this.va_tip_lib.Name = "va_tip_lib";
+            this.va_tip_lib.Width = 110;
+            // 
+            // va_mon_lib
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_mon_lib.DefaultCellStyle = dataGridViewCellStyle5;
+            this.va_mon_lib.HeaderText = "Moneda";
+            this.va_mon_lib.Name = "va_mon_lib";
+            this.va_mon_lib.Width = 55;
+            // 
+            // va_fec_exp
+            // 
+            this.va_fec_exp.HeaderText = "Expiración";
+            this.va_fec_exp.Name = "va_fec_exp";
+            this.va_fec_exp.Width = 80;
+            // 
+            // va_est_ado
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle6;
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.Width = 75;
             // 
             // ecp003_01
             // 
@@ -432,7 +430,6 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button bt_bus_car;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dg_res_ult;
         private System.Windows.Forms.Button bt_can_cel;
@@ -441,7 +438,6 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox tb_sel_ecc;
         private System.Windows.Forms.ComboBox cb_est_ado;
-        private System.Windows.Forms.Label lb_des_plg;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         public System.Windows.Forms.MenuStrip m_frm_hja;
         private System.Windows.Forms.ToolStripMenuItem mn_cre_ar;
@@ -453,14 +449,17 @@
         private System.Windows.Forms.ToolStripMenuItem mn_eli_min;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         private System.Windows.Forms.ToolStripMenuItem mn_hab_des;
-        private System.Windows.Forms.ComboBox cb_tip_lib;
         private System.Windows.Forms.ToolStripMenuItem mn_nue_ccp;
         private System.Windows.Forms.ToolStripMenuItem mn_nue_tes;
+        public System.Windows.Forms.TextBox tb_raz_soc;
+        public System.Windows.Forms.TextBox tb_nom_per;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_lib;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_des_lib;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_mto_lim;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_sal_act;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_tip_lib;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_mon_lib;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_fec_exp;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
-        public System.Windows.Forms.TextBox textBox1;
     }
 }
