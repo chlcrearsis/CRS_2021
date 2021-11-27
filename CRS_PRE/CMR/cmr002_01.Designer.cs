@@ -43,7 +43,6 @@
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_list_doc = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
-            this.creaPreciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bt_bus_car = new System.Windows.Forms.Button();
             this.cb_est_bus = new System.Windows.Forms.ComboBox();
@@ -78,11 +77,10 @@
             this.mn_edi_tar,
             this.mn_con_sul,
             this.mn_rep_ort,
-            this.mn_cer_rar,
-            this.creaPreciosToolStripMenuItem});
+            this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(336, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(377, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -176,12 +174,6 @@
             this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
-            // 
-            // creaPreciosToolStripMenuItem
-            // 
-            this.creaPreciosToolStripMenuItem.Name = "creaPreciosToolStripMenuItem";
-            this.creaPreciosToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.creaPreciosToolStripMenuItem.Text = "Crea precios";
             // 
             // groupBox1
             // 
@@ -472,7 +464,6 @@
         private System.Windows.Forms.ToolStripMenuItem consultaPrecioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultaPrecioEnvariasListasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mn_cre_ar;
-        private System.Windows.Forms.ToolStripMenuItem creaPreciosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mn_cre_pre;
         private System.Windows.Forms.ToolStripMenuItem mn_cre_var;
     }

@@ -222,18 +222,24 @@ namespace CRS_PRE.CMR
         /// <summary>
         /// Método para verificar concurrencia de datos para crear
         /// </summary>
-        public bool fi_ver_cre(int sel_ecc)
+        public bool fi_ver_cre(string sel_ecc)
         {
             string res_fun = "";
-            tab_dat = o_cmr001.Fe_con_lis(sel_ecc);
+
+            // Verifica si hay una lista seleccionada
+            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
+            {
+                res_fun = "Debe de seleccionar al menos una lista de precio";
+                MessageBox.Show(res_fun, "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_sel_bus.Focus();
+                return false;
+            }
+            
+            tab_dat = o_cmr001.Fe_con_lis(int.Parse(sel_ecc));
             if (tabla.Rows.Count == 0)
             {
                 res_fun = "La Lista no se encuentra registrada";
-            }
-
-            if (res_fun != "")
-            {
-                MessageBox.Show(res_fun, "Edita documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -245,44 +251,64 @@ namespace CRS_PRE.CMR
         /// <summary>
         /// Método para verificar concurrencia de datos para editar
         /// </summary>
-        public bool fi_ver_edi(int sel_ecc)
+        public bool fi_ver_edi(string sel_ecc)
         {
             string res_fun = "";
-            tab_dat = o_cmr001.Fe_con_lis(sel_ecc);
-            if (tab_dat.Rows.Count == 0)
-            {
-                res_fun = "Lista de precio a editar, no se encuentra registrada";
-            }
 
-            if (res_fun != "")
+            // Verifica si hay una lista seleccionada
+            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
             {
-                MessageBox.Show(res_fun, "Edita Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                res_fun = "Debe de seleccionar al menos una lista de precio";
+                MessageBox.Show(res_fun, "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
 
-
-            return true;
-        }
-        public bool fi_ver_hds(int sel_ecc)
-        {
-          
-            tab_dat = o_cmr001.Fe_con_lis(sel_ecc);
-            if (tab_dat.Rows.Count == 0)
+            tab_dat = o_cmr001.Fe_con_lis(int.Parse(sel_ecc));
+            if (tabla.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                res_fun = "La Lista no se encuentra registrada";
+                MessageBox.Show(res_fun, "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
 
             return true;
         }
-        public bool fi_ver_con(int sel_ecc)
+        public bool fi_ver_hds(string sel_ecc)
         {
-            tab_dat = o_cmr001.Fe_con_lis(sel_ecc);
+           // Verifica si hay una lista seleccionada
+            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
+            {
+                MessageBox.Show("Debe de seleccionar al menos una lista de precio", "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_sel_bus.Focus();
+                return false;
+            }
+
+            tab_dat = o_cmr001.Fe_con_lis(int.Parse(sel_ecc));
             if (tab_dat.Rows.Count == 0)
             {
-                MessageBox.Show("EL documento ya no se encuentra registrado en la base de datos.", "Consulta documento", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe de seleccionar al menos una lista de precio", "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_sel_bus.Focus();
+                return false;
+            }
+
+            return true;
+        }
+        public bool fi_ver_con(string sel_ecc)
+        {
+            // Verifica si hay una lista seleccionada
+            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
+            {
+                MessageBox.Show("Debe de seleccionar al menos una lista de precio", "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_sel_bus.Focus();
+                return false;
+            }
+
+            tab_dat = o_cmr001.Fe_con_lis(int.Parse(sel_ecc));
+            if (tab_dat.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe de seleccionar al menos una lista de precio", "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
                 return false;
             }
@@ -382,8 +408,9 @@ namespace CRS_PRE.CMR
 
         private void Mn_cre_pre_Click(object sender, EventArgs e)
         {
+
             // Verifica Lista de precio para enviar a crear nuevo precio
-            if (fi_ver_cre(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_cre(tb_sel_bus.Text) == false)
                 return;
             cmr002_02 frm = new cmr002_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
@@ -391,7 +418,7 @@ namespace CRS_PRE.CMR
         private void Mn_cre_var_Click(object sender, EventArgs e)
         {
             // Verifica Lista de precio para enviar a crear nuevo precio
-            if (fi_ver_cre(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_cre(tb_sel_bus.Text) == false)
                 return;
             cmr002_02b frm = new cmr002_02b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
@@ -400,7 +427,7 @@ namespace CRS_PRE.CMR
         private void Mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
-            if (fi_ver_edi(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_edi(tb_sel_bus.Text) == false)
                 return;
 
             cmr002_03 frm = new cmr002_03();
@@ -410,7 +437,7 @@ namespace CRS_PRE.CMR
         private void Mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
             cmr002_05 frm = new cmr002_05();
@@ -419,7 +446,7 @@ namespace CRS_PRE.CMR
         private void Mn_con_pre_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
             cmr002_05 frm = new cmr002_05();
@@ -428,7 +455,7 @@ namespace CRS_PRE.CMR
         private void Mn_con_pre_var_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
             cmr002_05b frm = new cmr002_05b();
@@ -438,7 +465,7 @@ namespace CRS_PRE.CMR
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(int.Parse(tb_sel_bus.Text)) == false)
+            if (fi_ver_con(tb_sel_bus.Text) == false)
                 return;
 
             cmr002_06 frm = new cmr002_06();
