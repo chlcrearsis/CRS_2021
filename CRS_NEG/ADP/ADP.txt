@@ -1,6 +1,8 @@
-********		ESTRUCTURA		********
-******** IDENTIFICADOR: ADP			********
-******** MODULO: Administración de Personas	********
+***************************************************
+****            ESTRUCTURA CLASES              ****
+****  INDENTIFICADOR :  ADP                    ****
+****          MODULO :  ADM. PERSONA           ****
+***************************************************
 
 adp001 = Grupo de personas										CHL	(ok)       
 adp002 = Persona												EJR	(ok)

@@ -9,7 +9,7 @@ using CRS_DAT;
 namespace CRS_NEG
 {
     /// <summary>
-    /// Clase: GRUPO VENTAS RESTAURANT
+    /// Clase: DETALLE VENTAS RESTAURANT
     /// </summary>
     public class res002
     {

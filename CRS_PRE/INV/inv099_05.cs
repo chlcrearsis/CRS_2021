@@ -22,7 +22,7 @@ namespace CRS_PRE.INV
 
         // instancia
         //c_inv004 o_inv004 = new c_inv004();
-        inv099 o_inv099 = new inv099();
+        inv008 o_inv008 = new inv008();
 
         // Variables
         DataTable tabla = new DataTable();
@@ -35,7 +35,7 @@ namespace CRS_PRE.INV
         #region  [Funciones Internas]
         private void fi_ini_frm()
         {
-            tab_dat = o_inv099.Fe_con_exi(frm_dat.Rows[0]["va_cod_pro"].ToString());
+            tab_dat = o_inv008.Fe_con_exi(frm_dat.Rows[0]["va_cod_pro"].ToString());
 
             tb_cod_pro.Text = frm_dat.Rows[0]["va_cod_pro"].ToString();
             tb_nom_pro.Text = frm_dat.Rows[0]["va_nom_pro"].ToString();

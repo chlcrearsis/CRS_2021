@@ -13,6 +13,7 @@ namespace CRS_PRE.INV
         public DataTable frm_dat;
         //Instancias
         inv001 o_inv001 = new inv001();
+        inv002 o_inv002 = new inv002();
 
         DataTable tabla = new DataTable();
 
@@ -34,9 +35,6 @@ namespace CRS_PRE.INV
                 tb_est_ado.Text = "Deshabilitado";
         }
 
-
-
-
         protected string Fi_val_dat()
         {
             if (tb_nom_gru.Text.Trim()=="")
@@ -49,6 +47,14 @@ namespace CRS_PRE.INV
             if (tabla.Rows.Count == 0)
             {
                 return "EL Grupo de Bodega no se encuentra en la base de datos";
+            }
+
+            if (tb_est_ado.Text == "Habilitado") {
+                tabla = new DataTable();
+                tabla = o_inv002.Fe_con_gru(int.Parse(tb_ide_gru.Text));
+                if (tabla.Rows.Count > 0) {
+                    return "No puede Deshabilitar, Existen Bodegas Habilitadas relacionados con el Grupo de Bodega";
+                }
             }
 
             return "";
@@ -83,9 +89,9 @@ namespace CRS_PRE.INV
                 if (msg_res == DialogResult.OK)
                 {
                     if (tb_est_ado.Text == "Habilitado")
-                        o_inv001.Fe_des_hab(int.Parse(tb_ide_gru.Text));
+                        o_inv001.Fe_hab_des(int.Parse(tb_ide_gru.Text), "N");
                     else
-                        o_inv001.Fe_hab_ili(int.Parse(tb_ide_gru.Text));
+                        o_inv001.Fe_hab_des(int.Parse(tb_ide_gru.Text), "H");
 
 
                     MessageBox.Show("Los datos se grabaron correctamente", "Edita Grupo de Bodega", MessageBoxButtons.OK,MessageBoxIcon.Information);

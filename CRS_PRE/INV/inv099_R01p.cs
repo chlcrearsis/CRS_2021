@@ -17,7 +17,7 @@ namespace CRS_PRE.INV
         //Instancias
         inv002 o_inv002 = new inv002();
         inv004 o_inv004 = new inv004();
-        inv099 o_inv099 = new inv099();
+        inv008 o_inv008 = new inv008();
 
         DataTable tabla = new DataTable();
         DataTable tab_pro = new DataTable();
@@ -73,7 +73,7 @@ namespace CRS_PRE.INV
 
             //Obtiene datos
             tabla = new DataTable();
-            tabla= o_inv099.Fe_inv099_R01(int.Parse(tb_cod_bod.Text),tb_cod_pro.Text,tb_fec_ini.Value,tb_fec_fin.Value);
+            tabla= o_inv008.Fe_inv099_R01(int.Parse(tb_cod_bod.Text),tb_cod_pro.Text,tb_fec_ini.Value,tb_fec_fin.Value);
 
             inv099_R01w frm = new inv099_R01w();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, tabla);

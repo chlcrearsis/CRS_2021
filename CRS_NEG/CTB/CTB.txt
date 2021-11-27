@@ -1,6 +1,8 @@
-********		ESTRUCTURA		********
-******** IDENTIFICADOR: CTB			********
-******** MODULO: CONTABILIDAD	********
+***************************************************
+****            ESTRUCTURA CLASES              ****
+****  INDENTIFICADOR :  CTB                    ****
+****          MODULO :  CONTABILIDAD           ****
+***************************************************
 
 ctb001 = Regional
 ctb002 = Capitulo/Agrupador

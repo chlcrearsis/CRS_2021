@@ -23,7 +23,7 @@ namespace CRS_NEG
         StringBuilder cadena;       
      
         /// <summary>
-        /// Funcion "Registrar GRUPO DE PERSONA"
+        /// Funcion "Registrar Grupo de Persona"
         /// </summary>
         /// <param name="cod_gru">Codigo del GRUPO de persona</param>
         /// <param name="nom_gru">nombre del GRUPO de persona</param>

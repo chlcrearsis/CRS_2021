@@ -94,7 +94,7 @@ namespace CRS_PRE.INV
 
             if (msg_res == DialogResult.OK)
             {
-                o_inv001.Fe_eli_gru(int.Parse(tb_ide_gru.Text));
+                o_inv001.Fe_eli_min(int.Parse(tb_ide_gru.Text));
 
                 MessageBox.Show("Los datos se grabaron correctamente", "Elimina Grupo de Bodega", MessageBoxButtons.OK,MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(tb_ide_gru.Text);

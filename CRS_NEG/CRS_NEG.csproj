@@ -99,13 +99,13 @@
     <Compile Include="ECP\ecp002.cs" />
     <Compile Include="ECP\ecp001.cs" />
     <Compile Include="General.cs" />
-    <Compile Include="INV\inv099.cs" />
+    <Compile Include="INV\inv008.cs" />
     <Compile Include="INV\inv005.cs" />
     <Compile Include="INV\inv007.cs" />
     <Compile Include="INV\inv006.cs" />
     <Compile Include="INV\inv002.cs" />
-    <Compile Include="INV\res002.cs" />
-    <Compile Include="INV\res001.cs" />
+    <Compile Include="RES\res002.cs" />
+    <Compile Include="RES\res001.cs" />
     <Compile Include="INV\inv004.cs" />
     <Compile Include="INV\inv003.cs" />
     <Compile Include="INV\inv001.cs" />
@@ -117,9 +117,7 @@
       <Name>CRS_DAT</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TES\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
@@ -129,6 +127,9 @@
     <Content Include="CMR\CMR.txt" />
     <Content Include="CTB\CTB.txt" />
     <Content Include="ECP\ECP.txt" />
+    <Content Include="INV\INV.txt" />
+    <Content Include="RES\RES.txt" />
+    <Content Include="TES\RES.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

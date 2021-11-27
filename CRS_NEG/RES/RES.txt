@@ -1,0 +1,8 @@
+***************************************************
+****            ESTRUCTURA CLASES              ****
+****  INDENTIFICADOR :  RES                    ****
+****          MODULO :  RESTAURANT             ****
+***************************************************
+
+res001 = Venta Restaurant
+res002 = Detalle Venta Resatuant
