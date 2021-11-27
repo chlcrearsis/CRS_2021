@@ -127,7 +127,7 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Graba el registro en la BD.
-                    o_adp003.Fe_nue_tip(int.Parse(tb_ide_tip.Text), tb_nom_tip.Text,
+                    o_adp003.Fe_nue_reg(int.Parse(tb_ide_tip.Text), tb_nom_tip.Text,
                                         int.Parse(tb_ide_atr.Text), tb_nom_atr.Text);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);

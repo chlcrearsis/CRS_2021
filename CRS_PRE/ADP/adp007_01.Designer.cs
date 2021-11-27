@@ -75,7 +75,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -84,7 +84,7 @@
             this.mn_nue_reg.Name = "mn_nue_reg";
             this.mn_nue_reg.Size = new System.Drawing.Size(43, 20);
             this.mn_nue_reg.Text = "&Crea";
-            this.mn_nue_reg.Click += new System.EventHandler(this.Mn_nue_reg_Click);
+            this.mn_nue_reg.Click += new System.EventHandler(this.mn_nue_reg_Click);
             // 
             // mn_edi_tar
             // 
@@ -101,28 +101,28 @@
             this.mn_mod_ifi.Name = "mn_mod_ifi";
             this.mn_mod_ifi.Size = new System.Drawing.Size(178, 22);
             this.mn_mod_ifi.Text = "&Modifica";
-            this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
+            this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
             this.mn_hab_des.Size = new System.Drawing.Size(178, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
-            this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
+            this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
             this.mn_eli_min.Size = new System.Drawing.Size(178, 22);
             this.mn_eli_min.Text = "E&limina";
-            this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
+            this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
             this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
-            this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
+            this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
             // mn_rep_ort
             // 
@@ -137,14 +137,14 @@
             this.mn_rep_rut.Name = "mn_rep_rut";
             this.mn_rep_rut.Size = new System.Drawing.Size(203, 22);
             this.mn_rep_rut.Text = "&Lista Definición de Rutas";
-            this.mn_rep_rut.Click += new System.EventHandler(this.Mn_rep_tip_Click);
+            this.mn_rep_rut.Click += new System.EventHandler(this.mn_rep_tip_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
             this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
-            this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click);
+            this.mn_cer_rar.Click += new System.EventHandler(this.mn_cer_rar_Click);
             // 
             // groupBox1
             // 
@@ -290,6 +290,7 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
+            this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
             // 
             // va_ide_rut
             // 

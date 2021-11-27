@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -20,26 +15,7 @@ namespace CRS_NEG
         //##       Autor: CHL  - (22-07-2020)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
-        string cadena = "";
-
-
-
-        public inv004()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
+        string cadena = "";       
  
         public void Fe_crea(string ar_cod_pro, string ar_cod_fam,string ar_cod_umd,string ar_und_cmp, string ar_und_vta, 
             int ar_cod_mar, string ar_nom_pro, string ar_des_pro,string ar_cod_bar,

@@ -11,9 +11,10 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp002 o_adp002 = new adp002();
         adp013 o_adp013 = new adp013();
+        // Variables
         DataTable Tabla = new DataTable();
         General general = new General();
         string Titulo = "Habilita/Deshabilita Contacto Persona";
@@ -114,8 +115,8 @@ namespace CRS_PRE
                 return "El Contacto NO se encuentra registrado";
                       
             return "";
-        }                                                                     
-
+        }
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -158,6 +159,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -20,26 +16,7 @@ namespace CRS_NEG
         //##       Autor: CHL  - (15-05-2020)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
         string cadena = "";
-
-
-
-        public inv002()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
  
         public void Fe_crea(int ar_ide_gru, int ar_cod_bod, string ar_nom_bod, string ar_des_bod, string ar_dir_bod,
             DateTime ar_fec_ctr, string ar_mon_inv, string ar_mtd_cto,string ar_nom_ecg, string ar_tlf_ecg, string ar_dir_ecg)
@@ -86,7 +63,13 @@ namespace CRS_NEG
             cadena = " inv002_05a_p01  " + ar_cod_bod +"";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
-       
+
+        public DataTable Fe_con_gru(int ar_ide_gru)
+        {
+            cadena = " SELECT * FROM inv002 WHERE va_ide_gru = " + ar_ide_gru + " AND va_est_ado = 'H'";
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
         public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado, int ar_ide_gru )
         {
             cadena = " SELECT va_ide_gru, va_cod_bod, va_nom_bod, va_mon_inv, va_est_ado" +

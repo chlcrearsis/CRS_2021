@@ -2,7 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 
-
 using CRS_NEG;
 
 namespace CRS_PRE
@@ -162,8 +161,9 @@ namespace CRS_PRE
                 return "La Persona se encuentra Habilitado";
 
             return "";
-        }        
+        }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -181,7 +181,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Deshabilita Persona
-                    o_adp002.Fe_eli_per(int.Parse(tb_cod_per.Text));
+                    o_adp002.Fe_eli_min(int.Parse(tb_cod_per.Text));
                     MessageBox.Show("La persona se ha Eliminado correctamente", "Elimina Persona", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     frm_pad.Fe_act_frm(int.Parse(tb_cod_per.Text));
@@ -193,6 +193,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

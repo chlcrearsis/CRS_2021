@@ -8,13 +8,13 @@ namespace CRS_PRE
 {
     public partial class adp018_06 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp012 o_adp012 = new adp012();
         adp018 o_adp018 = new adp018();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Elimina Grupo Empresarial";
 
@@ -45,8 +45,6 @@ namespace CRS_PRE
                 tb_est_ado.Text = "Habilitado";
             else
                 tb_est_ado.Text = "Deshabilitado";
-
-
 
             tb_nom_gru.Focus();
         }
@@ -98,7 +96,7 @@ namespace CRS_PRE
             }
 
             return "";
-        }       
+        }
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
@@ -117,7 +115,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Elimina Registro
-                    o_adp018.Fe_eli_gru(int.Parse(tb_gru_emp.Text));
+                    o_adp018.Fe_eli_min(int.Parse(tb_gru_emp.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_gru_emp.Text));
                     cl_glo_frm.Cerrar(this);
@@ -133,7 +131,6 @@ namespace CRS_PRE
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-            
+        }            
     }
 }

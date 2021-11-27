@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Data;
 using System.Windows.Forms;
 using CRS_NEG;
@@ -598,7 +597,7 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK){
-                Fi_obt_gru(int.Parse(frm.tb_sel_bus.Text));
+                Fi_obt_gru(int.Parse(frm.tb_cod_gru.Text));
             }
         }
 
@@ -678,8 +677,9 @@ namespace CRS_PRE
         private void tb_raz_soc_Validated(object sender, EventArgs e)
         {
             tb_nom_fac.Text = tb_raz_soc.Text;
-        }                                         
+        }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -733,7 +733,7 @@ namespace CRS_PRE
 
 
                     // Registrar Persona
-                    o_adp002.Fe_nue_per(cod_per, cod_gru, tip_per, nom_bre, ape_pat, ape_mat, raz_soc,
+                    o_adp002.Fe_nue_reg(cod_per, cod_gru, tip_per, nom_bre, ape_pat, ape_mat, raz_soc,
                                         nom_fac, ruc_nit, sex_per, fec_nac, tip_doc, nro_doc, ext_doc,
                                         tel_per, cel_ula, tel_fij, dir_pri, dir_ent, ema_ail, ubi_gps,
                                         cod_ven, cod_cob, tip_atr, ide_atr);
@@ -747,6 +747,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

@@ -1,0 +1,8 @@
+***************************************************
+****            ESTRUCTURA CLASES              ****
+****  INDENTIFICADOR :  TES                    ****
+****          MODULO :  TESORERIA              ****
+***************************************************
+
+res001 = Venta Restaurant
+res002 = Detalle Venta Resatuant

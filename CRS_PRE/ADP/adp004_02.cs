@@ -8,11 +8,10 @@ namespace CRS_PRE
 {
     public partial class adp004_02 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
-        
+
+        // Instancias        
         adp003 o_adp003 = new adp003();
         adp004 o_adp004 = new adp004();
         DataTable Tabla = new DataTable();
@@ -174,7 +173,7 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Graba el registro en la BD.
-                    o_adp004.Fe_nue_atr(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_atr.Text),
+                    o_adp004.Fe_nue_reg(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_atr.Text),
                                         tb_nom_atr.Text);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);

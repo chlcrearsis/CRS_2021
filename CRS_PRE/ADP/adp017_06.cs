@@ -12,9 +12,9 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-
+        // Instancias
         adp017 o_adp017 = new adp017();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Elimina Relación Contacto de Persona";
 
@@ -75,7 +75,7 @@ namespace CRS_PRE
                 return "La Relación de Persona se encuentra Habilitado.";
 
             return "";
-        }       
+        }
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Elimina Tipo de Documento
-                    o_adp017.Fe_eli_rel(int.Parse(tb_ide_rel.Text));
+                    o_adp017.Fe_eli_min(int.Parse(tb_ide_rel.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rel.Text));
                     cl_glo_frm.Cerrar(this);

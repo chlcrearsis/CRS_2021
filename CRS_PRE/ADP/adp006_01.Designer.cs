@@ -82,7 +82,7 @@
             this.mn_nue_reg.Name = "mn_nue_reg";
             this.mn_nue_reg.Size = new System.Drawing.Size(43, 20);
             this.mn_nue_reg.Text = "&Crea";
-            this.mn_nue_reg.Click += new System.EventHandler(this.Mn_nue_reg_Click);
+            this.mn_nue_reg.Click += new System.EventHandler(this.mn_nue_reg_Click);
             // 
             // mn_edi_tar
             // 
@@ -98,28 +98,28 @@
             this.mn_mod_ifi.Name = "mn_mod_ifi";
             this.mn_mod_ifi.Size = new System.Drawing.Size(121, 22);
             this.mn_mod_ifi.Text = "&Modifica";
-            this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
+            this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
             this.mn_eli_min.Size = new System.Drawing.Size(121, 22);
             this.mn_eli_min.Text = "E&limina";
-            this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
+            this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
             this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
-            this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
+            this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
             this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
-            this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click);
+            this.mn_cer_rar.Click += new System.EventHandler(this.mn_cer_rar_Click);
             // 
             // groupBox1
             // 

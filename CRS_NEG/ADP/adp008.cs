@@ -27,7 +27,7 @@ namespace CRS_NEG
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="ide_rut">ID. Ruta</param>
         /// <returns></returns>
-        public void Fe_reg_rut(int cod_per, int ide_rut)
+        public void Fe_nue_reg(int cod_per, int ide_rut)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace CRS_NEG
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="ide_rut">ID. Ruta</param>
         /// <returns></returns>
-        public void Fe_eli_rut(int cod_per, int ide_rut)
+        public void Fe_eli_min(int cod_per, int ide_rut)
         {
             try
             {

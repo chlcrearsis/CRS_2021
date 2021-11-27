@@ -8,13 +8,12 @@ namespace CRS_PRE
 {
     public partial class adp018_04 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-
+        // Instancias
         adp018 o_adp018 = new adp018();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Habilita/Deshabilita Grupo Empresarial";
 
@@ -45,8 +44,6 @@ namespace CRS_PRE
                 tb_est_ado.Text = "Habilitado";
             else
                 tb_est_ado.Text = "Deshabilitado";
-
-
 
             tb_nom_gru.Focus();
         }
@@ -87,7 +84,7 @@ namespace CRS_PRE
             }
            
             return "";
-        }       
+        }
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)

@@ -8,13 +8,12 @@ namespace CRS_PRE
 {
     public partial class adp018_03 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-
+        // Instancias
         adp018 o_adp018 = new adp018();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Edita Grupo Empresarial";
 
@@ -121,8 +120,6 @@ namespace CRS_PRE
                 }
             }
             
-
-
             // Verifica SI existe el registro en la base de datos
             Tabla = new DataTable();
             Tabla = o_adp018.Fe_con_cod(int.Parse(tb_gru_emp.Text));
@@ -156,14 +153,11 @@ namespace CRS_PRE
                 tb_ruc_nit.Text = string.Empty;
                 tb_nom_fac.Text = string.Empty;
                 tb_dir_ent.Text = string.Empty;
-                if (cb_ban_fac.SelectedValue.ToString() == "0")
-                {
+                if (cb_ban_fac.SelectedValue.ToString() == "0"){
                     tb_ruc_nit.ReadOnly = true;
                     tb_nom_fac.ReadOnly = true;
                     tb_dir_ent.ReadOnly = true;
-                }
-                else
-                {
+                }else{
                     tb_ruc_nit.ReadOnly = false;
                     tb_nom_fac.ReadOnly = false;
                     tb_dir_ent.ReadOnly = false;
@@ -189,7 +183,7 @@ namespace CRS_PRE
                     if (tb_ruc_nit.Text != ""){
                         ruc_nit = long.Parse(tb_ruc_nit.Text);
                     }
-                    o_adp018.Fe_edi_gru(int.Parse(tb_gru_emp.Text), tb_nom_gru.Text.Trim(), int.Parse(cb_ban_fac.SelectedValue.ToString()), tb_nom_fac.Text.Trim(), ruc_nit, tb_dir_ent.Text.Trim());
+                    o_adp018.Fe_edi_tar(int.Parse(tb_gru_emp.Text), tb_nom_gru.Text.Trim(), int.Parse(cb_ban_fac.SelectedValue.ToString()), tb_nom_fac.Text.Trim(), ruc_nit, tb_dir_ent.Text.Trim());
                     frm_pad.Fe_act_frm(int.Parse(tb_gru_emp.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);

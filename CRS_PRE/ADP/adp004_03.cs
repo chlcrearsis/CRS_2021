@@ -11,7 +11,8 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+
+        // Instancias
         adp003 o_adp003 = new adp003();
         adp004 o_adp004 = new adp004();        
         DataTable Tabla = new DataTable();
@@ -67,8 +68,8 @@ namespace CRS_PRE
 
             return "";
         }
-            
-        // Evento Click: Aceptar
+
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e){
             DialogResult msg_res;
 
@@ -84,7 +85,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Edita Tipo de Atributo
-                    o_adp004.Fe_edi_atr(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_tip.Text), tb_nom_atr.Text);
+                    o_adp004.Fe_edi_tar(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_tip.Text), tb_nom_atr.Text);
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
                     cl_glo_frm.Cerrar(this);
@@ -95,7 +96,7 @@ namespace CRS_PRE
             }            
         }
 
-        // Evento Click: Cancelar
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e){
             cl_glo_frm.Cerrar(this);
         }       

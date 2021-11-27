@@ -7,16 +7,9 @@ namespace CRS_PRE
 {
     public partial class adp013_05 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-        adp002 o_adp002 = new adp002();
-        adp013 o_adp013 = new adp013();
-        DataTable Tabla = new DataTable();
-        General general = new General();
-        string Titulo = "Consulta Contacto Persona";
 
         public adp013_05()
         {

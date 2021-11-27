@@ -116,7 +116,7 @@ namespace CRS_PRE.INV
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar
-                o_inv001.Fe_crea(int.Parse(tb_ide_gru.Text), tb_nom_gru.Text, tb_des_gru.Text,"H");
+                o_inv001.Fe_nue_reg(int.Parse(tb_ide_gru.Text), tb_nom_gru.Text, tb_des_gru.Text);
                 frm_pad.Fe_act_frm( int.Parse(tb_ide_gru.Text));
                 //MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Grupo de Bodega", MessageBoxButtons.OK);
                 Fi_lim_pia();

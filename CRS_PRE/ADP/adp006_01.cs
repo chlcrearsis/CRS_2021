@@ -3,9 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
-
 
 namespace CRS_PRE
 {
@@ -15,26 +13,24 @@ namespace CRS_PRE
         public int frm_tip;
         public DataTable frm_dat;
         public dynamic frm_MDI;
-
+        // Instancia
+        adp006 o_adp006 = new adp006();
+        // Variables
+        DataTable Tabla = new DataTable();
 
         public adp006_01()
         {
             InitializeComponent();
         }
-
-        // instancia
-        adp006 o_adp006 = new adp006();
-
-        DataTable Tabla = new DataTable();
-
+       
         private void frm_Load(object sender, EventArgs e)
         {
             fi_ini_frm();
         }
 
-        #region  [Funciones Internas]
         private void fi_ini_frm()
         {
+            // Limpia los campos en pantalla
             tb_cod_per.Text = string.Empty;
             tb_raz_soc.Text = string.Empty;
             tb_tip_doc.Text = string.Empty;
@@ -59,7 +55,7 @@ namespace CRS_PRE
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
 
-            //
+            // Obtiene Lista de Imagenes
             Tabla = new DataTable();
             Tabla = o_adp006.Fe_lis_ima(int.Parse(tb_cod_per.Text));
             if (Tabla.Rows.Count > 0)
@@ -109,36 +105,9 @@ namespace CRS_PRE
         }
 
         /// <summary>
-        /// Función : Selecciona la fila en el Datagrid
-        /// </summary>
-        private void fi_sel_fil(string ide_tip)
-        {            
-            fi_bus_car();
-
-            if (ide_tip != null)
-            {
-                try
-                {
-                    for (int i = 0; i < dg_res_ult.Rows.Count; i++)
-                    {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_tip.ToUpper())
-                        {
-                            // Despliega la Imagen del Registro Seleccionado
-                            fi_con_sel(ide_tip);
-                            return;
-                        }
-                    }
-                }catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-                }
-            }
-        }
-
-        /// <summary>
         /// Método para verificar concurrencia de datos para editar
         /// </summary>
-        public bool fi_ver_reg(string sel_ecc)
+        public bool fi_ver_nue(string sel_ecc)
         {
             string res_fun;
             if (sel_ecc.Trim() == ""){
@@ -179,11 +148,7 @@ namespace CRS_PRE
             }
 
             return true;
-        }
-       
-
-        #endregion                   
-
+        }       
 
         /// <summary>
         /// Funcion Externa : Actualiza la ventana con los datos que tenga, despues de realizar alguna operacion.
@@ -222,70 +187,10 @@ namespace CRS_PRE
             }
         }
 
-        private void Mn_nue_reg_Click(object sender, EventArgs e)
-        {
-            //Verifica concurrencia de datos para registrar            
-            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
-            if (fi_ver_reg(ide_tip) == false)
-                return;
-
-            adp006_02 frm = new adp006_02();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }
-
-        private void Mn_mod_ifi_Click(object sender, EventArgs e)
-        {
-            //Verifica concurrencia de datos para editar            
-            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
-            if (fi_ver_reg(ide_tip) == false)
-                return;
-
-            adp006_03 frm = new adp006_03();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }
-             
-        private void Mn_con_sul_Click(object sender, EventArgs e)
-        {
-            //Verifica concurrencia de datos para editar            
-            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
-            if (fi_ver_reg(ide_tip) == false)
-                return;
-
-            adp006_05 frm = new adp006_05();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }
-        private void Mn_eli_min_Click(object sender, EventArgs e)
-        {
-            //Verifica concurrencia de datos para eliminar            
-            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
-            if (fi_ver_reg(ide_tip) == false)
-                return;
-
-            adp006_06 frm = new adp006_06();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }
-
-
-        private void Mn_cer_rar_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
-        }               
-
-        private void bt_ace_pta_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
-        }
-
-        private void bt_can_cel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            cl_glo_frm.Cerrar(this);
-        }
-
         private void dg_res_ult_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dg_res_ult.Rows.Count > 0) {
+            if (dg_res_ult.Rows.Count > 0)
+            {
                 fi_con_sel(dg_res_ult.Rows[e.RowIndex].Cells["va_ide_tip"].Value.ToString());
             }
         }
@@ -297,5 +202,64 @@ namespace CRS_PRE
                 fi_con_sel(dg_res_ult.Rows[e.RowIndex].Cells["va_ide_tip"].Value.ToString());
             }
         }
+
+        private void mn_nue_reg_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para registrar            
+            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
+            if (fi_ver_nue(ide_tip) == false)
+                return;
+
+            adp006_02 frm = new adp006_02();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
+        }
+        private void mn_mod_ifi_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para editar            
+            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
+            if (fi_ver_edi(ide_tip) == false)
+                return;
+
+            adp006_03 frm = new adp006_03();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
+        }
+        private void mn_eli_min_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para eliminar            
+            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
+            if (fi_ver_edi(ide_tip) == false)
+                return;
+
+            adp006_06 frm = new adp006_06();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
+        }
+        private void mn_con_sul_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para editar            
+            string ide_tip = dg_res_ult.Rows[dg_res_ult.CurrentRow.Index].Cells["va_ide_tip"].Value.ToString();
+            if (fi_ver_edi(ide_tip) == false)
+                return;
+
+            adp006_05 frm = new adp006_05();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
+        }      
+        private void mn_cer_rar_Click(object sender, EventArgs e)
+        {
+            cl_glo_frm.Cerrar(this);
+        }       
+
+        // Evento Click: Button Aceptar
+        private void bt_ace_pta_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);
+        }
+
+        // Evento Click: Button Cancelar
+        private void bt_can_cel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            cl_glo_frm.Cerrar(this);
+        }       
     }
 }

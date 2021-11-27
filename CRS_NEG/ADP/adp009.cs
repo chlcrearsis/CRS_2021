@@ -27,7 +27,7 @@ namespace CRS_NEG
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="cod_lis">Código de Lista de Precio</param>
         /// <returns></returns>
-        public void Fe_reg_per(int cod_per, int cod_lis)
+        public void Fe_nue_reg(int cod_per, int cod_lis)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace CRS_NEG
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="cod_lis">Código de Lista de Precio</param>
         /// <returns></returns>
-        public void Fe_eli_per(int cod_per, int cod_lis)
+        public void Fe_eli_min(int cod_per, int cod_lis)
         {
             try
             {

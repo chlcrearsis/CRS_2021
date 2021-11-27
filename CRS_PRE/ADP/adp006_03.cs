@@ -2,7 +2,6 @@
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
 
 using CRS_NEG;
@@ -11,14 +10,14 @@ namespace CRS_PRE
 {
     public partial class adp006_03 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp002 o_adp002 = new adp002();
         adp006 o_adp006 = new adp006();
         ads010 o_ads010 = new ads010();
+        // Variables
         DataTable Tabla = new DataTable();
         General general = new General();
         string Titulo = "Actualiza Imagen Persona";
@@ -149,7 +148,7 @@ namespace CRS_PRE
                     string fec_reg = tb_fec_reg.Text + " " + tb_hor_reg.Text;
 
                     // Graba el registro en la BD.
-                    o_adp006.Fe_act_ima(int.Parse(tb_cod_per.Text), tb_ide_tip.Text, img_arc, tb_ext_arc.Text, decimal.Parse(tb_tam_arc.Text), tb_ide_usr.Text, fec_reg, tb_nom_equ.Text);
+                    o_adp006.Fe_edi_tar(int.Parse(tb_cod_per.Text), tb_ide_tip.Text, img_arc, tb_ext_arc.Text, decimal.Parse(tb_tam_arc.Text), tb_ide_usr.Text, fec_reg, tb_nom_equ.Text);
 
                     // Actualiza Lista Formulario Padre */
                     frm_pad.Fe_act_frm(tb_ide_tip.Text);

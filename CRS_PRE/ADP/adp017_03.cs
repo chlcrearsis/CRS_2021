@@ -8,13 +8,12 @@ namespace CRS_PRE
 {
     public partial class adp017_03 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-
+        // Instancias
         adp017 o_adp017 = new adp017();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Edita Relación Contacto de Persona";
 
@@ -94,7 +93,7 @@ namespace CRS_PRE
             }
 
             return "";
-        }       
+        }
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
@@ -110,7 +109,7 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Graba el registro en la BD.
-                    o_adp017.Fe_edi_rel(int.Parse(tb_ide_rel.Text), tb_nre_hom.Text.Trim(), tb_nre_muj.Text.Trim());
+                    o_adp017.Fe_edi_tar(int.Parse(tb_ide_rel.Text), tb_nre_hom.Text.Trim(), tb_nre_muj.Text.Trim());
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rel.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);

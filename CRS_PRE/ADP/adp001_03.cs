@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
@@ -15,78 +13,110 @@ namespace CRS_PRE
         public DataTable frm_dat;
         //Instancias
         adp001 o_adp001 = new adp001();
-
-        DataTable tabla = new DataTable();
+        DataTable Tabla = new DataTable();
+        string Titulo = "Edita Grupo Persona";
 
         public adp001_03()
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {
+            // Limpia Campos
+            Fi_lim_pia();
 
-            
-            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString();
-            tb_ide_gru.Text = frm_dat.Rows[0]["va_cod_gru"].ToString();
-            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString();
-            
+            // Despliega Datos en Pantalla
+            tb_cod_gru.Text = frm_dat.Rows[0]["va_cod_gru"].ToString().Trim();
+            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString().Trim();                        
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
                 tb_est_ado.Text = "Deshabilitado";
         }
 
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {
+            tb_cod_gru.Text = string.Empty;
+            tb_nom_gru.Text = string.Empty;
+            tb_est_ado.Text = string.Empty;
+        }
 
-
-
+        // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
-            if (tb_nom_gru.Text.Trim()=="")
-            {
-                tb_nom_gru.Focus();
-                return "Debe proporcionar el nombre para el Grupo de Persona";
+            if (tb_cod_gru.Text.Trim() == ""){
+                return "DEBE proporcionar el Código Grupo Persona";
             }
 
-            tabla = o_adp001.Fe_con_gru(int.Parse(tb_ide_gru.Text));
-            if (tabla.Rows.Count == 0)
-            {
-                return "EL Grupo de Persona no se encuentra en la base de datos";
+            // Valida que el campo código NO este vacio
+            int.TryParse(tb_cod_gru.Text, out int cod_gru);
+            if (cod_gru == 0){
+                return "El Código Grupo Persona NO es valido";
+            }
+
+            // Valida que el campo Nombre del Grupo Persona NO este vacio
+            if (tb_nom_gru.Text.Trim() == ""){
+                return "DEBE proporcionar el Nombre para el Grupo Persona";
+            }
+
+            // Valida que el campo Nombre del Grupo Persona NO este vacio
+            if (tb_est_ado.Text.Trim() == "Deshabilitado"){
+                return "El Grupo de Persona se encuentra Deshabilitado";
+            }
+
+            // Verifica SI el grupo de persona se encuentra registrado
+            Tabla = new DataTable();
+            Tabla = o_adp001.Fe_con_gru(int.Parse(tb_cod_gru.Text));
+            if (Tabla.Rows.Count == 0){
+                return "El Grupo Persona NO se encuentra registrado en el Sistema";
+            }
+
+            // Verifica SI existe otro registro con el mismo nombre
+            Tabla = new DataTable();
+            Tabla = o_adp001.Fe_con_nom(tb_nom_gru.Text.Trim(), int.Parse(tb_cod_gru.Text));
+            if (Tabla.Rows.Count > 0){
+                return "YA existe otra Grupo Persona con el mismo nombre";
             }
 
             return "";
-
-        }
-             
-        private void Bt_can_cel_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
         }
 
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        // Evento Click: Button Aceptar
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            string msg_val = "";
             DialogResult msg_res;
 
-            // funcion para validar datos
-            msg_val = Fi_val_dat();
-            if (msg_val != "")
+            try
             {
-                MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
-                return;
+                // funcion para validar datos
+                string msg_val = Fi_val_dat();
+                if (msg_val != "")
+                {
+                    MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
+                    return;
+                }
+                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg_res == DialogResult.OK)
+                {
+                    // Edita Tipo de Atributo
+                    o_adp001.Fe_edi_tar(int.Parse(tb_cod_gru.Text), tb_nom_gru.Text);
+                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frm_pad.Fe_act_frm(int.Parse(tb_cod_gru.Text));
+                    cl_glo_frm.Cerrar(this);
+                }
             }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Edita Grupo de Persona", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
-            if (msg_res == DialogResult.OK)
+            catch (Exception ex)
             {
-                //Edita usuario
-                o_adp001.Fe_edi_gru(int.Parse(tb_ide_gru.Text),tb_nom_gru.Text);
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita Grupo de Persona", MessageBoxButtons.OK,MessageBoxIcon.Information);
-
-                frm_pad.Fe_act_frm(int.Parse(tb_ide_gru.Text));
-                cl_glo_frm.Cerrar(this);
+                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        // Evento Click: Button Cancelar
+        private void bt_can_cel_Click(object sender, EventArgs e)
+        {
+            cl_glo_frm.Cerrar(this);
         }
     }
 }

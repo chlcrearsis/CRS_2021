@@ -51,7 +51,7 @@ namespace CRS_NEG
         /// <param name="tip_atr">Array Tipo de Atributo</param>
         /// <param name="ide_atr">Array tributo Seleccionado</param>        
         /// <returns></returns>
-        public void Fe_nue_per(int cod_per,    int cod_gru, string tip_per, string nom_bre, string ape_pat,
+        public void Fe_nue_reg(int cod_per,    int cod_gru, string tip_per, string nom_bre, string ape_pat,
                             string ape_mat, string raz_soc, string nom_fac,   long ruc_nit, string sex_per,
                             string fec_nac, string tip_doc, double nro_doc, string ext_doc, string tel_per, 
                             string cel_ula, string tel_fij, string dir_pri, string dir_ent, string ema_ail, SqlGeography ubi_gps, 
@@ -73,7 +73,29 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// actualiza "PERSONA"
+        /// Funcion "Habilita/Deshabilita persona"
+        /// </summary>
+        /// <param name="cod_per">Codigo del persona</param>
+        /// <param name="est_ado">Estado (H=Habilitado; N=Deshabilitado)</param>
+        /// <returns></returns>
+        public void Fe_hab_des(int cod_per, string est_ado)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("UPDATE adp002 SET va_est_ado = '" + est_ado + "'");
+                cadena.AppendLine("            WHERE va_cod_per =  " + cod_per + "");
+
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Actualiza "PERSONA"
         /// </summary>
         /// <param name="cod_per">Codigo Persona</param>
         /// <param name="nom_bre">Nombre</param>
@@ -97,7 +119,7 @@ namespace CRS_NEG
         /// <param name="tip_atr">Array Tipo de Atributo</param>
         /// <param name="ide_atr">Array tributo Seleccionado</param> 
         /// <returns></returns>
-        public void Fe_edi_per(int cod_per, string nom_bre, string ape_pat, string ape_mat, string raz_soc, 
+        public void Fe_edi_tar(int cod_per, string nom_bre, string ape_pat, string ape_mat, string raz_soc, 
                             string nom_fac, double ruc_nit, string sex_per, string fec_nac, string tip_doc,   
                               long nro_doc, string ext_doc, string tel_per, string cel_ula, string tel_fij, 
                             string dir_pri, string dir_ent, string ema_ail,    int cod_ven,    int cod_cob, 
@@ -122,7 +144,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="cod_per">Codigo del persona</param>
         /// <returns></returns>
-        public void Fe_eli_per(int cod_per)
+        public void Fe_eli_min(int cod_per)
         {
             try
             {
@@ -134,28 +156,7 @@ namespace CRS_NEG
             {
                 throw ex;
             }
-        }
-
-
-        /// <summary>
-        /// Funcion "Habilita/Deshabilita persona"
-        /// </summary>
-        /// <param name="cod_per">Codigo del persona</param>
-        /// <param name="est_ado">Estado (H=Habilitado; N=Deshabilitado)</param>
-        /// <returns></returns>
-        public void Fe_hab_des(int cod_per, string est_ado)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE adp002 SET va_est_ado = '" + est_ado + "'");
-                cadena.AppendLine("            WHERE va_cod_per =  " + cod_per + "");
-
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }catch (Exception ex){
-                throw ex;
-            }
-        }
+        }        
 
         /// <summary>
         /// Funcion "Buscar PERSONAS"
@@ -191,6 +192,26 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("EXECUTE adp002_05a_p01 " + cod_per + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion "Consulta persona por Grupo de Persona"
+        /// </summary>
+        /// <param name="cod_gru">Código Grupo de Persoa</param>
+        /// <returns></returns>
+        public DataTable Fe_con_gru(int cod_gru)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT * FROM adp002");
+                cadena.AppendLine(" WHERE va_cod_gru = " + cod_gru + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

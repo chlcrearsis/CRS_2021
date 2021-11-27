@@ -1,6 +1,8 @@
-********		ESTRUCTURA		********
-******** IDENTIFICADOR: ads			********
-******** MODULO: Administración y Seguridad	********
+*********************************************************
+****               ESTRUCTURA CLASES                 ****
+****  INDENTIFICADOR :  ADS                          ****
+****          MODULO :  ADMINISTRACIÓN Y SEGURIDAD   ****
+*********************************************************
 
 ads001 = Modulo													CHL     (falta reporte)                               
 ads002 = Aplicacion												CHL		(falta reporte)   

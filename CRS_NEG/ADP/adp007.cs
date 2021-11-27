@@ -28,7 +28,7 @@ namespace CRS_NEG
         /// <param name="nom_rut">Nombre Ruta</param>
         /// <param name="nom_cor">Nombre Corto</param>
         /// <returns></returns>
-        public void Fe_nue_rut(int ide_rut, string nom_rut, string nom_cor)
+        public void Fe_nue_reg(int ide_rut, string nom_rut, string nom_cor)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace CRS_NEG
         /// <param name="nom_rut">Nombre Ruta</param>
         /// <param name="nom_cor">Nombre Corto</param>
         /// <returns></returns>
-        public void Fe_edi_rut(int ide_rut, string nom_rut, string nom_cor)
+        public void Fe_edi_tar(int ide_rut, string nom_rut, string nom_cor)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="ide_rut">ID. Ruta</param>
         /// <returns></returns>
-        public void Fe_eli_rut(int ide_rut)
+        public void Fe_eli_min(int ide_rut)
         {
             try
             {

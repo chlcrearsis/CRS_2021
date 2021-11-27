@@ -12,11 +12,9 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-
-        //Instancias
+        // Instancias
         adp001 o_adp001 = new adp001();
         adp016 o_adp016 = new adp016();
-
         // Variables
         DataTable Tabla = new DataTable();        
 
@@ -151,6 +149,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {            
             DialogResult msg_res;
@@ -171,12 +170,12 @@ namespace CRS_PRE
                         int cod_lib = int.Parse(dg_res_ult.Rows[i].Cells["va_cod_lib"].Value.ToString());
 
                         // Elimina inscripción automatica
-                        o_adp016.Fe_eli_ins(int.Parse(tb_cod_gru.Text), cod_lib);
+                        o_adp016.Fe_eli_min(int.Parse(tb_cod_gru.Text), cod_lib);
 
                         // Registra inscripción automatica
                         if (chk_val == true)
                         {
-                            o_adp016.Fe_reg_ins(int.Parse(tb_cod_gru.Text), cod_lib);
+                            o_adp016.Fe_nue_reg(int.Parse(tb_cod_gru.Text), cod_lib);
                         }
                     }
                     cl_glo_frm.Cerrar(this);
@@ -187,6 +186,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

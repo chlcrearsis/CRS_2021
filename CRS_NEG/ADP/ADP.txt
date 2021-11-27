@@ -1,6 +1,8 @@
-********		ESTRUCTURA		********
-******** IDENTIFICADOR: ADP			********
-******** MODULO: Administración de Personas	********
+***************************************************
+****            ESTRUCTURA CLASES              ****
+****  INDENTIFICADOR :  ADP                    ****
+****          MODULO :  ADM. PERSONA           ****
+***************************************************
 
 adp001 = Grupo de personas										CHL	(ok)       
 adp002 = Persona												EJR	(ok)
@@ -13,7 +15,7 @@ adp008 = Rutas por persona										EJR (ok)
 adp009 = Lista de precios por persona							EJR (ok)
 adp010 = Contratos												EJR (opcional)
 adp011 = Descuento especial x persona							EJR
-adp012 = Personas Relacionadas a Grupo Empresarial   			EJR (ok)
+adp012 = Asignación a Grupo Empresarial   			            EJR (ok)
 adp013 = Contactos por persona									EJR (ok) 
 adp014 = Tipo de Documento                                      EJR (ok)
 adp015 = Validación Registro Persona                            EJR (ok)

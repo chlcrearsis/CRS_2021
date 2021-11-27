@@ -1,0 +1,14 @@
+***************************************************
+****            ESTRUCTURA CLASES              ****
+****  INDENTIFICADOR :  INV                    ****
+****          MODULO :  INVENTARIO             ****
+***************************************************
+
+inv001 = Grupo Bodega
+inv002 = Bodega
+inv003 = Familia de Producto
+inv004 = Producto
+inv005 = Unidad de Medida
+inv006 = Marcas de Producto
+inv007 = Encabezado Compras
+inv008 = Existencia de Productos

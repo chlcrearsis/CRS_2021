@@ -8,12 +8,11 @@ namespace CRS_PRE
 {
     public partial class adp018_02 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
-        
+        // Instancias        
         adp018 o_adp018 = new adp018();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Crea Grupo Empresarial";
 
@@ -160,7 +159,7 @@ namespace CRS_PRE
                     if (tb_ruc_nit.Text != "") { 
                         ruc_nit = long.Parse(tb_ruc_nit.Text);
                     }
-                    o_adp018.Fe_nue_gru(int.Parse(tb_gru_emp.Text), tb_nom_gru.Text.Trim(), int.Parse(cb_ban_fac.SelectedValue.ToString()), tb_nom_fac.Text.Trim(), ruc_nit, tb_dir_ent.Text.Trim());
+                    o_adp018.Fe_nue_reg(int.Parse(tb_gru_emp.Text), tb_nom_gru.Text.Trim(), int.Parse(cb_ban_fac.SelectedValue.ToString()), tb_nom_fac.Text.Trim(), ruc_nit, tb_dir_ent.Text.Trim());
                     frm_pad.Fe_act_frm(int.Parse(tb_gru_emp.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
                     Fi_lim_pia();

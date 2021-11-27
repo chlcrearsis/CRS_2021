@@ -7,14 +7,14 @@ namespace CRS_NEG
 {
     /// <summary>
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase RELACIÓN DE PERSONA
+    ///  Clase ASIG. GRUPO EMPRESARIAL
     ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
     /// </summary>
     public class adp012
     {
         //######################################################################
         //##       Tabla: adp012                                              ##
-        //##      Nombre: RELACIÓN DE PERSONA                                 ##
+        //##      Nombre: ASIG. GRUPO EMPRESARIAL                             ##
         //## Descripcion: Personas Relacionadas a Grupo Empresarial           ##         
         //##       Autor: JEJR  - (13-11-2021)                                ##
         //######################################################################
@@ -22,12 +22,12 @@ namespace CRS_NEG
         StringBuilder cadena;
 
         /// <summary>
-        /// Funcion "REGISTRA RELACIÓN DE PERSONA"
+        /// Funcion "REGISTRA ASIG. GRUPO EMPRESARIAL"
         /// </summary>
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="gru_emp">Codigo Grupo Empresarial</param>
         /// <returns></returns>
-        public void Fe_reg_rel(int cod_per, int gru_emp)
+        public void Fe_nue_reg(int cod_per, int gru_emp)
         {
             try
             {
@@ -42,12 +42,12 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "ELIMINA RELACIÓN DE PERSONA"
+        /// Funcion "ELIMINA ASIG. GRUPO EMPRESARIAL"
         /// </summary>
         /// <param name="cod_per">Código de Persona</param>
         /// <param name="gru_emp">Codigo Grupo Empresarial</param>
         /// <returns></returns>
-        public void Fe_eli_rel(int cod_per, int gru_emp)
+        public void Fe_eli_min(int cod_per, int gru_emp)
         {
             try
             {
@@ -62,11 +62,11 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "ELIMINA RELACIÓN DE PERSONA P/PERSONA"
+        /// Funcion "ELIMINA ASIG. GRUPO EMPRESARIAL P/PERSONA"
         /// </summary>
         /// <param name="cod_per">Código de Persona</param>
         /// <returns></returns>
-        public void Fe_eli_rel(int cod_per)
+        public void Fe_eli_min(int cod_per)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "CONSULTA RELACIÓN DE PERSONA"
+        /// Funcion "CONSULTA ASIG. GRUPO EMPRESARIAL"
         /// </summary>
         /// <param name="cod_per">Codigo de Persona</param>
         /// <param name="gru_per">Código Grupo Empresarial</param>
@@ -91,10 +91,12 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_per_ide, va_gru_per");
-                cadena.AppendLine("  FROM ad012");
-                cadena.AppendLine(" WHERE va_per_ide = " + cod_per + "");
-                cadena.AppendLine("   AND va_gru_per = " + gru_per + "");
+                cadena.AppendLine("SELECT adp012.va_cod_per, adp002.va_raz_soc, adp012.va_gru_emp, adp018.va_nom_gru");
+                cadena.AppendLine("  FROM adp012, adp002, adp018");
+                cadena.AppendLine(" WHERE adp012.va_cod_per = adp002.va_cod_per");
+                cadena.AppendLine("   AND adp012.va_gru_emp = adp018.va_gru_emp");
+                cadena.AppendLine("   AND adp012.va_cod_per = " + cod_per + "");
+                cadena.AppendLine("   AND adp012.va_gru_emp = " + gru_per + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -104,7 +106,7 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "CONSULTA RELACIÓN DE PERSONA P/PERSONA"
+        /// Funcion "CONSULTA ASIG. GRUPO EMPRESARIAL P/PERSONA"
         /// </summary>
         /// <param name="cod_per">Codigo de Persona</param>
         /// <returns></returns>
@@ -113,9 +115,11 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_per_ide, va_gru_per");
-                cadena.AppendLine("  FROM ad012");
-                cadena.AppendLine(" WHERE va_per_ide = " + cod_per + "");
+                cadena.AppendLine("SELECT adp012.va_cod_per, adp002.va_raz_soc, adp012.va_gru_emp, adp018.va_nom_gru");
+                cadena.AppendLine("  FROM adp012, adp002, adp018");
+                cadena.AppendLine(" WHERE adp012.va_cod_per = adp002.va_cod_per");
+                cadena.AppendLine("   AND adp012.va_gru_emp = adp018.va_gru_emp");
+                cadena.AppendLine("   AND adp012.va_cod_per = " + cod_per + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -125,7 +129,7 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "CONSULTA RELACIÓN DE PERSONA P/GRUPO"
+        /// Funcion "CONSULTA ASIG. GRUPO EMPRESARIAL P/GRUPO"
         /// </summary>
         /// <param name="gru_per">Código Grupo Empresarial</param>
         /// <returns></returns>
@@ -134,9 +138,11 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_per_ide, va_gru_per");
-                cadena.AppendLine("  FROM ad012");
-                cadena.AppendLine(" WHERE va_gru_per = " + gru_per + "");
+                cadena.AppendLine("SELECT adp012.va_cod_per, adp002.va_raz_soc, adp012.va_gru_emp, adp018.va_nom_gru");
+                cadena.AppendLine("  FROM adp012, adp002, adp018");
+                cadena.AppendLine(" WHERE adp012.va_cod_per = adp002.va_cod_per");
+                cadena.AppendLine("   AND adp012.va_gru_emp = adp018.va_gru_emp");
+                cadena.AppendLine("   AND adp012.va_gru_emp = " + gru_per + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

@@ -11,21 +11,17 @@ namespace CRS_PRE
         public int frm_tip;
         public DataTable frm_dat;
         public dynamic frm_MDI;
-
+        // Instancia
+        adp013 o_adp013 = new adp013();
+        // Variables
+        DataTable Tabla = new DataTable(); 
         string est_bus = "T";
         string Titulo = "Contacto Persona";
 
-        //Form frm_mdi;
         public adp013_01()
         {
             InitializeComponent();
-        }
-
-        // Instancia
-        adp013 o_adp013 = new adp013();
-
-        // Variables
-        DataTable Tabla = new DataTable();
+        }        
 
         private void frm_Load(object sender, EventArgs e)
         {
@@ -141,9 +137,12 @@ namespace CRS_PRE
             Tabla = new DataTable();
             fi_bus_car(int.Parse(tb_cod_per.Text), tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
             if (cod_per != null){
-                try{
-                    for (int i = 0; i < dg_res_ult.Rows.Count; i++){
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == cod_per.ToUpper()) {
+                try
+                {
+                    for (int i = 0; i < dg_res_ult.Rows.Count; i++)
+                    {
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == cod_per.ToUpper()) 
+                        {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;
@@ -303,13 +302,12 @@ namespace CRS_PRE
             }
         }
 
-        private void Mn_cre_ar_Click(object sender, EventArgs e)
+        private void mn_nue_reg_Click(object sender, EventArgs e)
         {
             adp013_02 frm = new adp013_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, frm_dat);
         }
-
-        private void Mn_mod_ifi_Click(object sender, EventArgs e)
+        private void mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para editar
             if (fi_ver_dat(tb_cod_per.Text, tb_cod_con.Text) == false)
@@ -317,9 +315,8 @@ namespace CRS_PRE
 
             adp013_03 frm = new adp013_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }
-       
-        private void Mn_hab_des_Click(object sender, EventArgs e)
+        }      
+        private void mn_hab_des_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para habilitar/deshabilitar
             if (fi_ver_dat(tb_cod_per.Text, tb_cod_con.Text) == false)
@@ -328,7 +325,7 @@ namespace CRS_PRE
             adp013_04 frm = new adp013_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void Mn_con_sul_Click(object sender, EventArgs e)
+        private void mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
             if (fi_ver_dat(tb_cod_per.Text, tb_cod_con.Text) == false)
@@ -337,7 +334,7 @@ namespace CRS_PRE
             adp013_05 frm = new adp013_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void Mn_eli_min_Click(object sender, EventArgs e)
+        private void mn_eli_min_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
             if (fi_ver_dat(tb_cod_per.Text, tb_cod_con.Text) == false)
@@ -346,18 +343,26 @@ namespace CRS_PRE
             adp013_06 frm = new adp013_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }        
-
-        private void Mn_cer_rar_Click(object sender, EventArgs e)
+        private void mn_cer_rar_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
         }
 
+        // Evento Enter: Lista de Resultado
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            cl_glo_frm.Cerrar(this);
+        }
+
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

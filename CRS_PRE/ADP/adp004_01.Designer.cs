@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
-            this.mn_cre_ar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +69,7 @@
             // 
             this.m_frm_hja.Dock = System.Windows.Forms.DockStyle.None;
             this.m_frm_hja.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_cre_ar,
+            this.mn_nue_reg,
             this.mn_edi_tar,
             this.mn_con_sul,
             this.mn_rep_ort,
@@ -80,12 +80,12 @@
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
-            // mn_cre_ar
+            // mn_nue_reg
             // 
-            this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
-            this.mn_cre_ar.Text = "&Crea";
-            this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
+            this.mn_nue_reg.Name = "mn_nue_reg";
+            this.mn_nue_reg.Size = new System.Drawing.Size(43, 20);
+            this.mn_nue_reg.Text = "&Crea";
+            this.mn_nue_reg.Click += new System.EventHandler(this.mn_nue_reg_Click);
             // 
             // mn_edi_tar
             // 
@@ -102,28 +102,28 @@
             this.mn_mod_ifi.Name = "mn_mod_ifi";
             this.mn_mod_ifi.Size = new System.Drawing.Size(178, 22);
             this.mn_mod_ifi.Text = "&Modifica";
-            this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
+            this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
             this.mn_hab_des.Size = new System.Drawing.Size(178, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
-            this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
+            this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
             this.mn_eli_min.Size = new System.Drawing.Size(178, 22);
             this.mn_eli_min.Text = "E&limina";
-            this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
+            this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
             this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
-            this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
+            this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
             // mn_rep_ort
             // 
@@ -138,14 +138,14 @@
             this.mn_list_atr.Name = "mn_list_atr";
             this.mn_list_atr.Size = new System.Drawing.Size(223, 22);
             this.mn_list_atr.Text = "&Lista Definición de Atributos";
-            this.mn_list_atr.Click += new System.EventHandler(this.Mn_lis_atr_Click);
+            this.mn_list_atr.Click += new System.EventHandler(this.mn_lis_atr_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
             this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
-            this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click);
+            this.mn_cer_rar.Click += new System.EventHandler(this.mn_cer_rar_Click);
             // 
             // groupBox1
             // 
@@ -315,6 +315,7 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
+            this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
             // 
             // va_ide_atr
             // 
@@ -359,6 +360,7 @@
             this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
+            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 
@@ -372,6 +374,7 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
             // adp004_01
             // 
@@ -415,7 +418,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dg_res_ult;
         public System.Windows.Forms.MenuStrip m_frm_hja;
-        private System.Windows.Forms.ToolStripMenuItem mn_cre_ar;
+        private System.Windows.Forms.ToolStripMenuItem mn_nue_reg;
         private System.Windows.Forms.ToolStripMenuItem mn_edi_tar;
         private System.Windows.Forms.ToolStripMenuItem mn_rep_ort;
         private System.Windows.Forms.ToolStripMenuItem mn_cer_rar;

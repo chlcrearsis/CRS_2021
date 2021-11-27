@@ -41,7 +41,7 @@ namespace CRS_NEG
         /// <param name="obs_con">Observación</param>
         /// <param name="est_ado">Estado(H=Habilitado; N=Deshabilitado)</param>
         /// <returns></returns>
-        public void Fe_nue_con(int cod_per,    int cod_con, string nom_bre, string ape_pat, string ape_mat,
+        public void Fe_nue_reg(int cod_per,    int cod_con, string nom_bre, string ape_pat, string ape_mat,
                             string nro_cid, string ext_doc, string sex_con, string fec_nac, string par_con, 
                             string tel_per, string cel_ula, string ema_ail, string dir_ubi, string obs_con, 
                             string est_ado){
@@ -77,7 +77,7 @@ namespace CRS_NEG
         /// <param name="dir_ubi">Direccion Ubicación</param>
         /// <param name="obs_con">Observación</param>
         /// <returns></returns>
-        public void Fe_edi_con(int cod_per,    int cod_con, string nom_bre, string ape_pat, string ape_mat,
+        public void Fe_edi_tar(int cod_per,    int cod_con, string nom_bre, string ape_pat, string ape_mat,
                             string nro_cid, string ext_doc, string sex_con, string fec_nac, string par_con, 
                             string tel_per, string cel_ula, string ema_ail, string dir_ubi, string obs_con)
         {
@@ -128,7 +128,7 @@ namespace CRS_NEG
         /// <param name="cod_per">Código Persona</param>
         /// <param name="cod_con">Código Contacto</param>
         /// <returns></returns>
-        public void Fe_eli_tip(int cod_per, int cod_con)
+        public void Fe_eli_min(int cod_per, int cod_con)
         {
             try
             {

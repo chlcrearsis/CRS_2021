@@ -12,11 +12,9 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-
-        //Instancias
+        // Instancias
         adp002 o_adp002 = new adp002();
         adp008 o_adp008 = new adp008();
-
         // Variables
         DataTable Tabla = new DataTable();        
 
@@ -106,8 +104,7 @@ namespace CRS_PRE
             for (int i = 0; i < dg_res_ult.RowCount; i++){
                 dg_res_ult.Rows[i].Cells["va_per_mis"].Value = ch_che_tod.Checked;
 
-                if (ch_che_tod.Checked)
-                {
+                if (ch_che_tod.Checked){
                     dg_res_ult.Rows[i].Cells["va_ide_rut"].Style.ForeColor = Color.FromArgb(0, 0, 192);
                     dg_res_ult.Rows[i].Cells["va_nom_rut"].Style.ForeColor = Color.FromArgb(0, 0, 192);
                     dg_res_ult.Rows[i].Cells["va_nom_cor"].Style.ForeColor = Color.FromArgb(0, 0, 192);
@@ -141,6 +138,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {            
             DialogResult msg_res;
@@ -161,11 +159,11 @@ namespace CRS_PRE
                         int ide_rut = int.Parse(dg_res_ult.Rows[i].Cells["va_ide_rut"].Value.ToString());
 
                         // Elimina Ruta p/Persona
-                        o_adp008.Fe_eli_rut(int.Parse(tb_cod_per.Text), ide_rut);
+                        o_adp008.Fe_eli_min(int.Parse(tb_cod_per.Text), ide_rut);
 
                         // Registra Ruta p/Persona
                         if (chk_val == true){
-                            o_adp008.Fe_reg_rut(int.Parse(tb_cod_per.Text), ide_rut);
+                            o_adp008.Fe_nue_reg(int.Parse(tb_cod_per.Text), ide_rut);
                         }
                     }
                     cl_glo_frm.Cerrar(this);
@@ -176,6 +174,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

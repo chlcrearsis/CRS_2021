@@ -28,7 +28,7 @@ namespace CRS_NEG
         /// <param name="ruc_nit">RUC/NIT</param>
         /// <param name="dir_ent">Dirección de Entregas d/Factura</param>
         /// <returns></returns>
-        public void Fe_nue_gru(int gru_emp, string nom_gru, int ban_fac, string nom_fac, long ruc_nit, string dir_ent)
+        public void Fe_nue_reg(int gru_emp, string nom_gru, int ban_fac, string nom_fac, long ruc_nit, string dir_ent)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace CRS_NEG
         /// <param name="ruc_nit">RUC/NIT</param>
         /// <param name="dir_ent">Dirección de Entregas d/Factura</param>
         /// <returns></returns>
-        public void Fe_edi_gru(int gru_emp, string nom_gru, int ban_fac, string nom_fac, long ruc_nit, string dir_ent)
+        public void Fe_edi_tar(int gru_emp, string nom_gru, int ban_fac, string nom_fac, long ruc_nit, string dir_ent)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="gru_emp">ID. Grupo Empresarial</param>
         /// <returns></returns>
-        public void Fe_eli_gru(int gru_emp)
+        public void Fe_eli_min(int gru_emp)
         {
             try
             {

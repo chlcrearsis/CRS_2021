@@ -50,13 +50,13 @@
             this.tb_gru_emp = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.bt_can_cel = new System.Windows.Forms.Button();
             this.va_gru_emp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_ban_fac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_can_cel = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -84,7 +84,7 @@
             this.mn_nue_reg.Name = "mn_nue_reg";
             this.mn_nue_reg.Size = new System.Drawing.Size(43, 20);
             this.mn_nue_reg.Text = "&Crea";
-            this.mn_nue_reg.Click += new System.EventHandler(this.Mn_nue_reg_Click);
+            this.mn_nue_reg.Click += new System.EventHandler(this.mn_nue_reg_Click);
             // 
             // mn_edi_tar
             // 
@@ -101,28 +101,28 @@
             this.mn_mod_ifi.Name = "mn_mod_ifi";
             this.mn_mod_ifi.Size = new System.Drawing.Size(178, 22);
             this.mn_mod_ifi.Text = "&Modifica";
-            this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
+            this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
             this.mn_hab_des.Size = new System.Drawing.Size(178, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
-            this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
+            this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
             this.mn_eli_min.Size = new System.Drawing.Size(178, 22);
             this.mn_eli_min.Text = "E&limina";
-            this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
+            this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
             this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
-            this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
+            this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
             // mn_rep_ort
             // 
@@ -137,14 +137,14 @@
             this.mn_rep_tip.Name = "mn_rep_tip";
             this.mn_rep_tip.Size = new System.Drawing.Size(192, 22);
             this.mn_rep_tip.Text = "&Lista Tipo de Atributos";
-            this.mn_rep_tip.Click += new System.EventHandler(this.Mn_rep_tip_Click);
+            this.mn_rep_tip.Click += new System.EventHandler(this.mn_rep_tip_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
             this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
-            this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click);
+            this.mn_cer_rar.Click += new System.EventHandler(this.mn_cer_rar_Click);
             // 
             // groupBox1
             // 
@@ -290,6 +290,39 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
+            this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
+            // 
+            // va_gru_emp
+            // 
+            this.va_gru_emp.HeaderText = "Código";
+            this.va_gru_emp.Name = "va_gru_emp";
+            this.va_gru_emp.ReadOnly = true;
+            this.va_gru_emp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_gru_emp.Width = 60;
+            // 
+            // va_nom_gru
+            // 
+            this.va_nom_gru.HeaderText = "Nombre";
+            this.va_nom_gru.Name = "va_nom_gru";
+            this.va_nom_gru.ReadOnly = true;
+            this.va_nom_gru.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_nom_gru.Width = 215;
+            // 
+            // va_ban_fac
+            // 
+            this.va_ban_fac.HeaderText = "Datos Facturación";
+            this.va_ban_fac.Name = "va_ban_fac";
+            this.va_ban_fac.ReadOnly = true;
+            this.va_ban_fac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_ban_fac.Width = 135;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_est_ado.Width = 95;
             // 
             // gb_ctr_btn
             // 
@@ -329,38 +362,6 @@
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
-            // 
-            // va_gru_emp
-            // 
-            this.va_gru_emp.HeaderText = "Código";
-            this.va_gru_emp.Name = "va_gru_emp";
-            this.va_gru_emp.ReadOnly = true;
-            this.va_gru_emp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_gru_emp.Width = 60;
-            // 
-            // va_nom_gru
-            // 
-            this.va_nom_gru.HeaderText = "Nombre";
-            this.va_nom_gru.Name = "va_nom_gru";
-            this.va_nom_gru.ReadOnly = true;
-            this.va_nom_gru.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_nom_gru.Width = 215;
-            // 
-            // va_ban_fac
-            // 
-            this.va_ban_fac.HeaderText = "Datos Facturación";
-            this.va_ban_fac.Name = "va_ban_fac";
-            this.va_ban_fac.ReadOnly = true;
-            this.va_ban_fac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_ban_fac.Width = 135;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
-            this.va_est_ado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_est_ado.Width = 95;
             // 
             // adp018_01
             // 

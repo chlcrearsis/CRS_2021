@@ -10,14 +10,14 @@ namespace CRS_PRE
 {
     public partial class adp006_06 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp002 o_adp002 = new adp002();
         adp006 o_adp006 = new adp006();
         ads010 o_ads010 = new ads010();
+        // Variables
         DataTable Tabla = new DataTable();
         General general = new General();
         string Titulo = "Elimina Imagen Persona";
@@ -123,7 +123,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK){                   
 
                     // Graba el registro en la BD.
-                    o_adp006.Fe_eli_ima(int.Parse(tb_cod_per.Text), tb_ide_tip.Text);
+                    o_adp006.Fe_eli_min(int.Parse(tb_cod_per.Text), tb_ide_tip.Text);
 
                     // Actualiza Lista Formulario Padre */
                     frm_pad.Fe_act_frm(tb_ide_tip.Text);
@@ -140,8 +140,6 @@ namespace CRS_PRE
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-
-        
+        }        
     }
 }

@@ -11,8 +11,9 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp014 o_adp014 = new adp014();
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Edita Tipo de Documento";
 
@@ -47,8 +48,7 @@ namespace CRS_PRE
 
             return "";
         }
-
-
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
@@ -87,9 +87,9 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
-        {
-            // Cierra la Ventana
+        {            
             cl_glo_frm.Cerrar(this);
         }
     }

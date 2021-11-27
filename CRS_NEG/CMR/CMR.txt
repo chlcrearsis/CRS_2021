@@ -1,6 +1,8 @@
-********		ESTRUCTURA		********
-******** IDENTIFICADOR: CMR			********
-******** MODULO: COMERCIALIZACION	********
+***************************************************
+****            ESTRUCTURA CLASES              ****
+****  INDENTIFICADOR :  CMR                    ****
+****          MODULO :  COMERCIALIZACIÓN       ****
+***************************************************
 
 cmr001 = Lista de precios
 cmr002 = Detalle de precios

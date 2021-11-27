@@ -79,7 +79,7 @@ namespace CRS_PRE.INV
             if (msg_res == DialogResult.OK)
             {
                 //Edita usuario
-                o_inv001.Fe_edi_gru(int.Parse(tb_ide_gru.Text),tb_nom_gru.Text, tb_des_gru.Text);
+                o_inv001.Fe_edi_tar(int.Parse(tb_ide_gru.Text),tb_nom_gru.Text, tb_des_gru.Text);
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Grupo de Bodega", MessageBoxButtons.OK,MessageBoxIcon.Information);
 
                 frm_pad.Fe_act_frm(tb_ide_gru.Text);

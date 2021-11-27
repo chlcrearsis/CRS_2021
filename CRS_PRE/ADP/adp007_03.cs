@@ -11,8 +11,9 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-        adp007 o_adp007 = new adp007();        
+        // Instancias
+        adp007 o_adp007 = new adp007();    
+        // Variables
         DataTable Tabla = new DataTable();
         string Titulo = "Edita Definición de Rutas";
 
@@ -54,9 +55,9 @@ namespace CRS_PRE
             }
 
             return "";
-        }      
+        }
 
-        // Evento Click: Aceptar
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e){
             DialogResult msg_res;
 
@@ -72,7 +73,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Edita Tipo de Atributo
-                    o_adp007.Fe_edi_rut(int.Parse(tb_ide_rut.Text), tb_nom_rut.Text, tb_nom_cor.Text);
+                    o_adp007.Fe_edi_tar(int.Parse(tb_ide_rut.Text), tb_nom_rut.Text, tb_nom_cor.Text);
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rut.Text));
                     cl_glo_frm.Cerrar(this);
@@ -83,10 +84,9 @@ namespace CRS_PRE
             }            
         }
 
-        // Evento Click: Cancelar
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e){
             cl_glo_frm.Cerrar(this);
-        }
-       
+        }       
     }
 }

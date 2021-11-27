@@ -128,7 +128,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Edita Tipo de Atributo
-                    o_adp003.Fe_edi_tip(int.Parse(tb_ide_tip.Text), tb_nom_tip.Text, int.Parse(tb_ide_atr.Text));
+                    o_adp003.Fe_edi_tar(int.Parse(tb_ide_tip.Text), tb_nom_tip.Text, int.Parse(tb_ide_atr.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
                     cl_glo_frm.Cerrar(this);

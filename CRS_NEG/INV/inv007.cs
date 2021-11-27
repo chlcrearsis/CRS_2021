@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -16,31 +13,13 @@ namespace CRS_NEG
         //######################################################################
         //##       Tabla: inv006                                              ##
         //##      Nombre: ENCABEZADO COMPRAS                                  ##
-        //## Descripcion:                                                     ##         
+        //## Descripcion: Encabezado Compras                                  ##         
         //##       Autor: CHL  - (20-09-2020)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
         StringBuilder cadena = new StringBuilder();
         string fto_feca_hora = "dd/MM/yyyy hh:mm:ss";
-        string fto_fecha = "dd/MM/yyyy";
-
-        public inv007()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
- 
+        string fto_fecha = "dd/MM/yyyy";        
 
         #region Metodos
 
@@ -422,7 +401,6 @@ namespace CRS_NEG
 
 
         #endregion
-
 
     }
 }
