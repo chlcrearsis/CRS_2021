@@ -526,7 +526,6 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-       
-        }                     
+                           
     }
 }
