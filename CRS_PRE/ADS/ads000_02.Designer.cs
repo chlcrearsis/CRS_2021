@@ -233,7 +233,7 @@
             // pb_lic_act
             // 
             this.pb_lic_act.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_act.Image")));
-            this.pb_lic_act.Location = new System.Drawing.Point(207, 449);
+            this.pb_lic_act.Location = new System.Drawing.Point(207, 447);
             this.pb_lic_act.Name = "pb_lic_act";
             this.pb_lic_act.Size = new System.Drawing.Size(20, 20);
             this.pb_lic_act.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -246,10 +246,10 @@
             this.lb_val_lic.AutoSize = true;
             this.lb_val_lic.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_val_lic.ForeColor = System.Drawing.Color.Navy;
-            this.lb_val_lic.Location = new System.Drawing.Point(204, 469);
+            this.lb_val_lic.Location = new System.Drawing.Point(204, 465);
             this.lb_val_lic.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
             this.lb_val_lic.Name = "lb_val_lic";
-            this.lb_val_lic.Size = new System.Drawing.Size(193, 16);
+            this.lb_val_lic.Size = new System.Drawing.Size(192, 16);
             this.lb_val_lic.TabIndex = 2;
             this.lb_val_lic.Text = "Validez de la Licencia: 17/03/2022";
             // 
@@ -258,10 +258,10 @@
             this.lb_lic_act.AutoSize = true;
             this.lb_lic_act.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_lic_act.ForeColor = System.Drawing.Color.Black;
-            this.lb_lic_act.Location = new System.Drawing.Point(228, 451);
+            this.lb_lic_act.Location = new System.Drawing.Point(228, 447);
             this.lb_lic_act.Margin = new System.Windows.Forms.Padding(5, 5, 2, 5);
             this.lb_lic_act.Name = "lb_lic_act";
-            this.lb_lic_act.Size = new System.Drawing.Size(102, 16);
+            this.lb_lic_act.Size = new System.Drawing.Size(101, 16);
             this.lb_lic_act.TabIndex = 1;
             this.lb_lic_act.Text = "Licencia Activada";
             this.lb_lic_act.Click += new System.EventHandler(this.lb_lic_act_Click);

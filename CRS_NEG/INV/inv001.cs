@@ -132,7 +132,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_gru, va_nom_gru, va_des_gru, va_est_ado");
-                cadena.AppendLine("  FROM adp001");
+                cadena.AppendLine("  FROM inv001");
                 switch (prm_bus){
                     case 0: cadena.AppendLine(" WHERE va_ide_gru like '" + cri_bus + "%'"); break;
                     case 1: cadena.AppendLine(" WHERE va_nom_gru like '" + cri_bus + "%'"); break;
@@ -162,7 +162,7 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_gru, va_nom_gru, va_des_gru, va_est_ado");
-                cadena.AppendLine("  FROM adp001");
+                cadena.AppendLine("  FROM inv001");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

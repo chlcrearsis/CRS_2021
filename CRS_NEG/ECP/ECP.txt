@@ -1,8 +1,10 @@
-*********************************************************
-****               ESTRUCTURA CLASES                 ****
-****  INDENTIFICADOR :  ECP                          ****
-****          MODULO :  EXIGIBLE POR COBRAR Y PAGAR  ****
-*********************************************************
+**********************************************************************
+****                    TABLAS DEL SISTEMA                        ****
+****  INDENTIFICADOR :  ECP                                       ****
+****          MODULO :  EXIGIBLE POR COBRAR Y PAGAR               ****
+**********************************************************************
 
-ecp001 = Plan de Pago
-ecp002 = Libreta (falta habilita/deshabilita y elimina) 
+Nombre   Descripcion                                             Autor
+**********************************************************************
+ecp001 = Plan de Pago                                             CHL
+ecp002 = Libreta (falta habilita/deshabilita y elimina)           CHL

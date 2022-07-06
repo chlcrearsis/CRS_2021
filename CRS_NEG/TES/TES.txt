@@ -1,0 +1,15 @@
+**********************************************************************
+****                    TABLAS DEL SISTEMA                        ****
+****  INDENTIFICADOR :  TES                                       ****
+****          MODULO :  TESORERIA                                 ****
+**********************************************************************
+
+Nombre   Descripcion                                             Autor
+**********************************************************************
+tes001 = Cuenta Tesoreria                                         ???
+tes002 = Movimiento Cuenta Tesoreria                              ???
+tes003 = Ordenes de Pago                                          ???
+tes004 = Recibo de Ingreso                                        ???
+tes005 = Recibo de Pago                                           ???
+tes006 = Bancos                                                   ???
+tes007 = Control Apertura Dia Caja                                ???

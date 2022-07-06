@@ -1,8 +1,10 @@
-***************************************************
-****            ESTRUCTURA CLASES              ****
-****  INDENTIFICADOR :  RES                    ****
-****          MODULO :  RESTAURANT             ****
-***************************************************
+**********************************************************************
+****                    TABLAS DEL SISTEMA                        ****
+****  INDENTIFICADOR :  RES                                       ****
+****          MODULO :  RESTAURANT                                ****
+**********************************************************************
 
-res001 = Venta Restaurant
-res002 = Detalle Venta Resatuant
+Nombre   Descripcion                                             Autor
+**********************************************************************
+res001 = Venta Restaurant                                         CHL
+res002 = Detalle Venta Resatuant                                  CHL

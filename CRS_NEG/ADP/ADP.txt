@@ -1,26 +1,28 @@
-***************************************************
-****            ESTRUCTURA CLASES              ****
-****  INDENTIFICADOR :  ADP                    ****
-****          MODULO :  ADM. PERSONA           ****
-***************************************************
+**********************************************************************
+****                    TABLAS DEL SISTEMA                        ****
+****  INDENTIFICADOR :  ADP                                       ****
+****          MODULO :  ADMINISTRACIÓN PERSONA                    ****
+**********************************************************************
 
-adp001 = Grupo de personas										CHL	(ok)       
-adp002 = Persona												EJR	(ok)
-adp003 = Tipos de atributos										EJR	(ok)
-adp004 = Atributo												EJR (ok)
-adp005 = Atributo por persona									EJR (ok)	
-adp006 = Imagen de persona										EJR (ok) 
-adp007 = Rutas													EJR (ok)
-adp008 = Rutas por persona										EJR (ok)
-adp009 = Lista de precios por persona							EJR (ok)
-adp010 = Contratos												EJR (opcional)
-adp011 = Descuento especial x persona							EJR
-adp012 = Asignación a Grupo Empresarial   			            EJR (ok)
-adp013 = Contactos por persona									EJR (ok) 
-adp014 = Tipo de Documento                                      EJR (ok)
-adp015 = Validación Registro Persona                            EJR (ok)
-adp016 = Inscripción Automatica Libreta p/Grupo de Persona      EJR (ok)
-adp017 = Relación Contacto de Persona                           EJR (ok)
-adp018 = Grupo Empresarial                                      EJR (ok)
+Nombre   Descripcion                                             Autor
+**********************************************************************
+adp001 = Grupo de personas										  CHL
+adp002 = Persona												  EJR
+adp003 = Tipos de atributos										  EJR
+adp004 = Atributo												  EJR
+adp005 = Atributo por persona									  EJR
+adp006 = Imagen de persona										  EJR
+adp007 = Rutas													  EJR
+adp008 = Rutas por persona										  EJR
+adp009 = Lista de precios por persona							  EJR
+adp010 = Contratos												  EJR
+adp011 = Descuento especial x persona							  EJR
+adp012 = Asignación a Grupo Empresarial   			              EJR
+adp013 = Contactos por persona									  EJR
+adp014 = Tipo de Documento                                        EJR
+adp015 = Validación Registro Persona                              EJR
+adp016 = Inscripción Automatica Libreta p/Grupo de Persona        EJR
+adp017 = Relación Contacto de Persona                             EJR
+adp018 = Grupo Empresarial                                        EJR
 
 

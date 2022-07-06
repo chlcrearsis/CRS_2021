@@ -1,16 +1,18 @@
-***************************************************
-****            ESTRUCTURA CLASES              ****
-****  INDENTIFICADOR :  CTB                    ****
-****          MODULO :  CONTABILIDAD           ****
-***************************************************
+**********************************************************************
+****                    TABLAS DEL SISTEMA                        ****
+****  INDENTIFICADOR :  CTM                                       ****
+****          MODULO :  CONTABILIDAD                              ****
+**********************************************************************
 
-ctb001 = Regional
-ctb002 = Capitulo/Agrupador
-ctb003 = Centro de Costo
-ctb004 = Plan de Cuentas
+Nombre   Descripcion                                             Autor
+**********************************************************************
+ctb001 = Regional                                                 CHL
+ctb002 = Capitulo/Agrupador                                       CHL
+ctb003 = Centro de Costo                                          CHL
+ctb004 = Plan de Cuentas                                          CHL
 ctb005 = 
-ctb006 = Leyenda
-ctb007 = Dosificación
-ctb008 = Debito Fiscal  (ya esta)
-ctb009 = Credito Fiscal
+ctb006 = Leyenda                                                  CHL
+ctb007 = Dosificación                                             CHL
+ctb008 = Debito Fiscal                                            CHL
+ctb009 = Credito Fiscal                                           CHL
 

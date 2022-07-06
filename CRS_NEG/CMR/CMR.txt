@@ -1,24 +1,26 @@
-***************************************************
-****            ESTRUCTURA CLASES              ****
-****  INDENTIFICADOR :  CMR                    ****
-****          MODULO :  COMERCIALIZACIÓN       ****
-***************************************************
+**********************************************************************
+****                    TABLAS DEL SISTEMA                        ****
+****  INDENTIFICADOR :  CMR                                       ****
+****          MODULO :  COMERCIALIZACIÓN                          ****
+**********************************************************************
 
-cmr001 = Lista de precios
-cmr002 = Detalle de precios
-cmr003 = Sucursal (pendiente) traer aca desde ads010
-cmr004 = Plantilla de ventas
-cmr005 = Nota de venta
-cmr006 = Detalle de nota de venta
-cmr006tmp = Temporal Detalle de nota de venta/proforma/pedido/factura
-cmr007 = pedido
-cmr008 = detalle pedido
-cmr009 = proforma
-cmr010 = detalle de proforma
-
+Nombre   Descripcion                                             Autor
+**********************************************************************
+cmr001 = Lista de precios                                         CHL
+cmr002 = Detalle de precios                                       CHL
+cmr003 = Sucursal                                                 CHL
+cmr004 = Plantilla de ventas                                      CHL          
+cmr005 = Nota de Venta                                            CHL
+cmr006 = Detalle de Nota de Venta                                 CHL
+cmr006tmp = Temporal Detalle de Nota Vta/Proforma/Pedido/Factura  CHL
+cmr007 = Pedido                                                   CHL
+cmr008 = Detalle pedido                                           CHL
+cmr009 = Proforma                                                 CHL
+cmr010 = Detalle de proforma                                      CHL
+cmr011 = 
 cmr012 = 
-cmr013 = Registro de Nit
-cmr014 = Vendedor/Cobrador **
-cmr015 = Delivery
-cmr016 = Actividad Economica **
-cmr017 = Detalle de comision vendedor **
+cmr013 = Registro de Nit                                          CHL
+cmr014 = Vendedor/Cobrador **                                     CHL
+cmr015 = Delivery                                                 CHL
+cmr016 = Actividad Economica **                                   CHL
+cmr017 = Detalle de Comision Vendedor **                          CHL
