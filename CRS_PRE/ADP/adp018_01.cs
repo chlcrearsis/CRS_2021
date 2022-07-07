@@ -224,8 +224,7 @@ namespace CRS_PRE
 
         private void tb_ide_rel_Validated(object sender, EventArgs e){
             fi_con_sel();
-            if (lb_nom_gru.Text != "NO Existe")
-            {
+            if (lb_nom_gru.Text != "NO Existe") {
                 fi_sel_fil(tb_gru_emp.Text);
             }
         }
@@ -234,15 +233,24 @@ namespace CRS_PRE
             fi_fil_act();
         }
 
-        private void dg_res_ult_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        private void dg_res_ult_CellClick(object sender, DataGridViewCellEventArgs e){
             fi_fil_act();
         }
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            if (bt_ace_pta.Enabled == true) {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
+
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            if (bt_ace_pta.Enabled == true) {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
 
         private void bt_bus_car_Click(object sender, EventArgs e)
@@ -338,13 +346,6 @@ namespace CRS_PRE
         }
         private void mn_cer_rar_Click(object sender, EventArgs e)
         {
-            cl_glo_frm.Cerrar(this);
-        }
-
-        // Evento Enter: Lista de Resultado
-        private void dg_res_ult_Enter(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 

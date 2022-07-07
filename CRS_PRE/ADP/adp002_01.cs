@@ -334,8 +334,18 @@ namespace CRS_PRE
         }
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e){
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            if (bt_ace_pta.Enabled == true){
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }            
+        }
+
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            if (bt_ace_pta.Enabled == true){
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
 
         // Evento Click: Buscar
@@ -366,36 +376,40 @@ namespace CRS_PRE
         /// </summary>
         public void Fe_act_frm(int cod_per)
         {
-            // Obtiene el Tipo de Persona
-            if (cb_tip_per.SelectedIndex == 0)
-                tip_per = "T";  // Todos
-            if (cb_tip_per.SelectedIndex == 1)
-                tip_per = "P";  // Particular
-            if (cb_tip_per.SelectedIndex == 2)
-                tip_per = "E";  // Empresa
+            try
+            {
+                // Obtiene el Tipo de Persona
+                if (cb_tip_per.SelectedIndex == 0)
+                    tip_per = "T";  // Todos
+                if (cb_tip_per.SelectedIndex == 1)
+                    tip_per = "P";  // Particular
+                if (cb_tip_per.SelectedIndex == 2)
+                    tip_per = "E";  // Empresa
 
-            // Obtiene el Estado de la Persona
-            if (cb_est_bus.SelectedIndex == 0)
-                est_bus = "T";  // Todos
-            if (cb_est_bus.SelectedIndex == 1)
-                est_bus = "H";  // Habilitado
-            if (cb_est_bus.SelectedIndex == 2)
-                est_bus = "N";  // Deshabilitado 
+                // Obtiene el Estado de la Persona
+                if (cb_est_bus.SelectedIndex == 0)
+                    est_bus = "T";  // Todos
+                if (cb_est_bus.SelectedIndex == 1)
+                    est_bus = "H";  // Habilitado
+                if (cb_est_bus.SelectedIndex == 2)
+                    est_bus = "N";  // Deshabilitado 
 
-            fi_bus_car(int.Parse(tb_cod_gru.Text), tip_per, tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
+                fi_bus_car(int.Parse(tb_cod_gru.Text), tip_per, tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (cod_per.ToString() != null){
-                try{
-                    for (int i = 0; i < dg_res_ult.Rows.Count; i++){
-                        if ( dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_per.ToString()){
+                if (cod_per.ToString() != null)
+                {
+                    for (int i = 0; i < dg_res_ult.Rows.Count; i++)
+                    {
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_per.ToString())
+                        {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;
                         }
                     }
-                }catch (Exception ex){
-                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }catch (Exception ex){
+                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -505,18 +519,11 @@ namespace CRS_PRE
             cl_glo_frm.Cerrar(this);
         }
 
-        // Evento Enter: Lista de Resultado
-        private void dg_res_ult_Enter(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
-        }
-
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
-        {
+        {            
             this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            cl_glo_frm.Cerrar(this);         
         }
 
         // Evento Click: Button Cancelar

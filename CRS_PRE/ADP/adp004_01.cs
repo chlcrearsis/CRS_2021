@@ -278,8 +278,18 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            if (bt_ace_pta.Enabled == true) {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
+
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            if (bt_ace_pta.Enabled == true) {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
 
         // Evento Click: Button Buscar
@@ -342,13 +352,6 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
         private void mn_cer_rar_Click(object sender, EventArgs e){
-            cl_glo_frm.Cerrar(this);
-        }
-
-        // Evento Enter: Lista de Resultado
-        private void dg_res_ult_Enter(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
