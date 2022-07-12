@@ -13,7 +13,7 @@ namespace CRS_NEG
     public class ads007
     {
         //######################################################################
-        //##       Tabla: ads001_07                                           ##
+        //##       Tabla: ads007                                              ##
         //##      Nombre: Usuario                                             ##
         //## Descripcion: Inicio Sesion Usuario                               ##         
         //##       Autor: JEJR - (05-01-2019)                                 ##

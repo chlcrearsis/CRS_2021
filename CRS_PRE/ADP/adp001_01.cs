@@ -345,8 +345,8 @@ namespace CRS_PRE
         }
         private void mn_lis_gru_Click(object sender, EventArgs e)
         {
-            //adp001_R01p frm = new adp001_R01p();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            adp001_R01p frm = new adp001_R01p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
         private void mn_cer_rar_Click(object sender, EventArgs e)
         {

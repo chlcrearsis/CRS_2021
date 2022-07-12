@@ -27,10 +27,7 @@ namespace CRS_NEG
         public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
         public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
         public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
         string cadena = "";
-
-
 
         public ads016()
         {

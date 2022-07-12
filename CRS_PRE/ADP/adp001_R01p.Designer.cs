@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class adp003_R01p
+    partial class adp001_R01p
     {
         /// <summary>
         /// Required designer variable.
@@ -147,7 +147,7 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // adp003_R01p
+            // adp001_R01p
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,10 +158,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "adp003_R01p";
+            this.Name = "adp001_R01p";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "Informe Tipo de Atributos";
-            this.Text = "Informe Tipo de Atributo";
+            this.Text = "Informe Grupo Persona";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -76,7 +76,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(88, 57);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(410, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(530, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -143,8 +143,8 @@
             // mn_lis_gru
             // 
             this.mn_lis_gru.Name = "mn_lis_gru";
-            this.mn_lis_gru.Size = new System.Drawing.Size(198, 22);
-            this.mn_lis_gru.Text = "&Lista Grupo de Bodegas";
+            this.mn_lis_gru.Size = new System.Drawing.Size(180, 22);
+            this.mn_lis_gru.Text = "&Lista Grupo Persona";
             this.mn_lis_gru.Click += new System.EventHandler(this.mn_lis_gru_Click);
             // 
             // mn_cer_rar

@@ -20,8 +20,8 @@ namespace CRS_NEG
         //######################################################################
 
         conexion_a ob_con_ecA = new conexion_a();       
-        StringBuilder cadena;       
-     
+        StringBuilder cadena;      
+
         /// <summary>
         /// Funcion "Registrar Grupo de Persona"
         /// </summary>
@@ -204,14 +204,33 @@ namespace CRS_NEG
                 }
 
                 if (est_ado != "T")
-                    cadena.AppendLine(" WHERE va_est_ado ='" + est_ado + "'");
+                    cadena.AppendLine(" WHERE va_est_ado = '" + est_ado + "'");
                 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
                 throw ex;
             }
         }
-        
+
+        /// <summary>
+        /// Informe: Grupo Persona 
+        /// </summary>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R01(string est_ado, string ord_dat) {
+            try
+            {
+                cadena = new StringBuilder();                
+                cadena.AppendLine("EXECUTE adp001_R01 '" + est_ado + "', '" + ord_dat + "'");               
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         /// <summary>
         /// Funcion "OBTIENE ULTIMO ID. GRUPO PERSONA"

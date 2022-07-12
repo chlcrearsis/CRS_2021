@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class ads003_R01w
+    partial class adp001_R01w
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ads003_R01 = new CRS_PRE.ads003_R01();
+            this.adp001_R01 = new CRS_PRE.ADP.adp001_R01();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_imp_rim = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_exp_ort = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,14 +63,14 @@
             this.cr_rep_ort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cr_rep_ort.Location = new System.Drawing.Point(0, 0);
             this.cr_rep_ort.Name = "cr_rep_ort";
-            this.cr_rep_ort.ReportSource = this.ads003_R01;
+            this.cr_rep_ort.ReportSource = this.adp001_R01;
             this.cr_rep_ort.ShowCloseButton = false;
             this.cr_rep_ort.ShowCopyButton = false;
             this.cr_rep_ort.ShowGroupTreeButton = false;
             this.cr_rep_ort.ShowLogo = false;
             this.cr_rep_ort.ShowParameterPanelButton = false;
             this.cr_rep_ort.ShowRefreshButton = false;
-            this.cr_rep_ort.Size = new System.Drawing.Size(857, 749);
+            this.cr_rep_ort.Size = new System.Drawing.Size(800, 450);
             this.cr_rep_ort.TabIndex = 0;
             this.cr_rep_ort.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -250,17 +250,17 @@
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click);
             // 
-            // ads003_R01w
+            // adp001_R01w
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 749);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.m_frm_hja);
             this.Controls.Add(this.cr_rep_ort);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ads003_R01w";
+            this.Name = "adp001_R01w";
             this.Text = "Lista de Documentos";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
@@ -293,6 +293,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripTextBox mn_nro_pag;
-        private ads003_R01 ads003_R01;
+        private CRS_PRE.ADP.adp001_R01 adp001_R01;
     }
 }

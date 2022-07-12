@@ -22,7 +22,6 @@ namespace CRS_NEG
         conexion_a ob_con_ecA = new conexion_a();
 
         public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
         public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
         public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
         public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
