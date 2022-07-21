@@ -3,9 +3,14 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp001 - Grupo Persona                                */
+    /* Descripción: Buscar Grupo Persona                                  */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public partial class adp001_01 : Form
     {
         public dynamic frm_pad;

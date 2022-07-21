@@ -36,7 +36,7 @@ namespace CRS_PRE
                 tb_ruc_nit.Text = frm_dat.Rows[0]["va_ruc_nit"].ToString();
 
             if (frm_dat.Rows[0]["va_ban_fac"].ToString() == "0")
-                tb_ban_fac.Text = "Cliente";
+                tb_ban_fac.Text = "Registro Cliente";
             else
                 tb_ban_fac.Text = "Grupo Empresarial";
 

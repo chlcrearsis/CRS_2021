@@ -2,8 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 
-using CRS_NEG;
-
 namespace CRS_PRE
 {
     public partial class adp018_05 : Form
@@ -33,7 +31,7 @@ namespace CRS_PRE
                 tb_ruc_nit.Text = frm_dat.Rows[0]["va_ruc_nit"].ToString();
 
             if (frm_dat.Rows[0]["va_ide_ban"].ToString() == "0")
-                tb_ban_fac.Text = "Cliente";
+                tb_ban_fac.Text = "Registro Cliente";
             else
                 tb_ban_fac.Text = "Grupo Empresarial";
 
@@ -41,8 +39,6 @@ namespace CRS_PRE
                 tb_est_ado.Text = "Habilitado";
             else
                 tb_est_ado.Text = "Deshabilitado";
-
-
 
             tb_nom_gru.Focus();
         }

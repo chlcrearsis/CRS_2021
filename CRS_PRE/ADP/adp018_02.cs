@@ -56,7 +56,7 @@ namespace CRS_PRE
             Tabla.Columns.Add("va_ide_ban");
             Tabla.Columns.Add("va_nom_ban");
             // Adiciona los Items
-            Tabla.Rows.Add("0", "Cliente");
+            Tabla.Rows.Add("0", "Registro Cliente");
             Tabla.Rows.Add("1", "Grupo Empresarial");
             // Carga los Item
             cb_ban_fac.DataSource = Tabla;

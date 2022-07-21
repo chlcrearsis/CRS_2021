@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase TIPO DE DOCUMENTO
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp014 - Tipo de Documento                            */
+    /* Descripción: Tipo de Documento de Persona                          */
+    /*       Autor: JEJR - Crearsis             Fecha: 15-09-2021         */
+    /**********************************************************************/
     public class adp014
-    {
-        //######################################################################
-        //##       Tabla: adp014                                              ##
-        //##      Nombre: TIPO DE DOCUMENTO                                   ##
-        //## Descripcion: Tipo de Documento de Persona                        ##         
-        //##       Autor: JEJR  - (15-09-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

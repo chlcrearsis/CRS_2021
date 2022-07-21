@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase ATRIBUTOS DE PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp005 - Atributos de Persona                         */
+    /* Descripción: Atributos Asignados a la Persona                      */
+    /*       Autor: JEJR - Crearsis             Fecha: 12-10-2021         */
+    /**********************************************************************/
     public class adp005
-    {
-        //######################################################################
-        //##       Tabla: adp005                                              ##
-        //##      Nombre: ATRIBUTOS DE PERSONA                                ##
-        //## Descripcion: Atributos asignados a la Persona                    ##         
-        //##       Autor: JEJR  - (12-10-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

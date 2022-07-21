@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase ATRIBUTO DE PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definiciones de Atributos                    */
+    /* Descripción: Definiciones de Atributos de Segmentación             */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public class adp004
-    {
-        //######################################################################
-        //##       Tabla: adp004                                              ##
-        //##      Nombre: ATRIBUTO DE PERSONA                                 ##
-        //## Descripcion: Atributos de Segmentación de Persona                ##         
-        //##       Autor: JEJR  - (01-09-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

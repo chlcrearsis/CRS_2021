@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase ASIG. GRUPO EMPRESARIAL
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp012 - Asignación Persona a Grupo Empresarial       */
+    /* Descripción: Relación de Personas a Grupo Empresarial              */
+    /*       Autor: JEJR - Crearsis             Fecha: 13-11-2021         */
+    /**********************************************************************/
     public class adp012
-    {
-        //######################################################################
-        //##       Tabla: adp012                                              ##
-        //##      Nombre: ASIG. GRUPO EMPRESARIAL                             ##
-        //## Descripcion: Personas Relacionadas a Grupo Empresarial           ##         
-        //##       Autor: JEJR  - (13-11-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

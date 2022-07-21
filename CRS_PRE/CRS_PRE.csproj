@@ -107,6 +107,24 @@
     <Compile Include="ADP\adp001_06.Designer.cs">
       <DependentUpon>adp001_06.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADP\adp018_R01w.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_R01w.Designer.cs">
+      <DependentUpon>adp018_R01w.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADP\adp018_R01.cs">
+      <DependentUpon>adp018_R01.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ADP\adp018_R01p.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADP\adp018_R01p.Designer.cs">
+      <DependentUpon>adp018_R01p.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADP\adp014_R01w.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2338,6 +2356,16 @@
     </Compile>
     <EmbeddedResource Include="ADP\adp001_06.resx">
       <DependentUpon>adp001_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_R01w.resx">
+      <DependentUpon>adp018_R01w.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_R01.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>adp018_R01.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADP\adp018_R01p.resx">
+      <DependentUpon>adp018_R01p.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADP\adp014_R01w.resx">
       <DependentUpon>adp014_R01w.cs</DependentUpon>

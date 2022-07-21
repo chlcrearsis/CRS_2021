@@ -6,6 +6,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp001 - Grupo Persona                                */
+    /*      Opción: Habilita/Deshabilita                                  */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public partial class adp001_06 : Form
     {
         public dynamic frm_pad;

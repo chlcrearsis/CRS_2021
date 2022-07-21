@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase DESCUENTO GENERAL P/PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp010 - Descuento General p/Persona                  */
+    /* Descripción: Descuento General p/Pesona sobre el Precio Neto       */
+    /*       Autor: JEJR - Crearsis             Fecha: 14-07-2022         */
+    /**********************************************************************/
     public class adp010
-    {
-        //######################################################################
-        //##       Tabla: adp009                                              ##
-        //##      Nombre: DESCUENTO GENERAL P/PERSONA                         ##
-        //## Descripcion: Descuento General p/Pesona sobre el Precio Neto     ##         
-        //##       Autor: JEJR  - (14-07-2022)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

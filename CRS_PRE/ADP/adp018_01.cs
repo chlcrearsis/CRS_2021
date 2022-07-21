@@ -66,7 +66,7 @@ namespace CRS_PRE
                     dg_res_ult.Rows[i].Cells["va_nom_gru"].Value = Tabla.Rows[i]["va_nom_gru"].ToString();
 
                     if (Tabla.Rows[i]["va_ban_fac"].ToString() == "0")
-                        dg_res_ult.Rows[i].Cells["va_ban_fac"].Value = "Cliente";
+                        dg_res_ult.Rows[i].Cells["va_ban_fac"].Value = "Registro Cliente";
                     if (Tabla.Rows[i]["va_ban_fac"].ToString() == "1")
                         dg_res_ult.Rows[i].Cells["va_ban_fac"].Value = "Grupo Empresarial";
 
@@ -339,10 +339,10 @@ namespace CRS_PRE
             adp018_06 frm = new adp018_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void mn_rep_tip_Click(object sender, EventArgs e)
+        private void mn_rep_gru_Click(object sender, EventArgs e)
         {
-            //adp018_R01p frm = new adp018_R01p();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            adp018_R01p frm = new adp018_R01p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
         private void mn_cer_rar_Click(object sender, EventArgs e)
         {

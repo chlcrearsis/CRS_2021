@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase ASIGNACIÓN RUTAS P/PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp008 - Registro Ruteo p/Persona                     */
+    /* Descripción: Asignación de Rutas p/persona                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 21-10-2021         */
+    /**********************************************************************/
     public class adp008
-    {
-        //######################################################################
-        //##       Tabla: adp008                                              ##
-        //##      Nombre: REGISTRA RUTEO P/PERSONA                            ##
-        //## Descripcion: Asignación de Rutas p/persona                       ##         
-        //##       Autor: JEJR  - (21-10-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

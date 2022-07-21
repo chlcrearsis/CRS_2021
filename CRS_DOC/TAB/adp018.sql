@@ -13,7 +13,7 @@ CREATE TABLE adp018
 
 	--** Atributos     
 	va_nom_gru  VARCHAR(40)	 NOT NULL DEFAULT(''),  --** Nombre
-	va_ban_fac  INT			 NOT NULL DEFAULT(''),  --** Datos de Facturación (0=Cliente; 1=Grupo Empresarial)
+	va_ban_fac  INT			 NOT NULL DEFAULT(''),  --** Datos de Facturación (0=Registro Cliente; 1=Grupo Empresarial)
 	va_nom_fac	VARCHAR(80)	 NOT NULL DEFAULT(''),	--** Nombre a Facturar
 	va_ruc_nit	BIGINT       NOT NULL DEFAULT(0),	--** RUC/NIT
 	va_dir_ent  VARCHAR(160) NOT NULL DEFAULT(''),  --** Dirección de Entregas d/Factura

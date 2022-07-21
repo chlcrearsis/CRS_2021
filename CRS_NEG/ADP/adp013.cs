@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase CONTACTO P/PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp013 - Contacto p/Persona                           */
+    /* Descripción: Lista de Contactos p/Persona                          */
+    /*       Autor: JEJR - Crearsis             Fecha: 04-11-2021         */
+    /**********************************************************************/
     public class adp013
-    {
-        //######################################################################
-        //##       Tabla: adp013                                              ##
-        //##      Nombre: CONTACTO P/PERSONA                                  ##
-        //## Descripcion: Lista de Contactos p/Persona                        ##         
-        //##       Autor: JEJR  - (04-11-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

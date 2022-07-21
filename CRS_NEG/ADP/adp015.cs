@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase VALIDACIÓN REGISTRO DE PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp015 - Validación Registro de Persona               */
+    /* Descripción: Campos Obligatorio a validar en Registro de Persona   */
+    /*       Autor: JEJR - Crearsis             Fecha: 15-09-2021         */
+    /**********************************************************************/
     public class adp015
-    {
-        //######################################################################
-        //##       Tabla: adp015                                              ##
-        //##      Nombre: VALIDACIÓN REGISTRO DE PERSONA                      ##
-        //## Descripcion: Campos Obligatorio a validar                        ##         
-        //##       Autor: JEJR  - (15-09-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;       
 

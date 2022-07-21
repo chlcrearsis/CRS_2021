@@ -7,19 +7,14 @@ using Microsoft.SqlServer.Types;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    /// ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// Clase Persona
-    /// ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp002 - Persona                                      */
+    /* Descripción: Registro de Persona                                   */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public class adp002
-    {
-        //######################################################################
-        //##       Tabla: adp002                                              ##
-        //##      Nombre: PERSONAS                                            ##
-        //## Descripcion: Registro de Persona                                 ##         
-        //##       Autor: CHL  - (22-07-2020)                                 ##
-        //######################################################################                
+    {                        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

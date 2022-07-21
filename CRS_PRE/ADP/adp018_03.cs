@@ -34,7 +34,7 @@ namespace CRS_PRE
             tb_dir_ent.Text = frm_dat.Rows[0]["va_dir_ent"].ToString();
 
             if (frm_dat.Rows[0]["va_ban_fac"].ToString() == "0") { 
-                cb_ban_fac.Text = "Cliente";
+                cb_ban_fac.Text = "Registro Cliente";
                 tb_ruc_nit.ReadOnly = true;
                 tb_nom_fac.ReadOnly = true;
                 tb_dir_ent.ReadOnly = true;
@@ -74,7 +74,7 @@ namespace CRS_PRE
             Tabla.Columns.Add("va_ide_ban");
             Tabla.Columns.Add("va_nom_ban");
             // Adiciona los Items
-            Tabla.Rows.Add("0", "Cliente");
+            Tabla.Rows.Add("0", "Registro Cliente");
             Tabla.Rows.Add("1", "Grupo Empresarial");
             // Carga los Item
             cb_ban_fac.DataSource = Tabla;

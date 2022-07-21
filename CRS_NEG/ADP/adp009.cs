@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase PERMISO LISTA DE PRECIO P/PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp009 - Permiso Lista de Precio p/Persona            */
+    /* Descripción: Permiso de Lista de Precio p/Persona                  */
+    /*       Autor: JEJR - Crearsis             Fecha: 21-10-2021         */
+    /**********************************************************************/
     public class adp009
     {
-        //######################################################################
-        //##       Tabla: adp009                                              ##
-        //##      Nombre: PERMISO LISTA DE PRECIO P/PERSONA                   ##
-        //## Descripcion: Permiso de Lista de Precio p/Persona                ##         
-        //##       Autor: JEJR  - (21-10-2021)                                ##
-        //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase PERMISO LISTA DE PRECIO P/PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp006 - Imagenes por Persona                         */
+    /* Descripción: Registro de Imagenes por Persona                      */
+    /*       Autor: JEJR - Crearsis             Fecha: 25-10-2021         */
+    /**********************************************************************/
     public class adp006
-    {
-        //######################################################################
-        //##       Tabla: adp006                                              ##
-        //##      Nombre: IMAGENES POR PERSONA                                ##
-        //## Descripcion: Definición de Imagenes por Persona                  ##         
-        //##       Autor: JEJR  - (25-10-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

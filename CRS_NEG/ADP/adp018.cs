@@ -4,17 +4,14 @@ using System.Text;
 using CRS_DAT;
 namespace CRS_NEG
 {
-    /// <summary>
-    /// Clase GUPO EMPRESARIAL
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp017 - Grupo Empresarial                            */
+    /* Descripción: Definición Grupo Empresarial                          */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public class adp018
-    {
-        //######################################################################
-        //##       Tabla: adp018                                              ##
-        //##      Nombre: GUPO EMPRESARIAL                                    ##
-        //## Descripcion: Grupo Empresarial                                   ##         
-        //##       Autor: JEJR  - (30-08-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 
@@ -23,7 +20,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="gru_emp">Código Grupo Empresarial</param>
         /// <param name="nom_gru">Nombre</param>
-        /// <param name="ban_fac">Datos de Facturación (0=Cliente; 1=Grupo Empresarial)</param>
+        /// <param name="ban_fac">Datos de Facturación (0=Registro Cliente; 1=Grupo Empresarial)</param>
         /// <param name="nom_fac">Nombre a Facturar</param>
         /// <param name="ruc_nit">RUC/NIT</param>
         /// <param name="dir_ent">Dirección de Entregas d/Factura</param>
@@ -48,7 +45,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="gru_emp">Código Grupo Empresarial</param>
         /// <param name="nom_gru">Nombre</param>
-        /// <param name="ban_fac">Datos de Facturación (0=Cliente; 1=Grupo Empresarial)</param>
+        /// <param name="ban_fac">Datos de Facturación (0=Registro Cliente; 1=Grupo Empresarial)</param>
         /// <param name="nom_fac">Nombre a Facturar</param>
         /// <param name="ruc_nit">RUC/NIT</param>
         /// <param name="dir_ent">Dirección de Entregas d/Factura</param>
@@ -181,8 +178,6 @@ namespace CRS_NEG
                     case 1: cadena.AppendLine(" WHERE va_nom_gru LIKE '" + cri_bus + "%'"); break;
                     case 2: cadena.AppendLine(" WHERE va_nom_fac LIKE '" + cri_bus + "%'"); break;
                     case 3: cadena.AppendLine(" WHERE va_ruc_nit LIKE '" + cri_bus + "%'"); break;
-
-
                 }
                 switch (est_bus){
                     case "0": est_bus = "T"; break;
@@ -245,6 +240,27 @@ namespace CRS_NEG
                 cadena.AppendLine("DECLARE @va_gru_emp INT ");
                 cadena.AppendLine(" SELECT @va_gru_emp = ISNULL(MAX(va_gru_emp), 0) FROM adp018");
                 cadena.AppendLine(" SELECT @va_gru_emp + 1 AS va_gru_emp");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Informe: Grupo Empresarial 
+        /// </summary>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ban_fac">Datos de Facturación (0=Registro Cliente; 1=Grupo Empresarial; 2=Todos)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R01(string est_ado, string ord_dat, int ban_fac)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp018_R01 '" + est_ado + "', '" + ord_dat + "', " + ban_fac + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

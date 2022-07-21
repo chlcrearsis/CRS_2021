@@ -4,17 +4,14 @@ using System.Text;
 using CRS_DAT;
 namespace CRS_NEG
 {
-    /// <summary>
-    /// Clase RELACIÓN CONTACTO DE PERSONA
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp017 - Relación Contacto de Persona                 */
+    /* Descripción: Definición Relación Contacto de Persona               */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public class adp017
-    {
-        //######################################################################
-        //##       Tabla: adp017                                              ##
-        //##      Nombre: RELACIÓN CONTACTO DE PERSONA                        ##
-        //## Descripcion: Relación Contacto de Persona                        ##         
-        //##       Autor: JEJR  - (30-08-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

@@ -5,20 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase GRUPO DE PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp001 - Grupo Persona                                */
+    /* Descripción: Definición de Grupos de Persona                       */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public class adp001
-    {
-        //######################################################################
-        //##       Tabla: adp001                                              ##
-        //##      Nombre: GRUPO DE PERSONAS                                   ##
-        //## Descripcion: Definición de Grupos de Persona                     ##         
-        //##       Autor: CHL  - (22-07-2020)                                 ##
-        //######################################################################
-
+    {       
         conexion_a ob_con_ecA = new conexion_a();       
         StringBuilder cadena;      
 

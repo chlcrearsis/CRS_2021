@@ -39,7 +39,7 @@
             this.mn_eli_min = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_rep_tip = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_rep_gru = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lb_nom_gru = new System.Windows.Forms.Label();
@@ -51,13 +51,13 @@
             this.tb_gru_emp = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.bt_can_cel = new System.Windows.Forms.Button();
             this.va_gru_emp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_ban_fac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_can_cel = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -76,7 +76,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -128,17 +128,18 @@
             // mn_rep_ort
             // 
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_rep_tip});
+            this.mn_rep_gru});
             this.mn_rep_ort.Name = "mn_rep_ort";
             this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
-            // mn_rep_tip
+            // mn_rep_gru
             // 
-            this.mn_rep_tip.Name = "mn_rep_tip";
-            this.mn_rep_tip.Size = new System.Drawing.Size(192, 22);
-            this.mn_rep_tip.Text = "&Lista Tipo de Atributos";
-            this.mn_rep_tip.Click += new System.EventHandler(this.mn_rep_tip_Click);
+            this.mn_rep_gru.Name = "mn_rep_gru";
+            this.mn_rep_gru.Size = new System.Drawing.Size(198, 22);
+            this.mn_rep_gru.Tag = "R01";
+            this.mn_rep_gru.Text = "&Lista Grupo Empresarial";
+            this.mn_rep_gru.Click += new System.EventHandler(this.mn_rep_gru_Click);
             // 
             // mn_cer_rar
             // 
@@ -293,6 +294,40 @@
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
             // 
+            // va_gru_emp
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_gru_emp.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_gru_emp.HeaderText = "Código";
+            this.va_gru_emp.Name = "va_gru_emp";
+            this.va_gru_emp.ReadOnly = true;
+            this.va_gru_emp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_gru_emp.Width = 60;
+            // 
+            // va_nom_gru
+            // 
+            this.va_nom_gru.HeaderText = "Nombre";
+            this.va_nom_gru.Name = "va_nom_gru";
+            this.va_nom_gru.ReadOnly = true;
+            this.va_nom_gru.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_nom_gru.Width = 215;
+            // 
+            // va_ban_fac
+            // 
+            this.va_ban_fac.HeaderText = "Datos Facturación";
+            this.va_ban_fac.Name = "va_ban_fac";
+            this.va_ban_fac.ReadOnly = true;
+            this.va_ban_fac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_ban_fac.Width = 135;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_est_ado.Width = 95;
+            // 
             // gb_ctr_btn
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
@@ -331,40 +366,6 @@
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
-            // 
-            // va_gru_emp
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_gru_emp.DefaultCellStyle = dataGridViewCellStyle2;
-            this.va_gru_emp.HeaderText = "Código";
-            this.va_gru_emp.Name = "va_gru_emp";
-            this.va_gru_emp.ReadOnly = true;
-            this.va_gru_emp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_gru_emp.Width = 60;
-            // 
-            // va_nom_gru
-            // 
-            this.va_nom_gru.HeaderText = "Nombre";
-            this.va_nom_gru.Name = "va_nom_gru";
-            this.va_nom_gru.ReadOnly = true;
-            this.va_nom_gru.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_nom_gru.Width = 215;
-            // 
-            // va_ban_fac
-            // 
-            this.va_ban_fac.HeaderText = "Datos Facturación";
-            this.va_ban_fac.Name = "va_ban_fac";
-            this.va_ban_fac.ReadOnly = true;
-            this.va_ban_fac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_ban_fac.Width = 135;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
-            this.va_est_ado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_est_ado.Width = 95;
             // 
             // adp018_01
             // 
@@ -417,7 +418,7 @@
         private System.Windows.Forms.ToolStripMenuItem mn_mod_ifi;
         private System.Windows.Forms.ToolStripMenuItem mn_hab_des;
         private System.Windows.Forms.ToolStripMenuItem mn_eli_min;
-        private System.Windows.Forms.ToolStripMenuItem mn_rep_tip;
+        private System.Windows.Forms.ToolStripMenuItem mn_rep_gru;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         public System.Windows.Forms.TextBox tb_gru_emp;
         public System.Windows.Forms.GroupBox gb_ctr_btn;

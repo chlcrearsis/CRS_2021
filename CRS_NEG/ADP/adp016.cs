@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase INSCRIPCIÓN AUTOMATICA LIBRETA P/GRUPO DE PERSONA
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp016 - Inscripción Libreta p/Grupo de Persona       */
+    /* Descripción: Inscripción Automatica de Libros a Grupos de Perona   */
+    /*       Autor: JEJR - Crearsis             Fecha: 08-11-2021         */
+    /**********************************************************************/
     public class adp016
-    {
-        //######################################################################
-        //##       Tabla: adp016                                              ##
-        //##      Nombre: INSCRIPCIÓN LIBRETA P/GRUPO DE PERSONA              ##
-        //## Descripcion: Inscripción Automatica de Libros a Grupos de Perona ##         
-        //##       Autor: JEJR  - (08-11-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 

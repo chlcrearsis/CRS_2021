@@ -23,6 +23,6 @@ adp014 = Tipo de Documento                                        EJR OK
 adp015 = Validación Registro Persona                              EJR
 adp016 = Inscripción Automatica Libreta p/Grupo de Persona        EJR
 adp017 = Relación Contacto de Persona                             EJR
-adp018 = Grupo Empresarial                                        EJR
+adp018 = Grupo Empresarial                                        EJR OK
 
 

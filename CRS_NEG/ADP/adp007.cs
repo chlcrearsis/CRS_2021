@@ -5,19 +5,14 @@ using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    ///  Clase DEFINICIÓN DE RUTAS
-    ///  ◘◘◘◘◘◘◘◘◘◘◘◘◘◘
-    /// </summary>
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp007 - Definición de Rutas                          */
+    /* Descripción: Rutas p/Asignar al Cliente                            */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public class adp007
-    {
-        //######################################################################
-        //##       Tabla: adp007                                              ##
-        //##      Nombre: DEFINICIÓN DE RUTAS                                 ##
-        //## Descripcion: Rutas p/Asignar al Cliente                          ##         
-        //##       Autor: JEJR  - (30-08-2021)                                ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 
