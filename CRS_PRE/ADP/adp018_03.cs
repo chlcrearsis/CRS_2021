@@ -29,10 +29,21 @@ namespace CRS_PRE
 
             // Despliega Datos
             tb_gru_emp.Text = frm_dat.Rows[0]["va_gru_emp"].ToString();
-            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString();
-            cb_ban_fac.SelectedValue = int.Parse(Tabla.Rows[0]["va_ide_ban"].ToString());            
+            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString();          
             tb_nom_fac.Text = frm_dat.Rows[0]["va_nom_fac"].ToString();            
             tb_dir_ent.Text = frm_dat.Rows[0]["va_dir_ent"].ToString();
+
+            if (frm_dat.Rows[0]["va_ban_fac"].ToString() == "0") { 
+                cb_ban_fac.Text = "Cliente";
+                tb_ruc_nit.ReadOnly = true;
+                tb_nom_fac.ReadOnly = true;
+                tb_dir_ent.ReadOnly = true;
+            }else{ 
+                cb_ban_fac.Text = "Grupo Empresarial";
+                tb_ruc_nit.ReadOnly = false;
+                tb_nom_fac.ReadOnly = false;
+                tb_dir_ent.ReadOnly = false;
+            }
 
             if (frm_dat.Rows[0]["va_ruc_nit"].ToString().CompareTo("0") != 0)
                 tb_ruc_nit.Text = frm_dat.Rows[0]["va_ruc_nit"].ToString();
@@ -40,17 +51,7 @@ namespace CRS_PRE
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             else
-                tb_est_ado.Text = "Deshabilitado";
-
-            if (cb_ban_fac.SelectedValue.ToString() == "0"){
-                tb_ruc_nit.ReadOnly = true;
-                tb_nom_fac.ReadOnly = true;
-                tb_dir_ent.ReadOnly = true;
-            }else{
-                tb_ruc_nit.ReadOnly = false;
-                tb_nom_fac.ReadOnly = false;
-                tb_dir_ent.ReadOnly = false;
-            }            
+                tb_est_ado.Text = "Deshabilitado";                       
 
             tb_nom_gru.Focus();
         }

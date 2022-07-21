@@ -1,10 +1,11 @@
 /*--**********************************************
 ARCHIVO:	adp003.sql	
 TABLA:		Tabla de "Tipo de atributos"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+AUTOR:		CREARSIS 3.0.0 (JEJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'adp003 : Tipo de atributos'
 CREATE TABLE adp003 
 (
 	--** Llave Primaria

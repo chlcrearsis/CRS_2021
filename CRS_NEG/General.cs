@@ -307,5 +307,38 @@ namespace CRS_NEG
             return car_str;
         }
 
+        /// <summary>
+        /// Funcion que valida el monto digitado
+        /// </summary>
+        /// <param name="monto"></param>
+        /// <returns></returns>
+        public bool Fe_val_mto(string monto)
+        {
+            switch (monto)
+            {
+                case "0.0000":
+                case "0.000":
+                case "0.00":
+                case "00.0":
+                case "000.0":
+                case "0000.0":
+                case "0":
+                case "00":
+                case "000":
+                case "0000":
+                case "00000":
+                case "000000":
+                case "0.0":
+                case "0.":
+                case ".0":
+                case ".":
+                case "":
+                case " ":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
     }
 }

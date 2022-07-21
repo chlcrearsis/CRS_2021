@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,13 +51,13 @@
             this.tb_ide_rel = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_can_cel = new System.Windows.Forms.Button();
             this.va_ide_rel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nre_hom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nre_muj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.bt_can_cel = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -270,14 +271,14 @@
             this.va_nre_hom,
             this.va_nre_muj,
             this.va_est_ado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -291,38 +292,6 @@
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
-            // 
-            // va_ide_rel
-            // 
-            this.va_ide_rel.HeaderText = "Código";
-            this.va_ide_rel.Name = "va_ide_rel";
-            this.va_ide_rel.ReadOnly = true;
-            this.va_ide_rel.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_ide_rel.Width = 60;
-            // 
-            // va_nre_hom
-            // 
-            this.va_nre_hom.HeaderText = "Nombre p/Hombre";
-            this.va_nre_hom.Name = "va_nre_hom";
-            this.va_nre_hom.ReadOnly = true;
-            this.va_nre_hom.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_nre_hom.Width = 175;
-            // 
-            // va_nre_muj
-            // 
-            this.va_nre_muj.HeaderText = "Nombre p/Mujer";
-            this.va_nre_muj.Name = "va_nre_muj";
-            this.va_nre_muj.ReadOnly = true;
-            this.va_nre_muj.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_nre_muj.Width = 175;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
-            this.va_est_ado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.va_est_ado.Width = 95;
             // 
             // gb_ctr_btn
             // 
@@ -362,6 +331,40 @@
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
+            // 
+            // va_ide_rel
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_ide_rel.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_ide_rel.HeaderText = "Código";
+            this.va_ide_rel.Name = "va_ide_rel";
+            this.va_ide_rel.ReadOnly = true;
+            this.va_ide_rel.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_ide_rel.Width = 60;
+            // 
+            // va_nre_hom
+            // 
+            this.va_nre_hom.HeaderText = "Nombre p/Hombre";
+            this.va_nre_hom.Name = "va_nre_hom";
+            this.va_nre_hom.ReadOnly = true;
+            this.va_nre_hom.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_nre_hom.Width = 175;
+            // 
+            // va_nre_muj
+            // 
+            this.va_nre_muj.HeaderText = "Nombre p/Mujer";
+            this.va_nre_muj.Name = "va_nre_muj";
+            this.va_nre_muj.ReadOnly = true;
+            this.va_nre_muj.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_nre_muj.Width = 175;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.va_est_ado.Width = 95;
             // 
             // adp017_01
             // 

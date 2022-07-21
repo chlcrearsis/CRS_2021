@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +77,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -136,7 +137,9 @@
             // mn_list_atr
             // 
             this.mn_list_atr.Name = "mn_list_atr";
-            this.mn_list_atr.Size = new System.Drawing.Size(223, 22);
+            this.mn_list_atr.ShortcutKeyDisplayString = "R01";
+            this.mn_list_atr.Size = new System.Drawing.Size(249, 22);
+            this.mn_list_atr.Tag = "";
             this.mn_list_atr.Text = "&Lista Definición de Atributos";
             this.mn_list_atr.Click += new System.EventHandler(this.mn_lis_atr_Click);
             // 
@@ -295,14 +298,14 @@
             this.va_ide_atr,
             this.va_nom_atr,
             this.va_est_ado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -319,6 +322,8 @@
             // 
             // va_ide_atr
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_ide_atr.DefaultCellStyle = dataGridViewCellStyle2;
             this.va_ide_atr.HeaderText = "Código";
             this.va_ide_atr.Name = "va_ide_atr";
             this.va_ide_atr.ReadOnly = true;
@@ -433,9 +438,9 @@
         private System.Windows.Forms.Button bt_bus_tip;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Button bt_can_cel;
+        private System.Windows.Forms.Label tb_ide_atr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_atr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_atr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
-        private System.Windows.Forms.Label tb_ide_atr;
     }
 }

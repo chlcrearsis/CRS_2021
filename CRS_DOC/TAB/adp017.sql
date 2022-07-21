@@ -5,15 +5,16 @@ AUTOR:		CREARSIS 3.0.0
 FECHA:		11-11-2021
 */--**********************************************
 
+PRINT 'adp017 : Relación Contacto de Persona'	
 CREATE TABLE adp017 
 (
 	--** Llave Primaria
-	va_ide_rel	INT				NOT NULL DEFAULT(0),	--** ID. Relacion Contacto
+	va_ide_rel	INT			  NOT NULL DEFAULT(0),		--** ID. Relacion Contacto
 
 	--** Atributos     
-	va_nre_hom	NVARCHAR(20)	NOT NULL DEFAULT(''),	--** Nombre Relación p/Hombre
-	va_nre_muj	NVARCHAR(20)	NOT NULL DEFAULT(''),	--** Nombre Relación p/Mujer
-	va_est_ado	CHAR(01)		NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
+	va_nre_hom	NVARCHAR(20)  NOT NULL DEFAULT(''),		--** Nombre Relación p/Hombre
+	va_nre_muj	NVARCHAR(20)  NOT NULL DEFAULT(''),		--** Nombre Relación p/Mujer
+	va_est_ado	CHAR(01)	  NOT NULL DEFAULT(''),		--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp017 PRIMARY KEY(va_ide_rel)
 )

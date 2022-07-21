@@ -5,6 +5,7 @@ AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		15-09-2021
 */--**********************************************
 
+PRINT 'adp015 : Validación Registro de Persona'	
 CREATE TABLE adp015 
 (
 	--** Llave Primaria

@@ -5,6 +5,7 @@ AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		15-09-2021
 */--**********************************************
 
+PRINT 'adp014 : Tipo de Documento'	
 CREATE TABLE adp014 
 (
 	--** Llave Primaria

@@ -237,5 +237,25 @@ namespace CRS_NEG
             }
         }
 
+        /// <summary>
+        /// Informe: Definición de Rutas
+        /// </summary>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R01(string est_ado, string ord_dat)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp007_R01 '" + est_ado + "', '" + ord_dat + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

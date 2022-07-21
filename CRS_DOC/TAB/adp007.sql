@@ -1,19 +1,20 @@
 /*--**********************************************
 ARCHIVO:	adp007.sql	
-TABLA:		Tabla de "Rutas"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+TABLA:		Tabla de "Definiciones de Rutas"
+AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'adp007 : Definiciones de Rutas'
 CREATE TABLE adp007 
 (
---** Llave Primaria
-va_ide_rut		INT				NOT NULL	DEFAULT(0),			--** ID. Ruta
+	--** Llave Primaria
+	va_ide_rut	INT			 NOT NULL DEFAULT(0),	--** ID. Ruta
 
---** Atributos
-va_nom_rut		VARCHAR(30)		NOT NULL	DEFAULT(''),		--** Nombre de la ruta
-va_nom_cor		VARCHAR(15)		NOT NULL	DEFAULT(''),		--** Nombre corto
-va_est_ado		CHAR(01)		NOT NULL	DEFAULT('')		--** Estado (H=habilitado; N= deshabilitado)
+	--** Atributos
+	va_nom_rut	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre de la ruta
+	va_nom_cor	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** Nombre corto
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT('')	--** Estado (H=habilitado; N= deshabilitado)
 
 CONSTRAINT pk1_adp007 PRIMARY KEY(va_ide_rut)
 )

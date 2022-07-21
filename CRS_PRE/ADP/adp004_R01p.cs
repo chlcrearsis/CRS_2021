@@ -12,6 +12,7 @@ namespace CRS_PRE
         public int frm_tip;
         // Instancias
         adp003 o_adp003 = new adp003();
+        adp004 o_adp004 = new adp004();
         DataTable Tabla = new DataTable();
 
         public adp004_R01p()
@@ -28,8 +29,6 @@ namespace CRS_PRE
             lb_nta_ini.Text = string.Empty;
             lb_nta_fin.Text = string.Empty;
             cb_est_ado.SelectedIndex = 0;
-            rb_ord_cod.Checked = true;
-            rb_ord_nom.Checked = false;
 
             // Obtiene y Desplega el tipo de atributo inicial y final
             Tabla = new DataTable();
@@ -61,12 +60,12 @@ namespace CRS_PRE
                 if (tb_tip_fin.Text == ""){
                     return "Debe proporcionar el Tipo de Atributo Final";
                 }
-                                
-                if (rb_ord_cod.Checked == false && rb_ord_nom.Checked == false) {
-                    return "Tiene que establecer un tipo de ordenamiento para general el informe";
+
+                if (int.Parse(tb_tip_ini.Text) < int.Parse(tb_tip_fin.Text)){
+                    return "El Tipo Atributo Inicial DEBE ser mayor al Tipo de Atributo Final";
                 }
 
-                return "OK";
+                return "";
             }
             catch (Exception) {
                 return "Los datos proporcionados NO pasaron el proceso de validación.";
@@ -74,7 +73,7 @@ namespace CRS_PRE
         }                  
 
         /// <summary>
-        /// Obtiene ide y nombre del usuario
+        /// Obtiene la descripcion del tipo de atributo
         /// </summary>
         void Fi_obt_tip(int ini_fin, int ide_tip)
         {
@@ -140,6 +139,17 @@ namespace CRS_PRE
                 // Abre la ventana Busca Usuario
                 Fi_bus_tip(2);
             }
+        }       
+
+        private void tb_tip_ini_Leave(object sender, EventArgs e)
+        {
+            // Obtiene el Tipo de Atributo Inicial           
+            Fi_obt_tip(1, int.Parse(tb_tip_ini.Text));
+        }       
+
+        private void tb_tip_fin_Leave(object sender, EventArgs e)
+        {
+            Fi_obt_tip(2, int.Parse(tb_tip_fin.Text));
         }
 
         // Evento Click: Button Aceptar
@@ -147,17 +157,38 @@ namespace CRS_PRE
         {
             // funcion para validar datos
             string msg_val = Fi_val_dat();
+            string est_ado = "";
+               int tip_ini = 0;
+               int tip_fin = 0;            
+
             if (msg_val != "")
             {
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
 
-            //Registrar usuario
-            /*Tabla = new DataTable();
-            Tabla = o_ads016.Fe_ads016_R01(int.Parse(tb_ges_tio.Text));
-            ads016_R01w frm = new ads016_R01w();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);*/
+            // Obtiene parametros de pantalla
+            tip_ini = int.Parse(tb_tip_ini.Text);
+            tip_fin = int.Parse(tb_tip_fin.Text);
+
+            // Obtiene el estado del reporte
+            if (cb_est_ado.SelectedIndex == 0)
+                est_ado = "T";
+            if (cb_est_ado.SelectedIndex == 1)
+                est_ado = "H";
+            if (cb_est_ado.SelectedIndex == 2)
+                est_ado = "N";
+
+            // Obtiene Datos
+            Tabla = new DataTable();
+            Tabla = o_adp004.Fe_inf_R01(est_ado, tip_ini, tip_fin);
+
+            // Genera el Informe
+            adp004_R01w frm = new adp004_R01w();
+            frm.vp_est_ado = est_ado;
+            frm.vp_tip_ini = tip_ini;
+            frm.vp_tip_fin = tip_fin;
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 
         // Evento Click: Button Cancelar
@@ -166,5 +197,7 @@ namespace CRS_PRE
             // Cierra Formulario
             cl_glo_frm.Cerrar(this);
         }
+
+        
     }
 }

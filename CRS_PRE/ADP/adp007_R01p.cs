@@ -1,13 +1,16 @@
-﻿using System;
+﻿using CRS_NEG;
+using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace CRS_PRE
 {
     public partial class adp007_R01p : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
+        private DataTable Tabla;
+        private adp007 o_adp007 = new adp007();
 
         public adp007_R01p()
         {
@@ -37,18 +40,38 @@ namespace CRS_PRE
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             // funcion para validar datos
+            string est_ado = "";
+            string ord_dat = "";
             string msg_val = Fi_val_dat();
-            if (msg_val != "")
+            if (msg_val != "OK")
             {
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
 
-            //Registrar usuario
-            /*Tabla = new DataTable();
-            Tabla = o_ads016.Fe_ads016_R01(int.Parse(tb_ges_tio.Text));
-            ads016_R01w frm = new ads016_R01w();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);*/
+            // Obtiene el estado del reporte
+            if (cb_est_ado.SelectedIndex == 0)
+                est_ado = "T";
+            if (cb_est_ado.SelectedIndex == 1)
+                est_ado = "H";
+            if (cb_est_ado.SelectedIndex == 2)
+                est_ado = "N";
+
+            // Obtiene el criterio de ordenamiento
+            if (rb_ord_cod.Checked)
+                ord_dat = "C";
+            if (rb_ord_nom.Checked)
+                ord_dat = "N";
+
+            // Obtiene Datos
+            Tabla = new DataTable();
+            Tabla = o_adp007.Fe_inf_R01(est_ado, ord_dat);
+
+            // Genera el Informe
+            adp007_R01w frm = new adp007_R01w();
+            frm.vp_est_ado = est_ado;
+            frm.vp_ord_dat = ord_dat;
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 
         // Evento Click: Button Cancelar

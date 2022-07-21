@@ -1,10 +1,11 @@
 /*--**********************************************
 ARCHIVO:	adp002.sql	
-TABLA:		Tabla de "Persona"
-AUTOR:		CREARSIS 3.0.0
+TABLA:		Tabla de "Registro Persona"
+AUTOR:		CREARSIS 3.0.0 (JEJR)
 FECHA:		03-01-2018
 */--**********************************************
 	 
+PRINT 'adp002 : Registro Persona'
 CREATE TABLE adp002 
 (
 	--** Llave Primaria

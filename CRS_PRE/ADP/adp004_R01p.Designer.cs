@@ -33,9 +33,6 @@
             this.lb_est_ado = new System.Windows.Forms.Label();
             this.lb_nta_fin = new System.Windows.Forms.Label();
             this.lb_nta_ini = new System.Windows.Forms.Label();
-            this.gb_ord_por = new System.Windows.Forms.GroupBox();
-            this.rb_ord_nom = new System.Windows.Forms.RadioButton();
-            this.rb_ord_cod = new System.Windows.Forms.RadioButton();
             this.lb_tip_fin = new System.Windows.Forms.Label();
             this.tb_tip_fin = new System.Windows.Forms.TextBox();
             this.bt_tip_fin = new System.Windows.Forms.Button();
@@ -46,7 +43,6 @@
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.gb_ord_por.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +52,6 @@
             this.groupBox1.Controls.Add(this.lb_est_ado);
             this.groupBox1.Controls.Add(this.lb_nta_fin);
             this.groupBox1.Controls.Add(this.lb_nta_ini);
-            this.groupBox1.Controls.Add(this.gb_ord_por);
             this.groupBox1.Controls.Add(this.lb_tip_fin);
             this.groupBox1.Controls.Add(this.tb_tip_fin);
             this.groupBox1.Controls.Add(this.bt_tip_fin);
@@ -65,7 +60,7 @@
             this.groupBox1.Controls.Add(this.bt_tip_ini);
             this.groupBox1.Location = new System.Drawing.Point(3, -4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(360, 154);
+            this.groupBox1.Size = new System.Drawing.Size(360, 104);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -77,7 +72,7 @@
             "Todos",
             "Habilitado",
             "Deshabilitado"});
-            this.cb_est_ado.Location = new System.Drawing.Point(144, 79);
+            this.cb_est_ado.Location = new System.Drawing.Point(107, 72);
             this.cb_est_ado.Name = "cb_est_ado";
             this.cb_est_ado.Size = new System.Drawing.Size(104, 21);
             this.cb_est_ado.TabIndex = 9;
@@ -85,7 +80,7 @@
             // lb_est_ado
             // 
             this.lb_est_ado.AutoSize = true;
-            this.lb_est_ado.Location = new System.Drawing.Point(102, 82);
+            this.lb_est_ado.Location = new System.Drawing.Point(65, 75);
             this.lb_est_ado.Name = "lb_est_ado";
             this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
             this.lb_est_ado.TabIndex = 8;
@@ -109,39 +104,6 @@
             this.lb_nta_ini.TabIndex = 3;
             this.lb_nta_ini.Text = "....";
             // 
-            // gb_ord_por
-            // 
-            this.gb_ord_por.Controls.Add(this.rb_ord_nom);
-            this.gb_ord_por.Controls.Add(this.rb_ord_cod);
-            this.gb_ord_por.Location = new System.Drawing.Point(11, 106);
-            this.gb_ord_por.Name = "gb_ord_por";
-            this.gb_ord_por.Size = new System.Drawing.Size(340, 41);
-            this.gb_ord_por.TabIndex = 10;
-            this.gb_ord_por.TabStop = false;
-            this.gb_ord_por.Text = "Ordenado por";
-            // 
-            // rb_ord_nom
-            // 
-            this.rb_ord_nom.AutoSize = true;
-            this.rb_ord_nom.Location = new System.Drawing.Point(179, 15);
-            this.rb_ord_nom.Name = "rb_ord_nom";
-            this.rb_ord_nom.Size = new System.Drawing.Size(62, 17);
-            this.rb_ord_nom.TabIndex = 1;
-            this.rb_ord_nom.TabStop = true;
-            this.rb_ord_nom.Text = "Nombre";
-            this.rb_ord_nom.UseVisualStyleBackColor = true;
-            // 
-            // rb_ord_cod
-            // 
-            this.rb_ord_cod.AutoSize = true;
-            this.rb_ord_cod.Location = new System.Drawing.Point(85, 15);
-            this.rb_ord_cod.Name = "rb_ord_cod";
-            this.rb_ord_cod.Size = new System.Drawing.Size(58, 17);
-            this.rb_ord_cod.TabIndex = 0;
-            this.rb_ord_cod.TabStop = true;
-            this.rb_ord_cod.Text = "Código";
-            this.rb_ord_cod.UseVisualStyleBackColor = true;
-            // 
             // lb_tip_fin
             // 
             this.lb_tip_fin.AutoSize = true;
@@ -161,6 +123,7 @@
             this.tb_tip_fin.TabIndex = 5;
             this.tb_tip_fin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_tip_fin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_tip_fin_KeyDown);
+            this.tb_tip_fin.Leave += new System.EventHandler(this.tb_tip_fin_Leave);
             // 
             // bt_tip_fin
             // 
@@ -195,6 +158,7 @@
             this.tb_tip_ini.TabIndex = 1;
             this.tb_tip_ini.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_tip_ini.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_tip_ini_KeyDown);
+            this.tb_tip_ini.Leave += new System.EventHandler(this.tb_tip_ini_Leave);
             // 
             // bt_tip_ini
             // 
@@ -215,7 +179,7 @@
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 144);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 95);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(360, 40);
             this.gb_ctr_btn.TabIndex = 1;
@@ -253,7 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 186);
+            this.ClientSize = new System.Drawing.Size(366, 138);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -267,8 +231,6 @@
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.gb_ord_por.ResumeLayout(false);
-            this.gb_ord_por.PerformLayout();
             this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -283,9 +245,6 @@
         private System.Windows.Forms.Label lb_tip_ini;
         private System.Windows.Forms.TextBox tb_tip_ini;
         private System.Windows.Forms.Button bt_tip_ini;
-        private System.Windows.Forms.RadioButton rb_ord_nom;
-        private System.Windows.Forms.RadioButton rb_ord_cod;
-        private System.Windows.Forms.GroupBox gb_ord_por;
         private System.Windows.Forms.Label lb_nta_fin;
         private System.Windows.Forms.Label lb_nta_ini;
         private System.Windows.Forms.ComboBox cb_est_ado;

@@ -5,6 +5,7 @@ AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		03-01-2018
 */--**********************************************
 
+PRINT 'adp008 : Rutas p/Persona'
 CREATE TABLE adp008 
 (
 	--** Llave Primaria

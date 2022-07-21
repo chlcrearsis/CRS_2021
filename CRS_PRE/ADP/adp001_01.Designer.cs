@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,12 +52,12 @@
             this.tb_cod_gru = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_cod_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
+            this.va_cod_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -76,7 +77,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(88, 57);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(530, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(410, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -143,7 +144,8 @@
             // mn_lis_gru
             // 
             this.mn_lis_gru.Name = "mn_lis_gru";
-            this.mn_lis_gru.Size = new System.Drawing.Size(180, 22);
+            this.mn_lis_gru.ShortcutKeyDisplayString = "R01";
+            this.mn_lis_gru.Size = new System.Drawing.Size(205, 22);
             this.mn_lis_gru.Text = "&Lista Grupo Persona";
             this.mn_lis_gru.Click += new System.EventHandler(this.mn_lis_gru_Click);
             // 
@@ -242,6 +244,7 @@
             this.tb_cod_gru.Name = "tb_cod_gru";
             this.tb_cod_gru.Size = new System.Drawing.Size(42, 20);
             this.tb_cod_gru.TabIndex = 1;
+            this.tb_cod_gru.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_cod_gru.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             this.tb_cod_gru.Validated += new System.EventHandler(this.tb_cod_gru_Validated);
             // 
@@ -276,14 +279,14 @@
             this.va_cod_gru,
             this.va_nom_gru,
             this.va_est_ado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 10);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -297,26 +300,6 @@
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
-            // 
-            // va_cod_gru
-            // 
-            this.va_cod_gru.HeaderText = "Codigo";
-            this.va_cod_gru.Name = "va_cod_gru";
-            this.va_cod_gru.ReadOnly = true;
-            this.va_cod_gru.Width = 60;
-            // 
-            // va_nom_gru
-            // 
-            this.va_nom_gru.HeaderText = "Nombre";
-            this.va_nom_gru.Name = "va_nom_gru";
-            this.va_nom_gru.ReadOnly = true;
-            this.va_nom_gru.Width = 355;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
             // 
             // gb_ctr_btn
             // 
@@ -354,6 +337,28 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
+            // 
+            // va_cod_gru
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_cod_gru.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_cod_gru.HeaderText = "Codigo";
+            this.va_cod_gru.Name = "va_cod_gru";
+            this.va_cod_gru.ReadOnly = true;
+            this.va_cod_gru.Width = 60;
+            // 
+            // va_nom_gru
+            // 
+            this.va_nom_gru.HeaderText = "Nombre";
+            this.va_nom_gru.Name = "va_nom_gru";
+            this.va_nom_gru.ReadOnly = true;
+            this.va_nom_gru.Width = 355;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
             // 
             // adp001_01
             // 
@@ -407,13 +412,13 @@
         private System.Windows.Forms.ToolStripMenuItem mn_lis_gru;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         public System.Windows.Forms.TextBox tb_cod_gru;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_gru;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_gru;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
         private System.Windows.Forms.ToolStripMenuItem mn_ins_aut;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Button bt_can_cel;
         public System.Windows.Forms.Label lb_nom_gru;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_gru;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_gru;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }
 }

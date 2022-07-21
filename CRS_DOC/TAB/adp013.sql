@@ -1,10 +1,11 @@
 /*--**********************************************
 ARCHIVO:	adp013.sql	
 TABLA:		Tabla de "Contactos p/Persona"
-AUTOR:		CREARSIS 3.0.0
+AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		03-01-2018
 */--**********************************************
-	 
+
+PRINT 'adp013 : Contactos p/Persona'	 
 CREATE TABLE adp013 
 (
 	--** Llave Primaria

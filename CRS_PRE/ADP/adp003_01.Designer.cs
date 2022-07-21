@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,12 +51,12 @@
             this.tb_ide_tip = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
+            this.va_ide_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -134,7 +135,8 @@
             // mn_rep_tip
             // 
             this.mn_rep_tip.Name = "mn_rep_tip";
-            this.mn_rep_tip.Size = new System.Drawing.Size(192, 22);
+            this.mn_rep_tip.ShortcutKeyDisplayString = "R01";
+            this.mn_rep_tip.Size = new System.Drawing.Size(218, 22);
             this.mn_rep_tip.Text = "&Lista Tipo de Atributos";
             this.mn_rep_tip.Click += new System.EventHandler(this.mn_rep_tip_Click);
             // 
@@ -268,14 +270,14 @@
             this.va_ide_tip,
             this.va_nom_tip,
             this.va_est_ado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -289,27 +291,6 @@
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
-            // 
-            // va_ide_tip
-            // 
-            this.va_ide_tip.HeaderText = "Codigo";
-            this.va_ide_tip.Name = "va_ide_tip";
-            this.va_ide_tip.ReadOnly = true;
-            this.va_ide_tip.Width = 60;
-            // 
-            // va_nom_tip
-            // 
-            this.va_nom_tip.HeaderText = "Nombre";
-            this.va_nom_tip.Name = "va_nom_tip";
-            this.va_nom_tip.ReadOnly = true;
-            this.va_nom_tip.Width = 350;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
-            this.va_est_ado.Width = 95;
             // 
             // gb_ctr_btn
             // 
@@ -349,6 +330,29 @@
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
+            // 
+            // va_ide_tip
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_ide_tip.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_ide_tip.HeaderText = "Codigo";
+            this.va_ide_tip.Name = "va_ide_tip";
+            this.va_ide_tip.ReadOnly = true;
+            this.va_ide_tip.Width = 60;
+            // 
+            // va_nom_tip
+            // 
+            this.va_nom_tip.HeaderText = "Nombre";
+            this.va_nom_tip.Name = "va_nom_tip";
+            this.va_nom_tip.ReadOnly = true;
+            this.va_nom_tip.Width = 350;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Width = 95;
             // 
             // adp003_01
             // 

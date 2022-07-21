@@ -391,6 +391,9 @@ namespace CRS_PRE
             }
         }
 
-        
+        private void mn_cer_rar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

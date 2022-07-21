@@ -32,8 +32,8 @@
             this.cb_est_ado = new System.Windows.Forms.ComboBox();
             this.lb_est_ado = new System.Windows.Forms.Label();
             this.gb_ord_por = new System.Windows.Forms.GroupBox();
-            this.rb_ord_nom = new System.Windows.Forms.RadioButton();
-            this.rb_ord_cod = new System.Windows.Forms.RadioButton();
+            this.rb_ord_des = new System.Windows.Forms.RadioButton();
+            this.rb_ord_tip = new System.Windows.Forms.RadioButton();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
@@ -77,8 +77,8 @@
             // 
             // gb_ord_por
             // 
-            this.gb_ord_por.Controls.Add(this.rb_ord_nom);
-            this.gb_ord_por.Controls.Add(this.rb_ord_cod);
+            this.gb_ord_por.Controls.Add(this.rb_ord_des);
+            this.gb_ord_por.Controls.Add(this.rb_ord_tip);
             this.gb_ord_por.Location = new System.Drawing.Point(11, 54);
             this.gb_ord_por.Name = "gb_ord_por";
             this.gb_ord_por.Size = new System.Drawing.Size(243, 41);
@@ -86,27 +86,27 @@
             this.gb_ord_por.TabStop = false;
             this.gb_ord_por.Text = "Ordenado por";
             // 
-            // rb_ord_nom
+            // rb_ord_des
             // 
-            this.rb_ord_nom.AutoSize = true;
-            this.rb_ord_nom.Location = new System.Drawing.Point(127, 15);
-            this.rb_ord_nom.Name = "rb_ord_nom";
-            this.rb_ord_nom.Size = new System.Drawing.Size(62, 17);
-            this.rb_ord_nom.TabIndex = 1;
-            this.rb_ord_nom.TabStop = true;
-            this.rb_ord_nom.Text = "Nombre";
-            this.rb_ord_nom.UseVisualStyleBackColor = true;
+            this.rb_ord_des.AutoSize = true;
+            this.rb_ord_des.Location = new System.Drawing.Point(140, 15);
+            this.rb_ord_des.Name = "rb_ord_des";
+            this.rb_ord_des.Size = new System.Drawing.Size(81, 17);
+            this.rb_ord_des.TabIndex = 1;
+            this.rb_ord_des.TabStop = true;
+            this.rb_ord_des.Text = "Descripción";
+            this.rb_ord_des.UseVisualStyleBackColor = true;
             // 
-            // rb_ord_cod
+            // rb_ord_tip
             // 
-            this.rb_ord_cod.AutoSize = true;
-            this.rb_ord_cod.Location = new System.Drawing.Point(50, 15);
-            this.rb_ord_cod.Name = "rb_ord_cod";
-            this.rb_ord_cod.Size = new System.Drawing.Size(58, 17);
-            this.rb_ord_cod.TabIndex = 0;
-            this.rb_ord_cod.TabStop = true;
-            this.rb_ord_cod.Text = "Código";
-            this.rb_ord_cod.UseVisualStyleBackColor = true;
+            this.rb_ord_tip.AutoSize = true;
+            this.rb_ord_tip.Location = new System.Drawing.Point(28, 15);
+            this.rb_ord_tip.Name = "rb_ord_tip";
+            this.rb_ord_tip.Size = new System.Drawing.Size(104, 17);
+            this.rb_ord_tip.TabIndex = 0;
+            this.rb_ord_tip.TabStop = true;
+            this.rb_ord_tip.Text = "Tipo Documento";
+            this.rb_ord_tip.UseVisualStyleBackColor = true;
             // 
             // gb_ctr_btn
             // 
@@ -175,8 +175,8 @@
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
-        private System.Windows.Forms.RadioButton rb_ord_nom;
-        private System.Windows.Forms.RadioButton rb_ord_cod;
+        private System.Windows.Forms.RadioButton rb_ord_des;
+        private System.Windows.Forms.RadioButton rb_ord_tip;
         private System.Windows.Forms.GroupBox gb_ord_por;
         private System.Windows.Forms.ComboBox cb_est_ado;
         private System.Windows.Forms.Label lb_est_ado;

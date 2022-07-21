@@ -5,10 +5,11 @@ AUTOR:		CREARSIS 3.0.0 (CHL)
 FECHA:		12-11-2021
 */--**********************************************
 
+PRINT 'adp018 : Grupo Empresarial'
 CREATE TABLE adp018 
 (
 	--** Llave Primaria
-	va_gru_emp  INT		    NOT NULL DEFAULT(0),	--** Codigo Grupo Empresarial
+	va_gru_emp  INT		     NOT NULL DEFAULT(0),	--** Codigo Grupo Empresarial
 
 	--** Atributos     
 	va_nom_gru  VARCHAR(40)	 NOT NULL DEFAULT(''),  --** Nombre

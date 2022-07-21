@@ -249,5 +249,26 @@ namespace CRS_NEG
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Informe: Definición de Atributo
+        /// </summary>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="tip_ini">ID. Tipo Atributo Inicial</param>
+        /// <param name="tip_fin">ID. Tipo Atributo Final</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R01(string est_ado, int tip_ini, int tip_fin)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp004_R01 '" + est_ado + "', " + tip_ini + ", " + tip_fin + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

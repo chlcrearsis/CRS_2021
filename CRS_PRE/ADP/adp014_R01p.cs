@@ -10,6 +10,8 @@ namespace CRS_PRE
     {
         public dynamic frm_pad;
         public int frm_tip;
+        private DataTable Tabla;
+        private adp014 o_adp014 = new adp014();
 
         public adp014_R01p()
         {
@@ -20,8 +22,8 @@ namespace CRS_PRE
         {     
             // Desplega Información inicial            
             cb_est_ado.SelectedIndex = 0;
-            rb_ord_cod.Checked = true;
-            rb_ord_nom.Checked = false;            
+            rb_ord_tip.Checked = true;
+            rb_ord_des.Checked = false;            
         }
 
         protected string Fi_val_dat()
@@ -39,18 +41,38 @@ namespace CRS_PRE
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             // funcion para validar datos
+            string est_ado = "";
+            string ord_dat = "";
             string msg_val = Fi_val_dat();
-            if (msg_val != "")
+            if (msg_val != "OK")
             {
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
 
-            //Registrar usuario
-            /*Tabla = new DataTable();
-            Tabla = o_ads016.Fe_ads016_R01(int.Parse(tb_ges_tio.Text));
-            ads016_R01w frm = new ads016_R01w();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);*/
+            // Obtiene el estado del reporte
+            if (cb_est_ado.SelectedIndex == 0)
+                est_ado = "T";
+            if (cb_est_ado.SelectedIndex == 1)
+                est_ado = "H";
+            if (cb_est_ado.SelectedIndex == 2)
+                est_ado = "N";
+
+            // Obtiene el criterio de ordenamiento
+            if (rb_ord_tip.Checked)
+                ord_dat = "T";
+            if (rb_ord_des.Checked)
+                ord_dat = "D";
+
+            // Obtiene Datos
+            Tabla = new DataTable();
+            Tabla = o_adp014.Fe_inf_R01(est_ado, ord_dat);
+
+            // Genera el Informe
+            adp014_R01w frm = new adp014_R01w();
+            frm.vp_est_ado = est_ado;
+            frm.vp_ord_dat = ord_dat;
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 
         // Evento Click: Button Cancelar

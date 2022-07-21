@@ -5,6 +5,7 @@ AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		03-01-2018
 */--**********************************************
 
+PRINT 'adp009 : Permiso Lista de Precio p/Persona'
 CREATE TABLE adp009 
 (
 	--** Llave Primaria

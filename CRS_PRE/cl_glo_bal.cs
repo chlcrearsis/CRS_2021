@@ -149,23 +149,20 @@ namespace CRS_PRE
 
             foreach (dynamic opcion_menu in menu.Items)
             {
-
-                tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, opcion_menu.Name);
-
-                if (glo_ide_usr == Program.gl_usr_usr)
+                if (opcion_menu.Tag == null)
                 {
-                    if (tab_usm.Rows.Count != 0)
-                    {
-                        opcion_menu.Enabled = false;
-                    }
-                    else
-                    {
-                        opcion_menu.Enabled = true;
-                    }
+                    tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, opcion_menu.Name);
 
-                    //if (opcion_menu is MenuStrip.)
-                    //verifica en las opciones Hijas
-                    fu_bus_hi1(opcion_menu);
+                    if (glo_ide_usr == Program.gl_usr_usr)
+                    {
+                        if (tab_usm.Rows.Count != 0) {
+                            opcion_menu.Enabled = false;
+                        }else{
+                            opcion_menu.Enabled = true;
+                        }                        
+                        // Verifica en las opciones Hijas                    
+                        fu_bus_hi1(opcion_menu);
+                    }
                 }
             }
 
@@ -178,11 +175,8 @@ namespace CRS_PRE
 
         private static void fu_bus_hi1(ToolStripMenuItem itm_hi1)
         {
-
-
             foreach (dynamic hijo1 in itm_hi1.DropDownItems)
             {
-
                 if (hijo1.Tag != null)
                 {
                     if (hijo1.Tag.ToString() == "separador")
@@ -191,8 +185,6 @@ namespace CRS_PRE
                     }
                 }
 
-
-                //ToolStripMenuItem h1 = hijo1;
 
                 //verifica que la opcion no este restringida
                 tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, hijo1.Name);
