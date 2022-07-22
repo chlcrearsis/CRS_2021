@@ -5,17 +5,21 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definición de Atributos                      */
+    /*      Opción: Busca Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public partial class adp004_07 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
-        public DataTable Tabla;
         public dynamic frm_MDI;
-
-        // Instancia        
-        DataTable tabla = new DataTable();
+        // Instancia                
         adp003 o_adp003 = new adp003();
         adp004 o_adp004 = new adp004();
+        DataTable Tabla = new DataTable();
         // Variables
         string est_bus = "T";
         public int vp_ide_tip = 0;
@@ -35,7 +39,7 @@ namespace CRS_PRE
             lb_nom_atr.Text = "";
             cb_prm_bus.SelectedIndex = 0;
             cb_est_bus.SelectedIndex = 0;
-            this.Text = "Busca Atributo : " + fi_obt_tip();
+            Text = "Busca Atributo : " + fi_obt_tip();
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);          
         }
 
@@ -80,22 +84,24 @@ namespace CRS_PRE
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
-            tabla = o_adp004.Fe_bus_car(vp_ide_tip, tex_bus, prm_bus, est_bus);
-            if (tabla.Rows.Count > 0)
+            // Obtiene registros
+            o_adp004 = new adp004();
+            Tabla = o_adp004.Fe_bus_car(vp_ide_tip, tex_bus, prm_bus, est_bus);
+            if (Tabla.Rows.Count > 0)
             {
-                for (int i = 0; i < tabla.Rows.Count; i++)
+                for (int i = 0; i < Tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_ide_atr"].Value = tabla.Rows[i]["va_ide_atr"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_atr"].Value = tabla.Rows[i]["va_nom_atr"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_ide_atr"].Value = Tabla.Rows[i]["va_ide_atr"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_atr"].Value = Tabla.Rows[i]["va_nom_atr"].ToString();
 
-                    if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
+                    if (Tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_ide_atr.Text = tabla.Rows[0]["va_ide_atr"].ToString();
-                lb_nom_atr.Text = tabla.Rows[0]["va_nom_atr"].ToString();
+                tb_ide_atr.Text = Tabla.Rows[0]["va_ide_atr"].ToString();
+                lb_nom_atr.Text = Tabla.Rows[0]["va_nom_atr"].ToString();
             }
         }
 
@@ -110,13 +116,13 @@ namespace CRS_PRE
                 return;
             }
 
-            tabla = o_adp004.Fe_con_atr(vp_ide_tip, int.Parse(tb_ide_atr.Text));
-            if (tabla.Rows.Count == 0){
+            Tabla = o_adp004.Fe_con_atr(vp_ide_tip, int.Parse(tb_ide_atr.Text));
+            if (Tabla.Rows.Count == 0){
                 lb_nom_atr.Text = "** NO Existe";
                 return;
             }
-            tb_ide_atr.Text = tabla.Rows[0]["va_ide_atr"].ToString();
-            lb_nom_atr.Text = tabla.Rows[0]["va_nom_atr"].ToString();
+            tb_ide_atr.Text = Tabla.Rows[0]["va_ide_atr"].ToString();
+            lb_nom_atr.Text = Tabla.Rows[0]["va_nom_atr"].ToString();
         }
 
         /// <summary>

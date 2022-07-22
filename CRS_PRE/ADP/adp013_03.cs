@@ -1,24 +1,27 @@
 ﻿using System;
-using System.Collections;
 using System.Data;
 using System.Windows.Forms;
 using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp013 - Contacto p/Persona                           */
+    /*      Opción: Edita Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 04-11-2021         */
+    /**********************************************************************/
     public partial class adp013_03 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp002 o_adp002 = new adp002();
         adp013 o_adp013 = new adp013();
-        adp017 o_adp017 = new adp017();
-        DataTable Tabla = new DataTable();
+        adp017 o_adp017 = new adp017();        
         General general = new General();
-        string Titulo = "Edita Contacto Persona";
+        DataTable Tabla = new DataTable();
 
         public adp013_03()
         {
@@ -245,7 +248,7 @@ namespace CRS_PRE
             if (tb_fec_nac.Text.CompareTo("  /  /") != 0){
                 if (cl_glo_bal.IsDateTime(tb_fec_nac.Text) == false){
                     tb_fec_nac.Focus();
-                    MessageBox.Show("La Fecha Digitada NO corresponde a una Fecha Válida", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La Fecha Digitada NO corresponde a una Fecha Válida", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -271,7 +274,7 @@ namespace CRS_PRE
                     return;
                 }
 
-                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {                    
                     string nom_bre = tb_nom_bre.Text.Trim();
@@ -301,12 +304,12 @@ namespace CRS_PRE
                                         ext_doc, sex_per, fec_nac, par_con, tel_per, cel_ula,
                                         ema_ail, dir_ubi, obs_con);
 
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     frm_pad.Fe_act_frm(tb_cod_con.Text);
                     cl_glo_frm.Cerrar(this);
                 }
             }catch (Exception ex){
-                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

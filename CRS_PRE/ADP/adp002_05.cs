@@ -6,13 +6,18 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp002 - Registro Persona                             */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public partial class adp002_05 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        // Instancias
-        adp002 o_adp002 = new adp002();
+        // Instancias        
         adp005 o_adp005 = new adp005();
         adp014 o_adp014 = new adp014();
         DataTable Tabla = new DataTable();

@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp010 - Descuento General p/Persona                  */
+    /*      Opción: Registra Permiso                                      */
+    /*       Autor: JEJR - Crearsis             Fecha: 21-10-2021         */
+    /**********************************************************************/
     public partial class adp010_03 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
         // Instancias
-        adp002 o_adp002 = new adp002();
         adp010 o_adp010 = new adp010();
-        ads010 o_ads010 = new ads010();
-        // Variables
         DataTable Tabla = new DataTable();
-        General general = new General();           
-        string Titulo = "Descuento General p/Persona";
+        // Variables
         string va_tip_ope = "N"; 
 
         public adp010_03(){
@@ -117,10 +117,10 @@ namespace CRS_PRE
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
                 if (msg_val != ""){
-                    MessageBox.Show("Error: " + msg_val, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Error: " + msg_val, Text, MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de actualizar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de actualizar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     
                     // Graba el registro en la BD.
@@ -131,12 +131,12 @@ namespace CRS_PRE
                     }
 
                     // Retorna Atras */
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -3,9 +3,14 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp017 - Relación Contacto de Persona                 */
+    /*      Opción: Busca Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp017_01 : Form
     {
         public dynamic frm_pad;
@@ -14,10 +19,9 @@ namespace CRS_PRE
         public dynamic frm_MDI;
         // Instancia        
         adp017 o_adp017 = new adp017();
-        // Variables
         DataTable Tabla = new DataTable();
+        // Variables
         string est_bus = "T";
-        string Titulo = "Relación Contacto Persona";
 
         public adp017_01()
         {
@@ -203,7 +207,7 @@ namespace CRS_PRE
             string res_fun;
             if (sel_ecc.Trim() == ""){
                 res_fun = "La Relación Contacto Persona que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_rel.Focus();
                 return false;
             }
@@ -213,7 +217,7 @@ namespace CRS_PRE
             if (Tabla.Rows.Count == 0)
             {
                 res_fun = "La Relación Contacto Persona que desea editar, no se encuentra registrado";
-                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_rel.Focus();
                 return false;
             }

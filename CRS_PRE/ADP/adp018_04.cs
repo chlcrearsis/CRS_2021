@@ -6,6 +6,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp018 - Grupo Empresarial                            */
+    /*      Opción: Habilita/Deshabilita Registro                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp018_04 : Form
     {
         public dynamic frm_pad;
@@ -13,9 +19,7 @@ namespace CRS_PRE
         public DataTable frm_dat;
         // Instancias
         adp018 o_adp018 = new adp018();
-        // Variables
         DataTable Tabla = new DataTable();
-        string Titulo = "Habilita/Deshabilita Grupo Empresarial";
 
         public adp018_04(){
             InitializeComponent();
@@ -100,9 +104,9 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Grupo Empresarial?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Grupo Empresarial?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Grupo Empresarial?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Grupo Empresarial?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK)
                 {
@@ -111,7 +115,7 @@ namespace CRS_PRE
                     else
                         o_adp018.Fe_hab_des(int.Parse(tb_gru_emp.Text), "H");
 
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Actualiza ventana buscar
                     frm_pad.Fe_act_frm(int.Parse(tb_gru_emp.Text));
@@ -121,7 +125,7 @@ namespace CRS_PRE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

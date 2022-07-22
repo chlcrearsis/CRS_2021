@@ -6,24 +6,26 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp007 - Definición Rutas                             */
+    /*      Opción: Edita Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp007_03 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
         // Instancias
-        adp007 o_adp007 = new adp007();    
-        // Variables
+        adp007 o_adp007 = new adp007();
         DataTable Tabla = new DataTable();
-        string Titulo = "Edita Definición de Rutas";
 
-        public adp007_03()
-        {
+        public adp007_03(){
             InitializeComponent();
         }
       
-        private void frm_Load(object sender, EventArgs e)
-        {
+        private void frm_Load(object sender, EventArgs e){
             tb_ide_rut.Text = frm_dat.Rows[0]["va_ide_rut"].ToString().Trim();
             tb_nom_rut.Text = frm_dat.Rows[0]["va_nom_rut"].ToString().Trim();
             tb_nom_cor.Text = frm_dat.Rows[0]["va_nom_cor"].ToString().Trim();
@@ -69,18 +71,18 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
                     // Edita Tipo de Atributo
                     o_adp007.Fe_edi_tar(int.Parse(tb_ide_rut.Text), tb_nom_rut.Text, tb_nom_cor.Text);
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rut.Text));
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }            
         }
 

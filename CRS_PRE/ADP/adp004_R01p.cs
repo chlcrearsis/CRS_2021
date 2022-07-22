@@ -6,6 +6,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definición de Atributos                      */
+    /*      Opción: Informe R01 - Parametros                              */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public partial class adp004_R01p : Form
     {
         public dynamic frm_pad;
@@ -19,7 +25,6 @@ namespace CRS_PRE
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {     
@@ -54,16 +59,14 @@ namespace CRS_PRE
         {
             try
             {
-                if (tb_tip_ini.Text == ""){
+                if (tb_tip_ini.Text == "")
                     return "Debe proporcionar el Tipo de Atributo Inicial";
-                }
-                if (tb_tip_fin.Text == ""){
-                    return "Debe proporcionar el Tipo de Atributo Final";
-                }
+                
+                if (tb_tip_fin.Text == "")
+                    return "Debe proporcionar el Tipo de Atributo Final";                
 
-                if (int.Parse(tb_tip_ini.Text) < int.Parse(tb_tip_fin.Text)){
-                    return "El Tipo Atributo Inicial DEBE ser mayor al Tipo de Atributo Final";
-                }
+                if (int.Parse(tb_tip_ini.Text) < int.Parse(tb_tip_fin.Text))
+                    return "El Tipo Atributo Inicial DEBE ser mayor al Tipo de Atributo Final";                
 
                 return "";
             }

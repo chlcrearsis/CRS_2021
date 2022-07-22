@@ -6,6 +6,12 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp014 - Tipo de Documento                            */
+    /*      Opción: Busca Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 15-09-2021         */
+    /**********************************************************************/
     public partial class adp014_01 : Form
     {
         public dynamic frm_pad;
@@ -13,8 +19,8 @@ namespace CRS_PRE
         public dynamic frm_MDI;
         // Instancia        
         adp014 o_adp014 = new adp014();
-        // Variables
         DataTable Tabla = new DataTable();
+        // Variables
         string est_bus = "T";
 
         public adp014_01()

@@ -9,7 +9,7 @@ namespace CRS_PRE
     /**********************************************************************/
     /*      Módulo: ADP - Persona                                         */
     /*  Aplicación: adp001 - Grupo Persona                                */
-    /*      Opción: Habilita/Deshabilita                                  */
+    /*      Opción: Habilita/Deshabilita Registro                         */
     /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
     /**********************************************************************/
     public partial class adp001_06 : Form
@@ -17,11 +17,10 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp001 o_adp001 = new adp001();
         adp002 o_adp002 = new adp002();
         DataTable Tabla = new DataTable();
-        string Titulo = "Elimina Grupo de Persona";
 
         public adp001_06()
         {
@@ -98,16 +97,16 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK){
                     // Elimina Tipo de Atributo
                     o_adp001.Fe_eli_min(int.Parse(tb_cod_gru.Text));
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_cod_gru.Text));
                     cl_glo_frm.Cerrar(this);
                 }
             }catch (Exception ex){
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

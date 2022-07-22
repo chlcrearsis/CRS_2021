@@ -7,15 +7,19 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp015 - Validación Registro Persona                  */
+    /*      Opción: Valida Registro                                       */
+    /*       Autor: JEJR - Crearsis             Fecha: 15-09-2021         */
+    /**********************************************************************/
     public partial class adp015_01 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         // Instancias        
         adp015 o_adp015 = new adp015();
-        // Variables
         DataTable Tabla = new DataTable();
-        string Titulo = "Valida Registro Persona";
 
         public adp015_01()
         {
@@ -84,7 +88,7 @@ namespace CRS_PRE
             try
             {
                 // funcion para validar datos            
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     for (int i = 0; i < dg_res_ult.Rows.Count - 1; i++){
                         // Obtiene Datos del datagrid
@@ -94,12 +98,12 @@ namespace CRS_PRE
                         else                        
                             o_adp015.Fe_hab_des(dg_res_ult.Rows[i].Cells["va_nom_col"].Value.ToString(), "N");                        
                     }
-                    MessageBox.Show("Los Datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los Datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK);
             }
         }
 

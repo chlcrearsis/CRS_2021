@@ -5,6 +5,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp013 - Contacto p/Persona                           */
+    /*      Opción: Elimina Registro                                      */
+    /*       Autor: JEJR - Crearsis             Fecha: 04-11-2021         */
+    /**********************************************************************/
     public partial class adp013_06 : Form
     {
         public dynamic frm_pad;
@@ -13,10 +19,8 @@ namespace CRS_PRE
         // Instancias
         adp002 o_adp002 = new adp002();
         adp013 o_adp013 = new adp013();
-        // Variables
-        DataTable Tabla = new DataTable();
         General general = new General();
-        string Titulo = "Elimina Contacto Persona";
+        DataTable Tabla = new DataTable();
 
         public adp013_06()
         {
@@ -132,19 +136,19 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
                     // Elimina Contacto Persona
                     o_adp013.Fe_eli_min(int.Parse(tb_cod_per.Text), int.Parse(tb_cod_con.Text));
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(tb_cod_con.Text);
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

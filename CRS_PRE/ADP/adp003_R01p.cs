@@ -5,12 +5,19 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp003 - Tipo de Atributos                            */
+    /*      Opción: Informe R01 - Parametros                              */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp003_R01p : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
-        private DataTable Tabla;
-        private adp003 o_adp003 = new adp003();
+        // Instancia
+        adp003 o_adp003 = new adp003();
+        DataTable Tabla = new DataTable();        
 
         public adp003_R01p()
         {
@@ -29,7 +36,7 @@ namespace CRS_PRE
         {
             try
             {                
-                return "";
+                return "OK";
             }
             catch (Exception) {
                 return "Los datos proporcionados NO pasaron el proceso de validación.";
@@ -43,7 +50,7 @@ namespace CRS_PRE
             string est_ado = "";
             string ord_dat = "";
             string msg_val = Fi_val_dat();
-            if (msg_val != "")
+            if (msg_val != "OK")
             {
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;

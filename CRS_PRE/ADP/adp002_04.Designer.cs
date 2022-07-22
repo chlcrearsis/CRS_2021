@@ -712,8 +712,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "adp002_04";
-            this.Tag = "habilita/Deshabilita Persona";
-            this.Text = "habilita/Deshabilita Persona";
+            this.Tag = "Habilita/Deshabilita Persona";
+            this.Text = "Habilita/Deshabilita Persona";
             this.Load += new System.EventHandler(this.frm_Load);
             this.gb_ctr_btn.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

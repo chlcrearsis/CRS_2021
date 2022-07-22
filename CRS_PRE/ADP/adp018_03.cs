@@ -6,6 +6,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp018 - Grupo Empresarial                            */
+    /*      Opción: Edita Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp018_03 : Form
     {
         public dynamic frm_pad;
@@ -13,9 +19,7 @@ namespace CRS_PRE
         public DataTable frm_dat;
         // Instancias
         adp018 o_adp018 = new adp018();
-        // Variables
         DataTable Tabla = new DataTable();
-        string Titulo = "Edita Grupo Empresarial";
 
         public adp018_03(){
             InitializeComponent();
@@ -174,10 +178,10 @@ namespace CRS_PRE
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
                 if (msg_val != ""){
-                    MessageBox.Show("Error: " + msg_val, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Error: " + msg_val, Text, MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Graba el registro en la BD.
                     long ruc_nit = 0;
@@ -186,12 +190,12 @@ namespace CRS_PRE
                     }
                     o_adp018.Fe_edi_tar(int.Parse(tb_gru_emp.Text), tb_nom_gru.Text.Trim(), int.Parse(cb_ban_fac.SelectedValue.ToString()), tb_nom_fac.Text.Trim(), ruc_nit, tb_dir_ent.Text.Trim());
                     frm_pad.Fe_act_frm(int.Parse(tb_gru_emp.Text));
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

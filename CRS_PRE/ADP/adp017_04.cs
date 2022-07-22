@@ -6,6 +6,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp017 - Relación Contacto de Persona                 */
+    /*      Opción: Habilita/Deshabilita Registro                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp017_04 : Form
     {
         public dynamic frm_pad;
@@ -13,9 +19,7 @@ namespace CRS_PRE
         public DataTable frm_dat;
         // Instancias
         adp017 o_adp017 = new adp017();
-        // Variables
         DataTable Tabla = new DataTable();
-        string Titulo = "Habilita/Deshabilita Relación Contacto de Persona";
 
         public adp017_04(){
             InitializeComponent();
@@ -87,9 +91,9 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar la Relación Contacto de Persona?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar la Relación Contacto de Persona?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar la Relación Contacto de Persona?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar la Relación Contacto de Persona?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK){
                     if (tb_est_ado.Text == "Habilitado")
@@ -106,7 +110,7 @@ namespace CRS_PRE
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -8,6 +8,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp006 - Imagen Persona                               */
+    /*      Opción: Registra Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 25-10-2021         */
+    /**********************************************************************/
     public partial class adp006_02 : Form
     {
         public dynamic frm_pad;
@@ -17,16 +23,16 @@ namespace CRS_PRE
         adp002 o_adp002 = new adp002();
         adp006 o_adp006 = new adp006();
         ads010 o_ads010 = new ads010();
-        // Variables
-        DataTable Tabla = new DataTable();
         General general = new General();
-        string Titulo = "Registra Imagen Persona";
+        DataTable Tabla = new DataTable();
 
-        public adp006_02(){
+        public adp006_02()
+        {
             InitializeComponent();
         }
       
-        private void frm_Load(object sender, EventArgs e){
+        private void frm_Load(object sender, EventArgs e)
+        {
             Fi_lim_pia();
         }       
 
@@ -119,10 +125,10 @@ namespace CRS_PRE
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
                 if (msg_val != ""){
-                    MessageBox.Show("Error: " + msg_val, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Error: " + msg_val, Text, MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     //'Convierte la imagen a byte para ser guardada
                     byte[] img_arc = cl_glo_bal.fg_img_byt(pb_ima_per.Image);
@@ -135,12 +141,12 @@ namespace CRS_PRE
 
                     // Actualiza Lista Formulario Padre */
                     frm_pad.Fe_act_frm(tb_ide_tip.Text);
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

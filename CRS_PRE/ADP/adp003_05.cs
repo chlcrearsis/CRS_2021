@@ -4,6 +4,12 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp003 - Tipo de Atributos                            */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp003_05 : Form
     {
         public dynamic frm_pad;

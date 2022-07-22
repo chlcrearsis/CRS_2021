@@ -17,10 +17,9 @@ namespace CRS_PRE
         public int frm_tip;
         public DataTable tab_dat;
         public dynamic frm_MDI;
-
+        // Variables
         string est_bus = "T";
-
-        //Form frm_mdi;
+        
         public adp001_01()
         {
             InitializeComponent();

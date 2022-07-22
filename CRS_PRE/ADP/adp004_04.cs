@@ -6,17 +6,21 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definición de Atributos                      */
+    /*      Opción: Habilita/Deshabilita Registro                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public partial class adp004_04 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-
         // Instancias
         adp003 o_adp003 = new adp003();
         adp004 o_adp004 = new adp004();
         DataTable Tabla = new DataTable();
-        string Titulo = "Edita Definición de Atributo";
 
         public adp004_04()
         {
@@ -73,9 +77,9 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el de Atributo?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el de Atributo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el de Atributo?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar el de Atributo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK){
                     if (tb_est_ado.Text == "Habilitado")
@@ -83,7 +87,7 @@ namespace CRS_PRE
                     else
                         o_adp004.Fe_hab_des(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_atr.Text), "H");
 
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Actualiza Ventana Buscar
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
@@ -93,7 +97,7 @@ namespace CRS_PRE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

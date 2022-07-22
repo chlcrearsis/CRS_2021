@@ -7,6 +7,12 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp006 - Imagen Persona                               */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 25-10-2021         */
+    /**********************************************************************/
     public partial class adp006_01 : Form
     {
         public dynamic frm_pad;
@@ -15,7 +21,6 @@ namespace CRS_PRE
         public dynamic frm_MDI;
         // Instancia
         adp006 o_adp006 = new adp006();
-        // Variables
         DataTable Tabla = new DataTable();
 
         public adp006_01()
@@ -38,11 +43,11 @@ namespace CRS_PRE
             tb_ext_doc.Text = string.Empty;
 
             // Desplega Datos del Cliente
-            tb_cod_per.Text = frm_dat.Rows[0]["va_cod_per"].ToString();
-            tb_raz_soc.Text = frm_dat.Rows[0]["va_raz_soc"].ToString();
-            tb_tip_doc.Text = frm_dat.Rows[0]["va_tip_doc"].ToString();
-            tb_nro_doc.Text = frm_dat.Rows[0]["va_nro_doc"].ToString();
-            tb_ext_doc.Text = frm_dat.Rows[0]["va_ext_doc"].ToString();
+            tb_cod_per.Text = frm_dat.Rows[0]["va_cod_per"].ToString().Trim();
+            tb_raz_soc.Text = frm_dat.Rows[0]["va_raz_soc"].ToString().Trim();
+            tb_tip_doc.Text = frm_dat.Rows[0]["va_tip_doc"].ToString().Trim();
+            tb_nro_doc.Text = frm_dat.Rows[0]["va_nro_doc"].ToString().Trim();
+            tb_ext_doc.Text = frm_dat.Rows[0]["va_ext_doc"].ToString().Trim();
 
             fi_bus_car();
         } 

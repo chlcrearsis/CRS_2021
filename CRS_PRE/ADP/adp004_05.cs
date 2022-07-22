@@ -4,6 +4,12 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definición de Atributos                      */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public partial class adp004_05 : Form
     {
         public dynamic frm_pad;
@@ -14,6 +20,7 @@ namespace CRS_PRE
         {
             InitializeComponent();
         }      
+
         private void frm_Load(object sender, EventArgs e)
         {
             tb_ide_tip.Text = frm_dat.Rows[0]["va_ide_tip"].ToString().Trim();

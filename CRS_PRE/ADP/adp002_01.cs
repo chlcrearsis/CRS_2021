@@ -5,6 +5,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp002 - Registro Persona                             */
+    /*      Opción: Buscar Registro                                       */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public partial class adp002_01 : Form
     {
         public dynamic frm_pad;
@@ -14,11 +20,10 @@ namespace CRS_PRE
         // Instancia
         adp002 o_adp002 = new adp002();
         adp001 o_adp001 = new adp001();
-        // Variables
         DataTable Tabla = new DataTable();
+        // Variables        
         string tip_per = "T";
         string est_bus = "T";
-        string Titulo = "Registro de Persona";
 
         public adp002_01()
         {
@@ -161,7 +166,7 @@ namespace CRS_PRE
                         }
                     }
                 } catch (Exception ex) {
-                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             tb_tex_bus.Focus();
@@ -191,7 +196,7 @@ namespace CRS_PRE
             string res_fun;
             if (cod_per.Trim() == ""){
                 res_fun = "La Persona que desea editar, NO se encuentra registrado";
-                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_cod_per.Focus();
                 return false;
             }
@@ -200,7 +205,7 @@ namespace CRS_PRE
             Tabla = o_adp002.Fe_con_per(int.Parse(cod_per));
             if (Tabla.Rows.Count == 0){
                 res_fun = "La Persona que desea editar, NO se encuentra registrado";
-                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_cod_per.Focus();
                 return false;
             }
@@ -213,7 +218,7 @@ namespace CRS_PRE
         private void Fi_obt_gru()
         {
             if (tb_cod_gru.Text.Trim() == ""){
-                MessageBox.Show("DEBE proporcionar un Grupo de Persona válido", Titulo, MessageBoxButtons.OK);
+                MessageBox.Show("DEBE proporcionar un Grupo de Persona válido", Text, MessageBoxButtons.OK);
                 tb_cod_gru.Focus();
             }
 
@@ -224,7 +229,7 @@ namespace CRS_PRE
                 int dat_num;
                 int.TryParse(tb_cod_gru.Text, out dat_num);
                 if (dat_num == 0){
-                    MessageBox.Show("DEBE proporcionar un Grupo de persona valido", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("DEBE proporcionar un Grupo de persona valido", Text, MessageBoxButtons.OK);
                     tb_cod_gru.Focus();
                 }
 
@@ -263,7 +268,7 @@ namespace CRS_PRE
                         }
                     }
                 }catch (Exception ex){
-                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK);
                 }
             }
         }
@@ -409,7 +414,7 @@ namespace CRS_PRE
                     }
                 }
             }catch (Exception ex){
-                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

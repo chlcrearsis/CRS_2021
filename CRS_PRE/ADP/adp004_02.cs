@@ -6,22 +6,28 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definición de Atributos                      */
+    /*      Opción: Crea Registro                                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public partial class adp004_02 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
-
         // Instancias        
         adp003 o_adp003 = new adp003();
         adp004 o_adp004 = new adp004();
         DataTable Tabla = new DataTable();
-        string Titulo = "Crea Definición de Atributo";
 
-        public adp004_02(){
+        public adp004_02()
+        {
             InitializeComponent();
         }
       
-        private void frm_Load(object sender, EventArgs e){
+        private void frm_Load(object sender, EventArgs e)
+        {
             Fi_lim_pia();
         }       
 
@@ -41,8 +47,7 @@ namespace CRS_PRE
             if (Tabla.Rows.Count > 0){
                 tb_ide_tip.Text = Tabla.Rows[0]["va_ide_tip"].ToString().Trim();
                 lb_nom_tip.Text = Tabla.Rows[0]["va_nom_tip"].ToString().Trim();
-            }
-            else {
+            }else {
                 tb_ide_tip.Text = "1";
                 lb_nom_tip.Text = string.Empty;
             }
@@ -116,7 +121,7 @@ namespace CRS_PRE
                 lb_nom_tip.Text = Tabla.Rows[0]["va_nom_tip"].ToString().Trim();
             }else {
                 lb_nom_tip.Text = string.Empty;
-                MessageBox.Show("El Tipo de Atributo NO está definido en la base de datos", Titulo, MessageBoxButtons.OK);
+                MessageBox.Show("El Tipo de Atributo NO está definido en la base de datos", Text, MessageBoxButtons.OK);
             }
         }
 
@@ -167,21 +172,21 @@ namespace CRS_PRE
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
                 if (msg_val != ""){
-                    MessageBox.Show("Error: " + msg_val, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Error: " + msg_val, Text, MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Graba el registro en la BD.
                     o_adp004.Fe_nue_reg(int.Parse(tb_ide_tip.Text), int.Parse(tb_ide_atr.Text),
                                         tb_nom_atr.Text);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tip.Text));
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     Fi_lim_pia();
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

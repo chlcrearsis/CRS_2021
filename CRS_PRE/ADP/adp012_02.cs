@@ -6,9 +6,14 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp012 - Asigna Persona a Grupo Empresarial           */
+    /*      Opción: Asigna Registro                                       */
+    /*       Autor: JEJR - Crearsis             Fecha: 13-11-2021         */
+    /**********************************************************************/
     public partial class adp012_02 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
@@ -16,9 +21,7 @@ namespace CRS_PRE
         adp002 o_adp002 = new adp002();
         adp012 o_adp012 = new adp012();
         adp018 o_adp018 = new adp018();
-        // Variables
         DataTable Tabla = new DataTable();
-        string Titulo = "Asig. a Grupo Empresarial";
 
         public adp012_02(){
             InitializeComponent();
@@ -60,7 +63,7 @@ namespace CRS_PRE
             // Valida que el grupo empresarial sea DISTINTO a vacio
             if (gru_emp.CompareTo("") == 0){
                 tb_gru_emp.Focus();
-                MessageBox.Show("El Grupo Empresarial DEBE ser distinto de Vacío", Titulo);
+                MessageBox.Show("El Grupo Empresarial DEBE ser distinto de Vacío", Text);
                 return;
             }
 
@@ -158,21 +161,21 @@ namespace CRS_PRE
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
                 if (msg_val != ""){
-                    MessageBox.Show("Error: " + msg_val, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Error: " + msg_val, Text, MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK){
                     // Elimina registro en la BD.
                     o_adp012.Fe_eli_min(int.Parse(tb_cod_per.Text));
                     // Graba registro en la BD.
                     o_adp012.Fe_nue_reg(int.Parse(tb_cod_per.Text), int.Parse(tb_gru_emp.Text));                    
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

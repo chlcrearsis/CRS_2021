@@ -5,6 +5,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp013 - Contacto p/Persona                           */
+    /*      Opción: Busca Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 04-11-2021         */
+    /**********************************************************************/
     public partial class adp013_01 : Form
     {
         public dynamic frm_pad;
@@ -13,10 +19,9 @@ namespace CRS_PRE
         public dynamic frm_MDI;
         // Instancia
         adp013 o_adp013 = new adp013();
-        // Variables
-        DataTable Tabla = new DataTable(); 
+        DataTable Tabla = new DataTable();
+        // Variables         
         string est_bus = "T";
-        string Titulo = "Contacto Persona";
 
         public adp013_01()
         {
@@ -38,8 +43,8 @@ namespace CRS_PRE
             tb_cod_con.Text = string.Empty;
 
             // Desplega Datos del Cliente
-            tb_cod_per.Text = frm_dat.Rows[0]["va_cod_per"].ToString();
-            tb_raz_soc.Text = frm_dat.Rows[0]["va_raz_soc"].ToString();
+            tb_cod_per.Text = frm_dat.Rows[0]["va_cod_per"].ToString().Trim();
+            tb_raz_soc.Text = frm_dat.Rows[0]["va_raz_soc"].ToString().Trim();
 
             // Obtiene datos de la consulta
             fi_bus_car(int.Parse(tb_cod_per.Text), tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
@@ -149,7 +154,7 @@ namespace CRS_PRE
                         }
                     }
                 } catch (Exception ex) {
-                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             tb_tex_bus.Focus();
@@ -181,13 +186,13 @@ namespace CRS_PRE
             string res_fun;
             if (cod_per.Trim() == ""){
                 res_fun = "La Persona del Contacto que desea editar, NO se encuentra registrado";
-                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (cod_per.Trim() == ""){
                 res_fun = "El Contacto de la Persona que desea editar, NO se encuentra registrado";
-                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -195,7 +200,7 @@ namespace CRS_PRE
             Tabla = o_adp013.Fe_con_con(int.Parse(cod_per), int.Parse(cod_con));
             if (Tabla.Rows.Count == 0){
                 res_fun = "El Contacto de Persona que desea editar, NO se encuentra registrado";
-                MessageBox.Show(res_fun, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(res_fun, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_cod_con.Focus();
                 return false;
             }
@@ -227,7 +232,7 @@ namespace CRS_PRE
                         }
                     }
                 }catch (Exception ex){
-                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK);
                 }
             }
         }
@@ -307,7 +312,7 @@ namespace CRS_PRE
                         }
                     }
                 }catch (Exception ex){
-                    MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

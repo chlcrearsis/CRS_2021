@@ -7,6 +7,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp009 - Permiso Lista de Precios p/Persona           */
+    /*      Opción: Registra Permiso                                      */
+    /*       Autor: JEJR - Crearsis             Fecha: 21-10-2021         */
+    /**********************************************************************/
     public partial class adp009_01 : Form
     {
         public dynamic frm_pad;
@@ -15,8 +21,7 @@ namespace CRS_PRE
         // Instancias
         adp002 o_adp002 = new adp002();
         adp009 o_adp009 = new adp009();
-        // Variables
-        DataTable Tabla = new DataTable();        
+        DataTable Tabla = new DataTable();
 
         public adp009_01()
         {

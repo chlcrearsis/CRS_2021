@@ -17,11 +17,9 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-
-        //Instancias
+        // Instancias
         adp001 o_adp001 = new adp001();
         DataTable Tabla = new DataTable();
-        string Titulo = "Habilita/Deshabilita Grupo de Persona";
 
         public adp001_04()
         {
@@ -89,9 +87,9 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Tipo de Atributo?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Tipo de Atributo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Tipo de Atributo?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Tipo de Atributo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK)
                 {
@@ -100,7 +98,7 @@ namespace CRS_PRE
                     else
                         o_adp001.Fe_hab_des(int.Parse(tb_cod_gru.Text), "H");
 
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Actualiza Ventana Buscar
                     frm_pad.Fe_act_frm(int.Parse(tb_cod_gru.Text));
@@ -110,7 +108,7 @@ namespace CRS_PRE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

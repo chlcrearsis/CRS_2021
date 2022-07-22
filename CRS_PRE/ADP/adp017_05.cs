@@ -2,21 +2,19 @@
 using System.Data;
 using System.Windows.Forms;
 
-using CRS_NEG;
-
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp017 - Relación Contacto de Persona                 */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp017_05 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-
-        adp017 o_adp017 = new adp017();
-        DataTable Tabla = new DataTable();
-        string Titulo = "Consulta Relación Contacto de Persona";
 
         public adp017_05(){
             InitializeComponent();

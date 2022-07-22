@@ -5,10 +5,17 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp001 - Grupo Persona                                */
+    /*      Opción: Informe R01 - Parametros                              */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-07-2022         */
+    /**********************************************************************/
     public partial class adp001_R01p : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
+        // Instancia
         private DataTable Tabla;
         private adp001 o_adp001 = new adp001();
 
@@ -16,7 +23,6 @@ namespace CRS_PRE
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {     

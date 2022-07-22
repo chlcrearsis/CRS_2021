@@ -5,6 +5,12 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definición de Atributos                      */
+    /*      Opción: Buscar Registro                                       */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public partial class adp004_01 : Form
     {
         public dynamic frm_pad;
@@ -17,7 +23,6 @@ namespace CRS_PRE
         // Variables
         string est_bus = "T";
         public int vp_ide_tip = 0;
-        string Titulo = "Definición de Atributo";
 
         public adp004_01()
         {
@@ -202,7 +207,7 @@ namespace CRS_PRE
             else{
                 lb_nom_tip.Text = "NO Existe";
                 vp_ide_tip = 0;
-                MessageBox.Show("El Tipo de Atributo NO está definido en la base de datos", Titulo, MessageBoxButtons.OK);
+                MessageBox.Show("El Tipo de Atributo NO está definido en la base de datos", Text, MessageBoxButtons.OK);
             }
         }
 

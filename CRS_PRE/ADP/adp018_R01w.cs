@@ -5,20 +5,25 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp018 - Grupo Empresarial                            */
+    /*      Opción: Informe R01 - Reporte View                            */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp018_R01w : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
-        public DataTable frm_dat;
-        public string vp_est_ado;
-        public string vp_ban_fac;
-
-        //Instancias
+        public DataTable frm_dat;        
+        // Instancias
         ads013 o_ads013 = new ads013();
         ads007 o_ads007 = new ads007();
         DataTable Tabla = new DataTable();
+        // Variables
         string va_nom_emp = "";
-        int va_nro_pag;
+        public string vp_est_ado;
+        public string vp_ban_fac;
 
         public adp018_R01w()
         {
@@ -45,7 +50,6 @@ namespace CRS_PRE
             if (vp_ban_fac.CompareTo("1") == 0)
                 vp_ban_fac = "Todos";
 
-
             // Obtener nombre de la empresa
             Tabla = o_ads013.Fe_obt_glo(1, 4);
             va_nom_emp = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
@@ -57,9 +61,7 @@ namespace CRS_PRE
             adp018_R01.SetParameterValue("vc_nom_emp", va_nom_emp);
             adp018_R01.SetParameterValue("vc_est_ado", vp_est_ado);
             adp018_R01.SetParameterValue("vc_ban_fac", vp_ban_fac);
-            adp018_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);                       
-            // Obtiene nro de paginas
-            va_nro_pag = cr_rep_ort.GetCurrentPageNumber();
+            adp018_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
         }
 
         private void Mn_imp_rim_Click(object sender, EventArgs e)
@@ -69,8 +71,6 @@ namespace CRS_PRE
 
         private void Mn_exp_ort_Click(object sender, EventArgs e)
         {
-            // ExportOptions exp_opc = new ExportOptions();
-
             cr_rep_ort.ExportReport();
         }
 

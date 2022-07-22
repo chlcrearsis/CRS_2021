@@ -5,12 +5,18 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp002 - Registro Persona                             */
+    /*      Opción: Edita Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public partial class adp002_03 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         adp001 o_adp001 = new adp001();
         adp002 o_adp002 = new adp002();
         adp003 o_adp003 = new adp003();
@@ -19,12 +25,11 @@ namespace CRS_PRE
         adp014 o_adp014 = new adp014();
         adp015 o_adp015 = new adp015();
         cmr014 o_cmr014 = new cmr014();
-        DataTable Tabla = new DataTable();
         General general = new General();
-        string Titulo = "Edita Persona";
+        DataTable Tabla = new DataTable();
+        // Variables        
         private int vp_cod_ven = 0;
         private int vp_cod_cob = 0;
-
 
         public adp002_03()
         {
@@ -133,7 +138,7 @@ namespace CRS_PRE
             // Valida que el tipo de documento sea DISTINTO a vacio
             if (tip_doc.CompareTo("") == 0){
                 tb_tip_doc.Focus();
-                MessageBox.Show("El Tipo de Documento DEBE ser distinto de Vacío", Titulo);
+                MessageBox.Show("El Tipo de Documento DEBE ser distinto de Vacío", Text);
                 return;
             }
 
@@ -149,7 +154,7 @@ namespace CRS_PRE
                 }
             }else{
                 tb_tip_doc.Focus();
-                MessageBox.Show("El Tipo de Documento NO se encuentra registrado", Titulo);
+                MessageBox.Show("El Tipo de Documento NO se encuentra registrado", Text);
                 return;
             }
         }
@@ -443,7 +448,7 @@ namespace CRS_PRE
                 Tabla = o_adp002.Fe_con_raz(tb_raz_soc.Text.Trim(), int.Parse(tb_cod_per.Text));
                 if (Tabla.Rows.Count > 0){
                     DialogResult res;
-                    res = MessageBox.Show("Ya existe otra persona creada con la misma Razón Social, desea registrar de todos modos ?", Titulo, MessageBoxButtons.YesNo);
+                    res = MessageBox.Show("Ya existe otra persona creada con la misma Razón Social, desea registrar de todos modos ?", Text, MessageBoxButtons.YesNo);
                     if (res == DialogResult.No){
                         tb_raz_soc.Focus();
                         return "Revise la Razón Social por favor";
@@ -458,7 +463,7 @@ namespace CRS_PRE
                 Tabla = o_adp002.Fe_con_nit(long.Parse(tb_ruc_nit.Text), int.Parse(tb_cod_per.Text));
                 if (Tabla.Rows.Count > 0){
                     DialogResult res;
-                    res = MessageBox.Show("Ya existe otra persona creada con el mismo RUC/NIT, desea registrar de todos modos ?", Titulo, MessageBoxButtons.YesNo);
+                    res = MessageBox.Show("Ya existe otra persona creada con el mismo RUC/NIT, desea registrar de todos modos ?", Text, MessageBoxButtons.YesNo);
                     if (res == DialogResult.No){
                         tb_ruc_nit.Focus();
                         return "Revise el RUC/NIT por favor";
@@ -472,7 +477,7 @@ namespace CRS_PRE
                 Tabla = o_adp002.Fe_con_doc(tb_tip_doc.Text.Trim(), long.Parse(tb_nro_doc.Text), int.Parse(tb_cod_per.Text));
                 if (Tabla.Rows.Count > 0){
                     DialogResult res;
-                    res = MessageBox.Show("Ya existe otra persona creada con el mismo Nro. Documento, desea registrar de todos modos ?", Titulo, MessageBoxButtons.YesNo);
+                    res = MessageBox.Show("Ya existe otra persona creada con el mismo Nro. Documento, desea registrar de todos modos ?", Text, MessageBoxButtons.YesNo);
                     if (res == DialogResult.No){
                         tb_nro_doc.Focus();
                         return "Revise el Nro. de Documento por favor";
@@ -519,7 +524,7 @@ namespace CRS_PRE
                 if (cl_glo_bal.IsDateTime(tb_fec_nac.Text) == false)
                 {
                     tb_fec_nac.Focus();
-                    MessageBox.Show("La Fecha Digitada NO corresponde a una Fecha Válida", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La Fecha Digitada NO corresponde a una Fecha Válida", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -535,11 +540,11 @@ namespace CRS_PRE
                 string msg_val = Fi_val_dat();
                 if (msg_val != "")
                 {
-                    MessageBox.Show(msg_val, Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show(msg_val, Text, MessageBoxButtons.OK);
                     return;
                 }
 
-                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {
                     string nom_bre = tb_nom_bre.Text.Trim();
@@ -579,12 +584,12 @@ namespace CRS_PRE
                                         ruc_nit, sex_per, fec_nac, tip_doc, nro_doc, ext_doc,
                                         tel_per, cel_ula, tel_fij, dir_pri, dir_ent, ema_ail,
                                         cod_ven, cod_cob, tip_atr, ide_atr);
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_cod_per.Text));
                     cl_glo_frm.Cerrar(this);
                 }
             }catch (Exception ex){
-                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

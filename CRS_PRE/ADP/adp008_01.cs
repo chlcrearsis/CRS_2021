@@ -7,6 +7,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp008 - Ruteo p/Persona                              */
+    /*      Opción: Registra Ruteo                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 21-10-2021         */
+    /**********************************************************************/
     public partial class adp008_01 : Form
     {
         public dynamic frm_pad;
@@ -15,8 +21,7 @@ namespace CRS_PRE
         // Instancias
         adp002 o_adp002 = new adp002();
         adp008 o_adp008 = new adp008();
-        // Variables
-        DataTable Tabla = new DataTable();        
+        DataTable Tabla = new DataTable();
 
         public adp008_01()
         {
@@ -26,8 +31,8 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             // Obtiene Datos del Vendedor
-            tb_cod_per.Text = frm_dat.Rows[0]["va_cod_per"].ToString();
-            tb_raz_soc.Text = frm_dat.Rows[0]["va_raz_soc"].ToString();
+            tb_cod_per.Text = frm_dat.Rows[0]["va_cod_per"].ToString().Trim();
+            tb_raz_soc.Text = frm_dat.Rows[0]["va_raz_soc"].ToString().Trim();
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString().CompareTo("H") == 0)
                 tb_est_ado.Text = "Habilitado";

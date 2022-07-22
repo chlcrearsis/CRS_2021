@@ -5,14 +5,20 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp007 - Definición Rutas                             */
+    /*      Opción: Buscar Registro                                       */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp007_01 : Form
     {
         public dynamic frm_pad;
-        public int frm_tip;
-        public DataTable Tabla;
+        public int frm_tip;        
         public dynamic frm_MDI;
         // Instancia        
         adp007 o_adp007 = new adp007();
+        DataTable Tabla = new DataTable();
         // Variables
         string est_bus = "T";
 

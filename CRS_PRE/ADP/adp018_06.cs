@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-
 using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp018 - Grupo Empresarial                            */
+    /*      Opción: Elimina Registro                                      */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp018_06 : Form
     {
         public dynamic frm_pad;
@@ -14,9 +19,7 @@ namespace CRS_PRE
         // Instancias
         adp012 o_adp012 = new adp012();
         adp018 o_adp018 = new adp018();
-        // Variables
         DataTable Tabla = new DataTable();
-        string Titulo = "Elimina Grupo Empresarial";
 
         public adp018_06(){
             InitializeComponent();
@@ -89,7 +92,7 @@ namespace CRS_PRE
             Tabla = o_adp012.Fe_con_gru(int.Parse(tb_gru_emp.Text));
             if (Tabla.Rows.Count > 0){
                 DialogResult res;
-                res = MessageBox.Show("Existe Persona asignada al Grupo Empresarial, desea registrar de todos modos ?", Titulo, MessageBoxButtons.YesNo);
+                res = MessageBox.Show("Existe Persona asignada al Grupo Empresarial, desea registrar de todos modos ?", Text, MessageBoxButtons.YesNo);
                 if (res == DialogResult.No){
                     return "Revise las persona asociadas al Grupo Empresarial";
                 }
@@ -111,19 +114,19 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
                     // Elimina Registro
                     o_adp018.Fe_eli_min(int.Parse(tb_gru_emp.Text));
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_gru_emp.Text));
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

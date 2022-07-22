@@ -5,21 +5,26 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp004 - Definición de Atributos                      */
+    /*      Opción: Informe R01 - Reporte View                            */
+    /*       Autor: JEJR - Crearsis             Fecha: 01-09-2021         */
+    /**********************************************************************/
     public partial class adp004_R01w : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
-        public DataTable frm_dat;
-        public string vp_est_ado;
-        public int vp_tip_ini;
-        public int vp_tip_fin;
-
-        //Instancias
+        public DataTable frm_dat;        
+        // Instancias
         ads013 o_ads013 = new ads013();
         ads007 o_ads007 = new ads007();
         DataTable Tabla = new DataTable();
+        // Variables
         string va_nom_emp = "";
-        int va_nro_pag;
+        public string vp_est_ado;
+        public int vp_tip_ini;
+        public int vp_tip_fin;
 
         public adp004_R01w()
         {
@@ -29,7 +34,7 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             // Hacer grande la pantalla
-            this.Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;
             // Castea la descripcion del estado
             if (vp_est_ado.CompareTo("T") == 0)
                 vp_est_ado = "Todos";
@@ -50,9 +55,7 @@ namespace CRS_PRE
             adp004_R01.SetParameterValue("vc_est_ado", vp_est_ado);
             adp004_R01.SetParameterValue("vc_tip_ini", vp_tip_ini);
             adp004_R01.SetParameterValue("vc_tip_fin", vp_tip_fin);
-            adp004_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);                       
-            // Obtiene nro de paginas
-            va_nro_pag = cr_rep_ort.GetCurrentPageNumber();
+            adp004_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
         }
 
         private void Mn_imp_rim_Click(object sender, EventArgs e)
@@ -62,8 +65,6 @@ namespace CRS_PRE
 
         private void Mn_exp_ort_Click(object sender, EventArgs e)
         {
-            // ExportOptions exp_opc = new ExportOptions();
-
             cr_rep_ort.ExportReport();
         }
 
@@ -86,7 +87,6 @@ namespace CRS_PRE
         private void Mn_zoo_tod_Click(object sender, EventArgs e)
         {
             cr_rep_ort.Zoom(200);
-
         }
 
         private void Mn_zoo_200_Click(object sender, EventArgs e)

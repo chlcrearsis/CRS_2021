@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp013 - Contacto p/Persona                           */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 04-11-2021         */
+    /**********************************************************************/
     public partial class adp013_05 : Form
     {
         public dynamic frm_pad;

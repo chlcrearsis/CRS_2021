@@ -8,6 +8,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp006 - Imagen Persona                               */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 25-10-2021         */
+    /**********************************************************************/
     public partial class adp006_05 : Form
     {
         public dynamic frm_pad;

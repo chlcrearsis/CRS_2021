@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-
 using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp018 - Grupo Empresarial                            */
+    /*      Opción: Informe R01 - Parametros                              */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp018_R01p : Form
     {
         public dynamic frm_pad;

@@ -184,7 +184,7 @@
             this.MinimizeBox = false;
             this.Name = "adp012_02";
             this.Tag = "Asigna a Grupo Empresarial";
-            this.Text = "Asigna a Grupo Empresarial";
+            this.Text = "Asigna Persona a Grupo Empresarial";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

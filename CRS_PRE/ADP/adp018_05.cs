@@ -4,13 +4,17 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp018 - Grupo Empresarial                            */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp018_05 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
-        public DataTable frm_dat;
-        //Instancias        
+        public DataTable frm_dat;      
 
         public adp018_05(){
             InitializeComponent();
@@ -22,10 +26,10 @@ namespace CRS_PRE
             Fi_lim_pia();
 
             // Despliega Datos
-            tb_gru_emp.Text = frm_dat.Rows[0]["va_gru_emp"].ToString();
-            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString();
-            tb_nom_fac.Text = frm_dat.Rows[0]["va_nom_fac"].ToString();
-            tb_dir_ent.Text = frm_dat.Rows[0]["va_dir_ent"].ToString();
+            tb_gru_emp.Text = frm_dat.Rows[0]["va_gru_emp"].ToString().Trim();
+            tb_nom_gru.Text = frm_dat.Rows[0]["va_nom_gru"].ToString().Trim();
+            tb_nom_fac.Text = frm_dat.Rows[0]["va_nom_fac"].ToString().Trim();
+            tb_dir_ent.Text = frm_dat.Rows[0]["va_dir_ent"].ToString().Trim();
 
             if (frm_dat.Rows[0]["va_ruc_nit"].ToString().CompareTo("0") != 0)
                 tb_ruc_nit.Text = frm_dat.Rows[0]["va_ruc_nit"].ToString();

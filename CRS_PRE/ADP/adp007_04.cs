@@ -6,6 +6,12 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp007 - Definición Rutas                             */
+    /*      Opción: Habilita/Deshabilita Registro                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 30-08-2021         */
+    /**********************************************************************/
     public partial class adp007_04 : Form
     {
         public dynamic frm_pad;
@@ -13,9 +19,7 @@ namespace CRS_PRE
         public DataTable frm_dat;
         // Instancias
         adp007 o_adp007 = new adp007();
-        // Variables
         DataTable Tabla = new DataTable();
-        string Titulo = "Edita Tipo de Atributo";
 
         public adp007_04()
         {
@@ -59,9 +63,9 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar la Definición de Ruta?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar la Definición de Ruta?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar la Definición de Ruta?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar la Definición de Ruta?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK){
                     if (tb_est_ado.Text == "Habilitado")
@@ -69,7 +73,7 @@ namespace CRS_PRE
                     else
                         o_adp007.Fe_hab_des(int.Parse(tb_ide_rut.Text), "H");
 
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Actualiza Ventana Buscar
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_rut.Text));
@@ -79,14 +83,13 @@ namespace CRS_PRE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            // Cierra la Ventana
             cl_glo_frm.Cerrar(this);
         }
     }

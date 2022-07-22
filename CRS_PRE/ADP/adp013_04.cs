@@ -5,19 +5,22 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp013 - Contacto p/Persona                           */
+    /*      Opción: Habilita/Deshabilita Registro                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 04-11-2021         */
+    /**********************************************************************/
     public partial class adp013_04 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
         // Instancias
         adp002 o_adp002 = new adp002();
         adp013 o_adp013 = new adp013();
-        // Variables
-        DataTable Tabla = new DataTable();
         General general = new General();
-        string Titulo = "Habilita/Deshabilita Contacto Persona";
+        DataTable Tabla = new DataTable();
 
         public adp013_04()
         {
@@ -131,22 +134,22 @@ namespace CRS_PRE
                 }
 
                 if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H"){
-                    msg_res = MessageBox.Show("Está seguro de Deshabilitar el Contacto Persona?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Deshabilitar el Contacto Persona?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (msg_res == DialogResult.OK){
                         // Deshabilita Contacto Persona
                         o_adp013.Fe_hab_des(int.Parse(tb_cod_per.Text), int.Parse(tb_cod_con.Text), "N");
-                        MessageBox.Show("El Contacto Persona se Deshabilito correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("El Contacto Persona se Deshabilito correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         frm_pad.Fe_act_frm(int.Parse(tb_cod_per.Text));
                         cl_glo_frm.Cerrar(this);
                     }
                 }
                 if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N"){
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Contacto Persona?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Contacto Persona?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (msg_res == DialogResult.OK){
                         // Habilita Contacto Persona
                         o_adp013.Fe_hab_des(int.Parse(tb_cod_per.Text), int.Parse(tb_cod_con.Text), "H");
-                        MessageBox.Show("El Contacto Persona se Habilito correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("El Contacto Persona se Habilito correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         frm_pad.Fe_act_frm(tb_cod_con.Text);
                         cl_glo_frm.Cerrar(this);
@@ -155,7 +158,7 @@ namespace CRS_PRE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

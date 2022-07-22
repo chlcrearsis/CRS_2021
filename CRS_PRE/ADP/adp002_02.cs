@@ -6,12 +6,18 @@ using Microsoft.SqlServer.Types;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADP - Persona                                         */
+    /*  Aplicación: adp002 - Registro Persona                             */
+    /*      Opción: Crea Registro                                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
+    /**********************************************************************/
     public partial class adp002_02 : Form
     {
 
         public dynamic frm_pad;
         public int frm_tip;
-        //Instancias
+        // Instancias
         adp001 o_adp001 = new adp001();
         adp002 o_adp002 = new adp002();
         adp003 o_adp003 = new adp003();
@@ -19,9 +25,8 @@ namespace CRS_PRE
         adp014 o_adp014 = new adp014();
         adp015 o_adp015 = new adp015();
         cmr014 o_cmr014 = new cmr014();
-        DataTable Tabla = new DataTable();
         General general = new General();
-        string Titulo = "Nueva Persona";
+        DataTable Tabla = new DataTable();        
 
         public adp002_02()
         {
@@ -127,7 +132,7 @@ namespace CRS_PRE
             // Valida que el codigo del grupo persona sea DISTINTO a cero
             if (cod_gru == 0) {
                 tb_cod_gru.Focus();
-                MessageBox.Show( "El Nro. del Grupo de Persona DEBE ser distinto de Cero", Titulo);
+                MessageBox.Show( "El Nro. del Grupo de Persona DEBE ser distinto de Cero", Text);
                 return;
             }
 
@@ -139,7 +144,7 @@ namespace CRS_PRE
                 lb_nom_gru.Text = Tabla.Rows[0]["va_nom_gru"].ToString().Trim();
             }else{
                 tb_cod_gru.Focus();
-                MessageBox.Show("El Grupo de Persona NO se encuentra registrado", Titulo);
+                MessageBox.Show("El Grupo de Persona NO se encuentra registrado", Text);
                 return;
             }
 
@@ -215,7 +220,7 @@ namespace CRS_PRE
             if (tip_doc.CompareTo("") == 0)
             {
                 tb_tip_doc.Focus();
-                MessageBox.Show("El Tipo de Documento DEBE ser distinto de Vacío", Titulo);
+                MessageBox.Show("El Tipo de Documento DEBE ser distinto de Vacío", Text);
                 return;
             }
 
@@ -231,7 +236,7 @@ namespace CRS_PRE
                 }
             }else{
                 tb_tip_doc.Focus();
-                MessageBox.Show("El Tipo de Documento NO se encuentra registrado", Titulo);
+                MessageBox.Show("El Tipo de Documento NO se encuentra registrado", Text);
                 return;
             }
         }
@@ -550,7 +555,7 @@ namespace CRS_PRE
                 Tabla = o_adp002.Fe_con_raz(tb_raz_soc.Text.Trim(), int.Parse(tb_cod_per.Text));
                 if (Tabla.Rows.Count > 0){
                     DialogResult res;
-                    res = MessageBox.Show("Ya existe otra persona creada con la misma Razón Social, desea registrar de todos modos ?", Titulo, MessageBoxButtons.YesNo);
+                    res = MessageBox.Show("Ya existe otra persona creada con la misma Razón Social, desea registrar de todos modos ?", Text, MessageBoxButtons.YesNo);
                     if (res == DialogResult.No){
                         tb_raz_soc.Focus();
                         return "Revise la Razón Social por favor";
@@ -564,7 +569,7 @@ namespace CRS_PRE
                 Tabla = o_adp002.Fe_con_nit(long.Parse(tb_ruc_nit.Text), int.Parse(tb_cod_per.Text));
                 if (Tabla.Rows.Count > 0){
                     DialogResult res;
-                    res = MessageBox.Show("Ya existe otra persona creada con el mismo RUC/NIT, desea registrar de todos modos ?", Titulo, MessageBoxButtons.YesNo);
+                    res = MessageBox.Show("Ya existe otra persona creada con el mismo RUC/NIT, desea registrar de todos modos ?", Text, MessageBoxButtons.YesNo);
                     if (res == DialogResult.No){
                         tb_ruc_nit.Focus();
                         return "Revise el RUC/NIT por favor";
@@ -578,7 +583,7 @@ namespace CRS_PRE
                 Tabla = o_adp002.Fe_con_doc(tb_tip_doc.Text.Trim(), long.Parse(tb_nro_doc.Text), int.Parse(tb_cod_per.Text));
                 if (Tabla.Rows.Count > 0){
                     DialogResult res;
-                    res = MessageBox.Show("Ya existe otra persona creada con el mismo Nro. Documento, desea registrar de todos modos ?", Titulo, MessageBoxButtons.YesNo);
+                    res = MessageBox.Show("Ya existe otra persona creada con el mismo Nro. Documento, desea registrar de todos modos ?", Text, MessageBoxButtons.YesNo);
                     if (res == DialogResult.No){
                         tb_nro_doc.Focus();
                         return "Revise el Nro. de Documento por favor";
@@ -669,7 +674,7 @@ namespace CRS_PRE
             if (tb_fec_nac.Text.CompareTo("  /  /") != 0){
                 if (cl_glo_bal.IsDateTime(tb_fec_nac.Text) == false){
                     tb_fec_nac.Focus();
-                    MessageBox.Show("La Fecha Digitada NO corresponde a una Fecha Válida", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La Fecha Digitada NO corresponde a una Fecha Válida", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -694,7 +699,7 @@ namespace CRS_PRE
                     return;
                 }
 
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {
                     SqlGeography ubi_gps = SqlGeography.Null;
@@ -738,12 +743,12 @@ namespace CRS_PRE
                                         tel_per, cel_ula, tel_fij, dir_pri, dir_ent, ema_ail, ubi_gps,
                                         cod_ven, cod_cob, tip_atr, ide_atr);
 
-                    MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     frm_pad.Fe_act_frm(int.Parse(tb_cod_per.Text));
                     Fi_lim_cam();
                 }
             }catch (Exception ex){
-                MessageBox.Show(ex.Message, Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

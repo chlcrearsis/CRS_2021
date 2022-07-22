@@ -16,11 +16,9 @@ namespace CRS_PRE
     {
         public dynamic frm_pad;
         public int frm_tip;
-
         // Instancias        
         adp001 o_adp001 = new adp001();
         DataTable Tabla = new DataTable();
-        string Titulo = "Nuevo Grupo de Persona";
 
         public adp001_02()
         {
@@ -111,13 +109,13 @@ namespace CRS_PRE
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Titulo, MessageBoxButtons.OKCancel);
+            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
             {
                 // Graba Registro
                 o_adp001.Fe_nue_reg(int.Parse(tb_cod_gru.Text), tb_nom_gru.Text);
                 frm_pad.Fe_act_frm(int.Parse(tb_cod_gru.Text));
-                MessageBox.Show("Los datos se grabaron correctamente", Titulo, MessageBoxButtons.OK);
+                MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                 Fi_lim_pia();
             }
         }
