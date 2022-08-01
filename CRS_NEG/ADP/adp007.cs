@@ -202,7 +202,7 @@ namespace CRS_NEG
 
                 if (est_bus != "T")
                 {
-                    cadena.AppendLine(" AND va_est_ado ='" + est_bus + "'");
+                    cadena.AppendLine(" WHERE va_est_ado ='" + est_bus + "'");
                 }
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }

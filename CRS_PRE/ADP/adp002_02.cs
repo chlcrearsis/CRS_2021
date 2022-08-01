@@ -645,7 +645,15 @@ namespace CRS_PRE
 
         private void Tb_cod_gru_Validated(object sender, EventArgs e)
         {
-            Fi_obt_gru(int.Parse(tb_cod_gru.Text));
+            try
+            {
+                Fi_obt_gru(int.Parse(tb_cod_gru.Text));
+            }
+            catch (Exception ex)
+            {
+                lb_nom_gru.Text = "...";
+                MessageBox.Show("Error : " + ex.Message, Text);
+            }            
         }
 
         private void tb_nro_per_Validated(object sender, EventArgs e)

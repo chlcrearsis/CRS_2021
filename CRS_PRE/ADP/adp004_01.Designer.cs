@@ -77,7 +77,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -438,9 +438,9 @@
         private System.Windows.Forms.Button bt_bus_tip;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Button bt_can_cel;
-        private System.Windows.Forms.Label tb_ide_atr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_atr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_atr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
+        public System.Windows.Forms.Label tb_ide_atr;
     }
 }

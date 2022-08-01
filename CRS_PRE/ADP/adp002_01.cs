@@ -23,7 +23,7 @@ namespace CRS_PRE
         DataTable Tabla = new DataTable();
         // Variables        
         string tip_per = "T";
-        string est_bus = "T";
+        string est_bus = "H";
 
         public adp002_01()
         {
@@ -43,7 +43,7 @@ namespace CRS_PRE
             lb_nom_gru.Text = "TODOS";
             cb_tip_per.Text = "TODOS";
             cb_prm_bus.SelectedIndex = 0;
-            cb_est_bus.SelectedIndex = 0;
+            cb_est_bus.SelectedIndex = 1;
 
             // Obtiene datos de la consulta
             fi_bus_car(int.Parse(tb_cod_gru.Text), tip_per, tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
@@ -267,7 +267,26 @@ namespace CRS_PRE
                             fi_fil_act();
                         }
                     }
-                }catch (Exception ex){
+                    // Al presionar tecla ENTER
+                    else if (e.KeyData == Keys.Enter)
+                    {
+                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                    // Al presionar tecla ESC
+                    else if (e.KeyData == Keys.Escape)
+                    {
+                        if (bt_ace_pta.Enabled == true)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                }
+                catch (Exception ex){
                     MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK);
                 }
             }
@@ -330,15 +349,18 @@ namespace CRS_PRE
             }
         }
 
-        private void dg_res_ult_SelectionChanged(object sender, EventArgs e){
+        private void dg_res_ult_SelectionChanged(object sender, EventArgs e)
+        {
             fi_fil_act();
         }
 
-        private void dg_res_ult_CellClick(object sender, DataGridViewCellEventArgs e){
+        private void dg_res_ult_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             fi_fil_act();
         }
 
-        private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e){
+        private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
             if (bt_ace_pta.Enabled == true){
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
@@ -528,9 +550,28 @@ namespace CRS_PRE
 
         private void mn_list_per_Click(object sender, EventArgs e)
         {
-            //adp002_R01p frm = new adp002_R01p();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            adp002_R01p frm = new adp002_R01p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
+
+        private void mn_lis_atr_Click(object sender, EventArgs e)
+        {
+            adp002_R02p frm = new adp002_R02p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
+        private void mn_lis_2at_Click(object sender, EventArgs e)
+        {
+            adp002_R03p frm = new adp002_R03p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
+        private void mn_lis_rut_Click(object sender, EventArgs e)
+        {
+            adp002_R04p frm = new adp002_R04p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
         private void mn_cer_rar_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

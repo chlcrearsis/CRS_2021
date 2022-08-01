@@ -363,6 +363,108 @@ namespace CRS_NEG
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Informe: Registro Persona 
+        /// </summary>
+        /// <param name="gru_ini">Grupo Inicial</param>
+        /// <param name="gru_fin">Grupo Final</param>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R01(int gru_ini, int gru_fin, string est_ado, string ord_dat)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp002_R01 " + gru_ini + ", " + gru_fin + ", '" + est_ado + "', '" + ord_dat + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Informe: Registro Persona por Criterio 
+        /// </summary>
+        /// <param name="gru_ini">Grupo Inicial</param>
+        /// <param name="gru_fin">Grupo Final</param>
+        /// <param name="ide_tip">ID. Tipo de Atributo</param>
+        /// <param name="atr_ini">ID. Atributo Inicial</param>
+        /// <param name="atr_fin">ID. Atributo Final</param>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R02(int gru_ini, int gru_fin, int ide_tip, int atr_ini, int atr_fin, string est_ado, string ord_dat)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp002_R02 " + gru_ini + ", " + gru_fin + ", " + ide_tip + ", " + atr_ini + ", " + atr_fin + ", '" + est_ado + "', '" + ord_dat + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Informe: Registro Persona por 2 Criterio 
+        /// </summary>
+        /// <param name="gru_ini">Grupo Inicial</param>
+        /// <param name="gru_fin">Grupo Final</param>
+        /// <param name="ide_ti1">ID. 1 Tipo de Atributo</param>
+        /// <param name="atr_in1">ID. 1 Atributo Inicial</param>
+        /// <param name="atr_fi1">ID. 1 Atributo Final</param>
+        /// <param name="ide_ti2">ID. 2 Tipo de Atributo</param>
+        /// <param name="atr_in2">ID. 2 Atributo Inicial</param>
+        /// <param name="atr_fi2">ID. 2 Atributo Final</param>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R03(int gru_ini, int gru_fin, int ide_ti1, int atr_in1, int atr_fi1, int ide_ti2, int atr_in2, int atr_fi2, string est_ado, string ord_dat)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp002_R03 " + gru_ini + ", " + gru_fin + ", " + ide_ti1 + ", " + atr_in1 + ", " + atr_fi1 + ", " + ide_ti2 + ", " + atr_in2 + ", " + atr_fi2 + ", '" + est_ado + "', '" + ord_dat + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Informe: Registro Persona p/Criterio y Ruteo
+        /// </summary>
+        /// <param name="gru_ini">Grupo Inicial</param>
+        /// <param name="gru_fin">Grupo Final</param>
+        /// <param name="ide_tip">ID. Tipo de Atributo</param>
+        /// <param name="atr_ini">ID. Atributo Inicial</param>
+        /// <param name="atr_fin">ID. Atributo Final</param>
+        /// <param name="rut_ini">ID. Ruta Inicial</param>
+        /// <param name="rut_fin">ID. Ruta Final</param>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R04(int gru_ini, int gru_fin, int ide_tip, int atr_ini, int atr_fin, int rut_ini, int rut_fin, string est_ado, string ord_dat)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp002_R04 " + gru_ini + ", " + gru_fin + ", " + ide_tip + ", " + atr_ini + ", " + atr_fin + ", " + rut_ini + ", " + rut_fin + ", '" + est_ado + "', '" + ord_dat + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
    

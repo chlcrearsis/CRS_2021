@@ -21,7 +21,7 @@ namespace CRS_PRE
         adp003 o_adp003 = new adp003();
         DataTable tabla = new DataTable();
         // Variables        
-        string est_bus = "T";
+        string est_bus = "H";
 
         public adp003_01()
         {
@@ -34,11 +34,9 @@ namespace CRS_PRE
         }
         private void fi_ini_frm()
         {
-            tb_ide_tip.Text = "";
-           
+            tb_ide_tip.Text = "";           
             cb_prm_bus.SelectedIndex = 0;
-            cb_est_bus.SelectedIndex = 0;
-
+            cb_est_bus.SelectedIndex = 1;
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
         }     
 
@@ -88,13 +86,13 @@ namespace CRS_PRE
         {
             // Verifica que los datos en pantallas sean correctos
             if (tb_ide_tip.Text.Trim() == ""){
-                lb_nom_tip.Text = "** NO existe";
+                lb_nom_tip.Text = "NO existe";
                 return;
             }
 
             tabla = o_adp003.Fe_con_tip(int.Parse(tb_ide_tip.Text));
             if (tabla.Rows.Count == 0){
-                lb_nom_tip.Text = "** NO existe";
+                lb_nom_tip.Text = "NO existe";
                 return;
             }
 
@@ -147,7 +145,6 @@ namespace CRS_PRE
                     if (e.KeyData == Keys.Down)
                     {
                         dg_res_ult.Show();
-
                         if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1)
                         {
                             // Establece el foco en el Datagrid
@@ -155,21 +152,36 @@ namespace CRS_PRE
 
                             // Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
-
                         }
                     }
                     // Al presionar tecla para ARRIBA
                     else if (e.KeyData == Keys.Up)
                     {
                         dg_res_ult.Show();
-
                         if (dg_res_ult.SelectedRows[0].Index != 0){
                             // Establece el foco en el Datagrid
                             dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index - 1];
 
                             // Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
-
+                        }
+                    }
+                    // Al presionar tecla ENTER
+                    else if (e.KeyData == Keys.Enter)
+                    {
+                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                    // Al presionar tecla ESC
+                    else if (e.KeyData == Keys.Escape)
+                    {
+                        if (bt_ace_pta.Enabled == true)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            cl_glo_frm.Cerrar(this);
                         }
                     }
                 }
@@ -179,7 +191,6 @@ namespace CRS_PRE
                 }
             }
         }
-
 
         /// <summary>
         /// Método para obtener fila actual seleccionada
@@ -226,7 +237,7 @@ namespace CRS_PRE
 
         private void tb_ide_tip_Validated(object sender, EventArgs e){
             fi_con_sel();
-            if (lb_nom_tip.Text != "** NO existe")
+            if (lb_nom_tip.Text != "NO existe")
             {
                 fi_sel_fil(tb_ide_tip.Text);
             }
@@ -243,16 +254,16 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (bt_ace_pta.Enabled == true) { 
+            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0) { 
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
         }
 
-        private void dg_res_ult_Enter(object sender, EventArgs e)
-        {
-            if (bt_ace_pta.Enabled == true) {
-                this.DialogResult = DialogResult.OK;
+    private void dg_res_ult_Enter(object sender, EventArgs e)
+    {
+        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0) { 
+            this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
         }

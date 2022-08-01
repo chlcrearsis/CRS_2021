@@ -145,6 +145,7 @@
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(236, 20);
             this.tb_tex_bus.TabIndex = 3;
+            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
             // lb_ide_atr
             // 
@@ -153,7 +154,7 @@
             this.lb_ide_atr.Name = "lb_ide_atr";
             this.lb_ide_atr.Size = new System.Drawing.Size(43, 13);
             this.lb_ide_atr.TabIndex = 0;
-            this.lb_ide_atr.Text = "Atributo";
+            this.lb_ide_atr.Text = "Atributo";            
             // 
             // tb_ide_atr
             // 
@@ -164,8 +165,8 @@
             this.tb_ide_atr.Size = new System.Drawing.Size(42, 20);
             this.tb_ide_atr.TabIndex = 1;
             this.tb_ide_atr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_atr_KeyPress);
-            this.tb_ide_atr.Leave += new System.EventHandler(this.tb_ide_atr_Leave);
             this.tb_ide_atr.Validated += new System.EventHandler(this.tb_ide_atr_Validated);
+            this.tb_ide_atr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
             // gb_ctr_res
             // 

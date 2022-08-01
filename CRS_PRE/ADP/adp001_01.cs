@@ -18,7 +18,7 @@ namespace CRS_PRE
         public DataTable tab_dat;
         public dynamic frm_MDI;
         // Variables
-        string est_bus = "T";
+        string est_bus = "H";
         
         public adp001_01()
         {
@@ -40,7 +40,7 @@ namespace CRS_PRE
         {
             tb_cod_gru.Text = "";           
             cb_prm_bus.SelectedIndex = 0;
-            cb_est_bus.SelectedIndex = 0;
+            cb_est_bus.SelectedIndex = 1;
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
         }       
 
@@ -142,7 +142,8 @@ namespace CRS_PRE
                     {
                         dg_res_ult.Show();
 
-                        if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1){
+                        if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1)
+                        {
                             //Establece el foco en el Datagrid
                             dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index + 1];
 
@@ -164,7 +165,24 @@ namespace CRS_PRE
                             fi_fil_act();
                         }
                     }
-                }catch (Exception ex){
+                    // Al presionar tecla ENTER
+                    else if (e.KeyData == Keys.Enter) {
+                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
+                            this.DialogResult = DialogResult.OK;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                    // Al presionar tecla ESC
+                    else if (e.KeyData == Keys.Escape)
+                    {
+                        if (bt_ace_pta.Enabled == true)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                }
+                catch (Exception ex){
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                 }
             }
@@ -232,7 +250,7 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (bt_ace_pta.Enabled == true) { 
+            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
@@ -240,8 +258,7 @@ namespace CRS_PRE
 
         private void dg_res_ult_Enter(object sender, EventArgs e)
         {
-            if (bt_ace_pta.Enabled == true)
-            {
+            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }

@@ -52,12 +52,12 @@
             this.tb_cod_gru = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.bt_can_cel = new System.Windows.Forms.Button();
             this.va_cod_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_gru = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_can_cel = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -301,6 +301,28 @@
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
             // 
+            // va_cod_gru
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_cod_gru.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_cod_gru.HeaderText = "Codigo";
+            this.va_cod_gru.Name = "va_cod_gru";
+            this.va_cod_gru.ReadOnly = true;
+            this.va_cod_gru.Width = 60;
+            // 
+            // va_nom_gru
+            // 
+            this.va_nom_gru.HeaderText = "Nombre";
+            this.va_nom_gru.Name = "va_nom_gru";
+            this.va_nom_gru.ReadOnly = true;
+            this.va_nom_gru.Width = 355;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            // 
             // gb_ctr_btn
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
@@ -337,28 +359,6 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
-            // 
-            // va_cod_gru
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_cod_gru.DefaultCellStyle = dataGridViewCellStyle2;
-            this.va_cod_gru.HeaderText = "Codigo";
-            this.va_cod_gru.Name = "va_cod_gru";
-            this.va_cod_gru.ReadOnly = true;
-            this.va_cod_gru.Width = 60;
-            // 
-            // va_nom_gru
-            // 
-            this.va_nom_gru.HeaderText = "Nombre";
-            this.va_nom_gru.Name = "va_nom_gru";
-            this.va_nom_gru.ReadOnly = true;
-            this.va_nom_gru.Width = 355;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
             // 
             // adp001_01
             // 

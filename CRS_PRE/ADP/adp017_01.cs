@@ -21,7 +21,7 @@ namespace CRS_PRE
         adp017 o_adp017 = new adp017();
         DataTable Tabla = new DataTable();
         // Variables
-        string est_bus = "T";
+        string est_bus = "H";
 
         public adp017_01()
         {
@@ -37,8 +37,7 @@ namespace CRS_PRE
         {
             tb_ide_rel.Text = "";           
             cb_prm_bus.SelectedIndex = 0;
-            cb_est_bus.SelectedIndex = 0;
-
+            cb_est_bus.SelectedIndex = 1;
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
         }     
 
@@ -171,6 +170,24 @@ namespace CRS_PRE
 
                             // Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
+                        }
+                    }
+                    // Al presionar tecla ENTER
+                    else if (e.KeyData == Keys.Enter)
+                    {
+                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                    // Al presionar tecla ESC
+                    else if (e.KeyData == Keys.Escape)
+                    {
+                        if (bt_ace_pta.Enabled == true)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            cl_glo_frm.Cerrar(this);
                         }
                     }
                 }

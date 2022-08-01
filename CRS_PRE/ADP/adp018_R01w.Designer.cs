@@ -269,7 +269,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "adp018_R01w";
-            this.Text = "Grupo Persona";
+            this.Text = "Informe Grupo Empresarial";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
             this.m_frm_hja.PerformLayout();

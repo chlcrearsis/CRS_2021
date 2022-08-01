@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class adp007_R01w
+    partial class adp002_R03w
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@
             this.mn_zoo_025 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.adp007_R01 = new CRS_PRE.ADP.adp007_R01();
+            this.adp002_R03 = new CRS_PRE.ADP.adp002_R03();
             this.m_frm_hja.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -247,7 +247,7 @@
             this.cr_rep_ort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cr_rep_ort.Location = new System.Drawing.Point(0, 0);
             this.cr_rep_ort.Name = "cr_rep_ort";
-            this.cr_rep_ort.ReportSource = this.adp007_R01;
+            this.cr_rep_ort.ReportSource = this.adp002_R03;
             this.cr_rep_ort.ShowCloseButton = false;
             this.cr_rep_ort.ShowCopyButton = false;
             this.cr_rep_ort.ShowGroupTreeButton = false;
@@ -258,7 +258,7 @@
             this.cr_rep_ort.TabIndex = 0;
             this.cr_rep_ort.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
-            // adp007_R01w
+            // adp002_R03w
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -268,8 +268,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "adp007_R01w";
-            this.Text = "Informe Definición de Rutas";
+            this.Name = "adp002_R03w";
+            this.Text = "Informe Persona  p/Criterio";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
             this.m_frm_hja.PerformLayout();
@@ -301,6 +301,6 @@
         private System.Windows.Forms.ToolStripMenuItem mn_sep_uno;
         private System.Windows.Forms.ToolStripMenuItem mn_sep_dos;
         private System.Windows.Forms.ToolStripTextBox mn_nro_pag;
-        private ADP.adp007_R01 adp007_R01;
+        private ADP.adp002_R03 adp002_R03;
     }
 }

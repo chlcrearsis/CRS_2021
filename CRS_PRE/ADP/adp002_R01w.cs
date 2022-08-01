@@ -7,25 +7,27 @@ namespace CRS_PRE
 {
     /**********************************************************************/
     /*      Módulo: ADP - Persona                                         */
-    /*  Aplicación: adp001 - Grupo Persona                                */
+    /*  Aplicación: adp002 - Registro Persona                             */
     /*      Opción: Informe R01 - Reporte View                            */
-    /*       Autor: JEJR - Crearsis             Fecha: 01-07-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 28-07-2022         */
     /**********************************************************************/
-    public partial class adp001_R01w : Form
+    public partial class adp002_R01w : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
-        public DataTable frm_dat;        
+        public DataTable frm_dat;
         // Instancias
+        adp001 o_adp001 = new adp001();
         ads013 o_ads013 = new ads013();
         ads007 o_ads007 = new ads007();
         DataTable Tabla = new DataTable();
         // Variable
         string va_nom_emp = "";
+        public string vp_gru_ini;
+        public string vp_gru_fin;
         public string vp_est_ado;
-        public string vp_ord_dat;
 
-        public adp001_R01w()
+        public adp002_R01w()
         {
             InitializeComponent();
         }
@@ -41,24 +43,36 @@ namespace CRS_PRE
                 vp_est_ado = "Habilitados";
             if (vp_est_ado.CompareTo("N") == 0)
                 vp_est_ado = "Deshabilitados";
-            // Castea la descripcion de ordenamiento
-            if (vp_ord_dat.CompareTo("C") == 0)
-                vp_ord_dat = "Código";
-            if (vp_ord_dat.CompareTo("N") == 0)
-                vp_ord_dat = "Nombre";
+
+            // Obtiene la descripcion del grupo inicial
+            Tabla = new DataTable();
+            Tabla = o_adp001.Fe_con_gru(int.Parse(vp_gru_ini));
+            if (Tabla.Rows.Count > 0) { 
+                vp_gru_ini = Tabla.Rows[0]["va_cod_gru"].ToString() + "  -  " +
+                             Tabla.Rows[0]["va_nom_gru"].ToString();
+            }
+            // Obtiene la descripcion del grupo final
+            Tabla = new DataTable();
+            Tabla = o_adp001.Fe_con_gru(int.Parse(vp_gru_fin));
+            if (Tabla.Rows.Count > 0)
+            {
+                vp_gru_fin = Tabla.Rows[0]["va_cod_gru"].ToString() + "  -  " +
+                             Tabla.Rows[0]["va_nom_gru"].ToString();
+            }
 
             // Obtener nombre de la empresa
             Tabla = o_ads013.Fe_obt_glo(1, 4);
             va_nom_emp = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
             // Logueo Manual el ReportDocument asociado al Crystal Report
-            adp001_R01.SetDatabaseLogon(o_ads007.va_ide_usr, o_ads007.va_pas_usr, o_ads007.va_ser_bda + "\\" + o_ads007.va_ins_bda, o_ads007.va_nom_bda);
+            adp002_R01.SetDatabaseLogon(o_ads007.va_ide_usr, o_ads007.va_pas_usr, o_ads007.va_ser_bda + "\\" + o_ads007.va_ins_bda, o_ads007.va_nom_bda);
             // Paso los datos obtenidos del procedimiento en la anterior ventana
-            adp001_R01.SetDataSource(frm_dat);
+            adp002_R01.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            adp001_R01.SetParameterValue("vc_nom_emp", va_nom_emp);
-            adp001_R01.SetParameterValue("vc_est_ado", vp_est_ado);
-            adp001_R01.SetParameterValue("vc_ord_dat", vp_ord_dat);
-            adp001_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
+            adp002_R01.SetParameterValue("vc_nom_emp", va_nom_emp);
+            adp002_R01.SetParameterValue("vc_gru_ini", vp_gru_ini);
+            adp002_R01.SetParameterValue("vc_gru_fin", vp_gru_fin);
+            adp002_R01.SetParameterValue("vc_est_ado", vp_est_ado);
+            adp002_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
         }
 
         private void Mn_imp_rim_Click(object sender, EventArgs e)

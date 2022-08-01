@@ -269,7 +269,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "adp004_R01w";
-            this.Text = "Grupo Persona";
+            this.Text = "Informe Definición de Atributos";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
             this.m_frm_hja.PerformLayout();

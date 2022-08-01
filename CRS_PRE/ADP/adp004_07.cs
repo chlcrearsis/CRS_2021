@@ -112,13 +112,13 @@ namespace CRS_PRE
         {
             // Verifica que los datos en pantallas sean correctos
             if (tb_ide_atr.Text.Trim() == ""){
-                lb_nom_atr.Text = "** NO Existe";
+                lb_nom_atr.Text = "NO Existe";
                 return;
             }
 
             Tabla = o_adp004.Fe_con_atr(vp_ide_tip, int.Parse(tb_ide_atr.Text));
             if (Tabla.Rows.Count == 0){
-                lb_nom_atr.Text = "** NO Existe";
+                lb_nom_atr.Text = "NO Existe";
                 return;
             }
             tb_ide_atr.Text = Tabla.Rows[0]["va_ide_atr"].ToString();
@@ -158,7 +158,65 @@ namespace CRS_PRE
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                 }
             }
-        }        
+        }
+
+        private void fi_sub_baj_fil_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (dg_res_ult.Rows.Count != 0)
+            {
+                try
+                {
+                    // Al presionar tecla para ABAJO
+                    if (e.KeyData == Keys.Down)
+                    {
+                        dg_res_ult.Show();
+                        if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1)
+                        {
+                            // Establece el foco en el Datagrid
+                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index + 1];
+
+                            // Llama a función que actualiza datos en Textbox de Selección
+                            fi_fil_act();
+                        }
+                    }
+                    // Al presionar tecla para ARRIBA
+                    else if (e.KeyData == Keys.Up)
+                    {
+                        dg_res_ult.Show();
+                        if (dg_res_ult.SelectedRows[0].Index != 0)
+                        {
+                            // Establece el foco en el Datagrid
+                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index - 1];
+
+                            // Llama a función que actualiza datos en Textbox de Selección
+                            fi_fil_act();
+                        }
+                    }
+                    // Al presionar tecla ENTER
+                    else if (e.KeyData == Keys.Enter)
+                    {
+                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                    // Al presionar tecla ESC
+                    else if (e.KeyData == Keys.Escape)
+                    {
+                        if (bt_ace_pta.Enabled == true)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
+            }
+        }
 
         /// <summary>
         /// Método para obtener fila actual seleccionada
@@ -233,10 +291,6 @@ namespace CRS_PRE
 
         private void tb_ide_atr_KeyPress(object sender, KeyPressEventArgs e){
             cl_glo_bal.NotNumeric(e);
-        }
-
-        private void tb_ide_atr_Leave(object sender, EventArgs e){
-            
         }
 
         private void tb_ide_atr_Validated(object sender, EventArgs e)

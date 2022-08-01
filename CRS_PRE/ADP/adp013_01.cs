@@ -21,7 +21,7 @@ namespace CRS_PRE
         adp013 o_adp013 = new adp013();
         DataTable Tabla = new DataTable();
         // Variables         
-        string est_bus = "T";
+        string est_bus = "H";
 
         public adp013_01()
         {
@@ -36,11 +36,11 @@ namespace CRS_PRE
         private void fi_ini_frm()
         {
             // Iniciliza Campos en Pantalla            
-            cb_prm_bus.SelectedIndex = 0;
-            cb_est_bus.SelectedIndex = 0;
             tb_cod_per.Text = string.Empty;
             tb_raz_soc.Text = string.Empty;
             tb_cod_con.Text = string.Empty;
+            cb_prm_bus.SelectedIndex = 0;
+            cb_est_bus.SelectedIndex = 1;            
 
             // Desplega Datos del Cliente
             tb_cod_per.Text = frm_dat.Rows[0]["va_cod_per"].ToString().Trim();
@@ -231,7 +231,26 @@ namespace CRS_PRE
                             fi_fil_act();
                         }
                     }
-                }catch (Exception ex){
+                    // Al presionar tecla ENTER
+                    else if (e.KeyData == Keys.Enter)
+                    {
+                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                    // Al presionar tecla ESC
+                    else if (e.KeyData == Keys.Escape)
+                    {
+                        if (bt_ace_pta.Enabled == true)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                }
+                catch (Exception ex){
                     MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK);
                 }
             }

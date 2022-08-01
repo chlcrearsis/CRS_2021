@@ -21,7 +21,7 @@ namespace CRS_PRE
         adp003 o_adp003 = new adp003();
         adp004 o_adp004 = new adp004();
         // Variables
-        string est_bus = "T";
+        string est_bus = "H";
         public int vp_ide_tip = 0;
 
         public adp004_01()
@@ -40,7 +40,7 @@ namespace CRS_PRE
             lb_nom_tip.Text = string.Empty;
             tb_ide_atr.Text = string.Empty;
             cb_prm_bus.SelectedIndex = 0;
-            cb_est_bus.SelectedIndex = 0;
+            cb_est_bus.SelectedIndex = 1;
             fi_obt_tip("");
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
         }       
