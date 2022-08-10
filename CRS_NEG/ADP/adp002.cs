@@ -365,6 +365,25 @@ namespace CRS_NEG
         }
 
         /// <summary>
+        /// Informe: Consulta Ficha Persona 
+        /// </summary>
+        /// <param name="cod_per">Código Persona</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R00(int cod_per)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp002_R00 " + cod_per + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Informe: Registro Persona 
         /// </summary>
         /// <param name="gru_ini">Grupo Inicial</param>

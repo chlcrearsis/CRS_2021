@@ -73,6 +73,25 @@ namespace CRS_NEG
             {
                 throw ex;
             }
-        }       
+        }
+
+        /// <summary>
+        /// Funcion "LISTA PERMISO DE LISTA DE PRECIO P/PERSONA"
+        /// </summary>
+        /// <param name="cod_per">Codigo de Persona</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R01(int cod_per)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE adp009_R01 " + cod_per + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -20,6 +20,7 @@ CREATE TABLE adp002
 	va_ape_pat  VARCHAR(20)  NOT NULL DEFAULT(''),  --** Apellido Paterno
 	va_ape_mat  VARCHAR(20)  NOT NULL DEFAULT(''),  --** Apellido Materno
 	va_raz_soc	VARCHAR(80)	 NOT NULL DEFAULT(''),	--** Razon Social
+	va_nom_fac  VARCHAR(120) NOT NULL DEFAULT(''),  --** Nombre a Facturar
 	va_ruc_nit	BIGINT       NOT NULL DEFAULT(0),	--** RUC/NIT
 	va_sex_per  CHAR(01)     NOT NULL DEFAULT(''),  --** Sexo (H=Hombre; M=Mujer)
 	va_fec_nac  DATETIME,                           --** Fecha de Nacimiento

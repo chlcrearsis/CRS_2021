@@ -463,15 +463,7 @@ namespace CRS_PRE
             adp002_04 frm = new adp002_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
         }
-        private void mn_con_sul_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para consultar
-            if (fi_ver_dat(tb_cod_per.Text) == false)
-                return;
-
-            adp002_05 frm = new adp002_05();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, Tabla);
-        }
+        
         private void mn_eli_min_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
@@ -508,8 +500,9 @@ namespace CRS_PRE
 
             adp006_01 frm = new adp006_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
-        }
-        private void mn_con_per_Click(object sender, EventArgs e)
+        }        
+
+        private void mn_con_reg_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para eliminar
             if (fi_ver_dat(tb_cod_per.Text) == false)
@@ -518,7 +511,15 @@ namespace CRS_PRE
             adp013_01 frm = new adp013_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
-      
+
+        private void mn_con_fic_Click(object sender, EventArgs e)
+        {
+            // Genera el Informe
+            adp002_R00w frm = new adp002_R00w();
+            frm.vp_cod_per = int.Parse(tb_cod_per.Text);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
+        }
+
         private void mn_ins_lib_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos
@@ -590,7 +591,5 @@ namespace CRS_PRE
             this.DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
         }
-
-        
     }
 }

@@ -51,6 +51,7 @@
             this.mn_list_per = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_lis_atr = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_lis_2at = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_lis_rut = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lb_nom_gru = new System.Windows.Forms.Label();
@@ -87,7 +88,8 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
-            this.mn_lis_rut = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_con_reg = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_con_fic = new System.Windows.Forms.ToolStripMenuItem();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -169,10 +171,12 @@
             // 
             // mn_con_sul
             // 
+            this.mn_con_sul.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_con_reg,
+            this.mn_con_fic});
             this.mn_con_sul.Name = "mn_con_sul";
             this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
-            this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
             // mn_ima_per
             // 
@@ -203,7 +207,6 @@
             this.mn_con_per.Name = "mn_con_per";
             this.mn_con_per.Size = new System.Drawing.Size(230, 22);
             this.mn_con_per.Text = "Con&tactos";
-            this.mn_con_per.Click += new System.EventHandler(this.mn_con_per_Click);
             // 
             // mn_asi_emp
             // 
@@ -255,6 +258,14 @@
             this.mn_lis_2at.Size = new System.Drawing.Size(287, 22);
             this.mn_lis_2at.Text = "Lista de Persona p/2 Atributo";
             this.mn_lis_2at.Click += new System.EventHandler(this.mn_lis_2at_Click);
+            // 
+            // mn_lis_rut
+            // 
+            this.mn_lis_rut.Name = "mn_lis_rut";
+            this.mn_lis_rut.ShortcutKeyDisplayString = "R04";
+            this.mn_lis_rut.Size = new System.Drawing.Size(287, 22);
+            this.mn_lis_rut.Text = "Lista de Persona p/Atributo y Ruteo";
+            this.mn_lis_rut.Click += new System.EventHandler(this.mn_lis_rut_Click);
             // 
             // mn_cer_rar
             // 
@@ -655,13 +666,19 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // mn_lis_rut
+            // mn_con_reg
             // 
-            this.mn_lis_rut.Name = "mn_lis_rut";
-            this.mn_lis_rut.ShortcutKeyDisplayString = "R04";
-            this.mn_lis_rut.Size = new System.Drawing.Size(287, 22);
-            this.mn_lis_rut.Text = "Lista de Persona p/Atributo y Ruteo";
-            this.mn_lis_rut.Click += new System.EventHandler(this.mn_lis_rut_Click);
+            this.mn_con_reg.Name = "mn_con_reg";
+            this.mn_con_reg.Size = new System.Drawing.Size(197, 22);
+            this.mn_con_reg.Text = "Consulta Registro";
+            this.mn_con_reg.Click += new System.EventHandler(this.mn_con_reg_Click);
+            // 
+            // mn_con_fic
+            // 
+            this.mn_con_fic.Name = "mn_con_fic";
+            this.mn_con_fic.Size = new System.Drawing.Size(197, 22);
+            this.mn_con_fic.Text = "Consulta Ficha Persona";
+            this.mn_con_fic.Click += new System.EventHandler(this.mn_con_fic_Click);
             // 
             // adp002_01
             // 
@@ -753,5 +770,7 @@
         private System.Windows.Forms.ToolStripMenuItem mn_lis_atr;
         private System.Windows.Forms.ToolStripMenuItem mn_lis_2at;
         private System.Windows.Forms.ToolStripMenuItem mn_lis_rut;
+        private System.Windows.Forms.ToolStripMenuItem mn_con_reg;
+        private System.Windows.Forms.ToolStripMenuItem mn_con_fic;
     }
 }
