@@ -58,7 +58,9 @@ CREATE TABLE cmr004
 	va_tal_dcf		TINYINT					,	--Talonario DeV C/F (adm004) (2 numeros)
 	va_doc_dsf		CHAR(3)					,	--Documento DeV S/F (adm003) (3 Letras)
 	va_tal_dsf		TINYINT					,	--Talonario DeV S/F (adm004) (2 numeros)
-
+	va_doc_rei		CHAR(3)					,	--Documento Recibo de Ingreso (adm003) (3 Letras)
+	va_tal_rei		TINYINT					,	--Talonario Recibo de Ingreso (adm004) (2 numeros)
+	
 	va_imp_fac		VARCHAR(80)				,	--Impresora por defecto para factura
 	va_imp_ntv		VARCHAR(80)				,	--Impresora por defecto para Nota de venta
 	va_imp_ped		VARCHAR(80)				,	--Impresora para pedido

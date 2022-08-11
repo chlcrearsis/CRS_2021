@@ -13,7 +13,7 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
-    public partial class res001_02c : Form
+    public partial class cmr005_12c : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -25,7 +25,7 @@ namespace CRS_PRE
         
         DataTable tabla = new DataTable();
 
-        public res001_02c()
+        public cmr005_12c()
         {
             InitializeComponent();
         }

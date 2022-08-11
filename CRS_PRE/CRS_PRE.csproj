@@ -1531,6 +1531,30 @@
     <Compile Include="ADS\ads006_02.Designer.cs">
       <DependentUpon>ads006_02.cs</DependentUpon>
     </Compile>
+    <Compile Include="CMR\cmr005_12b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr005_12b.Designer.cs">
+      <DependentUpon>cmr005_12b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr005_12c.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr005_12c.Designer.cs">
+      <DependentUpon>cmr005_12c.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr005_12d.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr005_12d.Designer.cs">
+      <DependentUpon>cmr005_12d.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMR\cmr005_12e.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr005_12e.Designer.cs">
+      <DependentUpon>cmr005_12e.cs</DependentUpon>
+    </Compile>
     <Compile Include="CTB\ctb006_01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3175,6 +3199,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_02.resx">
       <DependentUpon>ads006_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr005_12b.resx">
+      <DependentUpon>cmr005_12b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr005_12c.resx">
+      <DependentUpon>cmr005_12c.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr005_12d.resx">
+      <DependentUpon>cmr005_12d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr005_12e.resx">
+      <DependentUpon>cmr005_12e.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CTB\ctb006_01.resx">
       <DependentUpon>ctb006_01.cs</DependentUpon>
