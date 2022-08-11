@@ -73,7 +73,7 @@ namespace CRS_NEG
             {
                 throw ex;
             }
-        }
+        }  
 
         /// <summary>
         /// Funcion "LISTA PERMISO DE LISTA DE PRECIO P/PERSONA"
