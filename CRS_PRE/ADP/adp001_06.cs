@@ -9,7 +9,7 @@ namespace CRS_PRE
     /**********************************************************************/
     /*      Módulo: ADP - Persona                                         */
     /*  Aplicación: adp001 - Grupo Persona                                */
-    /*      Opción: Habilita/Deshabilita Registro                         */
+    /*      Opción: Elimina Registro                                      */
     /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
     /**********************************************************************/
     public partial class adp001_06 : Form
@@ -52,6 +52,7 @@ namespace CRS_PRE
         // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
+            // Valida que el campo código NO este vacio
             if (tb_cod_gru.Text.Trim() == ""){
                 return "DEBE proporcionar el Código Grupo Persona";
             }
@@ -59,7 +60,7 @@ namespace CRS_PRE
             // Valida que el campo código NO este vacio
             int.TryParse(tb_cod_gru.Text, out int cod_gru);
             if (cod_gru == 0){
-                return "El Código Grupo Persona NO es valido";
+                return "El Código Grupo Persona NO tiene formato valido";
             }
                        
             // Verifica SI el grupo persona se encuentra registrado
@@ -69,9 +70,9 @@ namespace CRS_PRE
                 return "El Grupo Persona NO se encuentra registrado en el Sistema";
             }
 
-            // Verifica SI el estado se encuentra Deshabilitado
-            if (tb_est_ado.Text == "Deshabilitado") {
-                return "El Grupo Persona se encuentra Deshabilitado";
+            // Verifica SI el estado se encuentra Habilitado
+            if (tb_est_ado.Text == "Habilitado") {
+                return "El Grupo Persona se encuentra Habilitado";
             }
 
             // Verifica SI el grupo persona se encuentra asignado a registro de Persona
@@ -81,7 +82,7 @@ namespace CRS_PRE
                 return "Existen '" + Tabla.Rows.Count + "' registro en Persona que dependen del Grupo de Persona";
             }
 
-            return "";
+            return "OK";
         }
 
         // Evento Click: Button Aceptar

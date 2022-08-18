@@ -51,15 +51,14 @@ namespace CRS_PRE
         // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
-            if (tb_cod_gru.Text.Trim() == ""){
-                return "DEBE proporcionar el Código Grupo Persona";
-            }
+            // Valida que el campo código NO este vacio
+            if (tb_cod_gru.Text.Trim() == "")
+                return "DEBE proporcionar el Código Grupo Persona";            
 
             // Valida que el campo código NO este vacio
             int.TryParse(tb_cod_gru.Text, out int cod_gru);
-            if (cod_gru == 0){
-                return "El Código Grupo Persona NO es valido";
-            }
+            if (cod_gru == 0)
+                return "El Código Grupo Persona NO es valido";            
 
             // Valida que el campo Nombre del Grupo Persona NO este vacio
             if (tb_nom_gru.Text.Trim() == ""){
@@ -78,6 +77,11 @@ namespace CRS_PRE
                 return "El Grupo Persona NO se encuentra registrado en el Sistema";
             }
 
+            // Valida que el modulo no esta deshabilitado
+            if (tb_est_ado.Text.Trim() == "Deshabilitado"){
+                return "El Grupo Persona se encuentra Deshabilitado";
+            }
+
             // Verifica SI existe otro registro con el mismo nombre
             Tabla = new DataTable();
             Tabla = o_adp001.Fe_con_nom(tb_nom_gru.Text.Trim(), int.Parse(tb_cod_gru.Text));
@@ -85,7 +89,7 @@ namespace CRS_PRE
                 return "YA existe otra Grupo Persona con el mismo nombre";
             }
 
-            return "";
+            return "OK";
         }
 
         // Evento Click: Button Aceptar
@@ -97,7 +101,7 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "")
+                if (msg_val != "OK")
                 {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;

@@ -35,7 +35,7 @@ namespace CRS_PRE
         {
             // Obtiene Modulos
             //tabla = o_ads001.Fe_obt_mod();
-            cb_mod_ulo.DataSource = o_ads001.Fe_obt_mod();
+            cb_mod_ulo.DataSource = o_ads001.Fe_lis_mod("1");
             cb_mod_ulo.ValueMember = "va_ide_mod";
             cb_mod_ulo.DisplayMember = "va_nom_mod";
 

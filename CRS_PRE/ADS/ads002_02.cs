@@ -56,7 +56,7 @@ namespace CRS_PRE
             }
 
             tabla = new DataTable();
-            tabla = o_ads001.Fe_con_mod(tb_ide_mod.Text);
+            tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if(tabla.Rows.Count==0)
             {
                 tb_ide_mod.Focus();
@@ -152,7 +152,7 @@ namespace CRS_PRE
 
             if (frm.DialogResult == DialogResult.OK )
             {
-                tb_ide_mod.Text = frm.tb_sel_bus.Text;
+                tb_ide_mod.Text = frm.tb_ide_mod.Text;
                 Fi_obt_mod();
             }
         }
@@ -167,7 +167,7 @@ namespace CRS_PRE
         void Fi_obt_mod()
         {
             // Obtiene ide y nombre Modulo
-            tabla = o_ads001.Fe_con_mod(tb_ide_mod.Text);
+            tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (tabla.Rows.Count == 0)
             {
                 tb_nom_mod.Clear();

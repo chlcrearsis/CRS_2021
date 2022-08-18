@@ -1,28 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads001 - Módulo del Sistema                           */
+    /* Descripción: Buscar Módulo del Sistema                             */
+    /*       Autor: JEJR - Crearsis             Fecha: 18-08-2022         */
+    /**********************************************************************/
     public partial class ads001_01 : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable tab_dat;
         public dynamic frm_MDI;
+        // Variables
+        string est_bus = "H";
 
-        string est_bus = "T";
-
-        
         public ads001_01()
         {
             InitializeComponent();
@@ -31,33 +29,20 @@ namespace CRS_PRE
         // instancia
         ads001 o_ads001 = new ads001();
         
-
         // Variables
-        DataTable tabla = new DataTable();
+        DataTable Tabla = new DataTable();
 
         private void frm_Load(object sender, EventArgs e)
         {
             fi_ini_frm();
         }
 
-        #region  [Funciones Internas]
         private void fi_ini_frm()
         {
-            tb_sel_bus.Text = "";
-
+            tb_ide_mod.Text = "";
             cb_prm_bus.SelectedIndex = 0;
             cb_est_bus.SelectedIndex = 0;
-
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
-        }
-
-        public enum parametro
-        {
-            codigo = 1, nombre = 2
-        }
-        protected enum estado
-        {
-            Todos = 0, Habilitado = 1, Deshabilitado = 2
         }
 
         /// <summary>
@@ -71,50 +56,57 @@ namespace CRS_PRE
             //Limpia Grilla
             dg_res_ult.Rows.Clear();
 
-            
-            tabla = o_ads001.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus);
+            if (cb_est_bus.SelectedIndex == 0)
+                est_bus = "T";
+            if (cb_est_bus.SelectedIndex == 1)
+                est_bus = "H";
+            if (cb_est_bus.SelectedIndex == 2)
+                est_bus = "N";
 
-            if (tabla.Rows.Count > 0)
+
+            Tabla = o_ads001.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus);
+
+            if (Tabla.Rows.Count > 0)
             {
-                for (int i = 0; i < tabla.Rows.Count; i++)
+                for (int i = 0; i < Tabla.Rows.Count; i++)
                 {
                     dg_res_ult.Rows.Add();
-                    dg_res_ult.Rows[i].Cells["va_ide_mod"].Value = tabla.Rows[i]["va_ide_mod"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_nom_mod"].Value = tabla.Rows[i]["va_nom_mod"].ToString();
-                    dg_res_ult.Rows[i].Cells["va_abr_mod"].Value =tabla.Rows[i]["va_abr_mod"].ToString();
-                    
-                    if (tabla.Rows[i]["va_est_ado"].ToString() == "H")
+                    dg_res_ult.Rows[i].Cells["va_ide_mod"].Value = Tabla.Rows[i]["va_ide_mod"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_nom_mod"].Value = Tabla.Rows[i]["va_nom_mod"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_abr_mod"].Value = Tabla.Rows[i]["va_abr_mod"].ToString();
+
+                    if (Tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
                     else
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 }
-                tb_sel_bus.Text = tabla.Rows[0]["va_ide_mod"].ToString();
-                lb_des_bus.Text = tabla.Rows[0]["va_nom_mod"].ToString();
+                tb_ide_mod.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
+                lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
             }
-
         }
+
         private void fi_con_sel()
         {
-            //Verifica que los datos en pantallas sean correctos
-            if (tb_sel_bus.Text.Trim() == "")
+            // Verifica que los datos en pantallas sean correctos
+            if (tb_ide_mod.Text.Trim() == "")
             {
-                lb_des_bus.Text = "** NO existe";
+                lb_nom_mod.Text = "NO Existe";
+                return;
+            }
+            // Verifica si el grupo esta registrado en el sistema
+            Tabla = new DataTable();
+            Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
+            if (Tabla.Rows.Count == 0){
+                lb_nom_mod.Text = "NO Existe";
                 return;
             }
 
-            tabla = o_ads001.Fe_con_mod(tb_sel_bus.Text);
-            if (tabla.Rows.Count == 0)
-            {
-                lb_des_bus.Text = "** NO existe";
-                return;
-            }
-
-            lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_mod"].ToString());
+            lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
         }
         /// <summary>
         /// - > Función que selecciona la fila en el Datagrid que el Modulo Modificó
         /// </summary>
-        private void fi_sel_fil(int cod_tus)
+        private void fi_sel_fil(string ide_mod)
         {
 
             if (cb_est_bus.SelectedIndex == 0)
@@ -126,14 +118,13 @@ namespace CRS_PRE
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (cod_tus.ToString() != null)
+            if (ide_mod != null)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_tus.ToString())
-                        {
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_mod.ToString().ToUpper()){
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;
@@ -153,7 +144,7 @@ namespace CRS_PRE
             {
                 try
                 {
-                    //al presionar tecla para ABAJO
+                    // Al presionar tecla para ABAJO
                     if (e.KeyData == Keys.Down)
                     {
                         dg_res_ult.Show();
@@ -165,7 +156,6 @@ namespace CRS_PRE
 
                             //Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
-
                         }
                     }
                     //al presionar tecla para ARRIBA
@@ -180,7 +170,24 @@ namespace CRS_PRE
 
                             //Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
-
+                        }
+                    }
+                    // Al presionar tecla ENTER
+                    else if (e.KeyData == Keys.Enter)
+                    {
+                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            cl_glo_frm.Cerrar(this);
+                        }
+                    }
+                    // Al presionar tecla ESC
+                    else if (e.KeyData == Keys.Escape)
+                    {
+                        if (bt_ace_pta.Enabled == true)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            cl_glo_frm.Cerrar(this);
                         }
                     }
                 }
@@ -201,13 +208,13 @@ namespace CRS_PRE
             {
                 if (dg_res_ult.SelectedRows[0].Cells[0].Value == null)
                 {
-                    tb_sel_bus.Text = "";
-                    lb_des_bus.Text = "";
+                    tb_ide_mod.Text = string.Empty;
+                    lb_nom_mod.Text = string.Empty;
                 }
                 else
                 {
-                    tb_sel_bus.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString();
-                    lb_des_bus.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString();
+                    tb_ide_mod.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString();
+                    lb_nom_mod.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString();
                 }
 
             }
@@ -216,61 +223,37 @@ namespace CRS_PRE
         /// <summary>
         /// Método para verificar concurrencia de datos para editar
         /// </summary>
-        public bool fi_ver_edi(string sel_ecc)
+        public bool fi_ver_dat(string ide_mod)
         {
-            string res_fun = "";
-            tab_dat = o_ads001.Fe_con_mod(sel_ecc);
-            if (tab_dat.Rows.Count == 0)
+            string res_fun;
+            if (ide_mod.Trim() == "")
             {
-                res_fun = "El Modulo que desea editar, no se encuentra registrado";
-            }
-
-            if (res_fun != "")
-            {
-                MessageBox.Show(res_fun, "Edita Modulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_sel_bus.Focus();
+                res_fun = "El Módulo que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_mod.Focus();
                 return false;
             }
 
-
-            return true;
-        }
-        public bool fi_ver_hds(string sel_ecc)
-        {
-          
-            tab_dat = o_ads001.Fe_con_mod(sel_ecc);
-            if (tab_dat.Rows.Count == 0)
+            // Obtiene datos del registro seleccionado
+            tab_dat = new DataTable();
+            tab_dat = o_ads001.Fe_con_mod(int.Parse(ide_mod));
+            if (Tabla.Rows.Count == 0)
             {
-                MessageBox.Show("EL Modulo ya no se encuentra registrado en la base de datos.", "Consulta Modulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_sel_bus.Focus();
+                res_fun = "El Módulo que desea editar, no se encuentra registrado";
+                MessageBox.Show(res_fun, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_ide_mod.Focus();
                 return false;
             }
 
             return true;
         }
-        public bool fi_ver_con(string sel_ecc)
-        {
-            tab_dat = o_ads001.Fe_con_mod(sel_ecc);
-            if (tab_dat.Rows.Count == 0)
-            {
-                MessageBox.Show("EL Modulo ya no se encuentra registrado en la base de datos.", "Consulta Modulo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tb_sel_bus.Focus();
-                return false;
-            }
+               
 
-            return true;
-        }
-
-
-
-        #endregion
-
-        private void Tb_sel_bus_Validated(object sender, EventArgs e)
+        private void tb_ide_mod_Validated(object sender, EventArgs e)
         {
             fi_con_sel();
-            if (lb_des_bus.Text != "** NO existe")
-            {
-                fi_sel_fil(int.Parse(tb_sel_bus.Text));
+            if (lb_nom_mod.Text != "NO Existe"){
+                fi_sel_fil(tb_ide_mod.Text);
             }
         }
 
@@ -286,12 +269,23 @@ namespace CRS_PRE
 
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            cl_glo_frm.Cerrar(this);
+            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
+
+        private void dg_res_ult_Enter(object sender, EventArgs e)
+        {
+            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+            {
+                this.DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
         }
 
 
-        private void Bt_bus_car_Click(object sender, EventArgs e)
+        private void bt_bus_car_Click(object sender, EventArgs e)
         {
             if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
@@ -325,90 +319,85 @@ namespace CRS_PRE
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_tus.ToString())
-                        {
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_tus.ToString()){
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
-
                             return;
                         }
                     }
                 }
-
                 catch (Exception ex)
                 {
-
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
         }
 
-        private void Mn_cre_ar_Click(object sender, EventArgs e)
+        private void mn_nue_reg_Click(object sender, EventArgs e)
         {
             ads001_02 frm = new ads001_02();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
-        private void Mn_mod_ifi_Click(object sender, EventArgs e)
+        private void mn_mod_ifi_Click(object sender, EventArgs e)
         {
-            // Verifica concurrencia de datos para editar
-            if (fi_ver_edi(tb_sel_bus.Text) == false)
+            // Verifica concurrencia de datos para modificar
+            if (fi_ver_dat(tb_ide_mod.Text) == false)
                 return;
 
             ads001_03 frm = new ads001_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
-        private void Mn_hab_des_Click(object sender, EventArgs e)
+        private void mn_hab_des_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para habilitar/deshabilitar
-            if (fi_ver_hds(tb_sel_bus.Text) == false)
+            if (fi_ver_dat(tb_ide_mod.Text) == false)
                 return;
 
             ads001_04 frm = new ads001_04();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
-        private void Mn_con_sul_Click(object sender, EventArgs e)
+        private void mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(tb_sel_bus.Text) == false)
+            if (fi_ver_dat(tb_ide_mod.Text) == false)
                 return;
 
             ads001_05 frm = new ads001_05();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
-        private void Mn_eli_min_Click(object sender, EventArgs e)
+        private void mn_eli_min_Click(object sender, EventArgs e)
         {
-            // Verifica concurrencia de datos para consultar
-            if (fi_ver_con(tb_sel_bus.Text) == false)
+            // Verifica concurrencia de datos para eliminar
+            if (fi_ver_dat(tb_ide_mod.Text) == false)
                 return;
 
             ads001_06 frm = new ads001_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }        
+
+        private void mn_lis_mod_Click(object sender, EventArgs e)
+        {
+            ads001_R01p frm = new ads001_R01p();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
-        private void Mn_cer_rar_Click_1(object sender, EventArgs e)
+        private void mn_cer_rar_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
         }
 
-        private void Mn_delt_doc_Click(object sender, EventArgs e)
-        {
-            //cmr015_R01p frm = new cmr015_R01p();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
-        }
-
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
-        }
-
+        }        
     }
 }

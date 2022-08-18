@@ -1,19 +1,27 @@
-/*########################################################
-ARCHIVO:	ads001.sql
-TABLA:		Modulo
-AUTOR:		CHL
-FECHA:		21/08/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads001.sql	
+TABLA:		Tabla de "Módulo"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		21-08-2019
+*/--**********************************************
 
+PRINT 'ads001 : Módulo'
 CREATE TABLE ads001
 (
-va_ide_mod		INT				NOT NULL,	--Ide Modulo
-va_nom_mod		varchar(30)		NOT NULL,	--Nombre modulo
-va_abr_mod		varchar(05)		NOT NULL,	--Abrebiacion del modulo
-va_est_ado		CHAR(01)		NOT NULL,	--Estado
+	--** Llave Primaria
+	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo
+	--** Atributos
+	va_nom_mod	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre
+	va_abr_mod	VARCHAR(05)	 NOT NULL DEFAULT(''),	--** Abrebiacion
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
-
-CONSTRAINT pk1_ads001 PRIMARY KEY(va_ide_mod)
+	CONSTRAINT pk1_ads001 PRIMARY KEY(va_ide_mod)
 )
+GO
 
-go
+--** INSERTA MODULO DEL SISTEMA POR DEFECTO
+INSERT INTO ads001 VALUES (1, 'Administracion y Seguridad', 'ADS', 'H')
+INSERT INTO ads001 VALUES (2, 'Inventario', 'INV', 'H')
+INSERT INTO ads001 VALUES (3, 'Comercializacion', 'CMR', 'H')
+INSERT INTO ads001 VALUES (4, 'Exigibles', 'ECP', 'H')
+INSERT INTO ads001 VALUES (5, 'Tesoreria', 'TES', 'H')

@@ -59,7 +59,7 @@ namespace CRS_NEG
         /// <summary>
         /// Funcion "Habilita/Deshabilita Grupo de Persona"
         /// </summary>
-        /// <param name="cod_per">Codigo de Actividad</param>
+        /// <param name="cod_gru">Codigo de Actividad</param>
         /// <param name="est_ado">Estado de Actividad</param>
         /// <remarks></remarks>
         public void Fe_hab_des(int cod_gru, string est_ado)
@@ -67,7 +67,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE adp001 SET va_est_ado='" + est_ado + "' WHERE  va_cod_gru = " + cod_gru + "");
+                cadena.AppendLine("UPDATE adp001 SET va_est_ado = '" + est_ado + "' WHERE va_cod_gru = " + cod_gru + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
 
             }
@@ -78,7 +78,7 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Funcion "Elimina GRUPO DE PERSONA DEL SISTEMA"
+        /// Funcion "Elimina Grupo de Persona"
         /// </summary>
         /// <param name="cod_gru">Codigo del GRUPO de persona</param>
         /// <returns></returns>
@@ -113,7 +113,6 @@ namespace CRS_NEG
                 switch (prm_bus){
                     case 0: cadena.AppendLine(" WHERE va_cod_gru like '" + cri_bus + "%'"); break;
                     case 1: cadena.AppendLine(" WHERE va_nom_gru like '" + cri_bus + "%'"); break;
-
                 }
                 switch (est_bus){
                     case "0": est_bus = "T"; break;
@@ -122,7 +121,7 @@ namespace CRS_NEG
                 }
 
                 if (est_bus != "T"){
-                    cadena.AppendLine(" AND va_est_ado ='" + est_bus + "'");
+                    cadena.AppendLine(" AND va_est_ado = '" + est_bus + "'");
                 }
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
@@ -182,7 +181,7 @@ namespace CRS_NEG
         /// <summary>
         /// Funcion consultar "LISTA GRUPO DE PERSONA"
         /// </summary>
-        /// <param name="est_ado">est_bus">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
+        /// <param name="est_ado">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
         /// <returns></returns>
         public DataTable Fe_lis_gru(string est_ado = "0")
         {

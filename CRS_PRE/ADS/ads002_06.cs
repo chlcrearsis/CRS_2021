@@ -41,7 +41,7 @@ namespace CRS_PRE
         {
 
             tabla = new DataTable();
-            tabla = o_ads001.Fe_con_mod(tb_ide_mod.Text);
+            tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (tabla.Rows.Count == 0)
             {
                 return "EL modulo no se encuentra en la base de datos";

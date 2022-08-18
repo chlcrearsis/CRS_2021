@@ -49,11 +49,18 @@ namespace CRS_NEG
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
+   
 
         public void Fe_eli_apl(int ar_ide_mod, string ar_ide_apl)
         {
             cadena = " ads002_06a_p01 '" + ar_ide_apl + "'";
             ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        public DataTable Fe_lis_mod(int ar_ide_mod)
+        {
+            cadena = " ads002_06a_p01 '" + ar_ide_mod + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
         }
 
         public DataTable Fe_con_apl( string ar_ide_apl)

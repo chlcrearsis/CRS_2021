@@ -1,17 +1,19 @@
 /*--**********************************************
 ARCHIVO:	ads010.sql	
-TABLA:		Tabla de "Tipo de imagenes"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+TABLA:		Tabla de "Tipo de Imagenes"
+AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'ads010 : Tipo de Imagenes'
 CREATE TABLE ads010 
 (
 	--** Llave Primaria
 	va_ide_tip	CHAR(02)	NOT NULL DEFAULT(0),	--** ID. Tipo Imagen
+	--** Atributos
 	va_nom_tip	VARCHAR(20)	NOT NULL DEFAULT(''),	--** Nombre
 	va_ide_tab	CHAR(06)	NOT NULL DEFAULT(''),	--** ID. Tabla
-	va_est_ado	CHAR(01)	NOT NULL DEFAULT('')	--** Estado (H= habilitado; N=deshabilitado)
+	va_est_ado	CHAR(01)	NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_ads010 PRIMARY KEY(va_ide_tip)
 )

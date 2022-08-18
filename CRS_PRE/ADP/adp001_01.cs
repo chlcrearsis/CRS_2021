@@ -80,7 +80,6 @@ namespace CRS_PRE
                 tb_cod_gru.Text = Tabla.Rows[0]["va_cod_gru"].ToString();
                 lb_nom_gru.Text = Tabla.Rows[0]["va_nom_gru"].ToString();
             }
-
         }
         private void fi_con_sel()
         {
@@ -301,12 +300,10 @@ namespace CRS_PRE
                         {
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
-
                             return;
                         }
                     }
                 }
-
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error");
