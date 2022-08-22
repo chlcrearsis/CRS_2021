@@ -72,6 +72,7 @@ namespace CRS_PRE
             return "OK";
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;

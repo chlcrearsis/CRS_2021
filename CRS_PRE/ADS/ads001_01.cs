@@ -18,19 +18,16 @@ namespace CRS_PRE
         public int frm_tip;
         public DataTable tab_dat;
         public dynamic frm_MDI;
+        // Instancia
+        ads001 o_ads001 = new ads001();
+        DataTable Tabla = new DataTable();
         // Variables
         string est_bus = "H";
 
         public ads001_01()
         {
             InitializeComponent();
-        }
-
-        // instancia
-        ads001 o_ads001 = new ads001();
-        
-        // Variables
-        DataTable Tabla = new DataTable();
+        }        
 
         private void frm_Load(object sender, EventArgs e)
         {
@@ -51,11 +48,11 @@ namespace CRS_PRE
         /// <param name="ar_tex_bus">Texto a buscar</param>
         /// <param name="ar_prm_bus">Parametro a buscar</param>
         /// <param name="ar_est_bus">Estado a buscar</param>
-        private void fi_bus_car(string ar_tex_bus = "", int ar_prm_bus = 0, string ar_est_bus = "T")
+        private void fi_bus_car(string tex_bus = "", int prm_bus = 0, string est_bus = "T")
         {
-            //Limpia Grilla
+            // Limpia Grilla
             dg_res_ult.Rows.Clear();
-
+            // Obtiene el estado de la busqueda
             if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
             if (cb_est_bus.SelectedIndex == 1)
@@ -63,9 +60,9 @@ namespace CRS_PRE
             if (cb_est_bus.SelectedIndex == 2)
                 est_bus = "N";
 
-
-            Tabla = o_ads001.Fe_bus_car(ar_tex_bus, ar_prm_bus, ar_est_bus);
-
+            // Obtiene datos de la busqueda
+            Tabla = new DataTable();
+            Tabla = o_ads001.Fe_bus_car(tex_bus, prm_bus, est_bus);
             if (Tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < Tabla.Rows.Count; i++)
@@ -83,24 +80,23 @@ namespace CRS_PRE
                 tb_ide_mod.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
                 lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
             }
+            tb_tex_bus.Focus();
         }
 
         private void fi_con_sel()
         {
             // Verifica que los datos en pantallas sean correctos
-            if (tb_ide_mod.Text.Trim() == "")
-            {
+            if (tb_ide_mod.Text.Trim() == ""){
                 lb_nom_mod.Text = "NO Existe";
                 return;
             }
-            // Verifica si el grupo esta registrado en el sistema
+            // Verifica si el módulo está registrado en el sistema
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count == 0){
                 lb_nom_mod.Text = "NO Existe";
                 return;
             }
-
             lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
         }
         /// <summary>
@@ -108,7 +104,7 @@ namespace CRS_PRE
         /// </summary>
         private void fi_sel_fil(string ide_mod)
         {
-
+            // Obtiene el estado de la búsqueda
             if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
             if (cb_est_bus.SelectedIndex == 1)
@@ -151,10 +147,10 @@ namespace CRS_PRE
 
                         if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1)
                         {
-                            //Establece el foco en el Datagrid
+                            // Establece el foco en el Datagrid
                             dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index + 1];
 
-                            //Llama a función que actualiza datos en Textbox de Selección
+                            // Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
                         }
                     }
@@ -198,7 +194,6 @@ namespace CRS_PRE
             }
         }
 
-
         /// <summary>
         /// Método para obtener fila actual seleccionada
         /// </summary>
@@ -216,7 +211,6 @@ namespace CRS_PRE
                     tb_ide_mod.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString();
                     lb_nom_mod.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString();
                 }
-
             }
         }
 
@@ -277,8 +271,7 @@ namespace CRS_PRE
 
         private void dg_res_ult_Enter(object sender, EventArgs e)
         {
-            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
-            {
+            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
                 this.DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
@@ -295,14 +288,13 @@ namespace CRS_PRE
                 est_bus = "N";
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
-
         }
 
 
         /// <summary>
         /// Funcion Externa que actualiza la ventana con los datos que tenga, despues de realizar alguna operacion.
         /// </summary>
-        public void Fe_act_frm(int cod_tus)
+        public void Fe_act_frm(int ide_mod)
         {
          if (cb_est_bus.SelectedIndex == 0)
                 est_bus = "T";
@@ -313,18 +305,19 @@ namespace CRS_PRE
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (cod_tus.ToString() != null)
+            if (ide_mod.ToString() != null)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == cod_tus.ToString()){
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString() == ide_mod.ToString()){
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;
                         }
                     }
+                    tb_tex_bus.Focus();
                 }
                 catch (Exception ex)
                 {

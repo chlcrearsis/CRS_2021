@@ -197,7 +197,7 @@ namespace CRS_PRE
                 if (fi_ven_max(o_ads007.va_ide_usr) == false){                  
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
-                    Tabla = o_ads002.Fe_con_apl("res200");
+                    Tabla = o_ads002.Fe_con_apl(3, "res200");
                     if (Tabla.Rows.Count == 0){
                         MessageBox.Show("La aplicación Restaurante (res200) NO está definida", "Seguridad");
                         return;
@@ -243,7 +243,7 @@ namespace CRS_PRE
                     
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
-                    Tabla = o_ads002.Fe_con_apl("cmr200");
+                    Tabla = o_ads002.Fe_con_apl(3, "cmr200");
                     if (Tabla.Rows.Count == 0){
                         MessageBox.Show("La aplicación Comercialización NO está definida", "Seguridad");
                         return;
@@ -291,7 +291,7 @@ namespace CRS_PRE
                 {
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
-                    Tabla = o_ads002.Fe_con_apl("inv200");
+                    Tabla = o_ads002.Fe_con_apl(2, "inv200");
                     if (Tabla.Rows.Count == 0){
                         MessageBox.Show("La aplicación Inventario NO está definida", "Seguridad");
                         return;
@@ -339,7 +339,7 @@ namespace CRS_PRE
 
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
-                    Tabla = o_ads002.Fe_con_apl("ads200");
+                    Tabla = o_ads002.Fe_con_apl(1, "ads200");
                     if (Tabla.Rows.Count == 0){
                         MessageBox.Show("La aplicación Administrador NO está definida", "Seguridad");
                         return;

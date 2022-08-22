@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 using CRS_NEG;
@@ -27,7 +26,6 @@ namespace CRS_PRE
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {
@@ -57,16 +55,13 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio
-            if (tb_ide_mod.Text.Trim() == ""){
-                tb_ide_mod.Focus();
-                return "DEBE proporcionar el Codigo del Módulo";
-            }
+            if (tb_ide_mod.Text.Trim() == "")
+                return "DEBE proporcionar el Codigo del Módulo";            
 
             // Valida que el campo código NO este vacio
             int.TryParse(tb_ide_mod.Text, out int ide_mod);
-            if (ide_mod == 0){
-                return "El Código del Módulo NO tiene formato valido";
-            }
+            if (ide_mod == 0)
+                return "El Código del Módulo NO tiene formato valido";            
 
             // Valida que el registro este en el sistema
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
@@ -79,9 +74,9 @@ namespace CRS_PRE
             
 
             // Valida que NO este registrado ninguna aplicacion que apunte al Módulo
-            Tabla = o_ads002.Fe_lis_mod(int.Parse(tb_ide_mod.Text));
+            Tabla = o_ads002.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count == 0)
-                return "Hay " + Tabla.Rows.Count + " aplicaciones que llaman al Módulo " + tb_nom_mod.Text;
+                return "Hay " + Tabla.Rows.Count + " aplicaciones relacionadas con el Módulo " + tb_nom_mod.Text;
 
 
             return "OK";

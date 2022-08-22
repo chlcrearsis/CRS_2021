@@ -58,6 +58,7 @@
     <Compile Include="ADP\adp014.cs" />
     <Compile Include="ADP\adp018.cs" />
     <Compile Include="ADP\adp017.cs" />
+    <Compile Include="ADS\ads011.cs" />
     <Compile Include="ADS\ads025.cs" />
     <Compile Include="ADS\ads026.cs" />
     <Compile Include="ADS\ads010.cs" />

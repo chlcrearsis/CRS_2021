@@ -7,11 +7,11 @@ namespace CRS_PRE
 {
     /**********************************************************************/
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
-    /*  Aplicación: ads003 - Definición de Documento                      */
+    /*  Aplicación: ads002 - Aplicación del Sistema                       */
     /*      Opción: Informe R01 - Reporte View                            */
-    /*       Autor: JEJR - Crearsis             Fecha: 22-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 19-08-2022         */
     /**********************************************************************/
-    public partial class ads003_R01w : Form
+    public partial class ads002_R01w : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
@@ -26,7 +26,7 @@ namespace CRS_PRE
         public int vp_mod_ini;
         public int vp_mod_fin;
 
-        public ads003_R01w()
+        public ads002_R01w()
         {
             InitializeComponent();
         }
@@ -47,15 +47,15 @@ namespace CRS_PRE
             Tabla = o_ads013.Fe_obt_glo(1, 4);
             va_nom_emp = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
             // Logueo Manual el ReportDocument asociado al Crystal Report
-            ads003_R01.SetDatabaseLogon(o_ads007.va_ide_usr, o_ads007.va_pas_usr, o_ads007.va_ser_bda + "\\" + o_ads007.va_ins_bda, o_ads007.va_nom_bda);
+            ads002_R01.SetDatabaseLogon(o_ads007.va_ide_usr, o_ads007.va_pas_usr, o_ads007.va_ser_bda + "\\" + o_ads007.va_ins_bda, o_ads007.va_nom_bda);
             // Paso los datos obtenidos del procedimiento en la anterior ventana
-            ads003_R01.SetDataSource(frm_dat);
+            ads002_R01.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            ads003_R01.SetParameterValue("vc_nom_emp", va_nom_emp);
-            ads003_R01.SetParameterValue("vc_est_ado", vp_est_ado);
-            ads003_R01.SetParameterValue("vc_mod_ini", vp_mod_ini);
-            ads003_R01.SetParameterValue("vc_mod_fin", vp_mod_fin);
-            ads003_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
+            ads002_R01.SetParameterValue("vc_nom_emp", va_nom_emp);
+            ads002_R01.SetParameterValue("vc_est_ado", vp_est_ado);
+            ads002_R01.SetParameterValue("vc_mod_ini", vp_mod_ini);
+            ads002_R01.SetParameterValue("vc_mod_fin", vp_mod_fin);
+            ads002_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
         }
 
         private void Mn_imp_rim_Click(object sender, EventArgs e)

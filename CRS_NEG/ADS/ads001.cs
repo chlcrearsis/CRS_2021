@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 namespace CRS_NEG
 {
-    /// <summary>
-    /// Clase: MODULOS
-    /// </summary>
+    //######################################################################
+    //##       Tabla: ads001                                              ##
+    //##      Nombre: Modulo                                              ##
+    //## Descripcion: Modulos del Sistema                                 ##         
+    //##       Autor: CHL - (07-11-2019)                                  ##
+    //######################################################################
     public class ads001
-    {
-        //######################################################################
-        //##       Tabla: ads001                                              ##
-        //##      Nombre: Modulo                                              ##
-        //## Descripcion: Modulos del Sistema                                 ##         
-        //##       Autor: CHL - (07-11-2019)                                  ##
-        //######################################################################
+    {        
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;                
 
@@ -76,7 +70,6 @@ namespace CRS_NEG
                 cadena = new StringBuilder();
                 cadena.AppendLine("UPDATE ads001 SET va_est_ado = '" + est_ado + "' WHERE va_ide_mod = " + ide_mod + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
-
             }
             catch (Exception ex)
             {
@@ -94,7 +87,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads001_06a_p01 " + ide_mod + "");
+                cadena.AppendLine("DELETE ads001 WHERE va_ide_mod = " + ide_mod + "");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

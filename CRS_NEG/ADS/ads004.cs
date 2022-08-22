@@ -144,6 +144,26 @@ namespace CRS_NEG
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        /// <summary>
+        /// Funcion consultar "CONSULTA TALONARIO POR ID. MODULOS Y DOCUMENTOS"
+        /// </summary>
+        /// <param name="ide_mod">ID. Módulo</param>
+        /// <param name="ide_doc">ID. Documentos</param>
+        /// <returns></returns>
+        public DataTable Fe_con_doc(int ide_mod, string ide_doc)
+        {
+            try
+            {
+                cadena = " ads004_R01 " + ide_mod + ", '" + ide_doc + "'";
+
+                return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
 
         //** FUNCIONES DE REPORTES
 

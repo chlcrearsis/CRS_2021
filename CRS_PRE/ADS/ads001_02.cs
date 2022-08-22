@@ -104,7 +104,7 @@ namespace CRS_PRE
                 return "Ya existe otro Módulo con la misma Nombre";
             }
          
-           return "";
+           return "OK";
         }
 
         // Evento KeyPress : ID. Módulo
@@ -116,22 +116,30 @@ namespace CRS_PRE
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            DialogResult msg_res;
-
-            // funcion para validar datos
-            string msg_val = Fi_val_dat();
-            if (msg_val != ""){
-                MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
-                return;
-            }
-            msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nuevo Modulo", MessageBoxButtons.OKCancel);
-            if (msg_res == DialogResult.OK)
+            try
             {
-                //Registrar 
-                o_ads001.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_nom_mod.Text, tb_abr_mod.Text);
-                frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
-                MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
-                Fi_lim_pia();
+                DialogResult msg_res;
+
+                // funcion para validar datos
+                string msg_val = Fi_val_dat();
+                if (msg_val != "OK")
+                {
+                    MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
+                    return;
+                }
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nuevo Modulo", MessageBoxButtons.OKCancel);
+                if (msg_res == DialogResult.OK)
+                {
+                    //Registrar 
+                    o_ads001.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_nom_mod.Text, tb_abr_mod.Text);
+                    frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
+                    Fi_lim_pia();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class ads003_R01p
+    partial class ads002_R01p
     {
         /// <summary>
         /// Required designer variable.
@@ -213,7 +213,7 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // ads003_R01p
+            // ads002_R01p
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -224,10 +224,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ads003_R01p";
+            this.Name = "ads002_R01p";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Tag = "Informe Definición de Documento";
-            this.Text = "Informe Definición de Documentos";
+            this.Tag = "Informe Aplicación del Sistema";
+            this.Text = "Informe Aplicación del Sistema";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

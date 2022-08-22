@@ -20,6 +20,7 @@ namespace CRS_PRE
         // Instancias
         ads001 o_ads001 = new ads001();
         DataTable Tabla = new DataTable();
+
         public ads001_03()
         {
             InitializeComponent();
@@ -37,7 +38,9 @@ namespace CRS_PRE
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             else
-                tb_est_ado.Text = "Deshabilitado";            
+                tb_est_ado.Text = "Deshabilitado";
+
+            tb_abr_mod.Focus();
         }
 
         // Limpia e Iniciliza los campos
@@ -54,15 +57,13 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio
-            if (tb_ide_mod.Text.Trim() == "") {
-                return "DEBE proporcionar el Código del Módulo";
-            }
+            if (tb_ide_mod.Text.Trim() == "")
+                return "DEBE proporcionar el Código del Módulo";            
 
             // Valida que el campo código NO este vacio
             int.TryParse(tb_ide_mod.Text, out int cod_gru);
-            if (cod_gru == 0) { 
-                return "El Código del Módulo NO es válido";
-            }
+            if (cod_gru == 0)
+                return "El Código del Módulo NO es válido";            
 
             // Valida que el campo Abreviación NO este vacio
             if (tb_abr_mod.Text.Trim() == ""){
@@ -106,6 +107,7 @@ namespace CRS_PRE
             return "OK";
         }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;
