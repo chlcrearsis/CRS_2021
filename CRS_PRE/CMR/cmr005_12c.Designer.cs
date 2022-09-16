@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class res001_02c
+    partial class cmr005_12c
     {
         /// <summary>
         /// Required designer variable.

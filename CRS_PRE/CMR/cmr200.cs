@@ -132,8 +132,25 @@ namespace CRS_PRE.CMR
             // Verifica version de formulario para ventas (1= Normal ; 2= Tactil)
             tabla = o_ads013.Fe_obt_glo(3, 1);
 
-            cmr005_02 frm = new cmr005_02();
-            cl_glo_frm.abrir(this, frm);
+            //Global formulario Normal o Tactil
+            tabla = o_ads013.Fe_obt_glo(3, 1);
+            if (tabla != null)
+                if (tabla.Rows[0]["va_glo_ent"].ToString() == "2")
+                {
+                    cmr005_12b frm = new cmr005_12b();
+                    cl_glo_frm.abrir(this, frm);
+                }
+                else
+                {
+                    cmr005_02 frm = new cmr005_02();
+                    cl_glo_frm.abrir(this, frm);
+                }
+            else
+            {
+                cmr005_02 frm = new cmr005_02();
+                cl_glo_frm.abrir(this, frm);
+            }
+            
              
         }
 

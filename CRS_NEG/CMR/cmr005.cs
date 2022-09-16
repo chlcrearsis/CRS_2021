@@ -305,5 +305,21 @@ namespace CRS_NEG
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
+
+        public void fu_edi_dbf(string ide_vta, DateTime fec_fac, byte[] img_qrf)
+        {
+            try
+            {
+                ob_con_ecA.fu_exe_sql_img("UPDATE ctb008 SET va_img_qrf = @va_img_qrf " +
+                "WHERE va_ide_fac = '" + ide_vta + "'  and va_fec_fac= '" + fec_fac.ToShortDateString() + "'", "@va_img_qrf", img_qrf);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }

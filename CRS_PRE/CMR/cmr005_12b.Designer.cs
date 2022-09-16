@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class res001_02b
+    partial class cmr005_12b
     {
         /// <summary>
         /// Required designer variable.
@@ -585,35 +585,35 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(366, 235);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(321, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(301, 24);
             this.m_frm_hja.TabIndex = 9;
             this.m_frm_hja.Visible = false;
             // 
             // mn_not_vta
             // 
             this.mn_not_vta.Name = "mn_not_vta";
-            this.mn_not_vta.Size = new System.Drawing.Size(93, 20);
+            this.mn_not_vta.Size = new System.Drawing.Size(88, 20);
             this.mn_not_vta.Text = "Nota de Venta";
             this.mn_not_vta.Click += new System.EventHandler(this.mn_not_vta_Click);
             // 
             // mn_not_com
             // 
             this.mn_not_com.Name = "mn_not_com";
-            this.mn_not_com.Size = new System.Drawing.Size(116, 20);
+            this.mn_not_com.Size = new System.Drawing.Size(104, 20);
             this.mn_not_com.Text = "Nota de Consumo";
             this.mn_not_com.Click += new System.EventHandler(this.mn_not_com_Click);
             // 
             // mn_fac_tur
             // 
             this.mn_fac_tur.Name = "mn_fac_tur";
-            this.mn_fac_tur.Size = new System.Drawing.Size(58, 20);
+            this.mn_fac_tur.Size = new System.Drawing.Size(56, 20);
             this.mn_fac_tur.Text = "Factura";
             this.mn_fac_tur.Click += new System.EventHandler(this.mn_fac_tur_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.mn_cer_rar_Click_1);
             // 

@@ -10,28 +10,30 @@ using CRS_PRE.CMR;
 
 namespace CRS_PRE
 {
-    public partial class res001_02b : Form
+    public partial class cmr005_12b : Form
     {
 
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
-        ads003 o_ads003 = new ads003();
-        ads004 o_ads004 = new ads004();
-        ads008 o_ads008 = new ads008();
-        inv002 o_inv002 = new inv002();
-        inv003 o_inv003 = new inv003();
-        inv004 o_inv004 = new inv004();
-        cmr001 o_cmr001 = new cmr001();
-        cmr002 o_cmr002 = new cmr002();
-        ctb007 o_ctb007 = new ctb007();
-        res001 o_res001 = new res001();
-        res002 o_res002 = new res002();
-        c_res004 o_res004 = new c_res004();
-        cmr013 o_cmr013 = new cmr013();
-        cmr014 o_cmr014 = new cmr014();
-        cmr015 o_cmr015 = new cmr015();
-        adp002 o_adp002 = new adp002();
+        ads003 o_ads003 = new ads003(); // Documento
+        ads004 o_ads004 = new ads004(); // Talonario
+        ads008 o_ads008 = new ads008(); // Permisos
+        inv002 o_inv002 = new inv002(); // Bodega
+        inv003 o_inv003 = new inv003(); // Familia de producto
+        inv004 o_inv004 = new inv004(); // Producto
+        cmr001 o_cmr001 = new cmr001(); // Lista de precios
+        cmr002 o_cmr002 = new cmr002(); // Precios
+        ctb007 o_ctb007 = new ctb007(); // Dosificacion
+
+        cmr005 o_cmr005 = new cmr005(); // Encabezado Ventas
+        cmr006 o_cmr006 = new cmr006(); // Detalle de Ventas
+        
+        cmr004 o_cmr004 = new cmr004(); // Plantilla de Ventas
+        cmr013 o_cmr013 = new cmr013(); // Registro de NIT
+        cmr014 o_cmr014 = new cmr014(); // Vendedores
+        cmr015 o_cmr015 = new cmr015(); // Delivery
+        adp002 o_adp002 = new adp002(); // Persona
 
 
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
@@ -45,12 +47,12 @@ namespace CRS_PRE
         DataTable tab_cmr001 = new DataTable();
         DataTable tab_cmr002 = new DataTable();
         DataTable tab_ctb007 = new DataTable();
-        DataTable tab_res004 = new DataTable();
+        DataTable tab_cmr004 = new DataTable();
         DataTable tab_cmr013 = new DataTable();
         DataTable tab_cmr014 = new DataTable();
         DataTable tab_cmr015 = new DataTable();
         DataTable tab_adp002 = new DataTable();
-        DataTable tb_res001 = new DataTable();
+        DataTable tb_cmr005 = new DataTable();
 
         //** Variable Venta para (M=Mesa ; L=Llevar ; D=Delivery)
         string vta_par = "M";
@@ -90,7 +92,7 @@ namespace CRS_PRE
 
         public int va_for_pag = 0; // 1 = contado ; 2 = credito
 
-        public res001_02b()
+        public cmr005_12b()
         {
             InitializeComponent();
         }
@@ -129,7 +131,7 @@ namespace CRS_PRE
             lb_cod_del.Text = "0";
             lb_nom_del.Text = "";
 
-            //** Cargar las Familias de producto de Restaurant en los Botones
+            //** Cargar las Familias de producto de   en los Botones
             tabla = o_inv003.Fe_bus_car_2("", 1, "H");
             if (tabla.Rows.Count > 0)
             {
@@ -152,7 +154,7 @@ namespace CRS_PRE
             // Obtiene fecha y hora actual para codigo de tabla temporal
             va_cod_tmp = o_mg_glo_frm.fg_fec_act();
 
-            // Abre buscar plantilla de venta Restaurant
+            // Abre buscar plantilla de venta  
             Fi_abr_bus_plv();
             if (sel_pvt == 0)
             {
@@ -252,7 +254,7 @@ namespace CRS_PRE
                         tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_itm].Cells[i].Value;
                 }
 
-                    o_res002.fu_gra_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta, "UND", can_uni, pre_uni, (pre_uni * can_uni), pre_uni, 0, 0);
+                o_cmr006.fu_gra_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);//, "UND", can_uni, pre_uni, (pre_uni * can_uni), pre_uni, 0, 0);
            
 
                 //** Seleccionar la ultima fila de la grilla
@@ -312,13 +314,13 @@ namespace CRS_PRE
                 return "Debe proporcionar una plantilla de venta valida";
             }
 
-            tab_res004 = o_res004.Fe_con_plv(tb_cod_plv.Text);
-            if(tab_res004.Rows.Count == 0)
+            tab_cmr004 = o_cmr004.Fe_con_plv(tb_cod_plv.Text);
+            if(tab_cmr004.Rows.Count == 0)
             {
                 tb_cod_plv.Focus();
                 return "La plantilla no se encuentra registrada";
             }
-            if (tab_res004.Rows[0]["va_est_ado"].ToString() == "N")
+            if (tab_cmr004.Rows[0]["va_est_ado"].ToString() == "N")
             {
                 tb_cod_plv.Focus();
                 return "La plantilla se encuentra Deshabilitada";
@@ -499,7 +501,7 @@ namespace CRS_PRE
                 {
                     dg_det_pro.Rows.RemoveAt(nro_fil);
                     //** Elimina item de la temporal
-                    o_res002.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp, nro_fil + 1);
+                    o_cmr006.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp, nro_fil + 1);
 
                     //** Calcula total general
                     Fi_cal_tot();
@@ -509,7 +511,7 @@ namespace CRS_PRE
                     for (int i = 0; i < dg_det_pro.RowCount; i++)
                     {
                         nro_ant = int.Parse(dg_det_pro.Rows[i].Cells["va_nro_itm"].Value.ToString());
-                        o_res002.fu_edi_itm_tmp(Program.gl_usr_usr, va_cod_tmp, nro_ant, i + 1);
+                        o_cmr006.fu_edi_ite_tmp(Program.gl_usr_usr, va_cod_tmp, nro_ant, i + 1);                        
                     }
 
                     if((nro_fil) == dg_det_pro.RowCount && nro_fil != 0)
@@ -557,7 +559,7 @@ namespace CRS_PRE
                         tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_fil].Cells[i].Value;
                 }
 
-                o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
+                o_cmr006.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
 
             }
         }
@@ -593,7 +595,7 @@ namespace CRS_PRE
                         tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_fil].Cells[i].Value;
                 }
 
-                o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
+                o_cmr006.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
             }
         }
 
@@ -610,8 +612,8 @@ namespace CRS_PRE
             }
 
             //** Inicializa variables
-            doc_ope = tab_res004.Rows[0]["va_doc_ntv"].ToString();
-            tal_ope = int.Parse(tab_res004.Rows[0]["va_tal_ntv"].ToString());
+            doc_ope = tab_cmr004.Rows[0]["va_doc_ntv"].ToString();
+            tal_ope = int.Parse(tab_cmr004.Rows[0]["va_tal_ntv"].ToString());
             cod_per = int.Parse(tb_cod_per.Text);
             cod_caj = 0;
             cod_lcr = 0;
@@ -621,7 +623,7 @@ namespace CRS_PRE
 
             // Instacia de formulario para completar la operacion
             dynamic frm_com_ope ;
-            frm_com_ope = new res001_02e();
+            frm_com_ope = new cmr005_12e();
             // ABRE VENTANA COMPLETA OPERACION
             switch (tip_ope)
             {
@@ -660,8 +662,8 @@ namespace CRS_PRE
                     cam_bio = decimal.Parse(frm_com_ope.tb_cam_bio.Text);
 
                     // Obtiene talonario de la plantilla para obtener dosificacion
-                    doc_ope = tab_res004.Rows[0]["va_doc_fac"].ToString();
-                    tal_ope = int.Parse(tab_res004.Rows[0]["va_tal_fac"].ToString());
+                    doc_ope = tab_cmr004.Rows[0]["va_doc_fac"].ToString();
+                    tal_ope = int.Parse(tab_cmr004.Rows[0]["va_tal_fac"].ToString());
 
                     // Obtiene dosificacion del talonario
                     tab_ads004 = o_ads004.Fe_con_tal(doc_ope, tal_ope);
@@ -718,12 +720,12 @@ namespace CRS_PRE
                             // 'pasa los datos para el qr a la imagen QR
                             pb_img_qrf.Text = va_dat_cqr;
 
-                            tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, va_nro_fac, // <- Nro de factura
+                            tb_cmr005 = o_cmr005.Fe_crea(va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, // va_nro_fac, // <- Nro de factura
                                  int.Parse(tb_cod_bod.Text), cod_per.ToString(), nit_per.ToString(),
                                  raz_soc, mon_ope, tb_fec_vta.Value, va_for_pag, int.Parse(tb_cod_ven.Text),
                                  int.Parse(tb_cod_lis.Text), cod_caj, cod_lcr, tip_cam, 0, obs_ope,
                                  vta_par, int.Parse(lb_cod_del.Text), "", pre_tot, cam_bio,
-                                 va_nro_aut, va_cod_ctr); // <- Nro de autorizacion y codigo de control
+                                 va_nro_aut); //, va_cod_ctr); // <- Nro de autorizacion y codigo de control
 
                             //'//////////////////////////////////////////
                             //' CONVIERTE LA IMAGEN DEL QR EN BYTE
@@ -732,16 +734,16 @@ namespace CRS_PRE
                             va_arc_cqr = cl_glo_bal.fg_img_byt(pb_img_qrf.Image);
 
                             //Actualiza codigo QR
-                            o_res001.fu_edi_dbf(tb_res001.Rows[0]["va_ide_vta"].ToString(), tb_fec_vta.Value,  va_arc_cqr);
-
+                            o_cmr005.fu_edi_dbf(tb_cmr005.Rows[0]["va_ide_vta"].ToString(), tb_fec_vta.Value,  va_arc_cqr);
+                            
                             break;
                         case 2: // GRABA NOTA DE VENTA
-                            tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, 0, // <- Nro de factura
+                            tb_cmr005 = o_cmr005.Fe_crea( va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope,// 0, // <- Nro de factura
                                  int.Parse(tb_cod_bod.Text), cod_per.ToString(), nit_per.ToString(),
                                  raz_soc, mon_ope, tb_fec_vta.Value, va_for_pag, int.Parse(tb_cod_ven.Text),
                                  int.Parse(tb_cod_lis.Text), cod_caj, cod_lcr, tip_cam, 0, obs_ope,
                                  vta_par, int.Parse(lb_cod_del.Text), "", pre_tot, cam_bio,
-                                 0, ""); // <- Nro de autorizacion y codigo de control
+                                 0); // <- Nro de autorizacion y codigo de control
                             break;
                     }
 
@@ -757,12 +759,12 @@ namespace CRS_PRE
                     tab_dat.Columns.Add("va_cod_plv");
 
                     tab_dat.Rows.Add();
-                    tab_dat.Rows[0]["va_ide_doc"] = tb_res001.Rows[0]["va_ide_vta"].ToString();
-                    tab_dat.Rows[0]["va_cod_doc"] = tb_res001.Rows[0]["va_doc_vta"].ToString();
-                    tab_dat.Rows[0]["va_ges_doc"] = tb_res001.Rows[0]["va_ges_vta"].ToString();
-                    tab_dat.Rows[0]["va_nro_tal"] = tb_res001.Rows[0]["va_nro_tal"].ToString();
-                    tab_dat.Rows[0]["va_nro_fac"] = tb_res001.Rows[0]["va_nro_fac"].ToString();
-                    tab_dat.Rows[0]["va_cod_plv"] = tb_res001.Rows[0]["va_cod_plv"].ToString();
+                    tab_dat.Rows[0]["va_ide_doc"] = tb_cmr005.Rows[0]["va_ide_vta"].ToString();
+                    tab_dat.Rows[0]["va_cod_doc"] = tb_cmr005.Rows[0]["va_doc_vta"].ToString();
+                    tab_dat.Rows[0]["va_ges_doc"] = tb_cmr005.Rows[0]["va_ges_vta"].ToString();
+                    tab_dat.Rows[0]["va_nro_tal"] = tb_cmr005.Rows[0]["va_nro_tal"].ToString();
+                    tab_dat.Rows[0]["va_nro_fac"] = tb_cmr005.Rows[0]["va_nro_fac"].ToString();
+                    tab_dat.Rows[0]["va_cod_plv"] = tb_cmr005.Rows[0]["va_cod_plv"].ToString();
 
                     tab_dat.Rows[0]["va_ope_rac"] = "VENTA";
 
@@ -823,10 +825,10 @@ namespace CRS_PRE
                 vta_par = "D";
 
                 // Verifica si permite cambiar Delivery
-                if (tab_res004.Rows.Count != 0)
+                if (tab_cmr004.Rows.Count != 0)
                 {
                     // Obtiene Delivery
-                    lb_cod_del.Text = tab_res004.Rows[0]["va_cod_del"].ToString();
+                    lb_cod_del.Text = tab_cmr004.Rows[0]["va_cod_del"].ToString();
                     // Obtiene nombre de Delivery
                     tab_cmr015 = o_cmr015.Fe_con_del(int.Parse(lb_cod_del.Text));
 
@@ -834,7 +836,7 @@ namespace CRS_PRE
                         lb_nom_del.Text = tab_cmr015.Rows[0]["va_nom_del"].ToString();
 
                    
-                    if (tab_res004.Rows[0]["va_cam_del"].ToString() == "1") // No cambia
+                    if (tab_cmr004.Rows[0]["va_cam_del"].ToString() == "1") // No cambia
                     {
                         Fi_abr_bus_del();
                     }
@@ -882,13 +884,13 @@ namespace CRS_PRE
                 tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_itm - 1].Cells[i].Value;
             }
 
-            o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp,tab_det_vta);
+            o_cmr006.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp,tab_det_vta);
 
         }
 
         private void res001_02b_FormClosing(object sender, FormClosingEventArgs e)
         {
-            o_res002.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+            o_cmr006.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
         }
 
 
@@ -968,7 +970,7 @@ namespace CRS_PRE
         /// </summary>
         void Fi_abr_bus_plv()
         {
-            res004_01b frm = new res004_01b();
+            cmr004_01b frm = new cmr004_01b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -985,16 +987,14 @@ namespace CRS_PRE
         }
         private void Fi_obt_plv()
         {
-// int val = 0;
-           
 
             if (cl_glo_bal.IsNumeric(tb_cod_plv.Text) == false)
             {
                 MessageBox.Show("Debe proporcionar una plantilla valida", "Error", MessageBoxButtons.OK);
             }
            
-            tab_res004 = o_res004.Fe_con_plv(tb_cod_plv.Text);
-            if (tab_res004.Rows.Count == 0)
+            tab_cmr004 = o_cmr004.Fe_con_plv(tb_cod_plv.Text);
+            if (tab_cmr004.Rows.Count == 0)
             {
                 lb_nom_plv.Text = "No Existe";
                 ban_plv = false;
@@ -1002,23 +1002,23 @@ namespace CRS_PRE
             else
             {
                 // Pregunta si el usuario tiene permiso sobre la plantilla
-                if (o_ads008.Fe_aut_usr( "res004", tb_cod_plv.Text) == false)
+                if (o_ads008.Fe_aut_usr( "cmr004", tb_cod_plv.Text) == false)
                 {
-                    MessageBox.Show("La plantilla de venta no esta permitida para el usuario ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La plantilla de venta no esta permitida al usuario ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ban_plv = false;
                 }
                 else 
                 { 
                     // Pregunta por el estado de la plantilla
-                    if (tab_res004.Rows[0]["va_est_ado"].ToString() == "N")
+                    if (tab_cmr004.Rows[0]["va_est_ado"].ToString() == "N")
                     {
                         MessageBox.Show("La Plantilla de venta se encuentra Deshabilitada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        lb_nom_plv.Text = tab_res004.Rows[0]["va_nom_plv"].ToString();
+                        lb_nom_plv.Text = tab_cmr004.Rows[0]["va_nom_plv"].ToString();
                         ban_plv = false;
                     }
                     else
                     {
-                        lb_nom_plv.Text = tab_res004.Rows[0]["va_nom_plv"].ToString();
+                        lb_nom_plv.Text = tab_cmr004.Rows[0]["va_nom_plv"].ToString();
                         ban_plv = true;
                        
                     }
@@ -1040,7 +1040,7 @@ namespace CRS_PRE
                 gb_par_ame.Enabled = true;
 
                 // Obtiene Cliente
-                tb_cod_per.Text = tab_res004.Rows[0]["va_cod_cli"].ToString();
+                tb_cod_per.Text = tab_cmr004.Rows[0]["va_cod_cli"].ToString();
 
                 tab_adp002 = o_adp002.Fe_con_per(int.Parse(tb_cod_per.Text));
                 if (tab_adp002.Rows.Count == 0)
@@ -1050,7 +1050,7 @@ namespace CRS_PRE
 
                 
                 // Obtiene bodega
-                tb_cod_bod.Text = tab_res004.Rows[0]["va_cod_bod"].ToString();
+                tb_cod_bod.Text = tab_cmr004.Rows[0]["va_cod_bod"].ToString();
                 
                 //Verifica si el usuario tiene permiso sobre la bodega
                 if (1==2) //( o_ads008.Fe_ads008_02(Program.gl_usr_usr, "inv002", tb_cod_bod.Text) == false)
@@ -1067,19 +1067,19 @@ namespace CRS_PRE
                 }
 
                 // Verifica si permite cambiar bodega
-                if (tab_res004.Rows[0]["va_cam_bod"].ToString() == "0") // No cambia
+                if (tab_cmr004.Rows[0]["va_cam_bod"].ToString() == "0") // No cambia
                 {
                     tb_cod_bod.Enabled = false;
                     bt_bus_bod.Enabled = false;
                 }
-                if (tab_res004.Rows[0]["va_cam_bod"].ToString() == "1") // Si cambia
+                if (tab_cmr004.Rows[0]["va_cam_bod"].ToString() == "1") // Si cambia
                 {
                     tb_cod_bod.Enabled = true;
                     bt_bus_bod.Enabled = true;
                 }
 
                 // Obtiene Lista de precio
-                tb_cod_lis.Text = tab_res004.Rows[0]["va_cod_lis"].ToString();
+                tb_cod_lis.Text = tab_cmr004.Rows[0]["va_cod_lis"].ToString();
 
                 //Verifica si el usuario tiene permiso sobre la bodega
                 if (o_ads008.Fe_ads008_02(Program.gl_usr_usr, "cmr001", tb_cod_lis.Text) == false)
@@ -1096,18 +1096,18 @@ namespace CRS_PRE
                 }
 
                 // Verifica si permite cambiar Lista de precio
-                if (tab_res004.Rows[0]["va_cam_lis"].ToString() == "0") // No cambia
+                if (tab_cmr004.Rows[0]["va_cam_lis"].ToString() == "0") // No cambia
                 {
                     tb_cod_lis.Enabled = false;
                     bt_bus_lis.Enabled = false;
                 }
-                if (tab_res004.Rows[0]["va_cam_lis"].ToString() == "1") // Si cambia
+                if (tab_cmr004.Rows[0]["va_cam_lis"].ToString() == "1") // Si cambia
                 {
                     tb_cod_lis.Enabled = true;
                     bt_bus_lis.Enabled = true;
                 }
 
-                if (tab_res004.Rows[0]["va_cam_lis"].ToString() == "2") // Obtiene lista de precio asignada al cliente
+                if (tab_cmr004.Rows[0]["va_cam_lis"].ToString() == "2") // Obtiene lista de precio asignada al cliente
                 {
                     tb_cod_lis.Enabled = false;
                     bt_bus_lis.Enabled = false;
@@ -1117,7 +1117,7 @@ namespace CRS_PRE
                 }
 
                 // Obtiene Vendedor
-                tb_cod_ven.Text = tab_res004.Rows[0]["va_cod_ven"].ToString();
+                tb_cod_ven.Text = tab_cmr004.Rows[0]["va_cod_ven"].ToString();
                 // Obtiene nombre de Vendedor
                 tab_cmr014 = o_cmr014.Fe_con_ven(int.Parse(tb_cod_ven.Text),1);
 
@@ -1125,35 +1125,35 @@ namespace CRS_PRE
                     lb_nom_ven.Text = tab_cmr014.Rows[0]["va_nom_bre"].ToString();
  
                 // Verifica si permite cambiar vendedor
-                if (tab_res004.Rows[0]["va_cam_ven"].ToString() == "0") // No cambia
+                if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "0") // No cambia
                 {
                     tb_cod_ven.Enabled = false;
                     bt_bus_ven.Enabled = false;
                 }
-                if (tab_res004.Rows[0]["va_cam_ven"].ToString() == "1") // Si cambia
+                if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "1") // Si cambia
                 {
                     tb_cod_ven.Enabled = true;
                     bt_bus_ven.Enabled = true;
                 }
-                if (tab_res004.Rows[0]["va_cam_ven"].ToString() == "2") // Asignado al cliente
+                if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "2") // Asignado al cliente
                 {
                     tb_cod_ven.Enabled = false ;
                     bt_bus_ven.Enabled = false ;
                 }
 
                 // Obtiene Delivery
-                tab_cmr015 = o_cmr015.Fe_con_del(int.Parse(tab_res004.Rows[0]["va_cod_del"].ToString()));
+                tab_cmr015 = o_cmr015.Fe_con_del(int.Parse(tab_cmr004.Rows[0]["va_cod_del"].ToString()));
                 if (tab_cmr015.Rows.Count > 0 && vta_par == "D")
                 {
-                    lb_cod_del.Text = tab_res004.Rows[0]["va_cod_del"].ToString();
+                    lb_cod_del.Text = tab_cmr004.Rows[0]["va_cod_del"].ToString();
                     lb_nom_del.Text = tab_cmr015.Rows[0]["va_nom_del"].ToString();
                 }
                 // Verifica si permite cambiar Delivery
-                if (tab_res004.Rows[0]["va_cam_del"].ToString() == "0") // No cambia
+                if (tab_cmr004.Rows[0]["va_cam_del"].ToString() == "0") // No cambia
                 {
                     bt_bus_del.Enabled = false;
                 }
-                if (tab_res004.Rows[0]["va_cam_del"].ToString() == "1") // Si cambia
+                if (tab_cmr004.Rows[0]["va_cam_del"].ToString() == "1") // Si cambia
                 {
                     bt_bus_del.Enabled = true;
                 }
@@ -1303,7 +1303,7 @@ namespace CRS_PRE
                     {
                         lb_nom_lis.Text = "";
                         dg_det_pro.Rows.Clear();
-                        o_res002.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+                        o_cmr006.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
                         Fi_cal_tot();
                         return;
                     }
@@ -1412,7 +1412,7 @@ namespace CRS_PRE
                             tab_det_vta.Rows[0][x] = dg_det_pro.Rows[i].Cells[x].Value;
                     }
 
-                    o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
+                    o_cmr006.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
 
 
                 }
