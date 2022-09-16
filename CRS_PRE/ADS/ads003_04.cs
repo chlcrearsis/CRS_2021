@@ -8,7 +8,7 @@ namespace CRS_PRE
 {
     /**********************************************************************/
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
-    /*  Aplicación: ads003 - Definición de Documento                     */
+    /*  Aplicación: ads003 - Definición de Documento                      */
     /*      Opción: Habilita/Deshabilita Registro                         */
     /*       Autor: JEJR - Crearsis             Fecha: 19-08-2022         */
     /**********************************************************************/
@@ -83,7 +83,7 @@ namespace CRS_PRE
             // Verifica SI existen Talonarios que hacen referencia al Documento
             if (tb_est_ado.Text == "Habilitado"){
                 Tabla = new DataTable();
-                Tabla = o_ads004.Fe_con_doc(int.Parse(tb_ide_mod.Text), tb_ide_doc.Text);
+                Tabla = o_ads004.Fe_con_doc(tb_ide_doc.Text);
                 if (Tabla.Rows.Count == 0)
                     return "No se puede Deshabilitar. Existen " + Tabla.Rows.Count + " Talonarios que hacen referencia al Documento";
             }

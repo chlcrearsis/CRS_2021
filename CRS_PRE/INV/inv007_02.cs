@@ -17,6 +17,7 @@ namespace CRS_PRE.INV
         inv004 o_inv004 = new inv004();
 
         ads004 o_ads004 = new ads004();
+        ads007 o_ads007 = new ads007();
         ads016 o_ads016 = new ads016();
         adp002 o_adp002 = new adp002();
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
@@ -386,7 +387,7 @@ namespace CRS_PRE.INV
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_nro_tal.Text = frm.tb_sel_tal.Text;
+                tb_nro_tal.Text = frm.tb_nro_tal.Text;
                 Fi_obt_tal();
             }
         }
@@ -413,7 +414,7 @@ namespace CRS_PRE.INV
             }
 
             // Obtiene ide y nombre documento
-            tabla = o_ads004.Fe_con_tal_permiso(tb_cod_doc.Text, int.Parse(tb_nro_tal.Text));
+            tabla = o_ads004.Fe_per_tal(o_ads007.va_ide_usr, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text), "H");
             if (tabla.Rows.Count == 0)
             {
                lb_nom_tal.Text ="";

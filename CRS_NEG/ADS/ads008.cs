@@ -90,6 +90,63 @@ namespace CRS_NEG
             return resul;
         }
 
+        /// <summary>
+        /// Funcion consultar "PERMISO USUARIO SOBRE TABLAS Y ATRIBUTOS"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla </param>
+        /// <param name="ide_uno">ID. Uno </param>
+        /// <returns></returns>
+        public DataTable Fe_con_per(string ide_usr, string ide_tab, string ide_uno)
+        {
+            cadena = " SELECT va_ide_usr, va_ide_tab, va_ide_uno, va_ide_dos, va_ide_tre";
+            cadena += "  FROM ads008 ";
+            cadena += " WHERE va_ide_usr = '" + ide_usr + "'";
+            cadena += "   AND va_ide_tab = '" + ide_tab + "'";
+            cadena += "   AND va_ide_uno = '" + ide_uno + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        /// <summary>
+        /// Funcion consultar "PERMISO USUARIO SOBRE TABLAS Y ATRIBUTOS"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla </param>
+        /// <param name="ide_uno">ID. Uno </param>
+        /// <param name="ide_dos">ID. Dos </param>
+        /// <returns></returns>
+        public DataTable Fe_con_per(string ide_usr, string ide_tab, string ide_uno, string ide_dos)
+        {
+            cadena = " SELECT va_ide_usr, va_ide_tab, va_ide_uno, va_ide_dos, va_ide_tre";
+            cadena += "  FROM ads008 ";
+            cadena += " WHERE va_ide_usr = '" + ide_usr + "'";
+            cadena += "   AND va_ide_tab = '" + ide_tab + "'";
+            cadena += "   AND va_ide_uno = '" + ide_uno + "'";
+            cadena += "   AND va_ide_dos = '" + ide_dos + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        /// <summary>
+        /// Funcion consultar "PERMISO USUARIO SOBRE TABLAS Y ATRIBUTOS"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla </param>
+        /// <param name="ide_uno">ID. Uno </param>
+        /// <param name="ide_dos">ID. Dos </param>
+        /// <param name="ide_tre">ID. Tres </param>
+        /// <returns></returns>
+        public DataTable Fe_con_per(string ide_usr, string ide_tab, string ide_uno, string ide_dos, string ide_tre)
+        {
+            cadena = " SELECT va_ide_usr, va_ide_tab, va_ide_uno, va_ide_dos, va_ide_tre";
+            cadena += "  FROM ads008 ";
+            cadena += " WHERE va_ide_usr = '" + ide_usr + "'";
+            cadena += "   AND va_ide_tab = '" + ide_tab + "'";
+            cadena += "   AND va_ide_uno = '" + ide_uno + "'";
+            cadena += "   AND va_ide_dos = '" + ide_dos + "'";
+            cadena += "   AND va_ide_tre = '" + ide_tre + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
         public Boolean Fe_aut_usr(string ag_ide_tab, string ag_ide_uno)
         {
             bool resul = false;

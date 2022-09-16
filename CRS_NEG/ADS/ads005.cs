@@ -89,14 +89,39 @@ namespace CRS_NEG
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        /// <summary>
+        /// Funcion consultar "CONSULTA TALONARIO POR ID. DOCUMENTOS"
+        /// </summary>
+        /// <param name="ide_doc">ID. Documentos</param>
+        /// <returns></returns>
+        public DataTable Fe_con_tal(string ide_doc, int nro_tal)
+        {
+            try
+            {
+                /*cadena = new StringBuilder();
+                cadena.AppendLine("SELECT ads004.va_ide_doc, ads003.va_nom_doc, ads004.va_nro_tal, ads004.va_nom_tal,");
+                cadena.AppendLine("       ads004.va_tip_tal, ads004.va_nro_aut, ads004.va_for_mat, ads004.va_nro_cop,");
+                cadena.AppendLine("       ads004.va_fir_ma1, ads004.va_fir_ma2, ads004.va_fir_ma3, ads004.va_fir_ma4,");
+                cadena.AppendLine("       ads004.va_for_log, ads004.va_est_ado");
+                cadena.AppendLine("  FROM ads004, ads003");
+                cadena.AppendLine(" WHERE ads004.va_ide_doc = ads003.va_ide_doc");
+                cadena.AppendLine("   AND ads004.va_ide_doc = '" + ide_doc + "'");*/
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         //** FUNCIONES DE REPORTES
 
-            /// <summary>
-            /// Funcion externa reporte: PERIODOS DE UNA GESTION
-            /// </summary>
-            /// <param name="ar_ges_tio"></param>
-            /// <returns></returns>
+        /// <summary>
+        /// Funcion externa reporte: PERIODOS DE UNA GESTION
+        /// </summary>
+        /// <param name="ar_ges_tio"></param>
+        /// <returns></returns>
         public DataTable Fe_ads005_R01(int ar_ide_mod, string ar_est_ado)
         {   
             cadena = " ads005_R01 " + ar_ide_mod + ", '" + ar_est_ado + "'" ;

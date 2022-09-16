@@ -2,8 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 
-using CRS_NEG;
-
 namespace CRS_PRE
 {
     /**********************************************************************/

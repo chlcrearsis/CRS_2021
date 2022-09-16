@@ -81,6 +81,7 @@ namespace CRS_PRE
             }
             tb_tex_bus.Focus();
         }
+
         private void fi_con_sel()
         {
             // Verifica que los datos en pantallas sean correctos
@@ -103,7 +104,7 @@ namespace CRS_PRE
         /// <summary>
         /// - > Función que selecciona la fila en el Datagrid que el documento Modificó
         /// </summary>
-        private void fi_sel_fil(string cod_usr)
+        private void fi_sel_fil(string ide_doc)
         {
             // Obtiene el estado de la búsqueda
             if (cb_est_bus.SelectedIndex == 0)
@@ -115,13 +116,13 @@ namespace CRS_PRE
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
 
-            if (cod_usr != null)
+            if (ide_doc != null)
             {
                 try
                 {
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
-                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == cod_usr.ToUpper()){
+                        if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_doc.ToUpper()){
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;
@@ -153,7 +154,6 @@ namespace CRS_PRE
 
                             // Llama a función que actualiza datos en Textbox de Selección
                             fi_fil_act();
-
                         }
                     }
                     // Al presionar tecla para ARRIBA

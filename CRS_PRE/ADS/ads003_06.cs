@@ -85,7 +85,7 @@ namespace CRS_PRE
 
             // Verifica SI existen Talonarios que hacen referencia al Documento            
             Tabla = new DataTable();
-            Tabla = o_ads004.Fe_con_doc(int.Parse(tb_ide_mod.Text), tb_ide_doc.Text);
+            Tabla = o_ads004.Fe_con_doc(tb_ide_doc.Text);
             if (Tabla.Rows.Count == 0)
                 return "No se puede Eliminar. Existen " + Tabla.Rows.Count + " Talonarios que hacen referencia al Documento";
             

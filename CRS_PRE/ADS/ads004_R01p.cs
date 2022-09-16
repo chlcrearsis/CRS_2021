@@ -62,7 +62,7 @@ namespace CRS_PRE
                 va_est_ado = "N";
 
            
-            tabla= o_ads004.Fe_ads004_R01(int.Parse(cb_mod_ulo.SelectedValue.ToString()), va_est_ado);
+            tabla= o_ads004.Fe_inf_R01(int.Parse(cb_mod_ulo.SelectedValue.ToString()), va_est_ado);
 
             ads004_R01w frm = new ads004_R01w();
 
