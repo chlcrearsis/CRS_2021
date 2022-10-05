@@ -12,7 +12,7 @@ using CRS_PRE;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr005_R01w : Form
     {

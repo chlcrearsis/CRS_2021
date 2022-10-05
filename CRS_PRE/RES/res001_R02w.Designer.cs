@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE.CMR
+﻿namespace CRS_PRE
 {
     partial class res001_R02w
     {
@@ -49,7 +49,7 @@
             this.mn_zoo_025 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.res001_R02 = new CRS_PRE.CMR.res001_R02();
+            this.res001_R02 = new CRS_PRE.res001_R02();
             this.m_frm_hja.SuspendLayout();
             this.SuspendLayout();
             // 

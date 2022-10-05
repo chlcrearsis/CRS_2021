@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class res200 : Form
     {

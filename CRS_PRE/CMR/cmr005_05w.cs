@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using CRS_NEG;
 using CrystalDecisions.CrystalReports.Engine;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr005_05w : Form
     {

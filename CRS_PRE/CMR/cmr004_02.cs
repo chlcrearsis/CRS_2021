@@ -15,7 +15,7 @@ using System.Drawing.Printing;
 using CRS_PRE;
 
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr004_02 : Form
     {

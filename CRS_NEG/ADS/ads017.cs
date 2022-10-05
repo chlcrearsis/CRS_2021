@@ -40,7 +40,7 @@ namespace CRS_NEG
         public void Fe_crea(string ar_ide_usr, int ar_pin_usr, DateTime ar_fec_reg, DateTime ar_fec_exp, string nom_eqp)
         {
             cadena = " INSERT INTO ads017 VALUES('" + ar_ide_usr + "'," + ar_pin_usr + " ," +
-                " '" + ar_fec_reg + "', '" + ar_fec_exp + "','" + nom_eqp + "')";
+                " '" + ar_fec_reg.ToString("dd/MM/yyyy hh:mm") + "', '" + ar_fec_exp.ToString("dd/MM/yyyy hh:mm") + "','" + nom_eqp + "')";
 
             ob_con_ecA.fe_exe_sql(cadena);
         }

@@ -95,11 +95,11 @@ namespace CRS_NEG
                     cadena_stb.AppendLine(" Insert into cmr006tmp ");
                     cadena_stb.AppendFormat(" values('{0}', ", _cod_usr);
                     cadena_stb.AppendFormat(" '{0}', ", _cod_tmp.ToString(ft_fch_hor));
-                    cadena_stb.AppendFormat("  {0} , ", _ite_VTA.Rows[i]["va_nro_itm"].ToString());
+                    cadena_stb.AppendFormat("  {0} , ", _ite_VTA.Rows[i]["va_nro_ite"].ToString());
                     cadena_stb.AppendFormat(" '{0}' , ", _ite_VTA.Rows[i]["va_cod_pro"].ToString());
-                    cadena_stb.AppendFormat(" '{0}' , ", _ite_VTA.Rows[i]["va_not_itm"].ToString());// _ite_VTA.Rows[i]["va_nom_pro"].ToString());
+                    cadena_stb.AppendFormat(" '{0}' , ", _ite_VTA.Rows[i]["va_nom_pro"].ToString());
                     cadena_stb.AppendFormat("  {0}  , ",0); // 0 = siempre unidad de venta
-                    cadena_stb.AppendFormat(" '{0}' , ", decimal.Parse(_ite_VTA.Rows[i]["va_can_uni"].ToString()));
+                    cadena_stb.AppendFormat(" '{0}' , ", decimal.Parse(_ite_VTA.Rows[i]["va_can_tid"].ToString()));
                     cadena_stb.AppendFormat(" '{0}' , ", decimal.Parse(_ite_VTA.Rows[i]["va_pre_uni"].ToString()));
                     cadena_stb.AppendFormat(" '{0}' , ", decimal.Parse(_ite_VTA.Rows[i]["va_pre_tot"].ToString()));
                     cadena_stb.AppendFormat(" '{0}' , ", decimal.Parse(_ite_VTA.Rows[i]["va_pre_lis"].ToString()));

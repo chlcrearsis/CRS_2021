@@ -1297,6 +1297,12 @@
     </Compile>
     <Compile Include="cl_glo_bal.cs" />
     <Compile Include="cl_glo_frm.cs" />
+    <Compile Include="CMR\cmr005_12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr005_12.Designer.cs">
+      <DependentUpon>cmr005_12.cs</DependentUpon>
+    </Compile>
     <Compile Include="CMR\cmr014_08b.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1566,12 +1572,6 @@
     </Compile>
     <Compile Include="ADS\ads006_02.Designer.cs">
       <DependentUpon>ads006_02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CMR\cmr005_12b.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CMR\cmr005_12b.Designer.cs">
-      <DependentUpon>cmr005_12b.cs</DependentUpon>
     </Compile>
     <Compile Include="CMR\cmr005_12c.cs">
       <SubType>Form</SubType>
@@ -3115,6 +3115,9 @@
     <EmbeddedResource Include="ADS\ads000_02.resx">
       <DependentUpon>ads000_02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr005_12.resx">
+      <DependentUpon>cmr005_12.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr014_08b.resx">
       <DependentUpon>cmr014_08b.cs</DependentUpon>
     </EmbeddedResource>
@@ -3255,9 +3258,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_02.resx">
       <DependentUpon>ads006_02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr005_12b.resx">
-      <DependentUpon>cmr005_12b.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr005_12c.resx">
       <DependentUpon>cmr005_12c.cs</DependentUpon>

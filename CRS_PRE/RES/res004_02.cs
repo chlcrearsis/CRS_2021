@@ -6,7 +6,7 @@ using CRS_NEG;
 using CRS_PRE.INV;
 using System.Drawing.Printing;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class res004_02 : Form
     {

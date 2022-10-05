@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr200 : Form
     {
@@ -137,7 +137,7 @@ namespace CRS_PRE.CMR
             if (tabla != null)
                 if (tabla.Rows[0]["va_glo_ent"].ToString() == "2")
                 {
-                    cmr005_12b frm = new cmr005_12b();
+                    cmr005_12 frm = new cmr005_12();
                     cl_glo_frm.abrir(this, frm);
                 }
                 else

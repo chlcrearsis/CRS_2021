@@ -9,7 +9,7 @@ using CRS_PRE.INV;
 
 namespace CRS_PRE
 {
-    public partial class cmr005_02 : Form
+    public partial class cmr005_12 : Form
     {
 
         /* VARIABLES GLOBALES PUBLICAS */
@@ -59,7 +59,7 @@ namespace CRS_PRE
 
         //** Variable Venta para (M=Mostrador ; L=Llevar ; D=Delivery)
         string ve_vta_par = "M";
-        string ve_mon_vta = "";        // Moneda de la venta
+        string ve_mon_vta = "B";        // Moneda de la venta
         //** Variable para parametros plantilla de venta
         bool ve_ban_plv = false;
         int ve_lis_ant = 0;        // Guarda lista de precio anterior
@@ -80,7 +80,10 @@ namespace CRS_PRE
         int ve_bus_pro = 0;            // Busqueda rapida de producto por:
                                     /*  1: Codigo ; 2: Nombre ; 3 = Descripcion */
 
-        public cmr005_02()
+        int ve_for_pag = 1;        // Forma de pago 1= Contado ; 2= Credito
+
+
+        public cmr005_12()
         {
             InitializeComponent();
         }
@@ -96,8 +99,7 @@ namespace CRS_PRE
             /* Inicializa datos */
             tb_cod_bod.Text = "0";
             tb_fec_vta.Value = DateTime.Today;
-            cb_for_pag.SelectedIndex = 0;
-            cb_mon_vta.SelectedIndex = 0;
+            
             cb_vta_par.SelectedIndex = 0;
             gb_del_ive.Visible = false;
 
@@ -107,7 +109,7 @@ namespace CRS_PRE
             tb_pre_vta.Text = "0";
             tb_imp_tot.Text = "0";
 
-            tb_tot_bru.Text = "0.00";
+            lb_tot_bru.Text = "0.00";
 
             tb_cod_plv.Focus();
 
@@ -310,7 +312,7 @@ namespace CRS_PRE
             /* Procedimiento que verifica datos antes de grabar pedido */
             ve_msg_err = o_cmr007.Fi_ver_dat(ve_cod_tmp, int.Parse(tb_cod_plv.Text),
                                              int.Parse(tb_cod_bod.Text), int.Parse(tb_cod_per.Text),
-                                             tb_fec_vta.Value, cb_for_pag.SelectedIndex,
+                                             tb_fec_vta.Value,ve_for_pag,
                                              int.Parse(tb_cod_lis.Text));
 
             if (ve_msg_err != "")
@@ -339,7 +341,7 @@ namespace CRS_PRE
             /* Procedimiento que verifica datos antes de grabar pedido */
             ve_msg_err = o_cmr005.Fi_ver_dat(ve_cod_tmp, ve_tip_vta, int.Parse(tb_cod_plv.Text),
                                              int.Parse(tb_cod_bod.Text), int.Parse(tb_cod_per.Text),
-                                             tb_fec_vta.Value, cb_for_pag.SelectedIndex,
+                                             tb_fec_vta.Value, ve_for_pag,
                                              int.Parse(tb_cod_lis.Text));
             // Si hay error
             if (ve_msg_err != "")
@@ -378,7 +380,7 @@ namespace CRS_PRE
         {
             dg_res_ult.Rows.Clear();
 
-            tb_tot_bru.Text = "0.00";
+            lb_tot_bru.Text = "0.00";
 
         }
 
@@ -499,7 +501,7 @@ namespace CRS_PRE
             // GRABA PEDIDO
             tab_doc = o_cmr007.Fe_crea(Program.gl_usr_usr, DateTime.Parse(ve_cod_tmp.ToString()),
                 int.Parse(tb_cod_plv.Text), int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
-                frm.tb_nit_vta.Text, frm.tb_raz_soc.Text, ve_mon_vta, tb_fec_vta.Value, cb_for_pag.SelectedIndex,
+                frm.tb_nit_vta.Text, frm.tb_raz_soc.Text, ve_mon_vta, tb_fec_vta.Value, ve_for_pag,
                 int.Parse(tb_cod_ven.Text), int.Parse(tb_cod_lis.Text), 0, 0, decimal.Parse(frm.tb_des_cue.Text),
                 frm.tb_obs_vta.Text, ve_vta_par, int.Parse(tb_cod_ven.Text), "");
 
@@ -533,7 +535,7 @@ namespace CRS_PRE
              // GRABA Venta
             tab_doc = o_cmr005.Fe_crea( DateTime.Parse(ve_cod_tmp.ToString()),
                 int.Parse(tb_cod_plv.Text), 2, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
-                frm_cmr005.tb_nit_vta.Text, frm_cmr005.tb_raz_soc.Text, ve_mon_vta, tb_fec_vta.Value, cb_for_pag.SelectedIndex,
+                frm_cmr005.tb_nit_vta.Text, frm_cmr005.tb_raz_soc.Text, ve_mon_vta, tb_fec_vta.Value, ve_for_pag,
                 int.Parse(tb_cod_ven.Text), int.Parse(tb_cod_lis.Text), 0, 0, 1, decimal.Parse(frm_cmr005.tb_des_cue.Text),
                 frm_cmr005.tb_obs_vta.Text, ve_vta_par, int.Parse(tb_cod_ven.Text), "", decimal.Parse(frm_cmr005.tb_mto_pag.Text),
                 decimal.Parse(frm_cmr005.tb_cam_bio.Text), 0);
@@ -742,7 +744,9 @@ namespace CRS_PRE
             }
             else
             {
-                tb_des_pro.Text = tab_pro.Rows[0]["va_nom_pro"].ToString();
+                tb_des_pro.Text = tab_pro.Rows[0]["va_cod_pro"].ToString();
+                lb_nom_pro.Text = tab_pro.Rows[0]["va_nom_pro"].ToString();
+                lb_des_pro.Text = tab_pro.Rows[0]["va_des_pro"].ToString();
                 tb_und_vta.Text = tab_pro.Rows[0]["va_und_vta"].ToString();
 
                 lb_eqv_vta.Text = decimal.Round(decimal.Parse(tab_pro.Rows[0]["va_eqv_vta"].ToString()),
@@ -1177,17 +1181,19 @@ namespace CRS_PRE
 
         private void Fi_cal_tot()
         {
-            tb_tot_bru.Text = "0";
+            lb_tot_bru.Text = "0";
             int item = 0;
             for (item = 0; item <= dg_res_ult.RowCount - 1; item++)
             {
-                tb_tot_bru.Text = (decimal.Parse(tb_tot_bru.Text) + decimal.Parse(dg_res_ult["va_pre_tot", item].Value.ToString())).ToString();
+                lb_tot_bru.Text = (decimal.Parse(lb_tot_bru.Text) + decimal.Parse(dg_res_ult["va_pre_tot", item].Value.ToString())).ToString();
                 // Redefine nro de item
                 dg_res_ult.Rows[item].Cells["va_nro_ite"].Value = item + 1;
             }
 
-            tb_tot_bru.Text = decimal.Round(decimal.Parse(tb_tot_bru.Text), 2).ToString(); // <--- Redondea decimales
+            lb_tot_bru.Text = decimal.Round(decimal.Parse(lb_tot_bru.Text), 2).ToString(); // <--- Redondea decimales
         }
+        
+        
         //** ADICIONA ITEM
         private void bt_adi_pro_Click(object sender, EventArgs e)
         {
@@ -1207,7 +1213,7 @@ namespace CRS_PRE
 
                 dg_res_ult["va_nro_ite", fila].Value = nro_itm;
                 dg_res_ult["va_cod_pro", fila].Value = tb_cod_pro.Text;
-                dg_res_ult["va_des_pro", fila].Value = tb_des_pro.Text;
+                dg_res_ult["va_des_pro", fila].Value = tab_pro.Rows[0]["va_nom_pro"].ToString();// tb_des_pro.Text;
                 dg_res_ult["va_nom_pro", fila].Value = tab_pro.Rows[0]["va_nom_pro"].ToString();
                 dg_res_ult["va_und_vta", fila].Value = tb_und_vta.Text;
                 dg_res_ult["va_can_tid", fila].Value = tb_can_tid.Text;
@@ -1476,18 +1482,6 @@ namespace CRS_PRE
                 if (tab_inv002.Rows.Count > 0)
                     lb_nom_bod.Text = tab_inv002.Rows[0]["va_nom_bod"].ToString();
 
-                // Verifica si permite cambiar bodega
-                if (tab_cmr004.Rows[0]["va_cam_bod"].ToString() == "0") // No cambia
-                {
-                    tb_cod_bod.Enabled = false;
-                    bt_bus_bod.Enabled = false;
-                }
-                if (tab_cmr004.Rows[0]["va_cam_bod"].ToString() == "1") // Si cambia
-                {
-                    tb_cod_bod.Enabled = true;
-                    bt_bus_bod.Enabled = true;
-                }
-
                 // Obtiene Lista de precio
                 tb_cod_lis.Text = tab_cmr004.Rows[0]["va_cod_lis"].ToString();
                 // Obtiene nombre de lista
@@ -1499,71 +1493,27 @@ namespace CRS_PRE
                     ve_lis_dec = int.Parse(tab_cmr001.Rows[0]["va_nro_dec"].ToString());
                 }
 
-                // Verifica si permite cambiar Lista de precio
-                if (tab_cmr004.Rows[0]["va_cam_lis"].ToString() == "0") // No cambia
-                {
-                    tb_cod_lis.Enabled = false;
-                    bt_bus_lis.Enabled = false;
-                }
-                if (tab_cmr004.Rows[0]["va_cam_lis"].ToString() == "1") // Si cambia
-                {
-                    tb_cod_lis.Enabled = true;
-                    bt_bus_lis.Enabled = true;
-                }
 
                 if (tab_cmr004.Rows[0]["va_cam_lis"].ToString() == "2") // Obtiene lista de precio asignada al cliente
                 {
-                    tb_cod_lis.Enabled = false;
-                    bt_bus_lis.Enabled = false;
-
                     // Obtiene lista de precio del cliente
 
                 }
-
-                // Obtiene moneda
-                if (tab_cmr004.Rows[0]["va_mon_vta"].ToString() == "B")
-                {
-                    cb_mon_vta.SelectedIndex = 0;
-                    ve_mon_vta = "B";
-                }
-                if (tab_cmr004.Rows[0]["va_mon_vta"].ToString() == "U")
-                {
-                    cb_mon_vta.SelectedIndex = 1;
-                    ve_mon_vta = "U";
-                }
-
-                // Verifica si puede cambiar la moneda
-                if (tab_cmr004.Rows[0]["va_cam_mon"].ToString() == "0") // No Cambia
-                    cb_mon_vta.Enabled = false;
-                if (tab_cmr004.Rows[0]["va_cam_mon"].ToString() == "1") // Si Cambia
-                    cb_mon_vta.Enabled = true;
 
                 // Si la moneda del doc depende de la lista de precio - Obtiene moneda de la lista
                 if (tab_cmr004.Rows[0]["va_cam_mon"].ToString() == "2") // Moneda Segun lista de precio
                 {
                     if (tab_cmr001.Rows[0]["va_mon_lis"].ToString() == "B")
                     {
-                        cb_mon_vta.SelectedIndex = 0;
                         ve_mon_vta = "B";
                     }
                     if (tab_cmr001.Rows[0]["va_mon_lis"].ToString() == "U")
                     {
-                        cb_mon_vta.SelectedIndex = 1;
                         ve_mon_vta = "U";
                     }
-                    cb_mon_vta.Enabled = false;
                 }
 
-                // Obtiene forma de pago
-                cb_for_pag.SelectedIndex = int.Parse(tab_cmr004.Rows[0]["va_for_pgo"].ToString());
-
-                // Verifica si puede cambiar forma de pago
-                if (tab_cmr004.Rows[0]["va_cam_fpg"].ToString() == "0") // No Cambia
-                    cb_for_pag.Enabled = false;
-                if (tab_cmr004.Rows[0]["va_cam_fpg"].ToString() == "1") // Si Cambia
-                    cb_for_pag.Enabled = true;
-
-
+               
                 // Obtiene Vendedor
                 tb_cod_ven.Text = tab_cmr004.Rows[0]["va_cod_ven"].ToString();
                 // Obtiene nombre de Vendedor
@@ -1571,23 +1521,9 @@ namespace CRS_PRE
 
                 if (tab_cmr001.Rows.Count > 0)
                     lb_nom_ven.Text = tab_cmr014.Rows[0]["va_nom_bre"].ToString();
-
-                // Verifica si permite cambiar vendedor
-                if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "0") // No cambia
-                {
-                    tb_cod_ven.Enabled = false;
-                    bt_bus_ven.Enabled = false;
-                }
-                if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "1") // Si cambia
-                {
-                    tb_cod_ven.Enabled = true;
-                    bt_bus_ven.Enabled = true;
-                }
+                
                 if (tab_cmr004.Rows[0]["va_cam_ven"].ToString() == "2") // Asignado al cliente
                 {
-                    tb_cod_ven.Enabled = false;
-                    bt_bus_ven.Enabled = false;
-
                     // Obtiene el vendedor asignado al cliente
                     Fi_ven_asi();
 
@@ -1647,92 +1583,6 @@ namespace CRS_PRE
             Fi_obt_ven();
         }
 
-
-        // BUSCAR BODEGA
-        //private void Bt_bus_bod_Click(object sender, EventArgs e)
-        //{
-        //    Fi_abr_bus_bod();
-        //}
-        //private void Tb_cod_bod_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    //al presionar tecla para ARRIBA
-        //    if (e.KeyData == Keys.Up)
-        //    {
-        //        // Abre la ventana Busca Bodega
-        //        Fi_abr_bus_bod();
-        //    }
-        //}
-        //void Fi_abr_bus_bod()
-        //{
-        //    inv002_01 frm = new inv002_01();
-        //    cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-        //    if (frm.DialogResult == DialogResult.OK)
-        //    {
-        //        tb_cod_bod.Text = frm.tb_sel_bus.Text;
-        //        lb_nom_bod.Text = frm.lb_des_bus.Text;
-        //    }
-        //}
-        //private void Tb_cod_bod_Validated(object sender, EventArgs e)
-        //{
-        //    Fi_obt_bod();
-        //}
-        //private void Fi_obt_bod()
-        //{
-        //    int val = 0;
-        //    try
-        //    {
-        //        val = int.Parse(tb_cod_bod.Text);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        lb_nom_bod.Text = "";
-        //        return;
-        //    }
-
-        //    tabla = o_inv002.Fe_con_bod(val);
-        //    if (tabla.Rows.Count == 0)
-        //    {
-        //        lb_nom_bod.Text = "";
-        //    }
-        //    else
-        //    {
-        //        lb_nom_bod.Text = tabla.Rows[0]["va_nom_bod"].ToString();
-        //    }
-
-        //}
-
-        //******* LISTA DE PRECIO *******\\
-        private void Bt_bus_lis_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_lis();
-        }
-        private void Tb_cod_lis_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-        void Fi_abr_bus_lis()
-        {
-            // Obtiene Lista de precio anterior
-            try
-            {
-                ve_lis_ant = int.Parse(tb_cod_lis.Text);
-            }
-            catch (Exception)
-            {
-                //lis_ant = 0;
-            }
-
-            cmr001_01b frm = new cmr001_01b();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_lis.Text = frm.tb_sel_bus.Text;
-                Fi_obt_lis();
-            }
-        }
-
         private void tb_cod_lis_Validating(object sender, CancelEventArgs e)
         {
             Fi_obt_lis();
@@ -1765,7 +1615,7 @@ namespace CRS_PRE
                 {
                     if (dg_res_ult.Rows.Count != 0)
                     {
-                        DialogResult res = MessageBox.Show("Lista de precio no valida, desean mantener la lista de precios anterior ? " +
+                        DialogResult res = MessageBox.Show("Lista de precio no válida, desean mantener la lista de precios anterior ? " +
                             "de lo contrario se borraran sus items", "Venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
                         {
@@ -1862,12 +1712,10 @@ namespace CRS_PRE
                     {
                         if (tab_cmr001.Rows[0]["va_mon_lis"].ToString() == "B")
                         {
-                            cb_mon_vta.SelectedIndex = 0;
                             ve_mon_vta = "B";
                         }
                         if (tab_cmr001.Rows[0]["va_mon_lis"].ToString() == "U")
                         {
-                            cb_mon_vta.SelectedIndex = 1;
                             ve_mon_vta = "U";
                         }
                     }
@@ -1971,30 +1819,10 @@ namespace CRS_PRE
 
 
 
-        //******* VENDEDOR *******\\
-        private void Bt_bus_ven_Click(object sender, EventArgs e)
-        {
-            Fi_abr_bus_ven();
-        }
         private void Tb_cod_ven_KeyDown(object sender, KeyEventArgs e)
         {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca bodega
-                Fi_abr_bus_ven();
-            }
-        }
-        void Fi_abr_bus_ven()
-        {
-            cmr014_01 frm = new cmr014_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_ven.Text = frm.tb_sel_bus.Text;
-                Fi_obt_ven();
-            }
+           
+       
         }
         private void Tb_cod_ven_Validated(object sender, EventArgs e)
         {
@@ -2033,28 +1861,13 @@ namespace CRS_PRE
         //******* DELIVERY *******\\
         private void Bt_bus_del_Click(object sender, EventArgs e)
         {
-            Fi_abr_bus_del();
+            
         }
         private void Tb_cod_del_KeyDown(object sender, KeyEventArgs e)
         {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca bodega
-                Fi_abr_bus_del();
-            }
+          
         }
-        void Fi_abr_bus_del()
-        {
-            cmr015_01b frm = new cmr015_01b();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_del.Text = frm.tb_sel_bus.Text;
-                Fi_obt_del();
-            }
-        }
+       
         private void Tb_cod_del_Validated(object sender, EventArgs e)
         {
             Fi_obt_del();
@@ -2111,15 +1924,6 @@ namespace CRS_PRE
         {
             Fi_cal_por();
             Fi_cal_pre();
-        }
-
-        private void cb_mon_vta_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if (cb_mon_vta.SelectedIndex == 1)
-                ve_mon_vta = "B";
-            if (cb_mon_vta.SelectedIndex == 2)
-                ve_mon_vta = "U";
-
         }
 
         private void tb_cod_pro_TextChanged(object sender, EventArgs e)
