@@ -41,6 +41,11 @@ namespace CRS_PRE.INV
         #region  [Funciones Internas]
         private void fi_ini_frm()
         {
+
+            //** Verifica global vademecum
+
+
+
             tb_sel_ecc.Text = "";
             lb_pro_sel.Text = "";
             tb_cod_fam_bus.Text = "000000";
@@ -381,7 +386,7 @@ namespace CRS_PRE.INV
             if (fi_ver_edi(tb_sel_ecc.Text) == false)
                 return;
 
-            inv004_03 frm = new inv004_03();
+            inv004_03b frm = new inv004_03b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        

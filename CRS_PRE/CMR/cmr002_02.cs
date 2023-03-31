@@ -250,7 +250,7 @@ namespace CRS_PRE
         void Fi_for_dec()
         {
             //Formatea decimales
-            tb_pre_cio.Text = decimal.Round(decimal.Parse(tb_pre_cio.Text), nro_dec).ToString();
+                    tb_pre_cio.Text = decimal.Round(decimal.Parse(tb_pre_cio.Text), nro_dec).ToString();
             switch (nro_dec)
             {
                 case 0:

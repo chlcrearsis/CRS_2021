@@ -1711,6 +1711,30 @@
     <Compile Include="INV\inv003_06.Designer.cs">
       <DependentUpon>inv003_06.cs</DependentUpon>
     </Compile>
+    <Compile Include="INV\inv004_02b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_02b.Designer.cs">
+      <DependentUpon>inv004_02b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV\inv004_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_03.Designer.cs">
+      <DependentUpon>inv004_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV\inv004_04b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_04b.Designer.cs">
+      <DependentUpon>inv004_04b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV\inv004_05b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_05b.Designer.cs">
+      <DependentUpon>inv004_05b.cs</DependentUpon>
+    </Compile>
     <Compile Include="RES\res001_05a_p02.cs">
       <DependentUpon>res001_05a_p02.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -2299,11 +2323,11 @@
     <Compile Include="INV\inv004_05.Designer.cs">
       <DependentUpon>inv004_05.cs</DependentUpon>
     </Compile>
-    <Compile Include="INV\inv004_03.cs">
+    <Compile Include="INV\inv004_03b.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="INV\inv004_03.Designer.cs">
-      <DependentUpon>inv004_03.cs</DependentUpon>
+    <Compile Include="INV\inv004_03b.Designer.cs">
+      <DependentUpon>inv004_03b.cs</DependentUpon>
     </Compile>
     <Compile Include="INV\inv006_01.cs">
       <SubType>Form</SubType>
@@ -3328,6 +3352,18 @@
     <EmbeddedResource Include="INV\inv003_06.resx">
       <DependentUpon>inv003_06.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_02b.resx">
+      <DependentUpon>inv004_02b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_03.resx">
+      <DependentUpon>inv004_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_04b.resx">
+      <DependentUpon>inv004_04b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_05b.resx">
+      <DependentUpon>inv004_05b.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RES\res001_05a_p02.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>res001_05a_p02.cs</LastGenOutput>
@@ -3633,8 +3669,8 @@
     <EmbeddedResource Include="INV\inv004_05.resx">
       <DependentUpon>inv004_05.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="INV\inv004_03.resx">
-      <DependentUpon>inv004_03.cs</DependentUpon>
+    <EmbeddedResource Include="INV\inv004_03b.resx">
+      <DependentUpon>inv004_03b.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV\inv006_01.resx">
       <DependentUpon>inv006_01.cs</DependentUpon>

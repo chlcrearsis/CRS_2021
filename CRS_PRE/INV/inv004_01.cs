@@ -14,6 +14,7 @@ namespace CRS_PRE.INV
         public dynamic frm_MDI;
 
         string est_bus = "T";
+        int glo_far = 1;            //** Global 1=Normal ; 2=Farmacia
 
         //Form frm_mdi;
         public inv004_01()
@@ -23,9 +24,9 @@ namespace CRS_PRE.INV
 
         // instancia
         ads003 o_ads003 = new ads003();
-        
 
         ads001 o_ads001 = new ads001();
+        ads013 o_ads013 = new ads013();
 
         inv003 o_inv003 = new inv003();
         inv004 o_inv004 = new inv004();
@@ -41,6 +42,8 @@ namespace CRS_PRE.INV
         #region  [Funciones Internas]
         private void fi_ini_frm()
         {
+
+
             tb_sel_ecc.Text = "";
             lb_pro_sel.Text = "";
             tb_cod_fam_bus.Text = "000000";
@@ -49,6 +52,60 @@ namespace CRS_PRE.INV
             cb_est_bus.SelectedIndex = 0;
 
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
+
+            
+
+            //** PREGUNTA GLOBAL 1=NORMAL / 2=FARMACIA
+            tabla = o_ads013.Fe_obt_glo(3, 2);
+
+            if (tabla.Rows.Count == 0)
+                glo_far = 1;
+            if (tabla.Rows[0]["va_glo_ent"].ToString() != "2")
+                glo_far = 1;
+            if (tabla.Rows[0]["va_glo_ent"].ToString() == "2")
+                glo_far = 2;
+
+
+            if (glo_far == 1)
+            {
+                this.Text = "Busca Productos";
+                dg_res_ult.Columns["va_nom_pro"].HeaderText = "Producto";
+                dg_res_ult.Columns["va_des_pro"].HeaderText = "Descripcion";
+                dg_res_ult.Columns["va_pri_act"].Visible = false;
+                dg_res_ult.Columns["va_pro_ind"].Visible = false;
+                dg_res_ult.Columns["va_con_ind"].Visible = false;
+
+                //** Parametro de busqueda
+                cb_prm_bus.Items.Clear();
+                cb_prm_bus.Items.Add("Codigo");
+                cb_prm_bus.Items.Add("Codigo de barra");
+                cb_prm_bus.Items.Add("Nombre");
+                cb_prm_bus.Items.Add("Descipcion");
+                cb_prm_bus.SelectedIndex = 2;
+            }
+            else
+            {
+                this.Text = "Busca Productos (Farmacia)";
+                dg_res_ult.Columns["va_nom_pro"].HeaderText = "Nombre Comercial";
+                dg_res_ult.Columns["va_des_pro"].HeaderText = "Descripcion/uso terapeutico";
+                dg_res_ult.Columns["va_pri_act"].Visible = true;
+                dg_res_ult.Columns["va_pro_ind"].Visible = true;
+                dg_res_ult.Columns["va_con_ind"].Visible = true;
+
+                //** Parametro de busqueda
+                cb_prm_bus.Items.Clear();
+                cb_prm_bus.Items.Add("Codigo");
+                cb_prm_bus.Items.Add("Codigo de barra");
+                cb_prm_bus.Items.Add("Nombre Generico");
+                cb_prm_bus.Items.Add("Uso Terapeutico");
+                cb_prm_bus.Items.Add("Principio Activo");
+                cb_prm_bus.Items.Add("Indicacion");
+                cb_prm_bus.Items.Add("Contraindicacion");
+                cb_prm_bus.SelectedIndex = 2;
+            }
+                
+
+
         }
 
         public enum parametro
@@ -93,6 +150,11 @@ namespace CRS_PRE.INV
                     dg_res_ult.Rows[i].Cells["va_und_cmp"].Value = tabla.Rows[i]["va_und_cmp"].ToString();
                     dg_res_ult.Rows[i].Cells["va_und_vta"].Value = tabla.Rows[i]["va_und_vta"].ToString();
 
+                    //** Datos vademecum
+                    dg_res_ult.Rows[i].Cells["va_des_pro"].Value = tabla.Rows[i]["va_des_pro"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_pri_act"].Value = tabla.Rows[i]["va_pri_act"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_pro_ind"].Value = tabla.Rows[i]["va_pro_ind"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_con_ind"].Value = tabla.Rows[i]["va_con_ind"].ToString();
 
                     // FORMATEA EL CODIGO PARA MOSTRAR EN EL DATAGRID
                     int value;
@@ -127,7 +189,6 @@ namespace CRS_PRE.INV
                 return;
             }
 
-            //lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_fam"].ToString());
             lb_pro_sel.Text = tabla.Rows[0]["va_nom_pro"].ToString().Trim();
         }
         /// <summary>
@@ -370,8 +431,21 @@ namespace CRS_PRE.INV
 
         private void Mn_cre_ar_Click(object sender, EventArgs e)
         {
-            inv004_02 frm = new inv004_02();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+            //** GLOBAL 1=NORMAL / 2=FARMACIA
+            if (glo_far == 1)
+            {
+                inv004_02 frm = new inv004_02();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+                return;
+            }
+            if (glo_far == 2)
+            {
+                inv004_02b frm = new inv004_02b();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+                return;
+            }
+
+       
         }
 
         private void Mn_mod_ifi_Click(object sender, EventArgs e)
@@ -380,8 +454,20 @@ namespace CRS_PRE.INV
             if (fi_ver_edi(tb_sel_ecc.Text) == false)
                 return;
 
-            inv004_03 frm = new inv004_03();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            //** GLOBAL 1=NORMAL / 2=FARMACIA
+            if (glo_far == 1)
+            {
+                inv004_03 frm = new inv004_03();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+                return;
+            }
+            if (glo_far == 2)
+            {
+                inv004_03b frm = new inv004_03b();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+                return;
+            }
+           
         }
        
         private void Mn_hab_des_Click(object sender, EventArgs e)
@@ -390,8 +476,20 @@ namespace CRS_PRE.INV
             if (fi_ver_hds(tb_sel_ecc.Text) == false)
                 return;
 
-            inv004_04 frm = new inv004_04();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            //** GLOBAL 1=NORMAL / 2=FARMACIA
+            if (glo_far == 1)
+            {
+                inv004_04 frm = new inv004_04();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+                return;
+            }
+            if (glo_far == 2)
+            {
+                inv004_04b frm = new inv004_04b();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+                return;
+            }
+            
         }
         private void Mn_con_sul_Click(object sender, EventArgs e)
         {
@@ -399,14 +497,27 @@ namespace CRS_PRE.INV
             if (fi_ver_con(tb_sel_ecc.Text) == false)
                 return;
 
-            inv004_05 frm = new inv004_05();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            //** GLOBAL 1=NORMAL / 2=FARMACIA
+            if (glo_far == 1)
+            {
+                inv004_05 frm = new inv004_05();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+                return;
+            }
+            if (glo_far == 2)
+            {
+                inv004_05b frm = new inv004_05b();
+                cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+                return;
+            }
+
         }
         private void Mn_eli_min_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
             if (fi_ver_con(tb_sel_ecc.Text) == false)
                 return;
+
 
             inv004_06 frm = new inv004_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);

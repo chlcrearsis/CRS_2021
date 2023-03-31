@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_cre_ar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,10 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.bt_con_exi = new System.Windows.Forms.Button();
             this.va_cod_pro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_pro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_und_vta = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,6 +66,10 @@
             this.va_nom_fam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_des_pro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_con_exi = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -88,14 +88,14 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(257, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
             // mn_cre_ar
             // 
             this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
+            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
             this.mn_cre_ar.Text = "&Crea";
             this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
             // 
@@ -106,34 +106,34 @@
             this.mn_hab_des,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
+            this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(165, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(180, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(180, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(180, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
@@ -142,20 +142,20 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_fam});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_fam
             // 
             this.mn_list_fam.Name = "mn_list_fam";
-            this.mn_list_fam.Size = new System.Drawing.Size(177, 22);
+            this.mn_list_fam.Size = new System.Drawing.Size(191, 22);
             this.mn_list_fam.Text = "&Lista Familia Producto";
             this.mn_list_fam.Click += new System.EventHandler(this.Mn_list_fam_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -255,9 +255,9 @@
             "Todos",
             "Habilitado",
             "Deshabilitado"});
-            this.cb_est_bus.Location = new System.Drawing.Point(471, 33);
+            this.cb_est_bus.Location = new System.Drawing.Point(483, 33);
             this.cb_est_bus.Name = "cb_est_bus";
-            this.cb_est_bus.Size = new System.Drawing.Size(114, 21);
+            this.cb_est_bus.Size = new System.Drawing.Size(102, 21);
             this.cb_est_bus.TabIndex = 25;
             // 
             // cb_prm_bus
@@ -267,9 +267,9 @@
             this.cb_prm_bus.Items.AddRange(new object[] {
             "Codigo",
             "Nombre"});
-            this.cb_prm_bus.Location = new System.Drawing.Point(370, 33);
+            this.cb_prm_bus.Location = new System.Drawing.Point(355, 33);
             this.cb_prm_bus.Name = "cb_prm_bus";
-            this.cb_prm_bus.Size = new System.Drawing.Size(95, 21);
+            this.cb_prm_bus.Size = new System.Drawing.Size(122, 21);
             this.cb_prm_bus.TabIndex = 20;
             // 
             // tb_tex_bus
@@ -277,7 +277,7 @@
             this.tb_tex_bus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_tex_bus.Location = new System.Drawing.Point(9, 34);
             this.tb_tex_bus.Name = "tb_tex_bus";
-            this.tb_tex_bus.Size = new System.Drawing.Size(355, 20);
+            this.tb_tex_bus.Size = new System.Drawing.Size(340, 20);
             this.tb_tex_bus.TabIndex = 15;
             this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
             // 
@@ -328,14 +328,14 @@
             this.va_nom_fam,
             this.va_est_ado,
             this.va_des_pro});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -349,63 +349,11 @@
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             // 
-            // gb_ctr_btn
-            // 
-            this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
-            this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
-            this.gb_ctr_btn.Controls.Add(this.bt_con_exi);
-            this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(2, 368);
-            this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(672, 34);
-            this.gb_ctr_btn.TabIndex = 8;
-            this.gb_ctr_btn.TabStop = false;
-            // 
-            // bt_can_cel
-            // 
-            this.bt_can_cel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(572, 7);
-            this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
-            this.bt_can_cel.TabIndex = 45;
-            this.bt_can_cel.Text = "&Cancelar";
-            this.bt_can_cel.UseVisualStyleBackColor = false;
-            this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
-            // 
-            // bt_ace_pta
-            // 
-            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(491, 7);
-            this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
-            this.bt_ace_pta.TabIndex = 40;
-            this.bt_ace_pta.Text = "&Aceptar";
-            this.bt_ace_pta.UseVisualStyleBackColor = false;
-            this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
-            // 
-            // bt_con_exi
-            // 
-            this.bt_con_exi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_con_exi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_con_exi.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_con_exi.Location = new System.Drawing.Point(11, 8);
-            this.bt_con_exi.Name = "bt_con_exi";
-            this.bt_con_exi.Size = new System.Drawing.Size(75, 23);
-            this.bt_con_exi.TabIndex = 50;
-            this.bt_con_exi.Text = "&Existencia";
-            this.bt_con_exi.UseVisualStyleBackColor = false;
-            this.bt_con_exi.Click += new System.EventHandler(this.bt_con_exi_Click);
-            // 
             // va_cod_pro
             // 
-            dataGridViewCellStyle5.Format = "00-00-00";
-            dataGridViewCellStyle5.NullValue = null;
-            this.va_cod_pro.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "00-00-00";
+            dataGridViewCellStyle1.NullValue = null;
+            this.va_cod_pro.DefaultCellStyle = dataGridViewCellStyle1;
             this.va_cod_pro.HeaderText = "Codigo";
             this.va_cod_pro.Name = "va_cod_pro";
             this.va_cod_pro.ReadOnly = true;
@@ -484,6 +432,58 @@
             this.va_des_pro.Name = "va_des_pro";
             this.va_des_pro.ReadOnly = true;
             this.va_des_pro.Width = 350;
+            // 
+            // gb_ctr_btn
+            // 
+            this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
+            this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
+            this.gb_ctr_btn.Controls.Add(this.bt_con_exi);
+            this.gb_ctr_btn.Enabled = false;
+            this.gb_ctr_btn.Location = new System.Drawing.Point(2, 368);
+            this.gb_ctr_btn.Name = "gb_ctr_btn";
+            this.gb_ctr_btn.Size = new System.Drawing.Size(672, 34);
+            this.gb_ctr_btn.TabIndex = 8;
+            this.gb_ctr_btn.TabStop = false;
+            // 
+            // bt_can_cel
+            // 
+            this.bt_can_cel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_can_cel.Location = new System.Drawing.Point(572, 7);
+            this.bt_can_cel.Name = "bt_can_cel";
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
+            this.bt_can_cel.TabIndex = 45;
+            this.bt_can_cel.Text = "&Cancelar";
+            this.bt_can_cel.UseVisualStyleBackColor = false;
+            this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
+            // 
+            // bt_ace_pta
+            // 
+            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_ace_pta.Location = new System.Drawing.Point(491, 7);
+            this.bt_ace_pta.Name = "bt_ace_pta";
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
+            this.bt_ace_pta.TabIndex = 40;
+            this.bt_ace_pta.Text = "&Aceptar";
+            this.bt_ace_pta.UseVisualStyleBackColor = false;
+            this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
+            // 
+            // bt_con_exi
+            // 
+            this.bt_con_exi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_con_exi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_con_exi.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_con_exi.Location = new System.Drawing.Point(11, 8);
+            this.bt_con_exi.Name = "bt_con_exi";
+            this.bt_con_exi.Size = new System.Drawing.Size(75, 23);
+            this.bt_con_exi.TabIndex = 50;
+            this.bt_con_exi.Text = "&Existencia";
+            this.bt_con_exi.UseVisualStyleBackColor = false;
+            this.bt_con_exi.Click += new System.EventHandler(this.bt_con_exi_Click);
             // 
             // inv004_01b
             // 
