@@ -151,7 +151,7 @@
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(240, 20);
             this.tb_tex_bus.TabIndex = 5;
-            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
             // lb_nom_tip
             // 
@@ -180,7 +180,7 @@
             this.tb_ide_tip.Size = new System.Drawing.Size(27, 20);
             this.tb_ide_tip.TabIndex = 1;
             this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_ide_tip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_ide_tip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
             // groupBox2
             // 

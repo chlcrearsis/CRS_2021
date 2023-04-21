@@ -26,8 +26,9 @@ namespace CRS_PRE
         }     
 
         private void frm_Load(object sender, EventArgs e)
-        {           
-            tb_ide_mod.Focus();
+        {
+            // Inicializa Campos
+            Fi_lim_pia();
         }
 
         // Limpia e Iniciliza los campos
@@ -42,6 +43,7 @@ namespace CRS_PRE
         // Inicializa los campos en pantalla
         private void Fi_ini_pan()
         {
+            // Obtiene el ID. Correspondiente
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_obt_ide();
             if (Tabla.Rows.Count > 0){
@@ -49,6 +51,7 @@ namespace CRS_PRE
             }else{
                 tb_ide_mod.Text = "0";
             }
+            // Establece el focus
             tb_abr_mod.Focus();
         }
 
@@ -127,13 +130,16 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nuevo Modulo", MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {
-                    //Registrar 
-                    o_ads001.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_nom_mod.Text, tb_abr_mod.Text);
+                    // Graba registro
+                    o_ads001.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_nom_mod.Text.Trim(), tb_abr_mod.Text.Trim());
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
+                    // Despliega Mensaje
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
+                    // Inicializa Campos
                     Fi_lim_pia();
                 }
             }

@@ -387,5 +387,10 @@ namespace CRS_PRE
         {
             Close();
         }
+
+        private void mn_ges_tio_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

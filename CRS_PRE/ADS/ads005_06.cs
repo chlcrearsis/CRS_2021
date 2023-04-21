@@ -34,19 +34,19 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-            tb_ide_doc.Text = frm_dat.Rows[0]["va_ide_doc"].ToString();
-            tb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
-            tb_nro_tal.Text = frm_dat.Rows[0]["va_nro_tal"].ToString();
-            tb_nom_tal.Text = frm_dat.Rows[0]["va_nom_tal"].ToString();
-            cb_ges_tio.Items.Add(1);
-            cb_ges_tio.Items[0] = frm_dat.Rows[0]["va_ges_tio"].ToString();
-            cb_ges_tio.SelectedIndex = 0;
-            //cb_ges_tio.SelectedIndex.ToString();
-            tb_nro_ini.Text = frm_dat.Rows[0]["va_nro_ini"].ToString();
-            tb_nro_fin.Text = frm_dat.Rows[0]["va_nro_fin"].ToString();
-            tb_con_tad.Text = frm_dat.Rows[0]["va_con_tad"].ToString();
-            tb_fec_ini.Text = frm_dat.Rows[0]["va_fec_ini"].ToString();
-            tb_fec_fin.Text = frm_dat.Rows[0]["va_fec_fin"].ToString();
+            //tb_ide_doc.Text = frm_dat.Rows[0]["va_ide_doc"].ToString();
+            //tb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
+            //tb_nro_tal.Text = frm_dat.Rows[0]["va_nro_tal"].ToString();
+            //tb_nom_tal.Text = frm_dat.Rows[0]["va_nom_tal"].ToString();
+            //cb_ges_tio.Items.Add(1);
+            //cb_ges_tio.Items[0] = frm_dat.Rows[0]["va_ges_tio"].ToString();
+            //cb_ges_tio.SelectedIndex = 0;
+            ////cb_ges_tio.SelectedIndex.ToString();
+            //tb_nro_ini.Text = frm_dat.Rows[0]["va_nro_ini"].ToString();
+            //tb_nro_fin.Text = frm_dat.Rows[0]["va_nro_fin"].ToString();
+            //tb_con_tad.Text = frm_dat.Rows[0]["va_con_tad"].ToString();
+            //tb_fec_ini.Text = frm_dat.Rows[0]["va_fec_ini"].ToString();
+            //tb_fec_fin.Text = frm_dat.Rows[0]["va_fec_fin"].ToString();
         }
 
 
@@ -105,55 +105,55 @@ namespace CRS_PRE
                 return "El Talonario se encuentra Deshabilitado";
             }
 
-            // Verifica gestion
-            if (cb_ges_tio.Text == "")
-            {
-                cb_ges_tio.Focus();
-                return "Gestion no valida";
-            }
+            //// Verifica gestion
+            //if (cb_ges_tio.Text == "")
+            //{
+            //    cb_ges_tio.Focus();
+            //    return "Gestion no valida";
+            //}
 
-            int.TryParse(tb_nro_ini.Text, out val);
-            val = 0;
-            if(tb_nro_ini.Text.Trim() != "0")
-            { 
-                int.TryParse(tb_nro_ini.Text.Trim(), out val);
-                if (val == 0)
-                {
-                    tb_nro_ini.Focus();
-                    return "El nro inicial debe ser numerico";
-                }
-            }
+            //int.TryParse(tb_nro_ini.Text, out val);
+            //val = 0;
+            //if(tb_nro_ini.Text.Trim() != "0")
+            //{ 
+            //    int.TryParse(tb_nro_ini.Text.Trim(), out val);
+            //    if (val == 0)
+            //    {
+            //        tb_nro_ini.Focus();
+            //        return "El nro inicial debe ser numerico";
+            //    }
+            //}
 
-            int.TryParse(tb_nro_fin.Text, out val);
-            val = 0;
-            if (tb_nro_fin.Text.Trim() != "0")
-            {
-                int.TryParse(tb_nro_fin.Text.Trim(), out val);
-                if (val == 0)
-                {
-                    tb_nro_fin.Focus();
-                    return "El nro final debe ser numerico";
-                }
-            }
+            //int.TryParse(tb_nro_fin.Text, out val);
+            //val = 0;
+            //if (tb_nro_fin.Text.Trim() != "0")
+            //{
+            //    int.TryParse(tb_nro_fin.Text.Trim(), out val);
+            //    if (val == 0)
+            //    {
+            //        tb_nro_fin.Focus();
+            //        return "El nro final debe ser numerico";
+            //    }
+            //}
 
-            if(int.Parse(tb_nro_ini.Text) > int.Parse(tb_nro_fin.Text))
-            {
-                tb_nro_fin.Focus();
-                return "El nro final debe ser mayor al nro inicial";
-            }
+            //if(int.Parse(tb_nro_ini.Text) > int.Parse(tb_nro_fin.Text))
+            //{
+            //    tb_nro_fin.Focus();
+            //    return "El nro final debe ser mayor al nro inicial";
+            //}
 
 
-            int.TryParse(tb_con_tad.Text, out val);
-            val = 0;
-            if (tb_con_tad.Text.Trim() != "0")
-            {
-                int.TryParse(tb_con_tad.Text.Trim(), out val);
-                if (val == 0)
-                {
-                    tb_con_tad.Focus();
-                    return "El contador debe ser numerico";
-                }
-            }
+            //int.TryParse(tb_con_tad.Text, out val);
+            //val = 0;
+            //if (tb_con_tad.Text.Trim() != "0")
+            //{
+            //    int.TryParse(tb_con_tad.Text.Trim(), out val);
+            //    if (val == 0)
+            //    {
+            //        tb_con_tad.Focus();
+            //        return "El contador debe ser numerico";
+            //    }
+            //}
 
 
             DateTime dval;
@@ -177,8 +177,8 @@ namespace CRS_PRE
             }
 
             // Verifica que las fechas esten dentro del rango de fechas de la gestion
-            va_fec_ini_ges = DateTime.Parse(o_ads016.Fe_con_per(int.Parse(cb_ges_tio.Text),1).Rows[0]["va_fec_ini"].ToString());
-            va_fec_fin_ges = DateTime.Parse(o_ads016.Fe_con_per(int.Parse(cb_ges_tio.Text), 12).Rows[0]["va_fec_fin"].ToString());
+            //va_fec_ini_ges = DateTime.Parse(o_ads016.Fe_con_per(int.Parse(cb_ges_tio.Text),1).Rows[0]["va_fec_ini"].ToString());
+            //va_fec_fin_ges = DateTime.Parse(o_ads016.Fe_con_per(int.Parse(cb_ges_tio.Text), 12).Rows[0]["va_fec_fin"].ToString());
 
             if(DateTime.Parse(tb_fec_ini.Text) < va_fec_ini_ges)
             {
@@ -192,7 +192,7 @@ namespace CRS_PRE
             }
 
             //Verifica que la numeracion este registrada
-            tabla = o_ads005.Fe_con_num(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text), int.Parse(cb_ges_tio.Text));
+            //tabla = o_ads005.Fe_con_nta(int.Parse(cb_ges_tio.Text), tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
             if (tabla.Rows.Count == 0)
             {
                 //if(! (tabla.Rows[0][0] is DBNull))
@@ -225,7 +225,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
             {
                 //Modifica numeracion
-                o_ads005.Fe_eli_num(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text), int.Parse(cb_ges_tio.Text));
+                //o_ads005.Fe_eli_min(int.Parse(cb_ges_tio.Text), tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
 
                 MessageBox.Show("Los datos se grabaron correctamente", "Elimina Numeracion", MessageBoxButtons.OK);
                 
@@ -284,9 +284,9 @@ namespace CRS_PRE
             tab_prm.Rows.Add();
 
             tab_prm.Rows[0]["va_ide_doc"] = tb_ide_doc.Text;
-            tab_prm.Rows[0]["va_nom_doc"] = tb_nom_doc.Text;
+            //tab_prm.Rows[0]["va_nom_doc"] = tb_nom_doc.Text;
 
-            ads004_01b frm = new ads004_01b();
+            ads004_01 frm = new ads004_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_prm);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -316,12 +316,12 @@ namespace CRS_PRE
             tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
             if (tabla.Rows.Count == 0)
             {
-                tb_nom_doc.Clear();
+                //tb_nom_doc.Clear();
             }
             else
             {
                 tb_ide_doc.Text = tabla.Rows[0]["va_ide_doc"].ToString();
-                tb_nom_doc.Text = tabla.Rows[0]["va_nom_doc"].ToString();
+                //tb_nom_doc.Text = tabla.Rows[0]["va_nom_doc"].ToString();
             }
         }
 
@@ -335,12 +335,12 @@ namespace CRS_PRE
             tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text,int.Parse(tb_nro_tal.Text));
             if (tabla.Rows.Count == 0)
             {
-                tb_nom_tal.Clear();
+                //tb_nom_tal.Clear();
             }
             else
             {
                 tb_nro_tal.Text = tabla.Rows[0]["va_nro_tal"].ToString();
-                tb_nom_tal.Text = tabla.Rows[0]["va_nom_tal"].ToString();
+                //tb_nom_tal.Text = tabla.Rows[0]["va_nom_tal"].ToString();
             }
         }
     }

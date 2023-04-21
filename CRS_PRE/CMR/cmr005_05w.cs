@@ -109,7 +109,7 @@ namespace CRS_PRE.CMR
             }
 
             //Logueo manual el ReportDocument asociado al crystal report
-            rd_ven_tas.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            //rd_ven_tas.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
             
             // Obtiene documento de venta a mostrar en el reporte
             tab_cmr005 = o_cmr005.Fe_con_vta(ide_doc, ges_doc);
@@ -118,7 +118,7 @@ namespace CRS_PRE.CMR
             rd_ven_tas.SetDataSource(tab_cmr005);
 
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            rd_ven_tas.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
+            //rd_ven_tas.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
             rd_ven_tas.SetParameterValue("vc_nom_emp", va_nom_emp);
             rd_ven_tas.SetParameterValue("vc_dir_emp", va_dir_emp);
             rd_ven_tas.SetParameterValue("vc_tel_emp", va_tel_emp);

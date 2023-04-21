@@ -148,7 +148,7 @@ namespace CRS_NEG
         {
             int nro_vta = 0;
 
-            Tab_ads005 =  o_ads005.Fe_con_num(ar_doc_vta, ar_nro_tal, ar_ges_vta);
+            Tab_ads005 =  o_ads005.Fe_con_nta(ar_ges_vta, ar_doc_vta, ar_nro_tal);
           
             if (Tab_ads005.Rows.Count == 0)
                 nro_vta = 0;

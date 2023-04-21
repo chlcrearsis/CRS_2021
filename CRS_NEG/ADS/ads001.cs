@@ -6,9 +6,9 @@ namespace CRS_NEG
 {
     //######################################################################
     //##       Tabla: ads001                                              ##
-    //##      Nombre: Modulo                                              ##
+    //##      Nombre: Módulos                                             ##
     //## Descripcion: Modulos del Sistema                                 ##         
-    //##       Autor: CHL - (07-11-2019)                                  ##
+    //##       Autor: EJR - (20-04-2023)                                  ##
     //######################################################################
     public class ads001
     {        
@@ -22,7 +22,7 @@ namespace CRS_NEG
         /// <param name="nom_mod">Nombre</param>
         /// <param name="abr_mod">Abrebiacion</param>
         /// <returns></returns>
-        public void Fe_nue_reg(int ide_mod , string nom_mod , string abr_mod)
+        public void Fe_nue_reg(int ide_mod, string nom_mod, string abr_mod)
         {            
             try
             {
@@ -43,7 +43,7 @@ namespace CRS_NEG
         /// <param name="nom_mod">Nombre</param>
         /// <param name="abr_mod">Abrebiacion</param>
         /// <returns></returns>
-        public void Fe_edi_tar(int ide_mod , string nom_mod , string abr_mod )
+        public void Fe_edi_tar(int ide_mod, string nom_mod, string abr_mod)
         {
             try
             {
@@ -209,22 +209,15 @@ namespace CRS_NEG
         /// <summary>
         /// Funcion consultar "LISTA MÓDULO DEL SISTEMA"
         /// </summary>
-        /// <param name="est_ado">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
         /// <returns></returns>
-        public DataTable Fe_lis_mod(string est_ado = "0")
+        public DataTable Fe_lis_mod(string est_ado = "T")
         {
             try
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_mod, va_nom_mod, va_abr_mod, va_est_ado");
-                cadena.AppendLine("  FROM ads001");
-                switch (est_ado)
-                {
-                    case "0": est_ado = "T"; break;
-                    case "1": est_ado = "H"; break;
-                    case "2": est_ado = "N"; break;
-                }
-
+                cadena.AppendLine("  FROM ads001");                
                 if (est_ado != "T")
                     cadena.AppendLine(" WHERE va_est_ado = '" + est_ado + "'");
 

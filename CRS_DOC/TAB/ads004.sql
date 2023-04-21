@@ -71,4 +71,3 @@ INSERT INTO ads004 VALUES('RIN', 0, 'Recibo de Ingreso', 1, 0, 0, 0, 'Elaborado 
 INSERT INTO ads004 VALUES('REG', 0, 'Recibo de Egreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
 INSERT INTO ads004 VALUES('TIN', 0, 'Comprobante de Ingreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
 INSERT INTO ads004 VALUES('TEG', 0, 'Comprobante de Egreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
-

@@ -33,7 +33,7 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             // Hacer grande la pantalla
-            this.Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;
             // Castea la descripcion del estado
             if (vp_est_ado.CompareTo("T") == 0)
                 vp_est_ado = "Todos";

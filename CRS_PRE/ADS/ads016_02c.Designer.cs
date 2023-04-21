@@ -29,171 +29,139 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tb_fec_fin = new System.Windows.Forms.MaskedTextBox();
-            this.tb_fec_ini = new System.Windows.Forms.MaskedTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tb_ges_per = new System.Windows.Forms.TextBox();
-            this.tb_nom_per = new System.Windows.Forms.TextBox();
-            this.tb_ges_tio = new System.Windows.Forms.TextBox();
+            this.lb_nue_ges = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_nue_ges = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.lb_ult_ges = new System.Windows.Forms.Label();
+            this.tb_ult_ges = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tb_fec_fin);
-            this.groupBox1.Controls.Add(this.tb_fec_ini);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lb_ult_ges);
+            this.groupBox1.Controls.Add(this.tb_ult_ges);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.tb_ges_per);
-            this.groupBox1.Controls.Add(this.tb_nom_per);
-            this.groupBox1.Controls.Add(this.tb_ges_tio);
+            this.groupBox1.Controls.Add(this.lb_nue_ges);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.tb_nue_ges);
             this.groupBox1.Location = new System.Drawing.Point(3, -4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(251, 100);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(286, 148);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // tb_fec_fin
-            // 
-            this.tb_fec_fin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_fec_fin.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.tb_fec_fin.Location = new System.Drawing.Point(103, 75);
-            this.tb_fec_fin.Mask = "00/00/0000";
-            this.tb_fec_fin.Name = "tb_fec_fin";
-            this.tb_fec_fin.Size = new System.Drawing.Size(80, 20);
-            this.tb_fec_fin.TabIndex = 50;
-            this.tb_fec_fin.ValidatingType = typeof(System.DateTime);
-            // 
-            // tb_fec_ini
-            // 
-            this.tb_fec_ini.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_fec_ini.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.tb_fec_ini.Location = new System.Drawing.Point(103, 52);
-            this.tb_fec_ini.Mask = "00/00/0000";
-            this.tb_fec_ini.Name = "tb_fec_ini";
-            this.tb_fec_ini.Size = new System.Drawing.Size(80, 20);
-            this.tb_fec_ini.TabIndex = 40;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 79);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "Fecha final";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Fecha inicial";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 32);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(49, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Nombre";
+            this.label3.Size = new System.Drawing.Size(176, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Prepara Siguiente Gestión";
             // 
-            // label2
+            // lb_nue_ges
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Periodo";
+            this.lb_nue_ges.AutoSize = true;
+            this.lb_nue_ges.Location = new System.Drawing.Point(34, 111);
+            this.lb_nue_ges.Name = "lb_nue_ges";
+            this.lb_nue_ges.Size = new System.Drawing.Size(90, 13);
+            this.lb_nue_ges.TabIndex = 4;
+            this.lb_nue_ges.Text = "Siguiente Gestión";
             // 
-            // tb_ges_per
+            // label1
             // 
-            this.tb_ges_per.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ges_per.Location = new System.Drawing.Point(55, 9);
-            this.tb_ges_per.MaxLength = 2;
-            this.tb_ges_per.Multiline = true;
-            this.tb_ges_per.Name = "tb_ges_per";
-            this.tb_ges_per.Size = new System.Drawing.Size(24, 18);
-            this.tb_ges_per.TabIndex = 10;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 39);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Esta opción nos permite preparar la siguiente\r\nGestión de la Empresa. Tomando en " +
+    "cuenta\r\nla última Gestión creada.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tb_nom_per
+            // tb_nue_ges
             // 
-            this.tb_nom_per.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_per.Location = new System.Drawing.Point(55, 29);
-            this.tb_nom_per.MaxLength = 15;
-            this.tb_nom_per.Multiline = true;
-            this.tb_nom_per.Name = "tb_nom_per";
-            this.tb_nom_per.Size = new System.Drawing.Size(128, 18);
-            this.tb_nom_per.TabIndex = 30;
-            // 
-            // tb_ges_tio
-            // 
-            this.tb_ges_tio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ges_tio.Location = new System.Drawing.Point(83, 9);
-            this.tb_ges_tio.MaxLength = 4;
-            this.tb_ges_tio.Multiline = true;
-            this.tb_ges_tio.Name = "tb_ges_tio";
-            this.tb_ges_tio.Size = new System.Drawing.Size(43, 18);
-            this.tb_ges_tio.TabIndex = 20;
+            this.tb_nue_ges.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nue_ges.Location = new System.Drawing.Point(126, 109);
+            this.tb_nue_ges.MaxLength = 4;
+            this.tb_nue_ges.Multiline = true;
+            this.tb_nue_ges.Name = "tb_nue_ges";
+            this.tb_nue_ges.Size = new System.Drawing.Size(50, 18);
+            this.tb_nue_ges.TabIndex = 5;
+            this.tb_nue_ges.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_nue_ges_KeyPress);
             // 
             // gb_ctr_btn
             // 
-            this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
+            this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 91);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 139);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(251, 35);
-            this.gb_ctr_btn.TabIndex = 2;
+            this.gb_ctr_btn.Size = new System.Drawing.Size(286, 40);
+            this.gb_ctr_btn.TabIndex = 1;
             this.gb_ctr_btn.TabStop = false;
+            // 
+            // bt_ace_pta
+            // 
+            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_ace_pta.Location = new System.Drawing.Point(124, 9);
+            this.bt_ace_pta.Name = "bt_ace_pta";
+            this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
+            this.bt_ace_pta.TabIndex = 0;
+            this.bt_ace_pta.Text = "&Aceptar";
+            this.bt_ace_pta.UseVisualStyleBackColor = false;
+            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 
             this.bt_can_cel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(167, 9);
+            this.bt_can_cel.Location = new System.Drawing.Point(202, 9);
             this.bt_can_cel.Name = "bt_can_cel";
-            this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
-            this.bt_can_cel.TabIndex = 20;
+            this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
+            this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
-            this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // bt_ace_pta
+            // lb_ult_ges
             // 
-            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(86, 9);
-            this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
-            this.bt_ace_pta.TabIndex = 10;
-            this.bt_ace_pta.Text = "&Aceptar";
-            this.bt_ace_pta.UseVisualStyleBackColor = false;
-            this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
+            this.lb_ult_ges.AutoSize = true;
+            this.lb_ult_ges.Location = new System.Drawing.Point(49, 87);
+            this.lb_ult_ges.Name = "lb_ult_ges";
+            this.lb_ult_ges.Size = new System.Drawing.Size(75, 13);
+            this.lb_ult_ges.TabIndex = 2;
+            this.lb_ult_ges.Text = "Última Gestión";
+            // 
+            // tb_ult_ges
+            // 
+            this.tb_ult_ges.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ult_ges.Location = new System.Drawing.Point(126, 85);
+            this.tb_ult_ges.MaxLength = 4;
+            this.tb_ult_ges.Multiline = true;
+            this.tb_ult_ges.Name = "tb_ult_ges";
+            this.tb_ult_ges.ReadOnly = true;
+            this.tb_ult_ges.Size = new System.Drawing.Size(50, 18);
+            this.tb_ult_ges.TabIndex = 3;
             // 
             // ads016_02c
             // 
-            this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.bt_can_cel;
-            this.ClientSize = new System.Drawing.Size(258, 130);
+            this.ClientSize = new System.Drawing.Size(293, 181);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -201,7 +169,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ads016_02c";
-            this.Text = "Crea periodo";
+            this.Tag = "Crea Siguiente Gestión";
+            this.Text = "Crea Siguiente Gestión";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -211,18 +180,16 @@
         }
 
         #endregion
+
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox tb_ges_tio;
-        private System.Windows.Forms.Button bt_can_cel;
-        private System.Windows.Forms.Button bt_ace_pta;
-        private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb_ges_per;
-        private System.Windows.Forms.TextBox tb_nom_per;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lb_nue_ges;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox tb_fec_ini;
-        private System.Windows.Forms.MaskedTextBox tb_fec_fin;
+        private System.Windows.Forms.TextBox tb_nue_ges;
+        public System.Windows.Forms.GroupBox gb_ctr_btn;
+        private System.Windows.Forms.Button bt_ace_pta;
+        private System.Windows.Forms.Button bt_can_cel;
+        private System.Windows.Forms.Label lb_ult_ges;
+        private System.Windows.Forms.TextBox tb_ult_ges;
     }
 }

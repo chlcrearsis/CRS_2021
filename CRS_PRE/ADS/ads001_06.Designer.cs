@@ -38,12 +38,14 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
+            this.lb_est_ado = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lb_est_ado);
             this.groupBox1.Controls.Add(this.lb_ide_mod);
             this.groupBox1.Controls.Add(this.tb_est_ado);
             this.groupBox1.Controls.Add(this.tb_abr_mod);
@@ -53,7 +55,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, -3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(336, 76);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lb_ide_mod
@@ -62,28 +64,28 @@
             this.lb_ide_mod.Location = new System.Drawing.Point(40, 20);
             this.lb_ide_mod.Name = "lb_ide_mod";
             this.lb_ide_mod.Size = new System.Drawing.Size(40, 13);
-            this.lb_ide_mod.TabIndex = 28;
+            this.lb_ide_mod.TabIndex = 0;
             this.lb_ide_mod.Text = "Código";
             // 
             // tb_est_ado
             // 
             this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_est_ado.Location = new System.Drawing.Point(217, 17);
-            this.tb_est_ado.MaxLength = 30;
+            this.tb_est_ado.MaxLength = 15;
             this.tb_est_ado.Name = "tb_est_ado";
             this.tb_est_ado.ReadOnly = true;
             this.tb_est_ado.Size = new System.Drawing.Size(80, 20);
-            this.tb_est_ado.TabIndex = 41;
+            this.tb_est_ado.TabIndex = 3;
             // 
             // tb_abr_mod
             // 
             this.tb_abr_mod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_abr_mod.Location = new System.Drawing.Point(82, 43);
-            this.tb_abr_mod.MaxLength = 30;
+            this.tb_abr_mod.MaxLength = 3;
             this.tb_abr_mod.Name = "tb_abr_mod";
             this.tb_abr_mod.ReadOnly = true;
             this.tb_abr_mod.Size = new System.Drawing.Size(47, 20);
-            this.tb_abr_mod.TabIndex = 20;
+            this.tb_abr_mod.TabIndex = 5;
             // 
             // lb_nom_mod
             // 
@@ -91,18 +93,18 @@
             this.lb_nom_mod.Location = new System.Drawing.Point(38, 46);
             this.lb_nom_mod.Name = "lb_nom_mod";
             this.lb_nom_mod.Size = new System.Drawing.Size(42, 13);
-            this.lb_nom_mod.TabIndex = 27;
+            this.lb_nom_mod.TabIndex = 4;
             this.lb_nom_mod.Text = "Módulo";
             // 
             // tb_nom_mod
             // 
             this.tb_nom_mod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_nom_mod.Location = new System.Drawing.Point(132, 43);
-            this.tb_nom_mod.MaxLength = 120;
+            this.tb_nom_mod.MaxLength = 30;
             this.tb_nom_mod.Name = "tb_nom_mod";
             this.tb_nom_mod.ReadOnly = true;
             this.tb_nom_mod.Size = new System.Drawing.Size(166, 20);
-            this.tb_nom_mod.TabIndex = 40;
+            this.tb_nom_mod.TabIndex = 6;
             // 
             // tb_ide_mod
             // 
@@ -113,7 +115,7 @@
             this.tb_ide_mod.Name = "tb_ide_mod";
             this.tb_ide_mod.ReadOnly = true;
             this.tb_ide_mod.Size = new System.Drawing.Size(45, 20);
-            this.tb_ide_mod.TabIndex = 10;
+            this.tb_ide_mod.TabIndex = 1;
             this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // gb_ctr_btn
@@ -124,7 +126,7 @@
             this.gb_ctr_btn.Location = new System.Drawing.Point(3, 69);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(336, 40);
-            this.gb_ctr_btn.TabIndex = 6;
+            this.gb_ctr_btn.TabIndex = 1;
             this.gb_ctr_btn.TabStop = false;
             // 
             // bt_ace_pta
@@ -136,7 +138,7 @@
             this.bt_ace_pta.Location = new System.Drawing.Point(172, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
-            this.bt_ace_pta.TabIndex = 22;
+            this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
@@ -151,16 +153,25 @@
             this.bt_can_cel.Location = new System.Drawing.Point(250, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
-            this.bt_can_cel.TabIndex = 20;
+            this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
+            // 
+            // lb_est_ado
+            // 
+            this.lb_est_ado.AutoSize = true;
+            this.lb_est_ado.Location = new System.Drawing.Point(175, 21);
+            this.lb_est_ado.Name = "lb_est_ado";
+            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
+            this.lb_est_ado.TabIndex = 2;
+            this.lb_est_ado.Text = "Estado";
             // 
             // ads001_06
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 111);
+            this.ClientSize = new System.Drawing.Size(342, 111);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -190,5 +201,6 @@
         public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.Button bt_can_cel;
         private System.Windows.Forms.Button bt_ace_pta;
+        private System.Windows.Forms.Label lb_est_ado;
     }
 }

@@ -1,96 +1,144 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
 {
-    /// <summary>
-    /// Clase: NUMERACION
-    /// </summary>
+    //######################################################################
+    //##       Tabla: ads005                                              ##
+    //##      Nombre: Numeración                                          ##
+    //## Descripcion: Numerador de Talonario                              ##                 
+    //##       Autor: EJR  - (28-05-2020)                                 ##
+    //######################################################################
     public class ads005
     {
-        //######################################################################
-        //##       Tabla: ads005                                              ##
-        //##      Nombre: Numeracion                                          ##
-        //## Descripcion:                                                     ##         
-        //##       Autor: CHL  - (28-05-2020)                                 ##
-        //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
+        StringBuilder cadena;
 
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
-        string cadena = "";
-
-
-
-        public ads005()
+        /// <summary>
+        /// Funcion "Registrar Numeración"
+        /// </summary>
+        /// <param name="ges_tio">Gestión</param>
+        /// <param name="ide_doc">ID. Documento</param>
+        /// <param name="nro_tal">Nro. Talonario</param>
+        /// <param name="fec_ini">Fecha Inicial</param>
+        /// <param name="fec_fin">Fecha Final</param>
+        /// <param name="con_act">Contador Actual</param>
+        /// <param name="con_fin">Contador Final</param>
+        public void Fe_nue_reg(int ges_tio, string ide_doc, int nro_tal, string fec_ini, string fec_fin,
+                               int con_act, int con_fin)
         {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
- 
-        public void Fe_crea(string ar_ide_doc, int ar_nro_tal,  int ar_ges_tio, DateTime ar_fec_ini, DateTime ar_fec_fin,
-                            int ar_nro_ini, int ar_nro_fin, int ar_con_tad)
-        {
-            cadena = " INSERT INTO ads005 VALUES('" + ar_ide_doc + "' , " + ar_nro_tal + ", " + ar_ges_tio +
-                                               ",'" + ar_fec_ini.ToString("dd/MM/yyyy") + "', '" + ar_fec_fin.ToString("dd/MM/yyyy") + "', " + ar_nro_ini + 
-                                               ", " + ar_nro_fin + ", " + ar_con_tad + ")" ;
-            ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-
-        public void Fe_edi_num(string ar_ide_doc, int ar_nro_tal, int ar_ges_tio, DateTime ar_fec_ini, DateTime ar_fec_fin,
-                            int ar_nro_ini, int ar_nro_fin, int ar_con_tad)
+            try
             {
-            cadena = " UPDATE ads005 SET va_fec_ini = '" + ar_fec_ini.ToString("dd/MM/yyyy") + "',  va_fec_fin = '" + ar_fec_fin.ToString("dd/MM/yyyy") + "', " +
-                  " va_nro_ini = " + ar_nro_ini + ", va_nro_fin = " + ar_nro_fin + ", va_con_tad =" + ar_con_tad +
-                  " WHERE va_ide_doc = '" + ar_ide_doc + "' AND va_nro_tal = " + ar_nro_tal + " AND va_ges_tio = " + ar_ges_tio;
-            ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-
-        public void Fe_edi_con(string ar_ide_doc, int ar_nro_tal, int ar_ges_tio,int ar_con_tad)
-        {
-            cadena = " UPDATE ads005 SET va_con_tad =" + ar_con_tad +
-                  " WHERE va_ide_doc = '" + ar_ide_doc + "' AND va_nro_tal = " + ar_nro_tal + " AND va_ges_tio = " + ar_ges_tio;
-            ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        public void Fe_eli_num(string ar_ide_doc, int ar_nro_tal, int ar_ges_tio)
-        {
-            cadena = " DELETE ads005 " +
-            " WHERE va_ide_doc = '" + ar_ide_doc + "' AND va_nro_tal = " + ar_nro_tal + " AND va_ges_tio = " + ar_ges_tio;
-
-            ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        public DataTable Fe_con_num( string ar_ide_doc, int ar_nro_tal, int ar_ges_tio)
-        {
-            cadena = " ads005_05a_p01 '" + ar_ide_doc + "', " + ar_nro_tal + ", " + ar_ges_tio;
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-
-        public DataTable Fe_bus_car(int ar_ide_mod, int ar_ges_tio, string ar_tex_bus,int ar_cri_ter )
-        {
-            cadena = "ads005_01a_p01 " + ar_ide_mod + ", " + ar_ges_tio + ", '"+ ar_tex_bus + "', " + ar_cri_ter ;
-            return ob_con_ecA.fe_exe_sql(cadena);
+                cadena = new StringBuilder();
+                cadena.AppendLine("INSERT INTO ads005 VALUES(" + ges_tio + ", '" + ide_doc + "', " + nro_tal + ", '" + fec_ini + "','" + fec_fin + "', " + con_act + ", " + con_fin + ")");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
-        /// Funcion consultar "CONSULTA TALONARIO POR ID. DOCUMENTOS"
+        /// Funcion "Modifica Numeración"
+        /// </summary>
+        /// <param name="ges_tio">Gestión</param>
+        /// <param name="ide_doc">ID. Documento</param>
+        /// <param name="nro_tal">Nro. Talonario</param>
+        /// <param name="fec_ini">Fecha Inicial</param>
+        /// <param name="fec_fin">Fecha Final</param>
+        /// <param name="con_act">Contador Actual</param>
+        /// <param name="con_fin">Contador Final</param>
+        public void Fe_edi_tar(int ges_tio, string ide_doc, int nro_tal, string fec_ini, string fec_fin,
+                               int con_act, int con_fin){
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("UPDATE ads005 SET va_fec_ini = '" + fec_ini + "',");
+                cadena.AppendLine("                  va_fec_fin = '" + fec_fin + "',");
+                cadena.AppendLine("                  va_con_act =  " + con_act + ",");
+                cadena.AppendLine("                  va_con_fin =  " + con_fin + "',");
+                cadena.AppendLine("            WHERE va_ges_tio =  " + ges_tio + "");
+                cadena.AppendLine("              AND va_ide_doc = '" + ide_doc + "'");
+                cadena.AppendLine("              AND va_nro_tal =  " + nro_tal + "");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion "Elimina Numeración"
+        /// </summary>
+        /// <param name="ges_tio">Gestión</param>
+        /// <param name="ide_doc">ID. Documento</param>
+        /// <param name="nro_tal">Nro. Talonario</param>
+        public void Fe_eli_min(int ges_tio, string ide_doc, int nro_tal)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("DELETE ads005 WHERE va_ges_tio =  " + ges_tio + "");
+                cadena.AppendLine("                AND va_ide_doc = '" + ide_doc + "'");
+                cadena.AppendLine("                AND va_nro_tal =  " + nro_tal + "");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Función: "FILTRA NUMERACIÓN"
+        /// </summary>
+        /// <param name="ide_mod">ID. Módulo</param>
+        /// <param name="ges_tio">Gestión</param>
+        /// <param name="tex_bus">Texto a Buscar</param>
+        /// <param name="cri_bus">Criterio de Busqueda</param>
+        /// <param name="est_doc">Estado Documento (H=Habilitado; N=Deshabilitado; T=Todos)</param>
+        /// <returns></returns>
+        public DataTable Fe_bus_car(int ide_mod, int ges_tio, string tex_bus, int cri_bus, string est_doc)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads005_01a_p01 " + ide_mod + ", " + ges_tio + ", '" + tex_bus + "', " + cri_bus + ", '" + est_doc + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }        
+
+        /// <summary>
+        /// Funcion "CONSULTAR NUMERACIÓN"
+        /// </summary>
+        /// <param name="ges_tio">Gestión</param>
+        /// <param name="ide_doc">ID. Documento</param>
+        /// <param name="nro_tal">Nro. Talonario</param>
+        /// <returns></returns>
+        public DataTable Fe_con_nta(int ges_tio, string ide_doc, int nro_tal)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads005_05a_p01 '" + ide_doc + "', " + nro_tal + ", " + ges_tio + "");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }        
+
+        /// <summary>
+        /// Funcion "CONSULTA NUMERACIÓN POR ID. DOCUMENTOS"
         /// </summary>
         /// <param name="ide_doc">ID. Documentos</param>
         /// <returns></returns>
@@ -98,14 +146,14 @@ namespace CRS_NEG
         {
             try
             {
-                /*cadena = new StringBuilder();
-                cadena.AppendLine("SELECT ads004.va_ide_doc, ads003.va_nom_doc, ads004.va_nro_tal, ads004.va_nom_tal,");
-                cadena.AppendLine("       ads004.va_tip_tal, ads004.va_nro_aut, ads004.va_for_mat, ads004.va_nro_cop,");
-                cadena.AppendLine("       ads004.va_fir_ma1, ads004.va_fir_ma2, ads004.va_fir_ma3, ads004.va_fir_ma4,");
-                cadena.AppendLine("       ads004.va_for_log, ads004.va_est_ado");
-                cadena.AppendLine("  FROM ads004, ads003");
-                cadena.AppendLine(" WHERE ads004.va_ide_doc = ads003.va_ide_doc");
-                cadena.AppendLine("   AND ads004.va_ide_doc = '" + ide_doc + "'");*/
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT ads005.va_ges_tio, ads005.va_ide_doc, ads005.va_nro_tal, ads004.va_nom_tal,");
+                cadena.AppendLine("       ads005.va_fec_ini, ads005.va_fec_fin, ads005.va_con_act, ads005.va_con_fin");
+                cadena.AppendLine("  FROM ads005, ads004");
+                cadena.AppendLine(" WHERE ads005.va_ide_doc = ads004.va_ide_doc");
+                cadena.AppendLine("   AND ads005.va_nro_tal = ads004.va_nro_tal");
+                cadena.AppendLine("   AND ads005.va_ide_doc = '" + ide_doc + "'");
+                cadena.AppendLine("   AND ads005.va_nro_tal =  " + nro_tal + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -115,20 +163,26 @@ namespace CRS_NEG
         }
 
 
-        //** FUNCIONES DE REPORTES
-
         /// <summary>
-        /// Funcion externa reporte: PERIODOS DE UNA GESTION
+        /// Informe: Numeración de Talonarios
         /// </summary>
-        /// <param name="ar_ges_tio"></param>
+        /// <param name="ges_tio">Gestión</param>
+        /// <param name="ide_mod">ID. Módulo</param>
+        /// <param name="doc_ini">ID. Documento Inicial</param>
+        /// <param name="doc_fin">ID. Documento Final</param>
         /// <returns></returns>
-        public DataTable Fe_ads005_R01(int ar_ide_mod, string ar_est_ado)
-        {   
-            cadena = " ads005_R01 " + ar_ide_mod + ", '" + ar_est_ado + "'" ;
-
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-     
+        public DataTable Fe_inf_R01(int ges_tio, int ide_mod, string doc_ini, string doc_fin)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads005_R01 " + ges_tio + ", " + ide_mod + ", '" + doc_ini + "', '" + doc_fin + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }     
     }
 }

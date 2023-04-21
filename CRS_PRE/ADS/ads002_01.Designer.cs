@@ -75,7 +75,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(185, 6);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -99,21 +99,21 @@
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(180, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(178, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(180, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(178, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(180, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(178, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
@@ -160,7 +160,7 @@
             this.groupBox1.Location = new System.Drawing.Point(2, -5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(570, 59);
-            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lb_nom_apl
@@ -169,7 +169,7 @@
             this.lb_nom_apl.Location = new System.Drawing.Point(122, 14);
             this.lb_nom_apl.Name = "lb_nom_apl";
             this.lb_nom_apl.Size = new System.Drawing.Size(16, 13);
-            this.lb_nom_apl.TabIndex = 32;
+            this.lb_nom_apl.TabIndex = 2;
             this.lb_nom_apl.Text = "...";
             // 
             // bt_bus_car
@@ -180,7 +180,7 @@
             this.bt_bus_car.Location = new System.Drawing.Point(472, 32);
             this.bt_bus_car.Name = "bt_bus_car";
             this.bt_bus_car.Size = new System.Drawing.Size(75, 23);
-            this.bt_bus_car.TabIndex = 30;
+            this.bt_bus_car.TabIndex = 6;
             this.bt_bus_car.Text = "&Buscar";
             this.bt_bus_car.UseVisualStyleBackColor = false;
             this.bt_bus_car.Click += new System.EventHandler(this.bt_bus_car_Click);
@@ -196,7 +196,7 @@
             this.cb_est_bus.Location = new System.Drawing.Point(355, 33);
             this.cb_est_bus.Name = "cb_est_bus";
             this.cb_est_bus.Size = new System.Drawing.Size(114, 21);
-            this.cb_est_bus.TabIndex = 25;
+            this.cb_est_bus.TabIndex = 5;
             // 
             // cb_prm_bus
             // 
@@ -209,7 +209,7 @@
             this.cb_prm_bus.Location = new System.Drawing.Point(254, 33);
             this.cb_prm_bus.Name = "cb_prm_bus";
             this.cb_prm_bus.Size = new System.Drawing.Size(95, 21);
-            this.cb_prm_bus.TabIndex = 20;
+            this.cb_prm_bus.TabIndex = 4;
             // 
             // tb_tex_bus
             // 
@@ -217,8 +217,8 @@
             this.tb_tex_bus.Location = new System.Drawing.Point(5, 34);
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(245, 20);
-            this.tb_tex_bus.TabIndex = 15;
-            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_tex_bus.TabIndex = 3;
+            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
             // lb_ide_apl
             // 
@@ -227,7 +227,7 @@
             this.lb_ide_apl.Location = new System.Drawing.Point(9, 13);
             this.lb_ide_apl.Name = "lb_ide_apl";
             this.lb_ide_apl.Size = new System.Drawing.Size(56, 13);
-            this.lb_ide_apl.TabIndex = 1;
+            this.lb_ide_apl.TabIndex = 0;
             this.lb_ide_apl.Text = "Aplicación";
             // 
             // tb_ide_apl
@@ -237,9 +237,9 @@
             this.tb_ide_apl.MaxLength = 10;
             this.tb_ide_apl.Name = "tb_ide_apl";
             this.tb_ide_apl.Size = new System.Drawing.Size(53, 20);
-            this.tb_ide_apl.TabIndex = 10;
+            this.tb_ide_apl.TabIndex = 1;
             this.tb_ide_apl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tb_ide_apl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_ide_apl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             this.tb_ide_apl.Validated += new System.EventHandler(this.tb_ide_apl_Validated);
             // 
             // groupBox2
@@ -248,7 +248,7 @@
             this.groupBox2.Location = new System.Drawing.Point(2, 48);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(570, 199);
-            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
             // dg_res_ult
@@ -289,7 +289,7 @@
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dg_res_ult.Size = new System.Drawing.Size(559, 184);
-            this.dg_res_ult.TabIndex = 36;
+            this.dg_res_ult.TabIndex = 0;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
@@ -330,7 +330,7 @@
             this.gb_ctr_btn.Location = new System.Drawing.Point(2, 242);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(570, 40);
-            this.gb_ctr_btn.TabIndex = 31;
+            this.gb_ctr_btn.TabIndex = 2;
             this.gb_ctr_btn.TabStop = false;
             // 
             // bt_ace_pta
@@ -342,7 +342,7 @@
             this.bt_ace_pta.Location = new System.Drawing.Point(412, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
-            this.bt_ace_pta.TabIndex = 46;
+            this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
@@ -357,7 +357,7 @@
             this.bt_can_cel.Location = new System.Drawing.Point(490, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
-            this.bt_can_cel.TabIndex = 45;
+            this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);

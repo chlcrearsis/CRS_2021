@@ -9,12 +9,19 @@ PRINT 'ads006 : Tipo de Usuario'
 CREATE TABLE ads006
 (
 	--** Llave Primaria
-	va_ide_tus	INT			 NOT NULL DEFAULT(0),	--** ID. Tipo de Usuario
+	va_ide_tus	INT			    NOT NULL DEFAULT(0),	--** ID. Tipo de Usuario
 	--** Atributos
-	va_nom_tus	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre
-	va_des_tus	VARCHAR(120) NOT NULL DEFAULT(''),	--** Descripción
-	va_est_ado	CHAR		 NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
+	va_nom_tus	VARCHAR(30)	    NOT NULL DEFAULT(''),	--** Nombre
+	va_des_tus	VARCHAR(120)    NOT NULL DEFAULT(''),	--** Descripción	
+	va_est_ado	CHAR		    NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_ads006 PRIMARY KEY(va_ide_tus)
 )
 GO
+
+
+
+--** INSERTA TIPO DE USUARIO POR DEFECTO
+INSERT INTO ads006 VALUES (1, 'Administrador', 'Usuario con privilegio alto', 'H')
+INSERT INTO ads006 VALUES (2, 'Supervisor', 'Usuario con permisos restringido', 'H')
+INSERT INTO ads006 VALUES (3, 'Operativo', 'Usuario con permisos básicos', 'H')

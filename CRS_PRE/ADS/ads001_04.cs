@@ -10,7 +10,7 @@ namespace CRS_PRE
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads001 - Módulo del Sistema                           */
     /*      Opción: Habilita/Deshabilita Registro                         */
-    /*       Autor: JEJR - Crearsis             Fecha: 18-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 20-04-2023         */
     /**********************************************************************/
     public partial class ads001_04 : Form
     {
@@ -88,22 +88,22 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Deshabilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Habilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK)
                 {
+                    // Habilita/Deshabilita el registro
                     if (tb_est_ado.Text == "Habilitado")
                         o_ads001.Fe_hab_des(int.Parse(tb_ide_mod.Text), "N");
                     else
                         o_ads001.Fe_hab_des(int.Parse(tb_ide_mod.Text), "H");
-
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Actualiza Ventana Buscar
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
-                    // Cierra la Ventana
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);                    
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }

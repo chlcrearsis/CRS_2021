@@ -37,7 +37,7 @@ namespace CRS_PRE
 
             // Obtiene y Desplega el tipo de atributo inicial y final
             Tabla = new DataTable();
-            Tabla = o_ads001.Fe_lis_mod("1");
+            Tabla = o_ads001.Fe_lis_mod("H");
             if (Tabla.Rows.Count > 0){
                 // Obtiene el Tipo de Atributo Inicial
                 tb_mod_ini.Text = Tabla.Rows[0]["va_ide_mod"].ToString().Trim();
@@ -96,32 +96,39 @@ namespace CRS_PRE
             }
         }
 
-        private void bt_mod_ini_Click(object sender, EventArgs e)
-        {
-            Fi_bus_tip(1);
-        }
-
-        private void bt_mod_fin_Click(object sender, EventArgs e)
-        {
-            Fi_bus_tip(2);
-        }
-
-
-        private void Fi_bus_tip(int ini_fin)
+        /// <summary>
+        /// Buscar Modulo
+        /// </summary>
+        /// <param name="ini_fin">Inidicador de Campos</param>
+        private void Fi_bus_mod(int ini_fin)
         {
             ads001_01 frm = new ads001_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
-            if (frm.DialogResult == DialogResult.OK){
-                if (ini_fin == 1){
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                if (ini_fin == 1)
+                {
                     tb_mod_ini.Text = frm.tb_ide_mod.Text;
                     Fi_obt_mod(1, int.Parse(tb_mod_ini.Text));
-                }else{
+                }
+                else
+                {
                     tb_mod_fin.Text = frm.tb_ide_mod.Text;
                     Fi_obt_mod(2, int.Parse(tb_mod_fin.Text));
                 }
             }
         }
+
+        private void bt_mod_ini_Click(object sender, EventArgs e)
+        {
+            Fi_bus_mod(1);
+        }
+
+        private void bt_mod_fin_Click(object sender, EventArgs e)
+        {
+            Fi_bus_mod(2);
+        }        
 
         private void tb_tip_ini_KeyDown(object sender, KeyEventArgs e)
         {
@@ -129,7 +136,7 @@ namespace CRS_PRE
             if (e.KeyData == Keys.Up)
             {
                 // Abre la ventana Busca Usuario
-                Fi_bus_tip(1);
+                Fi_bus_mod(1);
             }
         }
 
@@ -139,7 +146,7 @@ namespace CRS_PRE
             if (e.KeyData == Keys.Up)
             {
                 // Abre la ventana Busca Usuario
-                Fi_bus_tip(2);
+                Fi_bus_mod(2);
             }
         }       
 

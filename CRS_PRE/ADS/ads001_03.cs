@@ -10,7 +10,7 @@ namespace CRS_PRE
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads001 - Módulo del Sistema                           */
     /*      Opción: Edita Registro                                        */
-    /*       Autor: JEJR - Crearsis             Fecha: 18-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 20-04-2023         */
     /**********************************************************************/
     public partial class ads001_03 : Form
     {
@@ -33,8 +33,8 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
-            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
             tb_abr_mod.Text = frm_dat.Rows[0]["va_abr_mod"].ToString();
+            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();            
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             else
@@ -80,7 +80,7 @@ namespace CRS_PRE
             // Valida que el registro este en el sistema
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count == 0){
-                return "El Módulo no se encuentra registrado";
+                return "El Módulo NO se encuentra registrado";
             }
 
             // Valida que el modulo no esta deshabilitado
@@ -93,7 +93,7 @@ namespace CRS_PRE
             Tabla = o_ads001.Fe_con_abr(tb_abr_mod.Text.Trim(), int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count > 0){
                 tb_abr_mod.Focus();
-                return "YA existe otra Módulo con la misma abreviación";
+                return "YA existe otra Módulo con la misma Abreviación";
             }
 
             // Verifica SI existe otro registro con el mismo nombre
@@ -101,7 +101,7 @@ namespace CRS_PRE
             Tabla = o_ads001.Fe_con_nom(tb_nom_mod.Text.Trim(), int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count > 0){
                 tb_nom_mod.Focus();
-                return "YA existe otra Módulo con el mismo nombre";
+                return "YA existe otra Módulo con el mismo Nombre";
             }
 
             return "OK";
@@ -123,10 +123,13 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
-                    // Edita Tipo de Atributo
-                    o_ads001.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_abr_mod.Text, tb_nom_mod.Text);
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Edita el registro
+                    o_ads001.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_abr_mod.Text.Trim(), tb_nom_mod.Text.Trim());
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }

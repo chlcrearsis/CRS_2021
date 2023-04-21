@@ -150,7 +150,7 @@ namespace CRS_NEG
         {
             int nro_ped = 0;
 
-            Tab_ads005 =  o_ads005.Fe_con_num(ar_doc_ped, ar_nro_tal, ar_ges_ped);
+            Tab_ads005 =  o_ads005.Fe_con_nta(ar_ges_ped, ar_doc_ped, ar_nro_tal);
           
             if (Tab_ads005.Rows.Count == 0)
                 nro_ped = 0;

@@ -216,7 +216,7 @@
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(254, 20);
             this.tb_tex_bus.TabIndex = 15;
-            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
             // lb_ide_doc
             // 
@@ -235,7 +235,7 @@
             this.tb_ide_doc.Name = "tb_ide_doc";
             this.tb_ide_doc.Size = new System.Drawing.Size(42, 20);
             this.tb_ide_doc.TabIndex = 10;
-            this.tb_ide_doc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_ide_doc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             this.tb_ide_doc.Validated += new System.EventHandler(this.Tb_ide_doc_Validated);
             // 
             // groupBox2

@@ -255,13 +255,13 @@ namespace CRS_PRE.INV
                 {
 
                     // Obtiene Gestion
-                    int ges_tio =  int.Parse(o_ads016.Fe_obt_ges(tb_fec_cmp.Value).Rows[0]["va_ges_tio"].ToString());
+                    //int ges_tio =  int.Parse(o_ads016.Fe_ges_fec(tb_fec_cmp.Value).Rows[0]["va_ges_tio"].ToString());
                     // GRABA COMPRA
-                    tab_cmp = o_inv007.fu_gra_cmp(va_cod_tmp, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text),
-                                         ges_tio, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
-                                         "B", tb_fec_cmp.Value, cb_for_pag.SelectedIndex, 0, 0,
-                                         0, 0, 0, 1,
-                                         decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, "", Program.gl_usr_usr);
+                    //tab_cmp = o_inv007.fu_gra_cmp(va_cod_tmp, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text),
+                    //                     ges_tio, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
+                    //                     "B", tb_fec_cmp.Value, cb_for_pag.SelectedIndex, 0, 0,
+                    //                     0, 0, 0, 1,
+                    //                     decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, "", Program.gl_usr_usr);
 
 
                     // Crea tabla para pasar datos
@@ -382,7 +382,7 @@ namespace CRS_PRE.INV
             tab_prm.Rows[0]["va_ide_doc"] = tb_cod_doc.Text;
             tab_prm.Rows[0]["va_nom_doc"] = "Compra";
 
-            ads004_01b frm = new ads004_01b();
+            ads004_01 frm = new ads004_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_prm);
 
             if (frm.DialogResult == DialogResult.OK)

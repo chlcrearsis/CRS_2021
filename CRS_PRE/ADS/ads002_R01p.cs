@@ -10,7 +10,7 @@ namespace CRS_PRE
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads002 - Aplicación del Sistema                       */
     /*      Opción: Informe R01 - Parametros                              */
-    /*       Autor: JEJR - Crearsis             Fecha: 19-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 20-04-2023         */
     /**********************************************************************/
     public partial class ads002_R01p : Form
     {
@@ -37,7 +37,7 @@ namespace CRS_PRE
 
             // Obtiene y Desplega el tipo de atributo inicial y final
             Tabla = new DataTable();
-            Tabla = o_ads001.Fe_lis_mod("1");
+            Tabla = o_ads001.Fe_lis_mod("H");
             if (Tabla.Rows.Count > 0){
                 // Obtiene el Tipo de Atributo Inicial
                 tb_mod_ini.Text = Tabla.Rows[0]["va_ide_mod"].ToString().Trim();
@@ -55,18 +55,22 @@ namespace CRS_PRE
             }
         }
 
+        /// <summary>
+        /// Valida los datos proporcionados en pantalla
+        /// </summary>
+        /// <returns></returns>
         protected string Fi_val_dat()
         {
             try
             {
                 if (tb_mod_ini.Text == "")
-                    return "Debe proporcionar el Módulo Inicial";
+                    return "DEBE proporcionar el Módulo Inicial";
                 
                 if (tb_mod_fin.Text == "")
-                    return "Debe proporcionar el Módulo Final";                
+                    return "DEBE proporcionar el Módulo Final";                
 
                 if (int.Parse(tb_mod_ini.Text) > int.Parse(tb_mod_fin.Text))
-                    return "El Módulo Inicial DEBE ser menor al Módulo Final";                
+                    return "El Módulo Inicial DEBE ser MENOR al Módulo Final";                
 
                 return "OK";
             }
@@ -80,88 +84,99 @@ namespace CRS_PRE
         /// </summary>
         void Fi_obt_mod(int ini_fin, int ide_mod)
         {
+            // Obtiene y Desplega datos del Módulo
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(ide_mod);
             if (Tabla.Rows.Count == 0){
                 if (ini_fin == 1)
-                    lb_nmo_ini.Text = "";
+                    lb_nmo_ini.Text = "...";
                 else
-                    lb_nmo_fin.Text = "";
+                    lb_nmo_fin.Text = "...";
             }else{
-                if (ini_fin == 1){
+                if (ini_fin == 1)
                     lb_nmo_ini.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
-                }else{
+                else
                     lb_nmo_fin.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
-                }
             }
         }
 
-        private void bt_mod_ini_Click(object sender, EventArgs e)
-        {
-            Fi_bus_tip(1);
-        }
-
-        private void bt_mod_fin_Click(object sender, EventArgs e)
-        {
-            Fi_bus_tip(2);
-        }
-
-
-        private void Fi_bus_tip(int ini_fin)
+        /// <summary>
+        /// Función: Abre Formulario para Buscar el Módulo
+        /// </summary>
+        /// <param name="ini_fin">1=Modulo Inicial; 2=Módulo Final</param>
+        private void Fi_bus_mod(int ini_fin)
         {
             ads001_01 frm = new ads001_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
-            if (frm.DialogResult == DialogResult.OK){
-                if (ini_fin == 1){
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                if (ini_fin == 1)
+                {
                     tb_mod_ini.Text = frm.tb_ide_mod.Text;
                     Fi_obt_mod(1, int.Parse(tb_mod_ini.Text));
-                }else{
+                }
+                else
+                {
                     tb_mod_fin.Text = frm.tb_ide_mod.Text;
                     Fi_obt_mod(2, int.Parse(tb_mod_fin.Text));
                 }
             }
         }
 
-        private void tb_tip_ini_KeyDown(object sender, KeyEventArgs e)
+        // Evento Click: ID. Módulo Inicial
+        private void tb_mod_ini_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
             {
                 // Abre la ventana Busca Usuario
-                Fi_bus_tip(1);
+                Fi_bus_mod(1);
             }
         }
 
-        private void tb_tip_fin_KeyDown(object sender, KeyEventArgs e)
+        // Evento Click: ID. Módulo Final
+        private void tb_mod_fin_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
             {
                 // Abre la ventana Busca Usuario
-                Fi_bus_tip(2);
+                Fi_bus_mod(2);
             }
-        }       
+        }
 
+        // Evento Leave: ID. Módulo Inicial
         private void tb_mod_ini_Leave(object sender, EventArgs e)
         {
             // Obtiene el Tipo de Atributo Inicial           
             Fi_obt_mod(1, int.Parse(tb_mod_ini.Text));
-        }       
+        }
 
+        // Evento Leave: ID. Módulo Final
         private void tb_mod_fin_Leave(object sender, EventArgs e)
         {
             Fi_obt_mod(2, int.Parse(tb_mod_fin.Text));
         }
+
+        // Evento Click: Button Módulo Inicial
+        private void bt_mod_ini_Click(object sender, EventArgs e)
+        {
+            Fi_bus_mod(1);
+        }
+
+        // Evento Click: Button Módulo Final
+        private void bt_mod_fin_Click(object sender, EventArgs e)
+        {
+            Fi_bus_mod(2);
+        }                
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             // funcion para validar datos
             string msg_val = Fi_val_dat();
-            string est_ado = "";
-               int mod_ini = 0;
-               int mod_fin = 0;            
+            string est_ado = "";            
 
             if (msg_val != "OK")
             {
@@ -170,8 +185,8 @@ namespace CRS_PRE
             }
 
             // Obtiene parametros de pantalla
-            mod_ini = int.Parse(tb_mod_ini.Text);
-            mod_fin = int.Parse(tb_mod_fin.Text);
+            int mod_ini = int.Parse(tb_mod_ini.Text);
+            int mod_fin = int.Parse(tb_mod_fin.Text);
 
             // Obtiene el estado del reporte
             if (cb_est_ado.SelectedIndex == 0)

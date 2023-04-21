@@ -269,7 +269,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ads002_R01w";
-            this.Text = "Informe Definición de Atributos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "Aplicaciones del Sistema";
+            this.Text = "Aplicaciones del Sistema";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
             this.m_frm_hja.PerformLayout();

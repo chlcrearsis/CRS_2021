@@ -12,7 +12,7 @@ CREATE TABLE ads001
 	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo
 	--** Atributos
 	va_nom_mod	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre
-	va_abr_mod	VARCHAR(05)	 NOT NULL DEFAULT(''),	--** Abrebiacion
+	va_abr_mod	CHAR(03)	 NOT NULL DEFAULT(''),	--** Abrebiacion
 	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
 	CONSTRAINT pk1_ads001 PRIMARY KEY(va_ide_mod)

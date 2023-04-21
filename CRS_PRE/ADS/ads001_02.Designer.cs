@@ -51,7 +51,7 @@
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(336, 76);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lb_nom_mod
@@ -60,7 +60,7 @@
             this.lb_nom_mod.Location = new System.Drawing.Point(38, 46);
             this.lb_nom_mod.Name = "lb_nom_mod";
             this.lb_nom_mod.Size = new System.Drawing.Size(42, 13);
-            this.lb_nom_mod.TabIndex = 42;
+            this.lb_nom_mod.TabIndex = 2;
             this.lb_nom_mod.Text = "Módulo";
             // 
             // tb_nom_mod
@@ -70,7 +70,7 @@
             this.tb_nom_mod.MaxLength = 30;
             this.tb_nom_mod.Name = "tb_nom_mod";
             this.tb_nom_mod.Size = new System.Drawing.Size(166, 20);
-            this.tb_nom_mod.TabIndex = 30;
+            this.tb_nom_mod.TabIndex = 4;
             // 
             // lb_ide_mod
             // 
@@ -78,7 +78,7 @@
             this.lb_ide_mod.Location = new System.Drawing.Point(40, 20);
             this.lb_ide_mod.Name = "lb_ide_mod";
             this.lb_ide_mod.Size = new System.Drawing.Size(40, 13);
-            this.lb_ide_mod.TabIndex = 27;
+            this.lb_ide_mod.TabIndex = 0;
             this.lb_ide_mod.Text = "Código";
             // 
             // tb_abr_mod
@@ -89,7 +89,7 @@
             this.tb_abr_mod.MaxLength = 3;
             this.tb_abr_mod.Name = "tb_abr_mod";
             this.tb_abr_mod.Size = new System.Drawing.Size(47, 20);
-            this.tb_abr_mod.TabIndex = 20;
+            this.tb_abr_mod.TabIndex = 3;
             // 
             // tb_ide_mod
             // 
@@ -99,7 +99,7 @@
             this.tb_ide_mod.MaxLength = 2;
             this.tb_ide_mod.Name = "tb_ide_mod";
             this.tb_ide_mod.Size = new System.Drawing.Size(45, 20);
-            this.tb_ide_mod.TabIndex = 10;
+            this.tb_ide_mod.TabIndex = 1;
             this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_ide_mod.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_mod_KeyPress);
             // 
@@ -111,7 +111,7 @@
             this.gb_ctr_btn.Location = new System.Drawing.Point(4, 66);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(336, 40);
-            this.gb_ctr_btn.TabIndex = 43;
+            this.gb_ctr_btn.TabIndex = 1;
             this.gb_ctr_btn.TabStop = false;
             // 
             // bt_ace_pta

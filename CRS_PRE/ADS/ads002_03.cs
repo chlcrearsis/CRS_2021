@@ -10,7 +10,7 @@ namespace CRS_PRE
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads002 - Aplicaciones del Sistema                     */
     /*      Opción: Edita Registro                                        */
-    /*       Autor: JEJR - Crearsis             Fecha: 19-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 20-04-2023         */
     /**********************************************************************/
     public partial class ads002_03 : Form
     {
@@ -34,7 +34,7 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
-            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
+            lb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
             tb_ide_apl.Text = frm_dat.Rows[0]["va_ide_apl"].ToString();
             tb_nom_apl.Text = frm_dat.Rows[0]["va_nom_apl"].ToString();
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
@@ -49,7 +49,7 @@ namespace CRS_PRE
         private void Fi_lim_pia()
         {
             tb_ide_mod.Text = string.Empty;
-            tb_nom_mod.Text = string.Empty;
+            lb_nom_mod.Text = string.Empty;
             tb_ide_apl.Text = string.Empty;
             tb_nom_apl.Text = string.Empty;
             tb_est_ado.Text = string.Empty;
@@ -90,7 +90,8 @@ namespace CRS_PRE
             if ((tb_ide_apl.Text.ToString().CompareTo("ads200") == 0) ||
                 (tb_ide_apl.Text.ToString().CompareTo("inv200") == 0) ||
                 (tb_ide_apl.Text.ToString().CompareTo("cmr200") == 0) ||
-                (tb_ide_apl.Text.ToString().CompareTo("res200") == 0))
+                (tb_ide_apl.Text.ToString().CompareTo("res200") == 0) ||
+                (tb_ide_apl.Text.ToString().CompareTo("tes200") == 0))
                 return "No se puede modificar esta Aplicación, es reservado para el sistema";            
 
             return "OK";
@@ -113,10 +114,13 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
-                    // Edita Tipo de Atributo
+                    // Edita el registro
                     o_ads002.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, tb_nom_apl.Text);
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_apl.Text));
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }

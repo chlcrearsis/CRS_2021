@@ -122,7 +122,7 @@
             this.tb_mod_fin.Size = new System.Drawing.Size(37, 20);
             this.tb_mod_fin.TabIndex = 5;
             this.tb_mod_fin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_mod_fin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_tip_fin_KeyDown);
+            this.tb_mod_fin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_mod_fin_KeyDown);
             this.tb_mod_fin.Leave += new System.EventHandler(this.tb_mod_fin_Leave);
             // 
             // bt_mod_fin
@@ -157,7 +157,7 @@
             this.tb_mod_ini.Size = new System.Drawing.Size(37, 20);
             this.tb_mod_ini.TabIndex = 1;
             this.tb_mod_ini.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_mod_ini.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_tip_ini_KeyDown);
+            this.tb_mod_ini.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_mod_ini_KeyDown);
             this.tb_mod_ini.Leave += new System.EventHandler(this.tb_mod_ini_Leave);
             // 
             // bt_mod_ini

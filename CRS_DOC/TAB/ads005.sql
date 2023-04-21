@@ -14,11 +14,10 @@ CREATE TABLE ads005
 	va_nro_tal	INT			 NOT NULL DEFAULT(0),	--** Nro de Talonario
 	--** Atributos
 	va_fec_ini	DATETIME	 NOT NULL,	            --** Fecha Inicial 
-	va_fec_fin	DATETIME	 NOT NULL,	            --** Fecha Final
-	va_nro_ini	INT			 NOT NULL DEFAULT(0),	--** Numero Inicial
-	va_nro_fin	INT			 NOT NULL DEFAULT(0),	--** Numero Final
-	va_con_tad	INT			 NOT NULL DEFAULT(0),	--** Contador Actual
+	va_fec_fin	DATETIME	 NOT NULL,	            --** Fecha Final	
+	va_con_act	INT			 NOT NULL DEFAULT(0),	--** Contador Actual
+	va_con_fin	INT			 NOT NULL DEFAULT(0),	--** Contador Final	
 
-	CONSTRAINT pk1_ads005 PRIMARY KEY(va_ide_doc, va_nro_tal, va_ges_tio)
+	CONSTRAINT pk1_ads005 PRIMARY KEY(va_ges_tio, va_ide_doc, va_nro_tal)
 )
 GO

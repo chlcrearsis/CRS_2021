@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRS_PRE {
+namespace CRS_PRE.ADS {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -90,7 +90,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ag_ges_tio {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_nom_emp {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -106,9 +106,33 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_nom_emp {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_ord_dat {
             get {
                 return this.DataDefinition.ParameterFields[2];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_ges_tio {
+            get {
+                return this.DataDefinition.ParameterFields[3];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_ges_tio {
+            get {
+                return this.DataDefinition.ParameterFields[4];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_ord_dat {
+            get {
+                return this.DataDefinition.ParameterFields[5];
             }
         }
     }

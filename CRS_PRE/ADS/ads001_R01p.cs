@@ -9,7 +9,7 @@ namespace CRS_PRE
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads001 - Módulo del Sistema                           */
     /*      Opción: Informe R01 - Parametros                              */
-    /*       Autor: JEJR - Crearsis             Fecha: 18-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 18-04-2023         */
     /**********************************************************************/
     public partial class ads001_R01p : Form
     {
@@ -35,7 +35,12 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
             try
-            {                
+            {   // Verifica si hay algún módulo registrado
+                Tabla = new DataTable();
+                Tabla = o_ads001.Fe_lis_mod("T");
+                if (Tabla.Rows.Count == 0)
+                    return "NO hay ningún módulo registrado en la Base de Datos";
+
                 return "OK";
             }
             catch (Exception) {
@@ -50,6 +55,7 @@ namespace CRS_PRE
             string est_ado = "";
             string ord_dat = "";
             string msg_val = Fi_val_dat();
+
             if (msg_val != "OK")
             {
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);

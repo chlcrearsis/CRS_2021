@@ -1,129 +1,168 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads016 - Gestión Periodo                              */
+    /*      Opción: Edita Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 18-04-2023         */
+    /**********************************************************************/
     public partial class ads016_03 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
+        // Instancias
         ads016 o_ads016 = new ads016();
-
-        DataTable tabla = new DataTable();
-
+        DataTable Tabla = new DataTable();
 
         public ads016_03()
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {
-            tb_ges_tio.Text = frm_dat.Rows[0][0].ToString();
-            tb_ges_per.Text = frm_dat.Rows[0][1].ToString();
-            tb_nom_per.Text = frm_dat.Rows[0][2].ToString();
-            tb_fec_ini.Text = frm_dat.Rows[0][3].ToString();
-            tb_fec_fin.Text = frm_dat.Rows[0][4].ToString();
+            // Limpia Campos
+            Fi_lim_pia();
 
+            // Despliega Datos en Pantalla
+            tb_ges_tio.Text = frm_dat.Rows[0]["va_ges_tio"].ToString();
+            tb_ges_per.Text = frm_dat.Rows[0]["va_ges_per"].ToString();
+            tb_nom_per.Text = frm_dat.Rows[0]["va_nom_per"].ToString();
+            tb_fec_ini.Text = frm_dat.Rows[0]["va_fec_ini"].ToString();
+            tb_fec_fin.Text = frm_dat.Rows[0]["va_fec_fin"].ToString();
             tb_nom_per.Focus();
         }
 
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {
+            tb_ges_tio.Text = string.Empty;
+            tb_ges_per.Text = string.Empty;
+            tb_nom_per.Text = string.Empty;
+            tb_fec_ini.Text = string.Empty;
+            tb_fec_fin.Text = string.Empty;
+            tb_nom_per.Focus();
+        }
+
+        // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
-
-            int val = 0;
-            int.TryParse(tb_ges_per.Text.Trim(), out val );
-            if (val <= 0)
+            // Valida que el campo código NO este vacio
+            if (tb_ges_per.Text.Trim() == "")
             {
-                return "Debe proporcionar un periodo valido";
+                tb_ges_per.Focus();
+                return "DEBE proporcionar el Periodo";
             }
-
-            if (val > 12)
+            if (tb_ges_tio.Text.Trim() == "")
             {
-                return "Debe proporcionar un periodo valido (1-12)";
+                tb_ges_tio.Focus();
+                return "DEBE proporcionar la Gestión";
             }
-
-            int.TryParse(tb_ges_tio.Text.Trim(), out val);
-            if (val <= 2010)
+            if (tb_nom_per.Text.Trim() == "")
             {
-                return "Debe proporcionar una gestion valida";
+                tb_nom_per.Focus();
+                return "DEBE proporcionar el Nombre del Periodo";
             }
-
-            if(tb_nom_per.Text.Trim()=="")
-                return "Debe proporcionar el nombre del periodo";
-
-            DateTime dval;
-            DateTime.TryParse(tb_fec_ini.Text, out dval);
-            if(dval == DateTime.Parse("01/01/0001"))
+            if (tb_fec_ini.Text.Trim() == "  /  /")
             {
                 tb_fec_ini.Focus();
-                return "Debe proporcionar una fecha inicial valida";
+                return "DEBE proporcionar la Fecha Inicial";
             }
-            DateTime.TryParse(tb_fec_fin.Text, out dval);
-            if (dval == DateTime.Parse("01/01/0001"))
+            if (tb_fec_fin.Text.Trim() == "  /  /")
             {
                 tb_fec_fin.Focus();
-                return "Debe proporcionar una fecha final valida";
+                return "DEBE proporcionar la Fecha Inicial";
             }
 
+            // Valida que el Periodo sea un periodo valido            
+            int.TryParse(tb_ges_per.Text.Trim(), out int ges_per);
+            if (ges_per <= 0 || ges_per > 12)
+            {
+                return "DEBE proporcionar un Periodo Válido (1-12)";
+            }
+
+            // Valida que la Gestion sea una Gestion valida
+            int.TryParse(tb_ges_tio.Text.Trim(), out int ges_tio);
+            if (ges_tio < 1900 && ges_tio > 2900)
+            {
+                tb_ges_tio.Focus();
+                return "DEBE proporcionar una Gestión Válida";
+            }
+
+            // Valida que la fecha inicial sea una fecha valida
+            DateTime.TryParse(tb_fec_ini.Text, out DateTime fec_ini);
+            if (fec_ini == DateTime.Parse("01/01/0001"))
+            {
+                tb_fec_ini.Focus();
+                return "DEBE proporcionar una Fecha Inicial Válida";
+            }
+            // Valida que la fecha final sea una fecha valida
+            DateTime.TryParse(tb_fec_fin.Text, out DateTime fec_fin);
+            if (fec_fin == DateTime.Parse("01/01/0001"))
+            {
+                tb_fec_fin.Focus();
+                return "DEBE proporcionar una Fecha Final Válida";
+            }
+
+            // Válida que la fecha inicial sea menor que la fecha final
             if (DateTime.Parse(tb_fec_ini.Text) > DateTime.Parse(tb_fec_fin.Text))
             {
                 tb_fec_fin.Focus();
-                return "La fecha final debe ser mayor a la inicial";
+                return "La Fecha Final DEBE ser MAYOR a la Fecha Inicial";
             }
 
-            // Valida que exista ese periodo en la base de datos
-            tabla = new DataTable();
-            tabla = o_ads016.Fe_con_per(int.Parse(tb_ges_tio.Text), int.Parse(tb_ges_per.Text));
-            if (tabla.Rows.Count == 0)
-                return "El periodo que intenta editar no se encuentra registrado en la base de datos, verifique por favor";
+            // Valida si ya existe ese nombre de periodo en la base de datos
+            Tabla = new DataTable();
+            Tabla = o_ads016.Fe_con_nom(tb_nom_per.Text, int.Parse(tb_ges_tio.Text), int.Parse(tb_ges_per.Text));
+            if (Tabla.Rows.Count > 0)
+                return "YA existe un Periodo con el mismo nombre en la misma Gestión";
 
-            return "";
-        }
-      
-        private void Bt_can_cel_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
+
+            return "OK";
         }
 
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        // Evento Click: Button Aceptar
+        private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            string msg_val = "";
             DialogResult msg_res;
 
-            // funcion para validar datos
-            msg_val = Fi_val_dat();
-            if (msg_val != "")
+            try
             {
-                MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
-                return;
+                // funcion para validar datos
+                string msg_val = Fi_val_dat();
+                if (msg_val != "OK")
+                {
+                    MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
+                    return;
+                }
+                msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg_res == DialogResult.OK)
+                {
+                    // Edita Tipo de Atributo
+                    o_ads016.Fe_edi_tar(int.Parse(tb_ges_tio.Text), int.Parse(tb_ges_per.Text),
+                                        tb_nom_per.Text, tb_fec_ini.Text, tb_fec_fin.Text);
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frm_pad.Fe_act_frm(int.Parse(tb_ges_tio.Text), int.Parse(tb_ges_per.Text));
+                    cl_glo_frm.Cerrar(this);
+                }
             }
-            msg_res = MessageBox.Show("Esta seguro Editar el periodo ?", "Edita periodo", MessageBoxButtons.OKCancel);
-            if (msg_res == DialogResult.OK)
+            catch (Exception ex)
             {
-                //Registrar usuario
-                o_ads016.Fe_edi_per(int.Parse(tb_ges_tio.Text),int.Parse(tb_ges_per.Text),tb_nom_per.Text,
-                    DateTime.Parse(tb_fec_ini.Text), DateTime.Parse(tb_fec_fin.Text));
-                MessageBox.Show("Los datos se grabaron correctamente", "Edita periodo", MessageBoxButtons.OK);
-                frm_pad.fi_bus_car(int.Parse(tb_ges_tio.Text));
-                
-                cl_glo_frm.Cerrar(this);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        // Evento Click: Button Cancelar
+        private void bt_can_cel_Click(object sender, EventArgs e)
+        {
+            cl_glo_frm.Cerrar(this);
         }
     }
 }

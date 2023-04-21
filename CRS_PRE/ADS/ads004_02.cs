@@ -29,7 +29,9 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
+            // Limpia Campos
             Fi_lim_pia();
+            // Inicializa Campos
             tb_ide_doc.Text = string.Empty;
             tb_nom_doc.Text = string.Empty;
             tb_for_mat.Text = "0";

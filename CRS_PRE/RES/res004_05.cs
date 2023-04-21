@@ -671,7 +671,7 @@ namespace CRS_PRE.CMR
             }
 
 
-            ads004_01b frm = new ads004_01b();
+            ads004_01 frm = new ads004_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_prm);
 
             if (frm.DialogResult == DialogResult.OK)

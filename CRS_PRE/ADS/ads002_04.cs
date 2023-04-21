@@ -10,7 +10,7 @@ namespace CRS_PRE
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads002 - Aplicaciones del Sistema                     */
     /*      Opción: Habilita/Deshabilita Registro                         */
-    /*       Autor: JEJR - Crearsis             Fecha: 19-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 20-04-2023         */
     /**********************************************************************/
     public partial class ads002_04 : Form
     {
@@ -34,7 +34,7 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
-            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
+            lb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
             tb_ide_apl.Text = frm_dat.Rows[0]["va_ide_apl"].ToString();
             tb_nom_apl.Text = frm_dat.Rows[0]["va_nom_apl"].ToString();
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
@@ -47,7 +47,7 @@ namespace CRS_PRE
         private void Fi_lim_pia()
         {
             tb_ide_mod.Text = string.Empty;
-            tb_nom_mod.Text = string.Empty;
+            lb_nom_mod.Text = string.Empty;
             tb_ide_apl.Text = string.Empty;
             tb_nom_apl.Text = string.Empty;
             tb_est_ado.Text = string.Empty;
@@ -59,6 +59,10 @@ namespace CRS_PRE
             // Valida que el campo código NO este vacio
             if (tb_ide_mod.Text.Trim() == "")
                 return "DEBE proporcionar el Código del Módulo";
+
+            // Valida que el campo aplicacion NO este vacio
+            if (tb_ide_apl.Text.Trim() == "")
+                return "DEBE proporcionar el ID. de Aplicación";
 
             // Valida que el campo código NO este vacio
             int.TryParse(tb_ide_mod.Text, out int cod_gru);
@@ -104,22 +108,22 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Deshabilitar la Aplicación?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Habilitar la Aplicación?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK)
                 {
+                    // Habilita/Deshabilita el registro
                     if (tb_est_ado.Text == "Habilitado")
                         o_ads002.Fe_hab_des(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, "N");
                     else
-                        o_ads002.Fe_hab_des(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, "H");
-
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Actualiza Ventana Buscar
+                        o_ads002.Fe_hab_des(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, "H");                    
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_apl.Text));
-                    // Cierra la Ventana
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }
@@ -133,8 +137,6 @@ namespace CRS_PRE
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }
-
-        
+        }        
     }
 }

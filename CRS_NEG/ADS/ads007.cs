@@ -280,6 +280,18 @@ namespace CRS_NEG
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        /// <summary>
+        /// Consulta Usuario por ID. Tipo de Usuario
+        /// </summary>
+        /// <param name="ag_ide_usr"> Ide exacto del usuario a consultar</param>
+        /// <returns></returns>
+        public DataTable Fe_con_tus(int ide_tus)
+        {
+            cadena = " Select * from ads007";
+            cadena += " where va_ide_tus = " + ide_tus + "";
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
 
 
         public enum parametro

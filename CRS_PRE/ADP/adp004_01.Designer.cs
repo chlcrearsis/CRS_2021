@@ -245,6 +245,7 @@
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(236, 20);
             this.tb_tex_bus.TabIndex = 5;
+            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
             // lb_ide_tip
             // 
@@ -264,8 +265,9 @@
             this.tb_ide_tip.Size = new System.Drawing.Size(42, 20);
             this.tb_ide_tip.TabIndex = 1;
             this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_ide_tip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_ide_tip_KeyDown);
             this.tb_ide_tip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_tip_KeyPress);
-            this.tb_ide_tip.Validated += new System.EventHandler(this.tb_sel_bus_Validated);
+            this.tb_ide_tip.Validated += new System.EventHandler(this.tb_ide_tip_Validated);
             // 
             // groupBox2
             // 

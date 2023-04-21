@@ -135,54 +135,48 @@ namespace CRS_PRE
             }
         }
 
-        private void fi_sub_baj_fil_KeyDown(object sender, KeyEventArgs e)
+        private void fi_pre_tec_KeyDown(object sender, KeyEventArgs e)
         {
             if (dg_res_ult.Rows.Count != 0)
             {
                 try
                 {
-                    // Al presionar tecla para ABAJO
-                    if (e.KeyData == Keys.Down)
+                    dg_res_ult.Show();
+                    /* Verifica que tecla preciono */
+                    switch (e.KeyData)
                     {
-                        dg_res_ult.Show();
-                        if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1)
-                        {
-                            // Establece el foco en el Datagrid
-                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index + 1];
-
-                            // Llama a función que actualiza datos en Textbox de Selección
-                            fi_fil_act();
-                        }
-                    }
-                    // Al presionar tecla para ARRIBA
-                    else if (e.KeyData == Keys.Up)
-                    {
-                        dg_res_ult.Show();
-                        if (dg_res_ult.SelectedRows[0].Index != 0){
-                            // Establece el foco en el Datagrid
-                            dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index - 1];
-
-                            // Llama a función que actualiza datos en Textbox de Selección
-                            fi_fil_act();
-                        }
-                    }
-                    // Al presionar tecla ENTER
-                    else if (e.KeyData == Keys.Enter)
-                    {
-                        if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
-                        {
-                            this.DialogResult = DialogResult.OK;
-                            cl_glo_frm.Cerrar(this);
-                        }
-                    }
-                    // Al presionar tecla ESC
-                    else if (e.KeyData == Keys.Escape)
-                    {
-                        if (bt_ace_pta.Enabled == true)
-                        {
-                            this.DialogResult = DialogResult.Cancel;
-                            cl_glo_frm.Cerrar(this);
-                        }
+                        case Keys.Up:     // Flecha Arriba
+                            if (dg_res_ult.SelectedRows[0].Index != 0)
+                            {
+                                // Establece el foco en el Datagrid
+                                dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index - 1];
+                                // Llama a función que actualiza datos en Pantalla
+                                fi_fil_act();
+                            }
+                            break;
+                        case Keys.Down:   // Flecha Abajo
+                            if (dg_res_ult.SelectedRows[0].Index != dg_res_ult.Rows.Count - 1)
+                            {
+                                // Establece el foco en el Datagrid
+                                dg_res_ult.CurrentCell = dg_res_ult[0, dg_res_ult.SelectedRows[0].Index + 1];
+                                // Llama a función que actualiza datos en Pantalla
+                                fi_fil_act();
+                            }
+                            break;
+                        case Keys.Enter:  // Tecla Enter
+                            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0)
+                            {
+                                DialogResult = DialogResult.OK;
+                                cl_glo_frm.Cerrar(this);
+                            }
+                            break;
+                        case Keys.Escape: // Tecla Esc
+                            if (bt_ace_pta.Enabled == true)
+                            {
+                                DialogResult = DialogResult.Cancel;
+                                cl_glo_frm.Cerrar(this);
+                            }
+                            break;
                     }
                 }
                 catch (Exception ex)

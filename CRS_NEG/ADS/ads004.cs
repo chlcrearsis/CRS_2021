@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 
 namespace CRS_NEG
@@ -11,7 +8,7 @@ namespace CRS_NEG
     //######################################################################
     //##       Tabla: ads004                                              ##
     //##      Nombre: Talonarios                                          ##
-    //## Descripcion: Talonarios (Control Numeración)                     ##         
+    //## Descripcion: Talonarios (Definición)                             ##         
     //##       Autor: CHL  - (15-05-2020)                                 ##
     //######################################################################
     public class ads004
@@ -51,11 +48,7 @@ namespace CRS_NEG
                 throw ex;
             }
         }
-
-
-        /// <summary>
-        /// Créa Talonario y numeracion (Anual/Mensual)
-        /// </summary>
+      
 
         /// <summary>
         /// Funcion "Registrar Talonarios y Control Numeración (Anual/Mensual)"
@@ -410,6 +403,26 @@ namespace CRS_NEG
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("EXECUTE ads004_R01 " + ide_mod + ", '" + est_ado + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Informe: Talonarios Formato y Definición de Firmas
+        /// </summary>
+        /// <param name="ide_mod">ID. Módulo</param>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R02(int ide_mod, string doc_ini, string doc_fin)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads004_R02 " + ide_mod + ", '" + doc_ini + "', '" + doc_fin + "'");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

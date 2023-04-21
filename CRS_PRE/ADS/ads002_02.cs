@@ -10,7 +10,7 @@ namespace CRS_PRE
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads002 - Aplicaciones del Sistema                     */
     /*      Opción: Crear Registro                                        */
-    /*       Autor: JEJR - Crearsis             Fecha: 19-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 20-04-2023         */
     /**********************************************************************/
     public partial class ads002_02 : Form
     {     
@@ -28,19 +28,26 @@ namespace CRS_PRE
      
         private void frm_Load(object sender, EventArgs e)
         {
-            Fi_lim_pia();
-            // Establece el Focus en el Módulo 
-            tb_ide_mod.Text = "0";
-            tb_ide_mod.Focus();           
+            // Inicializa Campos
+            Fi_lim_pia();                      
         }
 
         // Limpia e Iniciliza los campos
         private void Fi_lim_pia()
         {
             tb_ide_mod.Text = string.Empty;
-            tb_nom_mod.Text = string.Empty;
+            lb_nom_mod.Text = string.Empty;
             tb_ide_apl.Text = string.Empty;
             tb_nom_apl.Text = string.Empty;
+            Fi_ini_pan();
+        }
+
+        // Inicializa los campos en pantalla
+        private void Fi_ini_pan()
+        {
+            // Establece el Focus en el Módulo 
+            tb_ide_mod.Text = "0";
+            lb_nom_mod.Text = "...";
             tb_ide_mod.Focus();
         }
 
@@ -65,10 +72,10 @@ namespace CRS_PRE
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count == 0){
-                tb_nom_mod.Clear();
+                lb_nom_mod.Text = "...";
             }else{
                 tb_ide_mod.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
-                tb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
+                lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
             }
         }
 
@@ -128,7 +135,7 @@ namespace CRS_PRE
             Tabla = o_ads002.Fe_con_nom(tb_nom_apl.Text);
             if (Tabla.Rows.Count > 0){
                 tb_ide_mod.Focus();
-                return "Ya existe otra Aplicación con los mismo Nombre de Aplicación";
+                return "Ya existe otra Aplicación con el mismo Nombre de Aplicación";
             }
            
             return "OK";
@@ -152,11 +159,12 @@ namespace CRS_PRE
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
             {
-                // Abre la ventana Busca Modulo
+                // Abre la ventana Busca Módulo
                 Fi_bus_mod();
             }
         }
 
+        // Evento Click: Button Buscar Módulo
         private void bt_bus_mod_Click(object sender, EventArgs e)
         {
             // Abre la ventana Busca Modulo
@@ -177,13 +185,16 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nuevo Modulo", MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {
-                    //Registrar 
+                    // Graba registro
                     o_ads002.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, tb_nom_apl.Text);
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_apl.Text));
+                    // Despliega Mensaje
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
+                    // Inicializa Campos
                     Fi_lim_pia();
                 }
             }

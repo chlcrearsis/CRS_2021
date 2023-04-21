@@ -2,15 +2,13 @@
 using System.Data;
 using System.Windows.Forms;
 
-using CRS_NEG;
-
 namespace CRS_PRE
 {
     /**********************************************************************/
     /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
     /*  Aplicación: ads001 - Módulo del Sistema                           */
     /*      Opción: Consulta Registro                                     */
-    /*       Autor: JEJR - Crearsis             Fecha: 18-08-2022         */
+    /*       Autor: JEJR - Crearsis             Fecha: 20-04-2023         */
     /**********************************************************************/
     public partial class ads001_05 : Form
     {

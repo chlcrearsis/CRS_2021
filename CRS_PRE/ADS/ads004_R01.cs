@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRS_PRE {
+namespace CRS_PRE.ADS {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -90,7 +90,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_ide_usr {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_nom_emp {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +98,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_nom_emp {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_est_ado {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,7 +106,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_est_ado {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_ide_usr {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -114,7 +114,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ar_ide_mod {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_ide_mod {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,9 +122,17 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ar_est_ado {
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_ide_mod {
             get {
                 return this.DataDefinition.ParameterFields[4];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_est_ado {
+            get {
+                return this.DataDefinition.ParameterFields[5];
             }
         }
     }

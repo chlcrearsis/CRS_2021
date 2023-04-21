@@ -34,8 +34,8 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
-            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
             tb_abr_mod.Text = frm_dat.Rows[0]["va_abr_mod"].ToString();
+            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();            
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             else
@@ -96,13 +96,16 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                msg_res = MessageBox.Show("Está seguro de eliminar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
-                    // Elimina Tipo de Atributo
+                    // Elimina el registro
                     o_ads001.Fe_eli_min(int.Parse(tb_ide_mod.Text));
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }

@@ -28,7 +28,7 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
-            tb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
+            lb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
             tb_ide_apl.Text = frm_dat.Rows[0]["va_ide_apl"].ToString();
             tb_nom_apl.Text = frm_dat.Rows[0]["va_nom_apl"].ToString();           
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
@@ -41,7 +41,7 @@ namespace CRS_PRE
         private void Fi_lim_pia()
         {
             tb_ide_mod.Text = string.Empty;
-            tb_nom_mod.Text = string.Empty;
+            lb_nom_mod.Text = string.Empty;
             tb_ide_apl.Text = string.Empty;
             tb_nom_apl.Text = string.Empty;
             tb_est_ado.Text = string.Empty;
