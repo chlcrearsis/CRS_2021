@@ -141,7 +141,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar usuario
-                o_cmr001.Fe_edi_lis(int.Parse(tb_nro_lis.Text), tb_nom_bre.Text, tb_fec_ini.Value, tb_fec_fin.Value, int.Parse(tb_nro_dec.Text));
+                o_cmr001.Fe_edi_tar(int.Parse(tb_nro_lis.Text), tb_nom_bre.Text, tb_fec_ini.Value, tb_fec_fin.Value, int.Parse(tb_nro_dec.Text));
 
                 frm_pad.Fe_act_frm(int.Parse(tb_nro_lis.Text));
 

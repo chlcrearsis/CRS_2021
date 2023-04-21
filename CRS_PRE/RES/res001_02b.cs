@@ -205,7 +205,7 @@ namespace CRS_PRE
                 decimal pre_uni = 0;
 
                 // Verifica que el usuario tenga permiso sobre la lista de precios
-                if (o_ads008.Fe_ads008_02(Program.gl_usr_usr, "cmr001", tb_cod_lis.Text)== false)
+                if (o_ads008.Fe_ads008_02(Program.gl_ide_usr, "cmr001", tb_cod_lis.Text)== false)
                 {
                     MessageBox.Show("La lista de precio no esta permitida para el usuario", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
@@ -252,7 +252,7 @@ namespace CRS_PRE
                         tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_itm].Cells[i].Value;
                 }
 
-                    o_res002.fu_gra_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta, "UND", can_uni, pre_uni, (pre_uni * can_uni), pre_uni, 0, 0);
+                    o_res002.fu_gra_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_vta, "UND", can_uni, pre_uni, (pre_uni * can_uni), pre_uni, 0, 0);
            
 
                 //** Seleccionar la ultima fila de la grilla
@@ -358,7 +358,7 @@ namespace CRS_PRE
             }
 
             // verifica permiso de usuario sobre lista de precio
-            if(o_ads008.Fe_ads008_02(Program.gl_usr_usr,"cmr001",tb_cod_lis.Text) == false)
+            if(o_ads008.Fe_ads008_02(Program.gl_ide_usr,"cmr001",tb_cod_lis.Text) == false)
             {
                 tb_cod_lis.Focus();
                 return "La Lista de precio no se encuentra registrada";
@@ -499,7 +499,7 @@ namespace CRS_PRE
                 {
                     dg_det_pro.Rows.RemoveAt(nro_fil);
                     //** Elimina item de la temporal
-                    o_res002.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp, nro_fil + 1);
+                    o_res002.fu_eli_tmp(Program.gl_ide_usr, va_cod_tmp, nro_fil + 1);
 
                     //** Calcula total general
                     Fi_cal_tot();
@@ -509,7 +509,7 @@ namespace CRS_PRE
                     for (int i = 0; i < dg_det_pro.RowCount; i++)
                     {
                         nro_ant = int.Parse(dg_det_pro.Rows[i].Cells["va_nro_itm"].Value.ToString());
-                        o_res002.fu_edi_itm_tmp(Program.gl_usr_usr, va_cod_tmp, nro_ant, i + 1);
+                        o_res002.fu_edi_itm_tmp(Program.gl_ide_usr, va_cod_tmp, nro_ant, i + 1);
                     }
 
                     if((nro_fil) == dg_det_pro.RowCount && nro_fil != 0)
@@ -557,7 +557,7 @@ namespace CRS_PRE
                         tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_fil].Cells[i].Value;
                 }
 
-                o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
+                o_res002.fu_edi_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_vta);
 
             }
         }
@@ -593,7 +593,7 @@ namespace CRS_PRE
                         tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_fil].Cells[i].Value;
                 }
 
-                o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
+                o_res002.fu_edi_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_vta);
             }
         }
 
@@ -718,7 +718,7 @@ namespace CRS_PRE
                             // 'pasa los datos para el qr a la imagen QR
                             pb_img_qrf.Text = va_dat_cqr;
 
-                            tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, va_nro_fac, // <- Nro de factura
+                            tb_res001 = o_res001.Fe_crea(Program.gl_ide_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, va_nro_fac, // <- Nro de factura
                                  int.Parse(tb_cod_bod.Text), cod_per.ToString(), nit_per.ToString(),
                                  raz_soc, mon_ope, tb_fec_vta.Value, va_for_pag, int.Parse(tb_cod_ven.Text),
                                  int.Parse(tb_cod_lis.Text), cod_caj, cod_lcr, tip_cam, 0, obs_ope,
@@ -736,7 +736,7 @@ namespace CRS_PRE
 
                             break;
                         case 2: // GRABA NOTA DE VENTA
-                            tb_res001 = o_res001.Fe_crea(Program.gl_usr_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, 0, // <- Nro de factura
+                            tb_res001 = o_res001.Fe_crea(Program.gl_ide_usr, va_cod_tmp, int.Parse(tb_cod_plv.Text), tip_ope, 0, // <- Nro de factura
                                  int.Parse(tb_cod_bod.Text), cod_per.ToString(), nit_per.ToString(),
                                  raz_soc, mon_ope, tb_fec_vta.Value, va_for_pag, int.Parse(tb_cod_ven.Text),
                                  int.Parse(tb_cod_lis.Text), cod_caj, cod_lcr, tip_cam, 0, obs_ope,
@@ -882,13 +882,13 @@ namespace CRS_PRE
                 tab_det_vta.Rows[0][i] = dg_det_pro.Rows[nro_itm - 1].Cells[i].Value;
             }
 
-            o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp,tab_det_vta);
+            o_res002.fu_edi_tmp(Program.gl_ide_usr, va_cod_tmp,tab_det_vta);
 
         }
 
         private void res001_02b_FormClosing(object sender, FormClosingEventArgs e)
         {
-            o_res002.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+            o_res002.fu_eli_tmp(Program.gl_ide_usr, va_cod_tmp);
         }
 
 
@@ -1082,7 +1082,7 @@ namespace CRS_PRE
                 tb_cod_lis.Text = tab_res004.Rows[0]["va_cod_lis"].ToString();
 
                 //Verifica si el usuario tiene permiso sobre la bodega
-                if (o_ads008.Fe_ads008_02(Program.gl_usr_usr, "cmr001", tb_cod_lis.Text) == false)
+                if (o_ads008.Fe_ads008_02(Program.gl_ide_usr, "cmr001", tb_cod_lis.Text) == false)
                 {
                     MessageBox.Show("La Lista de precio no esta permitida para el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     lb_nom_lis.Text = "NO permitida";
@@ -1303,7 +1303,7 @@ namespace CRS_PRE
                     {
                         lb_nom_lis.Text = "";
                         dg_det_pro.Rows.Clear();
-                        o_res002.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+                        o_res002.fu_eli_tmp(Program.gl_ide_usr, va_cod_tmp);
                         Fi_cal_tot();
                         return;
                     }
@@ -1334,7 +1334,7 @@ namespace CRS_PRE
             else
             {
                 // Verifica que el usuario tenga permisos sobre la plantilla de venta
-                if(o_ads008.Fe_ads008_02(Program.gl_usr_usr,"cmr001",tb_cod_lis.Text) == false)
+                if(o_ads008.Fe_ads008_02(Program.gl_ide_usr,"cmr001",tb_cod_lis.Text) == false)
                 {
                     MessageBox.Show("La lista de precios no esta permitida para el usuario, se mantendra la lista de precios anterior", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
@@ -1412,7 +1412,7 @@ namespace CRS_PRE
                             tab_det_vta.Rows[0][x] = dg_det_pro.Rows[i].Cells[x].Value;
                     }
 
-                    o_res002.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_vta);
+                    o_res002.fu_edi_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_vta);
 
 
                 }

@@ -35,13 +35,7 @@ namespace CRS_NEG
 
 
         public cmr004()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
+        {}
 
         public DataTable Fe_bus_car(string val_bus, int prm_bus, string est_bus)
         {
@@ -124,7 +118,7 @@ namespace CRS_NEG
         /// <param name="ban_av2">Imprime aviso de venta 2? (0=NO; 1=SI)</param>
         /// <param name="imp_av2">Impresora para aviso de venta 2</param>
         /// <param name="ban_imp">Bandera de impresion (0=No imprime; 1=Imprime directo ; 2=Pregunta para imprimir)</param>
-        public void Fe_crea(string cod_plv, string nom_plv, string des_plv, string cod_bod, string cam_bod, string cod_cli, string cod_caj, string cam_caj,
+        public void Fe_nue_reg(string cod_plv, string nom_plv, string des_plv, string cod_bod, string cam_bod, string cod_cli, string cod_caj, string cam_caj,
                         string cod_lis, string cam_lis, string mon_vta, string cam_mon, string cod_ven, string cam_ven, string cod_del, string cam_del, string dia_ret, string for_pgo,
                         string cam_fpg, string pgo_cta, string ope_def, string lib_cre, string lib_dev, string bus_pro, string des_srv, string pro_rep,
                         string doc_fac, string tal_fac, string doc_ntv, string tal_ntv, string doc_ped, string tal_ped, string doc_cot, string tal_cot,

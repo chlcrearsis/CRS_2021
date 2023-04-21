@@ -115,12 +115,12 @@ namespace CRS_PRE
             cr_rep_ort.ReportSource = rd_con_vta;
 
             //Logueo manual el ReportDocument asociado al crystal report
-            rd_con_vta.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            rd_con_vta.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
 
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             rd_con_vta.SetDataSource(tabla);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            rd_con_vta.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
+            rd_con_vta.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);
             rd_con_vta.SetParameterValue("vc_nom_emp", va_nom_emp);
             rd_con_vta.SetParameterValue("vc_dir_emp", va_dir_emp);
             rd_con_vta.SetParameterValue("vc_nit_emp", va_nit_emp);

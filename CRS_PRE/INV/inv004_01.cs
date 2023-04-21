@@ -14,7 +14,7 @@ namespace CRS_PRE.INV
         public dynamic frm_MDI;
 
         string est_bus = "T";
-        int glo_far = 1;            //** Global 1=Normal ; 2=Farmacia
+        int glo_far = 1;            //** Global 1=Normal ; 2=Muestra vademecum en productos
 
         //Form frm_mdi;
         public inv004_01()

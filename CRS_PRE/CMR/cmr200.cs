@@ -51,8 +51,8 @@ namespace CRS_PRE
 
         private void frm_Load(object sender, EventArgs e)
         {
-            ts_usr_usr.Text = o_ads013.va_ide_usr;
-            ts_bas_dat.Text = o_ads013.va_nom_bda;
+            ts_usr_usr.Text = Program.gl_ide_usr; // Id de usuario
+            ts_bas_dat.Text = Program.gl_nom_bdo; // Nombre de la base de datos
             ts_ide_app.Text = this.Name;
             ts_rut_app.Text = this.Text;
 

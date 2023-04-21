@@ -40,7 +40,7 @@ namespace CRS_PRE
             //this.Dock = DockStyle.Fill;
 
             //Logueo manual el ReportDocument asociado al crystal report
-            ads000_R00.SetDatabaseLogon(o_ads013.va_ide_usr, o_ads013.va_pas_usr, o_ads013.va_ser_bda + "\\" + o_ads013.va_ins_bda, o_ads013.va_nom_bda);
+            ads000_R00.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
 
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             //ads000_R00.SetDataSource(frm_dat);

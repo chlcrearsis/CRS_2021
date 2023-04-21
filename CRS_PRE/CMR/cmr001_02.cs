@@ -148,7 +148,7 @@ namespace CRS_PRE
                     mon_lis = "U";
 
                 //Registrar usuario
-                o_cmr001.Fe_crea(int.Parse(tb_nro_lis.Text), tb_nom_bre.Text, mon_lis, tb_fec_ini.Value, tb_fec_fin.Value, int.Parse(tb_nro_dec.Text));
+                o_cmr001.Fe_nue_reg(int.Parse(tb_nro_lis.Text), tb_nom_bre.Text, mon_lis, tb_fec_ini.Value, tb_fec_fin.Value, int.Parse(tb_nro_dec.Text));
                 MessageBox.Show("Los datos se grabaron correctamente", "Nueva lista", MessageBoxButtons.OK);
                 Fi_lim_pia();
             }

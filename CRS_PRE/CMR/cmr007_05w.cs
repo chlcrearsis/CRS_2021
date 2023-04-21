@@ -104,7 +104,7 @@ namespace CRS_PRE
            
 
             //Logueo manual el ReportDocument asociado al crystal report
-            rd_ven_tas.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            rd_ven_tas.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
 
             // Obtiene documento de pedido a mostrar en el reporte
             tab_cmr007 = frm_dat; 

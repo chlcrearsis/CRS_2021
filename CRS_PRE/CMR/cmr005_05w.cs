@@ -24,8 +24,8 @@ namespace CRS_PRE
         DataTable tab_cmr005 = new DataTable();
 
         ReportDocument rd_ven_tas = new ReportDocument();   // Report document generico
-
-        string va_nom_emp="";
+        
+        string va_nom_emp = "";
         string va_dir_emp = "";
         string va_tel_emp = "";
         string va_cla_wif = "";
@@ -109,7 +109,7 @@ namespace CRS_PRE
             }
 
             //Logueo manual el ReportDocument asociado al crystal report
-            rd_ven_tas.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            rd_ven_tas.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
             
             // Obtiene documento de venta a mostrar en el reporte
             tab_cmr005 = o_cmr005.Fe_con_vta(ide_doc, ges_doc);
@@ -118,7 +118,7 @@ namespace CRS_PRE
             rd_ven_tas.SetDataSource(tab_cmr005);
 
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            rd_ven_tas.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
+            rd_ven_tas.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);
             rd_ven_tas.SetParameterValue("vc_nom_emp", va_nom_emp);
             rd_ven_tas.SetParameterValue("vc_dir_emp", va_dir_emp);
             rd_ven_tas.SetParameterValue("vc_tel_emp", va_tel_emp);

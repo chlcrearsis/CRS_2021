@@ -14,6 +14,7 @@ namespace CRS_PRE.INV
         public dynamic frm_MDI;
 
         string est_bus = "T";
+        int glo_far = 1;            //** Global 1=Normal ; 2=Muestra vademecum en productos
 
         //Form frm_mdi;
         public inv004_01b()
@@ -26,6 +27,7 @@ namespace CRS_PRE.INV
         
 
         ads001 o_ads001 = new ads001();
+        ads013 o_ads013 = new ads013();
 
         inv003 o_inv003 = new inv003();
         inv004 o_inv004 = new inv004();
@@ -54,6 +56,57 @@ namespace CRS_PRE.INV
             cb_est_bus.SelectedIndex = 1;
 
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
+
+
+            //** PREGUNTA GLOBAL 1=NORMAL / 2=FARMACIA
+            tabla = o_ads013.Fe_obt_glo(3, 2);
+
+            if (tabla.Rows.Count == 0)
+                glo_far = 1;
+            if (tabla.Rows[0]["va_glo_ent"].ToString() != "2")
+                glo_far = 1;
+            if (tabla.Rows[0]["va_glo_ent"].ToString() == "2")
+                glo_far = 2;
+
+
+            if (glo_far == 1)
+            {
+                this.Text = "Busca Productos";
+                dg_res_ult.Columns["va_nom_pro"].HeaderText = "Producto";
+                dg_res_ult.Columns["va_des_pro"].HeaderText = "Descripcion";
+                dg_res_ult.Columns["va_pri_act"].Visible = false;
+                dg_res_ult.Columns["va_pro_ind"].Visible = false;
+                dg_res_ult.Columns["va_con_ind"].Visible = false;
+
+                //** Parametro de busqueda
+                cb_prm_bus.Items.Clear();
+                cb_prm_bus.Items.Add("Codigo");
+                cb_prm_bus.Items.Add("Codigo de barra");
+                cb_prm_bus.Items.Add("Nombre");
+                cb_prm_bus.Items.Add("Descipcion");
+                cb_prm_bus.SelectedIndex = 2;
+            }
+            else
+            {
+                this.Text = "Busca Productos (Farmacia)";
+                dg_res_ult.Columns["va_nom_pro"].HeaderText = "Nombre Comercial";
+                dg_res_ult.Columns["va_des_pro"].HeaderText = "Descripcion/uso terapeutico";
+                dg_res_ult.Columns["va_pri_act"].Visible = true;
+                dg_res_ult.Columns["va_pro_ind"].Visible = true;
+                dg_res_ult.Columns["va_con_ind"].Visible = true;
+
+                //** Parametro de busqueda
+                cb_prm_bus.Items.Clear();
+                cb_prm_bus.Items.Add("Codigo");
+                cb_prm_bus.Items.Add("Codigo de barra");
+                cb_prm_bus.Items.Add("Nombre Generico");
+                cb_prm_bus.Items.Add("Uso Terapeutico");
+                cb_prm_bus.Items.Add("Principio Activo");
+                cb_prm_bus.Items.Add("Indicacion");
+                cb_prm_bus.Items.Add("Contraindicacion");
+                cb_prm_bus.SelectedIndex = 2;
+            }
+
         }
 
         public enum parametro

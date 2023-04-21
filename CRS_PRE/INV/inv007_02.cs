@@ -228,7 +228,7 @@ namespace CRS_PRE.INV
         private void inv007_02_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Elimina temporal antes de cerrar la ventana
-            o_inv007.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+            o_inv007.fu_eli_tmp(Program.gl_ide_usr, va_cod_tmp);
         }
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
@@ -261,7 +261,7 @@ namespace CRS_PRE.INV
                                          ges_tio, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
                                          "B", tb_fec_cmp.Value, cb_for_pag.SelectedIndex, 0, 0,
                                          0, 0, 0, 1,
-                                         decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, "", Program.gl_usr_usr);
+                                         decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, "", Program.gl_ide_usr);
 
 
                     // Crea tabla para pasar datos
@@ -842,10 +842,10 @@ namespace CRS_PRE.INV
 
 
             if (bt_adi_pro.Text == "&AGREGAR") //Graba temporal
-                o_inv007.fu_gra_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_cmp);
+                o_inv007.fu_gra_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_cmp);
             if (bt_adi_pro.Text == "&GUARDAR")//Edita temporal
             {
-                o_inv007.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_cmp);
+                o_inv007.fu_edi_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_cmp);
                 
                 bt_adi_pro.Text = "&AGREGAR";
                 bt_edi_tar.Enabled = true;
@@ -955,7 +955,7 @@ namespace CRS_PRE.INV
 
                     // ELIMINA ITEM DE TEMPORAL
 
-                    o_inv007.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+                    o_inv007.fu_eli_tmp(Program.gl_ide_usr, va_cod_tmp);
 
                     //******************************
                     // GRABA EN TABLA TEMPORAL
@@ -974,7 +974,7 @@ namespace CRS_PRE.INV
                                 tab_det_cmp.Rows[Row.Index][Cell.Index] = Row.Cells[Cell.Index].Value;
                             }
                         }
-                        o_inv007.fu_gra_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_cmp);
+                        o_inv007.fu_gra_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_cmp);
                     }
 
                 }

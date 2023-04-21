@@ -42,11 +42,12 @@ namespace CRS_PRE
             va_nom_emp = tab_ads013.Rows[0]["va_glo_car"].ToString();
 
             //Logueo manual el ReportDocument asociado al crystal report
-            ads016_R02.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            ads016_R02.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
+
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             ads016_R02.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            ads016_R02.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
+            ads016_R02.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);
             ads016_R02.SetParameterValue("vc_nom_emp", va_nom_emp);
 
 

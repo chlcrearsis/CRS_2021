@@ -34,14 +34,10 @@ namespace CRS_NEG
 
         public cmr002()
         {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
+           
         }
 
-        public void Fe_crea(int ar_cod_lis, string ar_cod_pro, decimal ar_pre_cio, decimal ar_pmx_des, decimal ar_pmx_inc)
+        public void Fe_nue_reg(int ar_cod_lis, string ar_cod_pro, decimal ar_pre_cio, decimal ar_pmx_des, decimal ar_pmx_inc)
         {
             try
             {
@@ -64,24 +60,48 @@ namespace CRS_NEG
         }
         public void Fe_edi_pre(int ar_cod_lis, string ar_cod_pro, decimal ar_pre_cio, decimal ar_pmx_des, decimal ar_pmx_inc)
         {
-            cadena = " UPDATE cmr002 SET va_pre_cio = '" + ar_pre_cio + "', va_pmx_des = '" + ar_pmx_des + "', " +
+            try
+            {
+                cadena = " UPDATE cmr002 SET va_pre_cio = '" + ar_pre_cio + "', va_pmx_des = '" + ar_pmx_des + "', " +
                 " va_pmx_inc = '" + ar_pmx_inc  + "'" +
                     " WHERE va_cod_lis = " + ar_cod_lis + " and va_cod_pro = '" + ar_cod_pro + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
+                ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public void Fe_eli_lis(int ar_cod_lis, string ar_cod_pro)
         {
-            cadena = " DELETE cmr002 " +
-            " WHERE va_cod_lis = " + ar_cod_lis + " and va_cod_pro = '" + ar_cod_pro + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " DELETE cmr002 " +
+                " WHERE va_cod_lis = " + ar_cod_lis + " and va_cod_pro = '" + ar_cod_pro + "'";
+                ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DataTable Fe_con_pre(int ar_cod_lis, string ar_cod_pro)
         {
-            cadena = " SELECT * FROM cmr002 " +
-                 " WHERE va_cod_lis = " + ar_cod_lis + " and va_cod_pro = '" + ar_cod_pro + "'";
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " SELECT * FROM cmr002 " +
+                     " WHERE va_cod_lis = " + ar_cod_lis + " and va_cod_pro = '" + ar_cod_pro + "'";
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -94,8 +114,16 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_bus_var( string ar_cod_pro, int ar_lis_ini, int ar_lis_fin)
         {
-            cadena = " cmr002_01a_p01 '" + ar_cod_pro + "', " + ar_lis_ini + ", " + ar_lis_fin;
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " cmr002_01a_p01 '" + ar_cod_pro + "', " + ar_lis_ini + ", " + ar_lis_fin;
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         /// <summary>
         /// Consulta precio en varias listas
@@ -106,15 +134,31 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_con_pre(string ar_cod_pro, int ar_lis_ini, int ar_lis_fin)
         {
-            cadena = " cmr002_05b_p01 '" + ar_cod_pro + "'," + ar_lis_ini + "," + ar_lis_fin + " ";
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " cmr002_05b_p01 '" + ar_cod_pro + "'," + ar_lis_ini + "," + ar_lis_fin + " ";
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, int ar_cod_lis )
         {
-            cadena = " SELECT * FROM cmr002 ";
-            cadena += " WHERE va_nom_pro like '" + ar_tex_bus + "%'";
+            try
+            {
+                cadena = " SELECT * FROM cmr002 ";
+                cadena += " WHERE va_nom_pro like '" + ar_tex_bus + "%'";
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -127,10 +171,18 @@ namespace CRS_NEG
         /// <param name="ar_est_ado"> Estado</param>
         /// <returns></returns>
         public DataTable Fe_cmr002_R01( string ar_est_ado)
-        {   
-            cadena = " cmr002_R01 '" + ar_est_ado + "'" ;
+        {
+            try
+            {   
+              cadena = " cmr002_R01 '" + ar_est_ado + "'" ;
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
        

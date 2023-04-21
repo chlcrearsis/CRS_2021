@@ -52,13 +52,13 @@ namespace CRS_PRE
             va_nom_emp = tab_ads013.Rows[0]["va_glo_car"].ToString();
 
             //Logueo manual el ReportDocument asociado al crystal report
-            ads007_R011.SetDatabaseLogon(o_ads013.va_ide_usr, o_ads013.va_pas_usr, o_ads013.va_ser_bda + "\\" + o_ads013.va_ins_bda, o_ads013.va_nom_bda);
+            ads007_R011.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
 
             //frm_dat.TableName = "ads007_R01";
 
             //ads007_R011.Database.Tables["ads007_R01"].SetDataSource(frm_dat);
-           
-            
+
+
             //ads007_R011.SetParameterValue("vc_ide_usr", o_ads013.va_ide_usr);
             //ads007_R011.SetParameterValue("vc_nom_emp", va_nom_emp);
             //ads007_R011.SetParameterValue("vc_est_ado", "(" + vp_est_ado + ")");

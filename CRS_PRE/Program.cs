@@ -13,14 +13,18 @@ namespace CRS_PRE
         public static string gl_pas_sql = "crssql7*";
 
         // VARIABLE GLOBAL DATOS DEL USUARIO LOGUEADO
-        public static string gl_ide_uni = "";
-        public static string gl_usr_usr = "";
-        public static string gl_cnx_str = "";
-        public static string gl_bdo_usr = "";
-        public static string gl_nom_usr = "";
-        public static string gl_ide_gru = "";
-        public static string gl_nom_emp = "";
-        public static int gl_nit_emp = 0;
+        public static string gl_ide_uni = "";       // Id unico de pantalla
+        public static string gl_ide_gru = "";       // Id grupo de usuario
+        public static string gl_ide_usr = "";       // Id usuario
+        public static string gl_nom_usr = "";       // Nombre de usuario
+        public static string gl_pas_usr = "";       // Contraseña de usuario
+        public static string gl_cnx_str = "";       // Cadena de coneccion 
+
+        public static string gl_ser_bdo = "";       // Servidor de base de datos  
+        public static string gl_ins_bdo = "";       // Instancia de Base de datos  
+        public static string gl_nom_bdo = "";       // Base de datos                
+        //public static string gl_nom_emp = "";     // Nombre de empresa
+        public static int gl_nit_emp = 0;           // Nit de la empresa
 
         //VARIABLE GLOBAL PARA CONTROLAR EL NUMERO DE VENTANAS ABIERTAS
         public static int gl_nro_win = 0;
