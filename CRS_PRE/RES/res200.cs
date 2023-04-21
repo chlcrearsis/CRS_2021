@@ -128,8 +128,8 @@ namespace CRS_PRE
 
         private void mn_ven_res_Click(object sender, EventArgs e)
         {
-            o_frm = new res001_02b();
-            cl_glo_frm.abrir(this, o_frm);
+            //o_frm = new res001_02b();
+            //cl_glo_frm.abrir(this, o_frm);
         }
 
         private void mn_inf_vta_Click(object sender, EventArgs e)

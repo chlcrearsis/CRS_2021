@@ -712,7 +712,7 @@ namespace CRS_PRE.CMR
 
                             //Genera QR factura
                             string va_dat_cqr = "";
-                            va_dat_cqr = Program.gl_nit_emp.ToString() + "|" + va_nro_fac + "|" + va_nro_aut.ToString() + "|" + tb_fec_vta.Value + "|" + va_tot_bru.ToString() + "|" +
+                            va_dat_cqr = /*Program.gl_nit_emp.ToString() + */ "|" + va_nro_fac + "|" + va_nro_aut.ToString() + "|" + tb_fec_vta.Value + "|" + va_tot_bru.ToString() + "|" +
                                          pre_tot.ToString() + "|" + va_cod_ctr + "|" + nit_per + "|" + "0|0|0|" + "0"; // des_cuB;
 
                             // 'pasa los datos para el qr a la imagen QR

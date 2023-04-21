@@ -255,7 +255,7 @@ namespace CRS_PRE.INV
                 {
 
                     // Obtiene Gestion
-                    //int ges_tio =  int.Parse(o_ads016.Fe_ges_fec(tb_fec_cmp.Value).Rows[0]["va_ges_tio"].ToString());
+                    int ges_tio =  int.Parse(o_ads016.Fe_ges_fec(tb_fec_cmp.Text).Rows[0]["va_ges_tio"].ToString());
                     // GRABA COMPRA
                     tab_cmp = o_inv007.fu_gra_cmp(va_cod_tmp, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text),
                                          ges_tio, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
@@ -387,7 +387,7 @@ namespace CRS_PRE.INV
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_nro_tal.Text = frm.vp_nro_tal;
+                tb_nro_tal.Text = frm.tb_nro_tal.Text;
                 Fi_obt_tal();
             }
         }

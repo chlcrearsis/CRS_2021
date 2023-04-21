@@ -131,31 +131,26 @@ namespace CRS_PRE
         {
             // Verifica version de formulario para ventas (1= Normal ; 2= Tactil)
             tabla = o_ads013.Fe_obt_glo(3, 1);
-
-<<<<<<< HEAD
             //Global formulario Normal o Tactil
             tabla = o_ads013.Fe_obt_glo(3, 1);
             if (tabla != null)
                 if (tabla.Rows[0]["va_glo_ent"].ToString() == "2")
                 {
-                    cmr005_12 frm = new cmr005_12();
-                    cl_glo_frm.abrir(this, frm);
+                    cmr005_12 frm1 = new cmr005_12();
+                    cl_glo_frm.abrir(this, frm1);
                 }
                 else
                 {
-                    cmr005_02 frm = new cmr005_02();
-                    cl_glo_frm.abrir(this, frm);
+                    cmr005_02 frm2 = new cmr005_02();
+                    cl_glo_frm.abrir(this, frm2);
                 }
             else
             {
-                cmr005_02 frm = new cmr005_02();
-                cl_glo_frm.abrir(this, frm);
+                cmr005_02 frm3 = new cmr005_02();
+                cl_glo_frm.abrir(this, frm3);
             }
-            
-=======
             cmr005_02 frm = new cmr005_02();
             cl_glo_frm.abrir(this, frm);
->>>>>>> parent of ce10f2e (avance punto de venta)
              
         }
 
