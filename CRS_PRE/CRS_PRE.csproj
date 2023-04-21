@@ -3360,6 +3360,7 @@
       <DependentUpon>cmr005_R01p.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr005_R01w.resx">
+	</EmbeddedResource>	
     <EmbeddedResource Include="ADS\ads006_01.resx">
       <DependentUpon>ads006_01.cs</DependentUpon>
     </EmbeddedResource>
