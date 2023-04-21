@@ -14,3 +14,5 @@ inv005 = Unidad de Medida                                         CHL
 inv006 = Marcas de Producto                                       CHL
 inv007 = Encabezado Compras                                       CHL
 inv008 = Existencia de Productos                                  CHL
+inv009 = Datos productos Vademecum (farmacia)                     CHL
+inv010 = Productos sustitutos				                      CHL

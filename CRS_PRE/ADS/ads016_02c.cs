@@ -1,131 +1,138 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Runtime.InteropServices;
 using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads016 - Gestión Periodo                              */
+    /*      Opción: Crear Siguiente Gestión                               */
+    /*       Autor: JEJR - Crearsis             Fecha: 18-04-2023         */
+    /**********************************************************************/
     public partial class ads016_02c : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
         ads016 o_ads016 = new ads016();
-
-        DataTable tabla = new DataTable();
-
+        DataTable Tabla = new DataTable();
 
         public ads016_02c()
         {
             InitializeComponent();
         }
 
-      
         private void frm_Load(object sender, EventArgs e)
-        {
-            tb_ges_per.Focus();
-        }
-        void Fi_lim_frm()
-        {
-            tb_ges_tio.Clear();
-            tb_ges_per.Clear();
-            tb_nom_per.Clear();
-            tb_fec_ini.Clear();
-            tb_fec_fin.Clear();
+        {           
+            // Inicializa Campos
+            Fi_lim_pia();
+            // Establece el focus
+            tb_nue_ges.Focus();
         }
 
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {
+            tb_ult_ges.Text = string.Empty;
+            tb_nue_ges.Text = string.Empty;
+            Fi_ini_pan();
+        }
+
+        // Inicializa los campos en pantalla
+        private void Fi_ini_pan()
+        {
+            // Obtiene la ultima Gestion
+            Tabla = new DataTable();
+            Tabla = o_ads016.Fe_ult_ges();
+            if (Tabla.Rows.Count > 0)
+                tb_ult_ges.Text = Tabla.Rows[0]["va_ges_tio"].ToString();
+
+            // Inicializa la siguiente Gestion
+            Tabla = new DataTable();
+            Tabla = o_ads016.Fe_nue_ges();
+            if (Tabla.Rows.Count > 0)
+                tb_nue_ges.Text = Tabla.Rows[0]["va_ges_tio"].ToString();
+            tb_nue_ges.Focus();
+        }
+
+        // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
-
-            int val = 0;
-            int.TryParse(tb_ges_per.Text.Trim(), out val );
-            if (val <= 0)
+            // Valida que se haya proporcionado una Gestión válida
+            int.TryParse(tb_nue_ges.Text.Trim(), out int ges_tio);
+            if (ges_tio == 0)
             {
-                return "Debe proporcionar un periodo valido";
+                tb_nue_ges.Focus();
+                return "Proporcione la Gestión";
+            }
+            if (ges_tio < 1900 && ges_tio > 2900)
+            {
+                tb_nue_ges.Focus();
+                return "DEBE proporcionar una Gestión Valida";
+            }
+            // Valida que la Nueva Gestion sea mayor al ultima gestion
+            if (int.Parse(tb_ult_ges.Text) > int.Parse(tb_nue_ges.Text))
+            {
+                tb_nue_ges.Focus();
+                return "La Nueva Gestión DEBE ser MAYOR a la última Gestión";
             }
 
-            if (val > 12)
+            // Verifica si ya existe una Gestión en el Sistema
+            Tabla = new DataTable();
+            Tabla = o_ads016.Fe_lis_ges();
+            if (Tabla.Rows.Count == 0)
             {
-                return "Debe proporcionar un periodo valido (1-12)";
+                tb_nue_ges.Focus();
+                return "NO puede usar esta Opción por que NO hay gestiones creadas, DEBE usar la opción: 'Crea Gestión Inicial'";
             }
 
-            int.TryParse(tb_ges_tio.Text.Trim(), out val);
-            if (val <= 2010)
+            // Verifica si la Gestión YA eta creada en el sistema
+            Tabla = new DataTable();
+            Tabla = o_ads016.Fe_con_ges(int.Parse(tb_nue_ges.Text));
+            if (Tabla.Rows.Count == 0)
             {
-                return "Debe proporcionar una gestion valida";
+                tb_nue_ges.Focus();
+                return "La Gestión YA se encuentra creada";
             }
 
-            if(tb_nom_per.Text.Trim()=="")
-                return "Debe proporcionar el nombre del periodo";
-
-            DateTime dval;
-            DateTime.TryParse(tb_fec_ini.Text, out dval);
-            if(dval == DateTime.Parse("01/01/0001"))
-            {
-                tb_fec_ini.Focus();
-                return "Debe proporcionar una fecha inicial valida";
-            }
-            DateTime.TryParse(tb_fec_fin.Text, out dval);
-            if (dval == DateTime.Parse("01/01/0001"))
-            {
-                tb_fec_fin.Focus();
-                return "Debe proporcionar una fecha final valida";
-            }
-
-            if (DateTime.Parse(tb_fec_ini.Text) > DateTime.Parse(tb_fec_fin.Text))
-            {
-                tb_fec_fin.Focus();
-                return "La fecha final debe ser mayor a la inicial";
-            }
-
-            // Valida si ya existe ese periodo en la base de datos
-            tabla = new DataTable();
-            tabla = o_ads016.Fe_con_per(int.Parse(tb_ges_tio.Text), int.Parse(tb_ges_per.Text));
-            if (tabla.Rows.Count > 0)
-                return "El periodo que intenta crear ya esta registrado";
-
-            return "";
-        }
-      
-        private void Bt_can_cel_Click(object sender, EventArgs e)
-        {
-            cl_glo_frm.Cerrar(this);
+            return "OK";
         }
 
-        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        // Evento KeyPress: Gestión
+        private void tb_nue_ges_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string msg_val = "";
+            cl_glo_bal.NotNumeric(e);
+        }
+
+        // Evento Click: Button Aceptar
+        private void bt_ace_pta_Click(object sender, EventArgs e)
+        {
             DialogResult msg_res;
 
             // funcion para validar datos
-            msg_val = Fi_val_dat();
-            if (msg_val != "")
+            string msg_val = Fi_val_dat();
+            if (msg_val != "OK")
             {
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de crear el periodo ?", "Crea periodo", MessageBoxButtons.OKCancel);
+            msg_res = MessageBox.Show("¿Está seguro de preparar la Siguiente Gestión?", Name, MessageBoxButtons.OKCancel);
             if (msg_res == DialogResult.OK)
             {
                 //Registrar usuario
-                o_ads016.Fe_cre_per(int.Parse(tb_ges_tio.Text),int.Parse(tb_ges_per.Text),tb_nom_per.Text,
-                    DateTime.Parse(tb_fec_ini.Text), DateTime.Parse(tb_fec_fin.Text));
-                MessageBox.Show("Los datos se grabaron correctamente", "Crea periodo", MessageBoxButtons.OK);
-                frm_pad.fi_bus_car(int.Parse(tb_ges_tio.Text));
-                
-                //Limpiar formulario
-
+                o_ads016.Fe_sig_ges(int.Parse(tb_nue_ges.Text));
+                MessageBox.Show("Los datos se grabaron correctamente", Name, MessageBoxButtons.OK);
+                frm_pad.Fi_bus_car();
             }
+        }
 
+        // Evento Click: Button Cancelar
+        private void bt_can_cel_Click(object sender, EventArgs e)
+        {
+            cl_glo_frm.Cerrar(this);
         }
     }
 }

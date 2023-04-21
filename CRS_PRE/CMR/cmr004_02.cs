@@ -15,7 +15,7 @@ using System.Drawing.Printing;
 using CRS_PRE;
 
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr004_02 : Form
     {
@@ -718,7 +718,7 @@ namespace CRS_PRE.CMR
             }
 
 
-            ads004_01b frm = new ads004_01b();
+            ads004_01 frm = new ads004_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_prm);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -726,16 +726,16 @@ namespace CRS_PRE.CMR
                 switch(opc_doc)
                 {
                     case 1: // COT
-                        tb_nro_tal_cot.Text = frm.tb_sel_tal.Text;
+                        tb_nro_tal_cot.Text = frm.vp_nro_tal;
                         break;
                     case 2: // PED
-                        tb_nro_tal_ped.Text = frm.tb_sel_tal.Text;
+                        tb_nro_tal_ped.Text = frm.vp_nro_tal;
                         break;
                     case 3: // NTV
-                        tb_nro_tal_nvt.Text = frm.tb_sel_tal.Text;
+                        tb_nro_tal_nvt.Text = frm.vp_nro_tal;
                         break;
                     case 4: // FAC
-                        tb_nro_tal_fac.Text = frm.tb_sel_tal.Text;
+                        tb_nro_tal_fac.Text = frm.vp_nro_tal;
                         break;
                 }
                // tb_cod_per.Text = frm.tb_sel_tal.Text;
@@ -892,7 +892,7 @@ namespace CRS_PRE.CMR
                     imp_av2 = 1;
 
 
-                o_cmr004.Fe_crea(tb_cod_plv.Text, tb_nom_plv.Text, tb_des_plv.Text, tb_cod_bod.Text,cam_bod.ToString(), tb_cod_per.Text,
+                o_cmr004.Fe_nue_reg(tb_cod_plv.Text, tb_nom_plv.Text, tb_des_plv.Text, tb_cod_bod.Text,cam_bod.ToString(), tb_cod_per.Text,
                     "0", "0", tb_cod_lis.Text,cam_lis.ToString(), mon_vta, cb_cam_mon.SelectedIndex.ToString(), tb_cod_ven.Text, cb_cam_ven.SelectedIndex.ToString(),
                     tb_cod_del.Text, cam_del.ToString(), tb_dia_ret.Text, cb_for_pag.SelectedIndex.ToString(),cam_fpg.ToString(),
                     "0", "2", "0", "0", cb_bus_pro.SelectedIndex.ToString(),des_srv.ToString(), pro_rep.ToString(),

@@ -27,356 +27,3200 @@ IF @@ERROR <> 0
    select * from inv099	   
 
 GO  
-/*
-ARCHIVO: adp002_01a_p01.sql
-PROCEDIMIENTO: BUSCA PERSONA
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	18-09-2020 
---*/
+/*****************************************************************/
+/*	ARCHIVO: adp001_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME GRUPO PERSONA                         */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 08/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp001_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp001_R01
+GO
+
+CREATE PROCEDURE adp001_R01		@ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene el informe en el orden especificado
+SELECT va_cod_gru, va_nom_gru, 
+       CASE WHEN va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM adp001
+ WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_cod_gru END ASC,
+  CASE WHEN @ar_ord_dat = 'N' THEN va_nom_gru END ASC
+
+
+  
+/***********************************************************************/
+/*	ARCHIVO: adp002_01a_p01.sql                                        */
+/*	PROCEDIMIENTO: BUSCA PERSONA                                       */
+/*      ARGUMENTO: @ar_cod_gru  INT         --** C¢digo Grupo          */
+/*                 @ar_tex_bus  VARCHAR(60) --** Texto a ser buscado   */
+/*				   @ar_cri_bus  INT         --** Criterio de Busqueda  */
+/*                 @ar_est_ado  CHAR(01)    --** Estado                */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 23/09/2021                   */
+/***********************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.adp002_01a_p01') and sysstat & 0xf = 4)
 	drop procedure dbo.adp002_01a_p01
 GO
 
-CREATE PROCEDURE adp002_01a_p01		@ar_cod_gru		INT,			-- Ide del modulo
-									@ar_tex_bus		VARCHAR(60),	-- Texto a ser buscado
-									@ar_cri_bus		INT	,			-- 0=cod per , 1=Razon Social
-																	-- 2=Nombre Comercial, 3=Nit, 4=CI, 
-									@ar_est_ado		CHAR(01)		-- Estado
+CREATE PROCEDURE adp002_01a_p01		@ar_cod_gru	 VARCHAR(02),	--** C¢digo Grupo
+                                    @ar_tip_per  CHAR(01),      --** Tipo de Cliente (P=Particular; E=Empresa; T=Todos)
+									@ar_tex_bus	 VARCHAR(60),	--** Texto a ser buscado
+									@ar_cri_bus	 INT,			--** Criterio de Busqueda (0=Cod. Persona; 1=Razon Social;
+									                            --** 2=Nombre; 3=Ape. Paterno; 4=Ape. Materno; 5=NIT; 6=Documento; 7=Tel‚fono)
+									@ar_est_ado	 CHAR(01)		--** Estado (H=Habilitado; N=Deshabilitado; T=Todos)
 									WITH ENCRYPTION AS
+
+DECLARE     @va_cod_per  INT,	      --** Codigo Persona (2 de Grup. Per y 5 de Persona)
+			@va_cod_gru	 INT,	      --** Cod Grupo Persona
+			@va_nom_gru  VARCHAR(50), --** Nombre Grupo Persona
+			@va_tip_per  CHAR(01),    --** Tipo de Cliente (P=Particular; E=Empresa)
+			@va_nom_bre  VARCHAR(30), --** Nombre
+			@va_ape_pat  VARCHAR(20), --** Apellido Paterno
+			@va_ape_mat  VARCHAR(20), --** Apellido Materno
+			@va_raz_soc	 VARCHAR(80), --** Razon Social
+			@va_ruc_nit	 BIGINT,	  --** RUC/NIT
+			@va_sex_per  CHAR(01),    --** Sexo (H=Hombre; M=Mujer)
+			@va_fec_nac  DATETIME,    --** Fecha de Nacimiento
+			@va_tip_doc  CHAR(02),    --** Tipo Documento
+			@va_des_tip  VARCHAR(30), --** Descripci¢n de Documento	
+			@va_nro_doc	 BIGINT,	  --** Carnet de Identidad	
+			@va_tel_per	 VARCHAR(15), --** Telefono Personal
+			@va_cel_ula	 VARCHAR(15), --** Telefono Celular
+			@va_tel_fij	 VARCHAR(15), --** Telefono Fijo
+			@va_dir_pri	 VARCHAR(80), --** Direccion Principal
+			@va_dir_ent	 VARCHAR(80), --** Direccion de Entrega
+			@va_ema_ail	 VARCHAR(30), --** Email
+			@va_ubi_gps	 GEOGRAPHY,	  --** Ubicaci¢n Geografica
+			@va_cod_ven	 INT,	      --** C¢digo de Vendedor Asignado
+			@va_nom_ven  CHAR(30),    --** Nombre del Vendedor Asignadao
+			@va_cod_cob	 INT,	      --** C¢digo de Cobrador Asignado	   	    	  	   		
+			@va_nom_cob  CHAR(30),    --** Nombre del Cobrador Asignadao
+			@va_est_ado	 CHAR(01),	  --** Estado(H=Habilitado; N=Deshabilitado)
+			@va_msn_err  VARCHAR(200) --** Nro. Registro
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
-@va_cod_gru		INT,
-@va_nom_gru		VARCHAR(50),
-@va_cod_per		INT,
-@va_raz_soc		VARCHAR(120),
-@va_nom_com		VARCHAR(100),
-@va_nit_per		BIGINT,
-@va_car_net		BIGINT,
-@va_dir_per		VARCHAR(80),
-@va_tel_per		VARCHAR(15),
-@va_cel_per		VARCHAR(15),
-@va_est_ado		CHAR(01)
 
-
-CREATE TABLE #resultado
-(
-va_cod_gru		INT,
-va_nom_gru		VARCHAR(50),
-va_cod_per		INT,
-va_raz_soc		VARCHAR(120),
-va_nom_com		VARCHAR(100),
-va_nit_per		BIGINT,
-va_car_net		BIGINT,
-va_dir_per		VARCHAR(80),
-va_tel_per		VARCHAR(15),
-va_cel_per		VARCHAR(15),
-va_est_ado		CHAR(01)
-
+--** Tabla Temporal: Lista Persona
+CREATE TABLE #tm_lis_per (
+    va_cod_per  INT,
+    va_cod_gru	INT,
+	va_nom_gru  VARCHAR(50),
+	va_tip_per  CHAR(01),
+	va_nom_bre  VARCHAR(30),
+	va_ape_pat  VARCHAR(20),
+	va_ape_mat  VARCHAR(20),
+	va_raz_soc	VARCHAR(80),
+	va_ruc_nit	BIGINT,
+	va_sex_per  CHAR(01),
+	va_fec_nac  DATETIME,
+	va_tip_doc  CHAR(02),
+	va_des_tip  VARCHAR(30),
+	va_nro_doc	BIGINT,
+	va_tel_per	VARCHAR(15),
+	va_cel_ula	VARCHAR(15),
+	va_tel_fij	VARCHAR(15),
+	va_dir_pri	VARCHAR(80),
+	va_dir_ent	VARCHAR(80),
+	va_ema_ail	VARCHAR(30),
+	va_ubi_gps	GEOGRAPHY,
+	va_cod_ven	INT,
+	va_nom_ven  VARCHAR(30),
+	va_cod_cob	INT,
+	va_nom_cob  VARCHAR(30),
+	va_est_ado	CHAR(1)
 )
 
-IF @@ERROR <> 0
-   RETURN
+--** Tabla Temporal: Codigo Persona
+CREATE TABLE #tm_cod_per(
+	va_cod_per  INT
+)
    
 BEGIN TRY 
 
-IF(@ar_est_ado ='T')
+--** Verifica si el estado es T=Todos
+IF(@ar_cod_gru = '0')
+	SET @ar_cod_gru = ''
+
+--** Verifica si el estado es T=Todos
+IF(@ar_est_ado = 'T')
 	SET @ar_est_ado = '%'
 
--- Crea cursor para busqueda
+--** Verifica si el tipo de persona es T=Todos
+IF (@ar_tip_per = 'T')
+	SET @ar_tip_per = '%'
+
+--** Obtiene las lista de persona filtradas
 IF(@ar_cri_bus = 0)  -- Codigo Persona
 BEGIN
-	DECLARE vc_per_son CURSOR LOCAL FOR
-	SELECT va_cod_gru,va_cod_per, va_raz_soc, va_nom_com, va_nit_per, va_car_net, 
-		   va_dir_per, va_tel_per, va_cel_per, va_est_ado
-	FROM adp002 
-	WHERE (va_cod_per LIKE @ar_tex_bus + '%')	AND
-		  (va_est_ado LIKE @ar_est_ado)
-		  
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND va_cod_per LIKE @ar_tex_bus + '%'
 END
-
-IF(@ar_cri_bus = 1)  -- Razon Social
+IF(@ar_cri_bus = 1)  -- Raz¢n Social
 BEGIN
-	DECLARE vc_per_son CURSOR LOCAL FOR
-	SELECT va_cod_gru,va_cod_per, va_raz_soc, va_nom_com, va_nit_per, va_car_net, 
-		   va_dir_per, va_tel_per, va_cel_per, va_est_ado
-	FROM adp002 
-	WHERE (va_raz_soc LIKE @ar_tex_bus + '%')	AND
-		  (va_est_ado LIKE @ar_est_ado)
-		  
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND va_raz_soc LIKE @ar_tex_bus + '%'
 END
-
-IF(@ar_cri_bus = 2)  -- Nombre Comercial
+IF(@ar_cri_bus = 2)  -- Nombres
 BEGIN
-	DECLARE vc_per_son CURSOR LOCAL FOR
-	SELECT va_cod_gru,va_cod_per, va_raz_soc, va_nom_com, va_nit_per, va_car_net, 
-		   va_dir_per, va_tel_per, va_cel_per, va_est_ado
-	FROM adp002 
-	WHERE (va_nom_com LIKE @ar_tex_bus + '%')	AND
-		  (va_est_ado LIKE @ar_est_ado)
-		  
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND va_nom_bre LIKE @ar_tex_bus + '%'
 END
-
-IF(@ar_cri_bus = 3)  -- Nit
+IF(@ar_cri_bus = 3)  -- Ape. Paterno
 BEGIN
-	DECLARE vc_per_son CURSOR LOCAL FOR
-	SELECT va_cod_gru,va_cod_per, va_raz_soc, va_nom_com, va_nit_per, va_car_net, 
-		   va_dir_per, va_tel_per, va_cel_per, va_est_ado
-	FROM adp002 
-	WHERE (va_nit_per LIKE @ar_tex_bus + '%')	AND
-		  (va_est_ado LIKE @ar_est_ado)
-		  
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND va_ape_pat LIKE @ar_tex_bus + '%'
 END
-
-IF(@ar_cri_bus = 4)  -- CI
+IF(@ar_cri_bus = 4)  -- Ape. Materno
 BEGIN
-	DECLARE vc_per_son CURSOR LOCAL FOR
-	SELECT va_cod_gru,va_cod_per, va_raz_soc, va_nom_com, va_nit_per, va_car_net, 
-		   va_dir_per, va_tel_per, va_cel_per, va_est_ado
-	FROM adp002 
-	WHERE (va_car_net LIKE @ar_tex_bus + '%')	AND
-		  (va_est_ado LIKE @ar_est_ado)
-		  
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND va_ape_mat LIKE @ar_tex_bus + '%'
 END
-
-
-IF(@ar_cri_bus = 5)  -- Celular
+IF(@ar_cri_bus = 5)  -- NIT
 BEGIN
-	DECLARE vc_per_son CURSOR LOCAL FOR
-	SELECT va_cod_gru,va_cod_per, va_raz_soc, va_nom_com, va_nit_per, va_car_net, 
-		   va_dir_per, va_tel_per, va_cel_per, va_est_ado
-	FROM adp002 
-	WHERE (va_cel_per LIKE @ar_tex_bus + '%')	AND
-		  (va_est_ado LIKE @ar_est_ado)
-		  
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND va_ruc_nit LIKE @ar_tex_bus + '%'
+END
+IF(@ar_cri_bus = 6)  -- Nro. Documento
+BEGIN
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND va_nro_doc LIKE @ar_tex_bus + '%'
+END
+IF(@ar_cri_bus = 7)  -- Tel‚fono
+BEGIN
+	INSERT INTO #tm_cod_per
+	SELECT va_cod_per
+	  FROM adp002
+	 WHERE va_cod_gru LIKE '%' + @ar_cod_gru
+	   AND va_tip_per LIKE '%' + @ar_tip_per
+	   AND va_est_ado LIKE '%' + @ar_est_ado
+	   AND (va_tel_per LIKE @ar_tex_bus + '%' OR
+	        va_cel_ula LIKE @ar_tex_bus + '%' OR
+			va_tel_fij LIKE @ar_tex_bus + '%')
 END
 
+--** Obtiene los datos de la persona
+DECLARE vc_per_son CURSOR LOCAL FOR
+ SELECT va_cod_per, va_cod_gru, va_tip_per, va_nom_bre,
+	    va_ape_pat, va_ape_mat, va_raz_soc, va_ruc_nit,
+	    va_sex_per, va_fec_nac, va_tip_doc, va_nro_doc,
+	    va_tel_per, va_cel_ula, va_tel_fij, va_dir_pri,
+	    va_dir_ent, va_ema_ail, va_ubi_gps, va_cod_ven,
+	    va_cod_cob, va_est_ado
+   FROM adp002
+  WHERE va_cod_per IN (SELECT va_cod_per FROM #tm_cod_per)
 
+--** Abre Cursor
 OPEN vc_per_son
-FETCH NEXT FROM vc_per_son INTO @va_cod_gru,@va_cod_per, @va_raz_soc, @va_nom_com, @va_nit_per, @va_car_net, @va_dir_per, @va_tel_per, @va_cel_per, @va_est_ado
-									
-					
+--** Lee el primer registro
+FETCH NEXT FROM vc_per_son INTO @va_cod_per, @va_cod_gru, @va_tip_per, @va_nom_bre,
+								@va_ape_pat, @va_ape_mat, @va_raz_soc, @va_ruc_nit,
+								@va_sex_per, @va_fec_nac, @va_tip_doc, @va_nro_doc,
+								@va_tel_per, @va_cel_ula, @va_tel_fij, @va_dir_pri,
+								@va_dir_ent, @va_ema_ail, @va_ubi_gps, @va_cod_ven,
+								@va_cod_cob, @va_est_ado
+														
 WHILE (@@FETCH_STATUS = 0)
 BEGIN
-	-- Obtiene nombre del Grupo
+	--** Obtiene nombre del Grupo
 	SELECT @va_nom_gru = va_nom_gru
 	  FROM adp001
 	 WHERE va_cod_gru = @va_cod_gru
- 
+	
+	IF (@@ROWCOUNT = 0)
+		SET @va_nom_gru = ''
 
-  
- 
-	 INSERT INTO #resultado VALUES (@va_cod_gru,
-									@va_nom_gru		,
-									@va_cod_per		,
-									@va_raz_soc		,
-									@va_nom_com		,
-									@va_nit_per		,
-									@va_car_net		,
-									@va_dir_per		,
-									@va_tel_per		,
-									@va_cel_per		,
-									@va_est_ado		
-									)
+	--** Obtiene nombre del Tipo de Documento
+	SELECT @va_des_tip = va_des_tip
+	  FROM adp014
+	 WHERE va_ide_tip = @va_tip_doc
 
-	FETCH NEXT FROM vc_per_son INTO @va_cod_gru,@va_cod_per, @va_raz_soc, @va_nom_com, @va_nit_per, @va_car_net, @va_dir_per, @va_tel_per, @va_cel_per, @va_est_ado
+	 IF (@@ROWCOUNT = 0)
+		SET @va_des_tip = ''
+
+	--** Obtiene el nombre del vendedor
+	SET @va_nom_ven = ''
+	SELECT @va_nom_ven = va_nom_bre
+	  FROM cmr014
+	 WHERE va_ide_tip = 1
+	   AND va_cod_ide = @va_cod_ven
+
+	--** Obtiene el nombre del cobrador
+	SET @va_nom_cob = ''
+	SELECT @va_nom_cob = va_nom_bre
+	  FROM cmr014
+	 WHERE va_ide_tip = 2
+	   AND va_cod_ide = @va_cod_cob
+   
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_lis_per VALUES (@va_cod_per, @va_cod_gru, @va_nom_gru, @va_tip_per, 
+	                                @va_nom_bre, @va_ape_pat, @va_ape_mat, @va_raz_soc, 
+									@va_ruc_nit, @va_sex_per, @va_fec_nac, @va_tip_doc, 
+									@va_des_tip, @va_nro_doc, @va_tel_per, @va_cel_ula, 
+									@va_tel_fij, @va_dir_pri, @va_dir_ent, @va_ema_ail, 
+									@va_ubi_gps, @va_cod_ven, @va_nom_ven, @va_cod_cob, 
+									@va_nom_cob, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_per_son INTO @va_cod_per, @va_cod_gru, @va_tip_per, @va_nom_bre,
+								    @va_ape_pat, @va_ape_mat, @va_raz_soc, @va_ruc_nit,
+								    @va_sex_per, @va_fec_nac, @va_tip_doc, @va_nro_doc,
+								    @va_tel_per, @va_cel_ula, @va_tel_fij, @va_dir_pri,
+								    @va_dir_ent, @va_ema_ail, @va_ubi_gps, @va_cod_ven,
+								    @va_cod_cob, @va_est_ado
 END	
 
 CLOSE vc_per_son
 DEALLOCATE vc_per_son
 
-IF(@ar_cod_gru = 0)	
+--** Obtiene resultado TODO los Grupos
+SELECT va_cod_per, va_cod_gru, va_nom_gru, va_tip_per, 
+	   va_nom_bre, va_ape_pat, va_ape_mat, va_raz_soc, 
+	   va_ruc_nit, va_sex_per, va_fec_nac, va_tip_doc, 
+	   va_des_tip, va_nro_doc, va_tel_per, va_cel_ula, 
+	   va_tel_fij, va_dir_pri, va_dir_ent, va_ema_ail, 
+	   va_ubi_gps, va_cod_ven, va_nom_ven, va_cod_cob, 
+	   va_nom_cob, va_est_ado
+  FROM #tm_lis_per
+
+
+END TRY
+BEGIN CATCH	
+	SET @va_msn_err = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
+	RAISERROR(@va_msn_err,16,1)
+	RETURN
+END CATCH	   
+GO
+
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp002_02a_p01.sql                                  */
+/*	PROCEDIMIENTO: GRABA REGISTRO PERSONA                        */
+/*                 - (adp002) Inserta Registro de Persona        */
+/*				   - (cmr013) Inserta Registro de NIT            */
+/*				   - (adp005) Inserta Atributos de Cliente	     */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 30/08/2021             */
+/*   NOTA: En caso de error devuelve del 101 as 118              */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp002_02a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_02a_p01
+GO
+
+CREATE PROCEDURE adp002_02a_p01		@ar_cod_per  INT,	        --** Codigo Persona (2 de Grup. Per y 5 de Persona)
+									@ar_cod_gru	 INT,           --** Cod Grupo Persona
+									@ar_tip_per  CHAR(01),      --** Tipo de Cliente (P=Particular; E=Empresa)
+									@ar_nom_bre  VARCHAR(30),   --** Nombre
+									@ar_ape_pat  VARCHAR(20),   --** Apellido Paterno
+									@ar_ape_mat  VARCHAR(20),   --** Apellido Materno
+									@ar_raz_soc	 VARCHAR(80),	--** Razon Social
+									@ar_nom_fac	 VARCHAR(120),	--** Nombre a Facturar
+									@ar_ruc_nit	 BIGINT,	    --** RUC/NIT
+									@ar_sex_per  CHAR(01),      --** Sexo (H=Hombre; M=Mujer)
+									@ar_fec_nac  DATETIME,      --** Fecha de Nacimiento
+									@ar_tip_doc  CHAR(02),      --** Tipo Documento	
+									@ar_nro_doc	 BIGINT,	    --** Nro. Documento
+									@ar_ext_doc  CHAR(02),      --** Extension Documento
+									@ar_tel_per	 VARCHAR(15),	--** Telefono Personal
+									@ar_cel_ula	 VARCHAR(15),	--** Telefono Celular
+									@ar_tel_fij	 VARCHAR(15),	--** Telefono Fijo
+									@ar_dir_pri	 VARCHAR(80),	--** Direccion Principal
+									@ar_dir_ent	 VARCHAR(80),	--** Direccion de Entrega
+									@ar_ema_ail	 VARCHAR(30),	--** Email
+									@ar_ubi_gps	 GEOGRAPHY,		--** Ubicaci¢n Geografica
+									@ar_cod_ven	 INT, 	        --** C¢digo de Vendedor Asignado
+									@ar_cod_cob	 INT,           --** C¢digo de Cobrador Asignado
+
+									@ar_tip_atr  VARCHAR(MAX),	--** Array Tipo de Atributo
+									@ar_ide_atr  VARCHAR(MAX)	--** Array tributo Seleccionado
+									WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		 --** Nro de Registro
+            @va_est_ado  CHAR(01),   --** Estado
+			@va_fec_act  DATETIME,   --** Fecha Actual
+			@va_fec_str  CHAR(10),   --** Fecha Actual
+			@va_tip_atr  INT,        --** ID. Tipo Atributo
+			@va_ide_atr  INT,        --** ID. Atributo
+			@va_nom_tip  VARCHAR(30) --** Nombre Tipo de Atributo
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+BEGIN TRANSACTION
+
+--** Obtiene la fecha actual en dd/MM/yyyy 
+SET @va_fec_act = GETDATE()
+SET @va_fec_str = CONVERT(CHAR(10), @va_fec_act, 103)
+SET @va_fec_act = CONVERT(DATETIME, @va_fec_str)
+
+--** Verifica que el C¢digo Persona sea distinto a cero
+IF (@ar_cod_per = 0)
 BEGIN
-	SELECT * 
-	FROM #resultado
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 101: El C¢digo de Persona tiene que ser DISTINTO a Cero', 16, 1)
+	RETURN
 END
-IF(@ar_cod_gru <> 0)	
+
+--** Verifica que no existena otro registro con el mismo ID.
+SELECT @va_nro_reg = COUNT(*) 
+  FROM adp002
+ WHERE va_cod_per = @ar_cod_per
+
+IF (@va_nro_reg > 0)
 BEGIN
-	SELECT * 
-	FROM #resultado
-	WHERE va_cod_gru = @ar_cod_gru
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 102: Ya existe una persona con el mismo c¢digo %d en la base de datos.', 16, 1, @ar_cod_per)
+	RETURN
 END
+
+--** Valida que el grupo de persona este definido y habilitado
+SELECT @va_est_ado = va_est_ado 
+  FROM adp001
+ WHERE va_cod_gru = @ar_cod_gru
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 103: El Grupo de Persona %d NO est  definido en la base de datos.', 16, 1, @ar_cod_per)
+	RETURN
+END
+
+IF (@va_est_ado = 'F')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 104: El Grupo de Persona %d est  Deshabilitado en la base de datos.', 16, 1, @ar_cod_per)
+	RETURN
+END
+
+IF (@ar_tip_per <> 'P' AND @ar_tip_per <> 'E')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 105: El Tipo de Persona tiene que ser (P=Particular o E=Empresa).', 16, 1)
+	RETURN
+END
+
+IF (@ar_nom_bre = '')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 106: El campo Nombre NO DEBE estar vac¡o.', 16, 1)
+	RETURN
+END
+
+IF (@ar_ape_pat = '')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 107: El campo Apellido Paterno NO DEBE estar vac¡o.', 16, 1)
+	RETURN
+END
+
+IF (@ar_raz_soc = '')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 108: El campo Raz¢n Social NO DEBE estar vac¡o.', 16, 1)
+	RETURN
+END
+
+IF (@ar_sex_per <> 'H' AND @ar_sex_per <> 'M')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 109: El Sexo de la Persona tiene que ser (H=Hombre o M=Mujer).', 16, 1)
+	RETURN
+END
+
+IF (@ar_fec_nac IS NOT NULL)
+BEGIN
+	IF (@ar_fec_nac > @va_fec_act)
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 110: La Fecha de Nacimiento tiene que ser MENOR a la fecha actual.', 16, 1)
+		RETURN
+	END
+END
+
+--** Valida que el tipo de documento este definido y habilitado
+SELECT @va_est_ado = va_est_ado 
+  FROM adp014
+ WHERE va_ide_tip = @ar_tip_doc
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 111: El Tipo de Documento %s NO est  definido en la base de datos.', 16, 1, @ar_tip_doc)
+	RETURN
+END
+
+IF (@va_est_ado = 'F')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 112: El Tipo de Documento %s est  Deshabilitado en la base de datos.', 16, 1, @ar_tip_doc)
+	RETURN
+END
+
+--** Valida que el Vendedor este definido y habilitado
+SELECT @va_est_ado = va_est_ado 
+  FROM cmr014
+ WHERE va_ide_tip = 1
+   AND va_cod_ide = @ar_cod_ven
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 113: El Vendedor %d NO est  definido en la base de datos.', 16, 1, @ar_cod_ven)
+	RETURN
+END
+
+IF (@va_est_ado = 'F')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 114: El Vendedor %d est  Deshabilitado en la base de datos.', 16, 1, @ar_cod_ven)
+	RETURN
+END
+
+--** Valida que el Cobrador este definido y habilitado
+SELECT @va_est_ado = va_est_ado 
+  FROM cmr014
+ WHERE va_ide_tip = 2
+   AND va_cod_ide = @ar_cod_cob
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 115: El Cobrador %d NO est  definido en la base de datos.', 16, 1, @ar_cod_cob)
+	RETURN
+END
+
+IF (@va_est_ado = 'F')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 116: El Cobrador %d est  Deshabilitado en la base de datos.', 16, 1, @ar_cod_cob)
+	RETURN
+END
+
+--** Inserta datos de la persona
+INSERT INTO adp002 VALUES (@ar_cod_per, @ar_cod_gru, @ar_tip_per, @ar_nom_bre,
+						   @ar_ape_pat, @ar_ape_mat, @ar_raz_soc,@ar_nom_fac, @ar_ruc_nit, 
+						   @ar_sex_per, @ar_fec_nac, @ar_tip_doc, @ar_nro_doc, 
+						   @ar_ext_doc, @ar_tel_per, @ar_cel_ula, @ar_tel_fij, 
+						   @ar_dir_pri, @ar_dir_ent, @ar_ema_ail, @ar_ubi_gps, 
+						   @ar_cod_ven, @ar_cod_cob, 'H')
+
+IF (@@ERROR <> 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 117: Error al inserta datos de la persona (adp002).', 16, 1)
+	RETURN
+END
+
+--** Verifica si el NIT es distinto a CERO, Si es haci lo inserta
+IF (@ar_ruc_nit > 0)
+BEGIN
+	--** Inserta el NIT del cliente
+	INSERT INTO cmr013 VALUES (@ar_cod_per, @ar_ruc_nit, @ar_nom_fac, 1)
+END
+
+IF (@@ERROR <> 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 118: Error al inserta datos en la tabla (cmr013).', 16, 1)
+	RETURN
+END
+
+--** Graba los atributos seleccionado del usuario
+DECLARE vc_atr_cli CURSOR LOCAL FOR
+SELECT va_ide_tip, va_ide_atr
+  FROM adp002_fu01(@ar_tip_atr, @ar_ide_atr, '-')
+
+--** Abre cursor
+OPEN vc_atr_cli
+
+--** Lee primer registro
+FETCH NEXT FROM vc_atr_cli INTO @va_tip_atr, @va_ide_atr
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+	--** Verifica si el tipo de atributo esta definido y habilitado
+	SELECT @va_est_ado = va_est_ado, 
+	       @va_nom_tip = va_nom_tip
+	  FROM adp003
+	 WHERE va_ide_tip = @va_tip_atr
+
+	 IF (@@ROWCOUNT = 0)
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 119: El Tipo de Atributo %d. NO est  definido en la base de datos.', 16, 1, @va_tip_atr)
+		RETURN
+	END
+
+	IF (@va_est_ado = 'F')
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 120: El Tipo de Atributo %d. est  deshabilitado en la base de datos.', 16, 1, @va_tip_atr)
+		RETURN
+	END
+
+	--** Verifica si el atributo esta definido y habilitado
+	SELECT @va_est_ado = va_est_ado 
+	  FROM adp004
+	 WHERE va_ide_tip = @va_tip_atr
+	   AND va_ide_atr = @va_ide_atr
+
+	 IF (@@ROWCOUNT = 0)
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 121: El Atributo %d de %s NO est  definido en la base de datos.', 12, 1, @va_tip_atr, @va_nom_tip)
+		RETURN
+	END
+
+	IF (@va_est_ado = 'F')
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 122: El Atributo %d de %s est  deshabilitado en la base de datos.', 12, 1, @va_tip_atr, @va_nom_tip)
+		RETURN
+	END
+
+	--** Graba el atributo de persona
+	INSERT INTO adp005 VALUES (@ar_cod_per, @va_tip_atr, @va_ide_atr)
+
+
+	FETCH NEXT FROM vc_atr_cli INTO @va_tip_atr, @va_ide_atr
+END
+
+--** Cierre y destruya cursor
+CLOSE vc_atr_cli
+DEALLOCATE vc_atr_cli
+
+COMMIT TRANSACTION
 
 RETURN
 
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-    --Rollback TRAN TR_inv100
-	RETURN
-END CATCH	   
-
-GO
-
 
   
-/*
-ARCHIVO: adp002_01a_p02.sql
-PROCEDIMIENTO: OBTIENE ULTIMO NUMERO DE PERSONA
-			   EN EL GRUPO ESPESIFICADO
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	19-09-2020 
---*/
+/*****************************************************************/
+/*	ARCHIVO: adp002_03a_p01.sql                                  */
+/*	PROCEDIMIENTO: ACTUALIZA REGISTRO PERSONA                    */
+/*                 - (adp002) Actualiza Registro de Persona      */
+/*				   - (cmr013) Actualiza Registro de NIT          */
+/*				   - (adp005) Actualiza Atributos de Cliente	 */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 17/09/2021             */
+/*   NOTA: En caso de error devuelve del 101 as 118              */
+/*****************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
-if exists (select * from sysobjects where id = object_id('dbo.adp002_01a_p02') and sysstat & 0xf = 4)
-	drop procedure dbo.adp002_01a_p02
+if exists (select * from sysobjects where id = object_id('dbo.adp002_03a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_03a_p01
 GO
 
-CREATE PROCEDURE adp002_01a_p02		@ar_cod_gru		INT			-- Codigo de grupo
+CREATE PROCEDURE adp002_03a_p01		@ar_cod_per  INT,	        --** Codigo Persona (2 de Grup. Per y 5 de Persona)
+																		
+									@ar_nom_bre  VARCHAR(30),   --** Nombre
+									@ar_ape_pat  VARCHAR(20),   --** Apellido Paterno
+									@ar_ape_mat  VARCHAR(20),   --** Apellido Materno
+									@ar_raz_soc	 VARCHAR(80),	--** Razon Social
+									@ar_nom_fac	 VARCHAR(120),	--** Nombre a Facturar
+									@ar_ruc_nit	 BIGINT,	    --** RUC/NIT
+									@ar_sex_per  CHAR(01),      --** Sexo (H=Hombre; M=Mujer)
+									@ar_fec_nac  DATETIME,      --** Fecha de Nacimiento
+									@ar_tip_doc  CHAR(02),      --** Tipo Documento	
+									@ar_nro_doc	 BIGINT,	    --** Carnet de Identidad
+									@ar_ext_doc  CHAR(02),      --** Extension Documento	
+									@ar_tel_per	 VARCHAR(15),	--** Telefono Personal
+									@ar_cel_ula	 VARCHAR(15),	--** Telefono Celular
+									@ar_tel_fij	 VARCHAR(15),	--** Telefono Fijo
+									@ar_dir_pri	 VARCHAR(80),	--** Direccion Principal
+									@ar_dir_ent	 VARCHAR(80),	--** Direccion de Entrega
+									@ar_ema_ail	 VARCHAR(30),	--** Email
+									@ar_cod_ven	 INT, 	        --** C¢digo de Vendedor Asignado
+									@ar_cod_cob	 INT,           --** C¢digo de Cobrador Asignado
+
+									@ar_tip_atr  VARCHAR(MAX),	--** Array Tipo de Atributo
+									@ar_ide_atr  VARCHAR(MAX)	--** Array tributo Seleccionado
 									WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		 --** Nro de Registro
+            @va_est_ado  CHAR(01),   --** Estado
+			@va_fec_act  DATETIME,   --** Fecha Actual
+			@va_fec_str  CHAR(10),   --** Fecha Actual
+			@va_tip_atr  INT,        --** ID. Tipo Atributo
+			@va_ide_atr  INT,        --** ID. Atributo
+			@va_nom_tip  VARCHAR(30) --** Nombre Tipo de Atributo
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE
-		@nro	INT 
- 
-SELECT @nro = MAX(va_cod_per) from adp002
-WHERE va_cod_gru = @ar_cod_gru
 
-SET @ar_cod_gru = @ar_cod_gru * 10000
+BEGIN TRANSACTION
 
-SET @nro = @nro - @ar_cod_gru
+--** Obtiene la fecha actual en dd/MM/yyyy 
+SET @va_fec_act = GETDATE()
+SET @va_fec_str = CONVERT(CHAR(10), @va_fec_act, 103)
+SET @va_fec_act = CONVERT(DATETIME, @va_fec_str)
 
-IF(@nro IS nulL)
-	SET @nro = 0
+--** Verifica que el C¢digo Persona sea distinto a cero
+IF (@ar_cod_per = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 101: El C¢digo de Persona tiene que ser DISTINTO a Cero', 16, 1)
+	RETURN
+END
 
-SELECT @nro AS va_ult_nro
-IF @@ERROR <> 0
-   RETURN
- 
-GO
+--** Verifica que existena el registro con el mismo ID.
+SELECT @va_nro_reg = COUNT(*) 
+  FROM adp002
+ WHERE va_cod_per = @ar_cod_per
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 102: La persona con el codigo %d NO est  definido en la base de datos.', 16, 1, @ar_cod_per)
+	RETURN
+END
+
+IF (@ar_nom_bre = '')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 103: El campo Nombre NO DEBE estar vac¡o.', 16, 1)
+	RETURN
+END
+
+IF (@ar_ape_pat = '')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 104: El campo Apellido Paterno NO DEBE estar vac¡o.', 16, 1)
+	RETURN
+END
+
+IF (@ar_raz_soc = '')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 105: El campo Raz¢n Social NO DEBE estar vac¡o.', 16, 1)
+	RETURN
+END
+
+IF (@ar_sex_per <> 'H' AND @ar_sex_per <> 'M')
+BEGIN
+	ROLLBACK TRANSACTION
+	RAISERROR ('Error 106: El Sexo de la Persona tiene que ser (H=Hombre o M=Mujer).', 16, 1)
+	RETURN
+END
+
+IF (@ar_fec_nac IS NOT NULL)
+BEGIN
+	IF (@ar_fec_nac > @va_fec_act)
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 107: La Fecha de Nacimiento tiene que ser MENOR a la fecha actual.', 16, 1)
+		RETURN
+	END
+END
+
+--** Valida que el tipo de documento este definido y habilitado
+SELECT @va_est_ado = va_est_ado 
+  FROM adp014
+ WHERE va_ide_tip = @ar_tip_doc
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 108: El Tipo de Documento %s NO est  definido en la base de datos.', 16, 1, @ar_tip_doc)
+	RETURN
+END
+
+IF (@va_est_ado = 'F')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 109: El Tipo de Documento %s est  Deshabilitado en la base de datos.', 16, 1, @ar_tip_doc)
+	RETURN
+END
+
+--** Valida que el Vendedor este definido y habilitado
+SELECT @va_est_ado = va_est_ado 
+  FROM cmr014
+ WHERE va_ide_tip = 1
+   AND va_cod_ide = @ar_cod_ven
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 110: El Vendedor %d NO est  definido en la base de datos.', 16, 1, @ar_cod_ven)
+	RETURN
+END
+
+IF (@va_est_ado = 'F')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 111: El Vendedor %d est  Deshabilitado en la base de datos.', 16, 1, @ar_cod_ven)
+	RETURN
+END
+
+--** Valida que el Cobrador este definido y habilitado
+SELECT @va_est_ado = va_est_ado 
+  FROM cmr014
+ WHERE va_ide_tip = 2
+   AND va_cod_ide = @ar_cod_cob
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 112: El Cobrador %d NO est  definido en la base de datos.', 16, 1, @ar_cod_cob)
+	RETURN
+END
+
+IF (@va_est_ado = 'F')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 113: El Cobrador %d est  Deshabilitado en la base de datos.', 16, 1, @ar_cod_cob)
+	RETURN
+END
+
+--** Inserta datos de la persona
+UPDATE adp002 SET va_nom_bre = @ar_nom_bre,
+				  va_ape_pat = @ar_ape_pat, 
+				  va_ape_mat = @ar_ape_mat, 
+				  va_raz_soc = @ar_raz_soc, 
+				  va_ruc_nit = @ar_ruc_nit, 
+				  va_sex_per = @ar_sex_per, 
+				  va_fec_nac = @ar_fec_nac, 
+				  va_tip_doc = @ar_tip_doc, 
+				  va_nro_doc = @ar_nro_doc,
+				  va_ext_doc = @ar_ext_doc, 
+				  va_tel_per = @ar_tel_per, 
+				  va_cel_ula = @ar_cel_ula,
+				  va_tel_fij = @ar_tel_fij, 
+				  va_dir_pri = @ar_dir_pri, 
+				  va_dir_ent = @ar_dir_ent, 
+				  va_ema_ail = @ar_ema_ail,				  
+				  va_cod_ven = @ar_cod_ven, 
+				  va_cod_cob = @ar_cod_cob
+		    WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR <> 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 114: Error al actualizar los datos de la persona (adp002).', 16, 1)
+	RETURN
+END
+
+IF (@ar_ruc_nit > 0)
+BEGIN
+	--** Elimina el Registro del NIT
+	DELETE cmr013 WHERE va_cod_per = @ar_cod_per
+	               AND va_nit_per = @ar_ruc_nit
+
+	--** Inserta el NIT
+	INSERT INTO cmr013 VALUES (@ar_cod_per, @ar_ruc_nit, @ar_nom_fac, 1)
+	
+	IF (@@ERROR <> 0)
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 115: Error al actualizar datos en la tabla (cmr013).', 16, 1)
+		RETURN
+	END
+END
+
+--** Elimina los atributos del cliente
+DELETE adp005 WHERE va_cod_per = @ar_cod_per
+
+--** Graba los atributos seleccionado del usuario
+DECLARE vc_atr_cli CURSOR LOCAL FOR
+SELECT va_ide_tip, va_ide_atr
+  FROM adp002_fu01(@ar_tip_atr, @ar_ide_atr, '-')
+
+--** Abre cursor
+OPEN vc_atr_cli
+
+--** Lee primer registro
+FETCH NEXT FROM vc_atr_cli INTO @va_tip_atr, @va_ide_atr
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+	--** Verifica si el tipo de atributo esta definido y habilitado
+	SELECT @va_est_ado = va_est_ado, 
+	       @va_nom_tip = va_nom_tip
+	  FROM adp003
+	 WHERE va_ide_tip = @va_tip_atr
+
+	 IF (@@ROWCOUNT = 0)
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 116: El Tipo de Atributo %d. NO est  definido en la base de datos.', 16, 1, @va_tip_atr)
+		RETURN
+	END
+
+	IF (@va_est_ado = 'F')
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 117: El Tipo de Atributo %d. est  deshabilitado en la base de datos.', 16, 1, @va_tip_atr)
+		RETURN
+	END
+
+	--** Verifica si el atributo esta definido y habilitado
+	SELECT @va_est_ado = va_est_ado 
+	  FROM adp004
+	 WHERE va_ide_tip = @va_tip_atr
+	   AND va_ide_atr = @va_ide_atr
+
+	 IF (@@ROWCOUNT = 0)
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 118: El Atributo %d de %s NO est  definido en la base de datos.', 12, 1, @va_tip_atr, @va_nom_tip)
+		RETURN
+	END
+
+	IF (@va_est_ado = 'F')
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR ('Error 119: El Atributo %d de %s est  deshabilitado en la base de datos.', 12, 1, @va_tip_atr, @va_nom_tip)
+		RETURN
+	END
+
+	--** Graba el atributo de persona
+	INSERT INTO adp005 VALUES (@ar_cod_per, @va_tip_atr, @va_ide_atr)
+
+
+	FETCH NEXT FROM vc_atr_cli INTO @va_tip_atr, @va_ide_atr
+END
+
+--** Cierre y destruya cursor
+CLOSE vc_atr_cli
+DEALLOCATE vc_atr_cli
+
+COMMIT TRANSACTION
+
+RETURN
 
 
   
-/*
-ARCHIVO: adp002_05a_p01.sql
-PROCEDIMIENTO: BUSCA PERSONA
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	20-09-2020 
---*/
+/***********************************************************************/
+/*	ARCHIVO: adp002_05a_p01.sql                                        */
+/*	PROCEDIMIENTO: CONSULTA PERSONA                                    */
+/*      ARGUMENTO: @ar_cod_gru  INT         --** C¢digo Grupo          */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 23/09/2021                   */
+/***********************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.adp002_05a_p01') and sysstat & 0xf = 4)
 	drop procedure dbo.adp002_05a_p01
 GO
 
-CREATE PROCEDURE adp002_05a_p01		@ar_cod_per		INT	
-									WITH ENCRYPTION AS
+CREATE PROCEDURE adp002_05a_p01		@ar_cod_per	 INT WITH ENCRYPTION AS
+
+DECLARE     @va_cod_per  INT,	      --** Codigo Persona (2 de Grup. Per y 5 de Persona)
+			@va_cod_gru	 INT,	      --** Cod Grupo Persona
+			@va_nom_gru  VARCHAR(50), --** Nombre Grupo Persona
+			@va_tip_per  CHAR(01),    --** Tipo de Cliente (P=Particular; E=Empresa)
+			@va_nom_bre  VARCHAR(30), --** Nombre
+			@va_ape_pat  VARCHAR(20), --** Apellido Paterno
+			@va_ape_mat  VARCHAR(20), --** Apellido Materno
+			@va_raz_soc	 VARCHAR(80), --** Razon Social
+			@va_nom_fac	 VARCHAR(120), --** Nombre a Facturar
+			@va_ruc_nit	 BIGINT,	  --** RUC/NIT
+			@va_sex_per  CHAR(01),    --** Sexo (H=Hombre; M=Mujer)
+			@va_fec_nac  DATETIME,    --** Fecha de Nacimiento
+			@va_tip_doc  CHAR(02),    --** Tipo Documento
+			@va_nro_doc	 BIGINT,	  --** Carnet de Identidad	
+			@va_ext_doc  CHAR(02),    --** Extension Documento
+			@va_tel_per	 VARCHAR(15), --** Telefono Personal
+			@va_cel_ula	 VARCHAR(15), --** Telefono Celular
+			@va_tel_fij	 VARCHAR(15), --** Telefono Fijo
+			@va_dir_pri	 VARCHAR(80), --** Direccion Principal
+			@va_dir_ent	 VARCHAR(80), --** Direccion de Entrega
+			@va_ema_ail	 VARCHAR(30), --** Email
+			@va_ubi_gps	 GEOGRAPHY,	  --** Ubicaci¢n Geografica
+			@va_cod_ven	 INT,	      --** C¢digo de Vendedor Asignado
+			@va_nom_ven  VARCHAR(30), --** Nombre del Vendedor Asignado
+			@va_cod_cob	 INT,	      --** C¢digo de Cobrador Asignado	   	    	  	   		
+			@va_nom_cob  VARCHAR(30), --** Nombre del Cobrador Asignado
+			@va_est_ado	 CHAR(01),	  --** Estado(H=Habilitado; N=Deshabilitado)
+			@va_ban_err  INT          --** Bandera Mensaje de Error (0=Sin Error; 1=Con Error)
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
-@va_cod_gru		INT,
-@va_nom_gru		VARCHAR(50),
-@va_cod_per		INT,
-@va_raz_soc		VARCHAR(120),
-@va_nom_com		VARCHAR(100),
-@va_nit_per		BIGINT,
-@va_car_net		BIGINT,
-@va_dir_per		VARCHAR(80),
-@va_tel_per		VARCHAR(15),
-@va_cel_per		VARCHAR(15),
-@va_ema_per		VARCHAR(30), 
-@va_ubi_gps		GEOGRAPHY,
-@va_cod_lpr		INT,
-@va_cod_ven		INT,
-@va_est_ado		CHAR(01)
 
+SET @va_ban_err = 0
 
-CREATE TABLE #resultado
-(
-va_cod_gru		INT,
-va_nom_gru		VARCHAR(50),
-va_cod_per		INT,
-va_raz_soc		VARCHAR(120),
-va_nom_com		VARCHAR(100),
-va_nit_per		BIGINT,
-va_car_net		BIGINT,
-va_dir_per		VARCHAR(80),
-va_tel_per		VARCHAR(15),
-va_cel_per		VARCHAR(15),
-va_ema_per		VARCHAR(30), 
-va_ubi_gps		GEOGRAPHY,
-va_cod_lpr		INT,
-va_cod_ven		INT,
-va_est_ado		CHAR(01)
+--** Obtiene los datos de la persona
+SELECT @va_cod_per = va_cod_per, @va_cod_gru = va_cod_gru, 
+       @va_tip_per = va_tip_per, @va_nom_bre = va_nom_bre,
+	   @va_ape_pat = va_ape_pat, @va_ape_mat = va_ape_mat, 
+	   @va_raz_soc = va_raz_soc, @va_ruc_nit = va_ruc_nit,
+  	   @va_sex_per = va_sex_per, @va_fec_nac = va_fec_nac, 
+	   @va_tip_doc = va_tip_doc, @va_nro_doc = va_nro_doc,
+	   @va_ext_doc = va_ext_doc, @va_tel_per = va_tel_per, 
+	   @va_cel_ula = va_cel_ula, @va_tel_fij = va_tel_fij, 
+	   @va_dir_pri = va_dir_pri, @va_dir_ent = va_dir_ent, 
+	   @va_ema_ail = va_ema_ail, @va_ubi_gps = va_ubi_gps, 
+	   @va_cod_ven = va_cod_ven, @va_cod_cob = va_cod_cob, 
+	   @va_est_ado = va_est_ado
+  FROM adp002
+ WHERE va_cod_per = @ar_cod_per
 
-)
-
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
-	-- Crea cursor para busqueda
-	DECLARE vc_per_son CURSOR LOCAL FOR
-	SELECT va_cod_gru,va_cod_per, va_raz_soc, va_nom_com, va_nit_per, va_car_net, 
-		   va_dir_per, va_tel_per, va_cel_per,va_ema_per,  va_ubi_gps,va_cod_lpr, va_cod_ven, va_est_ado
-	FROM adp002 
-	WHERE (va_cod_per = @ar_cod_per  )
-
-
-OPEN vc_per_son
-FETCH NEXT FROM vc_per_son INTO @va_cod_gru,@va_cod_per, @va_raz_soc, @va_nom_com, @va_nit_per, 
-								@va_car_net, @va_dir_per, @va_tel_per, @va_cel_per,@va_ema_per,  
-								@va_ubi_gps, @va_cod_lpr, @va_cod_ven, @va_est_ado
-									
-WHILE (@@FETCH_STATUS = 0)
+IF (@@ROWCOUNT = 0)
 BEGIN
-	-- Obtiene nombre del Grupo
-	SELECT @va_nom_gru = va_nom_gru
-	  FROM adp001
-	 WHERE va_cod_gru = @va_cod_gru
- 
-	 INSERT INTO #resultado VALUES (@va_cod_gru,
-									@va_nom_gru		,
-									@va_cod_per		,
-									@va_raz_soc		,
-									@va_nom_com		,
-									@va_nit_per		,
-									@va_car_net		,
-									@va_dir_per		,
-									@va_tel_per		,
-									@va_cel_per		,
-									@va_ema_per		, 
-									@va_ubi_gps		,
-									@va_cod_lpr		,
-									@va_cod_ven		,
-									@va_est_ado		
-									)
+   SET @va_ban_err = 1
+END
 
-			FETCH NEXT FROM vc_per_son INTO @va_cod_gru,@va_cod_per, @va_raz_soc, @va_nom_com, @va_nit_per, 
-								@va_car_net, @va_dir_per, @va_tel_per, @va_cel_per,@va_ema_per,  
-								@va_ubi_gps, @va_cod_lpr, @va_cod_ven, @va_est_ado
-END	
+--** Obtiene nombre del Grupo
+SELECT @va_nom_gru = va_nom_gru
+  FROM adp001
+ WHERE va_cod_gru = @va_cod_gru
+	
+IF (@@ROWCOUNT = 0)
+	SET @va_nom_gru = ''
 
-CLOSE vc_per_son
-DEALLOCATE vc_per_son
- 
-	SELECT * 
-	FROM #resultado
- 
+--** Obtiene el nombre a Facturar
+SELECT @va_nom_fac = va_raz_soc
+  FROM cmr013
+ WHERE va_cod_per = @va_cod_per
+
+IF (@@ROWCOUNT = 0)
+	SET @va_nom_fac = ''
+
+--** Obtiene el nombre del vendedor
+SET @va_nom_ven = ''
+SELECT @va_nom_ven = va_nom_bre
+  FROM cmr014
+ WHERE va_ide_tip = 1
+   AND va_cod_ide = @va_cod_ven
+
+--** Obtiene el nombre del cobrador
+SET @va_nom_cob = ''
+SELECT @va_nom_cob = va_nom_bre
+  FROM cmr014
+ WHERE va_ide_tip = 2
+   AND va_cod_ide = @va_cod_cob
+
+--** Devuelve los datos de la persona
+IF (@va_ban_err = 0)
+BEGIN
+	SELECT @va_cod_per AS va_cod_per, @va_cod_gru AS va_cod_gru, 
+		   @va_nom_gru AS va_nom_gru, @va_tip_per AS va_tip_per, 
+		   @va_nom_bre AS va_nom_bre, @va_ape_pat AS va_ape_pat, 
+		   @va_ape_mat AS va_ape_mat, @va_raz_soc AS va_raz_soc,
+		   @va_nom_fac AS va_nom_fac, @va_ruc_nit AS va_ruc_nit, 
+		   @va_sex_per AS va_sex_per, @va_fec_nac AS va_fec_nac, 
+		   @va_tip_doc AS va_tip_doc, @va_nro_doc AS va_nro_doc, 
+		   @va_ext_doc AS va_ext_doc, @va_tel_per AS va_tel_per, 
+		   @va_cel_ula AS va_cel_ula, @va_tel_fij AS va_tel_fij, 
+		   @va_dir_pri AS va_dir_pri, @va_dir_ent AS va_dir_ent, 
+		   @va_ema_ail AS va_ema_ail, @va_ubi_gps AS va_ubi_gps, 
+		   @va_cod_ven AS va_cod_ven, @va_nom_ven AS va_nom_ven, 
+		   @va_cod_cob AS va_cod_cob, @va_nom_cob AS va_nom_cob, 
+		   @va_est_ado AS va_est_ado
+END  
+/*****************************************************************/
+/*	ARCHIVO: adp002_06a_p01.sql                                  */
+/*	PROCEDIMIENTO: ELIMINA REGISTRO PERSONA                      */
+/*                 - (adp002) Elimina Registro de Persona        */
+/*				   - (cmr013) Elimina Registro de NIT            */
+/*				   - (adp005) Elimina Atributos de Cliente	     */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 17/09/2021             */
+/*   NOTA: En caso de error devuelve del 101 as 118              */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp002_06a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_06a_p01
+GO
+
+CREATE PROCEDURE adp002_06a_p01		@ar_cod_per  INT WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		 --** Nro de Registro
+            @va_est_ado  CHAR(01),   --** Estado
+			@va_fec_act  DATETIME,   --** Fecha Actual
+			@va_fec_str  CHAR(10),   --** Fecha Actual
+			@va_tip_atr  INT,        --** ID. Tipo Atributo
+			@va_ide_atr  INT,        --** ID. Atributo
+			@va_nom_tip  VARCHAR(30) --** Nombre Tipo de Atributo
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+BEGIN TRANSACTION
+
+--** Obtiene la fecha actual en dd/MM/yyyy 
+SET @va_fec_act = GETDATE()
+SET @va_fec_str = CONVERT(CHAR(10), @va_fec_act, 103)
+SET @va_fec_act = CONVERT(DATETIME, @va_fec_str)
+
+--** Verifica que el C¢digo Persona sea distinto a cero
+IF (@ar_cod_per = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 101: El C¢digo de Persona tiene que ser DISTINTO a Cero', 16, 1)
+	RETURN
+END
+
+--** Verifica si el registro de persona esta definida y deshabilitada
+SELECT @va_est_ado = va_est_ado 
+  FROM adp002
+ WHERE va_cod_per = @ar_cod_per
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 102: La persona con el codigo %d NO est  definido en la base de datos.', 16, 1, @ar_cod_per)
+	RETURN
+END
+
+IF (@va_est_ado = 'H')
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 103: La persona con el codigo %d NO est  deshabilitada en la base de datos.', 16, 1, @ar_cod_per)
+	RETURN
+END
+
+--** Valida que el grupo de persona este definido y habilitado
+SELECT @va_nro_reg = ISNULL(COUNT(*), 0)
+  FROM ads026
+ WHERE va_cod_per = @ar_cod_per
+
+IF (@va_nro_reg > 0)
+BEGIN
+    ROLLBACK TRANSACTION	
+	RAISERROR ('Error 104: La Persona %d tiene movimientos realizados, NO se puede eliminar el registro.', 16, 1, @ar_cod_per)
+	RETURN
+END
+
+--** Si todo es OK, Procede eliminar los registro de persona de la base de datos
+
+--******************************************************************************
+--***  ELIMINA REGISTRO DE PERSONA                                           ***
+--******************************************************************************
+DELETE adp002 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 105: Error al eliminar los datos de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA ATRIBUTOS DE PERSONA                                          ***
+--******************************************************************************
+DELETE adp005 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 106: Error al eliminar los atributos de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA IMAGENES DE PERSONA                                          ***
+--******************************************************************************
+DELETE adp006 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 107: Error al eliminar las imagenes de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA RUTAS POR PERSONA                                             ***
+--******************************************************************************
+DELETE adp008 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 108: Error al eliminar las rutas establecidas de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA LISTA DE PRECIO POR PERSONA                                   ***
+--******************************************************************************
+DELETE adp009 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 109: Error al eliminar las listas autorizadas de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA CONTRATO POR PERSONA                                          ***
+--******************************************************************************
+DELETE adp010 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 110: Error al eliminar los contratos de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA DESCUENTO ESPECIAL POR PERSONA                                ***
+--******************************************************************************
+DELETE adp011 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 111: Error al eliminar los descuentos especiales de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA PERSONA RELACIONADAS                                          ***
+--******************************************************************************
+DELETE adp012 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 112: Error al eliminar las personas relacionadas de la persona.', 16, 1)
+	RETURN
+END
+
+--******************************************************************************
+--***  ELIMINA CONTACTOS POR PERSONA                                         ***
+--******************************************************************************
+DELETE adp013 WHERE va_cod_per = @ar_cod_per
+
+IF (@@ERROR > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 113: Error al eliminar los contactos de la persona.', 16, 1)
+	RETURN
+END
+
+COMMIT TRANSACTION
+
 RETURN
 
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-    
-	RETURN
-END CATCH	   
 
+  
+/**************************************************************************/
+/*  FUNCION : adp002_fu01 (FUNCIÓN QUE DEVUELVE ATRIBUTOS DEL CLIENTE)    */
+/*                  Devuelve paramtros del Usuario Movil                  */
+/*  ARGUMENTOS    : @ar_tip_atr  VARCHAR(MAX),	--** Tipo de Atributo     */
+/*                  @ar_atr_sel  VARCHAR(MAX),	--** Atributo Seleccionao */
+/*                  @ar_car_sep  VARCHAR(10))  --** Caracter Separador    */
+/*  AUTOR         : CREARSIS - JEJR	                                      */
+/**************************************************************************/
+
+/* Verifica si la funcion se encuentra creado */
+if exists (select * from sys.objects where type IN (N'TF') and name = 'adp002_fu01')
+	drop function dbo.adp002_fu01
 GO
+
+CREATE FUNCTION adp002_fu01 (@ar_tip_atr  VARCHAR(MAX),	--** Array Tipo de Atributo
+                             @ar_atr_sel  VARCHAR(MAX),	--** Array Atributo Seleccionao
+                             @ar_car_sep  VARCHAR(10))  --** Caracter Separador
+        --** Tabla a Retornar
+		RETURNS @tb_atr_cli TABLE (va_ide_tip INT NOT NULL,
+                                   va_ide_atr INT NOT NULL) AS
+BEGIN
+   DECLARE @va_pri_tip  INT = 1,	--** Primera Posicion Tipo Atributo
+           @va_pri_atr  INT = 1,    --** Primera Posicion Atributo
+           @va_sig_tip  INT = 1,    --** Siguiente Posicion Tipo Atributo
+		   @va_sig_atr  INT = 1,    --** Siguiente Posicion Atributo
+           @va_len_sep  INT = 1,    --** Longitud del caracter separador
+		   @va_ult_pos  INT = 0,    --** Ultima Posicion del caracter a obtener
+           @va_ide_tip  INT = 0,    --** ID. Tipo Atributo
+		   @va_ide_atr  INT = 0     --** ID. Atributo         
+
+   WHILE (@va_sig_tip > 0)
+   BEGIN
+	  --** Obtiene las posiciones para obtener el tipo de atributo
+      SET @va_sig_tip = CHARINDEX(@ar_car_sep COLLATE Czech_BIN2, @ar_tip_atr, @va_pri_tip)
+      SET @va_ult_pos = CASE WHEN @va_sig_tip > 0 THEN @va_sig_tip
+                             ELSE LEN(@ar_tip_atr) + 1
+                        END - @va_pri_tip
+
+      --** Obtiene el caracter del tipo de atributo
+      SET @va_ide_tip = CONVERT(INT, LTRIM(RTRIM(SUBSTRING(@ar_tip_atr, @va_pri_tip, @va_ult_pos))))
+
+
+	  --** Obtiene las posiciones y caracter para obtener el atributo seleccionado
+      SET @va_sig_atr = CHARINDEX(@ar_car_sep COLLATE Czech_BIN2, @ar_atr_sel, @va_pri_atr)
+      SET @va_ult_pos = CASE WHEN @va_sig_atr > 0 THEN @va_sig_atr
+                             ELSE LEN(@ar_atr_sel) + 1
+                        END - @va_pri_atr
+
+      --** Obtiene el caracter del atributo
+      SET @va_ide_atr = CONVERT(INT, LTRIM(RTRIM(SUBSTRING(@ar_atr_sel, @va_pri_atr, @va_ult_pos))))
+
+	  --** Iserta datos en la tabla temporal
+      INSERT INTO @tb_atr_cli VALUES (@va_ide_tip, @va_ide_atr)
+
+	  --** Obtiene el primera posicion del siguiente caracter
+      SET @va_pri_tip = @va_sig_tip + @va_len_sep
+	  SET @va_pri_atr = @va_sig_atr + @va_len_sep
+   END
+
+   --** Retorna Tabla
+   RETURN
+END
+  
+/*****************************************************************/
+/*	ARCHIVO: adp002_R00.sql                                      */
+/*	PROCEDIMIENTO: INFORME FICHA REGISTRO CLIENTE                */
+/*  PARAMETROS:   @ar_cod_per  INT       ID. Persona             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 08/08/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp002_R00') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_R00
+GO
+
+CREATE PROCEDURE adp002_R00		@ar_cod_per  INT  WITH ENCRYPTION AS
+
+DECLARE			@va_cod_per	 INT,			--** C¢digo Persona
+				@va_cod_gru	 INT,	        --** Cod Grupo Persona
+				@vx_nom_gru  VARCHAR(50),   --** Nombre Grupo Persona
+				@va_tip_per  CHAR(01),      --** Tipo de Cliente (P=Particular; E=Empresa)
+				@vx_tip_per  VARCHAR(15),   --** Nombre Tipo de Persona
+				@va_nom_bre  VARCHAR(30),   --** Nombre
+				@va_ape_pat  VARCHAR(20),   --** Apellido Paterno
+				@va_ape_mat  VARCHAR(20),   --** Apellido Materno
+				@va_raz_soc	 VARCHAR(80),	--** Razon Social
+				@va_nom_fac  VARCHAR(120),  --** Nombre a Facturar
+				@va_ruc_nit	 BIGINT,	    --** RUC/NIT
+				@va_sex_per  CHAR(01),      --** Sexo (H=Hombre; M=Mujer)
+				@vx_sex_per  VARCHAR(06),   --** Nombre Sexo
+				@va_fec_nac  DATETIME,      --** Fecha de Nacimiento
+				@vx_fec_nac  VARCHAR(10),   --** Fecha de Nacimiento String      
+				@va_tip_doc  CHAR(02),      --** Tipo Documento	
+				@va_nro_doc	 BIGINT,	    --** Carnet de Identidad
+				@va_ext_doc  CHAR(02),      --** Extensi¢n Documento	
+				@va_tel_per	 VARCHAR(15),	--** Telefono Personal
+				@va_cel_ula	 VARCHAR(15),	--** Telefono Celular
+				@va_tel_fij	 VARCHAR(15),	--** Telefono Fijo
+				@va_dir_pri	 VARCHAR(120),	--** Direccion Principal
+				@va_dir_ent	 VARCHAR(120),	--** Direccion de Entrega
+				@va_ema_ail	 VARCHAR(30),	--** Email
+				@va_cod_ven	 INT,	        --** C¢digo de Vendedor Asignado
+				@vx_nom_ven  VARCHAR(50),   --** Nombre Vendedor
+				@va_cod_cob	 INT,	        --** C¢digo de Cobrador Asignado	
+				@vx_nom_cob  VARCHAR(50),   --** Nombre Cobrador   	    	  	   		
+				@va_est_ado	 CHAR(01),	    --** Estado(H=Habilitado; N=Deshabilitado)
+				@vx_est_ado  VARCHAR(15),   --** Nombre Estado
+				@va_ide_tip  INT,           --** ID. Tipo Atributo
+				@va_nom_tip  VARCHAR(30),   --** Nombre Tipo Atributo
+				@va_ide_atr  INT,           --** ID. Atributo
+				@va_nom_atr  VARCHAR(30),   --** Nombre Tipo Atributo
+				@vx_tip_atr  VARCHAR(MAX),  --** Lista Tipo Atributos
+				@vx_nom_atr  VARCHAR(MAX)   --** Lista Atributo
+
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Inicializa las variable
+SET @va_cod_gru = 0
+SET @va_tip_per = ''
+SET @va_nom_bre = ''
+SET @va_ape_pat = ''
+SET @va_ape_mat = ''
+SET @va_raz_soc = ''
+SET @va_nom_fac = ''
+SET @va_ruc_nit = 0
+SET @va_sex_per = ''
+SET @va_fec_nac = NULL
+SET @va_tip_doc = ''
+SET @va_nro_doc = 0
+SET @va_ext_doc = ''
+SET @va_tel_per = ''
+SET @va_cel_ula = ''
+SET @va_tel_fij = ''
+SET @va_dir_pri = ''
+SET @va_dir_ent = ''
+SET @va_ema_ail = ''
+SET @va_cod_ven = 0
+SET @va_cod_cob = 0
+SET @va_est_ado = ''
+
+--** Obtiene datos de la persona
+SELECT @va_cod_gru = va_cod_gru, 
+       @va_tip_per = va_tip_per, 
+	   @va_nom_bre = va_nom_bre,
+	   @va_ape_pat = va_ape_pat,
+	   @va_ape_mat = va_ape_mat,
+	   @va_raz_soc = va_raz_soc,
+	   @va_nom_fac = va_nom_fac,
+	   @va_ruc_nit = va_ruc_nit,
+	   @va_sex_per = va_sex_per,
+	   @va_fec_nac = va_fec_nac,
+	   @va_tip_doc = va_tip_doc,
+	   @va_nro_doc = va_nro_doc,
+	   @va_ext_doc = va_ext_doc,
+	   @va_tel_per = va_tel_per,
+	   @va_cel_ula = va_cel_ula,
+	   @va_tel_fij = va_tel_fij,
+	   @va_dir_pri = va_dir_pri,
+	   @va_dir_ent = va_dir_ent,
+	   @va_ema_ail = va_ema_ail,
+	   @va_cod_ven = va_cod_ven,
+	   @va_cod_cob = va_cod_cob,
+	   @va_est_ado = va_est_ado
+  FROM adp002
+ WHERE va_cod_per = @ar_cod_per
+
+--** Obtiene el nombre del Grupo
+SET @vx_nom_gru = ''
+SELECT @vx_nom_gru = va_nom_gru
+  FROM adp001
+ WHERE va_cod_gru = @va_cod_gru
+
+--** Obtiene Tipo de Persona
+SET @vx_tip_per = ''
+IF (@va_tip_per = 'P')
+	SET @vx_tip_per = 'Particular'
+
+IF (@va_tip_per = 'E')
+	SET @vx_tip_per = 'Empresa'
+
+--** Obtiene Sexo de Persona
+SET @vx_sex_per = ''
+IF (@va_sex_per = 'H')
+	SET @vx_sex_per = 'Hombre'
+
+IF (@va_sex_per = 'M')
+	SET @vx_sex_per = 'Mujer'
+
+--** Castea la fecha de nacimiento
+SET @vx_fec_nac = ''
+IF (@va_fec_nac != NULL)
+	SET @vx_fec_nac = CONVERT(CHAR(10), @va_fec_nac, 103)
+
+--** Obtiene Nombre del Vendedor
+SET @vx_nom_ven = ''
+SELECT @vx_nom_ven = va_nom_bre
+  FROM cmr014  
+ WHERE va_ide_tip = 1
+   AND va_cod_ide = @va_cod_ven
+
+--** Obtiene Nombre del Cobrador
+SET @vx_nom_cob = ''
+SELECT @vx_nom_cob = va_nom_bre
+  FROM cmr014  
+ WHERE va_ide_tip = 2
+   AND va_cod_ide = @va_cod_cob
+
+--** Obtiene el estado
+SET @vx_est_ado = ''
+IF (@va_est_ado = 'H')
+	SET @vx_est_ado = 'Habilitado'
+ELSE
+	SET @vx_est_ado = 'Deshabilitado'
+
+SET @vx_tip_atr = ''
+SET @vx_nom_atr = ''
+
+--** Obtiene el atributo de la persona
+DECLARE vc_atr_per CURSOR LOCAL FOR
+SELECT va_ide_tip, va_ide_atr
+  FROM adp005
+ WHERE va_cod_per = @ar_cod_per
+
+--** Abre Cursor
+OPEN vc_atr_per
+
+--** Lee el primer registro
+FETCH NEXT FROM vc_atr_per INTO @va_ide_tip, @va_ide_atr												
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+    --** Obtiene datos del tipo atributo
+	SET @va_nom_tip = ''
+	SELECT @va_nom_tip = va_nom_tip 
+	  FROM adp003
+	 WHERE va_ide_tip = @va_ide_tip
+	   AND va_est_ado = 'H'
+
+	IF (@@ROWCOUNT > 0)
+	BEGIN
+	    --** Obtiene datos del tipo atributo
+		SET @va_nom_atr = ''
+		SELECT @va_nom_atr = va_nom_atr 
+		  FROM adp004
+		 WHERE va_ide_tip = @va_ide_tip
+		   AND va_ide_atr = @va_ide_atr
+
+		--** Cantena los tipo de atributos
+		IF (RTRIM(@vx_tip_atr) = '')
+			SET @vx_tip_atr = @va_nom_tip
+		ELSE 
+			SET @vx_tip_atr = @vx_tip_atr + char(10) + @va_nom_tip
+
+		--** Cantena los atributos
+		IF (RTRIM(@vx_nom_atr) = '')
+			SET @vx_nom_atr = @va_nom_atr
+		ELSE
+			SET @vx_nom_atr = @vx_nom_atr + char(10) + @va_nom_atr
+	END
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_atr_per INTO @va_ide_tip, @va_ide_atr
+END	
+
+CLOSE vc_atr_per
+DEALLOCATE vc_atr_per
+
+--** Devuelve los datos de la persona
+SELECT @ar_cod_per AS va_cod_per,
+       @va_cod_gru AS va_cod_gru,
+       @vx_nom_gru AS va_nom_gru, 
+       @vx_tip_per AS va_tip_per, 
+	   @va_nom_bre AS va_nom_bre,
+	   @va_ape_pat AS va_ape_pat,
+	   @va_ape_mat AS va_ape_mat,
+	   @va_raz_soc AS va_raz_soc,
+	   @va_nom_fac AS va_nom_fac,
+	   @va_ruc_nit AS va_ruc_nit,
+	   @vx_sex_per AS va_sex_per,
+	   @vx_fec_nac AS va_fec_nac,
+	   @va_tip_doc AS va_tip_doc,
+	   @va_nro_doc AS va_nro_doc,
+	   @va_ext_doc AS va_ext_doc,
+	   @va_tel_per AS va_tel_per,
+	   @va_cel_ula AS va_cel_ula,
+	   @va_tel_fij AS va_tel_fij,
+	   @va_dir_pri AS va_dir_pri,
+	   @va_dir_ent AS va_dir_ent,
+	   @va_ema_ail AS va_ema_ail,
+	   @vx_nom_ven AS va_nom_ven,
+	   @vx_nom_cob AS va_nom_cob,
+	   @vx_est_ado AS va_est_ado,
+	   @vx_tip_atr AS va_tip_atr,
+	   @vx_nom_atr AS va_nom_atr
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp002_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME REGISTRO PERSONA                      */
+/*  PARAMETROS:   @ar_gru_ini  INT       Grupo Inicial           */
+/*                @ar_gru_fin  INT       Grupo Final             */
+/*                @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 22/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp002_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_R01
+GO
+
+CREATE PROCEDURE adp002_R01		@ar_gru_ini  INT,
+                                @ar_gru_fin  INT,
+                                @ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+DECLARE			@va_cod_per	 INT,			--** C¢digo Persona
+                @va_raz_soc  VARCHAR(80),	--** Razon Social
+				@vx_nom_ape  VARCHAR(75),   --** Nombre y Apellido
+				@va_ape_pat  VARCHAR(20),	--** Apellido Paterno
+				@va_ape_mat  VARCHAR(20),   --** Apellido Materno
+                @va_nom_bre  VARCHAR(30),   --** Nombre
+				@vx_tel_cel  VARCHAR(35),   --** Telefonos Personal - Celular
+				@va_tel_per  VARCHAR(15),   --** Telefono Personal
+				@va_cel_ula  VARCHAR(15),   --** Telefono Celular
+				@va_dir_pri  VARCHAR(120),  --** Direcci¢n Principal
+				@va_est_ado  VARCHAR(13)    --** Estado (H=Habilitado; N=Deshabilitado)
+
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+CREATE TABLE #tm_reg_per
+(
+	va_cod_per	INT,
+	va_raz_soc  VARCHAR(80),
+	va_nom_ape  VARCHAR(75),
+	va_tel_cel  VARCHAR(35),
+	va_dir_pri  VARCHAR(120),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Obtiene el informe en el orden especificado
+DECLARE vc_reg_per CURSOR LOCAL FOR
+SELECT va_cod_per, va_raz_soc, va_ape_pat, va_ape_mat,
+       va_nom_bre, va_tel_per, va_cel_ula, va_dir_pri,
+	   CASE WHEN va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM adp002
+ WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+   AND va_cod_gru BETWEEN @ar_gru_ini AND @ar_gru_fin
+
+--** Abre Cursor
+OPEN vc_reg_per
+--** Lee el primer registro
+FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_ape_pat, @va_ape_mat,
+                                @va_nom_bre, @va_tel_per, @va_cel_ula, @va_dir_pri,
+								@va_est_ado														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+
+	--** Verifica el campo Apellido Paterno
+	IF (RTRIM(@va_ape_pat) = '.' OR RTRIM(@va_ape_pat) = ',' OR 
+	    RTRIM(@va_ape_pat) = '-' OR RTRIM(@va_ape_pat) = '*')
+		SET @va_ape_pat = ''
+
+    --** Verifica el campo Apellido Materno
+	IF (RTRIM(@va_ape_mat) = '.' OR RTRIM(@va_ape_mat) = ',' OR 
+	    RTRIM(@va_ape_mat) = '-' OR RTRIM(@va_ape_mat) = '*')
+		SET @va_ape_mat = ''	
+
+	--** Verifica el campo Nombre
+	IF (RTRIM(@va_nom_bre) = '.' OR RTRIM(@va_nom_bre) = ',' OR 
+	    RTRIM(@va_nom_bre) = '-' OR RTRIM(@va_nom_bre) = '*')
+		SET @va_nom_bre = ''
+
+	--** Verifica el Telefono Personal
+	IF (RTRIM(@va_tel_per) = '' OR RTRIM(@va_tel_per) = '-' OR 
+	    RTRIM(@va_tel_per) = '00' OR RTRIM(@va_tel_per) = '0')
+		SET @va_tel_per = ''
+
+	--** Verifica el Telefono Celular
+	IF (RTRIM(@va_cel_ula) = '' OR RTRIM(@va_cel_ula) = '-' OR 
+	    RTRIM(@va_cel_ula) = '00' OR RTRIM(@va_cel_ula) = '0')
+		SET @va_cel_ula = ''
+
+	--** Verifica el Telefono Celular
+	IF (RTRIM(@va_dir_pri) = '.' OR RTRIM(@va_dir_pri) = '' OR 
+	    RTRIM(@va_dir_pri) = '0' OR RTRIM(@va_dir_pri) = '*')
+		SET @va_dir_pri = 'S/N'
+
+	--** Concatena Apellidos y Nombre
+	SET @vx_nom_ape = ''
+	IF (RTRIM(@va_ape_pat) <> '')
+		SET @vx_nom_ape = RTRIM(@va_ape_pat)
+
+	IF (RTRIM(@va_ape_mat) <> '')	
+	BEGIN
+		IF (@vx_nom_ape <> '')		
+			SET @vx_nom_ape = RTRIM(@vx_nom_ape) + ' ' + RTRIM(@va_ape_mat)
+		ELSE
+			SET @vx_nom_ape = RTRIM(@va_ape_mat)
+	END
+
+	IF (RTRIM(@va_nom_bre) <> '')	
+		SET @vx_nom_ape = RTRIM(@vx_nom_ape) + ', ' + RTRIM(@va_nom_bre)
+		
+	--** Concatena Telefonos
+	SET  @vx_tel_cel = ''
+	IF (RTRIM(@va_tel_per) <> '')
+		SET @vx_tel_cel = RTRIM(@va_tel_per)
+
+	IF (RTRIM(@va_cel_ula) <> '')	
+	BEGIN
+		IF (@vx_tel_cel <> '')		
+			SET @vx_tel_cel = RTRIM(@vx_tel_cel) + ' - ' + RTRIM(@va_cel_ula)
+		ELSE
+			SET @vx_tel_cel = RTRIM(@va_cel_ula)
+	END
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_reg_per VALUES (@va_cod_per, @va_raz_soc, @vx_nom_ape, 
+	                                @vx_tel_cel, @va_dir_pri, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_ape_pat, @va_ape_mat,
+                                    @va_nom_bre, @va_tel_per, @va_cel_ula, @va_dir_pri,
+								    @va_est_ado	
+END	
+
+CLOSE vc_reg_per
+DEALLOCATE vc_reg_per
+
+--** Retorna los datos
+SELECT va_cod_per, va_raz_soc, va_nom_ape, 
+	   va_tel_cel, va_dir_pri, va_est_ado
+  FROM #tm_reg_per
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_cod_per END ASC,
+  CASE WHEN @ar_ord_dat = 'R' THEN va_raz_soc END ASC
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp002_R02.sql                                      */
+/*	PROCEDIMIENTO: INFORME REGISTRO PERSONA POR CRITERIO         */
+/*  PARAMETROS:   @ar_gru_ini  INT       Grupo Inicial           */
+/*                @ar_gru_fin  INT       Grupo Final             */
+/*                @ar_ide_tip  INT       ID. Tipo Atributo       */
+/*                @ar_atr_ini  INT       ID. Atributo Inicial    */
+/*                @ar_atr_fin  INT       ID. Atributo Final      */
+/*                @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 22/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp002_R02') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_R02
+GO
+
+CREATE PROCEDURE adp002_R02		@ar_gru_ini  INT,  @ar_gru_fin  INT,
+								@ar_ide_tip  INT,  @ar_atr_ini  INT,
+								@ar_atr_fin  INT,  @ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+DECLARE			@va_cod_per	 INT,			--** C¢digo Persona
+                @va_raz_soc  VARCHAR(80),	--** Razon Social
+				@vx_nom_ape  VARCHAR(75),   --** Nombre y Apellido
+				@va_ape_pat  VARCHAR(20),	--** Apellido Paterno
+				@va_ape_mat  VARCHAR(20),   --** Apellido Materno
+                @va_nom_bre  VARCHAR(30),   --** Nombre
+				@vx_tel_cel  VARCHAR(35),   --** Telefonos Personal - Celular
+				@va_tel_per  VARCHAR(15),   --** Telefono Personal
+				@va_cel_ula  VARCHAR(15),   --** Telefono Celular
+				@va_dir_pri  VARCHAR(120),  --** Direcci¢n Principal
+				@va_est_ado  VARCHAR(13)    --** Estado (H=Habilitado; N=Deshabilitado)
+
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Tabla temporal de codigo de persona
+CREATE TABLE #tm_cod_per(
+	va_cod_per  INT
+)
+
+CREATE TABLE #tm_reg_per
+(
+	va_cod_per	INT,
+	va_raz_soc  VARCHAR(80),
+	va_nom_ape  VARCHAR(75),
+	va_tel_cel  VARCHAR(35),
+	va_dir_pri  VARCHAR(120),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Obtiene la lista de clientes que cumplan los parametros
+INSERT INTO #tm_cod_per 
+SELECT va_cod_per
+  FROM adp005
+ WHERE va_ide_tip = @ar_ide_tip
+   AND va_ide_atr BETWEEN @ar_atr_ini AND @ar_atr_fin
+
+--** Obtiene el informe en el orden especificado
+DECLARE vc_reg_per CURSOR LOCAL FOR
+SELECT adp002.va_cod_per, adp002.va_raz_soc, adp002.va_ape_pat, 
+       adp002.va_ape_mat, adp002.va_nom_bre, adp002.va_tel_per, 
+	   adp002.va_cel_ula, adp002.va_dir_pri,
+	   CASE WHEN adp002.va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM adp002, #tm_cod_per
+ WHERE adp002.va_cod_per = #tm_cod_per.va_cod_per
+   AND adp002.va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+   AND adp002.va_cod_gru BETWEEN @ar_gru_ini AND @ar_gru_fin
+
+--** Abre Cursor
+OPEN vc_reg_per
+--** Lee el primer registro
+FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_ape_pat, @va_ape_mat,
+                                @va_nom_bre, @va_tel_per, @va_cel_ula, @va_dir_pri,
+								@va_est_ado														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+
+	--** Verifica el campo Apellido Paterno
+	IF (RTRIM(@va_ape_pat) = '.' OR RTRIM(@va_ape_pat) = ',' OR 
+	    RTRIM(@va_ape_pat) = '-' OR RTRIM(@va_ape_pat) = '*')
+		SET @va_ape_pat = ''
+
+    --** Verifica el campo Apellido Materno
+	IF (RTRIM(@va_ape_mat) = '.' OR RTRIM(@va_ape_mat) = ',' OR 
+	    RTRIM(@va_ape_mat) = '-' OR RTRIM(@va_ape_mat) = '*')
+		SET @va_ape_mat = ''	
+
+	--** Verifica el campo Nombre
+	IF (RTRIM(@va_nom_bre) = '.' OR RTRIM(@va_nom_bre) = ',' OR 
+	    RTRIM(@va_nom_bre) = '-' OR RTRIM(@va_nom_bre) = '*')
+		SET @va_nom_bre = ''
+
+	--** Verifica el Telefono Personal
+	IF (RTRIM(@va_tel_per) = '' OR RTRIM(@va_tel_per) = '-' OR 
+	    RTRIM(@va_tel_per) = '00' OR RTRIM(@va_tel_per) = '0')
+		SET @va_tel_per = ''
+
+	--** Verifica el Telefono Celular
+	IF (RTRIM(@va_cel_ula) = '' OR RTRIM(@va_cel_ula) = '-' OR 
+	    RTRIM(@va_cel_ula) = '00' OR RTRIM(@va_cel_ula) = '0')
+		SET @va_cel_ula = ''
+
+	--** Verifica el Telefono Celular
+	IF (RTRIM(@va_dir_pri) = '.' OR RTRIM(@va_dir_pri) = '' OR 
+	    RTRIM(@va_dir_pri) = '0' OR RTRIM(@va_dir_pri) = '*')
+		SET @va_dir_pri = 'S/N'
+
+	--** Concatena Apellidos y Nombre
+	SET @vx_nom_ape = ''
+	IF (RTRIM(@va_ape_pat) <> '')
+		SET @vx_nom_ape = RTRIM(@va_ape_pat)
+
+	IF (RTRIM(@va_ape_mat) <> '')	
+	BEGIN
+		IF (@vx_nom_ape <> '')		
+			SET @vx_nom_ape = RTRIM(@vx_nom_ape) + ' ' + RTRIM(@va_ape_mat)
+		ELSE
+			SET @vx_nom_ape = RTRIM(@va_ape_mat)
+	END
+
+	IF (RTRIM(@va_nom_bre) <> '')	
+		SET @vx_nom_ape = RTRIM(@vx_nom_ape) + ', ' + RTRIM(@va_nom_bre)
+		
+	--** Concatena Telefonos
+	SET  @vx_tel_cel = ''
+	IF (RTRIM(@va_tel_per) <> '')
+		SET @vx_tel_cel = RTRIM(@va_tel_per)
+
+	IF (RTRIM(@va_cel_ula) <> '')	
+	BEGIN
+		IF (@vx_tel_cel <> '')		
+			SET @vx_tel_cel = RTRIM(@vx_tel_cel) + ' - ' + RTRIM(@va_cel_ula)
+		ELSE
+			SET @vx_tel_cel = RTRIM(@va_cel_ula)
+	END
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_reg_per VALUES (@va_cod_per, @va_raz_soc, @vx_nom_ape, 
+	                                @vx_tel_cel, @va_dir_pri, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_ape_pat, @va_ape_mat,
+                                    @va_nom_bre, @va_tel_per, @va_cel_ula, @va_dir_pri,
+								    @va_est_ado	
+END	
+
+CLOSE vc_reg_per
+DEALLOCATE vc_reg_per
+
+--** Retorna los datos
+SELECT va_cod_per, va_raz_soc, va_nom_ape, 
+	   va_tel_cel, va_dir_pri, va_est_ado
+  FROM #tm_reg_per
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_cod_per END ASC,
+  CASE WHEN @ar_ord_dat = 'R' THEN va_raz_soc END ASC
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp002_R03.sql                                      */
+/*	PROCEDIMIENTO: INFORME REGISTRO PERSONA POR 2 CRITERIOS      */
+/*  PARAMETROS:   @ar_gru_ini  INT       Grupo Inicial           */
+/*                @ar_gru_fin  INT       Grupo Final             */
+/*                @ar_ide_ti1  INT       ID. 1 Tipo Atributo     */
+/*                @ar_atr_in1  INT       ID. 1 Atributo Inicial  */
+/*                @ar_atr_fi1  INT       ID. 1 Atributo Final    */
+/*                @ar_ide_ti2  INT       ID. 2 Tipo Atributo     */
+/*                @ar_atr_in2  INT       ID. 2 Atributo Inicial  */
+/*                @ar_atr_fi2  INT       ID. 2 Atributo Final    */
+/*                @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 29/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp002_R03') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_R03
+GO
+
+CREATE PROCEDURE adp002_R03		@ar_gru_ini  INT,      @ar_gru_fin  INT,
+								@ar_ide_ti1  INT,      @ar_atr_in1  INT,
+								@ar_atr_fi1  INT,      @ar_ide_ti2  INT, 
+								@ar_atr_in2  INT,      @ar_atr_fi2  INT,
+								@ar_est_ado  CHAR(01), @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+DECLARE			@va_cod_per	 INT,			--** C¢digo Persona
+                @va_raz_soc  VARCHAR(80),	--** Razon Social
+				@vx_nom_ape  VARCHAR(75),   --** Nombre y Apellido
+				@va_ape_pat  VARCHAR(20),	--** Apellido Paterno
+				@va_ape_mat  VARCHAR(20),   --** Apellido Materno
+                @va_nom_bre  VARCHAR(30),   --** Nombre
+				@vx_tel_cel  VARCHAR(35),   --** Telefonos Personal - Celular
+				@va_tel_per  VARCHAR(15),   --** Telefono Personal
+				@va_cel_ula  VARCHAR(15),   --** Telefono Celular
+				@va_dir_pri  VARCHAR(120),  --** Direcci¢n Principal
+				@va_est_ado  VARCHAR(13)    --** Estado (H=Habilitado; N=Deshabilitado)
+
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Tabla temporal de codigo de persona
+CREATE TABLE #tm_per_cod(
+	va_cod_per  INT
+)
+
+CREATE TABLE #tm_cod_per(
+	va_cod_per  INT
+)
+
+CREATE TABLE #tm_reg_per
+(
+	va_cod_per	INT,
+	va_raz_soc  VARCHAR(80),
+	va_nom_ape  VARCHAR(75),
+	va_tel_cel  VARCHAR(35),
+	va_dir_pri  VARCHAR(120),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Obtiene la lista de clientes que cumplan el primer criterio
+INSERT INTO #tm_per_cod 
+SELECT va_cod_per
+  FROM adp005
+ WHERE (va_ide_tip = @ar_ide_ti1
+   AND va_ide_atr BETWEEN @ar_atr_in1 AND @ar_atr_fi1)
+
+--** Obtiene la lista de clientes que cumplan el segundo criterio
+INSERT INTO #tm_cod_per 
+SELECT adp005.va_cod_per
+  FROM adp005, #tm_per_cod
+ WHERE adp005.va_cod_per = #tm_per_cod.va_cod_per
+   AND (adp005.va_ide_tip = @ar_ide_ti2
+   AND adp005.va_ide_atr BETWEEN @ar_atr_in2 AND @ar_atr_fi2)
+
+--** Obtiene el informe en el orden especificado
+DECLARE vc_reg_per CURSOR LOCAL FOR
+SELECT adp002.va_cod_per, adp002.va_raz_soc, adp002.va_ape_pat, 
+       adp002.va_ape_mat, adp002.va_nom_bre, adp002.va_tel_per, 
+	   adp002.va_cel_ula, adp002.va_dir_pri,
+	   CASE WHEN adp002.va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM adp002, #tm_cod_per
+ WHERE adp002.va_cod_per = #tm_cod_per.va_cod_per
+   AND adp002.va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+   AND adp002.va_cod_gru BETWEEN @ar_gru_ini AND @ar_gru_fin
+
+--** Abre Cursor
+OPEN vc_reg_per
+--** Lee el primer registro
+FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_ape_pat, @va_ape_mat,
+                                @va_nom_bre, @va_tel_per, @va_cel_ula, @va_dir_pri,
+								@va_est_ado														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+
+	--** Verifica el campo Apellido Paterno
+	IF (RTRIM(@va_ape_pat) = '.' OR RTRIM(@va_ape_pat) = ',' OR 
+	    RTRIM(@va_ape_pat) = '-' OR RTRIM(@va_ape_pat) = '*')
+		SET @va_ape_pat = ''
+
+    --** Verifica el campo Apellido Materno
+	IF (RTRIM(@va_ape_mat) = '.' OR RTRIM(@va_ape_mat) = ',' OR 
+	    RTRIM(@va_ape_mat) = '-' OR RTRIM(@va_ape_mat) = '*')
+		SET @va_ape_mat = ''	
+
+	--** Verifica el campo Nombre
+	IF (RTRIM(@va_nom_bre) = '.' OR RTRIM(@va_nom_bre) = ',' OR 
+	    RTRIM(@va_nom_bre) = '-' OR RTRIM(@va_nom_bre) = '*')
+		SET @va_nom_bre = ''
+
+	--** Verifica el Telefono Personal
+	IF (RTRIM(@va_tel_per) = '' OR RTRIM(@va_tel_per) = '-' OR 
+	    RTRIM(@va_tel_per) = '00' OR RTRIM(@va_tel_per) = '0')
+		SET @va_tel_per = ''
+
+	--** Verifica el Telefono Celular
+	IF (RTRIM(@va_cel_ula) = '' OR RTRIM(@va_cel_ula) = '-' OR 
+	    RTRIM(@va_cel_ula) = '00' OR RTRIM(@va_cel_ula) = '0')
+		SET @va_cel_ula = ''
+
+	--** Verifica el Telefono Celular
+	IF (RTRIM(@va_dir_pri) = '.' OR RTRIM(@va_dir_pri) = '' OR 
+	    RTRIM(@va_dir_pri) = '0' OR RTRIM(@va_dir_pri) = '*')
+		SET @va_dir_pri = 'S/N'
+
+	--** Concatena Apellidos y Nombre
+	SET @vx_nom_ape = ''
+	IF (RTRIM(@va_ape_pat) <> '')
+		SET @vx_nom_ape = RTRIM(@va_ape_pat)
+
+	IF (RTRIM(@va_ape_mat) <> '')	
+	BEGIN
+		IF (@vx_nom_ape <> '')		
+			SET @vx_nom_ape = RTRIM(@vx_nom_ape) + ' ' + RTRIM(@va_ape_mat)
+		ELSE
+			SET @vx_nom_ape = RTRIM(@va_ape_mat)
+	END
+
+	IF (RTRIM(@va_nom_bre) <> '')	
+		SET @vx_nom_ape = RTRIM(@vx_nom_ape) + ', ' + RTRIM(@va_nom_bre)
+		
+	--** Concatena Telefonos
+	SET  @vx_tel_cel = ''
+	IF (RTRIM(@va_tel_per) <> '')
+		SET @vx_tel_cel = RTRIM(@va_tel_per)
+
+	IF (RTRIM(@va_cel_ula) <> '')	
+	BEGIN
+		IF (@vx_tel_cel <> '')		
+			SET @vx_tel_cel = RTRIM(@vx_tel_cel) + ' - ' + RTRIM(@va_cel_ula)
+		ELSE
+			SET @vx_tel_cel = RTRIM(@va_cel_ula)
+	END
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_reg_per VALUES (@va_cod_per, @va_raz_soc, @vx_nom_ape, 
+	                                @vx_tel_cel, @va_dir_pri, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_ape_pat, @va_ape_mat,
+                                    @va_nom_bre, @va_tel_per, @va_cel_ula, @va_dir_pri,
+								    @va_est_ado	
+END	
+
+CLOSE vc_reg_per
+DEALLOCATE vc_reg_per
+
+--** Retorna los datos
+SELECT va_cod_per, va_raz_soc, va_nom_ape, 
+	   va_tel_cel, va_dir_pri, va_est_ado
+  FROM #tm_reg_per
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_cod_per END ASC,
+  CASE WHEN @ar_ord_dat = 'R' THEN va_raz_soc END ASC
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp002_R04.sql                                      */
+/*	PROCEDIMIENTO: INFORME REGISTRO PERSONA P/CRITERIOS Y RUTEO  */
+/*  PARAMETROS:   @ar_gru_ini  INT       Grupo Inicial           */
+/*                @ar_gru_fin  INT       Grupo Final             */
+/*                @ar_ide_tip  INT       ID. Tipo Atributo       */
+/*                @ar_atr_ini  INT       ID. Atributo Inicial    */
+/*                @ar_atr_fin  INT       ID. Atributo Final      */
+/*                @ar_rut_ini  INT       ID. Ruta Inicial        */
+/*                @ar_rut_fin  INT       ID. Ruta Final          */
+/*                @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 01/08/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp002_R04') and sysstat & 0xf = 4)
+	drop procedure dbo.adp002_R04
+GO
+
+CREATE PROCEDURE adp002_R04		@ar_gru_ini  INT,      @ar_gru_fin  INT,
+								@ar_ide_tip  INT,      @ar_atr_ini  INT,
+								@ar_atr_fin  INT,      @ar_rut_ini  INT, 
+								@ar_rut_fin  INT,      @ar_est_ado  CHAR(01), 
+								@ar_ord_dat  CHAR(01)  WITH ENCRYPTION AS
+
+DECLARE			@va_cod_per	 INT,			--** C¢digo Persona
+                @va_raz_soc  VARCHAR(80),	--** Razon Social	
+				@va_rut_per  VARCHAR(150),	--** Rutas Personas
+				@va_ide_rut  INT,           --** ID. Ruta 
+				@va_nom_cor  VARCHAR(15),   --** Nombre Corto Ruta
+				@va_dir_pri  VARCHAR(120),  --** Direcci¢n Principal
+				@va_est_ado  VARCHAR(13),   --** Estado (H=Habilitado; N=Deshabilitado)
+				@va_nro_reg  INT            --** Nro. de Registro
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Tabla temporal de codigo de persona
+CREATE TABLE #tm_cod_per(
+	va_cod_per  INT
+)
+
+CREATE TABLE #tm_reg_per
+(
+	va_cod_per	INT,
+	va_raz_soc  VARCHAR(80),
+	va_rut_per  VARCHAR(150),
+	va_dir_pri  VARCHAR(120)
+)
+
+--** Obtiene la lista de clientes que cumplan el criterio
+INSERT INTO #tm_cod_per 
+SELECT va_cod_per
+  FROM adp005
+ WHERE (va_ide_tip = @ar_ide_tip
+   AND va_ide_atr BETWEEN @ar_atr_ini AND @ar_atr_fin)
+
+
+--** Obtiene el informe en el orden especificado
+DECLARE vc_reg_per CURSOR LOCAL FOR
+SELECT adp002.va_cod_per, adp002.va_raz_soc, adp002.va_dir_pri
+  FROM adp002, #tm_cod_per
+ WHERE adp002.va_cod_per = #tm_cod_per.va_cod_per
+   AND adp002.va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+   AND adp002.va_cod_gru BETWEEN @ar_gru_ini AND @ar_gru_fin
+
+--** Abre Cursor
+OPEN vc_reg_per
+--** Lee el primer registro
+FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_dir_pri														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+	
+	SET @va_rut_per = ''
+
+	--** Lee las Rutas establecidas de la personas en el rango de parametros
+	DECLARE vc_rut_per CURSOR LOCAL FOR
+	SELECT va_ide_rut, va_nom_cor 
+	  FROM adp007
+	 WHERE va_ide_rut BETWEEN @ar_rut_ini AND @ar_rut_fin
+
+	 --** Abre Cursor
+	OPEN vc_rut_per
+	--** Lee el primer registro
+	FETCH NEXT FROM vc_rut_per INTO @va_ide_rut, @va_nom_cor
+	WHILE (@@FETCH_STATUS = 0)
+	BEGIN
+
+		--** Verifica si la persona tiene esa ruta asignada
+		SET @va_nro_reg = 0
+		SELECT @va_nro_reg = COUNT(*) 
+		  FROM adp008
+		 WHERE va_cod_per = @va_cod_per
+		   AND va_ide_rut = @va_ide_rut
+
+		IF (@va_nro_reg > 0)
+		BEGIN
+			IF (RTRIM(@va_rut_per) = '')
+				SET @va_rut_per = RTRIM(@va_nom_cor)
+			ELSE
+				SET @va_rut_per = RTRIM(@va_rut_per) + ' / ' + RTRIM(@va_nom_cor)
+		END
+
+		--** Lee el siguiente registro
+		FETCH NEXT FROM vc_rut_per INTO @va_ide_rut, @va_nom_cor
+
+	END	
+	CLOSE vc_rut_per
+	DEALLOCATE vc_rut_per
+	
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_reg_per VALUES (@va_cod_per, @va_raz_soc, @va_rut_per, @va_dir_pri)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_reg_per INTO @va_cod_per, @va_raz_soc, @va_dir_pri	
+END	
+
+CLOSE vc_reg_per
+DEALLOCATE vc_reg_per
+
+--** Retorna los datos
+SELECT va_cod_per, va_raz_soc, va_rut_per, 
+	   va_dir_pri
+  FROM #tm_reg_per
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_cod_per END ASC,
+  CASE WHEN @ar_ord_dat = 'R' THEN va_raz_soc END ASC
+
+  
+/*
+ARCHIVO: adp003_01a_p01.sql
+PROCEDIMIENTO: - INSERTA TIPO DE ATRIBUTO (adp003)
+               - INSERTA ATRIBUTO P/DEFECTO (adp004)
+			   - ASIGNA ATRIBUTO P/DEFECTO A PERSONAS (adp005)
+	
+AUTOR:	CREARSIS(JEJR)
+FECHA:	30-08-2021 
+--*/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp003_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp003_01a_p01
+GO
+
+CREATE PROCEDURE adp003_01a_p01		@ar_ide_tip	 INT,			-- Id. Tipo de Atributo
+									@ar_nom_tip  VARCHAR(30),	-- Nombre de Atributo
+									@ar_atr_def  INT,			-- ID. Atributo p/Defecto
+									@ar_nom_atr  VARCHAR(30)	-- Nombre de Atributo
+									WITH ENCRYPTION AS
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+BEGIN TRANSACTION
+
+--** Verifica que el ID. Tipo Atributo sea distinto a cero
+IF (@ar_ide_tip = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 100: El ID. Tipo de Atributo tiene que ser DISTINTO a Cero', 16, 1)
+	RETURN
+END
+
+--** Verifica que no existena otro registro con el mismo ID.
+SELECT * FROM adp003
+ WHERE va_ide_tip = @ar_ide_tip
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 101: Ya existe un registro en la tabla (ads003) con el mismo ID.', 16, 1)
+	RETURN
+END
+
+--** Inserta el Tipo de Atributo
+INSERT INTO adp003 VALUES (@ar_ide_tip, @ar_nom_tip, @ar_atr_def, 'H')
+
+IF (@@ERROR <> 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 102: Error al inserta datos en la tabla (ads003).', 16, 1)
+	RETURN
+END
+
+--** Verifica que no existena otro registro con el mismo ID.
+SELECT * FROM adp004
+ WHERE va_ide_tip = @ar_ide_tip
+   AND va_ide_atr = @ar_atr_def
+
+IF (@@ROWCOUNT > 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 103: Ya existe un registro en la tabla (adp004) con el mismo ID.', 16, 1)
+	RETURN
+END
+
+--** Inserta la definici¢n del atributo
+INSERT INTO adp004 VALUES (@ar_ide_tip, @ar_atr_def, @ar_nom_atr, 'H')
+
+IF (@@ERROR <> 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 104: Error al inserta datos en la tabla (ads004)', 16, 1)
+	RETURN
+END
+
+--** Asigna de manera masiva a todos los clientes el atributo p/Defecto
+INSERT INTO adp005
+SELECT @ar_ide_tip, @ar_atr_def, va_cod_per
+  FROM adp002
+ ORDER BY va_cod_per ASC
+
+IF (@@ERROR <> 0)
+BEGIN
+    ROLLBACK TRANSACTION
+	RAISERROR ('Error 104: Error al inserta datos en la tabla (adp005)', 16, 1)
+	RETURN
+END
+
+COMMIT TRANSACTION
+
+RETURN
+
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp003_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME TIPO DE ATRIBUTOS                     */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 13/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp003_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp003_R01
+GO
+
+CREATE PROCEDURE adp003_R01		@ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+DECLARE		@va_ide_tip	 INT,			--** ID. Tipo Atributo
+            @va_nom_tip  VARCHAR(30),	--** Nombre Tipo
+			@va_atr_def  INT,			--** ID. Atributo p/Defecto
+			@va_nom_atr  VARCHAR(30),	--** Nombre Atributo
+			@va_est_tip  CHAR(01), 	    --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+		
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_tip_atr
+(
+	va_ide_tip	INT,
+    va_nom_tip  VARCHAR(30),
+	va_atr_def  INT,
+	va_nom_atr  VARCHAR(30),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene los datos del tipo de atributo
+DECLARE vc_tip_atr CURSOR LOCAL FOR
+ SELECT va_ide_tip, va_nom_tip, va_atr_def, 
+        va_est_ado
+   FROM adp003
+  WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+
+--** Abre Cursor
+OPEN vc_tip_atr
+--** Lee el primer registro
+FETCH NEXT FROM vc_tip_atr INTO @va_ide_tip, @va_nom_tip, @va_atr_def, @va_est_tip
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+
+	--** Obtiene nombre del atributo
+	SET @va_nom_atr = ''
+	SELECT @va_nom_atr = va_nom_atr
+	  FROM adp004
+	 WHERE va_ide_tip = @va_ide_tip
+	   AND va_ide_atr = @va_atr_def
+	
+	IF (@@ROWCOUNT = 0)
+		SET @va_nom_atr = ''
+
+	SET @va_est_ado = ''
+	IF (@va_est_tip = 'H')
+		SET @va_est_ado = 'Habilitado'
+	IF (@va_est_tip = 'N')
+		SET @va_est_ado = 'Deshabilitado'
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_tip_atr VALUES (@va_ide_tip, @va_nom_tip, @va_atr_def, 
+	                                @va_nom_atr, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_tip_atr INTO @va_ide_tip, @va_nom_tip, @va_atr_def, @va_est_tip
+END	
+
+CLOSE vc_tip_atr
+DEALLOCATE vc_tip_atr
+
+
+--** Retorna los datos
+SELECT va_ide_tip, va_nom_tip, va_atr_def, 
+	   va_nom_atr, va_est_ado
+  FROM #tm_tip_atr
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_ide_tip END ASC,
+  CASE WHEN @ar_ord_dat = 'N' THEN va_nom_tip END ASC
+  
+/*****************************************************************/
+/*	ARCHIVO: adp004_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME DEFINICIONES DE ATRIBUTOS             */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_tip_ini  INT       Tipo Atributo Inicial   */
+/*                @ar_tip_fin  INT       Tipo Atributo Final     */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 13/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp004_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp004_R01
+GO
+
+CREATE PROCEDURE adp004_R01		@ar_est_ado  CHAR(01),
+                                @ar_tip_ini  INT,
+								@ar_tip_fin  INT WITH ENCRYPTION AS
+
+DECLARE		@va_ide_tip	 INT,			--** ID. Tipo Atributo
+            @va_nom_tip  VARCHAR(30),	--** Nombre Tipo
+			@va_ide_atr  INT,			--** ID. Atributo
+			@va_nom_atr  VARCHAR(30),	--** Nombre Atributo
+			@va_est_atr  CHAR(01), 	    --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+		
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_def_atr
+(
+	va_ide_tip	INT,
+    va_nom_tip  VARCHAR(30),
+	va_ide_atr  INT,
+	va_nom_atr  VARCHAR(30),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene los datos del tipo de atributo
+DECLARE vc_def_atr CURSOR LOCAL FOR
+ SELECT va_ide_tip, va_ide_atr, va_nom_atr,
+        va_est_ado
+   FROM adp004
+  WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+    AND va_ide_tip >= @ar_tip_ini
+	AND va_ide_tip <= @ar_tip_fin
+
+--** Abre Cursor
+OPEN vc_def_atr
+--** Lee el primer registro
+FETCH NEXT FROM vc_def_atr INTO @va_ide_tip, @va_ide_atr, @va_nom_atr, @va_est_atr
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+
+	--** Obtiene nombre del tipo de atributo
+	SET @va_nom_tip = ''
+	SELECT @va_nom_tip = va_nom_tip
+	  FROM adp003
+	 WHERE va_ide_tip = @va_ide_tip
+	
+	IF (@@ROWCOUNT = 0)
+		SET @va_nom_tip = ''
+
+	SET @va_est_ado = ''
+	IF (@va_est_atr = 'H')
+		SET @va_est_ado = 'Habilitado'
+	IF (@va_est_atr = 'N')
+		SET @va_est_ado = 'Deshabilitado'
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_def_atr VALUES (@va_ide_tip, @va_nom_tip, @va_ide_atr, 
+	                                @va_nom_atr, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_def_atr INTO @va_ide_tip, @va_ide_atr, @va_nom_atr, @va_est_atr
+END	
+
+CLOSE vc_def_atr
+DEALLOCATE vc_def_atr
+
+
+--** Retorna los datos
+SELECT va_ide_tip, va_nom_tip, va_ide_atr, 
+	   va_nom_atr, va_est_ado
+  FROM #tm_def_atr
+  
+/*****************************************************************/
+/*	ARCHIVO: adp006_01a_p01.sql                                  */
+/*	PROCEDIMIENTO: OBTIENE LISTA DE IMAGENES P/PERSONA           */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 27/10/2021             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp006_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp006_01a_p01
+GO
+
+CREATE PROCEDURE adp006_01a_p01		@ar_cod_per  INT	--** C¢digo de Persona
+									WITH ENCRYPTION AS
+
+DECLARE		@va_ide_tip	 CHAR(02),	   --** ID. Tipo de Imagen
+			@va_nom_tip	 VARCHAR(20),  --** Nombre Tipo de Documento
+			@va_ext_arc	 CHAR(05),	   --** Extencion del archivo (JPG, JPEG, BMP, PNG, PDF)
+			@va_tam_arc	 VARCHAR(10),  --** Tama¤o del archivo
+			@va_ima_per  CHAR(01)      --** Tiene Imagen Persona (S=Si; N=No)
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_ima_per
+(
+	va_ide_tip	CHAR(02),
+	va_nom_tip	VARCHAR(20),
+	va_ext_arc	CHAR(05),
+	va_tam_arc	VARCHAR(10),
+	va_ima_per  CHAR(01)
+)
+
+--** Obtiene La lista de Tipo de Imagen
+DECLARE vc_ima_per CURSOR LOCAL FOR
+SELECT va_ide_tip, va_nom_tip
+  FROM ads010
+ WHERE va_est_ado = 'H'
+   AND va_ide_tab = 'adp002'
+
+--** Abre cursor
+OPEN vc_ima_per
+
+--** Lee primer registro
+FETCH NEXT FROM vc_ima_per INTO @va_ide_tip, @va_nom_tip
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+    --** Verifica si la persona tiene registrado la imagen	
+	SELECT @va_ext_arc = va_ext_arc,
+	       @va_tam_arc = va_tam_arc
+	  FROM adp006
+	 WHERE va_cod_per = @ar_cod_per
+	   AND va_ide_tip = @va_ide_tip
+
+	IF (@@ROWCOUNT = 0)
+	BEGIN
+		SET @va_ima_per = 'N'
+		SET @va_ext_arc = ''
+		SET @va_tam_arc = 0.0
+	END
+	ELSE
+		SET @va_ima_per = 'S'
+
+	--** Graba la imagen por persona
+	INSERT INTO #tm_ima_per VALUES (@va_ide_tip, @va_nom_tip, @va_ext_arc, @va_tam_arc, @va_ima_per)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_ima_per INTO @va_ide_tip, @va_nom_tip 
+END
+
+--** Cierre y destruya cursor
+CLOSE vc_ima_per
+DEALLOCATE vc_ima_per
+
+--** Devuelve datos
+SELECT va_ide_tip, va_nom_tip, va_ext_arc, 
+       va_tam_arc, va_ima_per
+  FROM #tm_ima_per
+
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp006_02a_p01.sql                                  */
+/*	PROCEDIMIENTO: CONSULTA REGISTRO IMAGENES P/PERSONA          */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 27/10/2021             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp006_02a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp006_02a_p01
+GO
+
+CREATE PROCEDURE adp006_02a_p01		@ar_cod_per  INT,	  --** C¢digo de Persona
+                                    @ar_ide_tip  CHAR(02) --** ID. Tipo de Imagen 
+									WITH ENCRYPTION AS
+
+DECLARE		@va_cod_per  INT,		   --** Codigo Persona, 
+			@va_raz_soc  VARCHAR(80),  --** Razon Social
+			@va_est_ado  CHAR(01),	   --** Estado(H=Habilitado; N=Deshabilitado)
+            @va_ide_tip	 CHAR(02),     --** ID. Tipo de Imagen
+			@va_nom_tip	 VARCHAR(20),  --** Nombre Tipo de Imagen
+			@va_ext_arc	 CHAR(05),	   --** Extencion del archivo (JPG, JPEG, BMP, PNG, PDF)
+			@va_tam_arc	 VARCHAR(10),  --** Tama¤o del archivo
+			@va_ide_usr  VARCHAR(15),  --** ID. Usuario Registro
+			@va_fec_reg  DATETIME,	   --** Fecha y hora de registro
+			@va_nom_equ  VARCHAR(30),  --** Nombre de la PC O Celular
+			@va_ima_per  CHAR(01)      --** Tiene Imagen Persona (S=Si; N=No)
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_ima_per
+(
+	va_ide_tip	INT,
+	va_nom_tip	VARCHAR(20),
+	va_ext_arc	CHAR(05),
+	va_tam_arc	VARCHAR(10),
+	va_ima_per  CHAR(01)
+)
+
+
+
+--** Obtiene Datos de la Persona
+SELECT @va_cod_per = va_cod_per, 
+       @va_raz_soc = va_raz_soc,
+	   @va_est_ado = va_est_ado 
+  FROM adp002
+ WHERE va_cod_per = @ar_cod_per
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+	SET @va_cod_per = 0
+    SET @va_raz_soc = ''
+	SET @va_est_ado = ''
+END
+
+--** Obtiene Datos del Tipo de Imagem
+SELECT @va_ide_tip = va_ide_tip, 
+       @va_nom_tip = va_nom_tip 
+  FROM ads010
+ WHERE va_ide_tip = @ar_ide_tip
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+	SET @va_ide_tip = 0
+    SET @va_nom_tip = ''
+END
+
+--** Verifica si la persona tiene imagen registrada
+SELECT @va_ext_arc = va_ext_arc,
+	   @va_tam_arc = va_tam_arc,
+	   @va_ide_usr = va_ide_usr,
+	   @va_fec_reg = va_fec_reg,
+	   @va_nom_equ = va_nom_equ,
+	   @va_ima_per = 'S'
+  FROM adp006
+ WHERE va_cod_per = @ar_cod_per
+   AND va_ide_tip = @ar_ide_tip
+
+IF (@@ROWCOUNT = 0)
+BEGIN
+	SET @va_ima_per = 'N'
+	SET @va_ext_arc = ''
+	SET @va_tam_arc = 0.0
+	SET @va_ide_usr = ''
+	SET @va_fec_reg = NULL
+	SET @va_nom_equ = ''
+END
+
+--** Devuelve datos
+SELECT @va_cod_per AS va_cod_per, 
+       @va_raz_soc AS va_raz_soc,
+	   @va_est_ado AS va_est_ado,
+	   @va_ide_tip AS va_ide_tip, 
+       @va_nom_tip AS va_nom_tip,
+	   @va_ext_arc AS va_ext_arc,
+	   @va_tam_arc AS va_tam_arc,
+	   @va_ide_usr AS va_ide_usr,
+	   @va_fec_reg AS va_fec_reg,
+	   @va_nom_equ AS va_nom_equ,
+	   @va_ima_per AS va_ima_per
+
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp007_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME DEFINICIàN DE RUTAS                   */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 13/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp007_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp007_R01
+GO
+
+CREATE PROCEDURE adp007_R01		@ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+DECLARE		@va_ide_rut	 INT,			--** ID. Ruta
+            @va_nom_rut  VARCHAR(30),	--** Nombre Ruta
+			@va_nom_cor  VARCHAR(30),	--** Nombre Corto
+			@va_est_rut  CHAR(01), 	    --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+		
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Crea la tabla temporal
+CREATE TABLE #tm_def_rut
+(
+	va_ide_rut	INT,
+    va_nom_rut  VARCHAR(30),
+	va_nom_cor  VARCHAR(15),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene los datos del tipo de atributo
+DECLARE vc_def_rut CURSOR LOCAL FOR
+ SELECT va_ide_rut, va_nom_rut, va_nom_cor, 
+        va_est_ado
+   FROM adp007
+  WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+
+--** Abre Cursor
+OPEN vc_def_rut
+--** Lee el primer registro
+FETCH NEXT FROM vc_def_rut INTO @va_ide_rut, @va_nom_rut, @va_nom_cor, @va_est_rut
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+
+	SET @va_est_ado = ''
+	IF (@va_est_rut = 'H')
+		SET @va_est_ado = 'Habilitado'
+	IF (@va_est_rut = 'N')
+		SET @va_est_ado = 'Deshabilitado'
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_def_rut VALUES (@va_ide_rut, @va_nom_rut, @va_nom_cor, 
+	                                @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_def_rut INTO @va_ide_rut, @va_nom_rut, @va_nom_cor, @va_est_rut
+END	
+
+CLOSE vc_def_rut
+DEALLOCATE vc_def_rut
+
+
+--** Retorna los datos
+SELECT va_ide_rut, va_nom_rut, va_nom_cor, 
+	   va_est_ado
+  FROM #tm_def_rut
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_ide_rut END ASC,
+  CASE WHEN @ar_ord_dat = 'N' THEN va_nom_rut END ASC
+  
+/*****************************************************************/
+/*	ARCHIVO: adp008_01a_p01.sql                                  */
+/*	PROCEDIMIENTO: OBTIENE RUTEO P/PERSONA                       */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 21/10/2021             */
+/*   NOTA: En caso de error devuelve del 101 as 118              */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp008_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp008_01a_p01
+GO
+
+CREATE PROCEDURE adp008_01a_p01		@ar_cod_per  INT	--** C¢digo de Persona
+									WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		   --** Nro de Registro
+            @va_ide_rut	 INT,  		   --** ID. Ruta
+			@va_nom_rut	 VARCHAR(30),  --** Nombre de la ruta
+			@va_nom_cor	 VARCHAR(15),  --** Nombre corto
+			@va_per_mis  CHAR(01)      --** Permiso (S=Si; N=No)
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_rut_per
+(
+	va_ide_rut	INT,
+	va_nom_rut	VARCHAR(30),
+	va_nom_cor	VARCHAR(15),
+	va_per_mis  CHAR(01)
+)
+
+--** Obtiene La lista de Rutas
+DECLARE vc_rut_per CURSOR LOCAL FOR
+SELECT va_ide_rut, va_nom_rut, va_nom_cor 
+  FROM adp007
+ WHERE va_est_ado = 'H'
+
+--** Abre cursor
+OPEN vc_rut_per
+
+--** Lee primer registro
+FETCH NEXT FROM vc_rut_per INTO @va_ide_rut, @va_nom_rut, @va_nom_cor  
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+    --** Verifica si el usuario tiene habilitado al vendedor
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT (*)
+	  FROM adp008
+	 WHERE va_cod_per = @ar_cod_per
+	   AND va_ide_rut = @va_ide_rut
+
+	IF (@va_nro_reg = 0)
+		SET @va_per_mis = 'N'
+	ELSE
+		SET @va_per_mis = 'S'
+
+
+	--** Graba el atributo de persona
+	INSERT INTO #tm_rut_per VALUES (@va_ide_rut, @va_nom_rut, @va_nom_cor, @va_per_mis)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_rut_per INTO @va_ide_rut, @va_nom_rut, @va_nom_cor   
+END
+
+--** Cierre y destruya cursor
+CLOSE vc_rut_per
+DEALLOCATE vc_rut_per
+
+--** Devuelve datos
+SELECT va_ide_rut, va_nom_rut, va_nom_cor, va_per_mis 
+  FROM #tm_rut_per
+
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp009_01a_p01.sql                                  */
+/*	PROCEDIMIENTO: OBTIENE LISTA DE LISTA DE PRECIO P/PERSONA    */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 21/10/2021             */
+/*   NOTA: En caso de error devuelve del 101 as 118              */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp009_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp009_01a_p01
+GO
+
+CREATE PROCEDURE adp009_01a_p01		@ar_cod_per  INT	--** C¢digo de Persona
+									WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		   --** Nro de Registro
+            @va_cod_lis	 INT,	       --** Codigo del la lista
+			@va_nom_lis	 VARCHAR(30),  --** Nombre
+			@va_mon_lis	 CHAR(01),	   --** Moneda (B=Bolivianos; D=Dolares)
+			@va_fec_ini	 DATE,	       --** Fecha inicio
+			@va_fec_fin	 DATE,	       --** Fecha final
+			@va_per_mis  CHAR(01)      --** Permiso (S=Si; N=No)
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_per_mis
+(
+	va_cod_lis	INT,
+	va_nom_lis	VARCHAR(30),
+	va_mon_lis	CHAR(01),
+	va_fec_ini	DATE,
+	va_fec_fin	DATE,
+	va_per_mis  CHAR(01)
+)
+
+--** Graba los atributos seleccionado del usuario
+DECLARE vc_lis_pre CURSOR LOCAL FOR
+SELECT va_cod_lis, va_nom_lis, va_mon_lis,
+       va_fec_ini, va_fec_fin 
+  FROM cmr001
+ WHERE va_est_ado = 'H'
+
+--** Abre cursor
+OPEN vc_lis_pre
+
+--** Lee primer registro
+FETCH NEXT FROM vc_lis_pre INTO @va_cod_lis, @va_nom_lis, @va_mon_lis,
+								@va_fec_ini, @va_fec_fin 
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+    --** Verifica si el usuario tiene habilitado al vendedor
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT (*)
+	  FROM adp009
+	 WHERE va_cod_per = @ar_cod_per
+	   AND va_cod_lis = @va_cod_lis
+
+	IF (@va_nro_reg = 0)
+		SET @va_per_mis = 'N'
+	ELSE
+		SET @va_per_mis = 'S'
+
+
+	--** Graba el atributo de persona
+	INSERT INTO #tm_per_mis VALUES (@va_cod_lis, @va_nom_lis, @va_mon_lis,
+								    @va_fec_ini, @va_fec_fin, @va_per_mis)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_lis_pre INTO @va_cod_lis, @va_nom_lis, @va_mon_lis,
+								    @va_fec_ini, @va_fec_fin 
+END
+
+--** Cierre y destruya cursor
+CLOSE vc_lis_pre
+DEALLOCATE vc_lis_pre
+
+--** Devuelve datos
+SELECT va_cod_lis, va_nom_lis, va_mon_lis,
+	   va_fec_ini, va_fec_fin, va_per_mis 
+  FROM #tm_per_mis
+
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp009_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME LISTA DE PRECIO ASIG. A LA PERSONA    */
+/*  PARAMETROS:   @ar_cod_per  INT  C¢digo Persona               */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 08/08/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp009_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp009_R01
+GO
+
+CREATE PROCEDURE adp009_R01			@ar_cod_per  INT	--** C¢digo de Persona
+									WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		   --** Nro de Registro
+            @va_cod_lis	 INT,	       --** Codigo del la lista
+			@va_nom_lis	 VARCHAR(30),  --** Nombre
+			@va_mon_lis	 CHAR(01),	   --** Moneda (B=Bolivianos; D=Dolares)
+			@vx_mon_lis  VARCHAR(15),  --** Moneda (Bolivianos; Dolares)
+			@va_fec_ini	 DATE,	       --** Fecha inicio
+			@vx_fec_ini	 CHAR(10),	   --** Fecha inicio String
+			@va_fec_fin	 DATE,	       --** Fecha final
+			@vx_fec_fin	 CHAR(10),	   --** Fecha Final String
+			@va_per_mis  CHAR(01),     --** Permiso (S=Si; N=No)
+			@va_est_lis  CHAR(01),     --** Estado de Lista (H=Habilitado; N=Deshabiliotado)
+			@vx_est_lis  VARCHAR(15)   --** Nombre Estado de Lista
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_lis_asi
+(
+	va_cod_lis	INT,
+	va_nom_lis	VARCHAR(30),
+	va_mon_lis	CHAR(15),
+	va_fec_ini	CHAR(10),
+	va_fec_fin	CHAR(10),
+	va_est_lis  VARCHAR(15)
+)
+
+--** Obtiene la lista de precio asignada al usuario
+DECLARE vc_lis_pre CURSOR LOCAL FOR
+SELECT va_cod_lis
+  FROM adp009
+ WHERE va_cod_per = @ar_cod_per
+
+--** Abre cursor
+OPEN vc_lis_pre
+
+--** Lee primer registro
+FETCH NEXT FROM vc_lis_pre INTO @va_cod_lis
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+
+	--** Obtiene datos de la lista de precio
+	SELECT @va_nom_lis = va_nom_lis, 
+	       @va_mon_lis = va_mon_lis,
+           @va_fec_ini = va_fec_ini, 
+		   @va_fec_fin = va_fec_fin,
+		   @va_est_lis = va_est_ado
+	  FROM cmr001
+	 WHERE va_cod_lis = @va_cod_lis
+
+	 IF (@va_est_lis = 'H')
+	 BEGIN
+		--** Caste la moneda de la lista
+		IF (@va_mon_lis = 'B')
+			SET @vx_mon_lis = 'Bolivianos'
+		IF (@va_mon_lis = 'U')
+			SET @vx_mon_lis = 'Dolares'
+
+		IF (@va_est_lis = 'H')
+			SET @vx_est_lis = 'Habilitado'
+		IF (@va_est_lis = 'N')
+			SET @vx_est_lis = 'Deshabilitado'
+
+		--** Caste las fecha inicial y final
+		SET @vx_fec_ini = CONVERT(CHAR(10), @va_fec_ini, 103)
+		SET @vx_fec_fin = CONVERT(CHAR(10), @va_fec_fin, 103)
+
+		--** Graba el atributo de persona
+		INSERT INTO #tm_lis_asi VALUES (@va_cod_lis, @va_nom_lis, @vx_mon_lis,
+										@vx_fec_ini, @vx_fec_fin, @vx_est_lis)
+	END
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_lis_pre INTO @va_cod_lis 
+END
+
+--** Cierre y destruya cursor
+CLOSE vc_lis_pre
+DEALLOCATE vc_lis_pre
+
+--** Devuelve datos
+SELECT va_cod_lis, va_nom_lis, va_mon_lis,
+	   va_fec_ini, va_fec_fin, va_est_lis
+  FROM #tm_lis_asi
+
+
+  
+/***********************************************************************/
+/*	ARCHIVO: adp010_01a_p01.sql                                        */
+/*	PROCEDIMIENTO: CONSULTA DESCUENTO GENERAL P/PERSONA                */
+/*      ARGUMENTO: @ar_cod_per  INT         --** C¢digo Persona        */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 14/07/2022                   */
+/***********************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp010_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp010_01a_p01
+GO
+
+CREATE PROCEDURE adp010_01a_p01		@ar_cod_per	 INT WITH ENCRYPTION AS
+
+DECLARE     @va_raz_soc	 VARCHAR(80), --** Razon Social
+			@va_nro_doc	 BIGINT,	  --** Carnet de Identidad
+			@va_tip_doc  CHAR(02),    --** Tipo Documento
+			@va_ext_doc  CHAR(02),    --** Extension Documento
+            @va_tip_fac	 CHAR(01),	  --** p/Factura (S=Si; N=No)
+	        @va_tip_ndv	 CHAR(01),	  --** p/Nota de Venta (S=Si; N=No)
+	        @va_por_con  DEC(14,2),   --** Porcentajde de Descuento al Contado
+	        @va_por_cre  DEC(14,2)    --** Porcentajde de Descuento al Cr‚dito
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Inicializa variables
+SET @va_raz_soc = ''
+SET @va_tip_doc = ''
+SET @va_nro_doc = 0
+SET @va_ext_doc = ''
+SET @va_tip_fac	= ''
+SET @va_tip_ndv	= ''
+SET @va_por_con = 0
+SET @va_por_cre = 0
+
+--** Obtiene Datos del Cliente
+SELECT @va_raz_soc = va_raz_soc,
+       @va_tip_doc = va_tip_doc,
+	   @va_nro_doc = va_nro_doc,
+	   @va_ext_doc = va_ext_doc 
+  FROM adp002
+ WHERE va_cod_per = @ar_cod_per
+
+--** Obtiene datos del descuento general del cliente
+SELECT @va_tip_fac = va_tip_fac,
+       @va_tip_ndv = va_tip_ndv,
+	   @va_por_con = va_por_con,
+	   @va_por_cre = va_por_cre
+  FROM adp010
+ WHERE va_cod_per = @ar_cod_per
+
+ IF (@va_tip_fac = '')
+	SET @va_tip_fac = 'N'
+
+IF (@va_tip_ndv = '')
+	SET @va_tip_ndv = 'N'
+
+--** Obtiene Datos
+SELECT @ar_cod_per AS va_cod_per,
+       @va_raz_soc AS va_raz_soc,
+       @va_tip_doc AS va_tip_doc,
+	   @va_nro_doc AS va_nro_doc,
+	   @va_ext_doc AS va_ext_doc,
+	   @va_tip_fac AS va_tip_fac,
+       @va_tip_ndv AS va_tip_ndv,
+	   @va_por_con AS va_por_con,
+	   @va_por_cre AS va_por_cre  
+/*****************************************************************/
+/*	ARCHIVO: adp014_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME TIPO DE DOCUMENTO                     */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 15/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp014_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp014_R01
+GO
+
+CREATE PROCEDURE adp014_R01		@ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene el informe en el orden especificado
+SELECT va_ide_tip, va_des_tip, 
+       CASE WHEN va_ext_doc = 'S'
+		    THEN 'Si' 
+		    ELSE 'No' 
+	   END AS va_ext_doc,
+       CASE WHEN va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM adp014
+ WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'T' THEN va_ide_tip END ASC,
+  CASE WHEN @ar_ord_dat = 'D' THEN va_des_tip END ASC
+
+
+  
+/*********************************************************************/
+/*	ARCHIVO: adp016_01a_p01.sql                                      */
+/*	PROCEDIMIENTO: OBTIENE LISTA DE LISTA DE LIBRETAS AUTORIZADAS    */
+/*                 A GRUPO PERSONA                                   */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 08/11/2021                 */
+/********************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp016_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp016_01a_p01
+GO
+
+CREATE PROCEDURE adp016_01a_p01		@ar_cod_gru  INT	--** Codigo de Grupo de persona
+									WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		   --** Nro de Registro
+            @va_cod_lib	 INT,	       --** C¢digo de la Libreta
+			@va_des_lib  VARCHAR(50),  --** Nombre Libreta
+			@va_cod_cta	 VARCHAR(12),  --** Cod. Cuenta Contable
+			@va_tip_lib  INT,          --** Tipo (1=CxC('Cuentas por Cobrar') ; 2=CxP('Cuentas por Pagar')
+			@va_mon_lib	 CHAR(01),	   --** Moneda (B=Bolivianos; D=Dolares)
+			@va_per_mis  CHAR(01)      --** Permiso (S=Si; N=No)
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_per_mis
+(
+	va_cod_lib	INT,
+	va_des_lib  VARCHAR(50),
+	va_cod_cta	VARCHAR(12),
+	va_tip_lib  INT,
+	va_mon_lib	CHAR(01),
+	va_per_mis  CHAR(01)
+)
+
+--** Obtiene la lista de las libretas habilitadas
+DECLARE vc_lis_lib CURSOR LOCAL FOR
+SELECT va_cod_lib, va_des_lib, va_cod_cta,
+       va_tip_lib, va_mon_lib 
+  FROM ecp002
+ WHERE va_est_ado = 'H'	    --** Habilitado
+   AND (va_tip_lib = 1 OR	--** Cta. p/Cobrar
+        va_tip_lib = 2)		--** Cta. p/Pagar
+
+--** Abre cursor
+OPEN vc_lis_lib
+
+--** Lee primer registro
+FETCH NEXT FROM vc_lis_lib INTO @va_cod_lib, @va_des_lib, @va_cod_cta,
+								@va_tip_lib, @va_mon_lib 
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+    --** Verifica si el usuario tiene habilitado al vendedor
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT (*)
+	  FROM adp016
+	 WHERE va_cod_gru = @ar_cod_gru
+	   AND va_cod_lib = @va_cod_lib
+
+	IF (@va_nro_reg = 0)
+		SET @va_per_mis = 'N'
+	ELSE
+		SET @va_per_mis = 'S'
+
+
+	--** Graba registro a la tabla temporal
+	INSERT INTO #tm_per_mis VALUES (@va_cod_lib, @va_des_lib, @va_cod_cta,
+								    @va_tip_lib, @va_mon_lib, @va_per_mis)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_lis_lib INTO @va_cod_lib, @va_des_lib, @va_cod_cta,
+								    @va_tip_lib, @va_mon_lib 
+END
+
+--** Cierre y destruye cursor
+CLOSE vc_lis_lib
+DEALLOCATE vc_lis_lib
+
+--** Devuelve datos
+SELECT va_cod_lib, va_des_lib, va_cod_cta,
+	   va_tip_lib, va_mon_lib, va_per_mis 
+  FROM #tm_per_mis
+ ORDER BY va_cod_lib
+
+
+  
+/*****************************************************************/
+/*	ARCHIVO: adp018_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME GRUPO EMPRESARIAL                     */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*                @ar_ban_fac  INT       Datos de Facturaci¢n    */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 20/07/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.adp018_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.adp018_R01
+GO
+
+CREATE PROCEDURE adp018_R01		@ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01),
+								@ar_ban_fac  CHAR(01) WITH ENCRYPTION AS
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+IF (@ar_ban_fac = '2')
+	SET @ar_ban_fac = ''
+
+--** Obtiene el informe en el orden especificado
+SELECT va_gru_emp, va_nom_gru, 
+       CASE WHEN va_ban_fac = 0
+		    THEN 'Registro Cliente' 
+		    ELSE 'Grupo Empresarial' 
+	   END AS va_ban_fac,
+	   va_nom_fac, va_ruc_nit, va_dir_ent,
+       CASE WHEN va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM adp018
+ WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+   AND va_ban_fac LIKE '%' + RTRIM(@ar_ban_fac)
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_gru_emp END ASC,
+  CASE WHEN @ar_ord_dat = 'N' THEN va_nom_gru END ASC
 
 
   
@@ -1027,6 +3871,40 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
+/*****************************************************************/
+/*	ARCHIVO: ads001_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME MàDULO DEL SISTEMA                    */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 18/08/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads001_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads001_R01
+GO
+
+CREATE PROCEDURE ads001_R01		@ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene el informe en el orden especificado
+SELECT va_ide_mod, va_nom_mod, va_abr_mod,  
+       CASE WHEN va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM ads001
+ WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_ide_mod END ASC,
+  CASE WHEN @ar_ord_dat = 'N' THEN va_nom_mod END ASC
+
+
+  
 /*
 ARCHIVO: ads002_04a_p01.sql
 PROCEDIMIENTO: HABILITA aplicacion
@@ -1205,6 +4083,96 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
+/*****************************************************************/
+/*	ARCHIVO: ads002_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME APLICACIONES DEL SISTEMA              */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_mod_ini  INT       M¢dulo Inicial          */
+/*                @ar_mod_fin  INT       M¢dulo Final            */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 19/08/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads002_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads002_R01
+GO
+
+CREATE PROCEDURE ads002_R01		@ar_est_ado  CHAR(01),
+                                @ar_mod_ini  INT,
+								@ar_mod_fin  INT WITH ENCRYPTION AS
+
+DECLARE		@va_ide_mod	 INT,			--** ID. M¢dulo
+            @va_nom_mod  VARCHAR(30),	--** Nombre M¢dulo
+			@va_ide_apl  VARCHAR(20),	--** ID. Aplicaci¢n
+			@va_nom_apl  VARCHAR(30),	--** Nombre Aplicaciones
+			@va_est_apl  CHAR(01), 	    --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+		
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_apl_sis
+(
+	va_ide_mod	INT,
+	va_nom_mod  VARCHAR(30),
+    va_ide_apl  VARCHAR(20),
+	va_nom_apl  VARCHAR(120),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene los datos de las aplicaciones del sistema
+DECLARE vc_apl_sis CURSOR LOCAL FOR
+ SELECT va_ide_mod, va_ide_apl, va_nom_apl,
+        va_est_ado
+   FROM ads002
+  WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+    AND va_ide_mod >= @ar_mod_ini
+	AND va_ide_mod <= @ar_mod_fin
+
+--** Abre Cursor
+OPEN vc_apl_sis
+--** Lee el primer registro
+FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_apl, @va_nom_apl, @va_est_apl
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+
+	--** Obtiene nombre del tipo de atributo
+	SET @va_nom_mod = ''
+	SELECT @va_nom_mod = va_nom_mod
+	  FROM ads001
+	 WHERE va_ide_mod = @va_ide_mod
+	
+	IF (@@ROWCOUNT = 0)
+		SET @va_nom_mod = ''
+
+	SET @va_est_ado = ''
+	IF (@va_est_apl = 'H')
+		SET @va_est_ado = 'Habilitado'
+	IF (@va_est_apl = 'N')
+		SET @va_est_ado = 'Deshabilitado'
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_apl_sis VALUES (@va_ide_mod, @va_nom_mod, @va_ide_apl, 
+	                                @va_nom_apl, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_apl, @va_nom_apl, @va_est_apl
+END	
+
+CLOSE vc_apl_sis
+DEALLOCATE vc_apl_sis
+
+
+--** Retorna los datos
+SELECT va_ide_mod, va_nom_mod, va_ide_apl, 
+	   va_nom_apl, va_est_ado
+  FROM #tm_apl_sis
+  
 /*
 ARCHIVO: ads003_04a_p1.sql
 PROCEDIMIENTO: DESHABILITA DOCUMENTO
@@ -1374,226 +4342,250 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
-/*
-ARCHIVO: ads003_R01.sql
-PROCEDIMIENTO: REPORTE LISTADO DE DOCUMENTOS
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	14-05-2020 
---*/
+/*****************************************************************/
+/*	ARCHIVO: ads003_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME DEFINICIàN DE DOCUMENTOS              */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_mod_ini  INT       M¢dulo Inicial          */
+/*                @ar_mod_fin  INT       M¢dulo Final            */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 20/08/2022             */
+/*****************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads003_R01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads003_R01
 GO
 
-CREATE PROCEDURE ads003_R01	@ar_ide_mod		INT,
-							@ar_est_ado		CHAR(01)
-							WITH ENCRYPTION AS
-							
+CREATE PROCEDURE ads003_R01		@ar_est_ado  CHAR(01),
+                                @ar_mod_ini  INT,
+								@ar_mod_fin  INT WITH ENCRYPTION AS
+
+DECLARE		@va_ide_mod	 INT,			--** ID. M¢dulo
+            @va_nom_mod  VARCHAR(30),	--** Nombre M¢dulo
+			@va_ide_doc  CHAR(03),	    --** ID. Documento
+			@va_nom_doc  VARCHAR(30),	--** Nombre Documento
+			@va_des_doc  VARCHAR(120),	--** Nombre Documento
+			@va_est_doc  CHAR(01), 	    --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+		
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
 
-DECLARE 
-@msg			nvarchar(200),
-@va_est_ado		CHAR(01)
+CREATE TABLE #tm_doc_int
+(
+	va_ide_mod	INT,
+	va_nom_mod  VARCHAR(30),
+    va_ide_doc  CHAR(03),
+	va_nom_doc  VARCHAR(30),
+	va_des_doc  VARCHAR(120),
+	va_est_ado  VARCHAR(15)
+)
 
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
-	 --/ Inicializa variable contador de registro
-	IF(@ar_est_ado = 'T')
-		SET @va_est_ado = '%'
-	IF(@ar_est_ado <> 'T')
-		SET @va_est_ado = @ar_est_ado
-		
-		PRINT @ar_est_ado
-		PRINT @va_est_ado
-		
-		
-		 
-	 SELECT ads001.va_ide_mod, ads001.va_nom_mod, ads003.va_ide_doc,
-            ads003.va_nom_doc, ads003.va_des_doc, ads003.va_est_ado
-	  FROM	ads003 , ads001
-	 WHERE (ads003.va_ide_mod = ads001.va_ide_mod)
-	   AND (ads001.va_ide_mod = @ar_ide_mod)
-	   AND (ads003.va_est_ado LIKE @va_est_ado)
+--** Obtiene los datos de las aplicaciones del sistema
+DECLARE vc_apl_sis CURSOR LOCAL FOR
+ SELECT va_ide_mod, va_ide_doc, va_nom_doc,
+        va_des_doc, va_est_ado
+   FROM ads003
+  WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+    AND va_ide_mod >= @ar_mod_ini
+	AND va_ide_mod <= @ar_mod_fin
+
+--** Abre Cursor
+OPEN vc_apl_sis
+--** Lee el primer registro
+FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_doc, @va_nom_doc, @va_des_doc, @va_est_doc
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+
+	--** Obtiene nombre del tipo de atributo
+	SET @va_nom_mod = ''
+	SELECT @va_nom_mod = va_nom_mod
+	  FROM ads001
+	 WHERE va_ide_mod = @va_ide_mod
 	
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-    --Rollback TRAN TR_inv100
-	RETURN
-END CATCH	   
+	IF (@@ROWCOUNT = 0)
+		SET @va_nom_mod = ''
 
-GO  
-/*
-ARCHIVO: ads004_01b_p01.sql
-PROCEDIMIENTO: BUSCA TALONARIOS
-	CON PERMISOS PARA EL USUARIO
-AUTOR:	CREARSIS(CHL)
-FECHA:	28-10-2020 
---*/
+	SET @va_est_ado = ''
+	IF (@va_est_doc = 'H')
+		SET @va_est_ado = 'Habilitado'
+	IF (@va_est_doc = 'N')
+		SET @va_est_ado = 'Deshabilitado'
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_doc_int VALUES (@va_ide_mod, @va_nom_mod, @va_ide_doc, 
+	                                @va_nom_doc, @va_des_doc, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_doc, @va_nom_doc, @va_des_doc, @va_est_doc
+END	
+
+CLOSE vc_apl_sis
+DEALLOCATE vc_apl_sis
+
+
+--** Retorna los datos
+SELECT va_ide_mod, va_nom_mod, va_ide_doc, 
+	   va_nom_doc, va_des_doc, va_est_ado
+  FROM #tm_doc_int
+  
+/****************************************************************************/
+/*	ARCHIVO: ads004_01b_p01.sql                                             */
+/*	PROCEDIMIENTO: BUSCA TALONARIO CON PERMISO PARA EL USUARIO              */
+/*      ARGUMENTO: @ar_ide_usr 	VARCHAR(15) --** ID. Usuario                */
+/*                 @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_tex_bus	VARCHAR(60)	--** Texto a Buscar             */
+/*                 @ar_est_tal CHAR(01)		--** Estado Talonario           */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 28/10/2020                        */
+/****************************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_01b_p01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_01b_p01
 GO
 
-CREATE PROCEDURE ads004_01b_p01		@ar_tex_bus		VARCHAR(60),	-- Texto a ser buscado
-									@ar_ide_doc		CHAR(03)		-- ID del documento
-									WITH ENCRYPTION AS
+CREATE PROCEDURE ads004_01b_p01		@ar_ide_usr VARCHAR(15),
+                                    @ar_ide_doc	CHAR(03),
+                                    @ar_tex_bus	VARCHAR(60),
+									@ar_est_tal CHAR(01)	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ide_doc	 CHAR(03),      --** ID. Documento
+            @va_nom_doc	 NVARCHAR(30),  --** Nombre Documento
+            @va_nro_tal	 INT,           --** Nro. Talonario
+            @va_nom_tal	 NVARCHAR(60),  --** Nombre Talonario
+            @va_est_ado	 CHAR(01)       --** Estado (H=Habilitado; N=Deshabilitado)
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
 
-@va_ide_doc		CHAR(03),
-@va_nom_doc		NVARCHAR(30),
-@va_nro_tal		INT,
-@va_nom_tal		NVARCHAR(60),
-@va_est_ado		CHAR(01)
-
-CREATE TABLE #resultado
+--** Crea la Tabla Temporal
+CREATE TABLE #tm_per_tal
 (
-va_ide_doc		CHAR(03),
-va_nom_doc		NVARCHAR(30),
-va_nro_tal		INT,
-va_nom_tal		NVARCHAR(60),
-va_est_ado		CHAR(01)
+	va_ide_doc	CHAR(03),
+	va_nom_doc	NVARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	NVARCHAR(60),
+	va_est_ado	CHAR(01)
 )
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
+--** Obtiene todos los talonarios del Sistema
+DECLARE vc_per_tal CURSOR LOCAL FOR
+ SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
+   FROM ads004
+  WHERE va_ide_doc = @ar_ide_doc
+    AND va_nro_tal LIKE @ar_tex_bus + '%'
+	AND va_est_ado = @ar_est_tal
 
-   DECLARE vc_tal_ona CURSOR LOCAL FOR
-	SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
-	  FROM ads004
-	 WHERE va_ide_doc LIKE @ar_tex_bus + '%'	AND
-		   va_ide_doc LIKE @ar_ide_doc	AND
-		   va_est_ado = 'H'
-		   
-OPEN vc_tal_ona
-FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+--** Abre Cursor		   
+OPEN vc_per_tal
 
+--** Lee el primer registro
+FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 WHILE (@@FETCH_STATUS = 0)
 BEGIN
-
-	-- Verifica que usuario tenga permiso sobre el talonario
-	SELECT @cout = COUNT(*)
+	--** Verifica si el usuario tiene permiso sobre el talonario
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
 	  FROM ads008
-	 WHERE	va_ide_usr = SYSTEM_USER		AND
-			va_ide_tab = 'ads004'			AND
-			RTRIM(va_ide_uno) = @va_ide_doc	AND
-			RTRIM(va_ide_dos) = @va_nro_tal
-	IF @cout <> 0
-	BEGIN 
-	
-	-- Obtiene nombre del documento
-	SELECT @va_nom_doc = va_nom_doc
-	  FROM ads003
-	 WHERE va_ide_doc = @va_ide_doc
-	 
-	 INSERT INTO #resultado VALUES (@va_ide_doc		,
-									@va_nom_doc		,
-									@va_nro_tal		,
-									@va_nom_tal		,
-									@va_est_ado	
-									)
+	 WHERE va_ide_usr = @ar_ide_usr	
+	   AND va_ide_tab = 'ads004'
+	   AND va_ide_uno = @va_ide_doc
+	   AND va_ide_dos = @va_nro_tal
+
+	   IF (@va_nro_reg > 0)
+	BEGIN 	
+		--** Obtiene el nombre del documento
+		SET @va_nom_doc = ''
+		SELECT @va_nom_doc = va_nom_doc
+		  FROM ads003
+		 WHERE va_ide_doc = @va_ide_doc
+
+		 --** Inserta en la tabla temporal	 
+		 INSERT INTO #tm_per_tal VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, @va_est_ado)
+
+		 IF (@@ERROR > 0)
+			RETURN
 	END
 	
-	FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 END	
 
-SELECT * FROM #resultado
+--** Cierra y destruye cursor
+CLOSE vc_per_tal
+DEALLOCATE vc_per_tal
 
-CLOSE vc_tal_ona
-DEALLOCATE vc_tal_ona
-	
-RETURN
-
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-	RETURN
-END CATCH	   
-
-GO  
-/*
-ARCHIVO: ads004_02a_p01.sql
-PROCEDIMIENTO: REGISTRA TALONARIO Y NUMERACION
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	17-05-2020 
---*/
+--** Retorna lista de permisos autorizados al usuario
+SELECT va_ide_doc, va_nom_doc, va_nro_tal,
+	   va_nom_tal, va_est_ado
+  FROM #tm_per_tal
+  ORDER BY va_ide_doc, va_nro_tal ASC  
+/****************************************************************************/
+/*	ARCHIVO: ads004_02a_p01.sql                                             */
+/*	PROCEDIMIENTO: REGISTRA TALONARIO Y NUMERACIàN                          */
+/*      ARGUMENTO: @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_nro_tal	INT			--** Nro Talonario              */
+/*                 @ar_nom_tal	VARCHAR(60)	--** Nombre del Talonario       */
+/*                 @ar_tip_tal	INT			--** 0=Manual; 1=Automatico     */
+/*                 @ar_nro_aut	BIGINT		--** Nro de Dosificaci¢n        */
+/*                 @ar_for_mat	INT			--** Nro de Formato p/Impresi¢n */
+/*                 @ar_nro_cop	INT			--** Nro de Copias de Impresi¢n */
+/*                 @ar_fir_ma1	VARCHAR(15)	--** Firma 1 para el documento  */
+/*                 @ar_fir_ma2	VARCHAR(15)	--** Firma 2 para el documento  */
+/*                 @ar_fir_ma3	VARCHAR(15)	--** Firma 3 para el documento  */
+/*                 @ar_fir_ma4	VARCHAR(15)	--** Firma 4 para el documento  */
+/*                 @ar_for_log	INT			--** Formato de Logo            */
+/*                 @ar_ges_tio	INT			--** Gestion A¤o                */
+/*                 @ar_anu_mes	INT			--** (0=Anual ; 1=Mensual)      */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 17/05/2020                        */
+/****************************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_02a_p01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_02a_p01
 GO
 
-CREATE PROCEDURE ads004_02a_p01
-							@ar_ges_tio	INT			,	-- Gestion a¤o
-							@ar_anu_mes	INT			,	-- (0=Anual ; 1=Mensual)
-							@ar_ide_doc	CHAR(03)	,	-- Ide Documento
-							@ar_nro_tal	INT			,	-- Nro talonario
-							@ar_nom_tal	VARCHAR(60)	,	-- Nombre del talonario
-							@ar_tip_tal	INT			,	-- Correlativo (0=Manual ; 1=Automatico)
-							@ar_nro_aut	BIGINT		,	-- Nro de autorizacion/Dosificacion de facturas
-							@ar_for_mat	INT			,	-- Nro de formato para impresi¢n del documento
-							@ar_nro_cop	INT			,	-- Nro de copias por defecto que imprimira
-							@ar_fir_ma1	VARCHAR(15)	,	-- Firma 1 para el documento
-							@ar_fir_ma2	VARCHAR(15)	,	-- Firma 2 para el documento
-							@ar_fir_ma3	VARCHAR(15)	,	-- Firma 3 para el documento
-							@ar_fir_ma4	VARCHAR(15)	,	-- Firma 4 para el documento
-							@ar_for_log	INT				/* Formato de logo que se imprimira	
-															0=Razon social de empresa; 
-															1=Logotipo1
-															2=Logotipo2 
-															3=Logotipo3	*/
-							
-							
-							
-						
-							WITH ENCRYPTION AS
+CREATE PROCEDURE ads004_02a_p01		@ar_ide_doc	CHAR(03),	 @ar_nro_tal INT,
+									@ar_nom_tal	VARCHAR(60), @ar_tip_tal INT,
+									@ar_nro_aut	BIGINT,      @ar_for_mat INT,
+									@ar_nro_cop	INT,	     @ar_fir_ma1 VARCHAR(15),
+									@ar_fir_ma2	VARCHAR(15), @ar_fir_ma3 VARCHAR(15),
+									@ar_fir_ma4	VARCHAR(15), @ar_for_log INT,
+									@ar_ges_tio	INT,		 @ar_anu_mes INT	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ges_tio	 INT,			--** Gesti¢n
+			@va_mes_per	 INT,	        --** Mes Periodo
+			@va_nom_per	 VARCHAR(10),	--** Nombre de periodo
+			@va_pri_dia	 DATE,	        --** Primer dia del mes
+			@va_ult_dia	 DATE,			--** Ultimo dia del mes
+		    @va_ide_doc	 CHAR(03),	    --** ID. Docuento
+			@va_nro_tal	 INT,	        --** N£mero del Talonario
+			@va_nom_tal	 VARCHAR(60),	--** Nombre del talonario
+			@va_con_tad	 INT	        --** Contador de periodos
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
 
-@va_ges_tio		INT			,	-- Gestion
-@va_mes_per		INT			,	-- Mes periodo
-@va_nom_per		VARCHAR(10)	,	-- Nombre de periodo
-@va_pri_dia		DATE		,	-- Primer dia del mes
-@va_ult_dia		DATE		,	-- Ultimo dia del mes
-@va_ide_doc		CHAR(03)	,	-- Ide del docuento
-@va_nro_tal		INT			,	-- Numero del talonario
-@va_nom_tal		VARCHAR(60)	,	-- Nombre del talonario
-@va_con_tad		INT			,	-- Contador de periodos
-
-@comando	NVARCHAR(200)	-- Comando para ejecutar sentencia sql
-  
-IF @@ERROR <> 0
-   RETURN
-
+--** Inicio de Transaci¢n  
 BEGIN TRAN TR_ads005
 BEGIN TRY   
-	
+	--** Crea una tabla temporal
 	CREATE TABLE #MES
-	(
+	(	
 		va_ide_mes		INT,
 		va_nom_mes		VARCHAR(10)
 	)
+	
+	--** Inserta los meses del a¤o
 	INSERT INTO #MES VALUES (1,'Enero')
 	INSERT INTO #MES VALUES (2,'Febrero')
 	INSERT INTO #MES VALUES (3,'Marzo')
@@ -1607,62 +4599,72 @@ BEGIN TRY
 	INSERT INTO #MES VALUES (11,'Noviembre')
 	INSERT INTO #MES VALUES (12,'Diciembre')
 	
-
+	--** Inicializa variables
 	SET @va_ges_tio = @ar_ges_tio
 	SET @va_ide_doc = @ar_ide_doc
 	SET @va_nro_tal = @ar_nro_tal
-	
-	
-	--/ Verifica que la Gesti¢n se encuentre creada
-	SET @cout = 0
-	SELECT @cout = COUNT(*)
+		
+	--** Verifica que la Gesti¢n se encuentre registrada
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
 	  FROM ads016
 	 WHERE va_ges_tio = @ar_ges_tio
 	 
-	 IF(@cout = 0)
-	 BEGIN
-		--SET @msg = 'La Gesti¢n proporsionada no se encuentra registrada. ' +  CONVERT(NVARCHAR(255), @cout)  
-		--		 + ' Argumento gestion = ' + CONVERT(NVARCHAR(255),@ar_ges_tio)
+	 IF(@va_nro_reg = 0)
+	 BEGIN		
 		RAISERROR ('La Gesti¢n proporsionada no se encuentra registrada. ',16,1)
 		ROLLBACK TRAN TR_ads005
 		RETURN
 	 END
 	
-	--/ Obtiene mes inicial de la gestion
+	--** Obtiene MES inicial de la gestion
 	SELECT @va_mes_per = va_ges_per 
-	FROM ads016
-	WHERE va_ges_tio = @ar_ges_tio
-	ORDER BY va_ges_per DESC
+	  FROM ads016
+	 WHERE va_ges_tio = @ar_ges_tio
+	 ORDER BY va_ges_per DESC
 	
-	--/ En caso de ser Talonario Anual
+	--** En caso de ser Talonario Anual
 	IF(@ar_anu_mes = 0)
 	BEGIN
-		--/ Cr‚a Talonario Anual
-		INSERT INTO ads004 VALUES	(@va_ide_doc, @va_nro_tal, @ar_nom_tal, @ar_tip_tal, @ar_nro_aut,
-									@ar_for_mat, @ar_nro_cop, @ar_fir_ma1, @ar_fir_ma2, @ar_fir_ma3,
-									@ar_fir_ma4, @ar_for_log, 'H')
+		--** Crea Talonario Anual
+		INSERT INTO ads004 VALUES (@va_ide_doc, @va_nro_tal, @ar_nom_tal, @ar_tip_tal, @ar_nro_aut,
+								   @ar_for_mat, @ar_nro_cop, @ar_fir_ma1, @ar_fir_ma2, @ar_fir_ma3,
+								   @ar_fir_ma4, @ar_for_log, 'H')
+
+		IF (@@ERROR > 0)
+		BEGIN
+			RAISERROR ('Error al grabar el Talonario (ads004)', 16, 1)
+			ROLLBACK TRAN TR_ads004
+			RETURN
+		END
 		
-		--/ Obtiene primer y ultimo dia de la Gesti¢n
+		--** Obtiene primer y £ltimo d¡a de la Gesti¢n
 		SELECT @va_pri_dia = MIN(va_fec_ini) , 
 			   @va_ult_dia = MAX(va_fec_fin)  
 		  FROM ads016
 		 WHERE va_ges_tio = @ar_ges_tio
 		 
-		--/ Cr‚a Numeraci¢n Anual			  
+		--** Cr‚a Numeraci¢n Anual			  
 		INSERT INTO ads005 VALUES (@va_ide_doc, @va_nro_tal, @ar_ges_tio, @va_pri_dia,@va_ult_dia, 0, 999999,0)
 		
+		IF (@@ERROR > 0)
+		BEGIN
+			RAISERROR ('Error al grabar el Control Numeraci¢n (ads005)', 16, 1)
+			ROLLBACK TRAN TR_ads005
+			RETURN
+		END
 	
 	END
 	
-	--/ En caso de ser Talonario Mensual, segun Gesti¢n
+	--** En caso de ser Talonario Mensual, segun Gesti¢n
 	IF(@ar_anu_mes = 1)
 	BEGIN
 		SET @va_con_tad = 1
-	
+
+		--** Recorre los 12 Meses del A¤o
 		WHILE (@va_con_tad <= 12)
-		BEGIN
-			
-			--/ Obtiene datos del periodo
+		BEGIN			
+			--** Obtiene datos del periodo
 			SELECT @va_nom_per = va_nom_per,
 				   @va_pri_dia = va_fec_ini,
 				   @va_ult_dia = va_fec_fin
@@ -1670,55 +4672,64 @@ BEGIN TRY
 			 WHERE va_ges_tio = @ar_ges_tio
 			   AND va_ges_per = @va_con_tad
 			
-			--/ Compone nombre de talonario + nombre del mes correspondiente
+			--** Compone nombre de talonario + nombre del mes correspondiente
 			SET @va_nom_tal = @ar_nom_tal + ' - ' + @va_nom_per
 			
-			--/ Verifica que el Talonario a crear en el mes, aun no este creado
-			SELECT *
+			--** Verifica que el Talonario a crear en el mes, aun no este creado
+			SET @va_nro_reg = 0
+			SELECT @va_nro_reg = COUNT(*)
 			  FROM ads004
 			 WHERE va_ide_doc = @va_ide_doc
 			   AND va_nro_tal = @va_nro_tal
-			IF @@ROWCOUNT <> 0
+
+			IF (@va_nro_reg > 0)
 			BEGIN
-				SET @msg = 'No se puede crear un Talonario duplicado, el talonario: ' +  CONVERT(NVARCHAR(255),@va_nro_tal) 
-						 + ' para el Documento ' + @va_ide_doc + ' ya se encuentra registrado'
+				SET @va_msn_err = 'NO se puede crear un Talonario duplicado, el talonario: ' +  RTRIM(CONVERT(VARCHAR(255), @va_nro_tal)) +
+						          ' para el Documento ' + RTRIM(@va_ide_doc) + ' YA se encuentra registrado'
 				
 				RAISERROR (@msg ,16,1)
-				Rollback TRAN TR_ads005
+				ROLLBACK TRAN TR_ads004
 				RETURN
 			END
 			
-			--/ Cr‚a Talonario por Mes
+			--** Cr‚a Talonario por Mes
 			INSERT INTO ads004 VALUES (@va_ide_doc, @va_nro_tal, @va_nom_tal, @ar_tip_tal, @ar_nro_aut,
 									   @ar_for_mat, @ar_nro_cop, @ar_fir_ma1, @ar_fir_ma2, @ar_fir_ma3,
 									   @ar_fir_ma4, @ar_for_log, 'H')
-									   
-			--/ Cr‚a Numeraci¢n por Mes
-			INSERT INTO ads005 VALUES (@va_ide_doc, @va_nro_tal, @ar_ges_tio, @va_pri_dia,@va_ult_dia, 0, 999999,0)
-			
-			--/ Incrementa contadores
-			SET @va_con_tad = @va_con_tad + 1
-			SET @va_nro_tal = @va_nro_tal + 1
-			
-		END
-	
-	
-	END
-	
 
-	
+			IF (@@ERROR > 0)
+			BEGIN
+				RAISERROR ('Error al grabar el Talonario (ads004)', 16, 1)
+				ROLLBACK TRAN TR_ads004
+				RETURN
+			END
+									   
+			--** Cr‚a Numeraci¢n por Mes
+			INSERT INTO ads005 VALUES (@va_ide_doc, @va_nro_tal, @ar_ges_tio, @va_pri_dia,@va_ult_dia, 0, 999999,0)
+
+			IF (@@ERROR > 0)
+			BEGIN
+				RAISERROR ('Error al grabar el Control Numeraci¢n (ads005)', 16, 1)
+				ROLLBACK TRAN TR_ads005
+				RETURN
+			END
+			
+			--** Incrementa Contadores
+			SET @va_con_tad = @va_con_tad + 1
+			SET @va_nro_tal = @va_nro_tal + 1			
+		END	
+	END	
 COMMIT TRAN TR_ads005
 RETURN
 END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + 
-	ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
+BEGIN CATCH	
+	SET @va_msn_err = 'Error: ' + 
+	ERROR_MESSAGE() + ' (L¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
 	RAISERROR(@msg,16,1)
-    Rollback TRAN TR_ads005
+    ROLLBACK TRAN TR_ads004
+	ROLLBACK TRAN TR_ads005
 	RETURN
 END CATCH	
-
 GO  
 /*
 ARCHIVO: ads004_04a_p01.sql
@@ -1874,103 +4885,190 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
-/*
-ARCHIVO: ads004_05a_p02.sql
-PROCEDIMIENTO: CONSULTA TALONARIO CON PERMISOS DE USUARIO
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	16-05-2020 
---*/
+/****************************************************************************/
+/*	ARCHIVO: ads004_05a_p02.sql                                             */
+/*	PROCEDIMIENTO: PERMISO SOBRE TALONARIO AL USUARIO                       */
+/*      ARGUMENTO: @ar_ide_usr 	VARCHAR(15) --** ID. Usuario                */
+/*                 @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_nro_tal	INT			--** Nro Talonario              */
+/*                 @ar_est_tal CHAR(01)		--** Estado Talonario           */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 16/05/2020                        */
+/****************************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_05a_p02') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_05a_p02
 GO
 
-CREATE PROCEDURE ads004_05a_p02		@ar_ide_doc		CHAR(03),	-- Texto a ser buscado
-									@ar_nro_tal		INT		-- ID del documento
-									WITH ENCRYPTION AS
+CREATE PROCEDURE ads004_05a_p02		@ar_ide_usr VARCHAR(15),
+                                    @ar_ide_doc	CHAR(03),
+									@ar_nro_tal	INT,
+									@ar_est_tal CHAR(01)	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ide_doc	 CHAR(03),      --** ID. Documento
+            @va_nom_doc	 NVARCHAR(30),  --** Nombre Documento
+            @va_nro_tal	 INT,           --** Nro. Talonario
+            @va_nom_tal	 NVARCHAR(60),  --** Nombre Talonario
+            @va_est_ado	 CHAR(01)       --** Estado (H=Habilitado; N=Deshabilitado)
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
 
-@va_ide_doc		CHAR(03),
-@va_nom_doc		NVARCHAR(30),
-@va_nro_tal		INT,
-@va_nom_tal		NVARCHAR(60),
-@va_est_ado		CHAR(01)
-
-CREATE TABLE #resultado
+--** Crea la Tabla Temporal
+CREATE TABLE #tm_per_tal
 (
-va_ide_doc		CHAR(03),
-va_nom_doc		NVARCHAR(30),
-va_nro_tal		INT,
-va_nom_tal		NVARCHAR(60),
-va_est_ado		CHAR(01)
+	va_ide_doc	CHAR(03),
+	va_nom_doc	NVARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	NVARCHAR(60),
+	va_est_ado	CHAR(01)
 )
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
+--** Obtiene todos los talonarios del Sistema
+DECLARE vc_per_tal CURSOR LOCAL FOR
+ SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
+   FROM ads004
+  WHERE va_nro_tal = @ar_nro_tal
+    AND va_ide_doc = @ar_ide_doc
+	AND va_est_ado = @ar_est_tal
 
-   DECLARE vc_tal_ona CURSOR LOCAL FOR
-	SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
-	  FROM ads004
-	 WHERE va_nro_tal = @ar_nro_tal	AND
-		   va_ide_doc = @ar_ide_doc	AND
-		   va_est_ado = 'T'
-		   
-OPEN vc_tal_ona
-FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+--** Abre Cursor		   
+OPEN vc_per_tal
 
+--** Lee el primer registro
+FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 WHILE (@@FETCH_STATUS = 0)
 BEGIN
-
-	-- Verifica que usuario tenga permiso sobre el talonario
-	SELECT @cout = COUNT(*)
+	--** Verifica si el usuario tiene permiso sobre el talonario
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
 	  FROM ads008
-	 WHERE	va_ide_usr = SYSTEM_USER	AND
-			va_ide_tab = 'ads004'		AND
-			va_ide_uno = @va_ide_doc	AND
-			va_ide_dos = @va_nro_tal
-	IF @cout <> 0
-	BEGIN 
-	
-	-- Obtiene nombre del documento
-	SELECT @va_nom_doc = va_nom_doc
-	  FROM ads003
-	 WHERE va_ide_doc = @va_ide_doc
-	 
-	 INSERT INTO #resultado VALUES (@va_ide_doc		,
-									@va_nom_doc		,
-									@va_nro_tal		,
-									@va_nom_tal		,
-									@va_est_ado	
-									)
+	 WHERE va_ide_usr = @ar_ide_usr	
+	   AND va_ide_tab = 'ads004'
+	   AND va_ide_uno = @va_ide_doc
+	   AND va_ide_dos = @va_nro_tal
+
+	IF (@va_nro_reg > 0)
+	BEGIN 	
+		--** Obtiene el nombre del documento
+		SET @va_nom_doc = ''
+		SELECT @va_nom_doc = va_nom_doc
+		  FROM ads003
+		 WHERE va_ide_doc = @va_ide_doc
+
+		 --** Inserta en la tabla temporal	 
+		 INSERT INTO #tm_per_tal VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, @va_est_ado)
+
+		 IF (@@ERROR > 0)
+			RETURN
 	END
 	
-	FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 END	
 
-SELECT * FROM #resultado
+--** Cierra y destruye cursor
+CLOSE vc_per_tal
+DEALLOCATE vc_per_tal
 
-CLOSE vc_tal_ona
-DEALLOCATE vc_tal_ona
+--** Retorna lista de permisos autorizados al usuario
+SELECT va_ide_doc, va_nom_doc, va_nro_tal,
+	   va_nom_tal, va_est_ado
+  FROM #tm_per_tal
+  ORDER BY va_ide_doc, va_nro_tal ASC  
+/****************************************************************************/
+/*	ARCHIVO: ads004_05a_p03.sql                                             */
+/*	PROCEDIMIENTO: PERMISO SOBRE TALONARIO AL USUARIO                       */
+/*      ARGUMENTO: @ar_ide_usr 	VARCHAR(15) --** ID. Usuario                */
+/*                 @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_nro_tal	INT			--** Nro Talonario              */
+/*                 @ar_est_tal CHAR(01)		--** Estado Talonario           */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 16/05/2020                        */
+/****************************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads004_05a_p03') and sysstat & 0xf = 4)
+	drop procedure dbo.ads004_05a_p03
+GO
+
+CREATE PROCEDURE ads004_05a_p03		@ar_ide_usr VARCHAR(15),
+                                    @ar_ide_doc	CHAR(03),
+									@ar_est_tal CHAR(01)	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ide_doc	 CHAR(03),      --** ID. Documento
+            @va_nom_doc	 NVARCHAR(30),  --** Nombre Documento
+            @va_nro_tal	 INT,           --** Nro. Talonario
+            @va_nom_tal	 NVARCHAR(60),  --** Nombre Talonario
+            @va_est_ado	 CHAR(01)       --** Estado (H=Habilitado; N=Deshabilitado)
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Crea la Tabla Temporal
+CREATE TABLE #tm_per_tal
+(
+	va_ide_doc	CHAR(03),
+	va_nom_doc	NVARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	NVARCHAR(60),
+	va_est_ado	CHAR(01)
+)
+
+--** Obtiene todos los talonarios del Sistema
+DECLARE vc_per_tal CURSOR LOCAL FOR
+ SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
+   FROM ads004
+  WHERE va_ide_doc = @ar_ide_doc
+	AND va_est_ado = @ar_est_tal
+
+--** Abre Cursor		   
+OPEN vc_per_tal
+
+--** Lee el primer registro
+FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+	--** Verifica si el usuario tiene permiso sobre el talonario
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
+	  FROM ads008
+	 WHERE va_ide_usr = @ar_ide_usr	
+	   AND va_ide_tab = 'ads004'
+	   AND va_ide_uno = @va_ide_doc
+	   AND va_ide_dos = @va_nro_tal
+
+	IF (@va_nro_reg > 0)
+	BEGIN 	
+		--** Obtiene el nombre del documento
+		SET @va_nom_doc = ''
+		SELECT @va_nom_doc = va_nom_doc
+		  FROM ads003
+		 WHERE va_ide_doc = @va_ide_doc
+
+		 --** Inserta en la tabla temporal	 
+		 INSERT INTO #tm_per_tal VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, @va_est_ado)
+
+		 IF (@@ERROR > 0)
+			RETURN
+	END
 	
-RETURN
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+END	
 
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-	RETURN
-END CATCH	   
+--** Cierra y destruye cursor
+CLOSE vc_per_tal
+DEALLOCATE vc_per_tal
 
-GO  
+--** Retorna lista de permisos autorizados al usuario
+SELECT va_ide_doc, va_nom_doc, va_nro_tal,
+	   va_nom_tal, va_est_ado
+  FROM #tm_per_tal
+  ORDER BY va_ide_doc, va_nro_tal ASC  
 /*
 ARCHIVO: ads004_06a_p01.sql
 PROCEDIMIENTO: ELIMINAR TALONARIO
@@ -2042,128 +5140,137 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
-/*
-ARCHIVO: ads004_R01.sql
-PROCEDIMIENTO: REPORTE LISTADO DE DOCUMENTOS
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	25-05-2020 
---*/
+/*****************************************************************/
+/*	ARCHIVO: ads004_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME DEFINICIONES DE ATRIBUTOS             */
+/*  PARAMETROS:   @ar_ide_mod  INT       ID. M¢dulo              */
+/*                @ar_est_ado  CHAR(01)  Estado                  */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 25/05/2020             */
+/*****************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_R01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_R01
 GO
 
-CREATE PROCEDURE ads004_R01	@ar_ide_mod		INT,
-							@ar_est_ado		CHAR(01)
-							WITH ENCRYPTION AS
-							
+CREATE PROCEDURE ads004_R01		@ar_ide_mod	INT,
+								@ar_est_ado	CHAR(01)	WITH ENCRYPTION AS							
+
+DECLARE		@va_ide_mod	 INT,			--** ID. M¢dulo
+            @va_nom_doc	 VARCHAR(30),	--** Nombre M¢dulo
+			@va_ide_doc	 CHAR(03),		--** ID. Documento
+			@va_nro_tal	 INT,			--** Nro de Talonario
+			@va_nom_tal	 VARCHAR(60),	--** Nombre Talonario
+			@va_tip_tal	 INT,	        --** Tipo de Talonario
+			@va_nro_aut	 DECIMAL(15,0),	--** N£mero de Autorizaci¢n
+			@va_for_mat	 INT,	        --** Formato de Impresi¢n
+			@va_nro_cop	 INT,	        --** Nro de Copias a Imprimir
+			@va_fir_ma1	 VARCHAR(30),	--** Firma Nro 1
+			@va_fir_ma2	 VARCHAR(30),	--** Firma Nro 2
+			@va_fir_ma3	 VARCHAR(30),	--** Firma Nro 3
+			@va_fir_ma4	 VARCHAR(30),	--** Firma Nro 4
+			@va_for_log	 INT,           --** Formato Logo
+			@va_est_tal	 CHAR(01),      --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+
 --** Inhabilita mensajes numero de filas afectadas
-SET NOCOUNT ON
+SET NOCOUNT ON		
 
-DECLARE 
-@msg			nvarchar(200),
-@va_est_ado		CHAR(01),
-@va_ide_doc		CHAR(03),	--Ide Documento
-@va_nro_tal		INT,						--Nro de Talonario
-@va_nom_tal		VARCHAR(60),	--Nombre Talonario
-@va_tip_tal		INT						,	--Tipo de talonario  
-@va_nro_aut		DECIMAL(15,0)	,	-- Numero de autorizacion
-@va_for_mat		INT				,	-- Formato de impresion
-@va_nro_cop		INT				,	-- Nro de copias a imprimir
-@va_fir_ma1		VARCHAR(30)		,	-- Firma nro 1
-@va_fir_ma2		VARCHAR(30)		,	-- Firma nro 1
-@va_fir_ma3		VARCHAR(30)		,	-- Firma nro 1
-@va_fir_ma4		VARCHAR(30)		,	-- Firma nro 1
-@va_for_log		INT,
-@va_nom_mod		VARCHAR(30)				
-
-
-CREATE TABLE #ADS004
+--** Crea Tabla Temporal
+CREATE TABLE #tm_tal_doc
 (
-va_ide_mod		INT,
-va_nom_mod		VARCHAR(30),
-va_ide_doc		CHAR(03),	--Ide Documento
-va_nro_tal		INT,						--Nro de Talonario
-va_nom_tal		VARCHAR(60),	--Nombre Talonario
-va_tip_tal		INT						,	--Tipo de talonario  
-va_nro_aut		DECIMAL(15,0)	,	-- Numero de autorizacion
-va_for_mat		INT				,	-- Formato de impresion
-va_nro_cop		INT				,	-- Nro de copias a imprimir
-va_fir_ma1		VARCHAR(30)		,	-- Firma nro 1
-va_fir_ma2		VARCHAR(30)		,	-- Firma nro 1
-va_fir_ma3		VARCHAR(30)		,	-- Firma nro 1
-va_fir_ma4		VARCHAR(30)		,	-- Firma nro 1
-va_for_log		INT,
-va_est_ado		CHAR(01)				
+	va_ide_doc	CHAR(03),
+	va_nom_doc	VARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	VARCHAR(60),
+	va_tip_tal	INT,
+	va_nro_aut	DECIMAL(15,0),
+	va_for_mat	INT,
+	va_nro_cop	INT,
+	va_fir_ma1	VARCHAR(30),
+	va_fir_ma2	VARCHAR(30),
+	va_fir_ma3	VARCHAR(30),
+	va_fir_ma4	VARCHAR(30),
+	va_for_log	INT,
+	va_est_ado  VARCHAR(15)				
 )
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
 
+--** Obtiene los datos de los Documentos
+DECLARE vc_def_doc CURSOR LOCAL FOR
+SELECT va_ide_doc, va_nom_doc
+  FROM ads003
+ WHERE va_ide_mod = @ar_ide_mod
 
-
-
---/ Inicializa variable contador de registro
-IF(@ar_est_ado = 'T')
-	SET @va_est_ado = '%'
-IF(@ar_est_ado <> 'T')
-	SET @va_est_ado = @ar_est_ado
-	
-	
-DECLARE vc_tal_ona CURSOR LOCAL FOR
-SELECT ads004.va_ide_doc, ads004.va_nro_tal, ads004.va_nom_tal, ads004.va_tip_tal, ads004.va_nro_aut,
-	   ads004.va_for_mat, ads004.va_nro_cop, ads004.va_fir_ma1 , ads004.va_fir_ma2, ads004.va_fir_ma3,
-	   ads004.va_fir_ma4, ads004.va_for_log, ads004.va_est_ado
-FROM ads004, ads003
-WHERE (ads004. va_ide_doc = ads003.va_ide_doc)
-  AND (ads003.va_ide_mod = @ar_ide_mod)
-  AND (ads004.va_est_ado like @va_est_ado )
-	
---** Abre cursor		  
-OPEN vc_tal_ona    
-	 
-FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal , @va_nro_aut, @va_for_mat,@va_nro_cop,
-								@va_fir_ma1, @va_fir_ma2, @va_fir_ma3,@va_fir_ma4,@va_for_log,@va_est_ado
-
+--** Abre Cursor
+OPEN vc_def_doc
+--** Lee el primer registro
+FETCH NEXT FROM vc_def_doc INTO @va_ide_doc, @va_nom_doc
+														
 WHILE (@@FETCH_STATUS = 0)
 BEGIN
-	-- Obtiene nombre del modulo
-	SELECT @va_nom_mod = va_nom_mod
-	  FROM ads001
-	 WHERE va_ide_mod = @ar_ide_mod
-	 
-	 INSERT INTO #ADS004 VALUES (@ar_ide_mod, @va_nom_mod,@va_ide_doc,@va_nro_tal,@va_nom_tal,
-								 @va_tip_tal,@va_nro_aut,@va_for_mat,@va_nro_cop,
-								 @va_fir_ma1,@va_fir_ma2,@va_fir_ma3,@va_fir_ma4,@va_for_log,@va_est_ado)
-	
+	--** Obtiene los datos del Talonario
+	DECLARE vc_tal_doc CURSOR LOCAL FOR
+	 SELECT va_ide_doc, va_nro_tal, va_nom_tal, va_tip_tal, 
+	        va_nro_aut, va_for_mat, va_nro_cop, va_fir_ma1, 
+			va_fir_ma2, va_fir_ma3, va_fir_ma4, va_for_log, 
+			va_est_ado
+	   FROM ads004
+	  WHERE va_ide_doc = @va_ide_doc
+	    AND va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+
+	--** Abre Cursor	  
+	OPEN vc_tal_doc    
+	--** Lee el primer registro
+	FETCH NEXT FROM vc_tal_doc INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal, 
+	                                @va_nro_aut, @va_for_mat, @va_nro_cop, @va_fir_ma1, 
+			                        @va_fir_ma2, @va_fir_ma3, @va_fir_ma4, @va_for_log, 
+			                        @va_est_tal
+	WHILE (@@FETCH_STATUS = 0)
+	BEGIN
+
+	    SET @va_est_ado = ''
+		IF (@va_est_tal = 'H')
+			SET @va_est_ado = 'Habilitado'
+		IF (@va_est_tal = 'N')
+			SET @va_est_ado = 'Deshabilitado'
+		
+		--** Inserta en la Tabla Temporal
+		INSERT INTO #tm_tal_doc VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, 
+		                                @va_tip_tal, @va_nro_aut, @va_for_mat, @va_nro_cop, 
+										@va_fir_ma1, @va_fir_ma2, @va_fir_ma3, @va_fir_ma4, 
+										@va_for_log, @va_est_ado)
 
 
-	FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal , @va_nro_aut, @va_for_mat,@va_nro_cop,
-								@va_fir_ma1, @va_fir_ma2, @va_fir_ma3,@va_fir_ma4,@va_for_log,@va_est_ado	
+		--** Lee el siguiente registro
+		FETCH NEXT FROM vc_tal_doc INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal, 
+										@va_nro_aut, @va_for_mat, @va_nro_cop, @va_fir_ma1, 
+										@va_fir_ma2, @va_fir_ma3, @va_fir_ma4, @va_for_log, 
+										@va_est_tal
+	END	
+	--** Termina y Destruye Cursor
+	CLOSE vc_tal_doc
+	DEALLOCATE vc_tal_doc
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_def_doc INTO @va_ide_doc, @va_nom_doc
 END	
 
-CLOSE vc_tal_ona
-DEALLOCATE vc_tal_ona
+--** Termina y Destruye Cursor
+CLOSE vc_def_doc
+DEALLOCATE vc_def_doc
 
-SELECT *
-FROM #ADS004
-
-RETURN
-
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-    --Rollback TRAN TR_inv100
-	RETURN
-END CATCH	   
-
-GO  
+--** Devuelve datos
+SELECT va_ide_doc, va_nom_doc, va_nro_tal, va_nom_tal, 
+	   va_tip_tal, va_nro_aut, va_for_mat, va_nro_cop, 
+	   va_fir_ma1, va_fir_ma2, va_fir_ma3, va_fir_ma4, 
+	   va_for_log, va_est_ado 
+  FROM #tm_tal_doc
+  ORDER BY va_ide_doc, va_nro_tal
+  
 /*
 ARCHIVO: ads005_01a_p01.sql
 PROCEDIMIENTO: BUSCA NUMERACION
@@ -3465,6 +6572,60 @@ DEALLOCATE cv_ite_ped
 SELECT va_ide_usr, va_ide_apl
  FROM #tm_apl_aut
   
+/***********************************************************************/
+/*	ARCHIVO: ads011_01a_p01.sql                                        */
+/*	PROCEDIMIENTO: REGISTRA OPCIONES DEL MENU                          */
+/*      ARGUMENTO: @ar_nom_frm  VARCHAR(10) --** Nombre Formulario     */
+/*                 @ar_ide_men  VARCHAR(10) --** ID. Menu Formulario   */
+/*                 @ar_tex_men  VARCHAR(10) --** Texto Menu Formulario */
+/*                 @ar_des_men  VARCHAR(10) --** Descripci¢n           */
+/*                 @ar_ide_pad  VARCHAR(10) --** ID. Menu Padre        */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 19/08/2022                   */
+/***********************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads011_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads011_01a_p01
+GO
+
+CREATE PROCEDURE ads011_01a_p01		@ar_nom_frm  VARCHAR(10),  @ar_ide_men  VARCHAR(10),
+									@ar_tex_men  VARCHAR(10),  @ar_des_men  VARCHAR(10),
+									@ar_ide_pad  VARCHAR(10)   WITH ENCRYPTION AS
+
+DECLARE     @va_nro_reg  INT
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Verifica si el registro ya se encuentra en la bd
+SET @va_nro_reg = 0
+SELECT @va_nro_reg = COUNT(*)
+  FROM ads011
+ WHERE va_nom_frm = @ar_nom_frm
+   AND va_ide_men = @ar_ide_men
+
+--** Si no se encuentra lo registra, sino lo actualiza
+IF (@va_nro_reg = 0)
+BEGIN
+	--** Registra Menu
+	INSERT INTO ads011 VALUES (@ar_nom_frm, @ar_ide_men, @ar_tex_men, @ar_des_men, @ar_ide_pad)
+	IF (@@ERROR > 0)
+		RETURN 0
+END	
+ELSE
+BEGIN
+	--** Actualiza Menu
+	UPDATE ads011 SET va_tex_men = @ar_tex_men,
+	                  va_des_men = @ar_des_men,
+					  va_ide_pad = @ar_ide_pad
+			    WHERE va_nom_frm = @ar_nom_frm
+				  AND va_ide_men = @ar_ide_men
+	IF (@@ERROR > 0)
+		RETURN 0
+END
+
+--** Todo OK
+RETURN 1  
 /*
 ARCHIVO: ads016_02a_p01.sql
 PROCEDIMIENTO: REGISTRA GESTION PERIODO por primera vez
@@ -3800,6 +6961,95 @@ SET NOCOUNT ON
 GO
 	  
 /*
+ARCHIVO: ads024_01a_p01.sql
+PROCEDIMIENTO: BITACORA DE INICIO DE SESION
+AUTOR:	CREARSIS(JEJR)
+FECHA:	28-08-2021 
+--*/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads024_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads024_01a_p01
+GO
+
+CREATE PROCEDURE ads024_01a_p01		@ag_ide_uni  CHAR(32),
+                                    @ag_ide_usr  CHAR(16),
+									@ag_nom_maq  VARCHAR(30) 	WITH ENCRYPTION AS
+
+DECLARE		@va_fec_ini  DATETIME,      --** Fecha y Hora de Ingreso
+            @va_fec_fin  DATETIME,      --** Fecha y Hora de Salida
+			@va_fec_reg  DATETIME,      --** Fecha de Registro Sin HH:mm:ss
+			@va_fec_act  DATETIME,      --** Fecha Actual
+			@va_fec_str  CHAR(10),      --** Fecha String
+			@va_nro_reg  INT            --** Nro. Registro
+
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Obtiene la fecha actual en formato dd/MM/yyyy
+SET @va_fec_act = GETDATE()
+SET @va_fec_str = CONVERT(CHAR(10), @va_fec_act, 103)
+
+--** Inicializa Variable
+SET @va_fec_ini = GETDATE()
+SET @va_fec_fin = NULL
+SET @va_fec_reg = CONVERT(DATETIME,  @va_fec_str)
+
+IF (@ag_ide_uni <> '')
+BEGIN
+	SELECT @va_nro_reg = COUNT(*) 
+	  FROM ads024
+	 WHERE va_ide_uni = @ag_ide_uni
+
+	IF (@va_nro_reg = 0)
+	BEGIN
+		INSERT INTO ads024 VALUES (@ag_ide_uni, @ag_ide_usr, @va_fec_reg,
+		                           @ag_nom_maq, @va_fec_ini, @va_fec_fin)
+	END
+END
+
+GO  
+/*
+ARCHIVO: ads024_02a_p01.sql
+PROCEDIMIENTO: BITACORA DE INICIO DE SESION
+AUTOR:	CREARSIS(JEJR)
+FECHA:	28-08-2021 
+--*/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads024_02a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads024_02a_p01
+GO
+
+CREATE PROCEDURE ads024_02a_p01		@ag_ide_uni  CHAR(32) 	WITH ENCRYPTION AS
+
+DECLARE		@va_fec_fin  DATETIME,      --** Fecha y Hora de Salida
+			@va_nro_reg  INT            --** Nro. Registro
+
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Inicializa Variable
+
+
+IF (@ag_ide_uni <> '')
+BEGIN
+	SELECT @va_fec_fin = va_fec_fin
+	  FROM ads024
+	 WHERE va_ide_uni = @ag_ide_uni
+
+	IF (@@ROWCOUNT = 1 AND @va_fec_fin IS NULL)
+	BEGIN
+		SET @va_fec_fin = GETDATE()
+		UPDATE ads024 SET va_fec_fin = @va_fec_fin
+		            WHERE va_ide_uni = @ag_ide_uni
+	END
+END
+
+GO  
+/*
 ARCHIVO: cmr001_01a_p01.sql
 PROCEDIMIENTO: BUSCA LSITA DE PRECIOS PERMITIDAS
 	
@@ -3992,11 +7242,13 @@ BEGIN TRY
 
 DECLARE vc_pre_cio CURSOR LOCAL FOR
 	SELECT cmr001.va_cod_lis, cmr001.va_nom_lis, cmr001.va_mon_lis, cmr001.va_nro_dec
-	FROM cmr001, ads019
-	WHERE (cmr001.va_cod_lis = ads019.va_cod_lis)
+	FROM cmr001, ads008
+	WHERE (cmr001.va_cod_lis = RTRIM(ads008.va_ide_uno))
+	AND	  (ads008.va_ide_tab = 'cmr001')
+	AND   (ads008.va_ide_usr = SYSTEM_USER)
 	AND   (cmr001.va_cod_lis BETWEEN @ar_lis_ini AND @ar_lis_fin)
-	AND   (ads019.va_ide_usr = SYSTEM_USER)
 	AND	  (cmr001.va_est_ado = 'H')
+	
 
 OPEN vc_pre_cio
 FETCH NEXT FROM vc_pre_cio INTO @va_cod_lis, @va_nom_lis,@va_mon_lis, @va_nro_dec
@@ -8368,110 +11620,197 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
-/*????????????????????????????????????????????????
-ARCHIVO: inv002_05a_p01.sql
-PROCEDIMIENTO: CONSULTA BODEGA
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	16-05-2020 
---????????????????????????????????????????????????*/
+/*****************************************************************/
+/*	ARCHIVO: cmr014_08a_p01.sql                                  */
+/*	PROCEDIMIENTO: OBTIENE LISTA DE USUARIO ASIG. P/VENDEDOR     */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 20/10/2021             */
+/*   NOTA: En caso de error devuelve del 101 as 118              */
+/*****************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
-if exists (select * from sysobjects where id = object_id('dbo.inv002_05a_p01') and sysstat & 0xf = 4)
-	drop procedure dbo.inv002_05a_p01
+if exists (select * from sysobjects where id = object_id('dbo.cmr014_08a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.cmr014_08a_p01
 GO
 
-CREATE PROCEDURE inv002_05a_p01	@ar_ide_bod		CHAR(03),
-								@ar_nro_tal		INT		
-							WITH ENCRYPTION AS
-							
+CREATE PROCEDURE cmr014_08a_p01		@ar_ide_tip  INT,	--** Tipo (1=Vendedor; 2=Cobrador)
+                                    @ar_cod_ide  INT    --** C¢digo Vendedor/Cobrador
+									WITH ENCRYPTION AS
+
+DECLARE		@va_nro_reg  INT,		   --** Nro de Registro
+            @va_ide_usr  VARCHAR(15),  --** ID. Usuario
+			@va_nom_usr  VARCHAR(30),  --** Nombre Usuario
+			@va_tip_usr	 INT,          --** Tipo de usuario
+			@va_nom_tip	 VARCHAR(30),  --** Nombre tipo usuario
+			@va_per_mis  CHAR(01)      --** Permiso S=Si; N=No
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
 
-DECLARE 
-@msg			nvarchar(200)
+CREATE TABLE #tm_per_mis
+(
+	va_ide_usr  VARCHAR(15),
+	va_nom_usr  VARCHAR(30),
+	va_tip_usr	INT,        
+	va_nom_tip	VARCHAR(30),
+	va_per_mis  CHAR(01)    
+)
+
+--** Graba los atributos seleccionado del usuario
+DECLARE vc_lis_usr CURSOR LOCAL FOR
+SELECT va_ide_usr, va_nom_usr, va_tip_usr 
+  FROM ads007
+ WHERE va_est_ado = 'H'
+
+--** Abre cursor
+OPEN vc_lis_usr
+
+--** Lee primer registro
+FETCH NEXT FROM vc_lis_usr INTO @va_ide_usr, @va_nom_usr, @va_tip_usr
+
+WHILE (@@FETCH_STATUS = 0)
+BEGIN	
+
+	--** Obtiene el nombre del tipo de usuario
+	SELECT @va_nom_tip = ISNULL(va_nom_tus, '')
+	  FROM ads006
+	 WHERE va_ide_tus = @va_tip_usr
+
+	--** Verifica si el usuario tiene habilitado al vendedor
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT (*)
+	  FROM ads008
+	 WHERE va_ide_usr = @va_ide_usr
+	   AND va_ide_tab = 'cmr014'
+	   AND va_ide_uno = @ar_ide_tip
+	   AND va_ide_dos = @ar_cod_ide
+
+	IF (@va_nro_reg = 0)
+		SET @va_per_mis = 'N'
+	ELSE
+		SET @va_per_mis = 'S'
 
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
-	 
-	 --/ Pregunta si tiene talonarios Habilitados ligados al documento que se quiere Deshabilitar
-	 SELECT inv001.va_ide_gru, inv001.va_nom_gru, inv002.va_ide_bod, ads003.va_nom_doc,
-			inv002.va_nro_tal, inv002.va_nom_tal, inv002.va_tip_tal, inv002.va_nro_aut,
-			inv002.va_for_mat, inv002.va_nro_cop, inv002.va_fir_ma1, inv002.va_fir_ma2,
-			inv002.va_fir_ma3, inv002.va_fir_ma4, inv002.va_for_log, inv002.va_est_ado
-	  FROM inv002, ads003, inv001
-	 WHERE (inv001.va_ide_gru = ADS003.va_ide_gru)
-	   AND (ADS003.va_ide_bod = inv002.va_ide_bod)
-	   AND (inv002.va_ide_bod = @ar_ide_bod)
-	   AND (inv002.va_nro_tal = @ar_nro_tal)
+	--** Graba el atributo de persona
+	INSERT INTO #tm_per_mis VALUES (@va_ide_usr, @va_nom_usr, @va_tip_usr, @va_nom_tip, @va_per_mis)
 
-	
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (línea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-    
-	RETURN
-END CATCH	   
 
-GO  
+	FETCH NEXT FROM vc_lis_usr INTO @va_ide_usr, @va_nom_usr, @va_tip_usr
+END
+
+--** Cierre y destruya cursor
+CLOSE vc_lis_usr
+DEALLOCATE vc_lis_usr
+
+--** Devuelve datos
+SELECT va_ide_usr, va_nom_usr, va_tip_usr, va_nom_tip, va_per_mis 
+  FROM #tm_per_mis
+
+
+  
 /*
-ARCHIVO: inv001_04a_p1.sql
-PROCEDIMIENTO: DESHABILITA GRUPO DE BODEGA
+ARCHIVO: ctb007_01a_p01.sql
+PROCEDIMIENTO: BUSCA DOSIFICACIàN
 	
 AUTOR:	CREARSIS(CHL)
-FECHA:	22-07-2020 
+FECHA:	06-10-20201
 --*/
 
 /* Verifica si el procedimiento se encuentra creado */
-if exists (select * from sysobjects where id = object_id('dbo.inv001_04a_p01') and sysstat & 0xf = 4)
-	drop procedure dbo.inv001_04a_p01
+if exists (select * from sysobjects where id = object_id('dbo.ctb007_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.ctb007_01a_p01
 GO
 
-CREATE PROCEDURE inv001_04a_p01	@ar_ide_gru		INT		
-							WITH ENCRYPTION AS
-							
+CREATE PROCEDURE ctb007_01a_p01		@ar_tex_bus		VARCHAR(60),	-- Texto a ser buscado
+									@ar_fec_ini		DATE,
+									@ar_fec_fin		DATE
+									WITH ENCRYPTION AS
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-
 DECLARE 
 @msg			nvarchar(200),
-@va_can_tid			INT	--** Cantidad de registros encontrados
+@cout			INT,				-- Contador de registros para verificar
+@va_tip_fac		INT,
+@va_tip_nom		VARCHAR(15),
+@va_nro_aut		DECIMAL(15,0),
+@va_ide_suc		INT,
+@va_nom_suc		VARCHAR(30), 
+@va_fec_ini		DATE, 
+@va_fec_fin		DATE, 
+@va_nro_ini		INT, 
+@va_nro_fin		INT, 
+@va_cod_act		INT, 
+@va_cod_ley		INT, 
+@va_lla_vee		NVARCHAR(500), 
+@va_con_tad		INT
 
+
+CREATE TABLE #resultado
+(
+va_nro_aut		DECIMAL(15,0),
+va_ide_suc		INT,
+va_nom_suc		NVARCHAR(30),
+va_tip_fac		INT,
+va_tip_nom		VARCHAR(15),
+va_fec_ini		DATE,
+va_fec_fin		DATE,
+va_con_tad		INT
+
+)
 
 IF @@ERROR <> 0
    RETURN
    
 BEGIN TRY 
-	 --/ Inicializa variable contador de registro
-	 SET @va_can_tid = 0;
-	 
-	 --/ Pregunta si tiene talonarios Habilitados ligados al Grupo de Bodega que se quiere Deshabilitar
-	 SELECT @va_can_tid = COUNT(*)
-	  FROM inv002 
-	 WHERE (va_ide_gru = @ar_ide_gru)
-		AND (va_est_ado = 'H')
 
-	--/ Procede a anular el Grupo de Bodega
-	IF(@va_can_tid = 0)
-	BEGIN
-		UPDATE inv001 SET va_est_ado = 'N'
-		WHERE va_ide_gru = @ar_ide_gru
+-- Crea cursor para busqueda
+	DECLARE vc_dos_ifi CURSOR LOCAL FOR
+	SELECT va_nro_aut,va_tip_fac, va_cod_suc, va_fec_ini, va_fec_fin, va_nro_ini, va_nro_fin, 
+		   va_cod_act, va_cod_ley, va_lla_vee, va_con_tad
+	FROM ctb007 
+	WHERE (va_nro_aut LIKE @ar_tex_bus + '%')		AND
+		  (va_fec_ini BETWEEN @ar_fec_ini AND @ar_fec_fin)
+		  
+
+OPEN vc_dos_ifi
+FETCH NEXT FROM vc_dos_ifi INTO @va_nro_aut, @va_tip_fac, @va_ide_suc, @va_fec_ini, @va_fec_fin, 
+				@va_nro_ini, @va_nro_fin, @va_cod_act, @va_cod_ley, @va_lla_vee, @va_con_tad
+						
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+
+	-- Obtiene nombre de sucursal
+	SELECT @va_nom_suc = va_nom_suc
+	  FROM cmr003
+	 WHERE va_ide_suc = @va_ide_suc
+ 
+	IF(@va_tip_fac = 1)
+		SET @va_tip_nom = 'Manual'
+  
+	IF(@va_tip_fac = 2)
+		SET @va_tip_nom = 'Autom tico'
 		
-		-- Registrar bitacora
-		--INSERT INTO
-	END
-	
-	IF(@va_can_tid > 0)
-	BEGIN
-		RAISERROR ('No puede Deshabilitar, Existen Bodegas Habilitadas relacionados con el Grupo de Bodega' ,16,1)
-		RETURN
-	END
-	
+	 INSERT INTO #resultado VALUES (@va_nro_aut,
+									@va_ide_suc,
+									@va_nom_suc	,
+									@va_tip_fac,
+									@va_tip_nom,
+									@va_fec_ini,
+									@va_fec_fin,
+									@va_con_tad
+									)
+
+	FETCH NEXT FROM vc_dos_ifi INTO @va_nro_aut, @va_tip_fac, @va_ide_suc, @va_fec_ini, @va_fec_fin, @va_nro_ini, @va_nro_fin, @va_cod_act, @va_cod_ley, @va_lla_vee,@va_con_tad
+END	
+
+CLOSE vc_dos_ifi
+DEALLOCATE vc_dos_ifi
+
+	SELECT * 
+	FROM #resultado
+
+
+RETURN
+
 END TRY
 BEGIN CATCH
 	
@@ -8481,7 +11820,139 @@ BEGIN CATCH
 	RETURN
 END CATCH	   
 
-GO  
+GO
+
+
+  
+/***********************************************************************/
+/*	ARCHIVO: ecp003_01a_p01.sql                                        */
+/*	PROCEDIMIENTO: BUSCA INSCRIPCION PERSONA-LIBRETA                   */
+/*      ARGUMENTO: @ar_cod_per  INT         --** Código Persona        */
+/*				   @ar_tip_lib  INT         --** Criterio de Busqueda  */
+/*                 @ar_est_ado  CHAR(01)    --** Estado                */
+/*	AUTOR:	CREARSIS(CHLG)        FECHA : 17/11/2021                   */
+/***********************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ecp003_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.ecp003_01a_p01
+GO
+
+CREATE PROCEDURE ecp003_01a_p01		@ar_cod_per	 INT,			--** Código Persona
+                                    --@ar_tip_lib  INT,			--** Tipo libreta (1=CxC ; 2=CxP; 0=Todos)
+									@ar_est_ado	 CHAR(01)		--** Estado (H=Habilitado; N=Deshabilitado; T=Todos)
+									WITH ENCRYPTION AS
+
+DECLARE     @va_cod_per  INT,	      --** Codigo Persona (2 de Grup. Per y 5 de Persona)
+			@va_nom_bre  VARCHAR(30), --** Nombre
+			@va_ape_pat  VARCHAR(20), --** Apellido Paterno
+			@va_ape_mat  VARCHAR(20), --** Apellido Materno
+			@va_raz_soc	 VARCHAR(80), --** Razon Social
+			@va_cod_lib	 INT,
+			@va_des_lib	 VARCHAR(50),
+			@va_tip_lib  INT,
+			@va_mon_lib	 CHAR(01),
+			@va_mto_lim	 DECIMAL(12,2),
+			@va_sal_act	 DECIMAL(12,2),
+			@va_fec_exp	 DATE,
+			@va_est_ado	 CHAR(01),	  --** Estado de la inscripcion(H=Habilitado; N=Deshabilitado)
+			@va_msn_err  VARCHAR(200) --** Nro. Registro
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Tabla Temporal: Lista Persona
+CREATE TABLE #tm_lis_ins (
+    va_cod_per  INT,
+	va_nom_bre  VARCHAR(30),
+	va_ape_pat  VARCHAR(20),
+	va_ape_mat  VARCHAR(20),
+	va_raz_soc	VARCHAR(80),
+	va_cod_lib	INT,
+	va_des_lib	VARCHAR(50),
+	va_tip_lib	INT,
+	va_mon_lib	CHAR(01),
+	va_mto_lim	DECIMAL(12,2),
+	va_sal_act	DECIMAL(12,2),
+	va_fec_exp	DATE,
+	va_est_ado	CHAR(1)
+)
+
+   
+BEGIN TRY 
+
+--** filtro estado de la inscripcion T=Todos
+IF(@ar_est_ado = 'T')
+	SET @ar_est_ado = '%'
+
+--** Obtiene inscripcion de la persona
+DECLARE vc_sus_crip CURSOR LOCAL FOR
+ SELECT va_cod_per, va_cod_lib, va_mto_lim, 
+		va_sal_act, va_fec_exp, va_est_ado
+   FROM ecp003
+  WHERE va_cod_per = @ar_cod_per	AND
+	    va_est_ado LIKE @ar_est_ado + '%'
+
+--** Abre Cursor
+OPEN vc_sus_crip
+--** Lee el primer registro
+FETCH NEXT FROM vc_sus_crip INTO @va_cod_per, @va_cod_lib, @va_mto_lim, 
+								 @va_sal_act, @va_fec_exp, @va_est_ado
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+	--** Obtiene datos de la persona
+	SELECT @va_nom_bre= va_nom_bre,
+		   @va_ape_pat = va_ape_pat,
+		   @va_raz_soc = va_raz_soc
+	  FROM adp002
+	 WHERE va_cod_per = @va_cod_per
+	
+	--** Obtiene datos de la libreta
+	SELECT @va_des_lib = va_des_lib,
+		   @va_tip_lib = va_tip_lib,
+		   @va_mon_lib = va_mon_lib
+	  FROM ecp002
+	 WHERE va_cod_lib = @va_cod_lib
+  
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_lis_ins VALUES (@va_cod_per  ,
+									@va_nom_bre  ,
+									@va_ape_pat  ,
+									@va_ape_mat  ,
+									@va_raz_soc	,
+									@va_cod_lib	,
+									@va_des_lib	,
+									@va_tip_lib	,
+									@va_mon_lib	,
+									@va_mto_lim	,
+									@va_sal_act	,
+									@va_fec_exp	,
+									@va_est_ado	)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_sus_crip INTO @va_cod_per, @va_cod_lib, @va_mto_lim,  
+									 @va_sal_act, @va_fec_exp, @va_est_ado
+	
+END	
+
+CLOSE vc_sus_crip
+DEALLOCATE vc_sus_crip
+
+--** Obtiene resultado TODO los Grupos
+SELECT * FROM #tm_lis_ins
+
+
+END TRY
+BEGIN CATCH	
+	SET @va_msn_err = 'Error: ' + ERROR_MESSAGE() + ' (línea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
+	RAISERROR(@va_msn_err,16,1)
+	RETURN
+END CATCH	   
+GO
+
+
+  
 /*
 ARCHIVO: inv001_05a_p01.sql
 PROCEDIMIENTO: CONSULTA GRUPO DE BODEGAS
@@ -8624,7 +12095,7 @@ BEGIN TRY
 		 
 	 SELECT inv001.va_ide_gru,
             inv001.va_nom_gru, inv001.va_des_gru, inv001.va_est_ado
-	  FROM	inv001 , ads001
+	  FROM	inv001 
 	 WHERE (inv001.va_est_ado LIKE @va_est_ado)
 	
 END TRY
@@ -8636,7 +12107,8 @@ BEGIN CATCH
 	RETURN
 END CATCH	   
 
-GO  
+GO
+  
 /*
 ARCHIVO: inv002_04a_p01.sql
 PROCEDIMIENTO: HABILITA BODEGA
@@ -8770,7 +12242,6 @@ IF @@ERROR <> 0
    
 BEGIN TRY 
 	 
-	 --/ Pregunta si tiene talonarios Habilitados ligados al documento que se quiere Deshabilitar
 	 SELECT inv001.va_ide_gru, inv001.va_nom_gru, inv002.va_cod_bod, inv002.va_nom_bod,
 			inv002.va_des_bod, inv002.va_dir_bod, inv002.va_fec_ctr, inv002.va_mon_inv,
 			inv002.va_mtd_cto, inv002.va_nom_ecg, inv002.va_tlf_ecg, inv002.va_dir_ecg,inv002.va_est_ado
@@ -9785,6 +13256,7 @@ DECLARE
 @va_ban_lot		INT,
 @va_cod_fam		VARCHAR(06),
 @va_nom_fam		VARCHAR(60),
+@va_tip_fam		CHAR(01),
 @va_cod_bar		VARCHAR(15),
 @va_fab_ric		VARCHAR(50),
 
@@ -9811,6 +13283,7 @@ va_ban_ser		INT,
 va_ban_lot		INT,
 va_cod_fam		VARCHAR(06),
 va_nom_fam		VARCHAR(60),
+va_tip_fam		CHAR(01),
 va_est_ado		CHAR(01)
 
 )
@@ -9854,7 +13327,8 @@ BEGIN TRY
 	 WHERE va_cod_mar = @va_cod_mar
 	 
 	-- Obtiene nombre de la familia
-	SELECT @va_nom_fam = va_nom_fam
+	SELECT @va_nom_fam = va_nom_fam,
+		   @va_tip_fam = va_tip_fam
 	  FROM inv003
 	 WHERE va_cod_fam = @va_cod_fam 
 	 
@@ -9876,6 +13350,7 @@ BEGIN TRY
 									@va_ban_lot		,
 									@va_cod_fam		,
 									@va_nom_fam		,
+									@va_tip_fam		,
 									@va_est_ado	
 									)
 
@@ -12306,7 +15781,7 @@ CREATE PROCEDURE res001_01a_p01 @ar_cod_cli INT,			-- codigo cliente
 							@ar_tex_bus NVARCHAR(200),		-- Texto a buscar
 							@ar_par_bus INT,				-- parametro Busqueda (0=Razon Social venta; 1 = Observaciones)
 							@ar_est_ado CHAR(01),			-- Estado (T=todos ; H=valido ; N=anulado)
-							@ar_tip_doc CHAR(01)			-- Tipo documento (V=Venta; C=Cotizacion; F=Factura)
+							@ar_tip_vta CHAR(01)			-- Tipo documento (V=Venta; C=Cotizacion; F=Factura)
 							WITH ENCRYPTION AS
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
@@ -12318,13 +15793,14 @@ DECLARE
 @va_bod_ini		CHAR(06),
 @va_bod_fin		CHAR(06)
 
+
 IF @@ERROR <> 0
    RETURN
 
 
 BEGIN TRY	 
  
- PRINT @ar_cod_bod
+ 
 IF (@ar_cod_bod = '0')
 BEGIN	
 	SET @va_bod_ini = '0'
@@ -12351,9 +15827,11 @@ END
 
 IF (@ar_est_ado = 'T')
 	SET @ar_est_ado = '%'
+	
+IF (@ar_tip_vta = 0)
+	SET @ar_tip_vta = '%'
+	
 
-IF @ar_tip_doc = 'F'
-BEGIN
 	IF(@ar_par_bus = 0)	 -- Busca por Razon Social venta
 	BEGIN
 		 SELECT va_fec_vta,va_doc_vta, va_ide_vta, va_nro_vta, va_cod_per, va_raz_soc, 
@@ -12362,7 +15840,7 @@ BEGIN
 		WHERE (va_cod_per BETWEEN @va_cli_ini AND @va_cli_fin) AND
 			  (va_cod_bod BETWEEN @va_bod_ini AND @va_bod_fin) AND
 			  (va_fec_vta BETWEEN @ar_fec_ini AND @ar_fec_fin) AND
-			  (va_tip_vta = 1) AND
+			  (va_tip_vta LIKE @ar_tip_vta) AND
 			   va_raz_soc  LIKE @ar_tex_bus + '%'	AND
 			   va_est_ado LIKE @ar_est_ado  
 	END
@@ -12374,42 +15852,15 @@ BEGIN
 		WHERE (va_cod_per BETWEEN @va_cli_ini AND @va_cli_fin) AND
 			  (va_cod_bod BETWEEN @va_bod_ini AND @va_bod_fin) AND
 			  (va_fec_vta BETWEEN @ar_fec_ini AND @ar_fec_fin) AND
-			  (va_tip_vta = 1) AND
+			  (va_tip_vta LIKE @ar_tip_vta) AND
 			   va_obs_vta  LIKE @ar_tex_bus + '%'	AND
 			   va_est_ado LIKE @ar_est_ado  
 	END
 	
-END
 
-IF @ar_tip_doc = 'V'
-BEGIN
-IF(@ar_par_bus = 0)	 -- Busca por Razon Social venta
-	BEGIN
-		 SELECT va_fec_vta,va_doc_vta, va_ide_vta, va_nro_vta, va_cod_per, va_raz_soc, 
-				va_mon_vta, va_tot_vtB, va_tot_vtU, va_est_ado, va_obs_vta, va_ges_vta
-		 FROM res001
-		WHERE (va_cod_per BETWEEN @va_cli_ini AND @va_cli_fin) AND
-			  (va_cod_bod BETWEEN @va_bod_ini AND @va_bod_fin) AND
-			  (va_fec_vta BETWEEN @ar_fec_ini AND @ar_fec_fin) AND
-			  (va_tip_vta = 2) AND
-			   va_raz_soc  LIKE @ar_tex_bus + '%'	AND
-			   va_est_ado LIKE @ar_est_ado  
-	END
-	IF(@ar_par_bus = 1)	 -- Busca por Observacion venta
-	BEGIN
-		 SELECT va_fec_vta,va_doc_vta, va_ide_vta, va_nro_vta, va_cod_per, va_raz_soc, 
-				va_mon_vta, va_tot_vtB, va_tot_vtU, va_est_ado, va_obs_vta, va_ges_vta
-		 FROM res001
-		WHERE (va_cod_per BETWEEN @va_cli_ini AND @va_cli_fin) AND
-			  (va_cod_bod BETWEEN @va_bod_ini AND @va_bod_fin) AND
-			  (va_fec_vta BETWEEN @ar_fec_ini AND @ar_fec_fin) AND
-			  (va_tip_vta = 2) AND
-			   va_obs_vta  LIKE @ar_tex_bus + '%'	AND
-			   va_est_ado LIKE @ar_est_ado  
-	END 
-END
 
---IF @ar_tip_doc = 'C'
+
+--IF @ar_tip_vta = 'C'
 --BEGIN
 	-- SELECT va_fec_cot AS va_fec_vta, va_ide_cot AS va_ide_vta, va_nro_cot AS va_nro_vta, 
 	--		va_cod_per, va_raz_soc, va_mon_cot AS va_mon_vta, va_tot_vtB, va_tot_vtU, 
@@ -12653,14 +16104,14 @@ BEGIN TRY
 		  FROM res004
 		 WHERE va_cod_plv = @ar_pla_vta
 	END
-	--IF(@ar_tip_vta = 3) -- Nota de Consumo
-	--BEGIN
-	--	-- Obtiene documento y talonario de la operacion
-	--	SELECT @va_ide_doc = va_doc_,
-	--		   @va_nro_tal = va_tal_fac
-	--	  FROM res004
-	--	 WHERE va_cod_plv = @ar_pla_vta
-	--END
+	IF(@ar_tip_vta = 3) -- Nota de Consumo
+	BEGIN
+		-- Obtiene documento y talonario de la operacion
+		SELECT @va_ide_doc = va_doc_con,
+			   @va_nro_tal = va_tal_con
+		  FROM res004
+		 WHERE va_cod_plv = @ar_pla_vta
+	END
 	
 	
 	--// Verifica Documento
@@ -13022,7 +16473,7 @@ BEGIN TRY
 	BEGIN
 		--//graba debito fiscal
 		INSERT INTO ctb008 VALUES (@va_ges_vta,@va_prd_vta,@va_ide_vta,@va_nro_fac,@ar_nro_aut,@ar_nit_cli,@ar_raz_soc,@va_tot_bBs,
-									@va_des_cBs,@va_tot_nBs, (@va_tot_nBs * 0.13), '' , @ar_fec_vta,GETDATE(),null)
+									@va_des_cBs,@va_tot_nBs, (@va_tot_nBs * 0.13), @ar_cod_ctr , @ar_fec_vta,GETDATE(),null)
 		
 		--// Registro de Nit de la persona
 		SELECT @va_count = COUNT(*) 
@@ -13611,6 +17062,9 @@ DECLARE
 @va_for_log		TINYINT, 					--Formato de logo
 											-- 0=Nombre de la empresa
 											-- 1=logo 1
+@va_for_mat		INT,						-- Formato de impresi¢n
+
+											
 @va_cod_del		int,
 @va_nom_del		varchar(30),
 @va_cod_ven		INT,						--Codigo Vendedor
@@ -13667,7 +17121,8 @@ CREATE TABLE #tm_res001(
 	va_cod_plv		INT,						--Codigo plantilla de venta
 	va_log_emp		NVARCHAR(100),				--Logo de la empresa
 	va_ref_vta		VARCHAR(20),				--Referencia de la venta
-	va_tip_vta		INT							--Tipo de venta (1=Factura ; 2=Nota de venta)
+	va_tip_vta		INT	,						--Tipo de venta (1=Factura ; 2=Nota de venta)
+	va_for_mat		INT							--Formato de impresi¢n
    )
 
 IF @@ERROR <> 0
@@ -13711,9 +17166,11 @@ BEGIN TRY
 	WHERE va_cod_del = @va_cod_del
 	
 	-- Obtiene nombre del Vendedor
-	SELECT @va_nom_ven = va_nom_ven
+	SELECT @va_nom_ven = va_nom_bre
 	FROM cmr014
-	WHERE va_cod_ven = @va_cod_ven
+	WHERE va_cod_ide = @va_cod_ven	AND
+		  va_ide_tip = 1
+	
 	
 	--Obtiene Totales segun moneda de la venta
 	IF (@va_mon_vta = 'B')
@@ -13731,6 +17188,7 @@ BEGIN TRY
 	
 	--// obtiene datos de Talonario
 	SELECT @va_for_log = va_for_log,
+		   @va_for_mat = va_for_mat,
 		   @va_fir_ma1 = va_fir_ma1,
 		   @va_fir_ma2 = va_fir_ma2,
 		   @va_fir_ma3 = va_fir_ma3,
@@ -13855,7 +17313,8 @@ BEGIN TRY
 										@va_cod_plv		,
 										@va_log_emp		,
 										@va_ref_vta		,
-										@va_tip_vta		)
+										@va_tip_vta		,
+										@va_for_mat		)
 												
 			IF @@ERROR <> 0
 			BEGIN
@@ -14198,6 +17657,384 @@ END TRY
 BEGIN CATCH
 	
 	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l¡nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
+	RAISERROR(@msg,16,1)
+    Rollback TRAN TR_res001
+	RETURN
+END CATCH	   
+
+GO  
+/*
+ARCHIVO: res001_05c_p01.sql
+PROCEDIMIENTO: CONSULTA FACTURA RESTAURANT
+	(Formato = 0 ; en Undidad de Compra)
+AUTOR:	CREARSIS(chl)
+FECHA:	26-12-2018 
+--*/
+
+/* Verifica si el procedimiento se encuentra creado */ 
+if exists (select * from sysobjects where id = object_id('dbo.res001_05c_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.res001_05c_p01
+GO
+
+CREATE PROCEDURE res001_05c_p01 @ar_ide_vta	NVARCHAR(20),	-- Identificador de la compra
+								@ar_ges_vta	INT	-- gestion de la compra
+							 WITH ENCRYPTION AS
+							 
+--** Inhabilita mensajes numero de filas afectadas
+
+SET NOCOUNT ON
+DECLARE 
+@msg			nvarchar(200),
+@va_fec_vta		DATE,
+@va_nro_vta		INT,
+@va_cod_bod		CHAR(06),
+@va_nom_bod		VARCHAR(50),			-- Numero de del documento
+@va_for_pag		INT,	--Identificador de la venta (XXX|000-00000/2018)
+@va_tip_cam		DECIMAL(4,2),
+@va_cod_per		INT,
+@va_raz_soc		VARCHAR(80),
+@va_mon_vta		CHAR(01),
+@va_sub_toB		DECIMAL(16,5),
+@va_sub_toU		DECIMAL(16,5),
+@va_tot_bru		DECIMAL(16,5),
+@va_dto_vtB		DECIMAL(16,5),
+@va_dto_vtU		DECIMAL(16,5),
+@va_des_cue		DECIMAL(16,5),
+@va_tot_vtB		DECIMAL(16,5),
+@va_tot_vtU		DECIMAL(16,5),
+@va_tot_net		DECIMAL(16,5),
+@va_obs_vta		VARCHAR(200),
+@va_vta_par		CHAR(01)	,
+@va_est_ado		CHAR(01),
+@va_usr_reg		VARCHAR(15),
+@va_fec_reg		DATETIME,
+@va_itm_vta		INT,
+@va_cod_pro		VARCHAR(15),
+@va_des_pro		varchar(120)	,			--Descripcion del Producto 
+@va_can_tid		DECIMAL(14,4),				--Cantidad de producto
+@va_und_inv		CHAR(03)		,			--Numero de item 
+@va_pre_uBs		DECIMAL(14,4),				--Precio Unitario en la moneda del documento
+@va_pre_uUs		DECIMAL(14,4),				--Precio Unitario en la moneda del documento
+@va_pre_uni		DECIMAL(14,4),				--Precio Unitario en la moneda del documento
+@va_pre_tBs		DECIMAL(14,4),				--Precio Unitario en la moneda del documento
+@va_pre_tUs		DECIMAL(14,4),				--Precio Unitario en la moneda del documento
+@va_pre_tot		DECIMAL(16,2),
+
+@va_doc_vta     CHAR(03),					-- Documento de la operacion
+@va_nro_tal     INT,						-- Nro de talonario de la operacion
+@va_fir_ma1		VARCHAR(20),				--Firma del talonario 1
+@va_fir_ma2		VARCHAR(20),				--Firma del talonario 2
+@va_fir_ma3		VARCHAR(20),				--Firma del talonario 3
+@va_fir_ma4		VARCHAR(20),				--Firma del talonario 4
+@va_log_emp		NVARCHAR(100),				--Logo de la empresa
+@va_for_log		TINYINT, 					--Formato de logo
+											-- 0=Nombre de la empresa
+											-- 1=logo 1
+@va_cod_del		int,
+@va_nom_del		varchar(30),
+@va_cod_ven		INT,						--Codigo Vendedor
+@va_nom_ven		VARCHAR(50),				--Nombre vendedor
+
+@va_cod_plv		INT,						-- Plantilla de venta											
+@va_tip_vta		INT,						-- Tipo de venta (1=factura ; 2=nota de venta)
+
+--** Datos de la factura
+@va_img_qrf		VARBINARY(MAX),				-- Imagen de la factura
+@va_nro_fac		INT,						-- Nro de factura
+@va_cod_ctr		VARCHAR(15),				-- Codigo de control factura
+@va_nit_per		DECIMAL(15,0),				-- Nit de la persona
+@va_nro_aut		INT,						-- Nro de autorizacion de la dosificacion
+@va_fec_lim		DATE,						-- Fecha limite de factura
+@va_for_mat		INT,						-- Formato de impresion
+@va_ref_vta		VARCHAR(20)
+
+--** CREA TABLA TEMPORAL
+CREATE TABLE #tm_res001(
+	va_fec_vta		DATE			NOT NULL,	--Codigo del usuario
+	va_ide_vta		VARCHAR(20)		NOT NULL,	--Identificador compuesto para la venta
+	va_ges_vta		INT				not null,	--Gestion de la venta 
+	va_nro_vta		INT				NOT NULL,	--Nro venta
+	va_cod_bod		char(06)		not null,	--Almacen
+	va_nom_bod		VARCHAR(50)		not null,	--Nombre almacen
+	va_for_pag		INT				NOT NULL,	-- Forma de Pago **
+	va_tip_cam		DECIMAL(4,2)	NOT NULL,	--Tipo de cambio **
+	va_cod_per		INT				not null,	--Codigo persona
+	va_nit_per		DECIMAL(15,0)	NOT NULL,	--Nit de la persona
+	va_raz_soc		VARCHAR(80)		not null,	--Razon social
+	va_mon_vta		CHAR(01)		not null,	--Numero de item 
+	va_tot_bru		DECIMAL(16,5)	not null,	--Numero de item 
+	va_des_cue		DECIMAL(16,5)	not null,	--Numero de item 
+	va_tot_net		DECIMAL(16,5)	not null,	--Numero de item 
+	va_obs_vta		VARCHAR(200)	not null,	--Numero de item 
+	va_vta_par		CHAR(01)		not null,	--Venta para (M=Mesa; L=Llevar ; D=Delivery)
+	
+	va_est_ado		CHAR(01)		not null,	--Numero de item 
+	va_usr_reg		VARCHAR(15)		NOT NULL,	--Usuario registro
+	va_fec_reg		DATETIME		NOT NULL,	--Fecha de registro
+	va_nro_itm		INT				not null,	--Numero de item 
+	va_cod_pro		VARCHAR(15)		not null,	--Numero de item 
+	va_des_pro		varchar(120)	not null,	--Descripcion del Producto 
+	va_can_tid		DECIMAL(14,4),				--Cantidad de producto
+	va_und_inv		CHAR(03)		not null,	--Numero de item 
+	va_pre_uni		DECIMAL(14,4),				--Precio Unitario en la moneda del documento
+	va_pre_tot		DECIMAL(16,2),				--Precio Total en la moneda del documento
+    va_fir_ma1		VARCHAR(20),    		    --Firma del talonario 1
+	va_fir_ma2		VARCHAR(20),				--Firma del talonario 2
+	va_fir_ma3		VARCHAR(20),				--Firma del talonario 3
+	va_fir_ma4		VARCHAR(20),				--Firma del talonario 4
+	va_for_log		TINYINT, 	                --Formato de logo
+												-- 0=Nombre de la empresa
+												-- 1=logo 1
+	--va_log_emp		VARBINARY(max),			--Logo de la empresa
+	va_cod_del		INT,
+	va_nom_del		VARCHAR(30),
+	va_cod_ven		INT,						--Codigo Vendedor
+	va_nom_ven		VARCHAR(50),				--Nombre vendedor
+	va_cod_plv		INT,						--Codigo plantilla de venta
+	va_log_emp		NVARCHAR(100),				--Logo de la empresa
+	va_ref_vta		VARCHAR(20),				--Referencia de la venta
+	va_tip_vta		INT,						--Tipo de venta (1=Factura ; 2=Nota de venta)
+	va_for_mat		INT,						--Formato de impresion del documento
+	
+	--** Datos de la Factura
+	va_img_qrf		VARBINARY(MAX),				--Imagen QR de la factura
+	va_nro_fac		INT				NOT NULL,	--Nro de factura
+	va_cod_ctr		VARCHAR(15)				,	--Codigo de control factura
+	va_nro_aut		INT				NOT NULL,	--Nro de autorizacion
+	va_fec_lim		DATE			NOT NULL,	--Fecha limite de la factura
+   )
+
+IF @@ERROR <> 0
+   RETURN
+
+BEGIN TRAN TR_res001
+BEGIN TRY
+	-- Obtiene datos del encabezado
+	SELECT @va_fec_vta = va_fec_vta, @va_nro_vta = va_nro_vta,
+		   @va_cod_per = va_cod_per, @va_raz_soc = va_raz_soc,
+		   @va_sub_toB = va_sub_toB, @va_sub_toU = va_sub_toU,
+		   @va_dto_vtB = va_dto_vtB, @va_dto_vtU = va_dto_vtU,
+		   @va_tot_vtB = va_tot_vtB, @va_tot_vtU = va_tot_vtU,
+		   @va_cod_bod = va_cod_bod, @va_tip_cam = va_tip_cam,
+		   @va_vta_par = va_vta_par, @va_nro_fac = va_nro_fac,
+		   @va_mon_vta = va_mon_vta, @va_for_pag = va_for_pag,
+		   @va_usr_reg = va_usr_reg, @va_fec_reg = va_fec_reg,
+		   @va_obs_vta = va_obs_vta, @va_est_ado = va_est_ado,
+		   @va_doc_vta = va_doc_vta, @va_nro_tal = va_nro_tal,
+		   @va_ref_vta = va_ref_vta, @va_cod_del = va_cod_del,
+		   @va_cod_ven = va_cod_ven, @va_cod_plv = va_cod_plv,
+		   @va_tip_vta = va_tip_vta, @va_nit_per = va_nit_vta
+	FROM res001
+	WHERE va_ide_vta = @ar_ide_vta	AND
+		  va_ges_vta = @ar_ges_vta
+	
+	-- Obtiene nombre de almacen
+	SELECT @va_nom_bod = va_nom_bod
+	FROM inv002
+	WHERE va_cod_bod = @va_cod_bod
+	
+	-- Obtiene nombre del Delivery
+	SELECT @va_nom_del = va_nom_del
+	FROM cmr015
+	WHERE va_cod_del = @va_cod_del
+	
+	-- Obtiene nombre del Vendedor
+	SELECT @va_nom_ven = va_nom_bre
+	FROM cmr014
+	WHERE va_cod_ide = @va_cod_ven	AND
+		  va_ide_tip = 1
+	
+	--Obtiene Totales segun moneda de la venta
+	IF (@va_mon_vta = 'B')
+	BEGIN
+		SET @va_tot_bru = @va_sub_toB
+		SET @va_des_cue = @va_dto_vtB
+		SET @va_tot_net = @va_tot_vtB
+	END
+	IF (@va_mon_vta = 'U')
+	BEGIN
+		SET @va_tot_bru = @va_sub_toU
+		SET @va_des_cue = @va_dto_vtU
+		SET @va_tot_net = @va_tot_vtU
+	END
+	
+	-- Obtiene datos de Talonario
+	SELECT @va_for_log = va_for_log,
+		   @va_for_mat = va_for_mat,
+		   @va_fir_ma1 = va_fir_ma1,
+		   @va_fir_ma2 = va_fir_ma2,
+		   @va_fir_ma3 = va_fir_ma3,
+		   @va_fir_ma4 = va_fir_ma4,
+		   @va_nro_aut = va_nro_aut
+	 FROM ads004
+	WHERE va_ide_doc = @va_doc_vta AND 
+		  va_nro_tal = @va_nro_tal
+	 IF @@ROWCOUNT = 0
+	 BEGIN
+		SET @va_for_log = 0
+		SET @va_fir_ma1 = ''
+		SET @va_fir_ma2 = ''
+		SET @va_fir_ma3 = ''
+		SET @va_fir_ma4 = ''
+	 END
+	 
+	 -- Obtiene fecha limite de la autorizacion
+	 IF(@va_nro_aut <> 0)
+	 BEGIN
+		SELECT @va_fec_lim = va_fec_fin
+		  FROM ctb007
+		 WHERE va_nro_aut = @va_nro_aut
+	 END
+	 ELSE
+	 BEGIN
+		SET @va_fec_lim = '01/01/1990'
+	 END
+	 
+	-- Obtiene datos de la factura
+	SELECT @va_img_qrf = va_img_qrf,
+		   @va_cod_ctr = va_cod_con
+	  FROM ctb008
+	 WHERE va_ges_tio = @ar_ges_vta AND
+		   va_ide_fac = @ar_ide_vta
+	 
+	 
+	 
+	 
+	 IF @va_for_log = 1
+	 BEGIN
+		SELECT @va_log_emp = va_glo_car
+		 FROM ads013
+		WHERE va_ide_mod = 1 AND
+			  va_ide_glo = 12
+	 END
+	 IF @va_for_log = 2
+	 BEGIN
+		SELECT @va_log_emp = va_glo_car
+		 FROM ads013
+		WHERE va_ide_mod = 1 AND
+			  va_ide_glo = 13
+	 END	
+	 IF @va_for_log = 3
+	 BEGIN
+		SELECT @va_log_emp = va_glo_car
+		 FROM ads013
+		WHERE va_ide_mod = 1 AND
+			  va_ide_glo = 14
+	 END	
+	 IF @va_for_log = 4
+	 BEGIN
+		SELECT @va_log_emp = va_glo_car
+		 FROM ads013
+		WHERE va_ide_mod = 1 AND
+			  va_ide_glo = 15
+	 END	
+	 
+	--// Cursor sobre Detalle
+	DECLARE vc_res001 CURSOR LOCAL FOR
+	SELECT va_itm_vta, va_cod_pro, va_des_pro, va_can_uni, va_und_inv,
+		   (va_mto_brB - va_val_dtB), (va_mto_brU - va_val_dtU), va_mto_neB, va_mto_neU 
+	 FROM res002 
+	WHERE va_ide_vta = @ar_ide_vta	AND
+		  va_ges_vta = @ar_ges_vta
+		
+	--** Abre cursor		  
+	OPEN vc_res001    
+		 
+	FETCH NEXT FROM vc_res001 INTO @va_itm_vta, @va_cod_pro, @va_des_pro, @va_can_tid, @va_und_inv,
+								   @va_pre_uBs, @va_pre_uUs, @va_pre_tBs, @va_pre_tUs
+		
+	WHILE (@@FETCH_STATUS = 0)
+	BEGIN
+		IF (@va_mon_vta = 'B')
+		BEGIN
+			SET @va_pre_uni = @va_pre_uBs
+			SET @va_pre_tot = @va_pre_tBs
+		END
+		IF (@va_mon_vta = 'U')
+		BEGIN
+			SET @va_pre_uni = @va_pre_uUs
+			SET @va_pre_tot = @va_pre_tUs
+		END
+		
+		-- Obtiene nombre del producto de la tabla producto
+		SELECT @va_des_pro = va_nom_pro
+		  FROM inv004
+		 WHERE va_cod_pro = @va_cod_pro
+	
+		--//** REGISTRA DETALLE DE ITEMS **\\--
+		INSERT INTO #tm_res001 VALUES ( @va_fec_vta		,
+										@ar_ide_vta		,
+										@ar_ges_vta		,
+										@va_nro_vta		,
+										@va_cod_bod		,
+										@va_nom_bod		,
+										@va_for_pag		,
+										@va_tip_cam		,
+										@va_cod_per		,
+										@va_nit_per		,
+										@va_raz_soc		,
+										@va_mon_vta		,
+										@va_tot_bru		,
+										@va_des_cue		,
+										@va_tot_net		,
+										@va_obs_vta		,
+										@va_vta_par		,
+										@va_est_ado		,
+										@va_usr_reg		,
+										@va_fec_reg		,
+										@va_itm_vta		,
+										@va_cod_pro		,
+										@va_des_pro		,
+										@va_can_tid		,
+										@va_und_inv		,
+										@va_pre_uni		,
+										@va_pre_tot		,
+										@va_fir_ma1		,
+										@va_fir_ma2		,
+										@va_fir_ma3		,
+										@va_fir_ma4		,
+										@va_for_log		,
+										
+										@va_cod_del		,
+										@va_nom_del		,
+										@va_cod_ven		,
+										@va_nom_ven		,
+										@va_cod_plv		,
+										@va_log_emp		,
+										@va_ref_vta		,
+										@va_tip_vta		,
+										@va_for_mat		,
+										
+										@va_img_qrf		,	-- Imagen QR de la factura
+										@va_nro_fac		,	-- Numero de Factura
+										@va_cod_ctr		,	-- Codigo de control
+										@va_nro_aut,		-- Numero de autorizacion
+										@va_fec_lim		)
+								
+			IF @@ERROR <> 0
+			BEGIN
+				RAISERROR ('Ocurrio un error al registrar detalle de items en tabla temporal',16,1)
+				RETURN
+			END
+	
+		FETCH NEXT FROM vc_res001 INTO @va_itm_vta, @va_cod_pro, @va_des_pro, @va_can_tid,@va_und_inv,
+									   @va_pre_uBs, @va_pre_uUs, @va_pre_tBs, @va_pre_tUs
+	END	
+CLOSE vc_res001
+DEALLOCATE vc_res001
+
+
+
+
+	 
+SELECT * FROM #tm_res001	   
+
+COMMIT TRAN TR_res001
+	
+END TRY
+BEGIN CATCH
+	
+	SET @msg = 'Error: ' + ERROR_MESSAGE()
 	RAISERROR(@msg,16,1)
     Rollback TRAN TR_res001
 	RETURN

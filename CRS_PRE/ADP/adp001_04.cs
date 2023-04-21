@@ -9,7 +9,7 @@ namespace CRS_PRE
     /**********************************************************************/
     /*      Módulo: ADP - Persona                                         */
     /*  Aplicación: adp001 - Grupo Persona                                */
-    /*      Opción: Elmina Registro                                       */
+    /*      Opción: Habilita/Deshabilita Registro                         */
     /*       Autor: JEJR - Crearsis             Fecha: 22-07-2020         */
     /**********************************************************************/
     public partial class adp001_04 : Form
@@ -19,6 +19,7 @@ namespace CRS_PRE
         public DataTable frm_dat;
         // Instancias
         adp001 o_adp001 = new adp001();
+        adp002 o_adp002 = new adp002();
         DataTable Tabla = new DataTable();
 
         public adp001_04()
@@ -51,24 +52,15 @@ namespace CRS_PRE
         // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
-            if (tb_cod_gru.Text.Trim() == ""){
-                return "DEBE proporcionar el Código Grupo Persona";
-            }
+            if (tb_cod_gru.Text.Trim() == "")
+                return "DEBE proporcionar el Código Grupo Persona";            
 
             // Valida que el campo código NO este vacio
             int.TryParse(tb_cod_gru.Text, out int cod_gru);
-            if (cod_gru == 0){
-                return "El Código Grupo Persona NO es valido";
-            }
-                       
-            // Verifica SI el grupo persona se encuentra registrado
-            Tabla = new DataTable();
-            Tabla = o_adp001.Fe_con_gru(int.Parse(tb_cod_gru.Text));
-            if (Tabla.Rows.Count > 0){
-                return "El Grupo Persona NO se encuentra registrado en el Sistema";
-            }
+            if (cod_gru == 0)
+                return "El Código Grupo Persona NO es valido";                                  
 
-            return "";
+            return "OK";
         }
 
         // Evento Click: Button Aceptar
@@ -80,16 +72,16 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "")
+                if (msg_val != "OK")
                 {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Tipo de Atributo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Grupo de Persona?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Tipo de Atributo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Grupo de Persona?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK)
                 {

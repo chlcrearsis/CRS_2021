@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr002_02 : Form
     {
@@ -250,7 +250,7 @@ namespace CRS_PRE.CMR
         void Fi_for_dec()
         {
             //Formatea decimales
-            tb_pre_cio.Text = decimal.Round(decimal.Parse(tb_pre_cio.Text), nro_dec).ToString();
+                    tb_pre_cio.Text = decimal.Round(decimal.Parse(tb_pre_cio.Text), nro_dec).ToString();
             switch (nro_dec)
             {
                 case 0:
@@ -319,7 +319,7 @@ namespace CRS_PRE.CMR
                         decimal des_max = decimal.Parse(tb_des_max.Text);
                         decimal inc_max = decimal.Parse(tb_inc_max.Text);
 
-                        o_cmr002.Fe_crea(nro_lis, cod_pro, pre_cio, des_max, inc_max);
+                        o_cmr002.Fe_nue_reg(nro_lis, cod_pro, pre_cio, des_max, inc_max);
 
                         MessageBox.Show("Los datos se grabaron correctamente", "Define precio", MessageBoxButtons.OK);
                         Fi_lim_pia();

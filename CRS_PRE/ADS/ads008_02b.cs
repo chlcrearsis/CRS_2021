@@ -36,7 +36,7 @@ namespace CRS_PRE
             tb_nom_usr.Text = frm_dat.Rows[0]["va_nom_tus"].ToString();
 
             // obtiene lista de Modulos
-            tabla = o_ads001.Fe_obt_mod();
+            tabla = o_ads001.Fe_lis_mod("H");
 
             tab_ads001.Columns.Add("va_ide_mod");
             tab_ads001.Columns.Add("va_nom_mod");

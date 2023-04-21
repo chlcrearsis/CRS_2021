@@ -153,7 +153,7 @@ namespace CRS_PRE
                 {
                     tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, opcion_menu.Name);
 
-                    if (glo_ide_usr == Program.gl_usr_usr)
+                    if (glo_ide_usr == Program.gl_ide_usr)
                     {
                         if (tab_usm.Rows.Count != 0) {
                             opcion_menu.Enabled = false;
@@ -189,7 +189,7 @@ namespace CRS_PRE
                 //verifica que la opcion no este restringida
                 tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, hijo1.Name);
 
-                if (glo_ide_usr == Program.gl_usr_usr)
+                if (glo_ide_usr == Program.gl_ide_usr)
                 {
                     //si existe = permiso restringido
                     if (tab_usm.Rows.Count != 0)
@@ -229,7 +229,7 @@ namespace CRS_PRE
                 //verifica que la opcion no este restringida
                 tab_usm = o_ads012._05(glo_ide_usr, glo_ide_ven, hijo2.Name);
 
-                if (glo_ide_usr == Program.gl_usr_usr)
+                if (glo_ide_usr == Program.gl_ide_usr)
                 {
                     //si existe = permiso restringido
                     if (tab_usm.Rows.Count != 0)

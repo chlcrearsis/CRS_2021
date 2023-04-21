@@ -45,7 +45,7 @@ namespace CRS_PRE
             }
 
             // obtiene lista de Modulos
-            tabla = o_ads001.Fe_obt_mod();
+            tabla = o_ads001.Fe_lis_mod("H");
 
             tab_ads001.Columns.Add("va_ide_mod");
             tab_ads001.Columns.Add("va_nom_mod");

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr002_06 : Form
     {
@@ -31,8 +31,8 @@ namespace CRS_PRE.CMR
         {
             tb_nro_lis.Text = frm_dat.Rows[0]["va_cod_lis"].ToString();
             lb_nom_lis.Text = frm_dat.Rows[0]["va_nom_lis"].ToString();
-            tb_cod_pro.Text = frm_dat.Rows[0]["va_cod_pro"].ToString();
-            lb_nom_pro.Text = frm_dat.Rows[0]["va_nom_pro"].ToString();
+            //tb_cod_pro.Text = frm_dat.Rows[0]["va_cod_pro"].ToString();
+            //lb_nom_pro.Text = frm_dat.Rows[0]["va_nom_pro"].ToString();
             //tb_pre_cio.Text = frm_dat.Rows[0]["va_pre_cio"].ToString();
             //tb_pmx_des.Text = frm_dat.Rows[0]["va_pmx_des"].ToString();
             //tb_pmx_inc.Text = frm_dat.Rows[0]["va_pmx_inc"].ToString();
@@ -178,7 +178,7 @@ namespace CRS_PRE.CMR
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }
-            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Elimina Documento", MessageBoxButtons.OKCancel);
+            msg_res = MessageBox.Show("Esta seguro de eliminar la informacion?", "Elimina Documento", MessageBoxButtons.OKCancel);
             if (msg_res == DialogResult.OK)
             {
                 //Registrar usuario

@@ -1,4 +1,4 @@
-﻿namespace CRS_PRE
+﻿namespace CRS_PRE.CMR
 {
     partial class res001_02c
     {

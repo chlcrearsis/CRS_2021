@@ -351,7 +351,7 @@ namespace CRS_PRE
             cb_nom_cob.DataSource = Tabla;
             cb_nom_cob.DisplayMember = "va_nom_bre";
             cb_nom_cob.ValueMember = "va_cod_ide";
-            cb_nom_cob.SelectedValue = int.Parse(Tabla.Rows[1]["va_cod_ide"].ToString());
+            cb_nom_cob.SelectedValue = int.Parse(Tabla.Rows[0]["va_cod_ide"].ToString());
         }
 
         /// <summary>

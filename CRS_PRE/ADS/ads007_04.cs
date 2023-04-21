@@ -38,7 +38,7 @@ namespace CRS_PRE
             tb_cod_per.Text = frm_dat.Rows[0]["va_ide_per"].ToString();
             tb_win_max.Text = frm_dat.Rows[0]["va_win_max"].ToString();
 
-            tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            //tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
             tb_tip_usr.Text = tabla.Rows[0]["va_nom_tus"].ToString();
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")

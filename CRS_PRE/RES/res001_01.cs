@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class res001_01 : Form
     {

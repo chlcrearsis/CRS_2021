@@ -333,7 +333,7 @@
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(307, 20);
             this.tb_tex_bus.TabIndex = 15;
-            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
             // lb_des_bus
             // 
@@ -360,7 +360,7 @@
             this.tb_sel_bus.Name = "tb_sel_bus";
             this.tb_sel_bus.Size = new System.Drawing.Size(82, 20);
             this.tb_sel_bus.TabIndex = 10;
-            this.tb_sel_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_sub_baj_fil_KeyDown);
+            this.tb_sel_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             this.tb_sel_bus.Validated += new System.EventHandler(this.Tb_sel_bus_Validated);
             // 
             // groupBox2

@@ -24,39 +24,38 @@ namespace CRS_NEG
  
         conexion_a ob_con_ecA = new conexion_a();
 
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
+        //public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
 
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
+        //public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
+        //public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
+        //public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
+        //public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
 
         string cadena = "";
-        string ft_fch_hor = "dd/MM/yyyy hh:mm:ss";
-        string fto_fecha = "dd/MM/yyyy";
+        string ft_fch_lar = "dd/MM/yyyy hh:mm:ss";
+        string ft_fch_cor = "dd/MM/yyyy";
         ads005 o_ads005 = new ads005();
         DataTable Tab_ads005;
 
-
-        public cmr007()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
 
 
 
         private DateTime Fi_fec_act()
         {
-            DateTime fec_act;
-            cadena = "SELECT GETDATE()";
-            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
-            fec_act = DateTime.Parse(tabla.Rows[0][0].ToString());
+            try
+            {
+                DateTime fec_act;
+                cadena = "SELECT GETDATE()";
+                DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
+                fec_act = DateTime.Parse(tabla.Rows[0][0].ToString());
 
-            return fec_act;
+                return fec_act;
+
+            }
+            catch (Exception ex)
+            {    
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace CRS_NEG
                 
                 StringBuilder vv_str_sql = new StringBuilder();
                 vv_str_sql.AppendFormat(" EXECUTE cmr007_02a_p02 ");
-                vv_str_sql.AppendFormat(" '{0}', ", ar_cod_tmp.ToString(ft_fch_hor));
+                vv_str_sql.AppendFormat(" '{0}', ", ar_cod_tmp.ToString(ft_fch_lar));
                 vv_str_sql.AppendFormat(" {0}, ", ar_pla_ped);
                 vv_str_sql.AppendFormat(" {0}, ", ar_cod_bod);
                 vv_str_sql.AppendFormat(" {0}, ", ar_cod_cli);
@@ -100,7 +99,7 @@ namespace CRS_NEG
             }
         }
 
-        public DataTable Fe_crea(string _cod_usr, DateTime _cod_tmp, int _pla_ped,
+        public DataTable Fe_nue_reg(string _cod_usr, DateTime _cod_tmp, int _pla_ped,
             int _cod_bod, string _cod_per, string _nit_cli, string _raz_soc, string _mon_ped,
             DateTime _fec_ped, int _for_pag, int _ven_ded, int _lis_pre, int _cod_caj, int _cod_lcr,
             decimal _des_cue, string _obs_ped,string _ped_par, int _cod_del, string _ref_ped)
@@ -110,7 +109,7 @@ namespace CRS_NEG
                 StringBuilder vv_str_sql = new StringBuilder();
                 vv_str_sql.AppendFormat(" EXECUTE cmr007_02a_p01 ");
                 vv_str_sql.AppendFormat(" '{0}', ", _cod_usr);
-                vv_str_sql.AppendFormat(" '{0}', ", _cod_tmp.ToString(ft_fch_hor));
+                vv_str_sql.AppendFormat(" '{0}', ", _cod_tmp.ToString(ft_fch_lar));
                 vv_str_sql.AppendFormat(" {0}, ", _pla_ped);
                 vv_str_sql.AppendFormat("  '{0}' , ", _cod_bod);
                 vv_str_sql.AppendFormat("  {0} , ", _cod_per);
@@ -148,65 +147,107 @@ namespace CRS_NEG
 
         private int Fi_obt_nvt(string ar_doc_ped, int ar_nro_tal, int ar_ges_ped)
         {
-            int nro_ped = 0;
-
-            Tab_ads005 =  o_ads005.Fe_con_num(ar_doc_ped, ar_nro_tal, ar_ges_ped);
-          
-            if (Tab_ads005.Rows.Count == 0)
-                nro_ped = 0;
-            else
+            try
             {
-                if (Tab_ads005.Rows[0].IsNull(0) == true)
-                {
+                int nro_ped = 0;
+
+            Tab_ads005 =  o_ads005.Fe_con_nta(ar_ges_ped, ar_doc_ped, ar_nro_tal);
+          
+                if (Tab_ads005.Rows.Count == 0)
                     nro_ped = 0;
-                }
                 else
-                    nro_ped = int.Parse(Tab_ads005.Rows[0]["va_con_Tad"].ToString());
+                {
+                    if (Tab_ads005.Rows[0].IsNull(0) == true)
+                    {
+                        nro_ped = 0;
+                    }
+                    else
+                        nro_ped = int.Parse(Tab_ads005.Rows[0]["va_con_Tad"].ToString());
+                }
+
+                nro_ped = nro_ped + 1;
+
+                return nro_ped;
+
             }
-
-            nro_ped = nro_ped + 1;
-
-            return nro_ped;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
       
         public void Fe_edi_ped(string ar_ide_ped, int ar_ges_ped, string ar_ped_par, int ar_cod_del, string ar_obs_ped)
         {
-            cadena = " UPDATE cmr007 SET va_ped_par = '" + ar_ped_par + "', va_cod_del = " + ar_cod_del + ", va_obs_ped = '" + ar_obs_ped + "'" + 
-                     " WHERE va_ide_ped = '" + ar_ide_ped + "' AND va_ges_ped = " + ar_ges_ped;
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " UPDATE cmr007 SET va_ped_par = '" + ar_ped_par + "', va_cod_del = " + ar_cod_del + ", va_obs_ped = '" + ar_obs_ped + "'" + 
+                         " WHERE va_ide_ped = '" + ar_ide_ped + "' AND va_ges_ped = " + ar_ges_ped;
+                ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Fe_anu_ped(string ar_ide_ped, int ar_ges_ped)
         {
-            cadena = " EXECUTE cmr007_04a_p01 '" + ar_ide_ped + "', " + ar_ges_ped;
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " EXECUTE cmr007_04a_p01 '" + ar_ide_ped + "', " + ar_ges_ped;
+                ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
       
 
         public void Fe_eli_ped(int ar_ide_gru )
         {
-            cadena = " cmr007_06a_p01 '" + ar_ide_gru + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " cmr007_06a_p01 '" + ar_ide_gru + "'";
+                ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DataTable Fe_con_ped( string ar_ide_ped, int ar_ges_ped)
         {
-            //if (ar_ges_ped == 0)
-            //    ar_ges_ped = 2020;
-
-            cadena = "cmr007_05a_p01 '"+ ar_ide_ped + "',"+ ar_ges_ped;
+            try
+            {
+                cadena = "cmr007_05a_p01 '"+ ar_ide_ped + "',"+ ar_ges_ped;
             
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public DataTable Fe_cmr007_05i_p01(string ar_ide_ped, int ar_ges_ped)
         {
-            //if (ar_ges_ped == 0)
-            //    ar_ges_ped = 2020;
+            try
+            {
+                cadena = "cmr007_05i_p01 '" + ar_ide_ped + "'," + ar_ges_ped;
 
-            cadena = "cmr007_05i_p01 '" + ar_ide_ped + "'," + ar_ges_ped;
+                return ob_con_ecA.fe_exe_sql(cadena);
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -217,12 +258,20 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_con_avi(string ar_ide_ped, int ar_ges_ped)
         {
-            if (ar_ges_ped == 0)
-                ar_ges_ped = 2020;
+            try
+            {
+                if (ar_ges_ped == 0)
+                    ar_ges_ped = 2020;
 
-            cadena = "cmr007_05b_p01 '" + ar_ide_ped + "'," + ar_ges_ped;
+                cadena = "cmr007_05b_p01 '" + ar_ide_ped + "'," + ar_ges_ped;
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -234,21 +283,34 @@ namespace CRS_NEG
         /// <returns> retorna tabla con valores de encabezado de pedido</returns>
         public DataTable Fe_con_exi_ped(string ar_ide_ped, int ar_ges_ped)
         {
+            try
+            {
+                cadena = "SELECT * " +
+                    "FROM cmr007 " +
+                    "WHERE va_ide_ped = '" + ar_ide_ped + "' AND va_ges_ped = " + ar_ges_ped;
+                return ob_con_ecA.fe_exe_sql(cadena);
 
-            cadena = "SELECT * " +
-                "FROM cmr007 " +
-                "WHERE va_ide_ped = '" + ar_ide_ped + "' AND va_ges_ped = " + ar_ges_ped;
-            return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
         public DataTable Fe_bus_car(int ar_cod_cli ,string ar_cod_bod, DateTime ar_fec_ini, DateTime ar_fec_fin,string ar_tex_bus, int ar_par_ame ,string ar_est_ado )
         {
-
-            cadena = " cmr007_01a_p01 " + ar_cod_cli +",'" + int.Parse(ar_cod_bod) + "','" + ar_fec_ini.ToString(fto_fecha) + "','" + ar_fec_fin.ToString(fto_fecha) + "','" + ar_tex_bus + "', " + ar_par_ame + ",'" + ar_est_ado + "'";
-
+            try
+            {
+                cadena = " cmr007_01a_p01 " + ar_cod_cli +",'" + int.Parse(ar_cod_bod) + "','" + ar_fec_ini.ToString(ft_fch_cor) + "','" + ar_fec_fin.ToString(ft_fch_cor) + "','" + ar_tex_bus + "', " + ar_par_ame + ",'" + ar_est_ado + "'";
            
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -261,10 +323,18 @@ namespace CRS_NEG
         /// <param name="ar_est_ado"> Estado</param>
         /// <returns></returns>
         public DataTable Fe_cmr007_R01( int ar_cod_bod, DateTime ar_fec_ini , DateTime ar_fec_fin, string ar_est_ado)
-        {   
-            cadena = "cmr007_R01p "+ ar_cod_bod  + ",'"+ ar_fec_ini.ToString(fto_fecha) + "','"+ ar_fec_fin.ToString(fto_fecha) + "','"+ ar_est_ado  + "',0 " ;
+        {
+            try
+            {
+                cadena = "cmr007_R01p "+ ar_cod_bod  + ",'"+ ar_fec_ini.ToString(ft_fch_cor) + "','"+ ar_fec_fin.ToString(ft_fch_cor) + "','"+ ar_est_ado  + "',0 " ;
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -273,9 +343,17 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_cmr007_R02(int ar_cod_bod, DateTime ar_fec_ini, DateTime ar_fec_fin, int ar_cod_del)
         {
-            cadena = "cmr007_R02 " + ar_cod_bod + ",'" + ar_fec_ini.ToString(fto_fecha) + "','" + ar_fec_fin.ToString(fto_fecha) + "'," + ar_cod_del;
+            try
+            {
+                cadena = "cmr007_R02 " + ar_cod_bod + ",'" + ar_fec_ini.ToString(ft_fch_cor) + "','" + ar_fec_fin.ToString(ft_fch_cor) + "'," + ar_cod_del;
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -284,9 +362,17 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_cmr007_R03(int ar_cod_bod, DateTime ar_fec_ini, DateTime ar_fec_fin, int ar_cod_de1, int va_cod_de2)
         {
-            cadena = "cmr007_R03 " + ar_cod_bod + ",'" + ar_fec_ini.ToString(fto_fecha) + "','" + ar_fec_fin.ToString(fto_fecha) + "'," + ar_cod_de1 + ", " + va_cod_de2;
+            try
+            {
+                cadena = "cmr007_R03 " + ar_cod_bod + ",'" + ar_fec_ini.ToString(ft_fch_cor) + "','" + ar_fec_fin.ToString(ft_fch_cor) + "'," + ar_cod_de1 + ", " + va_cod_de2;
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -300,9 +386,16 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fr_cmr007_R01(int ar_cod_bod, DateTime ar_fec_ini, DateTime ar_fec_fin, string ar_est_ado)
         {
-            cadena = "cmr007_R01 " + ar_cod_bod + ",'" + ar_fec_ini + "','" + ar_fec_fin + "','" + ar_est_ado + "',0 ";
+            try
+            {
+                cadena = "cmr007_R01 " + ar_cod_bod + ",'" + ar_fec_ini + "','" + ar_fec_fin + "','" + ar_est_ado + "',0 ";
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

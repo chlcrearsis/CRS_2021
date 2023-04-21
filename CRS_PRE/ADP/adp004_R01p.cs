@@ -65,8 +65,8 @@ namespace CRS_PRE
                 if (tb_tip_fin.Text == "")
                     return "Debe proporcionar el Tipo de Atributo Final";                
 
-                if (int.Parse(tb_tip_ini.Text) < int.Parse(tb_tip_fin.Text))
-                    return "El Tipo Atributo Inicial DEBE ser mayor al Tipo de Atributo Final";                
+                if (int.Parse(tb_tip_ini.Text) > int.Parse(tb_tip_fin.Text))
+                    return "El Tipo Atributo Inicial DEBE ser menor al Tipo de Atributo Final";                
 
                 return "";
             }

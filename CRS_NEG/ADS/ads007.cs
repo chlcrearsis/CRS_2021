@@ -28,17 +28,6 @@ namespace CRS_NEG
         string cadena = "";
         DataTable Tabla = new DataTable();
 
-
-        public ads007()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
-
-
         /// <summary>
         /// Verifica que el usuario (crssql) este definida en el SQL-Server
         /// </summary>
@@ -67,6 +56,7 @@ namespace CRS_NEG
             return Tabla;
         }
 
+
         public string Login(string ag_ide_uni, string ag_ser_bda, string ag_ide_usr, string ag_pas_usr)
         {
             string msg_ret = "";
@@ -76,6 +66,12 @@ namespace CRS_NEG
 
             if (msg_ret == "OK")
             {
+                va_ser_bda = ob_con_ecA.va_ser_bda;
+                va_ins_bda = ob_con_ecA.va_ins_bda;
+                va_nom_bda = ob_con_ecA.va_nom_bda;
+                va_ide_usr = ob_con_ecA.va_ide_usr;
+                va_pas_usr = ob_con_ecA.va_pas_usr;
+
                 msg_ret = Fi_log_bdo(ag_ide_usr);
             }
 
@@ -100,6 +96,8 @@ namespace CRS_NEG
 
             return msg_ret;
         }
+
+
 
         private string Fi_log_bdo( string ag_ser_bda)
         {
@@ -277,6 +275,18 @@ namespace CRS_NEG
         {
             cadena = " Select * from ads007";
             cadena += " where va_ide_usr= '" + ag_ide_usr + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+        /// <summary>
+        /// Consulta Usuario por ID. Tipo de Usuario
+        /// </summary>
+        /// <param name="ag_ide_usr"> Ide exacto del usuario a consultar</param>
+        /// <returns></returns>
+        public DataTable Fe_con_tus(int ide_tus)
+        {
+            cadena = " Select * from ads007";
+            cadena += " where va_ide_tus = " + ide_tus + "";
             return ob_con_ecA.fe_exe_sql(cadena);
         }
 

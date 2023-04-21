@@ -75,11 +75,12 @@ namespace CRS_PRE
 
 
             //Logueo manual el ReportDocument asociado al crystal report
-            res001_05b_p01.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            res001_05b_p01.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
+
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             res001_05b_p01.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            res001_05b_p01.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
+            res001_05b_p01.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);
             res001_05b_p01.SetParameterValue("vc_nom_emp", va_nom_emp);
             res001_05b_p01.SetParameterValue("vc_dir_emp", va_dir_emp);
             res001_05b_p01.SetParameterValue("vc_tel_emp", va_tel_emp);

@@ -28,18 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.ads003_R01 = new CRS_PRE.ads003_R01();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_imp_rim = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_exp_ort = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_sep_uno = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_pri_pag = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_ant_pag = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_sig_pag = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_ult_pag = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_nro_pag = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_sep_dos = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_bus_car = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_zoo_rep = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_zoo_anc = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,29 +48,10 @@
             this.mn_zoo_075 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_zoo_025 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
+            this.cr_rep_ort = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.ads003_R01 = new CRS_PRE.ADS.ads003_R01();
             this.m_frm_hja.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // cr_rep_ort
-            // 
-            this.cr_rep_ort.ActiveViewIndex = 0;
-            this.cr_rep_ort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cr_rep_ort.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cr_rep_ort.DisplayBackgroundEdge = false;
-            this.cr_rep_ort.DisplayToolbar = false;
-            this.cr_rep_ort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cr_rep_ort.Location = new System.Drawing.Point(0, 0);
-            this.cr_rep_ort.Name = "cr_rep_ort";
-            this.cr_rep_ort.ReportSource = this.ads003_R01;
-            this.cr_rep_ort.ShowCloseButton = false;
-            this.cr_rep_ort.ShowCopyButton = false;
-            this.cr_rep_ort.ShowGroupTreeButton = false;
-            this.cr_rep_ort.ShowLogo = false;
-            this.cr_rep_ort.ShowParameterPanelButton = false;
-            this.cr_rep_ort.ShowRefreshButton = false;
-            this.cr_rep_ort.Size = new System.Drawing.Size(857, 749);
-            this.cr_rep_ort.TabIndex = 0;
-            this.cr_rep_ort.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
             // m_frm_hja
             // 
@@ -80,19 +59,19 @@
             this.m_frm_hja.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_imp_rim,
             this.mn_exp_ort,
-            this.toolStripMenuItem1,
+            this.mn_sep_uno,
             this.mn_pri_pag,
             this.mn_ant_pag,
             this.mn_sig_pag,
             this.mn_ult_pag,
             this.mn_nro_pag,
-            this.toolStripMenuItem2,
+            this.mn_sep_dos,
             this.mn_bus_car,
             this.mn_zoo_rep,
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(90, 23);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(372, 27);
+            this.m_frm_hja.Size = new System.Drawing.Size(452, 27);
             this.m_frm_hja.TabIndex = 6;
             this.m_frm_hja.Visible = false;
             // 
@@ -110,42 +89,47 @@
             this.mn_exp_ort.Text = "&Exportar";
             this.mn_exp_ort.Click += new System.EventHandler(this.Mn_exp_ort_Click);
             // 
-            // toolStripMenuItem1
+            // mn_sep_uno
             // 
-            this.toolStripMenuItem1.Enabled = false;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(22, 23);
-            this.toolStripMenuItem1.Text = "|";
+            this.mn_sep_uno.Enabled = false;
+            this.mn_sep_uno.Name = "mn_sep_uno";
+            this.mn_sep_uno.Size = new System.Drawing.Size(22, 23);
+            this.mn_sep_uno.Tag = "separador";
+            this.mn_sep_uno.Text = "|";
             // 
             // mn_pri_pag
             // 
             this.mn_pri_pag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mn_pri_pag.Image = global::CRS_PRE.Properties.Resources.primero;
             this.mn_pri_pag.Name = "mn_pri_pag";
-            this.mn_pri_pag.Size = new System.Drawing.Size(12, 23);
+            this.mn_pri_pag.Size = new System.Drawing.Size(28, 23);
             this.mn_pri_pag.Text = "primero";
             this.mn_pri_pag.Click += new System.EventHandler(this.Mn_pri_pag_Click);
             // 
             // mn_ant_pag
             // 
             this.mn_ant_pag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mn_ant_pag.Image = global::CRS_PRE.Properties.Resources.anterior;
             this.mn_ant_pag.Name = "mn_ant_pag";
-            this.mn_ant_pag.Size = new System.Drawing.Size(12, 23);
+            this.mn_ant_pag.Size = new System.Drawing.Size(28, 23);
             this.mn_ant_pag.Text = "anterior";
             this.mn_ant_pag.Click += new System.EventHandler(this.Mn_ant_pag_Click);
             // 
             // mn_sig_pag
             // 
             this.mn_sig_pag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mn_sig_pag.Image = global::CRS_PRE.Properties.Resources.siguiente;
             this.mn_sig_pag.Name = "mn_sig_pag";
-            this.mn_sig_pag.Size = new System.Drawing.Size(12, 23);
+            this.mn_sig_pag.Size = new System.Drawing.Size(28, 23);
             this.mn_sig_pag.Text = "siguiente";
             this.mn_sig_pag.Click += new System.EventHandler(this.Mn_sig_pag_Click);
             // 
             // mn_ult_pag
             // 
             this.mn_ult_pag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.mn_ult_pag.Image = global::CRS_PRE.Properties.Resources.ultimo;
             this.mn_ult_pag.Name = "mn_ult_pag";
-            this.mn_ult_pag.Size = new System.Drawing.Size(12, 23);
+            this.mn_ult_pag.Size = new System.Drawing.Size(28, 23);
             this.mn_ult_pag.Text = "ultima";
             this.mn_ult_pag.Click += new System.EventHandler(this.Mn_ult_pag_Click);
             // 
@@ -156,16 +140,18 @@
             this.mn_nro_pag.MaxLength = 3;
             this.mn_nro_pag.Name = "mn_nro_pag";
             this.mn_nro_pag.Size = new System.Drawing.Size(30, 23);
+            this.mn_nro_pag.Tag = "separador";
             this.mn_nro_pag.Text = "1";
             this.mn_nro_pag.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mn_nro_pag.Leave += new System.EventHandler(this.Mn_nro_pag_Leave);
             // 
-            // toolStripMenuItem2
+            // mn_sep_dos
             // 
-            this.toolStripMenuItem2.Enabled = false;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(22, 23);
-            this.toolStripMenuItem2.Text = "|";
+            this.mn_sep_dos.Enabled = false;
+            this.mn_sep_dos.Name = "mn_sep_dos";
+            this.mn_sep_dos.Size = new System.Drawing.Size(22, 23);
+            this.mn_sep_dos.Tag = "separador";
+            this.mn_sep_dos.Text = "|";
             // 
             // mn_bus_car
             // 
@@ -185,9 +171,10 @@
             this.mn_zoo_100,
             this.mn_zoo_075,
             this.mn_zoo_025});
+            this.mn_zoo_rep.Image = global::CRS_PRE.Properties.Resources.zoom;
             this.mn_zoo_rep.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.mn_zoo_rep.Name = "mn_zoo_rep";
-            this.mn_zoo_rep.Size = new System.Drawing.Size(12, 23);
+            this.mn_zoo_rep.Size = new System.Drawing.Size(28, 23);
             this.mn_zoo_rep.Text = "&Zoom";
             // 
             // mn_zoo_anc
@@ -250,18 +237,40 @@
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click);
             // 
+            // cr_rep_ort
+            // 
+            this.cr_rep_ort.ActiveViewIndex = 0;
+            this.cr_rep_ort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cr_rep_ort.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cr_rep_ort.DisplayBackgroundEdge = false;
+            this.cr_rep_ort.DisplayToolbar = false;
+            this.cr_rep_ort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cr_rep_ort.Location = new System.Drawing.Point(0, 0);
+            this.cr_rep_ort.Name = "cr_rep_ort";
+            this.cr_rep_ort.ReportSource = this.ads003_R01;
+            this.cr_rep_ort.ShowCloseButton = false;
+            this.cr_rep_ort.ShowCopyButton = false;
+            this.cr_rep_ort.ShowGroupTreeButton = false;
+            this.cr_rep_ort.ShowLogo = false;
+            this.cr_rep_ort.ShowParameterPanelButton = false;
+            this.cr_rep_ort.ShowRefreshButton = false;
+            this.cr_rep_ort.Size = new System.Drawing.Size(800, 450);
+            this.cr_rep_ort.TabIndex = 0;
+            this.cr_rep_ort.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            // 
             // ads003_R01w
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 749);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.m_frm_hja);
             this.Controls.Add(this.cr_rep_ort);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ads003_R01w";
-            this.Text = "Lista de Documentos";
+            this.Tag = "Informe Definición de Documento";
+            this.Text = "Informe Definición de Documento";
             this.Load += new System.EventHandler(this.frm_Load);
             this.m_frm_hja.ResumeLayout(false);
             this.m_frm_hja.PerformLayout();
@@ -290,9 +299,9 @@
         private System.Windows.Forms.ToolStripMenuItem mn_ant_pag;
         private System.Windows.Forms.ToolStripMenuItem mn_sig_pag;
         private System.Windows.Forms.ToolStripMenuItem mn_ult_pag;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mn_sep_uno;
+        private System.Windows.Forms.ToolStripMenuItem mn_sep_dos;
         private System.Windows.Forms.ToolStripTextBox mn_nro_pag;
-        private ads003_R01 ads003_R01;
+        private ADS.ads003_R01 ads003_R01;
     }
 }

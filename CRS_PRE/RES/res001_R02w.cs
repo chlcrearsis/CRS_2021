@@ -12,7 +12,7 @@ using CRS_PRE;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class res001_R02w : Form
     {
@@ -55,11 +55,12 @@ namespace CRS_PRE.CMR
             va_nom_emp = tab_ads013.Rows[0]["va_glo_car"].ToString();
 
             //Logueo manual el ReportDocument asociado al crystal report
-            res001_R02.SetDatabaseLogon(o_ads016.va_ide_usr, o_ads016.va_pas_usr, o_ads016.va_ser_bda + "\\" + o_ads016.va_ins_bda, o_ads016.va_nom_bda);
+            res001_R02.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
+
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             res001_R02.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
-            res001_R02.SetParameterValue("vc_ide_usr", o_ads016.va_ide_usr);
+            res001_R02.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);
             res001_R02.SetParameterValue("vc_nom_emp", va_nom_emp);
 
             

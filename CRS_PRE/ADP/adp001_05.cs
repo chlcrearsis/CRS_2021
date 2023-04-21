@@ -43,6 +43,7 @@ namespace CRS_PRE
             tb_est_ado.Text = string.Empty;
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

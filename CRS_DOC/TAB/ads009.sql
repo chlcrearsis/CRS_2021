@@ -1,20 +1,23 @@
-/*########################################################
-ARCHIVO:	ads009.sql
-TABLA:		Autorizaciones de tipo de usuario sobre el sistema
-AUTOR:		CHL
-FECHA:		26/07/2021
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads009.sql	
+TABLA:		Tabla de "Autorizaciones de Tipo de Usuario sobre el Sistema"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		26-07-2021
+*/--**********************************************
 
+PRINT 'ads009 : Autorizaciones de Tipo de Usuario sobre el Sistema'
 CREATE TABLE ads009
 (
-va_ide_tus 		VARCHAR(15) 	NOT NULL,	--ID. Usuario
-va_ide_tab		CHAR(06)		NOT NULL,	--ID. tabla
-va_ide_uno		CHAR(15)		NOT NULL,	--Identificador uno
-va_ide_dos		CHAR(15),					--Identificador dos
-va_ide_tre		CHAR(15),					--Identificador tres
-va_ide_int		INT	NOT NULL DEFAULT(0),	--Identificador entero
+	--** Llave Primaria
+	va_ide_tus 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_ide_tab	VARCHAR(06)  NOT NULL DEFAULT(''),	--** ID. Tabla
+	va_ide_uno	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Uno
+	va_ide_dos	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Dos
+	va_ide_tre	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Tres
+	--** Atributos
+	va_ide_int	INT	         NOT NULL DEFAULT(0),	--** Identificador Entero
 
-CONSTRAINT pk1_ads009 PRIMARY KEY(va_ide_tus,va_ide_tab,va_ide_uno,va_ide_dos,va_ide_tre)
+CONSTRAINT pk1_ads009 PRIMARY KEY(va_ide_tus, va_ide_tab, va_ide_uno,
+                                  va_ide_dos, va_ide_tre)
 )
-
-go
+GO

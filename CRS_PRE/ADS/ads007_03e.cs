@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 
 using CRS_NEG;
-using CRS_PRE.CMR;
+using CRS_PRE;
 
 namespace CRS_PRE
 {
@@ -42,7 +42,7 @@ namespace CRS_PRE
             //cb_tip_usr.ValueMember = "va_ide_tus";
             //cb_tip_usr.DisplayMember = "va_nom_tus";
 
-            tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            //tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
             if(tabla.Rows.Count == 0)
                 tb_tip_usr.Text = "??";
             else

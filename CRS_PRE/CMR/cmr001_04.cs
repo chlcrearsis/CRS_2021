@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr001_04 : Form
     {

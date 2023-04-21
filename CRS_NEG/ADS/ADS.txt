@@ -6,21 +6,22 @@
 
 Nombre   Descripcion                                             Autor
 **********************************************************************
-ads001 = Modulo													  CHL
-ads002 = Aplicacion												  CHL
-ads003 = Documento												  CHL
-ads004 = Talonario												  CHL
-ads005 = Numeración												  CHL
+ads001 = Módulo del Sistema										  CHL (OK)
+ads002 = Aplicaciones del Sistema								  CHL (OK)
+ads003 = Definición de Documento								  CHL (Ok)
+ads004 = Talonario												  CHL (OK)
+ads005 = Numerador de Talonario		(cambia llave)				  CHL
 ads006 = Tipo de Usuario										  CHL
 ads007 = Usuario												  CHL
 ads008 = Autorización de usuario sobre el sistema				  CHL
 ads009 = Autorización de tipo usuario sobre el sistema			  CHL
 ads010 = Tipo de Imagen											  FVM
-ads011 = Opciones del menu			 (Pendiente)				  CHL
+ads011 = Opciones del Menú Formulario (Pendiente)				  CHL
 ads012 = Restricción menú										  CHL
 ads013 = Globales					 (Pendiente)				  CHL
 ads014 = Region						 (Pendiente)	
-ads016 = Gestion Periodos									  	  CHL
+ads015 = ?                                                        
+ads016 = Gestion Periodos									  	  CHL (OK)
 ads017 = PIN Usuario							                  CHL
 ads018 = Autorizacion Usuario s/Plantilla de Ventas p/Restaurant  CHL  				                                    CHL
 ads019 = Autorizacion Usuario s/Lista de Precio                   CHL
@@ -33,3 +34,14 @@ ads026 = Bitacora P/Documentos		 (pendiente)				  EJR
 ads027 = Licencias					            				  EJR
 
 
+**********************************************************************
+Tablas a Eliminar
+	- ads015.sql
+	-
+
+Procedimientos a Eliminar
+	- ads001_04a_p01.sql
+	- ads001_06a_p01.sql
+	- ads002_04a_p01.sql
+	- ads002_05a_p01.sql
+	- ads002_06a_p01.sql

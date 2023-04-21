@@ -1,28 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Runtime.InteropServices;
-using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads016 - Gestión Periodo                              */
+    /*      Opción: Consulta Registro                                     */
+    /*       Autor: JEJR - Crearsis             Fecha: 18-04-2023         */
+    /**********************************************************************/
     public partial class ads016_05 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        //Instancias
-        ads016 o_ads016 = new ads016();
-
-        DataTable tabla = new DataTable();
 
         public ads016_05()
         {
@@ -30,16 +22,30 @@ namespace CRS_PRE
         }
         private void frm_Load(object sender, EventArgs e)
         {
-            tb_ges_tio.Text = frm_dat.Rows[0][0].ToString();
-            tb_ges_per.Text = frm_dat.Rows[0][1].ToString();
-            tb_nom_per.Text = frm_dat.Rows[0][2].ToString();
-            tb_fec_ini.Text = frm_dat.Rows[0][3].ToString();
-            tb_fec_fin.Text = frm_dat.Rows[0][4].ToString();
+            // Limpia Campos
+            Fi_lim_pia();
 
+            // Despliega Datos en Pantalla
+            tb_ges_tio.Text = frm_dat.Rows[0]["va_ges_tio"].ToString();
+            tb_ges_per.Text = frm_dat.Rows[0]["va_ges_per"].ToString();
+            tb_nom_per.Text = frm_dat.Rows[0]["va_nom_per"].ToString();
+            tb_fec_ini.Text = frm_dat.Rows[0]["va_fec_ini"].ToString();
+            tb_fec_fin.Text = frm_dat.Rows[0]["va_fec_fin"].ToString();
+        }
+
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {
+            tb_ges_tio.Text = string.Empty;
+            tb_ges_per.Text = string.Empty;
+            tb_nom_per.Text = string.Empty;
+            tb_fec_ini.Text = string.Empty;
+            tb_fec_fin.Text = string.Empty;
             tb_nom_per.Focus();
         }
 
-        private void Bt_can_cel_Click(object sender, EventArgs e)
+        // Evento Click: Button Cancelar
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
         }

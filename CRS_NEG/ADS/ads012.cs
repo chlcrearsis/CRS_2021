@@ -93,8 +93,8 @@ namespace CRS_NEG
             {
                 cadena = "";
                 cadena += " SELECT * FROM ads012   ";
-                cadena += " WHERE va_ide_usr ='" + ide_usr + "' AND va_ide_apl ='" + cod_win + "' ";
-                cadena += " AND va_ide_mnu ='" + ide_mnu + "'";
+                cadena += " WHERE va_ide_usr ='" + ide_usr + "' AND va_nom_frm ='" + cod_win + "' ";
+                cadena += " AND va_ide_men ='" + ide_mnu + "'";
 
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }

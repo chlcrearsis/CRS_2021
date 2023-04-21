@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 using CRS_NEG;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class res001_03 : Form
     {

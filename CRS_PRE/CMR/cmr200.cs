@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr200 : Form
     {
@@ -51,8 +51,8 @@ namespace CRS_PRE.CMR
 
         private void frm_Load(object sender, EventArgs e)
         {
-            ts_usr_usr.Text = o_ads013.va_ide_usr;
-            ts_bas_dat.Text = o_ads013.va_nom_bda;
+            ts_usr_usr.Text = Program.gl_ide_usr; // Id de usuario
+            ts_bas_dat.Text = Program.gl_nom_bdo; // Nombre de la base de datos
             ts_ide_app.Text = this.Name;
             ts_rut_app.Text = this.Text;
 
@@ -132,12 +132,13 @@ namespace CRS_PRE.CMR
             // Verifica version de formulario para ventas (1= Normal ; 2= Tactil)
             tabla = o_ads013.Fe_obt_glo(3, 1);
 
+<<<<<<< HEAD
             //Global formulario Normal o Tactil
             tabla = o_ads013.Fe_obt_glo(3, 1);
             if (tabla != null)
                 if (tabla.Rows[0]["va_glo_ent"].ToString() == "2")
                 {
-                    cmr005_12b frm = new cmr005_12b();
+                    cmr005_12 frm = new cmr005_12();
                     cl_glo_frm.abrir(this, frm);
                 }
                 else
@@ -151,6 +152,10 @@ namespace CRS_PRE.CMR
                 cl_glo_frm.abrir(this, frm);
             }
             
+=======
+            cmr005_02 frm = new cmr005_02();
+            cl_glo_frm.abrir(this, frm);
+>>>>>>> parent of ce10f2e (avance punto de venta)
              
         }
 

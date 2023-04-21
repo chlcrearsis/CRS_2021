@@ -176,7 +176,7 @@ namespace CRS_PRE
                             Tabla = new DataTable();
                             Tabla = o_adp006.Fe_con_ima(int.Parse(tb_cod_per.Text), dg_res_ult.Rows[i].Cells[0].Value.ToString());
                             if (Tabla.Rows.Count > 0) {
-                                Byte[] byt_ima = new Byte[0];
+                                byte[] byt_ima = new byte[0];
                                 byt_ima = (byte[])Tabla.Rows[0]["va_img_arc"];
                                 MemoryStream men_str = new MemoryStream(byt_ima);
                                 pb_ima_per.Image = Image.FromStream(men_str);

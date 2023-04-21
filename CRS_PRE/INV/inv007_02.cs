@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_PRE.CMR;
+using CRS_PRE;
 
 namespace CRS_PRE.INV
 {
@@ -17,6 +17,7 @@ namespace CRS_PRE.INV
         inv004 o_inv004 = new inv004();
 
         ads004 o_ads004 = new ads004();
+        ads007 o_ads007 = new ads007();
         ads016 o_ads016 = new ads016();
         adp002 o_adp002 = new adp002();
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
@@ -227,7 +228,7 @@ namespace CRS_PRE.INV
         private void inv007_02_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Elimina temporal antes de cerrar la ventana
-            o_inv007.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+            o_inv007.fu_eli_tmp(Program.gl_ide_usr, va_cod_tmp);
         }
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
@@ -254,13 +255,13 @@ namespace CRS_PRE.INV
                 {
 
                     // Obtiene Gestion
-                    int ges_tio =  int.Parse(o_ads016.Fe_obt_ges(tb_fec_cmp.Value).Rows[0]["va_ges_tio"].ToString());
+                    //int ges_tio =  int.Parse(o_ads016.Fe_ges_fec(tb_fec_cmp.Value).Rows[0]["va_ges_tio"].ToString());
                     // GRABA COMPRA
                     tab_cmp = o_inv007.fu_gra_cmp(va_cod_tmp, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text),
                                          ges_tio, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
                                          "B", tb_fec_cmp.Value, cb_for_pag.SelectedIndex, 0, 0,
                                          0, 0, 0, 1,
-                                         decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, "", Program.gl_usr_usr);
+                                         decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, "", Program.gl_ide_usr);
 
 
                     // Crea tabla para pasar datos
@@ -381,12 +382,12 @@ namespace CRS_PRE.INV
             tab_prm.Rows[0]["va_ide_doc"] = tb_cod_doc.Text;
             tab_prm.Rows[0]["va_nom_doc"] = "Compra";
 
-            ads004_01b frm = new ads004_01b();
+            ads004_01 frm = new ads004_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_prm);
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_nro_tal.Text = frm.tb_sel_tal.Text;
+                tb_nro_tal.Text = frm.vp_nro_tal;
                 Fi_obt_tal();
             }
         }
@@ -413,7 +414,7 @@ namespace CRS_PRE.INV
             }
 
             // Obtiene ide y nombre documento
-            tabla = o_ads004.Fe_con_tal_permiso(tb_cod_doc.Text, int.Parse(tb_nro_tal.Text));
+            tabla = o_ads004.Fe_per_tal(o_ads007.va_ide_usr, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text), "H");
             if (tabla.Rows.Count == 0)
             {
                lb_nom_tal.Text ="";
@@ -841,10 +842,10 @@ namespace CRS_PRE.INV
 
 
             if (bt_adi_pro.Text == "&AGREGAR") //Graba temporal
-                o_inv007.fu_gra_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_cmp);
+                o_inv007.fu_gra_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_cmp);
             if (bt_adi_pro.Text == "&GUARDAR")//Edita temporal
             {
-                o_inv007.fu_edi_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_cmp);
+                o_inv007.fu_edi_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_cmp);
                 
                 bt_adi_pro.Text = "&AGREGAR";
                 bt_edi_tar.Enabled = true;
@@ -954,7 +955,7 @@ namespace CRS_PRE.INV
 
                     // ELIMINA ITEM DE TEMPORAL
 
-                    o_inv007.fu_eli_tmp(Program.gl_usr_usr, va_cod_tmp);
+                    o_inv007.fu_eli_tmp(Program.gl_ide_usr, va_cod_tmp);
 
                     //******************************
                     // GRABA EN TABLA TEMPORAL
@@ -973,7 +974,7 @@ namespace CRS_PRE.INV
                                 tab_det_cmp.Rows[Row.Index][Cell.Index] = Row.Cells[Cell.Index].Value;
                             }
                         }
-                        o_inv007.fu_gra_tmp(Program.gl_usr_usr, va_cod_tmp, tab_det_cmp);
+                        o_inv007.fu_gra_tmp(Program.gl_ide_usr, va_cod_tmp, tab_det_cmp);
                     }
 
                 }

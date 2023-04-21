@@ -35,16 +35,13 @@ namespace CRS_NEG
 
 
         public cmr005()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
+        {}
 
 
-
+        /// <summary>
+        /// Obtiene fecha actual del servidor
+        /// </summary>
+        /// <returns></returns>
         private DateTime Fi_fec_act()
         {
             DateTime fec_act;
@@ -56,7 +53,7 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Procedimiento que verifica datos antes de grabarlos
+        /// Procedimiento que verifica datos de la venta antes de grabarlos
         /// </summary>
         /// <param name="ar_cod_tmp">Codigo de la temporal</param>
         /// <param name="ar_tip_vta"> Tipo de venta (1 factura ; 2=nota de venta)</param>
@@ -94,7 +91,7 @@ namespace CRS_NEG
         }
 
 
-        public DataTable Fe_crea(DateTime _cod_tmp, int _pla_vta, int _tip_vta,  int _cod_bod, string _cod_per, string _nit_cli, string _raz_soc, string _mon_vta,
+        public DataTable Fe_nue_reg(DateTime _cod_tmp, int _pla_vta, int _tip_vta,  int _cod_bod, string _cod_per, string _nit_cli, string _raz_soc, string _mon_vta,
                 DateTime _fec_vta, int _for_pag, int _ven_ded, int _lis_pre, int _cod_caj, int _cod_lcr,
                 decimal _tip_cam, decimal _des_cue, string _obs_vta,string _vta_par, int _cod_del, string _ref_vta, decimal _mto_pag, decimal _cam_bio, long _nro_aut)
         {
@@ -148,7 +145,7 @@ namespace CRS_NEG
         {
             int nro_vta = 0;
 
-            Tab_ads005 =  o_ads005.Fe_con_num(ar_doc_vta, ar_nro_tal, ar_ges_vta);
+            Tab_ads005 =  o_ads005.Fe_con_nta(ar_ges_vta, ar_doc_vta, ar_nro_tal);
           
             if (Tab_ads005.Rows.Count == 0)
                 nro_vta = 0;
@@ -175,19 +172,33 @@ namespace CRS_NEG
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        /// <summary>
+        /// Anula venta
+        /// </summary>
+        /// <param name="ar_ide_vta"></param>
+        /// <param name="ar_ges_vta"></param>
         public void Fe_anu_vta(string ar_ide_vta, int ar_ges_vta)
         {
             cadena = " EXECUTE cmr005_04a_p01 '" + ar_ide_vta + "', " + ar_ges_vta;
             ob_con_ecA.fe_exe_sql(cadena);
         }
       
-
+        /// <summary>
+        /// Elimina venta
+        /// </summary>
+        /// <param name="ar_ide_gru"></param>
         public void Fe_eli_vta(int ar_ide_gru )
         {
             cadena = " cmr005_06a_p01 '" + ar_ide_gru + "'";
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        /// <summary>
+        /// Consulta venta
+        /// </summary>
+        /// <param name="ar_ide_vta"></param>
+        /// <param name="ar_ges_vta"></param>
+        /// <returns></returns>
         public DataTable Fe_con_vta( string ar_ide_vta, int ar_ges_vta)
         {
             //if (ar_ges_vta == 0)
@@ -197,16 +208,7 @@ namespace CRS_NEG
             
             return ob_con_ecA.fe_exe_sql(cadena);
         }
-        public DataTable Fe_cmr005_05i_p01(string ar_ide_vta, int ar_ges_vta)
-        {
-            //if (ar_ges_vta == 0)
-            //    ar_ges_vta = 2020;
-
-            cadena = "cmr005_05i_p01 '" + ar_ide_vta + "'," + ar_ges_vta;
-
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
+    
         /// <summary>
         /// Consulta aviso
         /// </summary>
@@ -304,22 +306,6 @@ namespace CRS_NEG
 
             return ob_con_ecA.fe_exe_sql(cadena);
         }
-
-
-        public void fu_edi_dbf(string ide_vta, DateTime fec_fac, byte[] img_qrf)
-        {
-            try
-            {
-                ob_con_ecA.fu_exe_sql_img("UPDATE ctb008 SET va_img_qrf = @va_img_qrf " +
-                "WHERE va_ide_fac = '" + ide_vta + "'  and va_fec_fac= '" + fec_fac.ToShortDateString() + "'", "@va_img_qrf", img_qrf);
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
 
     }
 }
