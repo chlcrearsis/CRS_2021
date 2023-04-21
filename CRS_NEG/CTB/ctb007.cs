@@ -57,16 +57,7 @@ namespace CRS_NEG
             try
             {
                 cadena = "";
-                cadena = " execute ctb007_01a_p01 '" + val_bus + "', '" + va_fec_ini  + "', '"+ va_fec_fin + "'";
-
-                //switch (prm_bus)
-                //{
-                //    case 0:
-                //        cadena +=" WHERE va_nro_aut like '" + val_bus + "%' "; 
-                //        break;
-                //}
-
-                //cadena +=" AND va_fec_ini BETWEEN '" + va_fec_ini.ToShortDateString() + "' AND '" + va_fec_fin.ToShortDateString() + "'";
+                cadena = " execute ctb007_01a_p01 '" + val_bus + "', '" + va_fec_ini.ToString(dateF) + "', '"+ va_fec_fin.ToString(dateF) + "'";
 
                 return ob_con_ecA.fe_exe_sql(cadena);
             }

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_PRE.CMR;
+using CRS_PRE;
 
 namespace CRS_PRE
 {
@@ -94,7 +94,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     //Registrar sucursal
-                    o_cmr003.Fe_crea(tb_ide_suc.Text, tb_nom_suc.Text, tb_des_suc.Text, tb_dto_suc.Text,tb_ciu_suc.Text,tb_dir_suc.Text,
+                    o_cmr003.Fe_nue_reg(tb_ide_suc.Text, tb_nom_suc.Text, tb_des_suc.Text, tb_dto_suc.Text,tb_ciu_suc.Text,tb_dir_suc.Text,
                         tb_enc_suc.Text, tb_tel_suc.Text, tb_cel_suc.Text,tb_cla_wif.Text);
 
                     MessageBox.Show("Los datos se grabaron correctamente", "Nueva sucursal", MessageBoxButtons.OK);

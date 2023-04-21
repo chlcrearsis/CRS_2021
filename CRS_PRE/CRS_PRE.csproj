@@ -1351,6 +1351,12 @@
     </Compile>
     <Compile Include="cl_glo_bal.cs" />
     <Compile Include="cl_glo_frm.cs" />
+    <Compile Include="CMR\cmr005_12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMR\cmr005_12.Designer.cs">
+      <DependentUpon>cmr005_12.cs</DependentUpon>
+    </Compile>
     <Compile Include="CMR\cmr014_08b.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1609,6 +1615,18 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ADS\ads006_01.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads006_01.Designer.cs">
+      <DependentUpon>ads006_01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads006_02.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads006_02.Designer.cs">
+      <DependentUpon>ads006_02.cs</DependentUpon>
+    </Compile>
     <Compile Include="CMR\cmr005_12b.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1752,6 +1770,30 @@
     </Compile>
     <Compile Include="INV\inv003_06.Designer.cs">
       <DependentUpon>inv003_06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV\inv004_02b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_02b.Designer.cs">
+      <DependentUpon>inv004_02b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV\inv004_03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_03.Designer.cs">
+      <DependentUpon>inv004_03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV\inv004_04b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_04b.Designer.cs">
+      <DependentUpon>inv004_04b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="INV\inv004_05b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="INV\inv004_05b.Designer.cs">
+      <DependentUpon>inv004_05b.cs</DependentUpon>
     </Compile>
     <Compile Include="RES\res001_05a_p02.cs">
       <DependentUpon>res001_05a_p02.rpt</DependentUpon>
@@ -2341,11 +2383,11 @@
     <Compile Include="INV\inv004_05.Designer.cs">
       <DependentUpon>inv004_05.cs</DependentUpon>
     </Compile>
-    <Compile Include="INV\inv004_03.cs">
+    <Compile Include="INV\inv004_03b.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="INV\inv004_03.Designer.cs">
-      <DependentUpon>inv004_03.cs</DependentUpon>
+    <Compile Include="INV\inv004_03b.Designer.cs">
+      <DependentUpon>inv004_03b.cs</DependentUpon>
     </Compile>
     <Compile Include="INV\inv006_01.cs">
       <SubType>Form</SubType>
@@ -3186,6 +3228,9 @@
     <EmbeddedResource Include="ADS\ads000_02.resx">
       <DependentUpon>ads000_02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CMR\cmr005_12.resx">
+      <DependentUpon>cmr005_12.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr014_08b.resx">
       <DependentUpon>cmr014_08b.cs</DependentUpon>
     </EmbeddedResource>
@@ -3315,11 +3360,17 @@
       <DependentUpon>cmr005_R01p.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr005_R01w.resx">
-      <DependentUpon>cmr005_R01w.cs</DependentUpon>
+    <EmbeddedResource Include="ADS\ads006_01.resx">
+      <DependentUpon>ads006_01.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CMR\cmr005_R01.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>cmr005_R01.cs</LastGenOutput>
+    <EmbeddedResource Include="ADS\ads006_02.resx">
+      <DependentUpon>ads006_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_01.resx">
+      <DependentUpon>ads006_01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_02.resx">
+      <DependentUpon>ads006_02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr005_12b.resx">
       <DependentUpon>cmr005_12b.cs</DependentUpon>
@@ -3392,6 +3443,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="INV\inv003_06.resx">
       <DependentUpon>inv003_06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_02b.resx">
+      <DependentUpon>inv004_02b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_03.resx">
+      <DependentUpon>inv004_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_04b.resx">
+      <DependentUpon>inv004_04b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\inv004_05b.resx">
+      <DependentUpon>inv004_05b.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RES\res001_05a_p02.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3698,8 +3761,8 @@
     <EmbeddedResource Include="INV\inv004_05.resx">
       <DependentUpon>inv004_05.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="INV\inv004_03.resx">
-      <DependentUpon>inv004_03.cs</DependentUpon>
+    <EmbeddedResource Include="INV\inv004_03b.resx">
+      <DependentUpon>inv004_03b.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="INV\inv006_01.resx">
       <DependentUpon>inv006_01.cs</DependentUpon>

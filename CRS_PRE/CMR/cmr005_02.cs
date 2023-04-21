@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr005_02 : Form
     {
@@ -386,7 +386,7 @@ namespace CRS_PRE.CMR
         private void cmr005_02_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Elimina temporal antes de cerrar la ventana
-            o_cmr006.fu_eli_tmp(Program.gl_usr_usr, ve_cod_tmp);
+            o_cmr006.fu_eli_tmp(Program.gl_ide_usr, ve_cod_tmp);
         }
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
@@ -497,7 +497,7 @@ namespace CRS_PRE.CMR
 
             
             // GRABA PEDIDO
-            tab_doc = o_cmr007.Fe_crea(Program.gl_usr_usr, DateTime.Parse(ve_cod_tmp.ToString()),
+            tab_doc = o_cmr007.Fe_nue_reg(Program.gl_ide_usr, DateTime.Parse(ve_cod_tmp.ToString()),
                 int.Parse(tb_cod_plv.Text), int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
                 frm.tb_nit_vta.Text, frm.tb_raz_soc.Text, ve_mon_vta, tb_fec_vta.Value, cb_for_pag.SelectedIndex,
                 int.Parse(tb_cod_ven.Text), int.Parse(tb_cod_lis.Text), 0, 0, decimal.Parse(frm.tb_des_cue.Text),
@@ -531,7 +531,7 @@ namespace CRS_PRE.CMR
                 return 0;
 
              // GRABA Venta
-            tab_doc = o_cmr005.Fe_crea( DateTime.Parse(ve_cod_tmp.ToString()),
+            tab_doc = o_cmr005.Fe_nue_reg( DateTime.Parse(ve_cod_tmp.ToString()),
                 int.Parse(tb_cod_plv.Text), 2, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
                 frm_cmr005.tb_nit_vta.Text, frm_cmr005.tb_raz_soc.Text, ve_mon_vta, tb_fec_vta.Value, cb_for_pag.SelectedIndex,
                 int.Parse(tb_cod_ven.Text), int.Parse(tb_cod_lis.Text), 0, 0, 1, decimal.Parse(frm_cmr005.tb_des_cue.Text),
@@ -1249,10 +1249,10 @@ namespace CRS_PRE.CMR
 
 
                 if (bt_adi_pro.Text == "&AGREGAR") //Graba temporal
-                    o_cmr006.fu_gra_tmp(Program.gl_usr_usr, ve_cod_tmp, tab_det_vta);
+                    o_cmr006.fu_gra_tmp(Program.gl_ide_usr, ve_cod_tmp, tab_det_vta);
                 if (bt_adi_pro.Text == "&GUARDAR")//Edita temporal
                 {
-                    o_cmr006.fu_edi_tmp(Program.gl_usr_usr, ve_cod_tmp, tab_det_vta);
+                    o_cmr006.fu_edi_tmp(Program.gl_ide_usr, ve_cod_tmp, tab_det_vta);
 
                     bt_adi_pro.Text = "&AGREGAR";
                     bt_edi_tar.Enabled = true;
@@ -1344,7 +1344,7 @@ namespace CRS_PRE.CMR
 
                     // ELIMINA ITEM DE TEMPORAL
 
-                    o_cmr006.fu_eli_tmp(Program.gl_usr_usr, ve_cod_tmp);
+                    o_cmr006.fu_eli_tmp(Program.gl_ide_usr, ve_cod_tmp);
 
                     //******************************
                     // GRABA EN TABLA TEMPORAL
@@ -1364,7 +1364,7 @@ namespace CRS_PRE.CMR
                             }
                         }
                         if (tab_det_vta.Rows.Count != 0)
-                            o_cmr006.fu_gra_tmp(Program.gl_usr_usr, ve_cod_tmp, tab_det_vta);
+                            o_cmr006.fu_gra_tmp(Program.gl_ide_usr, ve_cod_tmp, tab_det_vta);
                     }
 
                 }
@@ -1775,7 +1775,7 @@ namespace CRS_PRE.CMR
                         {
                             lb_nom_lis.Text = "";
                             dg_res_ult.Rows.Clear();
-                            o_cmr006.fu_eli_tmp(Program.gl_usr_usr, ve_cod_tmp);
+                            o_cmr006.fu_eli_tmp(Program.gl_ide_usr, ve_cod_tmp);
                             Fi_cal_tot();
                             return;
                         }
@@ -1805,7 +1805,7 @@ namespace CRS_PRE.CMR
                         {
                             lb_nom_lis.Text = "";
                             dg_res_ult.Rows.Clear();
-                            o_cmr006.fu_eli_tmp(Program.gl_usr_usr, ve_cod_tmp);
+                            o_cmr006.fu_eli_tmp(Program.gl_ide_usr, ve_cod_tmp);
                             Fi_cal_tot();
                             return;
                         }
@@ -1964,7 +1964,7 @@ namespace CRS_PRE.CMR
                         tab_det_vta.Rows[0][x] = dg_res_ult.Rows[i].Cells[x].Value;
                 }
 
-                o_cmr006.fu_edi_tmp(Program.gl_usr_usr, ve_cod_tmp, tab_det_vta);
+                o_cmr006.fu_edi_tmp(Program.gl_ide_usr, ve_cod_tmp, tab_det_vta);
 
             }
         }

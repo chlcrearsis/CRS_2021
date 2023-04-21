@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr015_02 : Form
     {
@@ -109,7 +109,7 @@ namespace CRS_PRE.CMR
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar 
-                o_cmr015.Fe_crea(int.Parse(tb_cod_del.Text), tb_nom_del.Text, decimal.Parse(tb_por_cms.Text));
+                o_cmr015.Fe_nue_reg(int.Parse(tb_cod_del.Text), tb_nom_del.Text, decimal.Parse(tb_por_cms.Text));
                 MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Delivery", MessageBoxButtons.OK);
                 Fi_lim_pia();
             }

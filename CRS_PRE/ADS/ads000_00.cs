@@ -135,9 +135,16 @@ namespace CRS_PRE
 
                     // Guarda datos en la aplicacion
                     string msn_err2 = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
-                    if (o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr) == "OK") {                         
-                        Program.gl_usr_usr = ide_usr;
-                        Program.gl_ide_uni = ide_uni;
+                    if (msn_err2 == "OK") 
+                    {                         
+                        Program.gl_ide_uni = ide_uni;   // Guarda id unico de pantalla
+                        Program.gl_ide_usr = ide_usr;   // Guarda id del usuario
+                        Program.gl_pas_usr = pas_usr;   // Guarda id unico de pantalla
+
+                        Program.gl_nom_bdo = o_ads007.va_ser_bda;    // Guarda Servidor de la base de datos
+                        Program.gl_ins_bdo = o_ads007.va_ins_bda;    // Guarda Instancia de la base de datos
+                        Program.gl_nom_bdo = o_ads007.va_nom_bda;    // Guarda la base de datos
+
                     }
                     else
                     {
@@ -163,7 +170,7 @@ namespace CRS_PRE
                     }
 
                     // Inserta Bitacora de Inicio de Sesion                  
-                    o_ads024.Fe_ini_ses(ide_uni, Program.gl_usr_usr, SystemInformation.ComputerName);
+                    o_ads024.Fe_ini_ses(ide_uni, Program.gl_ide_usr, SystemInformation.ComputerName);
 
                     // Abre la ventana del Menu Principal
                     this.Visible = false;
@@ -312,7 +319,7 @@ namespace CRS_PRE
 
                     // Guarda datos en la aplicacion
                     if (o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr) == "OK"){
-                        Program.gl_usr_usr = ide_usr;
+                        Program.gl_ide_usr = ide_usr;
 
                         // Abre la pantalla para actualizar su contraseña
                         ads000_01 form = new ads000_01();

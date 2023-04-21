@@ -20,29 +20,11 @@ namespace CRS_NEG
         //##       Autor: CHL  - (14-09-2021)                                 ##
         //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
         string cadena = "";
         string DateFornat = "dd.MM.yyyy hh:mm:ss";
 
-
-
-        public cmr017()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
  
-        public void Fe_crea(int cod_suc, string nom_suc, string enc_suc,
+        public void Fe_nue_reg(int cod_suc, string nom_suc, string enc_suc,
             string ubi_suc, string tel_suc, string ema_suc, string ciu_suc, string ley_suc)
         {
             try
@@ -83,33 +65,64 @@ namespace CRS_NEG
 
         public void Fe_hab_ili(int ar_cod_suc )
         {
-            cadena = " UPDATE cmr017 SET va_est_ado = 'H'" +
-                    " WHERE va_cod_suc = " + ar_cod_suc;
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " UPDATE cmr017 SET va_est_ado = 'H'" +
+                        " WHERE va_cod_suc = " + ar_cod_suc;
+                ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            } 
         }
         public void Fe_des_hab(int ar_cod_suc )
         {
-            cadena = " UPDATE cmr017 SET va_est_ado = 'N'" ;
-            cadena += " WHERE va_cod_suc = '" + ar_cod_suc + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = " UPDATE cmr017 SET va_est_ado = 'N'" ;
+                cadena += " WHERE va_cod_suc = '" + ar_cod_suc + "'";
+                ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
 
         public void Fe_eli_suc(int ar_cod_suc)
         {
-            cadena = " DELETE cmr017 " ;
-            cadena += " WHERE va_cod_suc = '" + ar_cod_suc + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+             
+                cadena = " DELETE cmr017 " ;
+                cadena += " WHERE va_cod_suc = '" + ar_cod_suc + "'";
+                ob_con_ecA.fe_exe_sql(cadena);
 
-            cadena = " DELETE cmr002 ";
-            cadena += " WHERE va_cod_suc = '" + ar_cod_suc + "'";
-            ob_con_ecA.fe_exe_sql(cadena);
+                cadena = " DELETE cmr002 ";
+                cadena += " WHERE va_cod_suc = '" + ar_cod_suc + "'";
+                ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DataTable Fe_con_suc( int ar_cod_suc)
-        {
-            cadena = " SELECT * FROM cmr017 WHERE va_cod_suc = " + ar_cod_suc + " ";
-            return ob_con_ecA.fe_exe_sql(cadena);
+        {          
+
+            try
+            {    
+                cadena = " SELECT * FROM cmr017 WHERE va_cod_suc = " + ar_cod_suc + " ";
+                return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
        
         /// <summary>
@@ -121,9 +134,16 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado )
         {
-            cadena = " EXECUTE cmr017_01a_p01  '" + ar_tex_bus + "' , " + ar_par_ame + " , '" + ar_est_ado  + "'";
+            try
+            {
+                cadena = " EXECUTE cmr017_01a_p01  '" + ar_tex_bus + "' , " + ar_par_ame + " , '" + ar_est_ado  + "'";
            
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -135,9 +155,16 @@ namespace CRS_NEG
         /// <returns></returns>
         public DataTable Fe_bus_car_b(string ar_tex_bus, int ar_par_ame, string ar_est_ado)
         {
-            cadena = " EXECUTE cmr017_01b_p01  '" + ar_tex_bus + "' , " + ar_par_ame + " , '" + ar_est_ado + "'";
+            try
+            {
+                cadena = " EXECUTE cmr017_01b_p01  '" + ar_tex_bus + "' , " + ar_par_ame + " , '" + ar_est_ado + "'";
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
@@ -150,10 +177,17 @@ namespace CRS_NEG
         /// <param name="ar_est_ado"> Estado</param>
         /// <returns></returns>
         public DataTable Fe_cmr017_R01( string ar_est_ado)
-        {   
-            cadena = " cmr017_R01 '" + ar_est_ado + "'" ;
+        {
+            try
+            {
+                 cadena = " cmr017_R01 '" + ar_est_ado + "'" ;
 
-            return ob_con_ecA.fe_exe_sql(cadena);
+                return ob_con_ecA.fe_exe_sql(cadena);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
        

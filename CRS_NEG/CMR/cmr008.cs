@@ -22,59 +22,17 @@ namespace CRS_NEG
 
          conexion_a ob_con_ecA = new conexion_a();
 
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
+        //public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
 
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
+        //public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
+        //public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
+        //public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
+        //public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
 
         string cadena = "";
         StringBuilder cadena_stb = new StringBuilder();
 
         string ft_fch_hor = "dd/MM/yyyy hh:mm:ss";
-
-
-        public cmr008()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
- 
-        //public void Fe_crea(string ar_doc_ped, int ar_nro_tal, int ar_nro_ped, int ar_ges_ped, int ar_ite_ped, string ar_cod_pro, string ar_des_pro, int ar_can_uni, 
-        //    decimal ar_pre_lis, decimal ar_mto_brB)
-        //{
-        //    string ide_ped = "";
-         
-        //    string nro_tal;
-        //    string nro_doc;
-        //    nro_tal = (1000 + ar_nro_tal).ToString();
-        //    nro_tal = nro_tal.Substring(1, 3);
-
-        //    nro_doc = (1000000 + ar_nro_ped).ToString();
-        //    nro_doc = nro_doc.Substring(1, 6);
-
-        //    //** Componer el identificador de la pedido
-        //    ide_ped = ar_doc_ped + "-" + nro_tal + "-" + nro_doc.ToString();
-
-        //    cadena = " INSERT INTO cmr008 VALUES('" + ar_doc_ped + "', " + ar_nro_tal + ", " + ar_nro_ped + ", " +
-        //        " " + ar_ges_ped + ",'" + ide_ped + "'," + ar_ite_ped + ", '" + ar_cod_pro + "', '" + ar_des_pro + "','1','UND','UND',1, " +
-        //        " '" + ar_can_uni + "', '" + ar_can_uni + "', '" + ar_pre_lis + "', '" + ar_pre_lis + "','" + ar_pre_lis + "','0','0', " +
-        //        " 0 , '" + ar_mto_brB + "','" + ar_mto_brB + "', 0, 0, 0,0,0,0 )";
-
-        //    ob_con_ecA.fe_exe_sql(cadena);
-            
-        //}
-
-
-
-
-
-
-
 
         /// <summary>
         /// Graba tabla temporal de detalle
@@ -158,10 +116,10 @@ namespace CRS_NEG
                 ob_con_ecA.fe_exe_sql(cadena);
                 return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // return 0;
-                throw;
+                throw ex;
             }
         }
 
@@ -188,10 +146,10 @@ namespace CRS_NEG
                 ob_con_ecA.fe_exe_sql(cadena_stb.ToString());
                 return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return 0;
-                throw;
+                throw ex;
             }
         }
 
@@ -219,10 +177,10 @@ namespace CRS_NEG
                 ob_con_ecA.fe_exe_sql(cadena_stb.ToString());
                 return 1;
             }
-            catch (Exception)
+            catch (Exception ex )
             {
                 return 0;
-                throw;
+                throw ex;
             }
         }
 

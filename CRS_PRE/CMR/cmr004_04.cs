@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr004_04 : Form
     {
@@ -682,16 +682,16 @@ namespace CRS_PRE.CMR
                 switch(opc_doc)
                 {
                     case 1: // COT
-                        tb_nro_tal_cot.Text = frm.tb_nro_tal.Text;
+                        tb_nro_tal_cot.Text = frm.vp_nro_tal;
                         break;
                     case 2: // PED
-                        tb_nro_tal_ped.Text = frm.tb_nro_tal.Text;
+                        tb_nro_tal_ped.Text = frm.vp_nro_tal;
                         break;
                     case 3: // NTV
-                        tb_nro_tal_nvt.Text = frm.tb_nro_tal.Text;
+                        tb_nro_tal_nvt.Text = frm.vp_nro_tal;
                         break;
                     case 4: // FAC
-                        tb_nro_tal_fac.Text = frm.tb_nro_tal.Text;
+                        tb_nro_tal_fac.Text = frm.vp_nro_tal;
                         break;
                 }
                // tb_cod_per.Text = frm.tb_sel_tal.Text;

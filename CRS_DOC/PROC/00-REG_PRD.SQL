@@ -549,7 +549,7 @@ END
 
 --** Inserta datos de la persona
 INSERT INTO adp002 VALUES (@ar_cod_per, @ar_cod_gru, @ar_tip_per, @ar_nom_bre,
-						   @ar_ape_pat, @ar_ape_mat, @ar_raz_soc, @ar_ruc_nit, 
+						   @ar_ape_pat, @ar_ape_mat, @ar_raz_soc,@ar_nom_fac, @ar_ruc_nit, 
 						   @ar_sex_per, @ar_fec_nac, @ar_tip_doc, @ar_nro_doc, 
 						   @ar_ext_doc, @ar_tel_per, @ar_cel_ula, @ar_tel_fij, 
 						   @ar_dir_pri, @ar_dir_ent, @ar_ema_ail, @ar_ubi_gps, 
@@ -3871,6 +3871,40 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
+/*****************************************************************/
+/*	ARCHIVO: ads001_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME M‡DULO DEL SISTEMA                    */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_ord_dat  CHAR(02)  Orden Datos             */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 18/08/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads001_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads001_R01
+GO
+
+CREATE PROCEDURE ads001_R01		@ar_est_ado  CHAR(01),
+                                @ar_ord_dat  CHAR(01) WITH ENCRYPTION AS
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene el informe en el orden especificado
+SELECT va_ide_mod, va_nom_mod, va_abr_mod,  
+       CASE WHEN va_est_ado = 'H'
+		    THEN 'Habilitado' 
+		    ELSE 'Deshabilitado' 
+	   END AS va_est_ado
+  FROM ads001
+ WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+ ORDER BY 
+  CASE WHEN @ar_ord_dat = 'C' THEN va_ide_mod END ASC,
+  CASE WHEN @ar_ord_dat = 'N' THEN va_nom_mod END ASC
+
+
+  
 /*
 ARCHIVO: ads002_04a_p01.sql
 PROCEDIMIENTO: HABILITA aplicacion
@@ -4049,6 +4083,96 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
+/*****************************************************************/
+/*	ARCHIVO: ads002_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME APLICACIONES DEL SISTEMA              */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_mod_ini  INT       M¢dulo Inicial          */
+/*                @ar_mod_fin  INT       M¢dulo Final            */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 19/08/2022             */
+/*****************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads002_R01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads002_R01
+GO
+
+CREATE PROCEDURE ads002_R01		@ar_est_ado  CHAR(01),
+                                @ar_mod_ini  INT,
+								@ar_mod_fin  INT WITH ENCRYPTION AS
+
+DECLARE		@va_ide_mod	 INT,			--** ID. M¢dulo
+            @va_nom_mod  VARCHAR(30),	--** Nombre M¢dulo
+			@va_ide_apl  VARCHAR(20),	--** ID. Aplicaci¢n
+			@va_nom_apl  VARCHAR(30),	--** Nombre Aplicaciones
+			@va_est_apl  CHAR(01), 	    --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+		
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+CREATE TABLE #tm_apl_sis
+(
+	va_ide_mod	INT,
+	va_nom_mod  VARCHAR(30),
+    va_ide_apl  VARCHAR(20),
+	va_nom_apl  VARCHAR(120),
+	va_est_ado  VARCHAR(15)
+)
+
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
+
+--** Obtiene los datos de las aplicaciones del sistema
+DECLARE vc_apl_sis CURSOR LOCAL FOR
+ SELECT va_ide_mod, va_ide_apl, va_nom_apl,
+        va_est_ado
+   FROM ads002
+  WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+    AND va_ide_mod >= @ar_mod_ini
+	AND va_ide_mod <= @ar_mod_fin
+
+--** Abre Cursor
+OPEN vc_apl_sis
+--** Lee el primer registro
+FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_apl, @va_nom_apl, @va_est_apl
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+
+	--** Obtiene nombre del tipo de atributo
+	SET @va_nom_mod = ''
+	SELECT @va_nom_mod = va_nom_mod
+	  FROM ads001
+	 WHERE va_ide_mod = @va_ide_mod
+	
+	IF (@@ROWCOUNT = 0)
+		SET @va_nom_mod = ''
+
+	SET @va_est_ado = ''
+	IF (@va_est_apl = 'H')
+		SET @va_est_ado = 'Habilitado'
+	IF (@va_est_apl = 'N')
+		SET @va_est_ado = 'Deshabilitado'
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_apl_sis VALUES (@va_ide_mod, @va_nom_mod, @va_ide_apl, 
+	                                @va_nom_apl, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_apl, @va_nom_apl, @va_est_apl
+END	
+
+CLOSE vc_apl_sis
+DEALLOCATE vc_apl_sis
+
+
+--** Retorna los datos
+SELECT va_ide_mod, va_nom_mod, va_ide_apl, 
+	   va_nom_apl, va_est_ado
+  FROM #tm_apl_sis
+  
 /*
 ARCHIVO: ads003_04a_p1.sql
 PROCEDIMIENTO: DESHABILITA DOCUMENTO
@@ -4218,226 +4342,250 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
-/*
-ARCHIVO: ads003_R01.sql
-PROCEDIMIENTO: REPORTE LISTADO DE DOCUMENTOS
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	14-05-2020 
---*/
+/*****************************************************************/
+/*	ARCHIVO: ads003_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME DEFINICI‡N DE DOCUMENTOS              */
+/*  PARAMETROS:   @ar_est_ado  CHAR(01)  Estado                  */
+/*                @ar_mod_ini  INT       M¢dulo Inicial          */
+/*                @ar_mod_fin  INT       M¢dulo Final            */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 20/08/2022             */
+/*****************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads003_R01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads003_R01
 GO
 
-CREATE PROCEDURE ads003_R01	@ar_ide_mod		INT,
-							@ar_est_ado		CHAR(01)
-							WITH ENCRYPTION AS
-							
+CREATE PROCEDURE ads003_R01		@ar_est_ado  CHAR(01),
+                                @ar_mod_ini  INT,
+								@ar_mod_fin  INT WITH ENCRYPTION AS
+
+DECLARE		@va_ide_mod	 INT,			--** ID. M¢dulo
+            @va_nom_mod  VARCHAR(30),	--** Nombre M¢dulo
+			@va_ide_doc  CHAR(03),	    --** ID. Documento
+			@va_nom_doc  VARCHAR(30),	--** Nombre Documento
+			@va_des_doc  VARCHAR(120),	--** Nombre Documento
+			@va_est_doc  CHAR(01), 	    --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+		
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
 
-DECLARE 
-@msg			nvarchar(200),
-@va_est_ado		CHAR(01)
+CREATE TABLE #tm_doc_int
+(
+	va_ide_mod	INT,
+	va_nom_mod  VARCHAR(30),
+    va_ide_doc  CHAR(03),
+	va_nom_doc  VARCHAR(30),
+	va_des_doc  VARCHAR(120),
+	va_est_ado  VARCHAR(15)
+)
 
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
-	 --/ Inicializa variable contador de registro
-	IF(@ar_est_ado = 'T')
-		SET @va_est_ado = '%'
-	IF(@ar_est_ado <> 'T')
-		SET @va_est_ado = @ar_est_ado
-		
-		PRINT @ar_est_ado
-		PRINT @va_est_ado
-		
-		
-		 
-	 SELECT ads001.va_ide_mod, ads001.va_nom_mod, ads003.va_ide_doc,
-            ads003.va_nom_doc, ads003.va_des_doc, ads003.va_est_ado
-	  FROM	ads003 , ads001
-	 WHERE (ads003.va_ide_mod = ads001.va_ide_mod)
-	   AND (ads001.va_ide_mod = @ar_ide_mod)
-	   AND (ads003.va_est_ado LIKE @va_est_ado)
+--** Obtiene los datos de las aplicaciones del sistema
+DECLARE vc_apl_sis CURSOR LOCAL FOR
+ SELECT va_ide_mod, va_ide_doc, va_nom_doc,
+        va_des_doc, va_est_ado
+   FROM ads003
+  WHERE va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+    AND va_ide_mod >= @ar_mod_ini
+	AND va_ide_mod <= @ar_mod_fin
+
+--** Abre Cursor
+OPEN vc_apl_sis
+--** Lee el primer registro
+FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_doc, @va_nom_doc, @va_des_doc, @va_est_doc
+														
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+
+	--** Obtiene nombre del tipo de atributo
+	SET @va_nom_mod = ''
+	SELECT @va_nom_mod = va_nom_mod
+	  FROM ads001
+	 WHERE va_ide_mod = @va_ide_mod
 	
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l°nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-    --Rollback TRAN TR_inv100
-	RETURN
-END CATCH	   
+	IF (@@ROWCOUNT = 0)
+		SET @va_nom_mod = ''
 
-GO  
-/*
-ARCHIVO: ads004_01b_p01.sql
-PROCEDIMIENTO: BUSCA TALONARIOS
-	CON PERMISOS PARA EL USUARIO
-AUTOR:	CREARSIS(CHL)
-FECHA:	28-10-2020 
---*/
+	SET @va_est_ado = ''
+	IF (@va_est_doc = 'H')
+		SET @va_est_ado = 'Habilitado'
+	IF (@va_est_doc = 'N')
+		SET @va_est_ado = 'Deshabilitado'
+
+	--** Inserta en la tabla temporal
+	INSERT INTO #tm_doc_int VALUES (@va_ide_mod, @va_nom_mod, @va_ide_doc, 
+	                                @va_nom_doc, @va_des_doc, @va_est_ado)
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_apl_sis INTO @va_ide_mod, @va_ide_doc, @va_nom_doc, @va_des_doc, @va_est_doc
+END	
+
+CLOSE vc_apl_sis
+DEALLOCATE vc_apl_sis
+
+
+--** Retorna los datos
+SELECT va_ide_mod, va_nom_mod, va_ide_doc, 
+	   va_nom_doc, va_des_doc, va_est_ado
+  FROM #tm_doc_int
+  
+/****************************************************************************/
+/*	ARCHIVO: ads004_01b_p01.sql                                             */
+/*	PROCEDIMIENTO: BUSCA TALONARIO CON PERMISO PARA EL USUARIO              */
+/*      ARGUMENTO: @ar_ide_usr 	VARCHAR(15) --** ID. Usuario                */
+/*                 @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_tex_bus	VARCHAR(60)	--** Texto a Buscar             */
+/*                 @ar_est_tal CHAR(01)		--** Estado Talonario           */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 28/10/2020                        */
+/****************************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_01b_p01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_01b_p01
 GO
 
-CREATE PROCEDURE ads004_01b_p01		@ar_tex_bus		VARCHAR(60),	-- Texto a ser buscado
-									@ar_ide_doc		CHAR(03)		-- ID del documento
-									WITH ENCRYPTION AS
+CREATE PROCEDURE ads004_01b_p01		@ar_ide_usr VARCHAR(15),
+                                    @ar_ide_doc	CHAR(03),
+                                    @ar_tex_bus	VARCHAR(60),
+									@ar_est_tal CHAR(01)	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ide_doc	 CHAR(03),      --** ID. Documento
+            @va_nom_doc	 NVARCHAR(30),  --** Nombre Documento
+            @va_nro_tal	 INT,           --** Nro. Talonario
+            @va_nom_tal	 NVARCHAR(60),  --** Nombre Talonario
+            @va_est_ado	 CHAR(01)       --** Estado (H=Habilitado; N=Deshabilitado)
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
 
-@va_ide_doc		CHAR(03),
-@va_nom_doc		NVARCHAR(30),
-@va_nro_tal		INT,
-@va_nom_tal		NVARCHAR(60),
-@va_est_ado		CHAR(01)
-
-CREATE TABLE #resultado
+--** Crea la Tabla Temporal
+CREATE TABLE #tm_per_tal
 (
-va_ide_doc		CHAR(03),
-va_nom_doc		NVARCHAR(30),
-va_nro_tal		INT,
-va_nom_tal		NVARCHAR(60),
-va_est_ado		CHAR(01)
+	va_ide_doc	CHAR(03),
+	va_nom_doc	NVARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	NVARCHAR(60),
+	va_est_ado	CHAR(01)
 )
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
+--** Obtiene todos los talonarios del Sistema
+DECLARE vc_per_tal CURSOR LOCAL FOR
+ SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
+   FROM ads004
+  WHERE va_ide_doc = @ar_ide_doc
+    AND va_nro_tal LIKE @ar_tex_bus + '%'
+	AND va_est_ado = @ar_est_tal
 
-   DECLARE vc_tal_ona CURSOR LOCAL FOR
-	SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
-	  FROM ads004
-	 WHERE va_ide_doc LIKE @ar_tex_bus + '%'	AND
-		   va_ide_doc LIKE @ar_ide_doc	AND
-		   va_est_ado = 'H'
-		   
-OPEN vc_tal_ona
-FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+--** Abre Cursor		   
+OPEN vc_per_tal
 
+--** Lee el primer registro
+FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 WHILE (@@FETCH_STATUS = 0)
 BEGIN
-
-	-- Verifica que usuario tenga permiso sobre el talonario
-	SELECT @cout = COUNT(*)
+	--** Verifica si el usuario tiene permiso sobre el talonario
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
 	  FROM ads008
-	 WHERE	va_ide_usr = SYSTEM_USER		AND
-			va_ide_tab = 'ads004'			AND
-			RTRIM(va_ide_uno) = @va_ide_doc	AND
-			RTRIM(va_ide_dos) = @va_nro_tal
-	IF @cout <> 0
-	BEGIN 
-	
-	-- Obtiene nombre del documento
-	SELECT @va_nom_doc = va_nom_doc
-	  FROM ads003
-	 WHERE va_ide_doc = @va_ide_doc
-	 
-	 INSERT INTO #resultado VALUES (@va_ide_doc		,
-									@va_nom_doc		,
-									@va_nro_tal		,
-									@va_nom_tal		,
-									@va_est_ado	
-									)
+	 WHERE va_ide_usr = @ar_ide_usr	
+	   AND va_ide_tab = 'ads004'
+	   AND va_ide_uno = @va_ide_doc
+	   AND va_ide_dos = @va_nro_tal
+
+	   IF (@va_nro_reg > 0)
+	BEGIN 	
+		--** Obtiene el nombre del documento
+		SET @va_nom_doc = ''
+		SELECT @va_nom_doc = va_nom_doc
+		  FROM ads003
+		 WHERE va_ide_doc = @va_ide_doc
+
+		 --** Inserta en la tabla temporal	 
+		 INSERT INTO #tm_per_tal VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, @va_est_ado)
+
+		 IF (@@ERROR > 0)
+			RETURN
 	END
 	
-	FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 END	
 
-SELECT * FROM #resultado
+--** Cierra y destruye cursor
+CLOSE vc_per_tal
+DEALLOCATE vc_per_tal
 
-CLOSE vc_tal_ona
-DEALLOCATE vc_tal_ona
-	
-RETURN
-
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l°nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-	RETURN
-END CATCH	   
-
-GO  
-/*
-ARCHIVO: ads004_02a_p01.sql
-PROCEDIMIENTO: REGISTRA TALONARIO Y NUMERACION
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	17-05-2020 
---*/
+--** Retorna lista de permisos autorizados al usuario
+SELECT va_ide_doc, va_nom_doc, va_nro_tal,
+	   va_nom_tal, va_est_ado
+  FROM #tm_per_tal
+  ORDER BY va_ide_doc, va_nro_tal ASC  
+/****************************************************************************/
+/*	ARCHIVO: ads004_02a_p01.sql                                             */
+/*	PROCEDIMIENTO: REGISTRA TALONARIO Y NUMERACI‡N                          */
+/*      ARGUMENTO: @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_nro_tal	INT			--** Nro Talonario              */
+/*                 @ar_nom_tal	VARCHAR(60)	--** Nombre del Talonario       */
+/*                 @ar_tip_tal	INT			--** 0=Manual; 1=Automatico     */
+/*                 @ar_nro_aut	BIGINT		--** Nro de Dosificaci¢n        */
+/*                 @ar_for_mat	INT			--** Nro de Formato p/Impresi¢n */
+/*                 @ar_nro_cop	INT			--** Nro de Copias de Impresi¢n */
+/*                 @ar_fir_ma1	VARCHAR(15)	--** Firma 1 para el documento  */
+/*                 @ar_fir_ma2	VARCHAR(15)	--** Firma 2 para el documento  */
+/*                 @ar_fir_ma3	VARCHAR(15)	--** Firma 3 para el documento  */
+/*                 @ar_fir_ma4	VARCHAR(15)	--** Firma 4 para el documento  */
+/*                 @ar_for_log	INT			--** Formato de Logo            */
+/*                 @ar_ges_tio	INT			--** Gestion A§o                */
+/*                 @ar_anu_mes	INT			--** (0=Anual ; 1=Mensual)      */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 17/05/2020                        */
+/****************************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_02a_p01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_02a_p01
 GO
 
-CREATE PROCEDURE ads004_02a_p01
-							@ar_ges_tio	INT			,	-- Gestion a§o
-							@ar_anu_mes	INT			,	-- (0=Anual ; 1=Mensual)
-							@ar_ide_doc	CHAR(03)	,	-- Ide Documento
-							@ar_nro_tal	INT			,	-- Nro talonario
-							@ar_nom_tal	VARCHAR(60)	,	-- Nombre del talonario
-							@ar_tip_tal	INT			,	-- Correlativo (0=Manual ; 1=Automatico)
-							@ar_nro_aut	BIGINT		,	-- Nro de autorizacion/Dosificacion de facturas
-							@ar_for_mat	INT			,	-- Nro de formato para impresi¢n del documento
-							@ar_nro_cop	INT			,	-- Nro de copias por defecto que imprimira
-							@ar_fir_ma1	VARCHAR(15)	,	-- Firma 1 para el documento
-							@ar_fir_ma2	VARCHAR(15)	,	-- Firma 2 para el documento
-							@ar_fir_ma3	VARCHAR(15)	,	-- Firma 3 para el documento
-							@ar_fir_ma4	VARCHAR(15)	,	-- Firma 4 para el documento
-							@ar_for_log	INT				/* Formato de logo que se imprimira	
-															0=Razon social de empresa; 
-															1=Logotipo1
-															2=Logotipo2 
-															3=Logotipo3	*/
-							
-							
-							
-						
-							WITH ENCRYPTION AS
+CREATE PROCEDURE ads004_02a_p01		@ar_ide_doc	CHAR(03),	 @ar_nro_tal INT,
+									@ar_nom_tal	VARCHAR(60), @ar_tip_tal INT,
+									@ar_nro_aut	BIGINT,      @ar_for_mat INT,
+									@ar_nro_cop	INT,	     @ar_fir_ma1 VARCHAR(15),
+									@ar_fir_ma2	VARCHAR(15), @ar_fir_ma3 VARCHAR(15),
+									@ar_fir_ma4	VARCHAR(15), @ar_for_log INT,
+									@ar_ges_tio	INT,		 @ar_anu_mes INT	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ges_tio	 INT,			--** Gesti¢n
+			@va_mes_per	 INT,	        --** Mes Periodo
+			@va_nom_per	 VARCHAR(10),	--** Nombre de periodo
+			@va_pri_dia	 DATE,	        --** Primer dia del mes
+			@va_ult_dia	 DATE,			--** Ultimo dia del mes
+		    @va_ide_doc	 CHAR(03),	    --** ID. Docuento
+			@va_nro_tal	 INT,	        --** N£mero del Talonario
+			@va_nom_tal	 VARCHAR(60),	--** Nombre del talonario
+			@va_con_tad	 INT	        --** Contador de periodos
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
 
-@va_ges_tio		INT			,	-- Gestion
-@va_mes_per		INT			,	-- Mes periodo
-@va_nom_per		VARCHAR(10)	,	-- Nombre de periodo
-@va_pri_dia		DATE		,	-- Primer dia del mes
-@va_ult_dia		DATE		,	-- Ultimo dia del mes
-@va_ide_doc		CHAR(03)	,	-- Ide del docuento
-@va_nro_tal		INT			,	-- Numero del talonario
-@va_nom_tal		VARCHAR(60)	,	-- Nombre del talonario
-@va_con_tad		INT			,	-- Contador de periodos
-
-@comando	NVARCHAR(200)	-- Comando para ejecutar sentencia sql
-  
-IF @@ERROR <> 0
-   RETURN
-
+--** Inicio de Transaci¢n  
 BEGIN TRAN TR_ads005
 BEGIN TRY   
-	
+	--** Crea una tabla temporal
 	CREATE TABLE #MES
-	(
+	(	
 		va_ide_mes		INT,
 		va_nom_mes		VARCHAR(10)
 	)
+	
+	--** Inserta los meses del a§o
 	INSERT INTO #MES VALUES (1,'Enero')
 	INSERT INTO #MES VALUES (2,'Febrero')
 	INSERT INTO #MES VALUES (3,'Marzo')
@@ -4451,62 +4599,72 @@ BEGIN TRY
 	INSERT INTO #MES VALUES (11,'Noviembre')
 	INSERT INTO #MES VALUES (12,'Diciembre')
 	
-
+	--** Inicializa variables
 	SET @va_ges_tio = @ar_ges_tio
 	SET @va_ide_doc = @ar_ide_doc
 	SET @va_nro_tal = @ar_nro_tal
-	
-	
-	--/ Verifica que la Gesti¢n se encuentre creada
-	SET @cout = 0
-	SELECT @cout = COUNT(*)
+		
+	--** Verifica que la Gesti¢n se encuentre registrada
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
 	  FROM ads016
 	 WHERE va_ges_tio = @ar_ges_tio
 	 
-	 IF(@cout = 0)
-	 BEGIN
-		--SET @msg = 'La Gesti¢n proporsionada no se encuentra registrada. ' +  CONVERT(NVARCHAR(255), @cout)  
-		--		 + ' Argumento gestion = ' + CONVERT(NVARCHAR(255),@ar_ges_tio)
+	 IF(@va_nro_reg = 0)
+	 BEGIN		
 		RAISERROR ('La Gesti¢n proporsionada no se encuentra registrada. ',16,1)
 		ROLLBACK TRAN TR_ads005
 		RETURN
 	 END
 	
-	--/ Obtiene mes inicial de la gestion
+	--** Obtiene MES inicial de la gestion
 	SELECT @va_mes_per = va_ges_per 
-	FROM ads016
-	WHERE va_ges_tio = @ar_ges_tio
-	ORDER BY va_ges_per DESC
+	  FROM ads016
+	 WHERE va_ges_tio = @ar_ges_tio
+	 ORDER BY va_ges_per DESC
 	
-	--/ En caso de ser Talonario Anual
+	--** En caso de ser Talonario Anual
 	IF(@ar_anu_mes = 0)
 	BEGIN
-		--/ CrÇa Talonario Anual
-		INSERT INTO ads004 VALUES	(@va_ide_doc, @va_nro_tal, @ar_nom_tal, @ar_tip_tal, @ar_nro_aut,
-									@ar_for_mat, @ar_nro_cop, @ar_fir_ma1, @ar_fir_ma2, @ar_fir_ma3,
-									@ar_fir_ma4, @ar_for_log, 'H')
+		--** Crea Talonario Anual
+		INSERT INTO ads004 VALUES (@va_ide_doc, @va_nro_tal, @ar_nom_tal, @ar_tip_tal, @ar_nro_aut,
+								   @ar_for_mat, @ar_nro_cop, @ar_fir_ma1, @ar_fir_ma2, @ar_fir_ma3,
+								   @ar_fir_ma4, @ar_for_log, 'H')
+
+		IF (@@ERROR > 0)
+		BEGIN
+			RAISERROR ('Error al grabar el Talonario (ads004)', 16, 1)
+			ROLLBACK TRAN TR_ads004
+			RETURN
+		END
 		
-		--/ Obtiene primer y ultimo dia de la Gesti¢n
+		--** Obtiene primer y £ltimo d°a de la Gesti¢n
 		SELECT @va_pri_dia = MIN(va_fec_ini) , 
 			   @va_ult_dia = MAX(va_fec_fin)  
 		  FROM ads016
 		 WHERE va_ges_tio = @ar_ges_tio
 		 
-		--/ CrÇa Numeraci¢n Anual			  
+		--** CrÇa Numeraci¢n Anual			  
 		INSERT INTO ads005 VALUES (@va_ide_doc, @va_nro_tal, @ar_ges_tio, @va_pri_dia,@va_ult_dia, 0, 999999,0)
 		
+		IF (@@ERROR > 0)
+		BEGIN
+			RAISERROR ('Error al grabar el Control Numeraci¢n (ads005)', 16, 1)
+			ROLLBACK TRAN TR_ads005
+			RETURN
+		END
 	
 	END
 	
-	--/ En caso de ser Talonario Mensual, segun Gesti¢n
+	--** En caso de ser Talonario Mensual, segun Gesti¢n
 	IF(@ar_anu_mes = 1)
 	BEGIN
 		SET @va_con_tad = 1
-	
+
+		--** Recorre los 12 Meses del A§o
 		WHILE (@va_con_tad <= 12)
-		BEGIN
-			
-			--/ Obtiene datos del periodo
+		BEGIN			
+			--** Obtiene datos del periodo
 			SELECT @va_nom_per = va_nom_per,
 				   @va_pri_dia = va_fec_ini,
 				   @va_ult_dia = va_fec_fin
@@ -4514,55 +4672,64 @@ BEGIN TRY
 			 WHERE va_ges_tio = @ar_ges_tio
 			   AND va_ges_per = @va_con_tad
 			
-			--/ Compone nombre de talonario + nombre del mes correspondiente
+			--** Compone nombre de talonario + nombre del mes correspondiente
 			SET @va_nom_tal = @ar_nom_tal + ' - ' + @va_nom_per
 			
-			--/ Verifica que el Talonario a crear en el mes, aun no este creado
-			SELECT *
+			--** Verifica que el Talonario a crear en el mes, aun no este creado
+			SET @va_nro_reg = 0
+			SELECT @va_nro_reg = COUNT(*)
 			  FROM ads004
 			 WHERE va_ide_doc = @va_ide_doc
 			   AND va_nro_tal = @va_nro_tal
-			IF @@ROWCOUNT <> 0
+
+			IF (@va_nro_reg > 0)
 			BEGIN
-				SET @msg = 'No se puede crear un Talonario duplicado, el talonario: ' +  CONVERT(NVARCHAR(255),@va_nro_tal) 
-						 + ' para el Documento ' + @va_ide_doc + ' ya se encuentra registrado'
+				SET @va_msn_err = 'NO se puede crear un Talonario duplicado, el talonario: ' +  RTRIM(CONVERT(VARCHAR(255), @va_nro_tal)) +
+						          ' para el Documento ' + RTRIM(@va_ide_doc) + ' YA se encuentra registrado'
 				
 				RAISERROR (@msg ,16,1)
-				Rollback TRAN TR_ads005
+				ROLLBACK TRAN TR_ads004
 				RETURN
 			END
 			
-			--/ CrÇa Talonario por Mes
+			--** CrÇa Talonario por Mes
 			INSERT INTO ads004 VALUES (@va_ide_doc, @va_nro_tal, @va_nom_tal, @ar_tip_tal, @ar_nro_aut,
 									   @ar_for_mat, @ar_nro_cop, @ar_fir_ma1, @ar_fir_ma2, @ar_fir_ma3,
 									   @ar_fir_ma4, @ar_for_log, 'H')
-									   
-			--/ CrÇa Numeraci¢n por Mes
-			INSERT INTO ads005 VALUES (@va_ide_doc, @va_nro_tal, @ar_ges_tio, @va_pri_dia,@va_ult_dia, 0, 999999,0)
-			
-			--/ Incrementa contadores
-			SET @va_con_tad = @va_con_tad + 1
-			SET @va_nro_tal = @va_nro_tal + 1
-			
-		END
-	
-	
-	END
-	
 
-	
+			IF (@@ERROR > 0)
+			BEGIN
+				RAISERROR ('Error al grabar el Talonario (ads004)', 16, 1)
+				ROLLBACK TRAN TR_ads004
+				RETURN
+			END
+									   
+			--** CrÇa Numeraci¢n por Mes
+			INSERT INTO ads005 VALUES (@va_ide_doc, @va_nro_tal, @ar_ges_tio, @va_pri_dia,@va_ult_dia, 0, 999999,0)
+
+			IF (@@ERROR > 0)
+			BEGIN
+				RAISERROR ('Error al grabar el Control Numeraci¢n (ads005)', 16, 1)
+				ROLLBACK TRAN TR_ads005
+				RETURN
+			END
+			
+			--** Incrementa Contadores
+			SET @va_con_tad = @va_con_tad + 1
+			SET @va_nro_tal = @va_nro_tal + 1			
+		END	
+	END	
 COMMIT TRAN TR_ads005
 RETURN
 END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + 
-	ERROR_MESSAGE() + ' (l°nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
+BEGIN CATCH	
+	SET @va_msn_err = 'Error: ' + 
+	ERROR_MESSAGE() + ' (L°nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
 	RAISERROR(@msg,16,1)
-    Rollback TRAN TR_ads005
+    ROLLBACK TRAN TR_ads004
+	ROLLBACK TRAN TR_ads005
 	RETURN
 END CATCH	
-
 GO  
 /*
 ARCHIVO: ads004_04a_p01.sql
@@ -4718,103 +4885,190 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
-/*
-ARCHIVO: ads004_05a_p02.sql
-PROCEDIMIENTO: CONSULTA TALONARIO CON PERMISOS DE USUARIO
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	16-05-2020 
---*/
+/****************************************************************************/
+/*	ARCHIVO: ads004_05a_p02.sql                                             */
+/*	PROCEDIMIENTO: PERMISO SOBRE TALONARIO AL USUARIO                       */
+/*      ARGUMENTO: @ar_ide_usr 	VARCHAR(15) --** ID. Usuario                */
+/*                 @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_nro_tal	INT			--** Nro Talonario              */
+/*                 @ar_est_tal CHAR(01)		--** Estado Talonario           */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 16/05/2020                        */
+/****************************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_05a_p02') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_05a_p02
 GO
 
-CREATE PROCEDURE ads004_05a_p02		@ar_ide_doc		CHAR(03),	-- Texto a ser buscado
-									@ar_nro_tal		INT		-- ID del documento
-									WITH ENCRYPTION AS
+CREATE PROCEDURE ads004_05a_p02		@ar_ide_usr VARCHAR(15),
+                                    @ar_ide_doc	CHAR(03),
+									@ar_nro_tal	INT,
+									@ar_est_tal CHAR(01)	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ide_doc	 CHAR(03),      --** ID. Documento
+            @va_nom_doc	 NVARCHAR(30),  --** Nombre Documento
+            @va_nro_tal	 INT,           --** Nro. Talonario
+            @va_nom_tal	 NVARCHAR(60),  --** Nombre Talonario
+            @va_est_ado	 CHAR(01)       --** Estado (H=Habilitado; N=Deshabilitado)
+
 --** Inhabilita mensajes numero de filas afectadas
 SET NOCOUNT ON
-DECLARE 
-@msg			nvarchar(200),
-@cout			INT			,	-- Contador de registros para verificar
 
-@va_ide_doc		CHAR(03),
-@va_nom_doc		NVARCHAR(30),
-@va_nro_tal		INT,
-@va_nom_tal		NVARCHAR(60),
-@va_est_ado		CHAR(01)
-
-CREATE TABLE #resultado
+--** Crea la Tabla Temporal
+CREATE TABLE #tm_per_tal
 (
-va_ide_doc		CHAR(03),
-va_nom_doc		NVARCHAR(30),
-va_nro_tal		INT,
-va_nom_tal		NVARCHAR(60),
-va_est_ado		CHAR(01)
+	va_ide_doc	CHAR(03),
+	va_nom_doc	NVARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	NVARCHAR(60),
+	va_est_ado	CHAR(01)
 )
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
+--** Obtiene todos los talonarios del Sistema
+DECLARE vc_per_tal CURSOR LOCAL FOR
+ SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
+   FROM ads004
+  WHERE va_nro_tal = @ar_nro_tal
+    AND va_ide_doc = @ar_ide_doc
+	AND va_est_ado = @ar_est_tal
 
-   DECLARE vc_tal_ona CURSOR LOCAL FOR
-	SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
-	  FROM ads004
-	 WHERE va_nro_tal = @ar_nro_tal	AND
-		   va_ide_doc = @ar_ide_doc	AND
-		   va_est_ado = 'T'
-		   
-OPEN vc_tal_ona
-FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+--** Abre Cursor		   
+OPEN vc_per_tal
 
+--** Lee el primer registro
+FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 WHILE (@@FETCH_STATUS = 0)
 BEGIN
-
-	-- Verifica que usuario tenga permiso sobre el talonario
-	SELECT @cout = COUNT(*)
+	--** Verifica si el usuario tiene permiso sobre el talonario
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
 	  FROM ads008
-	 WHERE	va_ide_usr = SYSTEM_USER	AND
-			va_ide_tab = 'ads004'		AND
-			va_ide_uno = @va_ide_doc	AND
-			va_ide_dos = @va_nro_tal
-	IF @cout <> 0
-	BEGIN 
-	
-	-- Obtiene nombre del documento
-	SELECT @va_nom_doc = va_nom_doc
-	  FROM ads003
-	 WHERE va_ide_doc = @va_ide_doc
-	 
-	 INSERT INTO #resultado VALUES (@va_ide_doc		,
-									@va_nom_doc		,
-									@va_nro_tal		,
-									@va_nom_tal		,
-									@va_est_ado	
-									)
+	 WHERE va_ide_usr = @ar_ide_usr	
+	   AND va_ide_tab = 'ads004'
+	   AND va_ide_uno = @va_ide_doc
+	   AND va_ide_dos = @va_nro_tal
+
+	IF (@va_nro_reg > 0)
+	BEGIN 	
+		--** Obtiene el nombre del documento
+		SET @va_nom_doc = ''
+		SELECT @va_nom_doc = va_nom_doc
+		  FROM ads003
+		 WHERE va_ide_doc = @va_ide_doc
+
+		 --** Inserta en la tabla temporal	 
+		 INSERT INTO #tm_per_tal VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, @va_est_ado)
+
+		 IF (@@ERROR > 0)
+			RETURN
 	END
 	
-	FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
 END	
 
-SELECT * FROM #resultado
+--** Cierra y destruye cursor
+CLOSE vc_per_tal
+DEALLOCATE vc_per_tal
 
-CLOSE vc_tal_ona
-DEALLOCATE vc_tal_ona
+--** Retorna lista de permisos autorizados al usuario
+SELECT va_ide_doc, va_nom_doc, va_nro_tal,
+	   va_nom_tal, va_est_ado
+  FROM #tm_per_tal
+  ORDER BY va_ide_doc, va_nro_tal ASC  
+/****************************************************************************/
+/*	ARCHIVO: ads004_05a_p03.sql                                             */
+/*	PROCEDIMIENTO: PERMISO SOBRE TALONARIO AL USUARIO                       */
+/*      ARGUMENTO: @ar_ide_usr 	VARCHAR(15) --** ID. Usuario                */
+/*                 @ar_ide_doc	CHAR(03)	--** ID. Documento              */
+/*                 @ar_nro_tal	INT			--** Nro Talonario              */
+/*                 @ar_est_tal CHAR(01)		--** Estado Talonario           */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 16/05/2020                        */
+/****************************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads004_05a_p03') and sysstat & 0xf = 4)
+	drop procedure dbo.ads004_05a_p03
+GO
+
+CREATE PROCEDURE ads004_05a_p03		@ar_ide_usr VARCHAR(15),
+                                    @ar_ide_doc	CHAR(03),
+									@ar_est_tal CHAR(01)	WITH ENCRYPTION AS
+
+DECLARE		@va_msn_err	 NVARCHAR(200),	--** Mensaje de Error
+			@va_nro_reg  INT,			--** Nro. de Registro encontrados
+			@va_ide_doc	 CHAR(03),      --** ID. Documento
+            @va_nom_doc	 NVARCHAR(30),  --** Nombre Documento
+            @va_nro_tal	 INT,           --** Nro. Talonario
+            @va_nom_tal	 NVARCHAR(60),  --** Nombre Talonario
+            @va_est_ado	 CHAR(01)       --** Estado (H=Habilitado; N=Deshabilitado)
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Crea la Tabla Temporal
+CREATE TABLE #tm_per_tal
+(
+	va_ide_doc	CHAR(03),
+	va_nom_doc	NVARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	NVARCHAR(60),
+	va_est_ado	CHAR(01)
+)
+
+--** Obtiene todos los talonarios del Sistema
+DECLARE vc_per_tal CURSOR LOCAL FOR
+ SELECT va_ide_doc, va_nro_tal, va_nom_tal,va_est_ado
+   FROM ads004
+  WHERE va_ide_doc = @ar_ide_doc
+	AND va_est_ado = @ar_est_tal
+
+--** Abre Cursor		   
+OPEN vc_per_tal
+
+--** Lee el primer registro
+FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
+	--** Verifica si el usuario tiene permiso sobre el talonario
+	SET @va_nro_reg = 0
+	SELECT @va_nro_reg = COUNT(*)
+	  FROM ads008
+	 WHERE va_ide_usr = @ar_ide_usr	
+	   AND va_ide_tab = 'ads004'
+	   AND va_ide_uno = @va_ide_doc
+	   AND va_ide_dos = @va_nro_tal
+
+	IF (@va_nro_reg > 0)
+	BEGIN 	
+		--** Obtiene el nombre del documento
+		SET @va_nom_doc = ''
+		SELECT @va_nom_doc = va_nom_doc
+		  FROM ads003
+		 WHERE va_ide_doc = @va_ide_doc
+
+		 --** Inserta en la tabla temporal	 
+		 INSERT INTO #tm_per_tal VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, @va_est_ado)
+
+		 IF (@@ERROR > 0)
+			RETURN
+	END
 	
-RETURN
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_per_tal INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_est_ado
+END	
 
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l°nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-	RETURN
-END CATCH	   
+--** Cierra y destruye cursor
+CLOSE vc_per_tal
+DEALLOCATE vc_per_tal
 
-GO  
+--** Retorna lista de permisos autorizados al usuario
+SELECT va_ide_doc, va_nom_doc, va_nro_tal,
+	   va_nom_tal, va_est_ado
+  FROM #tm_per_tal
+  ORDER BY va_ide_doc, va_nro_tal ASC  
 /*
 ARCHIVO: ads004_06a_p01.sql
 PROCEDIMIENTO: ELIMINAR TALONARIO
@@ -4886,128 +5140,137 @@ BEGIN CATCH
 END CATCH	   
 
 GO  
-/*
-ARCHIVO: ads004_R01.sql
-PROCEDIMIENTO: REPORTE LISTADO DE DOCUMENTOS
-	
-AUTOR:	CREARSIS(CHL)
-FECHA:	25-05-2020 
---*/
+/*****************************************************************/
+/*	ARCHIVO: ads004_R01.sql                                      */
+/*	PROCEDIMIENTO: INFORME DEFINICIONES DE ATRIBUTOS             */
+/*  PARAMETROS:   @ar_ide_mod  INT       ID. M¢dulo              */
+/*                @ar_est_ado  CHAR(01)  Estado                  */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 25/05/2020             */
+/*****************************************************************/
 
 /* Verifica si el procedimiento se encuentra creado */
 if exists (select * from sysobjects where id = object_id('dbo.ads004_R01') and sysstat & 0xf = 4)
 	drop procedure dbo.ads004_R01
 GO
 
-CREATE PROCEDURE ads004_R01	@ar_ide_mod		INT,
-							@ar_est_ado		CHAR(01)
-							WITH ENCRYPTION AS
-							
+CREATE PROCEDURE ads004_R01		@ar_ide_mod	INT,
+								@ar_est_ado	CHAR(01)	WITH ENCRYPTION AS							
+
+DECLARE		@va_ide_mod	 INT,			--** ID. M¢dulo
+            @va_nom_doc	 VARCHAR(30),	--** Nombre M¢dulo
+			@va_ide_doc	 CHAR(03),		--** ID. Documento
+			@va_nro_tal	 INT,			--** Nro de Talonario
+			@va_nom_tal	 VARCHAR(60),	--** Nombre Talonario
+			@va_tip_tal	 INT,	        --** Tipo de Talonario
+			@va_nro_aut	 DECIMAL(15,0),	--** N£mero de Autorizaci¢n
+			@va_for_mat	 INT,	        --** Formato de Impresi¢n
+			@va_nro_cop	 INT,	        --** Nro de Copias a Imprimir
+			@va_fir_ma1	 VARCHAR(30),	--** Firma Nro 1
+			@va_fir_ma2	 VARCHAR(30),	--** Firma Nro 2
+			@va_fir_ma3	 VARCHAR(30),	--** Firma Nro 3
+			@va_fir_ma4	 VARCHAR(30),	--** Firma Nro 4
+			@va_for_log	 INT,           --** Formato Logo
+			@va_est_tal	 CHAR(01),      --** Estado (H=Habilitado; N=Deshabilitado)
+			@va_est_ado  VARCHAR(15)    --** Estado (Habilitado; Deshabilitado)
+
 --** Inhabilita mensajes numero de filas afectadas
-SET NOCOUNT ON
+SET NOCOUNT ON		
 
-DECLARE 
-@msg			nvarchar(200),
-@va_est_ado		CHAR(01),
-@va_ide_doc		CHAR(03),	--Ide Documento
-@va_nro_tal		INT,						--Nro de Talonario
-@va_nom_tal		VARCHAR(60),	--Nombre Talonario
-@va_tip_tal		INT						,	--Tipo de talonario  
-@va_nro_aut		DECIMAL(15,0)	,	-- Numero de autorizacion
-@va_for_mat		INT				,	-- Formato de impresion
-@va_nro_cop		INT				,	-- Nro de copias a imprimir
-@va_fir_ma1		VARCHAR(30)		,	-- Firma nro 1
-@va_fir_ma2		VARCHAR(30)		,	-- Firma nro 1
-@va_fir_ma3		VARCHAR(30)		,	-- Firma nro 1
-@va_fir_ma4		VARCHAR(30)		,	-- Firma nro 1
-@va_for_log		INT,
-@va_nom_mod		VARCHAR(30)				
-
-
-CREATE TABLE #ADS004
+--** Crea Tabla Temporal
+CREATE TABLE #tm_tal_doc
 (
-va_ide_mod		INT,
-va_nom_mod		VARCHAR(30),
-va_ide_doc		CHAR(03),	--Ide Documento
-va_nro_tal		INT,						--Nro de Talonario
-va_nom_tal		VARCHAR(60),	--Nombre Talonario
-va_tip_tal		INT						,	--Tipo de talonario  
-va_nro_aut		DECIMAL(15,0)	,	-- Numero de autorizacion
-va_for_mat		INT				,	-- Formato de impresion
-va_nro_cop		INT				,	-- Nro de copias a imprimir
-va_fir_ma1		VARCHAR(30)		,	-- Firma nro 1
-va_fir_ma2		VARCHAR(30)		,	-- Firma nro 1
-va_fir_ma3		VARCHAR(30)		,	-- Firma nro 1
-va_fir_ma4		VARCHAR(30)		,	-- Firma nro 1
-va_for_log		INT,
-va_est_ado		CHAR(01)				
+	va_ide_doc	CHAR(03),
+	va_nom_doc	VARCHAR(30),
+	va_nro_tal	INT,
+	va_nom_tal	VARCHAR(60),
+	va_tip_tal	INT,
+	va_nro_aut	DECIMAL(15,0),
+	va_for_mat	INT,
+	va_nro_cop	INT,
+	va_fir_ma1	VARCHAR(30),
+	va_fir_ma2	VARCHAR(30),
+	va_fir_ma3	VARCHAR(30),
+	va_fir_ma4	VARCHAR(30),
+	va_for_log	INT,
+	va_est_ado  VARCHAR(15)				
 )
 
-IF @@ERROR <> 0
-   RETURN
-   
-BEGIN TRY 
+--** Castea el estado si es T=Todos
+IF (@ar_est_ado = 'T')
+	SET @ar_est_ado = ''
 
+--** Obtiene los datos de los Documentos
+DECLARE vc_def_doc CURSOR LOCAL FOR
+SELECT va_ide_doc, va_nom_doc
+  FROM ads003
+ WHERE va_ide_mod = @ar_ide_mod
 
-
-
---/ Inicializa variable contador de registro
-IF(@ar_est_ado = 'T')
-	SET @va_est_ado = '%'
-IF(@ar_est_ado <> 'T')
-	SET @va_est_ado = @ar_est_ado
-	
-	
-DECLARE vc_tal_ona CURSOR LOCAL FOR
-SELECT ads004.va_ide_doc, ads004.va_nro_tal, ads004.va_nom_tal, ads004.va_tip_tal, ads004.va_nro_aut,
-	   ads004.va_for_mat, ads004.va_nro_cop, ads004.va_fir_ma1 , ads004.va_fir_ma2, ads004.va_fir_ma3,
-	   ads004.va_fir_ma4, ads004.va_for_log, ads004.va_est_ado
-FROM ads004, ads003
-WHERE (ads004. va_ide_doc = ads003.va_ide_doc)
-  AND (ads003.va_ide_mod = @ar_ide_mod)
-  AND (ads004.va_est_ado like @va_est_ado )
-	
---** Abre cursor		  
-OPEN vc_tal_ona    
-	 
-FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal , @va_nro_aut, @va_for_mat,@va_nro_cop,
-								@va_fir_ma1, @va_fir_ma2, @va_fir_ma3,@va_fir_ma4,@va_for_log,@va_est_ado
-
+--** Abre Cursor
+OPEN vc_def_doc
+--** Lee el primer registro
+FETCH NEXT FROM vc_def_doc INTO @va_ide_doc, @va_nom_doc
+														
 WHILE (@@FETCH_STATUS = 0)
 BEGIN
-	-- Obtiene nombre del modulo
-	SELECT @va_nom_mod = va_nom_mod
-	  FROM ads001
-	 WHERE va_ide_mod = @ar_ide_mod
-	 
-	 INSERT INTO #ADS004 VALUES (@ar_ide_mod, @va_nom_mod,@va_ide_doc,@va_nro_tal,@va_nom_tal,
-								 @va_tip_tal,@va_nro_aut,@va_for_mat,@va_nro_cop,
-								 @va_fir_ma1,@va_fir_ma2,@va_fir_ma3,@va_fir_ma4,@va_for_log,@va_est_ado)
-	
+	--** Obtiene los datos del Talonario
+	DECLARE vc_tal_doc CURSOR LOCAL FOR
+	 SELECT va_ide_doc, va_nro_tal, va_nom_tal, va_tip_tal, 
+	        va_nro_aut, va_for_mat, va_nro_cop, va_fir_ma1, 
+			va_fir_ma2, va_fir_ma3, va_fir_ma4, va_for_log, 
+			va_est_ado
+	   FROM ads004
+	  WHERE va_ide_doc = @va_ide_doc
+	    AND va_est_ado LIKE '%' + RTRIM(@ar_est_ado)
+
+	--** Abre Cursor	  
+	OPEN vc_tal_doc    
+	--** Lee el primer registro
+	FETCH NEXT FROM vc_tal_doc INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal, 
+	                                @va_nro_aut, @va_for_mat, @va_nro_cop, @va_fir_ma1, 
+			                        @va_fir_ma2, @va_fir_ma3, @va_fir_ma4, @va_for_log, 
+			                        @va_est_tal
+	WHILE (@@FETCH_STATUS = 0)
+	BEGIN
+
+	    SET @va_est_ado = ''
+		IF (@va_est_tal = 'H')
+			SET @va_est_ado = 'Habilitado'
+		IF (@va_est_tal = 'N')
+			SET @va_est_ado = 'Deshabilitado'
+		
+		--** Inserta en la Tabla Temporal
+		INSERT INTO #tm_tal_doc VALUES (@va_ide_doc, @va_nom_doc, @va_nro_tal, @va_nom_tal, 
+		                                @va_tip_tal, @va_nro_aut, @va_for_mat, @va_nro_cop, 
+										@va_fir_ma1, @va_fir_ma2, @va_fir_ma3, @va_fir_ma4, 
+										@va_for_log, @va_est_ado)
 
 
-	FETCH NEXT FROM vc_tal_ona INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal , @va_nro_aut, @va_for_mat,@va_nro_cop,
-								@va_fir_ma1, @va_fir_ma2, @va_fir_ma3,@va_fir_ma4,@va_for_log,@va_est_ado	
+		--** Lee el siguiente registro
+		FETCH NEXT FROM vc_tal_doc INTO @va_ide_doc, @va_nro_tal, @va_nom_tal, @va_tip_tal, 
+										@va_nro_aut, @va_for_mat, @va_nro_cop, @va_fir_ma1, 
+										@va_fir_ma2, @va_fir_ma3, @va_fir_ma4, @va_for_log, 
+										@va_est_tal
+	END	
+	--** Termina y Destruye Cursor
+	CLOSE vc_tal_doc
+	DEALLOCATE vc_tal_doc
+
+	--** Lee el siguiente registro
+	FETCH NEXT FROM vc_def_doc INTO @va_ide_doc, @va_nom_doc
 END	
 
-CLOSE vc_tal_ona
-DEALLOCATE vc_tal_ona
+--** Termina y Destruye Cursor
+CLOSE vc_def_doc
+DEALLOCATE vc_def_doc
 
-SELECT *
-FROM #ADS004
-
-RETURN
-
-END TRY
-BEGIN CATCH
-	
-	SET @msg = 'Error: ' + ERROR_MESSAGE() + ' (l°nea ' + CONVERT(NVARCHAR(255), ERROR_LINE() ) + ').'
-	RAISERROR(@msg,16,1)
-    --Rollback TRAN TR_inv100
-	RETURN
-END CATCH	   
-
-GO  
+--** Devuelve datos
+SELECT va_ide_doc, va_nom_doc, va_nro_tal, va_nom_tal, 
+	   va_tip_tal, va_nro_aut, va_for_mat, va_nro_cop, 
+	   va_fir_ma1, va_fir_ma2, va_fir_ma3, va_fir_ma4, 
+	   va_for_log, va_est_ado 
+  FROM #tm_tal_doc
+  ORDER BY va_ide_doc, va_nro_tal
+  
 /*
 ARCHIVO: ads005_01a_p01.sql
 PROCEDIMIENTO: BUSCA NUMERACION
@@ -6309,6 +6572,60 @@ DEALLOCATE cv_ite_ped
 SELECT va_ide_usr, va_ide_apl
  FROM #tm_apl_aut
   
+/***********************************************************************/
+/*	ARCHIVO: ads011_01a_p01.sql                                        */
+/*	PROCEDIMIENTO: REGISTRA OPCIONES DEL MENU                          */
+/*      ARGUMENTO: @ar_nom_frm  VARCHAR(10) --** Nombre Formulario     */
+/*                 @ar_ide_men  VARCHAR(10) --** ID. Menu Formulario   */
+/*                 @ar_tex_men  VARCHAR(10) --** Texto Menu Formulario */
+/*                 @ar_des_men  VARCHAR(10) --** Descripci¢n           */
+/*                 @ar_ide_pad  VARCHAR(10) --** ID. Menu Padre        */
+/*	AUTOR:	CREARSIS(JEJR)        FECHA : 19/08/2022                   */
+/***********************************************************************/
+
+/* Verifica si el procedimiento se encuentra creado */
+if exists (select * from sysobjects where id = object_id('dbo.ads011_01a_p01') and sysstat & 0xf = 4)
+	drop procedure dbo.ads011_01a_p01
+GO
+
+CREATE PROCEDURE ads011_01a_p01		@ar_nom_frm  VARCHAR(10),  @ar_ide_men  VARCHAR(10),
+									@ar_tex_men  VARCHAR(10),  @ar_des_men  VARCHAR(10),
+									@ar_ide_pad  VARCHAR(10)   WITH ENCRYPTION AS
+
+DECLARE     @va_nro_reg  INT
+
+--** Inhabilita mensajes numero de filas afectadas
+SET NOCOUNT ON
+
+--** Verifica si el registro ya se encuentra en la bd
+SET @va_nro_reg = 0
+SELECT @va_nro_reg = COUNT(*)
+  FROM ads011
+ WHERE va_nom_frm = @ar_nom_frm
+   AND va_ide_men = @ar_ide_men
+
+--** Si no se encuentra lo registra, sino lo actualiza
+IF (@va_nro_reg = 0)
+BEGIN
+	--** Registra Menu
+	INSERT INTO ads011 VALUES (@ar_nom_frm, @ar_ide_men, @ar_tex_men, @ar_des_men, @ar_ide_pad)
+	IF (@@ERROR > 0)
+		RETURN 0
+END	
+ELSE
+BEGIN
+	--** Actualiza Menu
+	UPDATE ads011 SET va_tex_men = @ar_tex_men,
+	                  va_des_men = @ar_des_men,
+					  va_ide_pad = @ar_ide_pad
+			    WHERE va_nom_frm = @ar_nom_frm
+				  AND va_ide_men = @ar_ide_men
+	IF (@@ERROR > 0)
+		RETURN 0
+END
+
+--** Todo OK
+RETURN 1  
 /*
 ARCHIVO: ads016_02a_p01.sql
 PROCEDIMIENTO: REGISTRA GESTION PERIODO por primera vez
@@ -11778,7 +12095,7 @@ BEGIN TRY
 		 
 	 SELECT inv001.va_ide_gru,
             inv001.va_nom_gru, inv001.va_des_gru, inv001.va_est_ado
-	  FROM	inv001 , ads001
+	  FROM	inv001 
 	 WHERE (inv001.va_est_ado LIKE @va_est_ado)
 	
 END TRY
@@ -11790,7 +12107,8 @@ BEGIN CATCH
 	RETURN
 END CATCH	   
 
-GO  
+GO
+  
 /*
 ARCHIVO: inv002_04a_p01.sql
 PROCEDIMIENTO: HABILITA BODEGA

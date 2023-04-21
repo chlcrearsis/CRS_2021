@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using CRS_NEG;
 using CRS_PRE.INV;
 
-namespace CRS_PRE.CMR
+namespace CRS_PRE
 {
     public partial class cmr002_02b : Form
     {
@@ -214,7 +214,7 @@ namespace CRS_PRE.CMR
                         decimal pmx_inc = decimal.Parse(dg_res_ult.Rows[i].Cells["va_pmx_inc"].Value.ToString());
 
 
-                        o_cmr002.Fe_crea(nro_lis,tb_cod_pro.Text,pre_cio,pmx_des, pmx_inc);
+                        o_cmr002.Fe_nue_reg(nro_lis,tb_cod_pro.Text,pre_cio,pmx_des, pmx_inc);
 
                     }
                      MessageBox.Show("Los datos se grabaron correctamente", "Define precio", MessageBoxButtons.OK);

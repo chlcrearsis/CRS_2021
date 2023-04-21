@@ -111,7 +111,7 @@
             this.mn_ant_pag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.mn_ant_pag.Image = global::CRS_PRE.Properties.Resources.anterior;
             this.mn_ant_pag.Name = "mn_ant_pag";
-            this.mn_ant_pag.Size = new System.Drawing.Size(28, 23);
+            this.mn_ant_pag.Size = new System.Drawing.Size(12, 23);
             this.mn_ant_pag.Text = "anterior";
             this.mn_ant_pag.Click += new System.EventHandler(this.Mn_ant_pag_Click);
             // 

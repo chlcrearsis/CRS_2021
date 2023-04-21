@@ -42,5 +42,6 @@ INSERT INTO ads013 VALUES (1,16,'UsrLicAct', 2, '', 15360,0)	-- Cantidad de Lice
 INSERT INTO ads013 VALUES (1,17,'FecLicAct', 1, '21260026', 0, 0) -- Cadena encriptada de la licencia que contiene la fecha de expiracion
 INSERT INTO ads013 VALUES (1,100,'Version del sistema',1,'1.0.0',0,0)
 INSERT INTO ads013 VALUES (3,1,'Formulario Ventas',1,'Normal',0,0) -- 1 = Normal ; 2= Tactil
+INSERT INTO ads013 VALUES (3,2,'Productos Farmacia',2,'Normal',0,0) -- 1 = Normal ; 2= Farmacia
 
 GO

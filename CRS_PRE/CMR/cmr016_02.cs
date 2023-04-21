@@ -97,7 +97,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
             {
                 //Registrar 
-                o_cmr016.Fe_crea(int.Parse(tb_cod_act.Text), tb_nom_act.Text);
+                o_cmr016.Fe_nue_reg(int.Parse(tb_cod_act.Text), tb_nom_act.Text);
                 frm_pad.Fe_act_frm(int.Parse(tb_cod_act.Text));
 
                 MessageBox.Show("Los datos se grabaron correctamente", "Nueva Actividad económica", MessageBoxButtons.OK);

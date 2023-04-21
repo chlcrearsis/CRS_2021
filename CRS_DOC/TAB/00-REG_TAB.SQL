@@ -1,18 +1,19 @@
 /*--**********************************************
 ARCHIVO:	adp001.sql	
 TABLA:		Tabla de "Grupo de Persona"
-AUTOR:		CREARSIS 3.0.0 (LEO)
+AUTOR:		CREARSIS 3.0.0 (JEJR)
 FECHA:		03-01-2018
 */--**********************************************
 
+PRINT 'adp001 : Grupo Persona'
 CREATE TABLE adp001 
 (
---** Llave Primaria
-va_cod_gru		TINYINT			NOT NULL,		--** Codigo de Grupo de persona (2 NUMEROS)
+	--** Llave Primaria
+	va_cod_gru	INT			 NOT NULL DEFAULT(0),	--** Codigo de Grupo de persona
 
---** Atributos     
-va_nom_gru		VARCHAR(50)	    NOT NULL,		--** Nombre de Grupo de persona
-va_est_ado      CHAR(01)        NOT NULL,       --** Estadoo
+	--** Atributos     
+	va_nom_gru	VARCHAR(50)	 NOT NULL DEFAULT(''),	--** Nombre de Grupo de persona
+	va_est_ado  CHAR(01)     NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp001 PRIMARY KEY(va_cod_gru)
 )
@@ -27,56 +28,55 @@ INSERT INTO adp001 VALUES (40, 'Socios', 'H')
   
 /*--**********************************************
 ARCHIVO:	adp002.sql	
-TABLA:		Tabla de "Persona"
-AUTOR:		CREARSIS 3.0.0
+TABLA:		Tabla de "Registro Persona"
+AUTOR:		CREARSIS 3.0.0 (JEJR)
 FECHA:		03-01-2018
 */--**********************************************
 	 
+PRINT 'adp002 : Registro Persona'
 CREATE TABLE adp002 
 (
 	--** Llave Primaria
-	va_cod_per  INT			NOT NULL DEFAULT(0),	--** Codigo Persona (2 de Grup. Per y 5 de Persona)
+	va_cod_per  INT			 NOT NULL DEFAULT(0),	--** Codigo Persona (2 de Grup. Per y 5 de Persona)
 
 	--** Llave Secundaria
-	va_cod_gru	TINYINT		NOT NULL DEFAULT(0),	--** Cod Grupo Persona
+	va_cod_gru	INT	   	     NOT NULL DEFAULT(0),	--** Cod Grupo Persona
 																
 	--** Atributos
-	va_tip_per  CHAR(01)    NOT NULL DEFAULT(''),   --** Tipo de Cliente (P=Particular; E=Empresa)
-	va_nom_bre  VARCHAR(30) NOT NULL DEFAULT(''),   --** Nombre
-	va_ape_pat  VARCHAR(20) NOT NULL DEFAULT(''),   --** Apellido Paterno
-	va_ape_mat  VARCHAR(20) NOT NULL DEFAULT(''),   --** Apellido Materno
-	va_raz_soc	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Razon Social
-	va_nom_fac	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Nombre a Facturar
-	va_ruc_nit	BIGINT      NOT NULL DEFAULT(0),	--** RUC/NIT
-	va_sex_per  CHAR(01)    NOT NULL DEFAULT(''),   --** Sexo (H=Hombre; M=Mujer)   
-	va_tip_doc  INT         NOT NULL DEFAULT(0),    --** Tipo Documento	
-	va_nro_doc	BIGINT      NOT NULL DEFAULT(0),	--** Carnet de Identidad	
-	va_tel_per	VARCHAR(15)	NOT NULL DEFAULT(''),	--** Telefono Personal
-	va_cel_ula	VARCHAR(15)	NOT NULL DEFAULT(''),	--** Telefono Celular
-	va_tel_fij	VARCHAR(15)	NOT NULL DEFAULT(''),	--** Telefono Fijo
-	va_dir_pri	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Direccion Principal
-	va_dir_ent	VARCHAR(80)	NOT NULL DEFAULT(''),	--** Direccion de Entrega
-	va_ema_per	VARCHAR(30)	NOT NULL DEFAULT(''),	--** Email
+	va_tip_per  CHAR(01)     NOT NULL DEFAULT(''),  --** Tipo de Cliente (P=Particular; E=Empresa)
+	va_nom_bre  VARCHAR(30)  NOT NULL DEFAULT(''),  --** Nombre
+	va_ape_pat  VARCHAR(20)  NOT NULL DEFAULT(''),  --** Apellido Paterno
+	va_ape_mat  VARCHAR(20)  NOT NULL DEFAULT(''),  --** Apellido Materno
+	va_raz_soc	VARCHAR(80)	 NOT NULL DEFAULT(''),	--** Razon Social
+	va_nom_fac  VARCHAR(120) NOT NULL DEFAULT(''),  --** Nombre a Facturar
+	va_ruc_nit	BIGINT       NOT NULL DEFAULT(0),	--** RUC/NIT
+	va_sex_per  CHAR(01)     NOT NULL DEFAULT(''),  --** Sexo (H=Hombre; M=Mujer)
+	va_fec_nac  DATETIME,                           --** Fecha de Nacimiento
+	va_tip_doc  CHAR(02)     NOT NULL DEFAULT(''),  --** Tipo Documento	
+	va_nro_doc	BIGINT       NOT NULL DEFAULT(0),	--** Carnet de Identidad
+	va_ext_doc  CHAR(02)     NOT NULL DEFAULT(''),  --** Extensión Documento	
+	va_tel_per	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** Telefono Personal
+	va_cel_ula	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** Telefono Celular
+	va_tel_fij	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** Telefono Fijo
+	va_dir_pri	VARCHAR(120) NOT NULL DEFAULT(''),	--** Direccion Principal
+	va_dir_ent	VARCHAR(120) NOT NULL DEFAULT(''),	--** Direccion de Entrega
+	va_ema_ail	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Email
 	va_ubi_gps	GEOGRAPHY,		                    --** Ubicación Geografica
-
-	-- Llaves FOraneas
-	va_cod_lpr	INT					 DEFAULT(0),	--** Codigo de lista de precio(8 numeros)
-	va_cod_ven	SMALLINT			 DEFAULT(0),	--** Codigo de Vendedor asociado(4 numeros)
-	   	    	  	   		
-	va_est_ado	CHAR(1)		NOT NULL DEFAULT(''),	--** Estado(H=Habilitado; N=Deshabilitado)
+	va_cod_ven	INT			 NOT NULL DEFAULT(0),	--** Código de Vendedor Asignado
+	va_cod_cob	INT			 NOT NULL DEFAULT(0),	--** Código de Cobrador Asignado	   	    	  	   		
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado(H=Habilitado; N=Deshabilitado)
      
-CONSTRAINT pk1_adp002 PRIMARY KEY(va_cod_per, va_cod_gru)
-  
+CONSTRAINT pk1_adp002 PRIMARY KEY(va_cod_per)
 )
-GO
-           
+GO      
 /*--**********************************************
 ARCHIVO:	adp003.sql	
 TABLA:		Tabla de "Tipo de atributos"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+AUTOR:		CREARSIS 3.0.0 (JEJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'adp003 : Tipo de atributos'
 CREATE TABLE adp003 
 (
 	--** Llave Primaria
@@ -99,25 +99,26 @@ INSERT INTO adp003 VALUES (3, 'Sector', 2, 'H')
 INSERT INTO adp003 VALUES (4, 'Canal', 99, 'H')
 INSERT INTO adp003 VALUES (5, 'Calificación', 1, 'H')
 INSERT INTO adp003 VALUES (6, 'Profesión', 99, 'H')
-INSERT INTO adp003 VALUES (12, 'Distribuidor', 1, 'H')
-INSERT INTO adp003 VALUES (13, 'Despacho', 1, 'H')
+INSERT INTO adp003 VALUES (7, 'Distribuidor', 1, 'H')
+INSERT INTO adp003 VALUES (8, 'Despacho', 1, 'H')
   
 /*--**********************************************
 ARCHIVO:	adp004.sql	
-TABLA:		Tabla de "Atributos"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+TABLA:		Tabla de "Definiciones de Atributos"
+AUTOR:		CREARSIS 3.0.0 (JEJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'adp004 : Definiciones de Atributos'
 CREATE TABLE adp004 
 (
---** Llave Primaria
-va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de atributo
-va_ide_atr		INT				NOT NULL	DEFAULT(0),			--** ID. Atributo
+	--** Llave Primaria
+	va_ide_tip	INT			 NOT NULL DEFAULT(0),	--** ID. tipo de atributo
+	va_ide_atr	INT			 NOT NULL DEFAULT(0),	--** ID. Atributo
 
---** Atributos     
-va_nom_atr      VARCHAR(30)     NOT NULL,       --** Nombre
-va_est_ado      CHAR(01)				        --** Estado
+	--** Atributos     
+	va_nom_atr  VARCHAR(30)	 NOT NULL DEFAULT(''),  --** Nombre Atributo
+	va_est_ado  CHAR(01)	 NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp004 PRIMARY KEY(va_ide_tip, va_ide_atr)
 )
@@ -187,69 +188,57 @@ INSERT INTO adp004 VALUES (6, 9, 'Empleado', 'H')
 INSERT INTO adp004 VALUES (6, 10, 'Militar', 'H')
 INSERT INTO adp004 VALUES (6, 99, 'N/A', 'H')
 
---** Inserta Atributos : Vendedor
-INSERT INTO adp004 VALUES (10, 1, 'Vendedor 1', 'H')
-INSERT INTO adp004 VALUES (10, 2, 'Vendedor 2', 'H')
-INSERT INTO adp004 VALUES (10, 3, 'Vendedor 3', 'H')
-INSERT INTO adp004 VALUES (10, 99, 'N/A', 'H')
-
---** Inserta Atributos : Cobrador
-INSERT INTO adp004 VALUES (11, 1, 'Cobrador 1', 'H')
-INSERT INTO adp004 VALUES (11, 2, 'Cobrador 2', 'H')
-INSERT INTO adp004 VALUES (11, 3, 'Cobrador 3', 'H')
-INSERT INTO adp004 VALUES (11, 99, 'N/A', 'H')
-
 --** Inserta Atributos : Distribuidor
-INSERT INTO adp004 VALUES (12, 1, 'Distribuidor 1', 'H')
-INSERT INTO adp004 VALUES (12, 2, 'Distribuidor 2', 'H')
-INSERT INTO adp004 VALUES (12, 3, 'Distribuidor 3', 'H')
-INSERT INTO adp004 VALUES (12, 99, 'N/A', 'H')
+INSERT INTO adp004 VALUES (7, 1, 'Distribuidor 1', 'H')
+INSERT INTO adp004 VALUES (7, 2, 'Distribuidor 2', 'H')
+INSERT INTO adp004 VALUES (7, 3, 'Distribuidor 3', 'H')
+INSERT INTO adp004 VALUES (7, 99, 'N/A', 'H')
 
 --** Inserta Atributos : Despacho
-INSERT INTO adp004 VALUES (13, 1, 'Despacho 1', 'H')
-INSERT INTO adp004 VALUES (13, 2, 'Despacho 2', 'H')
-INSERT INTO adp004 VALUES (13, 3, 'Despacho 3', 'H')
-INSERT INTO adp004 VALUES (13, 99, 'N/A', 'H')  
+INSERT INTO adp004 VALUES (8, 1, 'Despacho 1', 'H')
+INSERT INTO adp004 VALUES (8, 2, 'Despacho 2', 'H')
+INSERT INTO adp004 VALUES (8, 3, 'Despacho 3', 'H')
+INSERT INTO adp004 VALUES (8, 99, 'N/A', 'H')  
 /*--**********************************************
 ARCHIVO:	adp005.sql	
 TABLA:		Tabla de "Atributos por persona"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+AUTOR:		CREARSIS 3.0.0 (JEJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'adp005 : Atributos por persona'
 CREATE TABLE adp005 
 (
---** Llave Primaria
-va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de atributo
-va_ide_atr		INT				NOT NULL	DEFAULT(0),			--** ID. Atributo
-va_cod_per		INT				NOT NULL	DEFAULT(0),			--** Codigo Persona (2 de Grup. Per y 5 de Persona)
+	--** Llave Primaria
+	va_cod_per	INT			 NOT NULL DEFAULT(0),	--** Codigo Persona
+	va_ide_tip	INT			 NOT NULL DEFAULT(0),	--** ID. tipo de atributo
+	va_ide_atr	INT			 NOT NULL DEFAULT(0),	--** ID. Atributo
 
-CONSTRAINT pk1_adp005 PRIMARY KEY(va_ide_tip, va_ide_atr, va_cod_per)
+CONSTRAINT pk1_adp005 PRIMARY KEY(va_cod_per, va_ide_tip, va_ide_atr)
 )
 GO
-
-
-
   
 /*--**********************************************
 ARCHIVO:	adp006.sql	
-TABLA:		Tabla de "imagenes por persona"
-AUTOR:		CREARSIS 3.0.0 (CHL)
-FECHA:		25-08-2021
+TABLA:		Tabla de "Imagenes por Persona"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		25-10-2021
 */--**********************************************
 
+PRINT 'adp006 : Imagenes por Persona'
 CREATE TABLE adp006 
 (
---** Llave Primaria
-va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de imagen
-va_cod_per		INT				NOT NULL	DEFAULT(0),			--** Codigo Persona (2 de Grup. Per y 5 de Persona)
+	--** Llave Primaria
+	va_cod_per	INT				NOT NULL DEFAULT(0),	--** Codigo Persona
+	va_ide_tip	CHAR(02)		NOT NULL DEFAULT(0),	--** ID. Tipo de Imagen
 
---** Atributos
-va_img_arc		VARBINARY(MAX)	NOT NULL	,					--** Archivo
-va_ext_arc		CHAR(05)		NOT NULL	DEFAULT(''),		--** Extencion del archivo (JPG, JPEG, BMP, PNG, PDF)
-va_tam_arc		VARCHAR(10)		NOT NULL	DEFAULT(''),		--** Tamaño del archivo
-va_fec_reg		DATETIME		NOT NULL	,					--** Fecha y hora de registro
-va_ide_usr 		VARCHAR(15) 	NOT NULL						--** Identificador Usuario
+	--** Atributos
+	va_img_arc	VARBINARY(MAX)	NOT NULL,				--** Archivo
+	va_ext_arc	CHAR(05)		NOT NULL DEFAULT(''),	--** Extencion del archivo (JPG, JPEG, BMP, PNG, PDF)
+	va_tam_arc	DECIMAL(10, 2)	NOT NULL DEFAULT(0),	--** Tamaño del archivo
+	va_ide_usr 	VARCHAR(15) 	NOT NULL DEFAULT(''),	--** ID. Usuario Registro
+	va_fec_reg	DATETIME		NOT NULL,				--** Fecha y hora de registro
+	va_nom_equ  VARCHAR(30)     NOT NULL DEFAULT(''),   --** Nombre de la PC O Celular
 
 CONSTRAINT pk1_adp006 PRIMARY KEY(va_ide_tip, va_cod_per)
 )
@@ -257,23 +246,25 @@ GO
 
 
 
+
   
 /*--**********************************************
 ARCHIVO:	adp007.sql	
-TABLA:		Tabla de "Rutas"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+TABLA:		Tabla de "Definiciones de Rutas"
+AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'adp007 : Definiciones de Rutas'
 CREATE TABLE adp007 
 (
---** Llave Primaria
-va_ide_rut		INT				NOT NULL	DEFAULT(0),			--** ID. Ruta
+	--** Llave Primaria
+	va_ide_rut	INT			 NOT NULL DEFAULT(0),	--** ID. Ruta
 
---** Atributos
-va_nom_rut		VARCHAR(30)		NOT NULL	DEFAULT(''),		--** Nombre de la ruta
-va_nom_cor		VARCHAR(15)		NOT NULL	DEFAULT(''),		--** Nombre corto
-va_est_ado		CHAR(01)		NOT NULL	DEFAULT('')		--** Estado (H=habilitado; N= deshabilitado)
+	--** Atributos
+	va_nom_rut	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre de la ruta
+	va_nom_cor	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** Nombre corto
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT('')	--** Estado (H=habilitado; N= deshabilitado)
 
 CONSTRAINT pk1_adp007 PRIMARY KEY(va_ide_rut)
 )
@@ -294,23 +285,66 @@ GO
   
 /*--**********************************************
 ARCHIVO:	adp008.sql	
-TABLA:		Tabla de "imagenes por persona"
-AUTOR:		CREARSIS 3.0.0 (CHL)
-FECHA:		25-08-2021
+TABLA:		Tabla de "Rutas p/Persona"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		03-01-2018
 */--**********************************************
 
+PRINT 'adp008 : Rutas p/Persona'
 CREATE TABLE adp008 
 (
---** Llave Primaria
-va_ide_rut		INT				NOT NULL	DEFAULT(0),			--** ID. Ruta
-va_cod_per		INT				NOT NULL	DEFAULT(0),			--** Codigo Persona (2 de Grup. Per y 5 de Persona)
+	--** Llave Primaria
+	va_cod_per  INT	NOT NULL DEFAULT(0),  --** Codigo Persona
+	va_ide_rut	INT	NOT NULL DEFAULT(0)   --** ID. Ruta
 
-CONSTRAINT pk1_adp008 PRIMARY KEY(va_ide_rut, va_cod_per)
+CONSTRAINT pk1_adp008 PRIMARY KEY(va_cod_per, va_ide_rut)
 )
 GO
 
 
 
+
+  
+/*--**********************************************
+ARCHIVO:	adp009.sql	
+TABLA:		Tabla de "Permiso Lista de Precio p/Persona"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		03-01-2018
+*/--**********************************************
+
+PRINT 'adp009 : Permiso Lista de Precio p/Persona'
+CREATE TABLE adp009 
+(
+	--** Llave Primaria
+	va_cod_per  INT	NOT NULL DEFAULT(0),  --** Codigo Persona
+	va_cod_lis	INT	NOT NULL DEFAULT(0),  --** Codigo del la lista
+
+CONSTRAINT pk1_adp009 PRIMARY KEY(va_cod_per, va_cod_lis)
+)
+GO
+  
+/*--**********************************************
+ARCHIVO:	adp010.sql	
+TABLA:		Tabla de "Descuento General p/Persona"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		14-07-2022
+*/--**********************************************
+
+PRINT 'adp010 : Descuento General p/Persona'
+CREATE TABLE adp010 
+(
+	--** Llave Primaria
+	va_cod_per	INT			 NOT NULL DEFAULT(0),	--** Codigo Persona (2 de Grup. Per y 5 de Persona)
+
+	--** Atributos     
+	va_tip_fac	CHAR(01)	 NOT NULL DEFAULT(''),	--** p/Factura (S=Si; N=No)
+	va_tip_ndv	CHAR(01)	 NOT NULL DEFAULT(''),	--** p/Nota de Venta (S=Si; N=No)
+	va_por_con  DEC(14,2)    NOT NULL DEFAULT(0),   --** Porcentajde de Descuento al Contado
+	va_por_cre  DEC(14,2)    NOT NULL DEFAULT(0),   --** Porcentajde de Descuento al Crédito
+
+CONSTRAINT pk1_adp010 PRIMARY KEY(va_cod_per)
+)
+GO
   
 /*--**********************************************
 ARCHIVO:	adp010.sql	
@@ -340,19 +374,72 @@ CONSTRAINT pk1_adp010 PRIMARY KEY(va_cod_per,va_cod_con)
 GO
   
 /*--**********************************************
+ARCHIVO:	adp012.sql	
+TABLA:		Tabla de "Asig. Grupo Empresarial"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		25-08-2021
+*/--**********************************************
+
+PRINT 'adp012 : Asig. Grupo Empresarial'
+CREATE TABLE adp012 
+(
+	--** Llave Primaria
+	va_cod_per  INT	NOT NULL DEFAULT(0),	--** Codigo Persona
+	va_gru_emp	INT	NOT NULL DEFAULT(0),	--** Codigo Grupo Empresarial
+
+CONSTRAINT pk1_adp012 PRIMARY KEY(va_cod_per, va_gru_emp)
+)
+GO
+  
+/*--**********************************************
+ARCHIVO:	adp013.sql	
+TABLA:		Tabla de "Contactos p/Persona"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		03-01-2018
+*/--**********************************************
+
+PRINT 'adp013 : Contactos p/Persona'	 
+CREATE TABLE adp013 
+(
+	--** Llave Primaria
+	va_cod_per  INT			 NOT NULL DEFAULT(0),	 --** Código Persona (2 de Grup. Per y 5 de Persona)
+	va_cod_con  INT			 NOT NULL DEFAULT(0),	 --** Código Contacto
+																
+	--** Atributos
+	va_nom_bre  VARCHAR(30)  NOT NULL DEFAULT(''),   --** Nombre
+	va_ape_pat  VARCHAR(20)  NOT NULL DEFAULT(''),   --** Apellido Paterno
+	va_ape_mat  VARCHAR(20)  NOT NULL DEFAULT(''),   --** Apellido Materno
+	va_nro_cid  VARCHAR(10)  NOT NULL DEFAULT(''),   --** Nro. Carnet de Identida
+	va_ext_doc  CHAR(02)     NOT NULL DEFAULT(''),   --** Extensión Documento	
+	va_sex_con  CHAR(01)     NOT NULL DEFAULT(''),   --** Sexo (H=Hombre; M=Mujer)
+	va_fec_nac  DATETIME,                            --** Fecha de Nacimiento
+	va_par_con  CHAR(15)     NOT NULL DEFAULT(''),   --** Parentesco	
+	va_tel_per	VARCHAR(15)	 NOT NULL DEFAULT(''),	 --** Telefono Personal
+	va_cel_ula	VARCHAR(15)	 NOT NULL DEFAULT(''),	 --** Telefono Celular
+	va_ema_ail	VARCHAR(30)	 NOT NULL DEFAULT(''),	 --** Email
+	va_dir_ubi	VARCHAR(120) NOT NULL DEFAULT(''),	 --** Direccion Ubicación
+	va_obs_con  VARCHAR(160) NOT NULL DEFAULT(''),   --** Observación
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	 --** Estado(H=Habilitado; N=Deshabilitado)
+     
+CONSTRAINT pk1_adp013 PRIMARY KEY(va_cod_per, va_cod_con)
+)
+GO      
+/*--**********************************************
 ARCHIVO:	adp014.sql	
 TABLA:		Tabla de "Tipo de Documento"
 AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		15-09-2021
 */--**********************************************
 
+PRINT 'adp014 : Tipo de Documento'	
 CREATE TABLE adp014 
 (
 	--** Llave Primaria
-	va_ide_tip  INT		    NOT NULL DEFAULT(0),	--** ID. Tipo de Documento
+	va_ide_tip  CHAR(02)    NOT NULL DEFAULT(''),	--** ID. Tipo de Documento
 
 	--** Atributos     
-	va_nom_tip  VARCHAR(30) NOT NULL DEFAULT(''),   --** Nombre
+	va_des_tip  VARCHAR(30) NOT NULL DEFAULT(''),   --** Nombre
+	va_ext_doc  CHAR(01)    NOT NULL DEFAULT(''),   --** Usa Extension Documento (S=Si; N=No)
 	va_est_ado  CHAR(01)    NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp014 PRIMARY KEY(va_ide_tip)
@@ -361,492 +448,783 @@ GO
 
 
 --** Inserta los tipo de atributos iniciales
-INSERT INTO adp014 VALUES (1, 'Carnet de Identidad', 'H')
-INSERT INTO adp014 VALUES (2, 'Licencia de Conducir', 'H')
-INSERT INTO adp014 VALUES (3, 'Libreta Servicio Militar', 'H')
-INSERT INTO adp014 VALUES (4, 'Pasaporte', 'H')
+INSERT INTO adp014 VALUES ('CI', 'Carnet de Identidad', 'S', 'H')
+INSERT INTO adp014 VALUES ('LC', 'Licencia de Conducir', 'S', 'H')
+INSERT INTO adp014 VALUES ('SM', 'Libreta Servicio Militar', 'N', 'H')
+INSERT INTO adp014 VALUES ('PS', 'Pasaporte', 'N', 'H')  
+/*--**********************************************
+ARCHIVO:	adp015.sql	
+TABLA:		Tabla de "Validación Registro de Persona"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		15-09-2021
+*/--**********************************************
+
+PRINT 'adp015 : Validación Registro de Persona'	
+CREATE TABLE adp015 
+(
+	--** Llave Primaria
+	va_nom_col  CHAR(10)    NOT NULL DEFAULT(''),	--** Nombre Columna
+
+	--** Atributos     
+	va_ide_col  INT         NOT NULL DEFAULT(0),    --** Identificador Columna
+	va_des_col  VARCHAR(30) NOT NULL DEFAULT(''),   --** Descripción
+	va_dat_req  CHAR(01)    NOT NULL DEFAULT(''),   --** Dato Requerido (S=Si; N=No)
+
+CONSTRAINT pk1_adp015 PRIMARY KEY(va_nom_col)
+)
+GO
+
+
+--** Inserta los tipo de atributos iniciales
+INSERT INTO adp015 VALUES ('va_raz_soc', 1,  'Razón Social', 'S')
+INSERT INTO adp015 VALUES ('va_nom_fac', 2,  'Facturar a', 'S')
+INSERT INTO adp015 VALUES ('va_ruc_nit', 3,  'RUC/NIT', 'N')
+INSERT INTO adp015 VALUES ('va_nom_bre', 4,  'Nombre', 'S')
+INSERT INTO adp015 VALUES ('va_ape_pat', 5,  'Apellido Paterno', 'S')
+INSERT INTO adp015 VALUES ('va_ape_mat', 6,  'Apellido Materno', 'S')
+INSERT INTO adp015 VALUES ('va_nro_doc', 7,  'Nro. Documento', 'N')
+INSERT INTO adp015 VALUES ('va_fec_nac', 8,  'Fecha de Nacimiento', 'N')
+INSERT INTO adp015 VALUES ('va_tel_per', 9,  'Teléfono Personal', 'N')
+INSERT INTO adp015 VALUES ('va_cel_ula', 10, 'Teléfono Celular', 'N')
+INSERT INTO adp015 VALUES ('va_tel_fij', 11, 'Teléfono Fijo', 'N')
+INSERT INTO adp015 VALUES ('va_ema_ail', 12, 'Email', 'N')
+INSERT INTO adp015 VALUES ('va_dir_pri', 13, 'Dirección', 'N')
+INSERT INTO adp015 VALUES ('va_dir_ent', 14, 'Dirección de Entrega', 'N')
+  
+/*--************************************************************************
+ARCHIVO:	adp016.sql	
+TABLA:		Tabla de "Inscripción Automatica Libreta p/Grupo de Persona"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		08-11-2021
+*/--************************************************************************
+
+PRINT 'adp016 : Inscripción Automatica Libreta p/Grupo de Persona'	
+CREATE TABLE adp016 
+(
+	--** Llave Primaria
+	va_cod_gru	INT	NOT NULL DEFAULT(0),	--** Codigo de Grupo de persona
+	va_cod_lib	INT	NOT NULL DEFAULT(0),	--** Código de la Libreta
+
+CONSTRAINT pk1_adp016 PRIMARY KEY(va_cod_gru, va_cod_lib)
+)
+GO  
+/*--**********************************************
+ARCHIVO:	adp017.sql	
+TABLA:		Tabla de "Relación Contacto de Persona"
+AUTOR:		CREARSIS 3.0.0
+FECHA:		11-11-2021
+*/--**********************************************
+
+PRINT 'adp017 : Relación Contacto de Persona'	
+CREATE TABLE adp017 
+(
+	--** Llave Primaria
+	va_ide_rel	INT			  NOT NULL DEFAULT(0),		--** ID. Relacion Contacto
+
+	--** Atributos     
+	va_nre_hom	NVARCHAR(20)  NOT NULL DEFAULT(''),		--** Nombre Relación p/Hombre
+	va_nre_muj	NVARCHAR(20)  NOT NULL DEFAULT(''),		--** Nombre Relación p/Mujer
+	va_est_ado	CHAR(01)	  NOT NULL DEFAULT(''),		--** Estado (H=Habilitado; N=Deshabilitado)
+
+CONSTRAINT pk1_adp017 PRIMARY KEY(va_ide_rel)
+)
+GO
+
+--** Inserta Registro p/Defectos
+INSERT INTO adp017 VALUES (1, 'Ninguno', 'Ninguno', 'H')
+INSERT INTO adp017 VALUES (2, 'Esposo', 'Esposa', 'H')
+INSERT INTO adp017 VALUES (3, 'Padre', 'Madre', 'H')
+INSERT INTO adp017 VALUES (4, 'Hijo', 'Hija', 'H')
+INSERT INTO adp017 VALUES (5, 'Hermano', 'Hermana', 'H')
+INSERT INTO adp017 VALUES (6, 'Hermanastro', 'Hermanastra', 'H')
+INSERT INTO adp017 VALUES (7, 'Tio', 'Tia', 'H')
+INSERT INTO adp017 VALUES (8, 'Sobrino', 'Sobrina', 'H')
+INSERT INTO adp017 VALUES (9, 'Bisabuelo', 'Bisabuela', 'H')
+INSERT INTO adp017 VALUES (10, 'Biznieto', 'Biznieta', 'H')
+INSERT INTO adp017 VALUES (11, 'Primo', 'Prima', 'H')
+INSERT INTO adp017 VALUES (12, 'Suegro', 'Suegra', 'H')
+INSERT INTO adp017 VALUES (13, 'Cuñado', 'Cuñada', 'H')
+INSERT INTO adp017 VALUES (14, 'Amigo', 'Amiga', 'H')
+INSERT INTO adp017 VALUES (15, 'Jefe', 'Jefa', 'H')
+INSERT INTO adp017 VALUES (16, 'Socio', 'Socia', 'H')
+INSERT INTO adp017 VALUES (17, 'Profesor', 'Profesora', 'H')
+INSERT INTO adp017 VALUES (18, 'Compañero', 'Compañera', 'H')
+INSERT INTO adp017 VALUES (19, 'Entrenador', 'Entrenadora', 'H')
+INSERT INTO adp017 VALUES (20, 'Pastor', 'Pastora', 'H')
+INSERT INTO adp017 VALUES (21, 'Doctor', 'Doctora', 'H')
+INSERT INTO adp017 VALUES (22, 'Colega de Trabajo', 'Colega de Trabajo', 'H')
 
   
-/*########################################################
-ARCHIVO:	ads001.sql
-TABLA:		Modulo
-AUTOR:		CHL
-FECHA:		21/08/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	adp018.sql	
+TABLA:		Tabla de "Grupo Empresarial"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		12-11-2021
+*/--**********************************************
 
+PRINT 'adp018 : Grupo Empresarial'
+CREATE TABLE adp018 
+(
+	--** Llave Primaria
+	va_gru_emp  INT		     NOT NULL DEFAULT(0),	--** Codigo Grupo Empresarial
+
+	--** Atributos     
+	va_nom_gru  VARCHAR(40)	 NOT NULL DEFAULT(''),  --** Nombre
+	va_ban_fac  INT			 NOT NULL DEFAULT(''),  --** Datos de Facturación (0=Registro Cliente; 1=Grupo Empresarial)
+	va_nom_fac	VARCHAR(80)	 NOT NULL DEFAULT(''),	--** Nombre a Facturar
+	va_ruc_nit	BIGINT       NOT NULL DEFAULT(0),	--** RUC/NIT
+	va_dir_ent  VARCHAR(160) NOT NULL DEFAULT(''),  --** Dirección de Entregas d/Factura
+	va_est_ado  CHAR(01)     NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
+
+CONSTRAINT pk1_adp018 PRIMARY KEY(va_gru_emp)
+)
+GO  
+/*--**********************************************
+ARCHIVO:	ads001.sql	
+TABLA:		Tabla de "Módulo"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		21-08-2019
+*/--**********************************************
+
+PRINT 'ads001 : Módulo'
 CREATE TABLE ads001
 (
-va_ide_mod		INT				NOT NULL,	--Ide Modulo
-va_nom_mod		varchar(30)		NOT NULL,	--Nombre modulo
-va_abr_mod		varchar(05)		NOT NULL,	--Abrebiacion del modulo
-va_est_ado		CHAR(01)		NOT NULL,	--Estado
+	--** Llave Primaria
+	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo
+	--** Atributos
+	va_nom_mod	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre
+	va_abr_mod	VARCHAR(05)	 NOT NULL DEFAULT(''),	--** Abrebiacion
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
-
-CONSTRAINT pk1_ads001 PRIMARY KEY(va_ide_mod)
+	CONSTRAINT pk1_ads001 PRIMARY KEY(va_ide_mod)
 )
+GO
 
-go
+--** INSERTA MODULO DEL SISTEMA POR DEFECTO
+INSERT INTO ads001 VALUES (1, 'Administracion y Seguridad', 'ADS', 'H')
+INSERT INTO ads001 VALUES (2, 'Inventario', 'INV', 'H')
+INSERT INTO ads001 VALUES (3, 'Comercializacion', 'CMR', 'H')
+INSERT INTO ads001 VALUES (4, 'Exigibles', 'ECP', 'H')
+INSERT INTO ads001 VALUES (5, 'Tesoreria', 'TES', 'H')
   
-/*########################################################
-ARCHIVO:	ads002.sql
-TABLA:		Aplicaciones
-AUTOR:		CHL
-FECHA:		21/08/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads002.sql	
+TABLA:		Tabla de "Aplicaciones"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		21-08-2019
+*/--**********************************************
 
+PRINT 'ads002 : Aplicaciones'
 CREATE TABLE ads002
 (
-va_ide_mod		INT				NOT NULL,	--Ide Modulo
-va_ide_apl		VARCHAR(10)		NOT NULL,	--Ide Aplicacion
-va_nom_apl		VARCHAR(30)	NOT NULL,	--Nombre Aplicacion
-va_est_ado		CHAR(01)		NOT NULL,	--Estado
+	--** Llave Primaria
+	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo
+	va_ide_apl	VARCHAR(10)	 NOT NULL DEFAULT(''),	--** ID. Aplicacion
+	--** Atributos
+	va_nom_apl	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre Aplicación
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
-CONSTRAINT pk1_ads002 PRIMARY KEY(va_ide_mod,va_ide_apl)
+	CONSTRAINT pk1_ads002 PRIMARY KEY(va_ide_mod,va_ide_apl)
 )
+GO
 
-go
+--** INSERTA APLICACIONES DEL SISTEMA POR DEFECTO
+INSERT INTO ads002 VALUES (1, 'ads200', 'Administrador', 'H')
+INSERT INTO ads002 VALUES (2, 'inv200', 'Inventario', 'H')
+INSERT INTO ads002 VALUES (3, 'crm200', 'Comercialización', 'H')
+INSERT INTO ads002 VALUES (4, 'res200', 'Restaurant', 'H')
 
 
   
-/*########################################################
-ARCHIVO:	ads003.sql
-TABLA:		Documentos
-AUTOR:		CHL
-FECHA:		21/08/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads003.sql	
+TABLA:		Tabla de "Definición Documentos"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		21-08-2019
+*/--**********************************************
 
+PRINT 'ads003 : Definición Documentos'
 CREATE TABLE ads003
 (
-va_ide_mod		INT				NOT NULL,	--Ide Modulo
-va_ide_doc		CHAR(03)		NOT NULL,	--Ide Documento
-va_nom_doc		VARCHAR(30)		NOT NULL,	--Nombre Documento
-va_des_doc		VARCHAR(120)			,	-- Descipcion Documento
-va_est_ado		CHAR(01)		NOT NULL,	--Estado
+	--** Llave Primaria
+	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo
+	va_ide_doc	CHAR(03)	 NOT NULL DEFAULT(''),	--** ID. Documento
+	--** Atributos
+	va_nom_doc	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre
+	va_des_doc	VARCHAR(120) NOT NULL DEFAULT(''),	--** Descripción
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
-CONSTRAINT pk1_ads003 PRIMARY KEY(va_ide_mod,va_ide_doc)
+	CONSTRAINT pk1_ads003 PRIMARY KEY(va_ide_mod, va_ide_doc)
 )
+GO
 
-go
-
-
+--** INSERTA DOCUMENTOS DEL SISTEMA POR DEFECTO
 --* Modulo Inventario
-INSERT INTO ads003 VALUES(2,'CMP','Compra en Bodega','','H')
-INSERT INTO ads003 VALUES(2,'AJI','Ajuste de ingreso','','H')
-INSERT INTO ads003 VALUES(2,'AJE','Ajuste de salida','','H')
-INSERT INTO ads003 VALUES(2,'AJC','Ajuste al costo','','H')
-INSERT INTO ads003 VALUES(2,'TRA','Traspaso entre bodegas','','H')
-INSERT INTO ads003 VALUES(2,'OPD','Orden de Producción','','H')
+INSERT INTO ads003 VALUES(2, 'CMP', 'Compra en Bodega', 'Compra en Bodega', 'H')
+INSERT INTO ads003 VALUES(2, 'AJI', 'Ajuste de Ingreso', 'Ajuste de Ingreso', 'H')
+INSERT INTO ads003 VALUES(2, 'AJE', 'Ajuste de Salida', 'Ajuste de Salida', 'H')
+INSERT INTO ads003 VALUES(2, 'AJC', 'Ajuste al Costo', 'Ajuste al Costo', 'H')
+INSERT INTO ads003 VALUES(2, 'TRA', 'Traspaso entre Bodegas', 'Traspaso entre Bodegas', 'H')
+INSERT INTO ads003 VALUES(2, 'OPD', 'Orden de Producción', 'Orden de Producción', 'H')
 
 --* Modulo Comercializacion
-INSERT INTO ads003 VALUES(3,'COT','Cotizacion','','H')
-INSERT INTO ads003 VALUES(3,'PED','Pedido','','H')
-INSERT INTO ads003 VALUES(3,'VTS','Nota de venta','','H')
-INSERT INTO ads003 VALUES(3,'VTF','Factura','','H')
-INSERT INTO ads003 VALUES(3,'VRS','Nota de venta Restaurant','','H')
-INSERT INTO ads003 VALUES(3,'VRF','Factura Restaurant','','H')
-INSERT INTO ads003 VALUES(3,'CON','Nota de Consumo','','H')
+INSERT INTO ads003 VALUES(3, 'COT', 'Cotización', 'Cotización', 'H')
+INSERT INTO ads003 VALUES(3, 'PED', 'Pedido', 'Pedido', 'H')
+INSERT INTO ads003 VALUES(3, 'VTS', 'Nota de Venta', 'Nota de Venta', 'H')
+INSERT INTO ads003 VALUES(3, 'VTF', 'Factura', 'Factura', 'H')
+INSERT INTO ads003 VALUES(3, 'VRS', 'Nota de Venta Restaurant', 'Nota de Venta Restaurant', 'H')
+INSERT INTO ads003 VALUES(3, 'VRF', 'Factura Restaurant', 'Factura Restaurant', 'H')
+INSERT INTO ads003 VALUES(3, 'CON', 'Nota de Consumo', 'Nota de Consumo', 'H')
 
 --* Modulo Exigibles
-INSERT INTO ads003 VALUES(4,'CXC','Ctas por Cobrar','','H')
-INSERT INTO ads003 VALUES(4,'CXP','Ctas por Pagar','','H')
-INSERT INTO ads003 VALUES(4,'DAU','Diario Auxiliar','','H')
+INSERT INTO ads003 VALUES(4, 'CXC', 'Ctas por Cobrar', 'Ctas por Cobrar', 'H')
+INSERT INTO ads003 VALUES(4, 'CXP', 'Ctas por Pagar', 'Ctas por Pagar', 'H')
+INSERT INTO ads003 VALUES(4, 'DAU', 'Diario Auxiliar', 'Diario Auxiliar', 'H')
 
 --* Modulo Tesoreria
-INSERT INTO ads003 VALUES(5,'RIN','Recibo de ingreso','','H')
-INSERT INTO ads003 VALUES(5,'REG','Recibo de Egreso','','H')
-INSERT INTO ads003 VALUES(5,'TIN','Comprobante de ingreso','','H')
-INSERT INTO ads003 VALUES(5,'TEG','Comprobante de Egreso','','H')
+INSERT INTO ads003 VALUES(5, 'RIN', 'Recibo de Ingreso', 'Recibo de Ingreso', 'H')
+INSERT INTO ads003 VALUES(5, 'REG', 'Recibo de Egreso', 'Recibo de Egreso', 'H')
+INSERT INTO ads003 VALUES(5, 'TIN', 'Comprobante de Ingreso', 'Comprobante de Ingreso', 'H')
+INSERT INTO ads003 VALUES(5, 'TEG', 'Comprobante de Egreso', 'Comprobante de Egreso', 'H')  
+/*--**********************************************
+ARCHIVO:	ads004.sql	
+TABLA:		Tabla de "Talonario"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		21-08-2019
+*/--**********************************************
 
-  
-/*########################################################
-ARCHIVO:	ads004.sql
-TABLA:		Talonario
-AUTOR:		CHL
-FECHA:		23/09/2019
-########################################################*/
-
+PRINT 'ads004 : Talonario'
 CREATE TABLE ads004
 (
-va_ide_doc		CHAR(03)		NOT NULL,	--Ide Documento
-va_nro_tal		INT,						--Nro de Talonario
-va_nom_tal		VARCHAR(60)		NOT NULL,	--Nombre Talonario
-va_tip_tal		INT						,	--Tipo de talonario 
-											-- 0=Manual; 1=Automatico
-va_nro_aut		DECIMAL(15,0)	NOT NULL,	-- Numero de autorizacion
-va_for_mat		INT				NOT NULL,	-- Formato de impresion
-va_nro_cop		INT				NOT NULL,	-- Nro de copias a imprimir
-va_fir_ma1		VARCHAR(30)		NOT NULL,	-- Firma nro 1
-va_fir_ma2		VARCHAR(30)		NOT NULL,	-- Firma nro 2
-va_fir_ma3		VARCHAR(30)		NOT NULL,	-- Firma nro 3
-va_fir_ma4		VARCHAR(30)		NOT NULL,	-- Firma nro 4
-va_for_log		INT				NOT NULL,	/* Formato de logo	
-											0=Razon social de empresa; 1=Logotipo1
-											2=Logotipo2 ;3=Logotipo3	*/
-va_est_ado		CHAR(01)		NOT NULL	--Estado
+	--** Llave Primaria
+	va_ide_doc	CHAR(03)	 NOT NULL DEFAULT(''),	--** ID. Documento
+	va_nro_tal	INT			 NOT NULL DEFAULT(0),	--** Nro de Talonario
+	--** Atributos
+	va_nom_tal	VARCHAR(60)	 NOT NULL DEFAULT(''),	--** Nombre Talonario
+	va_tip_tal	INT			 NOT NULL DEFAULT(0),	--** Tipo de Talonario (0=Manual; 1=Automatico)
+	va_nro_aut	DEC(15,0)	 NOT NULL DEFAULT(''),	--** Número de Autorización
+	va_for_mat	INT			 NOT NULL DEFAULT(0),	--** Formato de Impresión
+	va_nro_cop	INT			 NOT NULL DEFAULT(0),	--** Nro. de Copias a Imprimir
+	va_fir_ma1	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Firma Nro. 1
+	va_fir_ma2	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Firma Nro. 2
+	va_fir_ma3	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Firma Nro. 3
+	va_fir_ma4	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Firma Nro. 4
+	va_for_log	INT			 NOT NULL DEFAULT(0),	--** Formato de Logo	
+												    --** 0=Razon Social de Empresa; 1=Logotipo 1
+												    --** 2=Logotipo 2 ;3=Logotipo 3
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
-CONSTRAINT pk1_ads004 PRIMARY KEY(va_ide_doc,va_nro_tal)
+	CONSTRAINT pk1_ads004 PRIMARY KEY(va_ide_doc, va_nro_tal)
 )
+GO
 
-go
+--** INSERTA TALONARIO DEL SISTEMA POR DEFECTO
 
 --* Modulo Inventario
-INSERT INTO ads004 VALUES('CMP',0,'Compra',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('AJI',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('AJE',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('AJC',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('TRA',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('OPD',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('CMP', 0, 'Compra en Bodega', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('AJI', 0, 'Ajuste de Ingreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('AJE', 0, 'Ajuste de Salida', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('AJC', 0, 'Ajuste al Costo', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('TRA', 0, 'Traspaso entre Bodegas', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('OPD', 0, 'Orden de Producción', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
 
 --* Modulo Comercializacion
-INSERT INTO ads004 VALUES('COT',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('PED',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('VTS',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('VTF',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('VRS',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('VRF',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('CON',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('COT', 0, 'Cotización', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('PED', 0, 'Pedido', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('VTS', 0, 'Nota de Venta', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('VTF', 0, 'Factura', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('VRS', 0, 'Nota de Venta Restaurant', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('VRF', 0, 'Factura Restaurant', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('CON', 0, 'Nota de Consumo', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
 
 --* Modulo Exigibles
-INSERT INTO ads004 VALUES('CXC',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('CXP',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',1,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',2,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',3,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',4,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',5,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',6,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',7,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',8,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',9,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',10,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',11,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('DAU',12,'Talonario',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('CXC', 0, 'Ctas por Cobrar', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('CXP', 0, 'Ctas por Pagar', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 0, 'Diario Auxiliar Anual', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 1, 'Diario Auxiliar - Enero', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 2, 'Diario Auxiliar - Febrero', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 3, 'Diario Auxiliar - Marzo', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 4, 'Diario Auxiliar - Abril', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 5, 'Diario Auxiliar - Mayo', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 6, 'Diario Auxiliar - Junio', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 7, 'Diario Auxiliar - Julio', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 8, 'Diario Auxiliar - Agosto', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 9, 'Diario Auxiliar - Septiembre', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 10, 'Diario Auxiliar - Octubre', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 11, 'Diario Auxiliar - Noviembre', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('DAU', 12, 'Diario Auxiliar - Diciembre', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
 
 --* Modulo Tesoreria
-INSERT INTO ads004 VALUES('RIN',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('REG',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('TIN',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
-INSERT INTO ads004 VALUES('TEG',0,'Talonario anual',1,0,0,0,'Elaborado por','Revisado por','Aprobado por','',0,'H')
+INSERT INTO ads004 VALUES('RIN', 0, 'Recibo de Ingreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('REG', 0, 'Recibo de Egreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('TIN', 0, 'Comprobante de Ingreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
+INSERT INTO ads004 VALUES('TEG', 0, 'Comprobante de Egreso', 1, 0, 0, 0, 'Elaborado por', 'Revisado por', 'Aprobado por', '', 0, 'H')
 
   
-/*########################################################
-ARCHIVO:	ads005.sql
-TABLA:		Numerador de talonario
-AUTOR:		CHL
-FECHA:		06/11/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads005.sql	
+TABLA:		Tabla de "Numerador de Talonario"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		21-08-2019
+*/--**********************************************
 
+PRINT 'ads005 : Numerador de Talonario'
 CREATE TABLE ads005
 (
-va_ide_doc		CHAR(03)		NOT NULL,	--Ide Documento
-va_nro_tal		INT,						--Nro de Talonario
-va_ges_tio		INT				NOT NULL,	--Gestion (año)
-va_fec_ini		DATETIME		NOT NULL,	--Fecha inicial 
-va_fec_fin		DATETIME		NOT NULL,	--Fecha final
-va_nro_ini		INT				NOT NULL,	--Numero inicial
-va_nro_fin		INT				NOT NULL,	--Numero final
-va_con_tad		INT				NOT NULL,	--Contador
+	--** Llave Primaria
+	va_ges_tio	INT			 NOT NULL DEFAULT(0),	--** Gestión
+	va_ide_doc	CHAR(03)	 NOT NULL DEFAULT(''),	--** ID. Documento
+	va_nro_tal	INT			 NOT NULL DEFAULT(0),	--** Nro de Talonario
+	--** Atributos
+	va_fec_ini	DATETIME	 NOT NULL,	            --** Fecha Inicial 
+	va_fec_fin	DATETIME	 NOT NULL,	            --** Fecha Final
+	va_nro_ini	INT			 NOT NULL DEFAULT(0),	--** Numero Inicial
+	va_nro_fin	INT			 NOT NULL DEFAULT(0),	--** Numero Final
+	va_con_tad	INT			 NOT NULL DEFAULT(0),	--** Contador Actual
 
-CONSTRAINT pk1_ads005 PRIMARY KEY(va_ide_doc,va_nro_tal,va_ges_tio)
+	CONSTRAINT pk1_ads005 PRIMARY KEY(va_ide_doc, va_nro_tal, va_ges_tio)
 )
-
-go
+GO
   
-/*########################################################
-ARCHIVO:	ads006.sql
-TABLA:		Tipo de usuario
-AUTOR:		CHL
-FECHA:		06/11/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads006.sql	
+TABLA:		Tabla de "Tipo de Usuario"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		06-11-2019
+*/--**********************************************
 
+PRINT 'ads006 : Tipo de Usuario'
 CREATE TABLE ads006
 (
-va_ide_tus		INT				NOT NULL,	--Identificador Tipo de Usuario
-va_nom_tus		VARCHAR(30)		NOT NULL,	--Nombre tipo usuario
-va_des_tus		VARCHAR(120)	NOT NULL,	--Descripcion tipo usuario
-va_est_ado		CHAR			NOT NULL	--Estado (H=habilitado; N=deshabilitado)
+	--** Llave Primaria
+	va_ide_tus	INT			 NOT NULL DEFAULT(0),	--** ID. Tipo de Usuario
+	--** Atributos
+	va_nom_tus	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre
+	va_des_tus	VARCHAR(120) NOT NULL DEFAULT(''),	--** Descripción
+	va_est_ado	CHAR		 NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_ads006 PRIMARY KEY(va_ide_tus)
 )
-
-go
+GO
   
-/*########################################################
-ARCHIVO:	ads007.sql
-TABLA:		Usuario
-AUTOR:		CHL
-FECHA:		06/11/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads007.sql	
+TABLA:		Tabla de "Usuario"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		06-11-2019
+*/--**********************************************
 
+PRINT 'ads007 : Usuario'
 CREATE TABLE ads007
 (
-va_ide_usr 		VARCHAR(15) 	NOT NULL,	--Identificador Usuario
-va_nom_usr		VARCHAR(30)		NOT NULL,	--Nombre usuario
-va_tel_usr		VARCHAR(15)				,	--Telefono usuario
-va_car_usr		VARCHAR(30)				,	--Cargo usuario
-va_dir_ect		VARCHAR(30)				,	--Directorio de trabajo
-va_ema_usr		VARCHAR(90)				,	--Email usuario
-va_win_max		INT				NOT NULL,	--Nro maximo de ventanas
-va_ide_per		INT				NOT NULL,	--Ide de persona
-va_tip_usr		INT				NOT NULL,	--Tipo de usuario 
-va_est_ado		CHAR(01)		NOT NULL	--Estado (H=habilitado; N=deshabilitado)
+	--** Llave Primaria
+	va_ide_usr 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario
+	--** Atributos
+	va_nom_usr	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre
+	va_tel_usr	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** Teléfono
+	va_car_usr	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Cargo
+	va_dir_ect	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Directorio de Trabajo
+	va_ema_usr	VARCHAR(90)	 NOT NULL DEFAULT(''),	--** Email
+	va_win_max	INT			 NOT NULL DEFAULT(0),	--** Nro. Maximo de Ventanas Abierta
+	va_ide_per	INT			 NOT NULL DEFAULT(0),	--** ID. Persona Asociada
+	va_ide_tus	INT			 NOT NULL DEFAULT(0),	--** ID. Tipo de Usuario
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado (H=habilitado; N=deshabilitado)
 
 CONSTRAINT pk1_ads007 PRIMARY KEY(va_ide_usr)
 )
-  
-/*########################################################
-ARCHIVO:	ads008.sql
-TABLA:		Autorizaciones de usuario sobre el sistema
-AUTOR:		CHL
-FECHA:		27/10/2020
-########################################################*/
+GO  
+/*--**********************************************
+ARCHIVO:	ads008.sql	
+TABLA:		Tabla de "Autorizaciones de Usuario sobre el Sistema"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		27-10-2020
+*/--**********************************************
 
+PRINT 'ads008 : Autorizaciones de Usuario sobre el Sistema'
 CREATE TABLE ads008
 (
-va_ide_usr 		VARCHAR(15) 	NOT NULL,	--ID. Usuario
-va_ide_tab		CHAR(06)		NOT NULL,	--ID. tabla
-va_ide_uno		CHAR(15)		NOT NULL,	--Identificador uno
-va_ide_dos		CHAR(15),					--Identificador dos
-va_ide_tre		CHAR(15),					--Identificador tres
-va_ide_int		INT	NOT NULL DEFAULT(0),	--Identificador entero
+	--** Llave Primaria
+	va_ide_usr 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_ide_tab	VARCHAR(06)  NOT NULL DEFAULT(''),	--** ID. Tabla
+	va_ide_uno	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Uno
+	va_ide_dos	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Dos
+	va_ide_tre	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Tres
+	--** Atributos
+	va_ide_int	INT	         NOT NULL DEFAULT(0),	--** Identificador Entero
 
-CONSTRAINT pk1_ads008 PRIMARY KEY(va_ide_usr,va_ide_tab,va_ide_uno,va_ide_dos,va_ide_tre)
+CONSTRAINT pk1_ads008 PRIMARY KEY(va_ide_usr, va_ide_tab, va_ide_uno, 
+                                  va_ide_dos, va_ide_tre)
 )
+GO  
+/*--**********************************************
+ARCHIVO:	ads009.sql	
+TABLA:		Tabla de "Autorizaciones de Tipo de Usuario sobre el Sistema"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		26-07-2021
+*/--**********************************************
 
-go
-  
-/*########################################################
-ARCHIVO:	ads009.sql
-TABLA:		Autorizaciones de tipo de usuario sobre el sistema
-AUTOR:		CHL
-FECHA:		26/07/2021
-########################################################*/
-
+PRINT 'ads009 : Autorizaciones de Tipo de Usuario sobre el Sistema'
 CREATE TABLE ads009
 (
-va_ide_tus 		VARCHAR(15) 	NOT NULL,	--ID. Usuario
-va_ide_tab		CHAR(06)		NOT NULL,	--ID. tabla
-va_ide_uno		CHAR(15)		NOT NULL,	--Identificador uno
-va_ide_dos		CHAR(15),					--Identificador dos
-va_ide_tre		CHAR(15),					--Identificador tres
-va_ide_int		INT	NOT NULL DEFAULT(0),	--Identificador entero
+	--** Llave Primaria
+	va_ide_tus 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_ide_tab	VARCHAR(06)  NOT NULL DEFAULT(''),	--** ID. Tabla
+	va_ide_uno	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Uno
+	va_ide_dos	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Dos
+	va_ide_tre	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Tres
+	--** Atributos
+	va_ide_int	INT	         NOT NULL DEFAULT(0),	--** Identificador Entero
 
-CONSTRAINT pk1_ads009 PRIMARY KEY(va_ide_tus,va_ide_tab,va_ide_uno,va_ide_dos,va_ide_tre)
+CONSTRAINT pk1_ads009 PRIMARY KEY(va_ide_tus, va_ide_tab, va_ide_uno,
+                                  va_ide_dos, va_ide_tre)
 )
-
-go
-  
+GO  
 /*--**********************************************
 ARCHIVO:	ads010.sql	
-TABLA:		Tabla de "Tipo de imagenes"
-AUTOR:		CREARSIS 3.0.0 (CHL)
+TABLA:		Tabla de "Tipo de Imagenes"
+AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		25-08-2021
 */--**********************************************
 
+PRINT 'ads010 : Tipo de Imagenes'
 CREATE TABLE ads010 
 (
---** Llave Primaria
-va_ide_tip		INT				NOT NULL	DEFAULT(0),			--** ID. tipo de imagen
-va_nom_tip		VARCHAR(20)		NOT NULL	DEFAULT(''),		--** Nombre
-va_ide_tab		CHAR(06)		NOT NULL,						--** ID. tabla
-va_est_ado		CHAR(01)		NOT NULL						--** Estado (H= habilitado; N=deshabilitado)
+	--** Llave Primaria
+	va_ide_tip	CHAR(02)	NOT NULL DEFAULT(0),	--** ID. Tipo Imagen
+	--** Atributos
+	va_nom_tip	VARCHAR(20)	NOT NULL DEFAULT(''),	--** Nombre
+	va_ide_tab	CHAR(06)	NOT NULL DEFAULT(''),	--** ID. Tabla
+	va_est_ado	CHAR(01)	NOT NULL DEFAULT('')	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_ads010 PRIMARY KEY(va_ide_tip)
 )
 GO
 
 --** PERSONAS (adp002)
-INSERT INTO ads010 VALUES (10,'Foto Persona','adp002','H')
-INSERT INTO ads010 VALUES (11,'CI','adp002','H')
-INSERT INTO ads010 VALUES (12,'Nit','adp002','H')
-INSERT INTO ads010 VALUES (13,'Croquis','adp002','H')
-INSERT INTO ads010 VALUES (14,'Frotis','adp002','H')
+INSERT INTO ads010 VALUES ('FP','Foto Persona','adp002','H')
+INSERT INTO ads010 VALUES ('CI','Carnet de Identidad','adp002','H')
+INSERT INTO ads010 VALUES ('NI','NIT/RUC','adp002','H')
+INSERT INTO ads010 VALUES ('CQ','Croquis','adp002','H')
+INSERT INTO ads010 VALUES ('FT','Frotis','adp002','H')
  
 --** PRODUCTOS (inv004)
-INSERT INTO ads010 VALUES (20,'Producto Frente','inv004','H')
-INSERT INTO ads010 VALUES (21,'Producto Derecha','inv004','H')
-INSERT INTO ads010 VALUES (22,'Producto Izquirda','inv004','H')
-INSERT INTO ads010 VALUES (23,'Producto Detras','inv004','H')
-INSERT INTO ads010 VALUES (24,'Descripcion','inv004','H')
+INSERT INTO ads010 VALUES ('PF','Producto Frente','inv004','H')
+INSERT INTO ads010 VALUES ('PD','Producto Derecha','inv004','H')
+INSERT INTO ads010 VALUES ('PI','Producto Izquirda','inv004','H')
+INSERT INTO ads010 VALUES ('PA','Producto Detras','inv004','H')
+INSERT INTO ads010 VALUES ('PD','Descripcion','inv004','H')
 
 GO
    
-/*########################################################
-ARCHIVO:	ads012.sql
-TABLA:		Restriccion menu
-AUTOR:		CHL
-FECHA:		06/11/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads011.sql	
+TABLA:		Tabla de "Opciones del Menú Formulario"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		19-08-2022
+*/--**********************************************
 
+PRINT 'ads011 : Opciones del Menú Formulario'
+CREATE TABLE ads011 
+(
+	--** Llave Primaria
+	va_nom_frm	VARCHAR(10)	 NOT NULL DEFAULT(0),	--** Nombre Formulario
+	va_ide_men	VARCHAR(10)	 NOT NULL DEFAULT(0),	--** ID. Menu Formulario
+	--** Atributos
+	va_tex_men	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Texto Menu Formulario
+	va_des_men	VARCHAR(50)	 NOT NULL DEFAULT(''),	--** Descripción
+	va_ide_pad	VARCHAR(01)	 NOT NULL DEFAULT('')	--** ID. Menu Padre
+
+CONSTRAINT pk1_ads011 PRIMARY KEY(va_nom_frm, va_ide_men)
+)
+GO  
+/*--**********************************************
+ARCHIVO:	ads012.sql	
+TABLA:		Tabla de "Restriccion Menú al Usuario"
+AUTOR:		CREARSIS 3.0.0 (JEJR)
+FECHA:		19-08-2022
+*/--**********************************************
+
+PRINT 'ads012 : Restriccion Menú al Usuario'
 CREATE TABLE ads012
 (
-va_ide_usr 		VARCHAR(15) 	NOT NULL,	--Identificador Usuario
-va_ide_apl		VARCHAR(20)		NOT NULL,	--Ide Aplicacion
-va_ide_mnu		VARCHAR(30)		NOT NULL,	--Ide menu
+	--** Llave Primaria
+	va_ide_usr  VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_nom_frm	VARCHAR(10)	 NOT NULL DEFAULT(0),	--** Nombre Formulario
+	va_ide_men	VARCHAR(10)	 NOT NULL DEFAULT(0),	--** ID. Menu Formulario
 
-CONSTRAINT pk1_ads012 PRIMARY KEY(va_ide_usr,va_ide_apl,va_ide_mnu)
+CONSTRAINT pk1_ads012 PRIMARY KEY(va_ide_usr, va_nom_frm, va_ide_men)
 )
+GO  
+/*--**********************************************
+ARCHIVO:	ads013.sql	
+TABLA:		Tabla de "Globales"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		06-11-2029
+*/--**********************************************
 
-go
-  
-/*########################################################
-ARCHIVO:	ads013.sql
-TABLA:		Globales
-AUTOR:		CHL
-FECHA:		06/11/2019
-########################################################*/
-
+PRINT 'ads013 : Globales'
 CREATE TABLE ads013
 (
-va_ide_mod		INT				NOT NULL,	--Ide. modulo (ads001)
-va_ide_glo		INT				NOT NULL,	--Ide. global
-va_nom_glo		VARCHAR(60)		NOT NULL,	--Nombre de global
-va_tip_glo		INT				NOT NULL,	--Tipo global 
-											-- 1=caracter; 
-											-- 2=numerico; 
-											-- 3=decimal
-va_glo_car		NVARCHAR(120)			,	--Global caracter											
-va_glo_ent 		INT 					,	--Global numerico
-va_glo_dec		DECIMAL(18,5)	NOT NULL,	--Global decimal
+	--** Llave Primaria
+	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo (ads001)
+    va_ide_glo	INT			 NOT NULL DEFAULT(0),	--** ID. Global
+	--** Atributos
+    va_nom_glo	VARCHAR(60)	 NOT NULL DEFAULT(''),	--** Nombre
+    va_tip_glo	INT			 NOT NULL DEFAULT(0),	--** Tipo Global (1=Caracter; 2=Numérico; 3=Decimal)
+    va_glo_car	VARCHAR(120) NOT NULL DEFAULT(''),	--** Global Caracter											
+    va_glo_ent 	INT 		 NOT NULL DEFAULT(0),	--** Global Numérico
+    va_glo_dec	DEC(18,5)    NOT NULL DEFAULT(0),	--** Global Decimal
 
-CONSTRAINT pk1_ads013 PRIMARY KEY(va_ide_mod,va_ide_glo)
+CONSTRAINT pk1_ads013 PRIMARY KEY(va_ide_mod, va_ide_glo)
 )
+GO
 
-go
-insert into ads013 values (1,1,'Contraseña por defecto',1,'Contra123.',0,0)
-INSERT INTO ads013 VALUES (1,2,'Gestion',2,'',2010,0)
-INSERT INTO ads013 VALUES (1,3,'Periodo',2,'',12,0)
-INSERT INTO ads013 VALUES (1,4,'Razon Social Empresa',1,'Empresa S.R.L.',0,0)
-INSERT INTO ads013 VALUES (1,5,'Representante legal',1,'Nombre representante',0,0)
-INSERT INTO ads013 VALUES (1,6,'Nit de la empresa',3,'',0,123456789)
-INSERT INTO ads013 VALUES (1,7,'Telefono fijo',1,'33-333333',0,0)
-INSERT INTO ads013 VALUES (1,8,'Telefono Celular',1,'999-99999',0,0)
-INSERT INTO ads013 VALUES (1,9,'Email',1,'@mail',0,0)
-INSERT INTO ads013 VALUES (1,10,'Dirección',1,'Direccion',0,0)
-INSERT INTO ads013 VALUES (1,11,'Clave Wifi',1,'',0,0)
-INSERT INTO ads013 VALUES (1,12,'Logo Empresa',1,'',0,0)
-INSERT INTO ads013 VALUES (1,13,'Logo B',1,'',0,0)
-INSERT INTO ads013 VALUES (1,14,'Logo C',1,'',0,0)
-INSERT INTO ads013 VALUES (1,15,'Logo D',1,'',0,0)
-
---16/06/2021
-INSERT INTO ads013 VALUES (1,16,'UsrLicAct',2,'',15360,0)	-- Cantidad de Licencia * 1024; (15*1024 = 15360)
-INSERT INTO ads013 VALUES (1,17,'FecLicAct',1,'21260026',0,0) -- Cadena encriptada de la licencia que contiene la fecha de expiracion
---16/06/2021
-
-
+--** Inserta Globales del Sistema
+insert into ads013 values (1,1,'Contraseña por defecto', 1,'Contra123.', 0, 0)
+INSERT INTO ads013 VALUES (1,2,'Gestion', 2, '', 2010, 0)
+INSERT INTO ads013 VALUES (1,3,'Periodo', 2, '', 12, 0)
+INSERT INTO ads013 VALUES (1,4,'Razon Social Empresa', 1,'Empresa S.R.L.', 0, 0)
+INSERT INTO ads013 VALUES (1,5,'Representante legal',1,'Nombre representante', 0, 0)
+INSERT INTO ads013 VALUES (1,6,'Nit de la empresa', 3, '', 0, 123456789)
+INSERT INTO ads013 VALUES (1,7,'Telefono fijo', 1, '33-333333', 0, 0)
+INSERT INTO ads013 VALUES (1,8,'Telefono Celular', 1, '999-99999', 0, 0)
+INSERT INTO ads013 VALUES (1,9,'Email', 1, 'empresa@gmail.com', 0, 0)
+INSERT INTO ads013 VALUES (1,10,'Dirección', 1, 'Direccion', 0, 0)
+INSERT INTO ads013 VALUES (1,11,'Clave Wifi', 1, '', 0, 0)
+INSERT INTO ads013 VALUES (1,12,'Logo Empresa', 1, '', 0, 0)
+INSERT INTO ads013 VALUES (1,13,'Logo B', 1, '', 0, 0)
+INSERT INTO ads013 VALUES (1,14,'Logo C', 1, '', 0, 0)
+INSERT INTO ads013 VALUES (1,15,'Logo D', 1, '', 0, 0)
+INSERT INTO ads013 VALUES (1,16,'UsrLicAct', 2, '', 15360,0)	-- Cantidad de Licencia * 1024; (15*1024 = 15360)
+INSERT INTO ads013 VALUES (1,17,'FecLicAct', 1, '21260026', 0, 0) -- Cadena encriptada de la licencia que contiene la fecha de expiracion
 INSERT INTO ads013 VALUES (1,100,'Version del sistema',1,'1.0.0',0,0)
-
--- Modulo Comercializacion
 INSERT INTO ads013 VALUES (3,1,'Formulario Ventas',1,'Normal',0,0) -- 1 = Normal ; 2= Tactil
 
-
-go
+GO
   
-/*########################################################
-ARCHIVO:	ads014.sql
-TABLA:		Region
-AUTOR:		CHL
-FECHA:		06/11/2019
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads014.sql	
+TABLA:		Tabla de "Región"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		06-11-2029
+*/--**********************************************
 
+PRINT 'ads014 : Región'
 CREATE TABLE ads014
 (
-va_ide_reg 		INT			 	NOT NULL,	--Ide. region
-va_nom_reg		VARCHAR(30)		NOT NULL,	--Nombre region
-va_est_ado		CHAR(01)		NOT NULL,	--Estado (H=habilitado; N=deshabilitado)
+	--** Llave Primaria
+	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo (ads001)
+	--** Atributos
+	va_ide_reg 	INT			 NOT NULL DEFAULT(0),	--** ID. Región
+	va_nom_reg	VARCHAR(30)	 NOT NULL DEFAULT(0),	--** Nombre
+	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(0),	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_ads014 PRIMARY KEY(va_ide_reg)
 )
+GO  
+/*--**********************************************
+ARCHIVO:	ads015.sql	
+TABLA:		Tabla de "?"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		06-11-2029
+*/--**********************************************
 
-go
-  
-/*########################################################
-ARCHIVO:	ads015.sql
-TABLA:		Restriccion menu
-AUTOR:		CHL
-FECHA:		06/11/2019
-########################################################*/
-
+PRINT 'ads015 : ?'
 CREATE TABLE ads015
 (
-va_ide_usr 		VARCHAR(15) 	NOT NULL,	--Identificador Usuario
-va_ide_reg		INT				NOT NULL	--Ide Region
+	--** Llave Primaria
+	va_ide_mod	INT			 NOT NULL DEFAULT(0),	--** ID. Módulo (ads001)
+	--** Atributos
 
-CONSTRAINT pk1_ads015 PRIMARY KEY(va_ide_usr)
+CONSTRAINT pk1_ads015 PRIMARY KEY(va_ide_mod)
 )
-
-go
+GO
   
-/*########################################################
-ARCHIVO:	ads016.sql
-TABLA:		Gestion Periodos
-AUTOR:		CHL
-FECHA:		23/03/2020
-########################################################*/
+/*--**********************************************
+ARCHIVO:	ads015.sql	
+TABLA:		Tabla de "Gestión Periodos"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		23-03-2020
+*/--**********************************************
 
+PRINT 'ads016 : Gestión Periodos'
 CREATE TABLE ads016
 (
-va_ges_tio 		INT				NOT NULL,	-- Gestion Año
-va_ges_per		INT				NOT NULL,	-- Periodo Mes
-va_nom_per		VARCHAR(15)		NOT NULL,	-- Nombre del periodo
-va_fec_ini		DATE			NOT NULL,	-- Fecha inicial del periodo
-va_fec_fin		DATE			NOT NULL,	-- Fecha final del periodo
+	--** Llave Primaria
+	va_ges_tio 	INT			 NOT NULL DEFAULT(0),	--** Gestion Año
+	va_ges_per	INT			 NOT NULL DEFAULT(0),	--** Periodo Mes
+	--** Atributos     	
+	va_nom_per	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** Nombre del periodo
+	va_fec_ini	DATE		 NOT NULL,	            --** Fecha inicial del periodo
+	va_fec_fin	DATE		 NOT NULL,	            --** Fecha final del periodo
 
-CONSTRAINT pk1_ads016 PRIMARY KEY(va_ges_tio,
-								  va_ges_per)
+CONSTRAINT pk1_ads016 PRIMARY KEY(va_ges_tio, va_ges_per)
 )
+GO  
+/*--**********************************************
+ARCHIVO:	ads017.sql	
+TABLA:		Tabla de "PIN Usuario"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		16-10-2020
+*/--**********************************************
 
-go	  
-/*########################################################
-ARCHIVO:	ads022.sql
-TABLA:		Tipo de cambio Bs/Us
-AUTOR:		CHL
-FECHA:		22/04/2021
-########################################################*/
+PRINT 'ads017 : PIN Usuario'
+CREATE TABLE ads017 
+(
+	--** Llave Primaria
+	va_ide_usr	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** ID. Usuario
 
+	--** Atributos     
+	va_pin_usr	INT			 NOT NULL DEFAULT(0),	--** Pin usuario
+	va_fec_reg	DATETIME	 NOT NULL,		        --** Fecha de registro pin
+	va_fec_exp  DATETIME     NOT NULL,              --** Fecha de expiracion del pin
+	va_nom_eqp	VARCHAR(20)  NOT NULL DEFAULT(''),	--** Nombre del equipo de donde se registro
+
+CONSTRAINT pk1_ads017 PRIMARY KEY(va_ide_usr)
+)
+GO  
+/*--**********************************************
+ARCHIVO:	ads018.sql	
+TABLA:		Tabla de "Autorizacion Usuario s/Plantilla de Ventas
+            p/Restaurant (res004)"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		27-10-2020
+*/--**********************************************
+
+PRINT 'ads018 : Autorizacion Usuario s/Plantilla de Ventas p/Restaurant'
+CREATE TABLE ads018
+(
+	--** Llave Primaria
+	va_ide_usr	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_cod_plv	INT	 		 NOT NULL DEFAULT(0),	--** Codigo de la plantilla
+
+CONSTRAINT pk1_ads018 PRIMARY KEY(va_ide_usr, va_cod_plv)
+)
+GO
+
+
+  
+/*--**********************************************
+ARCHIVO:	ads018.sql	
+TABLA:		Tabla de "Autorizacion Usuario s/Lista de Precio"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		27-10-2020
+*/--**********************************************
+
+PRINT 'ads019 : Autorizacion Usuario s/Lista de Precio'
+CREATE TABLE ads019
+(
+	--** Llave Primaria
+	va_ide_usr	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_cod_lis	INT			 NOT NULL DEFAULT(0),	--** Codigo de la Lista de Precio
+
+CONSTRAINT pk1_ads019 PRIMARY KEY(va_ide_usr, va_cod_lis)
+)
+GO  
+/*--**********************************************
+ARCHIVO:	ads022.sql	
+TABLA:		Tabla de "Tipo de Cambio Bs/Us"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		22-04-2021
+*/--**********************************************
+
+PRINT 'ads022 : Tipo de Cambio Bs/Us'
 CREATE TABLE ads022
 (
-va_fec_bus		DATETIME					NOT NULL,	--Nombre modulo
-va_val_bus		DECIMAL(8,6)				NOT NULL	--Ide Modulo
+	--** Llave Primaria
+	va_fec_bus	DATETIME	 NOT NULL,				--** Fecha T.C (Bs; Us)
+	--** Atributos     	
+	va_val_bus	DEC(8,6)  	 NOT NULL DEFAULT(0)	--** Valor (Bs; Us)
 
 CONSTRAINT pk1_ads022 PRIMARY KEY(va_fec_bus)
-)  
-/*########################################################
-ARCHIVO:	ads023.sql
-TABLA:		Tipo de cambio Bs/Ufv
-AUTOR:		CHL
-FECHA:		22/04/2021
-########################################################*/
+)
+GO  
+/*--**********************************************
+ARCHIVO:	ads023.sql	
+TABLA:		Tabla de "Tipo de Cambio Bs/Ufv"
+AUTOR:		CREARSIS 3.0.0 (CHL)
+FECHA:		22-04-2021
+*/--**********************************************
 
+PRINT 'ads023 : Tipo de Cambio Bs/Ufv'
 CREATE TABLE ads023
 (
-va_fec_buf		DATETIME					NOT NULL,	--Fecha bs / ufv
-va_val_buf		DECIMAL(8,6)				NOT NULL	--Valor Bs / Ufv
+	--** Llave Primaria
+	va_fec_buf	DATETIME	 NOT NULL,				--** Fecha T.C (Bs; Ufv)
+	--** Atributos     	
+	va_val_buf	DEC(8,6)  	 NOT NULL DEFAULT(0)	--** Valor (Bs; Ufv)
 
 CONSTRAINT pk1_ads023 PRIMARY KEY(va_fec_buf)
-)  
+)
+GO  
 /*--**********************************************
 ARCHIVO:	ads024.sql	
 TABLA:		Tabla de "Bitacora de Inicio de Sesion"
-AUTOR:		CREARSIS 3.0.0 (JEJR)
+AUTOR:		CREARSIS 3.0.0 (EJR)
 FECHA:		26-08-2021
 */--**********************************************
 
+PRINT 'ads024 : Bitacora de Inicio de Sesion'
 CREATE TABLE ads024 
 (
---** Llave Primaria
-va_ide_uni      CHAR(32),                   --** Identificador Unico
-
---** Atributos     
-va_ide_usr 		VARCHAR(15) 	NOT NULL,	--** Identificador Usuario
-va_fec_reg		DATETIME,					--** Fecha Actual Sin hh:MM:ss
-va_nom_maq      VARCHAR(30)     NOT NULL,   --** Nombre de la Maquina
-va_fec_ini      DATETIME,                   --** Fecha y Hora de Inicio
-va_fec_fin      DATETIME,                   --** Fecha y Hora de Cierre
+	--** Llave Primaria
+	va_ide_uni  CHAR(32)     NOT NULL DEFAULT(''),  --** Identificador Unico
+	--** Atributos     
+	va_ide_usr 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Usuario
+	va_fec_reg	DATETIME     NOT NULL,				--** Fecha Actual Sin hh:MM:ss
+	va_nom_maq  VARCHAR(30)  NOT NULL DEFAULT(''),  --** Nombre de la Maquina
+	va_fec_ini  DATETIME     NOT NULL,              --** Fecha y Hora de Inicio
+	va_fec_fin  DATETIME,                           --** Fecha y Hora de Cierre
 
 CONSTRAINT pk1_ads024 PRIMARY KEY(va_ide_uni)
+)
+GO  
+/*--**********************************************
+ARCHIVO:	ads025.sql	
+TABLA:		Tabla de "Bitacora p/Operaciones"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		23-09-2021
+*/--**********************************************
+
+PRINT 'ads025 : Bitacora p/Operaciones'
+CREATE TABLE ads025 
+(
+	--** Llave Primaria
+	va_ide_usr 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_fch_reg  DATETIME     NOT NULL,				--** Fecha y Hora de Registro
+	--** Atributos     
+	va_nom_apl  VARCHAR(06)  NOT NULL DEFAULT(''),	--** Nombre Aplicación
+	va_tip_ope  CHAR(01)     NOT NULL DEFAULT(''),	--** Tipo de Operación (N=Nuevo; E=Edita; H=Habilita; 
+										            --** D=Deshabilita; A=Anula; C=Concluye; P=Aprueba; R=Rechaza)
+	va_nom_maq  VARCHAR(30)  NOT NULL DEFAULT(''),	--** Nombre de la Maquina
+	va_obs_reg  VARCHAR(120) NOT NULL DEFAULT(''),	--** Observación
+
+	CONSTRAINT pk1_ads025 PRIMARY KEY(va_ide_usr, va_fch_reg)
+)
+GO  
+/*--**********************************************
+ARCHIVO:	ads026.sql	
+TABLA:		Tabla de "Bitacora p/Documento"
+AUTOR:		CREARSIS 3.0.0 (EJR)
+FECHA:		23-09-2021
+*/--**********************************************
+
+PRINT 'ads026 : Bitacora p/Documento'
+CREATE TABLE ads026 
+(
+	--** Llave Primaria
+	va_ges_doc  INT          NOT NULL DEFAULT(0),	--** Gestión
+	va_ide_doc  CHAR(03)     NOT NULL DEFAULT(''),	--** ID. Documento
+	va_nro_doc  INT          NOT NULL DEFAULT(0),	--** Nro. Documento
+	va_fch_reg  DATETIME     NOT NULL,				--** Fecha y Hora de Registro
+	--** Atributos     
+	va_cod_per  INT          NOT NULL DEFAULT(0),	--** Código Persona
+	va_tip_ope  CHAR(01)     NOT NULL DEFAULT(''),	--** Tipo de Operación (N=Nuevo; E=Edita; H=Habilita; 
+										            --** D=Deshabilita; A=Anula; C=Concluye; P=Aprueba; R=Rechaza)
+	va_ide_usr 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario
+	va_obs_reg  VARCHAR(120) NOT NULL DEFAULT(''),	--** Observación
+
+	CONSTRAINT pk1_ads026 PRIMARY KEY(va_ges_doc, va_ide_doc, va_nro_doc, va_fch_reg)
 )
 GO  
 /*--**********************************************
@@ -975,7 +1353,9 @@ CREATE TABLE cmr004
 	va_tal_dcf		TINYINT					,	--Talonario DeV C/F (adm004) (2 numeros)
 	va_doc_dsf		CHAR(3)					,	--Documento DeV S/F (adm003) (3 Letras)
 	va_tal_dsf		TINYINT					,	--Talonario DeV S/F (adm004) (2 numeros)
-
+	va_doc_rei		CHAR(3)					,	--Documento Recibo de Ingreso (adm003) (3 Letras)
+	va_tal_rei		TINYINT					,	--Talonario Recibo de Ingreso (adm004) (2 numeros)
+	
 	va_imp_fac		VARCHAR(80)				,	--Impresora por defecto para factura
 	va_imp_ntv		VARCHAR(80)				,	--Impresora por defecto para Nota de venta
 	va_imp_ped		VARCHAR(80)				,	--Impresora para pedido
@@ -1417,11 +1797,11 @@ va_cod_ide		INT					NOT NULL,		--** Codigo identificador(4 numeros)
 va_nom_bre		VARCHAR(50)			NOT NULL,		--** Nombre del Vendedor/Cobrador
 va_tel_cel		VARCHAR(15)					,		--** Telefono Celular
 va_ema_ail		VARCHAR(30)					,		--** Email
-va_pro_ced		INT					NOT NULL,		--** Procedencia (1=Empresa ; 2=Externo)
-va_tip_cms		TINYINT				NOT NULL,		--** Tipo comisión (1=General Venta; 2=Familia, 3=Producto)
+va_pro_ced		INT					NOT NULL,		--** Procedencia (1=Interno ; 2=Externo)
+va_tip_cms		TINYINT				NOT NULL,		--** Tipo comisión (0=No Aplica; 1=General Venta; 2=Familia, 3=Producto)
 va_cms_con		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision general al contado
 va_cms_cre		DECIMAL(4,2)		NOT NULL,		--** Porcentaje comision general al credito      
-va_est_ado		CHAR(01)			NOT NULL,		--** Estado del Vendedor
+va_est_ado		CHAR(01)			NOT NULL,		--** Estado (H=Habilitado; N=Deshabilitado)
       
 
 CONSTRAINT pk1_cmr014 PRIMARY KEY(va_ide_tip,va_cod_ide)
@@ -1719,6 +2099,70 @@ go
      GO
      
        
+
+/*--**********************************************
+ARCHIVO:	ecp001.sql
+TABLA:		Plan de Pago
+AUTOR:		CHL-CREARSIS
+FECHA:		10-10-2021
+*/--**********************************************
+	
+CREATE TABLE ecp001 
+(
+va_cod_plg		INT				NOT NULL,	--Código Plan de Pago (3 Numeros)
+va_des_plg		VARCHAR(50)		NOT NULL,	--Descripcion
+va_nro_cuo		TINYINT			NOT NULL,	--Numero de Cuotas (2 numeros)
+va_int_dia		TINYINT			NOT NULL,	--Intervalo de Dias entre Cuotas (2 numeros)
+va_dia_ini		TINYINT			NOT NULL,	--dia inicial p/primer cuota (2 numeros)
+va_est_ado		CHAR(1)			NOT NULL	--Estado (H=Habilitado ; N=Deshabilitado)		  
+      
+CONSTRAINT pk1_ecp001 PRIMARY KEY(va_cod_plg)
+)
+  
+/*--**********************************************
+ARCHIVO:	ecp002.sql
+TABLA:		Libreta
+AUTOR:		CHL-CREARSIS(ALDA)
+FECHA:		03-12-2017
+*/--**********************************************
+
+CREATE TABLE ecp002 
+(
+va_cod_lib		INT				NOT NULL,	--Código de la Libreta(5 Numeros)
+va_des_lib		VARCHAR(50)		NOT NULL,	--Descripcion
+
+--Llave foranea
+va_cod_cta		VARCHAR(12)		NOT NULL,	--Cod. Cuenta Contable
+
+va_tip_lib		INT				NOT NULL,	--Tipo (1=CxC('Cuentas por Cobrar') ; 2=CxP('Cuentas por Pagar')
+va_mon_lib		CHAR(1)			NOT NULL,	--Moneda (B=Bolivianos; U=USD)
+va_est_ado		CHAR(1)			NOT NULL	--Estado (H=Habilitado ; N=Deshabilitado)		  
+      
+CONSTRAINT pk1_ecp002 PRIMARY KEY(va_cod_lib)
+)
+  
+/*--**********************************************
+ARCHIVO:	ecp003.sql
+TABLA:		Inscripción Personas-Libretas
+AUTOR:		CHL-CREARSIS(CHL)
+FECHA:		11-11-2021
+*/--**********************************************
+	
+CREATE TABLE ecp003 
+(
+va_cod_lib		INT				NOT NULL,					--Código de la Libreta(ecp002)
+va_cod_per		INT				NOT NULL	DEFAULT(''),	--ID. Persona 
+va_cod_plg		INT				NOT NULL,					--Código Plan de Pago(ecp005)
+
+va_mto_lim		DECIMAL(12,2)	NOT NULL	DEFAULT(0),		--Monto Limite
+va_sal_act		DECIMAL(12,2)	NOT NULL	DEFAULT(0),		--Saldo Actual
+va_max_cuo		INT				NOT NULL	DEFAULT(0),		--
+va_fec_exp		DATE			NOT NULL,					--Fecha de Expiracion
+va_est_ado		CHAR(01)		NOT NULL	DEFAULT(''),	--Estado de la inscripcion (H=habilitado N=Deshabilitado)
+
+CONSTRAINT pk1_ecp003 PRIMARY KEY(va_cod_lib,va_cod_per,va_cod_plg)
+)
+  
 /*########################################################
 ARCHIVO:	inv001.sql
 TABLA:		Grupo de Bodegas

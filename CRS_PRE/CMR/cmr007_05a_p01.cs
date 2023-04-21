@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRS_PRE.CMR {
+namespace CRS_PRE {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace CRS_PRE.CMR {
         
         public override string FullResourceName {
             get {
-                return "CRS_PRE.CMR.cmr007_05a_p01.rpt";
+                return "CRS_PRE.cmr007_05a_p01.rpt";
             }
             set {
                 // Do nothing

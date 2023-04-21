@@ -49,6 +49,7 @@ namespace CRS_DAT
             Settings.Default.va_nom_bda = va_nom_bda;
             Settings.Default.va_ide_usr = va_ide_usr;
             Settings.Default.va_pas_usr = va_pas_usr;
+
         }
 
         /// <summary>
