@@ -63,11 +63,13 @@ namespace CRS_PRE.INV
 
             if (tabla.Rows.Count == 0)
                 glo_far = 1;
+            else {  
             if (tabla.Rows[0]["va_glo_ent"].ToString() != "2")
                 glo_far = 1;
             if (tabla.Rows[0]["va_glo_ent"].ToString() == "2")
                 glo_far = 2;
-
+            }
+            
 
             if (glo_far == 1)
             {

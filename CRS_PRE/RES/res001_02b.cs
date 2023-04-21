@@ -6,10 +6,7 @@ using System.Windows.Forms;
 
 using CRS_NEG;
 using CRS_PRE.INV;
-<<<<<<< HEAD
 using CRS_PRE;
-=======
->>>>>>> parent of ce10f2e (avance punto de venta)
 
 namespace CRS_PRE.CMR
 {

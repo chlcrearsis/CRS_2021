@@ -58,7 +58,6 @@ namespace CRS_NEG
                     cadena_stb.AppendFormat("  {0} , ", _ite_VTA.Rows[i]["va_nro_ite"].ToString());
                     cadena_stb.AppendFormat(" '{0}' , ", _ite_VTA.Rows[i]["va_cod_pro"].ToString());
                     cadena_stb.AppendFormat(" '{0}' , ", _ite_VTA.Rows[i]["va_nom_pro"].ToString());
-                    cadena_stb.AppendFormat(" '{0}' , ", _ite_VTA.Rows[i]["va_des_pro"].ToString());
                     cadena_stb.AppendFormat("  {0}  , ",0); // 0 = siempre unidad de venta
                     cadena_stb.AppendFormat(" '{0}' , ", decimal.Parse(_ite_VTA.Rows[i]["va_can_tid"].ToString()));
                     cadena_stb.AppendFormat(" '{0}' , ", decimal.Parse(_ite_VTA.Rows[i]["va_pre_uni"].ToString()));
