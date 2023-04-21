@@ -3083,9 +3083,8 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ads007_R01.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ADS\ads016_R02.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ads016_R02.cs</LastGenOutput>
+    <EmbeddedResource Include="ADS\ads016_02.resx">
+      <DependentUpon>ads016_02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads016_R01p.resx">
       <DependentUpon>ads016_R01p.cs</DependentUpon>
@@ -3264,7 +3263,9 @@
       <DependentUpon>cmr005_R01p.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr005_R01w.resx">
-      <DependentUpon>cmr005_R01w.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_02.resx">
+      <DependentUpon>ads006_02.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CMR\cmr005_R01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

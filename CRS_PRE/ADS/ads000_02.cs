@@ -47,7 +47,7 @@ namespace CRS_PRE
 
             // Lee datos del Usuario Logueado
             Tabla = new DataTable();
-            Tabla = o_ads007.Fe_con_usu(o_ads007.va_ide_usr);
+            Tabla = o_ads007.Fe_con_usu(Program.gl_ide_usr);
             if (Tabla.Rows.Count > 0){
                 lb_ide_usr.Text = Tabla.Rows[0]["va_ide_usr"].ToString();
                 lb_nom_usr.Text = Tabla.Rows[0]["va_nom_usr"].ToString();
@@ -170,7 +170,7 @@ namespace CRS_PRE
         {
             // Lee datos del Usuario Logueado
             Tabla = new DataTable();
-            Tabla = o_ads007.Fe_con_usu(o_ads007.va_ide_usr);
+            Tabla = o_ads007.Fe_con_usu(Program.gl_ide_usr);
 
             // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
             if (Convert.ToInt32(Tabla.Rows[0]["va_win_max"]) <= Program.gl_nro_win)
@@ -194,7 +194,7 @@ namespace CRS_PRE
                 }
 
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false){                  
+                if (fi_ven_max(Program.gl_ide_usr) == false){                  
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
                     Tabla = o_ads002.Fe_con_apl(3, "res200");
@@ -239,7 +239,7 @@ namespace CRS_PRE
                 }
 
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false){
+                if (fi_ven_max(Program.gl_ide_usr) == false){
                     
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
@@ -287,7 +287,7 @@ namespace CRS_PRE
                 }
 
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false)
+                if (fi_ven_max(Program.gl_ide_usr) == false)
                 {
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
@@ -335,7 +335,7 @@ namespace CRS_PRE
                 }
 
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false){
+                if (fi_ven_max(Program.gl_ide_usr) == false){
 
                     // Verifica que la aplicación este registrada y habilitada 
                     Tabla = new DataTable();
@@ -374,7 +374,7 @@ namespace CRS_PRE
             try
             {
                 // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-                if (fi_ven_max(o_ads007.va_ide_usr) == false)
+                if (fi_ven_max(Program.gl_ide_usr) == false)
                 {
                     // Crea el hilo del menu Administrador
                     Thread thread = new Thread(fi_run_rpt);

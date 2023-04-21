@@ -2046,14 +2046,14 @@ namespace CRS_PRE
         }
         void Fi_abr_bus_del()
         {
-            cmr015_01b frm = new cmr015_01b();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+            //cmr015_01b frm = new cmr015_01b();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                tb_cod_del.Text = frm.tb_sel_bus.Text;
-                Fi_obt_del();
-            }
+            //if (frm.DialogResult == DialogResult.OK)
+            //{
+            //    tb_cod_del.Text = frm.tb_sel_bus.Text;
+            //    Fi_obt_del();
+            //}
         }
         private void Tb_cod_del_Validated(object sender, EventArgs e)
         {

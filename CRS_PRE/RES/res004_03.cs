@@ -806,16 +806,16 @@ namespace CRS_PRE
                 switch(opc_doc)
                 {
                     case 1: // CON
-                        tb_nro_tal_con.Text = frm.vp_nro_tal;
+                        tb_nro_tal_con.Text = frm.tb_nro_tal.Text;
                         break;
                     case 2: // OPD
-                        tb_nro_tal_opd.Text = frm.vp_nro_tal;
+                        tb_nro_tal_opd.Text = frm.tb_nro_tal.Text;
                         break;
                     case 3: // NTV
-                        tb_nro_tal_nvt.Text = frm.vp_nro_tal;
+                        tb_nro_tal_nvt.Text = frm.tb_nro_tal.Text;
                         break;
                     case 4: // FAC
-                        tb_nro_tal_fac.Text = frm.vp_nro_tal;
+                        tb_nro_tal_fac.Text = frm.tb_nro_tal.Text;
                         break;
                 }
                // tb_cod_per.Text = frm.tb_sel_tal.Text;

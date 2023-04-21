@@ -496,8 +496,8 @@ namespace CRS_PRE
         
         private void mn_tip_usu_Click(object sender, EventArgs e)
         {
-            ads006_01 frm = new ads006_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.ocul);
+            //ads006_01 frm = new ads006_01();
+            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.ocul);
         }
         private void mn_ini_psw_Click(object sender, EventArgs e)
         {

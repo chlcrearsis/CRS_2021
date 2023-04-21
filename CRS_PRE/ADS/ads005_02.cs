@@ -92,7 +92,7 @@ namespace CRS_PRE
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_nro_tal.Text = frm.vp_nro_tal;
+                tb_nro_tal.Text = frm.tb_nro_tal.Text;
                 Fi_obt_tal();
             }
         }
