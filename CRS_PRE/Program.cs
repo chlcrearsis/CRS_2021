@@ -6,6 +6,12 @@ using System.Windows.Forms;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*        CAPA: PRESENTACIÓN                                          */
+    /*  Aplicación: Program - Clase Global                                */
+    /* Descripción: Define Variables Globales para el Sistema             */
+    /*       Autor: JEJR - Crearsis             Fecha: 21-04-2023         */
+    /**********************************************************************/
     static class Program
     {
         // CONSTANTES GLOBAL DATOS DE USUARIO DE CONEXION
@@ -22,17 +28,14 @@ namespace CRS_PRE
 
         public static string gl_ser_bdo = "";       // Servidor de base de datos  
         public static string gl_ins_bdo = "";       // Instancia de Base de datos  
-        public static string gl_nom_bdo = "";       // Base de datos                
-        //public static string gl_nom_emp = "";     // Nombre de empresa
-        public static int gl_nit_emp = 0;           // Nit de la empresa
+        public static string gl_nom_bdo = "";       // Base de datos    
 
-        //VARIABLE GLOBAL PARA CONTROLAR EL NUMERO DE VENTANAS ABIERTAS
+        // VARIABLE GLOBAL PARA CONTROLAR EL NUMERO DE VENTANAS ABIERTAS
         public static int gl_nro_win = 0;
-        //VARIABLE GLOBAL PARA CONTROLAR LAS NOTIFICACIONES Y SUS POSICIONES
+        // VARIABLE GLOBAL PARA CONTROLAR LAS NOTIFICACIONES Y SUS POSICIONES
         public static int gl_nro_not = 0;
         public static int gl_win_cer = 0;
         public static string ClientSettingsProviderServiceUri = "";
-
 
         /// <summary>
         /// Punto de entrada principal para la aplicación.
