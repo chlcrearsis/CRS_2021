@@ -24,7 +24,10 @@ namespace CRS_PRE.INV
         inv005 o_inv005 = new inv005();
         inv006 o_inv006 = new inv006();
 
+        ads008 o_ads008 = new ads008();     // Permisos del usuario
+
         DataTable tabla = new DataTable();
+        DataTable tab_ads008 = new DataTable();
 
 
         public inv004_02()
@@ -407,7 +410,28 @@ namespace CRS_PRE.INV
                 o_inv004.Fe_crea(tb_cod_pro.Text.Trim(), tb_cod_fam.Text, tb_und_med.Text, tb_und_cmp.Text, tb_und_vta.Text, int.Parse(tb_cod_mar.Text), tb_nom_pro.Text.Trim(),
                     tb_des_pro.Text.Trim(), tb_cod_bar.Text.Trim(), tb_fab_ric.Text.Trim(), int.Parse(tb_eqv_cmp.Text), int.Parse(tb_eqv_vta.Text), int.Parse(tb_nro_dec.Text), 0, 0);
 
-                MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Producto", MessageBoxButtons.OK);
+
+                // Verifica que el usuario tenga lista de precios permitidas
+                tab_ads008 = o_ads008.Fe_ads008_01(Program.gl_ide_usr, "cmr001");
+                if(tab_ads008 == null)
+                    MessageBox.Show("El Producto se creo correctamente", "Nuevo Producto", MessageBoxButtons.OK);
+                else if(tab_ads008.Rows.Count==0)
+                {
+                    MessageBox.Show("El Producto se creo correctamente", "Nuevo Producto", MessageBoxButtons.OK);
+                }else
+                {
+                    // Pregunta si desea registrar precio al producto creado
+                    msg_res = new DialogResult();
+                    msg_res = MessageBox.Show("El Producto se creo correctamente, desea registrar los precios de este producto?", "Nuevo Producto", MessageBoxButtons.YesNo);
+                    if (msg_res == DialogResult.Yes)
+                    {
+                        cmr002_02c frm = new cmr002_02c();
+                        frm.tb_cod_pro.Text = tb_cod_pro.Text;
+                        cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+                    }
+                }
+
                 Fi_lim_pia();
                 frm_pad.Fe_act_frm(tb_cod_pro.Text);
             }

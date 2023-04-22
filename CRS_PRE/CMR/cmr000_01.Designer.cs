@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_nro_fac = new System.Windows.Forms.Label();
             this.bt_bus_imp = new System.Windows.Forms.Button();
             this.lb_nom_imp = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.bt_imp_rim = new System.Windows.Forms.Button();
             this.bt_ver_doc = new System.Windows.Forms.Button();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.lb_nro_fac = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -57,10 +57,20 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // lb_nro_fac
+            // 
+            this.lb_nro_fac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nro_fac.ForeColor = System.Drawing.Color.Navy;
+            this.lb_nro_fac.Location = new System.Drawing.Point(308, 13);
+            this.lb_nro_fac.Name = "lb_nro_fac";
+            this.lb_nro_fac.Size = new System.Drawing.Size(85, 20);
+            this.lb_nro_fac.TabIndex = 41;
+            this.lb_nro_fac.Text = "# 7895";
+            // 
             // bt_bus_imp
             // 
             this.bt_bus_imp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_bus_imp.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.bt_bus_imp.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_bus_imp.Location = new System.Drawing.Point(31, 57);
             this.bt_bus_imp.Name = "bt_bus_imp";
             this.bt_bus_imp.Size = new System.Drawing.Size(97, 25);
@@ -160,16 +170,6 @@
             this.gb_ctr_btn.Size = new System.Drawing.Size(401, 49);
             this.gb_ctr_btn.TabIndex = 21;
             this.gb_ctr_btn.TabStop = false;
-            // 
-            // lb_nro_fac
-            // 
-            this.lb_nro_fac.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_nro_fac.ForeColor = System.Drawing.Color.Navy;
-            this.lb_nro_fac.Location = new System.Drawing.Point(308, 13);
-            this.lb_nro_fac.Name = "lb_nro_fac";
-            this.lb_nro_fac.Size = new System.Drawing.Size(85, 20);
-            this.lb_nro_fac.TabIndex = 41;
-            this.lb_nro_fac.Text = "# 7895";
             // 
             // cmr000_01
             // 

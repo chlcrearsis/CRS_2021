@@ -38,20 +38,20 @@
             this.tb_nom_bre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.tb_nro_dec = new System.Windows.Forms.TextBox();
             this.tb_nro_lis = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_fec_fin);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_fec_ini);
             this.groupBox1.Controls.Add(this.cb_mon_lis);
             this.groupBox1.Controls.Add(this.label6);
@@ -154,6 +154,17 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Lista";
             // 
+            // tb_est_ado
+            // 
+            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_est_ado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_est_ado.Enabled = false;
+            this.tb_est_ado.Location = new System.Drawing.Point(226, 42);
+            this.tb_est_ado.MaxLength = 2;
+            this.tb_est_ado.Name = "tb_est_ado";
+            this.tb_est_ado.Size = new System.Drawing.Size(103, 20);
+            this.tb_est_ado.TabIndex = 40;
+            // 
             // tb_nro_dec
             // 
             this.tb_nro_dec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -214,17 +225,6 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
-            // 
-            // tb_est_ado
-            // 
-            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_est_ado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_est_ado.Enabled = false;
-            this.tb_est_ado.Location = new System.Drawing.Point(226, 42);
-            this.tb_est_ado.MaxLength = 2;
-            this.tb_est_ado.Name = "tb_est_ado";
-            this.tb_est_ado.Size = new System.Drawing.Size(103, 20);
-            this.tb_est_ado.TabIndex = 40;
             // 
             // cmr001_04
             // 

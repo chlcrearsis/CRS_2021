@@ -49,8 +49,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_fec_fin);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_fec_ini);
             this.groupBox1.Controls.Add(this.cb_mon_lis);
             this.groupBox1.Controls.Add(this.label6);

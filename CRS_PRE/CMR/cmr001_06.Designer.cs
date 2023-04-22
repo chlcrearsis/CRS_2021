@@ -49,8 +49,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_fec_fin);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_fec_ini);
             this.groupBox1.Controls.Add(this.cb_mon_lis);
             this.groupBox1.Controls.Add(this.label6);
@@ -209,7 +209,7 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // cmr001_03
+            // cmr001_06
             // 
             this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,7 +222,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "cmr001_03";
+            this.Name = "cmr001_06";
             this.Tag = "Edita Lista de Precio";
             this.Text = "Edita Lista de Precio";
             this.Load += new System.EventHandler(this.frm_Load);
