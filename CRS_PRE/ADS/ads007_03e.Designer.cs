@@ -124,7 +124,8 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(238, 26);
             this.label12.TabIndex = 95;
-            this.label12.Text = "Esta opcion actualizara los permisos del \r\ntipo de usuario para el usuario";
+            this.label12.Text = "Esta opcion actualizara los permisos del \r\ntipo de usuario actual para el usuario" +
+    "";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tb_tip_usr

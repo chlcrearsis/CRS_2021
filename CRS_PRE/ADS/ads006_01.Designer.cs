@@ -37,6 +37,12 @@
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_eli_min = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_usu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_tal = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_plv = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_plv_res = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_apl = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_per_lis = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_lis_tus = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,11 +77,12 @@
             this.mn_nue_reg,
             this.mn_edi_tar,
             this.mn_con_sul,
+            this.mn_per_usu,
             this.mn_rep_ort,
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(335, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -124,6 +131,53 @@
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.mn_con_sul_Click);
             // 
+            // mn_per_usu
+            // 
+            this.mn_per_usu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_per_tal,
+            this.mn_per_plv,
+            this.mn_per_plv_res,
+            this.mn_per_apl,
+            this.mn_per_lis});
+            this.mn_per_usu.Name = "mn_per_usu";
+            this.mn_per_usu.Size = new System.Drawing.Size(67, 20);
+            this.mn_per_usu.Text = "&Permisos";
+            // 
+            // mn_per_tal
+            // 
+            this.mn_per_tal.Name = "mn_per_tal";
+            this.mn_per_tal.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_tal.Text = "Permiso de Talonaios";
+            this.mn_per_tal.Click += new System.EventHandler(this.mn_per_tal_Click);
+            // 
+            // mn_per_plv
+            // 
+            this.mn_per_plv.Name = "mn_per_plv";
+            this.mn_per_plv.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_plv.Text = "Permiso de Plantilla de Venta";
+            this.mn_per_plv.Click += new System.EventHandler(this.mn_per_plv_Click);
+            // 
+            // mn_per_plv_res
+            // 
+            this.mn_per_plv_res.Name = "mn_per_plv_res";
+            this.mn_per_plv_res.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_plv_res.Text = "Permiso de Plantilla de Venta Restaurant";
+            this.mn_per_plv_res.Click += new System.EventHandler(this.mn_per_plv_res_Click);
+            // 
+            // mn_per_apl
+            // 
+            this.mn_per_apl.Name = "mn_per_apl";
+            this.mn_per_apl.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_apl.Text = "Permiso de aplicaciones";
+            this.mn_per_apl.Click += new System.EventHandler(this.mn_per_apl_Click);
+            // 
+            // mn_per_lis
+            // 
+            this.mn_per_lis.Name = "mn_per_lis";
+            this.mn_per_lis.Size = new System.Drawing.Size(285, 22);
+            this.mn_per_lis.Text = "S/Lista de precios";
+            this.mn_per_lis.Click += new System.EventHandler(this.mn_per_lis_Click);
+            // 
             // mn_rep_ort
             // 
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -149,12 +203,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lb_nom_tus);
+            this.groupBox1.Controls.Add(this.tb_ide_tus);
             this.groupBox1.Controls.Add(this.bt_bus_car);
             this.groupBox1.Controls.Add(this.cb_est_bus);
             this.groupBox1.Controls.Add(this.cb_prm_bus);
             this.groupBox1.Controls.Add(this.tb_tex_bus);
             this.groupBox1.Controls.Add(this.lb_ide_tus);
-            this.groupBox1.Controls.Add(this.tb_ide_tus);
             this.groupBox1.Location = new System.Drawing.Point(2, -4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(571, 59);
@@ -164,7 +218,7 @@
             // lb_nom_tus
             // 
             this.lb_nom_tus.AutoSize = true;
-            this.lb_nom_tus.Location = new System.Drawing.Point(85, 14);
+            this.lb_nom_tus.Location = new System.Drawing.Point(108, 14);
             this.lb_nom_tus.Name = "lb_nom_tus";
             this.lb_nom_tus.Size = new System.Drawing.Size(16, 13);
             this.lb_nom_tus.TabIndex = 31;
@@ -225,14 +279,14 @@
             this.lb_ide_tus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_ide_tus.Location = new System.Drawing.Point(9, 13);
             this.lb_ide_tus.Name = "lb_ide_tus";
-            this.lb_ide_tus.Size = new System.Drawing.Size(42, 13);
+            this.lb_ide_tus.Size = new System.Drawing.Size(67, 13);
             this.lb_ide_tus.TabIndex = 1;
-            this.lb_ide_tus.Text = "Módulo";
+            this.lb_ide_tus.Text = "Tipo Usuario";
             // 
             // tb_ide_tus
             // 
             this.tb_ide_tus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_tus.Location = new System.Drawing.Point(53, 10);
+            this.tb_ide_tus.Location = new System.Drawing.Point(76, 10);
             this.tb_ide_tus.MaxLength = 3;
             this.tb_ide_tus.Name = "tb_ide_tus";
             this.tb_ide_tus.Size = new System.Drawing.Size(30, 20);
@@ -421,5 +475,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tus;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_des_tus;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_usu;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_tal;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_plv;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_plv_res;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_apl;
+        private System.Windows.Forms.ToolStripMenuItem mn_per_lis;
     }
 }

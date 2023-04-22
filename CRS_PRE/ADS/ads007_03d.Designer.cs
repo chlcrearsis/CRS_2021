@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tb_tip_usr = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lb_raz_soc = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cb_tip_usr = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tb_tip_usr = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.tb_cod_per = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,13 +57,9 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cb_tip_usr = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.gb_ctr_btn.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -90,27 +90,6 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(11, 54);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(135, 13);
-            this.label10.TabIndex = 92;
-            this.label10.Text = "Actual Tipo de usuario";
-            // 
-            // tb_tip_usr
-            // 
-            this.tb_tip_usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_tip_usr.Location = new System.Drawing.Point(153, 50);
-            this.tb_tip_usr.MaxLength = 15;
-            this.tb_tip_usr.Name = "tb_tip_usr";
-            this.tb_tip_usr.ReadOnly = true;
-            this.tb_tip_usr.Size = new System.Drawing.Size(155, 20);
-            this.tb_tip_usr.TabIndex = 91;
-            this.tb_tip_usr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -127,6 +106,71 @@
             this.lb_raz_soc.Size = new System.Drawing.Size(269, 13);
             this.lb_raz_soc.TabIndex = 83;
             this.lb_raz_soc.Text = ".";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.cb_tip_usr);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.tb_tip_usr);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Location = new System.Drawing.Point(5, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(413, 102);
+            this.groupBox2.TabIndex = 93;
+            this.groupBox2.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(6, 12);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(398, 26);
+            this.label12.TabIndex = 95;
+            this.label12.Text = "Esta opcion actualizara los permisos del usuario segun los que tenga\r\nel nuevo ti" +
+    "po de usuario seleccionado";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cb_tip_usr
+            // 
+            this.cb_tip_usr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_tip_usr.FormattingEnabled = true;
+            this.cb_tip_usr.Location = new System.Drawing.Point(143, 74);
+            this.cb_tip_usr.Name = "cb_tip_usr";
+            this.cb_tip_usr.Size = new System.Drawing.Size(150, 21);
+            this.cb_tip_usr.TabIndex = 94;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(7, 77);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(136, 13);
+            this.label11.TabIndex = 93;
+            this.label11.Text = "Nuevo Tipo de usuario";
+            // 
+            // tb_tip_usr
+            // 
+            this.tb_tip_usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_tip_usr.Location = new System.Drawing.Point(144, 50);
+            this.tb_tip_usr.MaxLength = 15;
+            this.tb_tip_usr.Name = "tb_tip_usr";
+            this.tb_tip_usr.ReadOnly = true;
+            this.tb_tip_usr.Size = new System.Drawing.Size(149, 20);
+            this.tb_tip_usr.TabIndex = 91;
+            this.tb_tip_usr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(7, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(135, 13);
+            this.label10.TabIndex = 92;
+            this.label10.Text = "Actual Tipo de usuario";
             // 
             // tb_cod_per
             // 
@@ -336,50 +380,6 @@
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.cb_tip_usr);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.tb_tip_usr);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(5, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(413, 102);
-            this.groupBox2.TabIndex = 93;
-            this.groupBox2.TabStop = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(11, 77);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(136, 13);
-            this.label11.TabIndex = 93;
-            this.label11.Text = "Nuevo Tipo de usuario";
-            // 
-            // cb_tip_usr
-            // 
-            this.cb_tip_usr.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_tip_usr.FormattingEnabled = true;
-            this.cb_tip_usr.Location = new System.Drawing.Point(152, 74);
-            this.cb_tip_usr.Name = "cb_tip_usr";
-            this.cb_tip_usr.Size = new System.Drawing.Size(156, 21);
-            this.cb_tip_usr.TabIndex = 94;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(6, 12);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(398, 26);
-            this.label12.TabIndex = 95;
-            this.label12.Text = "Esta opcion actualizara los permisos del usuario segun los que tenga\r\nel nuevo ti" +
-    "po de usuario seleccionado";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // ads007_03d
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -396,9 +396,9 @@
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.gb_ctr_btn.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
