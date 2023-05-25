@@ -31,10 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ads000_02));
             this.bt_men_pri = new System.Windows.Forms.Button();
             this.lp_con_apl = new System.Windows.Forms.FlowLayoutPanel();
+            this.bt_men_cmr = new System.Windows.Forms.Button();
             this.bt_men_res = new System.Windows.Forms.Button();
-            this.bt_men_com = new System.Windows.Forms.Button();
+            this.bt_men_tes = new System.Windows.Forms.Button();
+            this.bt_men_ctb = new System.Windows.Forms.Button();
             this.bt_men_inv = new System.Windows.Forms.Button();
-            this.bt_men_adm = new System.Windows.Forms.Button();
+            this.bt_men_ads = new System.Windows.Forms.Button();
             this.lb_ide_usr = new System.Windows.Forms.Label();
             this.pb_ima_usr = new PictureBoxAbouAmmar.صورة_دائرة();
             this.lb_nom_usr = new System.Windows.Forms.Label();
@@ -69,14 +71,38 @@
             // lp_con_apl
             // 
             this.lp_con_apl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lp_con_apl.Controls.Add(this.bt_men_cmr);
             this.lp_con_apl.Controls.Add(this.bt_men_res);
-            this.lp_con_apl.Controls.Add(this.bt_men_com);
+            this.lp_con_apl.Controls.Add(this.bt_men_tes);
+            this.lp_con_apl.Controls.Add(this.bt_men_ctb);
             this.lp_con_apl.Controls.Add(this.bt_men_inv);
-            this.lp_con_apl.Controls.Add(this.bt_men_adm);
+            this.lp_con_apl.Controls.Add(this.bt_men_ads);
             this.lp_con_apl.Location = new System.Drawing.Point(-2, 164);
             this.lp_con_apl.Name = "lp_con_apl";
             this.lp_con_apl.Size = new System.Drawing.Size(205, 303);
             this.lp_con_apl.TabIndex = 3;
+            // 
+            // bt_men_cmr
+            // 
+            this.bt_men_cmr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_cmr.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_cmr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_cmr.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_men_cmr.ForeColor = System.Drawing.Color.White;
+            this.bt_men_cmr.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_cmr.Image")));
+            this.bt_men_cmr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_cmr.Location = new System.Drawing.Point(3, 3);
+            this.bt_men_cmr.Name = "bt_men_cmr";
+            this.bt_men_cmr.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_cmr.TabIndex = 1;
+            this.bt_men_cmr.Text = "              Comercializacion";
+            this.bt_men_cmr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_cmr.UseVisualStyleBackColor = false;
+            this.bt_men_cmr.Visible = false;
+            this.bt_men_cmr.Click += new System.EventHandler(this.bt_men_cmr_Click);
+            this.bt_men_cmr.MouseEnter += new System.EventHandler(this.bt_men_cmr_MouseEnter);
+            this.bt_men_cmr.MouseLeave += new System.EventHandler(this.bt_men_cmr_MouseLeave);
+            this.bt_men_cmr.MouseHover += new System.EventHandler(this.bt_men_cmr_MouseHover);
             // 
             // bt_men_res
             // 
@@ -87,7 +113,7 @@
             this.bt_men_res.ForeColor = System.Drawing.Color.White;
             this.bt_men_res.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_res.Image")));
             this.bt_men_res.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_men_res.Location = new System.Drawing.Point(3, 3);
+            this.bt_men_res.Location = new System.Drawing.Point(3, 45);
             this.bt_men_res.Name = "bt_men_res";
             this.bt_men_res.Size = new System.Drawing.Size(190, 36);
             this.bt_men_res.TabIndex = 0;
@@ -100,27 +126,49 @@
             this.bt_men_res.MouseLeave += new System.EventHandler(this.bt_men_res_MouseLeave);
             this.bt_men_res.MouseHover += new System.EventHandler(this.bt_men_res_MouseHover);
             // 
-            // bt_men_com
+            // bt_men_tes
             // 
-            this.bt_men_com.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_men_com.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bt_men_com.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_men_com.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_men_com.ForeColor = System.Drawing.Color.White;
-            this.bt_men_com.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_com.Image")));
-            this.bt_men_com.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_men_com.Location = new System.Drawing.Point(3, 45);
-            this.bt_men_com.Name = "bt_men_com";
-            this.bt_men_com.Size = new System.Drawing.Size(190, 36);
-            this.bt_men_com.TabIndex = 1;
-            this.bt_men_com.Text = "              Comercializacion";
-            this.bt_men_com.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_men_com.UseVisualStyleBackColor = false;
-            this.bt_men_com.Visible = false;
-            this.bt_men_com.Click += new System.EventHandler(this.bt_men_com_Click);
-            this.bt_men_com.MouseEnter += new System.EventHandler(this.bt_men_com_MouseEnter);
-            this.bt_men_com.MouseLeave += new System.EventHandler(this.bt_men_com_MouseLeave);
-            this.bt_men_com.MouseHover += new System.EventHandler(this.bt_men_com_MouseHover);
+            this.bt_men_tes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_tes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_tes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_tes.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_men_tes.ForeColor = System.Drawing.Color.White;
+            this.bt_men_tes.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_tes.Image")));
+            this.bt_men_tes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_tes.Location = new System.Drawing.Point(3, 87);
+            this.bt_men_tes.Name = "bt_men_tes";
+            this.bt_men_tes.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_tes.TabIndex = 4;
+            this.bt_men_tes.Text = "              Tesorería";
+            this.bt_men_tes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_tes.UseVisualStyleBackColor = false;
+            this.bt_men_tes.Visible = false;
+            this.bt_men_tes.Click += new System.EventHandler(this.bt_men_tes_Click);
+            this.bt_men_tes.MouseEnter += new System.EventHandler(this.bt_men_tes_MouseEnter);
+            this.bt_men_tes.MouseLeave += new System.EventHandler(this.bt_men_tes_MouseLeave);
+            this.bt_men_tes.MouseHover += new System.EventHandler(this.bt_men_tes_MouseHover);
+            // 
+            // bt_men_ctb
+            // 
+            this.bt_men_ctb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_ctb.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_ctb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_ctb.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_men_ctb.ForeColor = System.Drawing.Color.White;
+            this.bt_men_ctb.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_ctb.Image")));
+            this.bt_men_ctb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_ctb.Location = new System.Drawing.Point(3, 129);
+            this.bt_men_ctb.Name = "bt_men_ctb";
+            this.bt_men_ctb.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_ctb.TabIndex = 5;
+            this.bt_men_ctb.Text = "              Contabilidad";
+            this.bt_men_ctb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_ctb.UseVisualStyleBackColor = false;
+            this.bt_men_ctb.Visible = false;
+            this.bt_men_ctb.Click += new System.EventHandler(this.bt_men_ctb_Click);
+            this.bt_men_ctb.MouseEnter += new System.EventHandler(this.bt_men_ctb_MouseEnter);
+            this.bt_men_ctb.MouseLeave += new System.EventHandler(this.bt_men_ctb_MouseLeave);
+            this.bt_men_ctb.MouseHover += new System.EventHandler(this.bt_men_ctb_MouseHover);
             // 
             // bt_men_inv
             // 
@@ -131,7 +179,7 @@
             this.bt_men_inv.ForeColor = System.Drawing.Color.White;
             this.bt_men_inv.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_inv.Image")));
             this.bt_men_inv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_men_inv.Location = new System.Drawing.Point(3, 87);
+            this.bt_men_inv.Location = new System.Drawing.Point(3, 171);
             this.bt_men_inv.Name = "bt_men_inv";
             this.bt_men_inv.Size = new System.Drawing.Size(190, 36);
             this.bt_men_inv.TabIndex = 2;
@@ -144,27 +192,27 @@
             this.bt_men_inv.MouseLeave += new System.EventHandler(this.bt_men_inv_MouseLeave);
             this.bt_men_inv.MouseHover += new System.EventHandler(this.bt_men_inv_MouseHover);
             // 
-            // bt_men_adm
+            // bt_men_ads
             // 
-            this.bt_men_adm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_men_adm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bt_men_adm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_men_adm.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_men_adm.ForeColor = System.Drawing.Color.White;
-            this.bt_men_adm.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_adm.Image")));
-            this.bt_men_adm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_men_adm.Location = new System.Drawing.Point(3, 129);
-            this.bt_men_adm.Name = "bt_men_adm";
-            this.bt_men_adm.Size = new System.Drawing.Size(190, 36);
-            this.bt_men_adm.TabIndex = 3;
-            this.bt_men_adm.Text = "              Administrador";
-            this.bt_men_adm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_men_adm.UseVisualStyleBackColor = false;
-            this.bt_men_adm.Visible = false;
-            this.bt_men_adm.Click += new System.EventHandler(this.bt_men_adm_Click);
-            this.bt_men_adm.MouseEnter += new System.EventHandler(this.bt_men_adm_MouseEnter);
-            this.bt_men_adm.MouseLeave += new System.EventHandler(this.bt_men_adm_MouseLeave);
-            this.bt_men_adm.MouseHover += new System.EventHandler(this.bt_men_adm_MouseHover);
+            this.bt_men_ads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_men_ads.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_men_ads.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_men_ads.Font = new System.Drawing.Font("HP Simplified", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_men_ads.ForeColor = System.Drawing.Color.White;
+            this.bt_men_ads.Image = ((System.Drawing.Image)(resources.GetObject("bt_men_ads.Image")));
+            this.bt_men_ads.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_ads.Location = new System.Drawing.Point(3, 213);
+            this.bt_men_ads.Name = "bt_men_ads";
+            this.bt_men_ads.Size = new System.Drawing.Size(190, 36);
+            this.bt_men_ads.TabIndex = 3;
+            this.bt_men_ads.Text = "              Administrador";
+            this.bt_men_ads.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_men_ads.UseVisualStyleBackColor = false;
+            this.bt_men_ads.Visible = false;
+            this.bt_men_ads.Click += new System.EventHandler(this.bt_men_ads_Click);
+            this.bt_men_ads.MouseEnter += new System.EventHandler(this.bt_men_ads_MouseEnter);
+            this.bt_men_ads.MouseLeave += new System.EventHandler(this.bt_men_ads_MouseLeave);
+            this.bt_men_ads.MouseHover += new System.EventHandler(this.bt_men_ads_MouseHover);
             // 
             // lb_ide_usr
             // 
@@ -293,10 +341,10 @@
             this.MinimumSize = new System.Drawing.Size(806, 528);
             this.Name = "ads000_02";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CRS -";
+            this.Tag = "Menú Principal";
+            this.Text = "Menú Principal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ads000_02_FormClosing);
             this.Load += new System.EventHandler(this.ads000_02_Load);
-            this.Resize += new System.EventHandler(this.ads000_02_Resize);
             this.lp_con_apl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pb_ima_usr)).EndInit();
             this.pn_men_pri.ResumeLayout(false);
@@ -316,12 +364,14 @@
         private System.Windows.Forms.Panel pn_men_pri;
         private System.Windows.Forms.Label lb_nom_equ;
         private System.Windows.Forms.Button bt_men_res;
-        private System.Windows.Forms.Button bt_men_com;
+        private System.Windows.Forms.Button bt_men_cmr;
         private System.Windows.Forms.Button bt_men_inv;
-        private System.Windows.Forms.Button bt_men_adm;
+        private System.Windows.Forms.Button bt_men_ads;
         private System.Windows.Forms.PictureBox pb_lic_act;
         private System.Windows.Forms.Label lb_val_lic;
         private System.Windows.Forms.Label lb_lic_act;
         private System.Windows.Forms.PictureBox pb_not_fic;
+        private System.Windows.Forms.Button bt_men_tes;
+        private System.Windows.Forms.Button bt_men_ctb;
     }
 }

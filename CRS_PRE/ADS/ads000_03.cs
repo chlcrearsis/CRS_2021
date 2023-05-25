@@ -7,20 +7,40 @@ using System.Net.NetworkInformation;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads000_03 - Información PC                            */
+    /* Descripción: Informeación General                                   */
+    /*       Autor: JEJR - Crearsis             Fecha: 23-03-2021         */
+    /**********************************************************************/
     public partial class ads000_03 : Form
-    {
-        public dynamic frm_pad;
-        public int frm_tip;
+    {        
+        private int va_coo_pox = 0;
+        private int va_coo_poy = 0;
+        private bool va_est_ven = false;       
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
 
         public ads000_03()
         {
             InitializeComponent();
         }
 
-        private void fi_lim_frm() {
+        // Limpia e Iniciliza Campos
+        private void fi_lim_frm()
+        {
             lb_nom_equ.Text = string.Empty;
             tb_sis_ope.Text = string.Empty;
             tb_pro_ces.Text = string.Empty;
@@ -28,10 +48,31 @@ namespace CRS_PRE
             tb_pla_sis.Text = string.Empty;
             tb_bio_sis.Text = string.Empty;
             tb_dir_ipp.Text = string.Empty;
-            tb_dir_mac.Text = string.Empty;           
+            tb_dir_mac.Text = string.Empty;
             tb_net_fra.Text = string.Empty;
             tb_run_cry.Text = string.Empty;
         }
+
+        private void ads000_03_MouseMove(object sender, MouseEventArgs e)
+        {            
+            if (va_est_ven){
+                Left += e.X - va_coo_pox;
+                Top += e.Y - va_coo_poy;
+            }
+        }
+        private void ads000_03_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left){
+                va_est_ven = true;
+                va_coo_pox = e.X;
+                va_coo_poy = e.Y;
+            }
+        }
+        private void ads000_03_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)            
+                va_est_ven = false;            
+        }              
 
         private void ads000_03_Load(object sender, EventArgs e)
         {
@@ -158,7 +199,7 @@ namespace CRS_PRE
             ManagementObjectSearcher objOSDetails = new ManagementObjectSearcher(Sq);
             ManagementObjectCollection osDetailsCollection = objOSDetails.Get();
             foreach (ManagementObject mo in osDetailsCollection)
-            {                
+            {
                 return mo["SMBIOSBIOSVersion"].ToString();
             }
 
@@ -195,23 +236,30 @@ namespace CRS_PRE
 
                 foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
                 {
-                    if (nic.OperationalStatus == OperationalStatus.Up){
+                    if (nic.OperationalStatus == OperationalStatus.Up)
+                    {
                         mac_add += nic.GetPhysicalAddress().ToString();
                         break;
                     }
                 }
 
-                for (int n = 0; n < mac_add.Length; n++) {
-                    if (n == 2 || n == 4 || n == 6 || n == 8 || n == 10 || n == 12){
+                for (int n = 0; n < mac_add.Length; n++)
+                {
+                    if (n == 2 || n == 4 || n == 6 || n == 8 || n == 10 || n == 12)
+                    {
                         dir_mac = dir_mac + ":" + mac_add.Substring(n, 1);
-                    }else {
+                    }
+                    else
+                    {
                         dir_mac = dir_mac + mac_add.Substring(n, 1);
                     }
                 }
 
                 return dir_mac;
 
-            }catch (Exception) {
+            }
+            catch (Exception)
+            {
                 return "No Conectado";
             }
         }
@@ -255,7 +303,7 @@ namespace CRS_PRE
         private static string fi_cry_rep()
         {
             try
-            {                        
+            {
                 foreach (Assembly MyVerison in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     if (MyVerison.FullName.Substring(0, 38) == "CrystalDecisions.CrystalReports.Engine")
@@ -272,9 +320,10 @@ namespace CRS_PRE
             }
         }
 
-        private void bt_ace_pta_Click(object sender, EventArgs e)
+        // Button Click: Cancelar
+        private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

@@ -110,7 +110,7 @@ namespace CRS_PRE
 
             // Valida que el campo código sea un valor válido
             int.TryParse(tb_nro_tal.Text, out int nro_tal);
-            if (nro_tal == 0){
+            if (nro_tal < 0){
                 tb_nro_tal.Focus();
                 return "El Nro. Talonario NO es valido";
             }
@@ -124,7 +124,7 @@ namespace CRS_PRE
             // Verifica SI el Talonario se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            if (Tabla.Rows.Count == 0){
+            if (Tabla.Rows.Count > 0){
                 tb_nro_tal.Focus();
                 return "El Talonario que desea crear ya se encuentra registrado " + tb_ide_doc.Text + " : " + tb_nro_tal.Text;
             }
@@ -137,7 +137,7 @@ namespace CRS_PRE
 
             // Valida que el campo Formato de Impresión sea un valor válido
             int.TryParse(tb_for_mat.Text, out int for_mat);
-            if (for_mat == 0){
+            if (for_mat < 0){
                 tb_for_mat.Focus();
                 return "El Nro. de Formato de Impresion DEBE ser numérico";
             }
@@ -150,7 +150,7 @@ namespace CRS_PRE
 
             // Valida que el campo Nro. de Copias sea un valor válido
             int.TryParse(tb_nro_cop.Text, out int nro_cop);
-            if (nro_cop == 0)
+            if (nro_cop < 0)
             {
                 tb_nro_cop.Focus();
                 return "El Nro. de Copia(s) DEBE ser numérico";
@@ -162,8 +162,8 @@ namespace CRS_PRE
         // Evento KeyDown : ID. Documento
         private void tb_ide_doc_KeyDown(object sender, KeyEventArgs e)
         {
-            //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
+            //al presionar tecla para ABAJO
+            if (e.KeyData == Keys.Down)
             {
                 // Abre la ventana Busca Documento
                 Fi_bus_doc();

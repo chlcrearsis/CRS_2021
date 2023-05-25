@@ -32,9 +32,11 @@ namespace CRS_PRE
             tb_nom_bda.Text = string.Empty;
             tb_nro_usr.Text = string.Empty;
             tb_fec_exp.Text = string.Empty;
-            cb_lic_adm.Checked = false;
+            cb_lic_ads.Checked = false;
             cb_lic_inv.Checked = false;
-            cb_lic_com.Checked = false;
+            cb_lic_cmr.Checked = false;
+            cb_lic_tes.Checked = false;
+            cb_lic_ctb.Checked = false;
             cb_lic_res.Checked = false;
         }
 
@@ -85,24 +87,23 @@ namespace CRS_PRE
                     tb_nro_usr.Text = Tabla.Rows[0]["va_nro_usr"].ToString().Trim();
                     tb_fec_exp.Text = Tabla.Rows[0]["va_fec_exp"].ToString().Trim();
 
-                    if (Tabla.Rows[0]["va_mod_adm"].ToString() == "S") {
-                        cb_lic_adm.Checked = true;
-                    }
+                    if (Tabla.Rows[0]["va_mod_ads"].ToString() == "S")
+                        cb_lic_ads.Checked = true;
 
-                    if (Tabla.Rows[0]["va_mod_inv"].ToString() == "S")
-                    {
-                        cb_lic_inv.Checked = true;
-                    }
+                    if (Tabla.Rows[0]["va_mod_inv"].ToString() == "S")                    
+                        cb_lic_inv.Checked = true;                    
 
-                    if (Tabla.Rows[0]["va_mod_com"].ToString() == "S")
-                    {
-                        cb_lic_com.Checked = true;
-                    }
+                    if (Tabla.Rows[0]["va_mod_cmr"].ToString() == "S")                    
+                        cb_lic_cmr.Checked = true;
 
-                    if (Tabla.Rows[0]["va_mod_res"].ToString() == "S")
-                    {
-                        cb_lic_res.Checked = true;
-                    }
+                    if (Tabla.Rows[0]["va_mod_ctb"].ToString() == "S")
+                        cb_lic_ctb.Checked = true;
+
+                    if (Tabla.Rows[0]["va_mod_tes"].ToString() == "S")
+                        cb_lic_tes.Checked = true;
+
+                    if (Tabla.Rows[0]["va_mod_res"].ToString() == "S")                    
+                        cb_lic_res.Checked = true;                    
                 }
             }
             catch (Exception ex){
@@ -120,42 +121,34 @@ namespace CRS_PRE
         {
             string nro_usr = "";    // Nro. de Usuario
             string fec_exp = "";    // Fecha de Expiración
-            string mod_adm = "";    // Modulo de ADM
-            string mod_inv = "";    // Modulo de INV
-            string mod_com = "";    // Modulo de COM
-            string mod_res = "";    // Modulo de RES
+
+            string mod_ads = "N";    // Modulo de ADM
+            string mod_inv = "N";    // Modulo de INV
+            string mod_cmr = "N";    // Modulo de CMR
+            string mod_ctb = "N";    // Modulo de CTB
+            string mod_tes = "N";    // Modulo de TES
+            string mod_res = "N";    // Modulo de RES
 
             try
             {               
                 nro_usr = tb_nro_usr.Text.ToString();
                 fec_exp = tb_fec_exp.Text.ToString();
-                if (cb_lic_adm.Checked == true){
-                    mod_adm = "S";
-                }else{
-                    mod_adm = "N";
-                }
-
-                if (cb_lic_inv.Checked == true){
-                    mod_inv = "S";
-                }else{
-                    mod_inv = "N";
-                }
-
-                if (cb_lic_com.Checked == true){
-                    mod_com = "S";
-                }else{
-                    mod_com = "N";
-                }
-
-                if (cb_lic_res.Checked == true){
+                if (cb_lic_ads.Checked == true)
+                    mod_ads = "S";                
+                if (cb_lic_inv.Checked == true)
+                    mod_inv = "S";               
+                if (cb_lic_cmr.Checked == true)
+                    mod_cmr = "S";                
+                if (cb_lic_ctb.Checked == true)                
+                    mod_ctb = "S";
+                if (cb_lic_tes.Checked == true)
+                    mod_tes = "S";
+                if (cb_lic_res.Checked == true)
                     mod_res = "S";
-                }else{
-                    mod_res = "N";
-                }
 
                 if (fi_val_dat() == true){
                     if (MessageBox.Show("Está seguro de registrar la licencia?", Titulo, MessageBoxButtons.OKCancel) == DialogResult.OK){
-                        o_ads013.Fe_gra_lic(Int32.Parse(nro_usr), fec_exp, mod_adm, mod_inv, mod_com, mod_res);
+                        o_ads013.Fe_gra_lic(Int32.Parse(nro_usr), fec_exp, mod_ads, mod_inv, mod_cmr, mod_ctb, mod_tes, mod_res);
                         DialogResult = DialogResult.OK;
                     }
                 }

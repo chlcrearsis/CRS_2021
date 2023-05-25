@@ -8,20 +8,25 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads000 - Inicio de Sesión                             */
+    /* Descripción: Ingresa el Usuario al Sistema                         */
+    /*       Autor: JEJR - Crearsis             Fecha: 23-03-2021         */
+    /**********************************************************************/
     public partial class ads000_00 : Form
     {
-        private string Titulo = "Inicio Sesión";
-        private string va_ser_bda;  //Servidor             
+        private string va_ser_bda;
         private int va_coo_pox = 0;
         private int va_coo_poy = 0;
-        private bool va_est_ven = false;
-        private DataTable Tabla = new DataTable();
+        private bool va_est_ven = false;        
         private ToolTip va_tool_tip = new ToolTip();
-
-        private General general = new General();
+        private DataTable Tabla = new DataTable();
+        private General general = new General();        
         private ads007 o_ads007 = new ads007();
         private ads013 o_ads013 = new ads013();
         private ads024 o_ads024 = new ads024();
+        
 
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -36,18 +41,17 @@ namespace CRS_PRE
 
         private void fi_rec_bdo()
         {
-            string linea = "";
             int contador = 1;
 
             // Lea el archivo y lo muestra línea por línea.              
             StreamReader archivo = File.OpenText("C:\\crearsis\\crearsisbd.txt");
-            linea = archivo.ReadLine();
+            string linea = archivo.ReadLine();
 
             while (linea != null)
             {
                 if (contador >= 1){  // Leer la lista de la base de datos
                     va_ser_bda = linea.Substring(1, linea.Length - 1);
-                    //linea = archivo.ReadLine();
+                    // linea = archivo.ReadLine();
                     // Adiciona a la lista de BD
                     cb_nom_bda.Items.Add(va_ser_bda);
                 }
@@ -75,15 +79,13 @@ namespace CRS_PRE
                 pas_usr = "";
 
             // Verifica si los campos esta vacio
-            if (ide_usr == "")
-            {
-                MessageBox.Show("Debe proporcionar el usuario", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (ide_usr == ""){
+                MessageBox.Show("DEBE proporcionar el Usuario", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (pas_usr == "")
-            {
-                MessageBox.Show("Debe proporcionar la contraseña", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (pas_usr == ""){
+                MessageBox.Show("DEBE proporcionar la Contraseña", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -101,10 +103,12 @@ namespace CRS_PRE
                 string ide_uni = general.generateID();
                 string ide_usr = tb_ide_usr.Text;
                 string pas_usr = tb_pas_usr.Text;
-                string nom_bda = cb_nom_bda.SelectedItem.ToString();
-                string pas_def = "";    // Contraseña por Defecto   
+                string nom_bda = cb_nom_bda.SelectedItem.ToString();                
                 string usr_sql = Program.gl_usr_sql;
                 string pas_sql = Program.gl_pas_sql;
+                string pas_def = "";    // Contraseña por Defecto   
+                string cod_err = "";    // Código de Error
+                string msn_err = "";    // Mensaje de Error
 
                 // Verifica que el usuario y contraseña sean correcta
                 if (fi_val_dat() == true) {
@@ -112,43 +116,35 @@ namespace CRS_PRE
                     Tabla = new DataTable();
                     Tabla = o_ads007.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
                     if (Tabla.Rows.Count == 0) {
-                        MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("DEBE registrar el Inicio de Sesión ('" + usr_sql + "') en el SQL-Server", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     // Verifica que el usuario este definido y asignado los permisos correspondiente
                     Tabla = o_ads007.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
                     if (Tabla.Rows.Count == 0) {
-                        MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El Usuario ('" + ide_usr + "') NO esta definido en el Servidor", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-                    }
-                    else
-                    {
-                        string cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
-                        string msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
-                        if (cod_err.CompareTo("0") != 0)
-                        {
-                            MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }else{
+                        cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
+                        msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
+                        if (cod_err.CompareTo("0") != 0){
+                            MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
 
                     // Guarda datos en la aplicacion
-                    string msn_err2 = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
-                    if (msn_err2 == "OK") 
-                    {                         
-                        Program.gl_ide_uni = ide_uni;   // Guarda id unico de pantalla
-                        Program.gl_ide_usr = ide_usr;   // Guarda id del usuario
-                        Program.gl_pas_usr = pas_usr;   // Guarda id unico de pantalla
-
+                    msn_err = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
+                    if (msn_err == "OK") {                         
+                        Program.gl_ide_uni = ide_uni;   // Guarda ID. Unico de Sesión
+                        Program.gl_ide_usr = ide_usr;   // Guarda ID. Usuario
+                        Program.gl_pas_usr = pas_usr;   // Guarda Contraseña Usuario
                         Program.gl_nom_bdo = o_ads007.va_ser_bda;    // Guarda Servidor de la base de datos
                         Program.gl_ins_bdo = o_ads007.va_ins_bda;    // Guarda Instancia de la base de datos
                         Program.gl_nom_bdo = o_ads007.va_nom_bda;    // Guarda la base de datos
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("ERROR '" + msn_err2 + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }else{
+                        MessageBox.Show("Error: '" + msn_err + "'", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -173,7 +169,7 @@ namespace CRS_PRE
                     o_ads024.Fe_ini_ses(ide_uni, Program.gl_ide_usr, SystemInformation.ComputerName);
 
                     // Abre la ventana del Menu Principal
-                    this.Visible = false;
+                    Visible = false;
                     ads000_02 frm = new ads000_02();
                     frm.ShowDialog();
                     Close();                
@@ -188,7 +184,7 @@ namespace CRS_PRE
         public ads000_00()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.None;
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));            
             pn_con_usr.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_con_usr.Width, pn_con_usr.Height, 15, 15));
             pn_fon_usr.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_fon_usr.Width, pn_fon_usr.Height, 15, 15));
@@ -217,8 +213,8 @@ namespace CRS_PRE
         private void ads000_00_MouseMove(object sender, MouseEventArgs e)
         {            
             if (va_est_ven){
-                this.Left = this.Left + (e.X - va_coo_pox);
-                this.Top = this.Top + (e.Y - va_coo_poy);
+                Left = Left + (e.X - va_coo_pox);
+                Top = Top + (e.Y - va_coo_poy);
             }
         }
         private void ads000_00_MouseDown(object sender, MouseEventArgs e)
@@ -255,10 +251,8 @@ namespace CRS_PRE
         }
         private void tb_ide_usr_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-            {
-                fi_ing_res();
-            }
+            if (e.KeyChar == (int) Keys.Enter)            
+                fi_ing_res();            
         }
 
         private void tb_pas_usr_Enter(object sender, EventArgs e){
@@ -279,19 +273,17 @@ namespace CRS_PRE
                       
         private void pb_ima_pas_Click(object sender, EventArgs e)
         {
-            string ide_usr = "";    // Usuario
-            string pas_usr = "";    // Contraseña
-            string nom_bda = "";    // Base de Datos
-
             try
             {
                 // Obtiene datos de pantalla
-                ide_usr = tb_ide_usr.Text;
-                pas_usr = tb_pas_usr.Text;
-                nom_bda = cb_nom_bda.SelectedItem.ToString();
+                string ide_usr = tb_ide_usr.Text;
+                string pas_usr = tb_pas_usr.Text;
+                string nom_bda = cb_nom_bda.SelectedItem.ToString();
                 string ide_uni = general.generateID();
                 string usr_sql = Program.gl_usr_sql;
                 string pas_sql = Program.gl_pas_sql;
+                string cod_err = "";    // Codigo de Error
+                string msn_err = "";    // Mensaje de Error
 
                 // Verifica que el usuario y contraseña sean correcta
                 if (fi_val_dat() == true){
@@ -299,26 +291,27 @@ namespace CRS_PRE
                     Tabla = new DataTable();
                     Tabla = o_ads007.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
                     if (Tabla.Rows.Count == 0){
-                        MessageBox.Show("Se DEBE registrar primeramente el Inicio de Sesión '" + usr_sql + "' en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("DEBE registrar el Inicio de Sesión ('" + usr_sql + "') en el SQL-Server", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     // Verifica que el usuario este definido y asignado los permisos correspondiente
                     Tabla = o_ads007.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
                     if (Tabla.Rows.Count == 0){
-                        MessageBox.Show("El Usuario '" + ide_usr + "' NO esta definido en el Servidor", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El Usuario ('" + ide_usr + "') NO está definido en el Servidor", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }else{
-                        string cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
-                        string msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
+                        cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
+                        msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
                         if (cod_err.CompareTo("0") != 0){
-                            MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Error'" + cod_err + "': '" + msn_err + "'", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
 
                     // Guarda datos en la aplicacion
-                    if (o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr) == "OK"){
+                    msn_err = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
+                    if (msn_err == "OK"){
                         Program.gl_ide_usr = ide_usr;
 
                         // Abre la pantalla para actualizar su contraseña
@@ -326,22 +319,11 @@ namespace CRS_PRE
                         form.vp_ide_usr = ide_usr;
                         form.vp_pas_usr = pas_usr;
                         form.Opacity = 0.95;
-                        if (form.ShowDialog() == DialogResult.OK)
-                        {
+                        if (form.ShowDialog() == DialogResult.OK){
                             form.Close();
                             return;
                         }
-                    }
-
-                    // Obtiene: (SG-100) -> Contraseña por Defecto
-                    /*Tabla = o_ads013.Fe_obt_glo(1, 1);
-                    if (Tabla.Rows.Count > 0){
-                        pas_def = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
-                        if (pas_def == pas_usr)
-                        {
-                            
-                        }
-                    }*/
+                    }                    
                 }
             }catch (Exception ex){
                 MessageBox.Show(ex.Message, "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -381,19 +363,19 @@ namespace CRS_PRE
         private void pb_wha_sap_Click(object sender, EventArgs e)
         {
             // Abre la pagina de Whatsaap para contacto
-            System.Diagnostics.Process.Start("https://www.facebook.com/crearsis/");
+            System.Diagnostics.Process.Start("https://www.Whatsaap.com/crearsis/");
         }
 
         private void pb_ins_gra_Click(object sender, EventArgs e)
         {
             // Abre la pagina de Instagram para contacto
-            System.Diagnostics.Process.Start("https://www.facebook.com/crearsis/");
+            System.Diagnostics.Process.Start("https://www.Instagram.com/crearsis/");
         }
 
         private void pb_tel_gra_Click(object sender, EventArgs e)
         {
             // Abre la pagina de Telegran para contacto
-            System.Diagnostics.Process.Start("https://www.facebook.com/crearsis/");
+            System.Diagnostics.Process.Start("https://www.telegram.com/crearsis/");
         }
     }
 }

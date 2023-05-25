@@ -58,23 +58,18 @@ namespace CRS_NEG
 
 
         public string Login(string ag_ide_uni, string ag_ser_bda, string ag_ide_usr, string ag_pas_usr)
-        {
-            string msg_ret = "";
+        {            
             ob_con_ecA.Login(ag_ide_uni, ag_ser_bda, ag_ide_usr, ag_pas_usr);
-            
-            msg_ret = ob_con_ecA.fe_abr_cnx();
+            string msg_ret = ob_con_ecA.fe_abr_cnx();
 
-            if (msg_ret == "OK")
-            {
+            if (msg_ret == "OK"){
                 va_ser_bda = ob_con_ecA.va_ser_bda;
                 va_ins_bda = ob_con_ecA.va_ins_bda;
                 va_nom_bda = ob_con_ecA.va_nom_bda;
                 va_ide_usr = ob_con_ecA.va_ide_usr;
                 va_pas_usr = ob_con_ecA.va_pas_usr;
-
                 msg_ret = Fi_log_bdo(ag_ide_usr);
             }
-
             return msg_ret;
         }
 

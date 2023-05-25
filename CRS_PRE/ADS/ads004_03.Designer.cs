@@ -33,6 +33,7 @@
             this.lb_nro_aut = new System.Windows.Forms.Label();
             this.tb_nro_aut = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_est_ado = new System.Windows.Forms.Label();
             this.gb_fir_mas = new System.Windows.Forms.GroupBox();
             this.tb_fir_ma4 = new System.Windows.Forms.TextBox();
             this.tb_fir_ma3 = new System.Windows.Forms.TextBox();
@@ -59,7 +60,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
-            this.lb_est_ado = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_fir_mas.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
@@ -138,6 +138,15 @@
             this.groupBox1.Size = new System.Drawing.Size(398, 218);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lb_est_ado
+            // 
+            this.lb_est_ado.AutoSize = true;
+            this.lb_est_ado.Location = new System.Drawing.Point(258, 93);
+            this.lb_est_ado.Name = "lb_est_ado";
+            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
+            this.lb_est_ado.TabIndex = 23;
+            this.lb_est_ado.Text = "Estado";
             // 
             // gb_fir_mas
             // 
@@ -401,6 +410,7 @@
             this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
+            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 
@@ -414,15 +424,7 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
-            // 
-            // lb_est_ado
-            // 
-            this.lb_est_ado.AutoSize = true;
-            this.lb_est_ado.Location = new System.Drawing.Point(258, 93);
-            this.lb_est_ado.Name = "lb_est_ado";
-            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
-            this.lb_est_ado.TabIndex = 23;
-            this.lb_est_ado.Text = "Estado";
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
             // ads004_03
             // 

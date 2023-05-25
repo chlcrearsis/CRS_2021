@@ -2,6 +2,11 @@
 {
     partial class ads000_03
     {
+        public dynamic frm_pad;
+        public int frm_tip;
+        public dynamic frm_MDI;
+
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -29,6 +34,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ads000_03));
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.lb_tit_ulo = new System.Windows.Forms.Label();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tb_dir_mac = new System.Windows.Forms.Label();
             this.lb_dir_mac = new System.Windows.Forms.Label();
@@ -50,12 +58,48 @@
             this.lb_mem_ran = new System.Windows.Forms.Label();
             this.lb_pro_ces = new System.Windows.Forms.Label();
             this.lb_sis_ope = new System.Windows.Forms.Label();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.gb_ctr_btn.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ima_cpu)).BeginInit();
-            this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // bt_can_cel
+            // 
+            this.bt_can_cel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.bt_can_cel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_can_cel.FlatAppearance.BorderSize = 0;
+            this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_can_cel.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.bt_can_cel.ForeColor = System.Drawing.Color.White;
+            this.bt_can_cel.Location = new System.Drawing.Point(430, 12);
+            this.bt_can_cel.Name = "bt_can_cel";
+            this.bt_can_cel.Size = new System.Drawing.Size(110, 30);
+            this.bt_can_cel.TabIndex = 3;
+            this.bt_can_cel.Text = "Cancelar";
+            this.bt_can_cel.UseVisualStyleBackColor = false;
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
+            // 
+            // lb_tit_ulo
+            // 
+            this.lb_tit_ulo.AutoSize = true;
+            this.lb_tit_ulo.Font = new System.Drawing.Font("HP Simplified", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_tit_ulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.lb_tit_ulo.Location = new System.Drawing.Point(11, 11);
+            this.lb_tit_ulo.Name = "lb_tit_ulo";
+            this.lb_tit_ulo.Size = new System.Drawing.Size(146, 25);
+            this.lb_tit_ulo.TabIndex = 0;
+            this.lb_tit_ulo.Text = "Información PC";
+            // 
+            // gb_ctr_btn
+            // 
+            this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
+            this.gb_ctr_btn.Enabled = false;
+            this.gb_ctr_btn.Location = new System.Drawing.Point(16, 236);
+            this.gb_ctr_btn.Name = "gb_ctr_btn";
+            this.gb_ctr_btn.Size = new System.Drawing.Size(546, 48);
+            this.gb_ctr_btn.TabIndex = 76;
+            this.gb_ctr_btn.TabStop = false;
             // 
             // groupBox1
             // 
@@ -79,10 +123,10 @@
             this.groupBox1.Controls.Add(this.lb_mem_ran);
             this.groupBox1.Controls.Add(this.lb_pro_ces);
             this.groupBox1.Controls.Add(this.lb_sis_ope);
-            this.groupBox1.Location = new System.Drawing.Point(4, -1);
+            this.groupBox1.Location = new System.Drawing.Point(16, 34);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(546, 207);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 77;
             this.groupBox1.TabStop = false;
             // 
             // tb_dir_mac
@@ -296,77 +340,58 @@
             this.lb_sis_ope.TabIndex = 1;
             this.lb_sis_ope.Text = "Sistema Operativo:";
             // 
-            // bt_ace_pta
-            // 
-            this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(451, 8);
-            this.bt_ace_pta.Name = "bt_ace_pta";
-            this.bt_ace_pta.Size = new System.Drawing.Size(80, 30);
-            this.bt_ace_pta.TabIndex = 1;
-            this.bt_ace_pta.Text = "&Aceptar";
-            this.bt_ace_pta.UseVisualStyleBackColor = false;
-            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
-            // 
-            // gb_ctr_btn
-            // 
-            this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
-            this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 201);
-            this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(546, 43);
-            this.gb_ctr_btn.TabIndex = 9;
-            this.gb_ctr_btn.TabStop = false;
-            // 
             // ads000_03
             // 
-            this.AcceptButton = this.bt_ace_pta;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 247);
+            this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.bt_can_cel;
+            this.ClientSize = new System.Drawing.Size(578, 302);
             this.ControlBox = false;
+            this.Controls.Add(this.lb_tit_ulo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "ads000_03";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "ads000_03b";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Tag = "Información System";
-            this.Text = "Información System";
+            this.Text = "USUARIO";
             this.Load += new System.EventHandler(this.ads000_03_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ads000_03_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ads000_03_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ads000_03_MouseUp);
+            this.gb_ctr_btn.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_ima_cpu)).EndInit();
-            this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+        internal System.Windows.Forms.Button bt_can_cel;
+        private System.Windows.Forms.Label lb_tit_ulo;
+        public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lb_sis_ope;
-        private System.Windows.Forms.Button bt_ace_pta;
-        private System.Windows.Forms.Label lb_mem_ran;
-        private System.Windows.Forms.Label lb_pro_ces;
-        private System.Windows.Forms.Label lb_run_cry;
-        private System.Windows.Forms.Label lb_net_fra;
-        private System.Windows.Forms.Label lb_pla_sis;
-        private System.Windows.Forms.PictureBox pb_ima_cpu;
-        private System.Windows.Forms.Label lb_nom_equ;
+        private System.Windows.Forms.Label tb_dir_mac;
+        private System.Windows.Forms.Label lb_dir_mac;
+        private System.Windows.Forms.Label tb_dir_ipp;
+        private System.Windows.Forms.Label lb_dir_ipp;
+        private System.Windows.Forms.Label tb_bio_sis;
+        private System.Windows.Forms.Label lb_bio_sis;
         private System.Windows.Forms.Label tb_run_cry;
         private System.Windows.Forms.Label tb_net_fra;
         private System.Windows.Forms.Label tb_pla_sis;
         private System.Windows.Forms.Label tb_mem_ran;
         private System.Windows.Forms.Label tb_pro_ces;
         private System.Windows.Forms.Label tb_sis_ope;
-        private System.Windows.Forms.Label tb_bio_sis;
-        private System.Windows.Forms.Label lb_bio_sis;
-        private System.Windows.Forms.Label tb_dir_ipp;
-        private System.Windows.Forms.Label lb_dir_ipp;
-        private System.Windows.Forms.Label tb_dir_mac;
-        private System.Windows.Forms.Label lb_dir_mac;
-        public System.Windows.Forms.GroupBox gb_ctr_btn;
+        private System.Windows.Forms.Label lb_nom_equ;
+        private System.Windows.Forms.PictureBox pb_ima_cpu;
+        private System.Windows.Forms.Label lb_run_cry;
+        private System.Windows.Forms.Label lb_net_fra;
+        private System.Windows.Forms.Label lb_pla_sis;
+        private System.Windows.Forms.Label lb_mem_ran;
+        private System.Windows.Forms.Label lb_pro_ces;
+        private System.Windows.Forms.Label lb_sis_ope;
     }
 }

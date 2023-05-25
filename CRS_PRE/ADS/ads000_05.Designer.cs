@@ -43,18 +43,26 @@
             this.pb_lic_sis = new System.Windows.Forms.PictureBox();
             this.lb_nom_equ = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pn_lic_adm = new System.Windows.Forms.Panel();
-            this.lb_lic_adm = new System.Windows.Forms.Label();
-            this.pb_lic_adm = new System.Windows.Forms.PictureBox();
-            this.cb_lic_adm = new System.Windows.Forms.CheckBox();
+            this.pn_lic_ads = new System.Windows.Forms.Panel();
+            this.lb_lic_ads = new System.Windows.Forms.Label();
+            this.pb_lic_ads = new System.Windows.Forms.PictureBox();
+            this.cb_lic_ads = new System.Windows.Forms.CheckBox();
             this.pn_lic_inv = new System.Windows.Forms.Panel();
             this.lb_lic_inv = new System.Windows.Forms.Label();
             this.pb_lic_inv = new System.Windows.Forms.PictureBox();
             this.cb_lic_inv = new System.Windows.Forms.CheckBox();
-            this.pn_lic_com = new System.Windows.Forms.Panel();
-            this.cb_lic_com = new System.Windows.Forms.CheckBox();
-            this.lb_lic_com = new System.Windows.Forms.Label();
-            this.pb_lic_com = new System.Windows.Forms.PictureBox();
+            this.pn_lic_cmr = new System.Windows.Forms.Panel();
+            this.cb_lic_cmr = new System.Windows.Forms.CheckBox();
+            this.lb_lic_cmr = new System.Windows.Forms.Label();
+            this.pb_lic_cmr = new System.Windows.Forms.PictureBox();
+            this.pn_lic_tes = new System.Windows.Forms.Panel();
+            this.cb_lic_tes = new System.Windows.Forms.CheckBox();
+            this.lb_lic_tes = new System.Windows.Forms.Label();
+            this.pb_lic_tes = new System.Windows.Forms.PictureBox();
+            this.pn_lic_ctb = new System.Windows.Forms.Panel();
+            this.cb_lic_ctb = new System.Windows.Forms.CheckBox();
+            this.lb_lic_ctb = new System.Windows.Forms.Label();
+            this.pb_lic_ctb = new System.Windows.Forms.PictureBox();
             this.pn_lic_res = new System.Windows.Forms.Panel();
             this.cb_lic_res = new System.Windows.Forms.CheckBox();
             this.lb_lic_res = new System.Windows.Forms.Label();
@@ -62,12 +70,16 @@
             this.gb_con_pri.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lic_sis)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.pn_lic_adm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_adm)).BeginInit();
+            this.pn_lic_ads.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_ads)).BeginInit();
             this.pn_lic_inv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lic_inv)).BeginInit();
-            this.pn_lic_com.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_com)).BeginInit();
+            this.pn_lic_cmr.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_cmr)).BeginInit();
+            this.pn_lic_tes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_tes)).BeginInit();
+            this.pn_lic_ctb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_ctb)).BeginInit();
             this.pn_lic_res.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lic_res)).BeginInit();
             this.SuspendLayout();
@@ -136,7 +148,7 @@
             this.lb_nom_bda.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_nom_bda.Location = new System.Drawing.Point(4, 44);
             this.lb_nom_bda.Name = "lb_nom_bda";
-            this.lb_nom_bda.Size = new System.Drawing.Size(84, 16);
+            this.lb_nom_bda.Size = new System.Drawing.Size(83, 16);
             this.lb_nom_bda.TabIndex = 2;
             this.lb_nom_bda.Text = "Base de Datos";
             // 
@@ -146,7 +158,7 @@
             this.lb_fec_lim.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_fec_lim.Location = new System.Drawing.Point(132, 70);
             this.lb_fec_lim.Name = "lb_fec_lim";
-            this.lb_fec_lim.Size = new System.Drawing.Size(76, 16);
+            this.lb_fec_lim.Size = new System.Drawing.Size(75, 16);
             this.lb_fec_lim.TabIndex = 6;
             this.lb_fec_lim.Text = "Fecha Límite";
             // 
@@ -156,7 +168,7 @@
             this.lb_nom_ser.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_nom_ser.Location = new System.Drawing.Point(33, 18);
             this.lb_nom_ser.Name = "lb_nom_ser";
-            this.lb_nom_ser.Size = new System.Drawing.Size(55, 16);
+            this.lb_nom_ser.Size = new System.Drawing.Size(54, 16);
             this.lb_nom_ser.TabIndex = 0;
             this.lb_nom_ser.Text = "Servidor";
             // 
@@ -176,7 +188,7 @@
             this.lb_nro_usr.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.lb_nro_usr.Location = new System.Drawing.Point(32, 70);
             this.lb_nro_usr.Name = "lb_nro_usr";
-            this.lb_nro_usr.Size = new System.Drawing.Size(56, 16);
+            this.lb_nro_usr.Size = new System.Drawing.Size(55, 16);
             this.lb_nro_usr.TabIndex = 4;
             this.lb_nro_usr.Text = "Usuarios";
             // 
@@ -227,58 +239,60 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flowLayoutPanel1.Controls.Add(this.pn_lic_adm);
+            this.flowLayoutPanel1.Controls.Add(this.pn_lic_ads);
             this.flowLayoutPanel1.Controls.Add(this.pn_lic_inv);
-            this.flowLayoutPanel1.Controls.Add(this.pn_lic_com);
+            this.flowLayoutPanel1.Controls.Add(this.pn_lic_cmr);
+            this.flowLayoutPanel1.Controls.Add(this.pn_lic_tes);
+            this.flowLayoutPanel1.Controls.Add(this.pn_lic_ctb);
             this.flowLayoutPanel1.Controls.Add(this.pn_lic_res);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 103);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(382, 216);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // pn_lic_adm
+            // pn_lic_ads
             // 
-            this.pn_lic_adm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pn_lic_adm.Controls.Add(this.lb_lic_adm);
-            this.pn_lic_adm.Controls.Add(this.pb_lic_adm);
-            this.pn_lic_adm.Controls.Add(this.cb_lic_adm);
-            this.pn_lic_adm.Location = new System.Drawing.Point(3, 3);
-            this.pn_lic_adm.Name = "pn_lic_adm";
-            this.pn_lic_adm.Size = new System.Drawing.Size(120, 100);
-            this.pn_lic_adm.TabIndex = 0;
+            this.pn_lic_ads.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pn_lic_ads.Controls.Add(this.lb_lic_ads);
+            this.pn_lic_ads.Controls.Add(this.pb_lic_ads);
+            this.pn_lic_ads.Controls.Add(this.cb_lic_ads);
+            this.pn_lic_ads.Location = new System.Drawing.Point(3, 3);
+            this.pn_lic_ads.Name = "pn_lic_ads";
+            this.pn_lic_ads.Size = new System.Drawing.Size(120, 100);
+            this.pn_lic_ads.TabIndex = 0;
             // 
-            // lb_lic_adm
+            // lb_lic_ads
             // 
-            this.lb_lic_adm.AutoSize = true;
-            this.lb_lic_adm.Font = new System.Drawing.Font("HP Simplified", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lb_lic_adm.Location = new System.Drawing.Point(5, 79);
-            this.lb_lic_adm.MaximumSize = new System.Drawing.Size(110, 16);
-            this.lb_lic_adm.MinimumSize = new System.Drawing.Size(110, 16);
-            this.lb_lic_adm.Name = "lb_lic_adm";
-            this.lb_lic_adm.Size = new System.Drawing.Size(110, 16);
-            this.lb_lic_adm.TabIndex = 1;
-            this.lb_lic_adm.Text = "Administrador";
-            this.lb_lic_adm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_lic_ads.AutoSize = true;
+            this.lb_lic_ads.Font = new System.Drawing.Font("HP Simplified", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_lic_ads.Location = new System.Drawing.Point(5, 79);
+            this.lb_lic_ads.MaximumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_ads.MinimumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_ads.Name = "lb_lic_ads";
+            this.lb_lic_ads.Size = new System.Drawing.Size(110, 16);
+            this.lb_lic_ads.TabIndex = 1;
+            this.lb_lic_ads.Text = "Administrador";
+            this.lb_lic_ads.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pb_lic_adm
+            // pb_lic_ads
             // 
-            this.pb_lic_adm.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_adm.Image")));
-            this.pb_lic_adm.Location = new System.Drawing.Point(22, 7);
-            this.pb_lic_adm.Name = "pb_lic_adm";
-            this.pb_lic_adm.Size = new System.Drawing.Size(80, 70);
-            this.pb_lic_adm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_lic_adm.TabIndex = 47;
-            this.pb_lic_adm.TabStop = false;
+            this.pb_lic_ads.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_ads.Image")));
+            this.pb_lic_ads.Location = new System.Drawing.Point(22, 7);
+            this.pb_lic_ads.Name = "pb_lic_ads";
+            this.pb_lic_ads.Size = new System.Drawing.Size(80, 70);
+            this.pb_lic_ads.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_lic_ads.TabIndex = 47;
+            this.pb_lic_ads.TabStop = false;
             // 
-            // cb_lic_adm
+            // cb_lic_ads
             // 
-            this.cb_lic_adm.AutoSize = true;
-            this.cb_lic_adm.Font = new System.Drawing.Font("HP Simplified", 9.75F);
-            this.cb_lic_adm.Location = new System.Drawing.Point(5, 5);
-            this.cb_lic_adm.Name = "cb_lic_adm";
-            this.cb_lic_adm.Size = new System.Drawing.Size(15, 14);
-            this.cb_lic_adm.TabIndex = 0;
-            this.cb_lic_adm.UseVisualStyleBackColor = true;
+            this.cb_lic_ads.AutoSize = true;
+            this.cb_lic_ads.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.cb_lic_ads.Location = new System.Drawing.Point(5, 5);
+            this.cb_lic_ads.Name = "cb_lic_ads";
+            this.cb_lic_ads.Size = new System.Drawing.Size(15, 14);
+            this.cb_lic_ads.TabIndex = 0;
+            this.cb_lic_ads.UseVisualStyleBackColor = true;
             // 
             // pn_lic_inv
             // 
@@ -324,49 +338,137 @@
             this.cb_lic_inv.TabIndex = 0;
             this.cb_lic_inv.UseVisualStyleBackColor = true;
             // 
-            // pn_lic_com
+            // pn_lic_cmr
             // 
-            this.pn_lic_com.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pn_lic_com.Controls.Add(this.cb_lic_com);
-            this.pn_lic_com.Controls.Add(this.lb_lic_com);
-            this.pn_lic_com.Controls.Add(this.pb_lic_com);
-            this.pn_lic_com.Location = new System.Drawing.Point(255, 3);
-            this.pn_lic_com.Name = "pn_lic_com";
-            this.pn_lic_com.Size = new System.Drawing.Size(120, 100);
-            this.pn_lic_com.TabIndex = 2;
+            this.pn_lic_cmr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pn_lic_cmr.Controls.Add(this.cb_lic_cmr);
+            this.pn_lic_cmr.Controls.Add(this.lb_lic_cmr);
+            this.pn_lic_cmr.Controls.Add(this.pb_lic_cmr);
+            this.pn_lic_cmr.Location = new System.Drawing.Point(255, 3);
+            this.pn_lic_cmr.Name = "pn_lic_cmr";
+            this.pn_lic_cmr.Size = new System.Drawing.Size(120, 100);
+            this.pn_lic_cmr.TabIndex = 2;
             // 
-            // cb_lic_com
+            // cb_lic_cmr
             // 
-            this.cb_lic_com.AutoSize = true;
-            this.cb_lic_com.Font = new System.Drawing.Font("HP Simplified", 9.75F);
-            this.cb_lic_com.Location = new System.Drawing.Point(5, 5);
-            this.cb_lic_com.Name = "cb_lic_com";
-            this.cb_lic_com.Size = new System.Drawing.Size(15, 14);
-            this.cb_lic_com.TabIndex = 0;
-            this.cb_lic_com.UseVisualStyleBackColor = true;
+            this.cb_lic_cmr.AutoSize = true;
+            this.cb_lic_cmr.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.cb_lic_cmr.Location = new System.Drawing.Point(5, 5);
+            this.cb_lic_cmr.Name = "cb_lic_cmr";
+            this.cb_lic_cmr.Size = new System.Drawing.Size(15, 14);
+            this.cb_lic_cmr.TabIndex = 0;
+            this.cb_lic_cmr.UseVisualStyleBackColor = true;
             // 
-            // lb_lic_com
+            // lb_lic_cmr
             // 
-            this.lb_lic_com.AutoSize = true;
-            this.lb_lic_com.Font = new System.Drawing.Font("HP Simplified", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lb_lic_com.Location = new System.Drawing.Point(5, 79);
-            this.lb_lic_com.MaximumSize = new System.Drawing.Size(110, 16);
-            this.lb_lic_com.MinimumSize = new System.Drawing.Size(110, 16);
-            this.lb_lic_com.Name = "lb_lic_com";
-            this.lb_lic_com.Size = new System.Drawing.Size(110, 16);
-            this.lb_lic_com.TabIndex = 1;
-            this.lb_lic_com.Text = "Comercialización";
-            this.lb_lic_com.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lb_lic_cmr.AutoSize = true;
+            this.lb_lic_cmr.Font = new System.Drawing.Font("HP Simplified", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_lic_cmr.Location = new System.Drawing.Point(5, 79);
+            this.lb_lic_cmr.MaximumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_cmr.MinimumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_cmr.Name = "lb_lic_cmr";
+            this.lb_lic_cmr.Size = new System.Drawing.Size(110, 16);
+            this.lb_lic_cmr.TabIndex = 1;
+            this.lb_lic_cmr.Text = "Comercialización";
+            this.lb_lic_cmr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pb_lic_com
+            // pb_lic_cmr
             // 
-            this.pb_lic_com.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_com.Image")));
-            this.pb_lic_com.Location = new System.Drawing.Point(22, 7);
-            this.pb_lic_com.Name = "pb_lic_com";
-            this.pb_lic_com.Size = new System.Drawing.Size(80, 70);
-            this.pb_lic_com.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_lic_com.TabIndex = 47;
-            this.pb_lic_com.TabStop = false;
+            this.pb_lic_cmr.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_cmr.Image")));
+            this.pb_lic_cmr.Location = new System.Drawing.Point(22, 7);
+            this.pb_lic_cmr.Name = "pb_lic_cmr";
+            this.pb_lic_cmr.Size = new System.Drawing.Size(80, 70);
+            this.pb_lic_cmr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_lic_cmr.TabIndex = 47;
+            this.pb_lic_cmr.TabStop = false;
+            // 
+            // pn_lic_tes
+            // 
+            this.pn_lic_tes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pn_lic_tes.Controls.Add(this.cb_lic_tes);
+            this.pn_lic_tes.Controls.Add(this.lb_lic_tes);
+            this.pn_lic_tes.Controls.Add(this.pb_lic_tes);
+            this.pn_lic_tes.Location = new System.Drawing.Point(3, 109);
+            this.pn_lic_tes.Name = "pn_lic_tes";
+            this.pn_lic_tes.Size = new System.Drawing.Size(120, 100);
+            this.pn_lic_tes.TabIndex = 4;
+            // 
+            // cb_lic_tes
+            // 
+            this.cb_lic_tes.AutoSize = true;
+            this.cb_lic_tes.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.cb_lic_tes.Location = new System.Drawing.Point(5, 5);
+            this.cb_lic_tes.Name = "cb_lic_tes";
+            this.cb_lic_tes.Size = new System.Drawing.Size(15, 14);
+            this.cb_lic_tes.TabIndex = 0;
+            this.cb_lic_tes.UseVisualStyleBackColor = true;
+            // 
+            // lb_lic_tes
+            // 
+            this.lb_lic_tes.AutoSize = true;
+            this.lb_lic_tes.Font = new System.Drawing.Font("HP Simplified", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_lic_tes.Location = new System.Drawing.Point(5, 79);
+            this.lb_lic_tes.MaximumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_tes.MinimumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_tes.Name = "lb_lic_tes";
+            this.lb_lic_tes.Size = new System.Drawing.Size(110, 16);
+            this.lb_lic_tes.TabIndex = 1;
+            this.lb_lic_tes.Text = "Tesoreria";
+            this.lb_lic_tes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pb_lic_tes
+            // 
+            this.pb_lic_tes.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_tes.Image")));
+            this.pb_lic_tes.Location = new System.Drawing.Point(22, 7);
+            this.pb_lic_tes.Name = "pb_lic_tes";
+            this.pb_lic_tes.Size = new System.Drawing.Size(80, 70);
+            this.pb_lic_tes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_lic_tes.TabIndex = 47;
+            this.pb_lic_tes.TabStop = false;
+            // 
+            // pn_lic_ctb
+            // 
+            this.pn_lic_ctb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pn_lic_ctb.Controls.Add(this.cb_lic_ctb);
+            this.pn_lic_ctb.Controls.Add(this.lb_lic_ctb);
+            this.pn_lic_ctb.Controls.Add(this.pb_lic_ctb);
+            this.pn_lic_ctb.Location = new System.Drawing.Point(129, 109);
+            this.pn_lic_ctb.Name = "pn_lic_ctb";
+            this.pn_lic_ctb.Size = new System.Drawing.Size(120, 100);
+            this.pn_lic_ctb.TabIndex = 5;
+            // 
+            // cb_lic_ctb
+            // 
+            this.cb_lic_ctb.AutoSize = true;
+            this.cb_lic_ctb.Font = new System.Drawing.Font("HP Simplified", 9.75F);
+            this.cb_lic_ctb.Location = new System.Drawing.Point(5, 5);
+            this.cb_lic_ctb.Name = "cb_lic_ctb";
+            this.cb_lic_ctb.Size = new System.Drawing.Size(15, 14);
+            this.cb_lic_ctb.TabIndex = 0;
+            this.cb_lic_ctb.UseVisualStyleBackColor = true;
+            // 
+            // lb_lic_ctb
+            // 
+            this.lb_lic_ctb.AutoSize = true;
+            this.lb_lic_ctb.Font = new System.Drawing.Font("HP Simplified", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_lic_ctb.Location = new System.Drawing.Point(5, 79);
+            this.lb_lic_ctb.MaximumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_ctb.MinimumSize = new System.Drawing.Size(110, 16);
+            this.lb_lic_ctb.Name = "lb_lic_ctb";
+            this.lb_lic_ctb.Size = new System.Drawing.Size(110, 16);
+            this.lb_lic_ctb.TabIndex = 1;
+            this.lb_lic_ctb.Text = "Contabilidad";
+            this.lb_lic_ctb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pb_lic_ctb
+            // 
+            this.pb_lic_ctb.Image = ((System.Drawing.Image)(resources.GetObject("pb_lic_ctb.Image")));
+            this.pb_lic_ctb.Location = new System.Drawing.Point(22, 7);
+            this.pb_lic_ctb.Name = "pb_lic_ctb";
+            this.pb_lic_ctb.Size = new System.Drawing.Size(80, 70);
+            this.pb_lic_ctb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_lic_ctb.TabIndex = 47;
+            this.pb_lic_ctb.TabStop = false;
             // 
             // pn_lic_res
             // 
@@ -374,10 +476,10 @@
             this.pn_lic_res.Controls.Add(this.cb_lic_res);
             this.pn_lic_res.Controls.Add(this.lb_lic_res);
             this.pn_lic_res.Controls.Add(this.pb_lic_res);
-            this.pn_lic_res.Location = new System.Drawing.Point(3, 109);
+            this.pn_lic_res.Location = new System.Drawing.Point(255, 109);
             this.pn_lic_res.Name = "pn_lic_res";
             this.pn_lic_res.Size = new System.Drawing.Size(120, 100);
-            this.pn_lic_res.TabIndex = 3;
+            this.pn_lic_res.TabIndex = 6;
             // 
             // cb_lic_res
             // 
@@ -435,15 +537,21 @@
             this.gb_con_pri.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lic_sis)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.pn_lic_adm.ResumeLayout(false);
-            this.pn_lic_adm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_adm)).EndInit();
+            this.pn_lic_ads.ResumeLayout(false);
+            this.pn_lic_ads.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_ads)).EndInit();
             this.pn_lic_inv.ResumeLayout(false);
             this.pn_lic_inv.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lic_inv)).EndInit();
-            this.pn_lic_com.ResumeLayout(false);
-            this.pn_lic_com.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_com)).EndInit();
+            this.pn_lic_cmr.ResumeLayout(false);
+            this.pn_lic_cmr.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_cmr)).EndInit();
+            this.pn_lic_tes.ResumeLayout(false);
+            this.pn_lic_tes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_tes)).EndInit();
+            this.pn_lic_ctb.ResumeLayout(false);
+            this.pn_lic_ctb.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_lic_ctb)).EndInit();
             this.pn_lic_res.ResumeLayout(false);
             this.pn_lic_res.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_lic_res)).EndInit();
@@ -466,21 +574,29 @@
         private System.Windows.Forms.Label lb_nro_usr;
         private System.Windows.Forms.MaskedTextBox tb_fec_exp;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel pn_lic_adm;
-        private System.Windows.Forms.Label lb_lic_adm;
-        private System.Windows.Forms.PictureBox pb_lic_adm;
+        private System.Windows.Forms.Panel pn_lic_ads;
+        private System.Windows.Forms.Label lb_lic_ads;
+        private System.Windows.Forms.PictureBox pb_lic_ads;
         private System.Windows.Forms.Panel pn_lic_inv;
         private System.Windows.Forms.Label lb_lic_inv;
         private System.Windows.Forms.PictureBox pb_lic_inv;
-        private System.Windows.Forms.Panel pn_lic_com;
-        private System.Windows.Forms.Label lb_lic_com;
-        private System.Windows.Forms.PictureBox pb_lic_com;
+        private System.Windows.Forms.Panel pn_lic_cmr;
+        private System.Windows.Forms.Label lb_lic_cmr;
+        private System.Windows.Forms.PictureBox pb_lic_cmr;
+        private System.Windows.Forms.CheckBox cb_lic_ads;
+        private System.Windows.Forms.CheckBox cb_lic_inv;
+        private System.Windows.Forms.CheckBox cb_lic_cmr;
+        private System.Windows.Forms.Panel pn_lic_tes;
+        private System.Windows.Forms.CheckBox cb_lic_tes;
+        private System.Windows.Forms.Label lb_lic_tes;
+        private System.Windows.Forms.PictureBox pb_lic_tes;
+        private System.Windows.Forms.Panel pn_lic_ctb;
+        private System.Windows.Forms.CheckBox cb_lic_ctb;
+        private System.Windows.Forms.Label lb_lic_ctb;
+        private System.Windows.Forms.PictureBox pb_lic_ctb;
         private System.Windows.Forms.Panel pn_lic_res;
+        private System.Windows.Forms.CheckBox cb_lic_res;
         private System.Windows.Forms.Label lb_lic_res;
         private System.Windows.Forms.PictureBox pb_lic_res;
-        private System.Windows.Forms.CheckBox cb_lic_adm;
-        private System.Windows.Forms.CheckBox cb_lic_inv;
-        private System.Windows.Forms.CheckBox cb_lic_com;
-        private System.Windows.Forms.CheckBox cb_lic_res;
     }
 }

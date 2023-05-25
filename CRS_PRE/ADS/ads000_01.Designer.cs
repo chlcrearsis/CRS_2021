@@ -364,7 +364,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ads000_01";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "USUARIO";
+            this.Tag = "Actualiza Contraseña";
+            this.Text = "Actualiza Contraseña";
             this.Load += new System.EventHandler(this.ads000_01_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ads000_01_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ads000_01_MouseMove);

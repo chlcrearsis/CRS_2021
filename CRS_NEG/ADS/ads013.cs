@@ -74,11 +74,11 @@ namespace CRS_NEG
         }
 
         // Graba Datos de la Licencia del Servidor
-        public void Fe_gra_lic(int ag_nro_usr, string ag_fec_exp, string ag_mod_adm,
-                                    string ag_mod_inv, string ag_mod_com, string ag_mod_res)
+        public void Fe_gra_lic(int nro_usr, string fec_exp, string mod_ads,
+                                    string mod_inv, string mod_cmr, string mod_ctb, string mod_tes, string mod_res)
         {
-            cadena = " EXECUTE ads000_13b_p01 " + ag_nro_usr + ", '" + ag_fec_exp + "', '" + ag_mod_adm + "', " +
-                "'" + ag_mod_inv + "', '" + ag_mod_com + "', '" + ag_mod_res + "'";
+            cadena = " EXECUTE ads000_13b_p01 " + nro_usr + ", '" + fec_exp + "', '" + mod_ads + "', " +
+                "'" + mod_inv + "', '" + mod_cmr + "', '" + mod_ctb + "', '" + mod_tes + "', '" + mod_res + "'";
 
             ob_con_ecA.fe_exe_sql(cadena);
         }

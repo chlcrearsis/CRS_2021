@@ -23,7 +23,8 @@ CONSTRAINT pk1_ads013 PRIMARY KEY(va_ide_mod, va_ide_glo)
 GO
 
 --** Inserta Globales del Sistema
-insert into ads013 values (1,1,'Contraseña por defecto', 1,'Contra123.', 0, 0)
+INSERT INTO ads013 VALUES (1,0,'Longitud Mínima Contraseña Usuario', 2,'', 4, 0)
+INSERT INTO ads013 VALUES (1,1,'Contraseña por defecto', 1,'Contra123.', 0, 0)
 INSERT INTO ads013 VALUES (1,2,'Gestion', 2, '', 2010, 0)
 INSERT INTO ads013 VALUES (1,3,'Periodo', 2, '', 12, 0)
 INSERT INTO ads013 VALUES (1,4,'Razon Social Empresa', 1,'Empresa S.R.L.', 0, 0)

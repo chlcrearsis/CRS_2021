@@ -77,7 +77,7 @@
             this.cb_nom_bda.FormattingEnabled = true;
             this.cb_nom_bda.Location = new System.Drawing.Point(259, 178);
             this.cb_nom_bda.Name = "cb_nom_bda";
-            this.cb_nom_bda.Size = new System.Drawing.Size(251, 8);
+            this.cb_nom_bda.Size = new System.Drawing.Size(251, 26);
             this.cb_nom_bda.TabIndex = 12;
             this.cb_nom_bda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_usr_KeyPress);
             // 
@@ -159,7 +159,7 @@
             this.lb_ver_sis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lb_ver_sis.Location = new System.Drawing.Point(218, 50);
             this.lb_ver_sis.Name = "lb_ver_sis";
-            this.lb_ver_sis.Size = new System.Drawing.Size(0, 16);
+            this.lb_ver_sis.Size = new System.Drawing.Size(79, 16);
             this.lb_ver_sis.TabIndex = 3;
             this.lb_ver_sis.Text = "Versión 1.0.1";
             // 
@@ -205,7 +205,7 @@
             this.pb_fac_bok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pb_fac_bok.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pb_fac_bok.Image = ((System.Drawing.Image)(resources.GetObject("pb_fac_bok.Image")));
-            this.pb_fac_bok.Location = new System.Drawing.Point(304, 283);
+            this.pb_fac_bok.Location = new System.Drawing.Point(303, 283);
             this.pb_fac_bok.Name = "pb_fac_bok";
             this.pb_fac_bok.Size = new System.Drawing.Size(25, 25);
             this.pb_fac_bok.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -392,7 +392,7 @@
             this.lb_ini_ses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.lb_ini_ses.Location = new System.Drawing.Point(213, 19);
             this.lb_ini_ses.Name = "lb_ini_ses";
-            this.lb_ini_ses.Size = new System.Drawing.Size(194, 32);
+            this.lb_ini_ses.Size = new System.Drawing.Size(193, 32);
             this.lb_ini_ses.TabIndex = 1;
             this.lb_ini_ses.Text = "Inicio de Sesión";
             // 
@@ -458,7 +458,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ads000_00";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "INICIO DE SESION USUARIO";
+            this.Tag = "Inicio de Sesión";
+            this.Text = "Inicio de Sesión";
             this.Load += new System.EventHandler(this.ads000_00_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ads000_00_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ads000_00_MouseMove);

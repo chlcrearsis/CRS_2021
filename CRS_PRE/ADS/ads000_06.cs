@@ -35,7 +35,7 @@ namespace CRS_PRE
         public ads000_06()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.None;
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             pn_con_usr.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_con_usr.Width, pn_con_usr.Height, 15, 15));
             pn_fon_usr.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pn_fon_usr.Width, pn_fon_usr.Height, 15, 15));
@@ -49,8 +49,8 @@ namespace CRS_PRE
         {            
             if (va_est_ven)
             {
-                this.Left = this.Left + (e.X - va_coo_pox);
-                this.Top = this.Top + (e.Y - va_coo_poy);
+                Left = Left + (e.X - va_coo_pox);
+                Top = Top + (e.Y - va_coo_poy);
             }
         }
         private void ads000_01_MouseDown(object sender, MouseEventArgs e)
