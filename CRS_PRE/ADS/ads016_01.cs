@@ -212,9 +212,9 @@ namespace CRS_PRE
             }
 
             // Obtiene datos del registro seleccionado
-            Tabla = new DataTable();
-            Tabla = o_ads016.Fe_con_per(int.Parse(ges_tio), int.Parse(ges_per));
-            if (Tabla.Rows.Count == 0)
+            tab_dat = new DataTable();
+            tab_dat = o_ads016.Fe_con_per(int.Parse(ges_tio), int.Parse(ges_per));
+            if (tab_dat.Rows.Count == 0)
             {
                 res_fun = "El Periodo Gestión que desea editar, no se encuentra registrado";
                 MessageBox.Show(res_fun, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

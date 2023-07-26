@@ -19,6 +19,7 @@ namespace CRS_PRE
         public DataTable frm_dat;
         // Instancias
         ads006 o_ads006 = new ads006();
+        ads007 o_ads007 = new ads007();
         ads002 o_ads002 = new ads002();
         DataTable Tabla = new DataTable();
 
@@ -53,22 +54,30 @@ namespace CRS_PRE
             tb_est_ado.Text = string.Empty;
         }
 
+        // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio
             if (tb_ide_tus.Text.Trim() == "")
-                return "DEBE proporcionar el ID. Tipo de Usuario";
-            
+                return "DEBE proporcionar el Código del Tipo de Usuario";
+
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_tus.Text, out int ide_tus);
-            if (ide_tus == 0)
-                return "El ID. Tipo de Usuario NO es válido";            
+            if (!cl_glo_bal.IsNumeric(tb_ide_tus.Text.Trim()))
+                return "El Código del Tipo de Usuario NO es válido";                        
 
             // Valida que el registro este en el sistema
             Tabla = o_ads006.Fe_con_tus(int.Parse(tb_ide_tus.Text));
-            if (Tabla.Rows.Count == 0)
+            if (Tabla.Rows.Count == 0)            
                 return "El Tipo de Usuario NO se encuentra registrado";
-           
+
+            // Si el registro se va a deshabilitar, verifica que no exista ninguna aplicacion Habilitada
+            if (tb_est_ado.Text == "Habilitado"){
+                Tabla = new DataTable();
+                Tabla = o_ads007.Fe_con_tus(int.Parse(tb_ide_tus.Text), "H");
+                if (Tabla.Rows.Count > 0)                                    
+                    return "Existe " + Tabla.Rows.Count + " Usuario habilitadas, que depende de Tipo de Usuario " + tb_nom_tus.Text;                
+            }
+
             return "OK";
         }
 
@@ -81,29 +90,27 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "OK")
-                {
+                if (msg_val != "OK"){
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Deshabilitar el registro?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Habilitar el registro?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                if (msg_res == DialogResult.OK)
-                {
+                if (msg_res == DialogResult.OK){
+                    // Habilita/Deshabilita el registro
                     if (tb_est_ado.Text == "Habilitado")
                         o_ads006.Fe_hab_des(int.Parse(tb_ide_tus.Text), "N");
                     else
                         o_ads006.Fe_hab_des(int.Parse(tb_ide_tus.Text), "H");
-
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Actualiza Ventana Buscar
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tus.Text));
-                    // Cierra la Ventana
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }

@@ -423,10 +423,10 @@ namespace CRS_PRE
                 if (tb_gru_fin.Text.Trim().CompareTo("") == 0)
                     return "El Campo del Grupo Final está vacio";
 
-                if (!cl_glo_bal.IsNumeric(tb_gru_ini.Text))
+                if (!cl_glo_bal.IsNumeric(tb_gru_ini.Text.Trim()))
                     return "El Campo del Grupo Inicial NO tiene un formato válido";
 
-                if (!cl_glo_bal.IsNumeric(tb_gru_fin.Text))
+                if (!cl_glo_bal.IsNumeric(tb_gru_fin.Text.Trim()))
                     return "El Campo del Grupo Final NO tiene un formato válido";
 
                 if (int.Parse(tb_gru_ini.Text.Trim()) > int.Parse(tb_gru_fin.Text.Trim()))
@@ -441,10 +441,10 @@ namespace CRS_PRE
                 if (tb_atr_fi1.Text.Trim().CompareTo("") == 0)
                     return "El Campo del Atributo Final del Criterio 1 está vacio";
 
-                if (!cl_glo_bal.IsNumeric(tb_atr_in1.Text))
+                if (!cl_glo_bal.IsNumeric(tb_atr_in1.Text.Trim()))
                     return "El Campo del Atributo Inicial del Criterio 1 NO tiene un formato válido";
 
-                if (!cl_glo_bal.IsNumeric(tb_atr_fi1.Text))
+                if (!cl_glo_bal.IsNumeric(tb_atr_fi1.Text.Trim()))
                     return "El Campo del Atributo Final del Criterio 1 NO tiene un formato válido";
 
                 if (int.Parse(tb_atr_in1.Text.Trim()) > int.Parse(tb_atr_fi1.Text.Trim()))
@@ -459,10 +459,10 @@ namespace CRS_PRE
                 if (tb_atr_fi2.Text.Trim().CompareTo("") == 0)
                     return "El Campo del Atributo Final del Criterio 2 está vacio";
 
-                if (!cl_glo_bal.IsNumeric(tb_atr_in2.Text))
+                if (!cl_glo_bal.IsNumeric(tb_atr_in2.Text.Trim()))
                     return "El Campo del Atributo Inicial del Criterio 2 NO tiene un formato válido";
 
-                if (!cl_glo_bal.IsNumeric(tb_atr_fi2.Text))
+                if (!cl_glo_bal.IsNumeric(tb_atr_fi2.Text.Trim()))
                     return "El Campo del Atributo Final del Criterio 2 NO tiene un formato válido";
 
                 if (int.Parse(tb_atr_in2.Text.Trim()) > int.Parse(tb_atr_fi2.Text.Trim()))

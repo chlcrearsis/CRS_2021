@@ -51,10 +51,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
             this.va_ide_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_abr_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_abr_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_tod_mod = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
@@ -135,7 +136,8 @@
             // mn_lis_mod
             // 
             this.mn_lis_mod.Name = "mn_lis_mod";
-            this.mn_lis_mod.Size = new System.Drawing.Size(164, 22);
+            this.mn_lis_mod.ShortcutKeyDisplayString = "(ads001_01)";
+            this.mn_lis_mod.Size = new System.Drawing.Size(232, 22);
             this.mn_lis_mod.Text = "&Lista de Módulos";
             this.mn_lis_mod.Click += new System.EventHandler(this.mn_lis_mod_Click);
             // 
@@ -192,9 +194,9 @@
             "Todos",
             "Habilitado",
             "Deshabilitado"});
-            this.cb_est_bus.Location = new System.Drawing.Point(284, 33);
+            this.cb_est_bus.Location = new System.Drawing.Point(299, 33);
             this.cb_est_bus.Name = "cb_est_bus";
-            this.cb_est_bus.Size = new System.Drawing.Size(114, 21);
+            this.cb_est_bus.Size = new System.Drawing.Size(97, 21);
             this.cb_est_bus.TabIndex = 5;
             // 
             // cb_prm_bus
@@ -204,10 +206,10 @@
             this.cb_prm_bus.Items.AddRange(new object[] {
             "Codigo",
             "Nombre",
-            "Abreviación"});
-            this.cb_prm_bus.Location = new System.Drawing.Point(183, 33);
+            "Nemónico"});
+            this.cb_prm_bus.Location = new System.Drawing.Point(208, 33);
             this.cb_prm_bus.Name = "cb_prm_bus";
-            this.cb_prm_bus.Size = new System.Drawing.Size(95, 21);
+            this.cb_prm_bus.Size = new System.Drawing.Size(87, 21);
             this.cb_prm_bus.TabIndex = 4;
             // 
             // tb_tex_bus
@@ -215,7 +217,7 @@
             this.tb_tex_bus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_tex_bus.Location = new System.Drawing.Point(9, 33);
             this.tb_tex_bus.Name = "tb_tex_bus";
-            this.tb_tex_bus.Size = new System.Drawing.Size(168, 20);
+            this.tb_tex_bus.Size = new System.Drawing.Size(195, 20);
             this.tb_tex_bus.TabIndex = 3;
             this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
@@ -237,6 +239,7 @@
             this.tb_ide_mod.Name = "tb_ide_mod";
             this.tb_ide_mod.Size = new System.Drawing.Size(30, 20);
             this.tb_ide_mod.TabIndex = 1;
+            this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_ide_mod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             this.tb_ide_mod.Validated += new System.EventHandler(this.tb_ide_mod_Validated);
             // 
@@ -269,8 +272,8 @@
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_mod,
-            this.va_abr_mod,
             this.va_nom_mod,
+            this.va_abr_mod,
             this.va_est_ado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -301,19 +304,19 @@
             this.va_ide_mod.ReadOnly = true;
             this.va_ide_mod.Width = 40;
             // 
-            // va_abr_mod
-            // 
-            this.va_abr_mod.HeaderText = "Abreviación";
-            this.va_abr_mod.Name = "va_abr_mod";
-            this.va_abr_mod.ReadOnly = true;
-            this.va_abr_mod.Width = 80;
-            // 
             // va_nom_mod
             // 
             this.va_nom_mod.HeaderText = "Módulo";
             this.va_nom_mod.Name = "va_nom_mod";
             this.va_nom_mod.ReadOnly = true;
             this.va_nom_mod.Width = 250;
+            // 
+            // va_abr_mod
+            // 
+            this.va_abr_mod.HeaderText = "Nemónico";
+            this.va_abr_mod.Name = "va_abr_mod";
+            this.va_abr_mod.ReadOnly = true;
+            this.va_abr_mod.Width = 70;
             // 
             // va_est_ado
             // 
@@ -323,6 +326,7 @@
             // 
             // gb_ctr_btn
             // 
+            this.gb_ctr_btn.Controls.Add(this.bt_tod_mod);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
@@ -332,10 +336,24 @@
             this.gb_ctr_btn.TabIndex = 2;
             this.gb_ctr_btn.TabStop = false;
             // 
+            // bt_tod_mod
+            // 
+            this.bt_tod_mod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_tod_mod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_tod_mod.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_tod_mod.Location = new System.Drawing.Point(9, 10);
+            this.bt_tod_mod.Name = "bt_tod_mod";
+            this.bt_tod_mod.Size = new System.Drawing.Size(75, 25);
+            this.bt_tod_mod.TabIndex = 2;
+            this.bt_tod_mod.Text = "&Todos";
+            this.bt_tod_mod.UseVisualStyleBackColor = false;
+            this.bt_tod_mod.Visible = false;
+            this.bt_tod_mod.Click += new System.EventHandler(this.bt_tod_mod_Click);
+            // 
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(337, 10);
@@ -416,11 +434,12 @@
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         public System.Windows.Forms.TextBox tb_ide_mod;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_mod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_abr_mod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_mod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
         private System.Windows.Forms.Button bt_ace_pta;
         public System.Windows.Forms.Label lb_nom_mod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_mod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_mod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_abr_mod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
+        private System.Windows.Forms.Button bt_tod_mod;
     }
 }

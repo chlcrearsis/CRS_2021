@@ -57,17 +57,25 @@ namespace CRS_PRE
         {
             // Valida que el campo código NO este vacio
             if (tb_ide_mod.Text.Trim() == "")
-                return "DEBE proporcionar el Código del Módulo";
-            
+                return "DEBE proporcionar el Código del Módulo";            
+
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int cod_gru);
-            if (cod_gru == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim()))
                 return "El Código del Módulo NO es válido";            
 
             // Valida que el registro este en el sistema
+            Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count == 0)
-                return "El Módulo no se encuentra registrado";
+                return "El Módulo no se encuentra registrado";            
+
+            // Si el registro se va a deshabilitar, verifica que no exista ninguna aplicacion Habilitada
+            if (tb_est_ado.Text == "Habilitado") {
+                Tabla = new DataTable();
+                Tabla = o_ads002.Fe_con_mod(int.Parse(tb_ide_mod.Text), "H");
+                if (Tabla.Rows.Count > 0)
+                    return "Existe " + Tabla.Rows.Count + " aplicaciones habilitadas, que depende de " + tb_nom_mod.Text;                
+            }
            
             return "OK";
         }
@@ -88,9 +96,9 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Está seguro de Deshabilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Deshabilitar el registro?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Está seguro de Habilitar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("Está seguro de Habilitar el registro?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK)
                 {

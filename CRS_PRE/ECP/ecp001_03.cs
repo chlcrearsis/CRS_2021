@@ -66,7 +66,7 @@ namespace CRS_PRE
             }
 
          
-            if (cl_glo_bal.IsNumeric(tb_nro_cuo.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_nro_cuo.Text.Trim()))
             {
                 tb_nro_cuo.Focus();
                 return "El numero de cuotas es incorrecto";
@@ -78,7 +78,7 @@ namespace CRS_PRE
                 return "El numero de cuotas debe de ser mayor a cero";
             }
 
-            if (cl_glo_bal.IsNumeric(tb_int_dia.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_int_dia.Text.Trim()))
             {
                 tb_int_dia.Focus();
                 return "El numero de intervalo de dias entre cuotas es incorrecto";
@@ -89,7 +89,7 @@ namespace CRS_PRE
                 tb_int_dia.Focus();
                 return "El numero de intervalo de dias entre cuotas debe de ser mayor a cero";
             }
-            if (cl_glo_bal.IsNumeric(tb_dia_ini.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_dia_ini.Text.Trim()))
             {
                 tb_dia_ini.Focus();
                 return "El numero de del primer vencimiento es incorrecto";

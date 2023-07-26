@@ -33,7 +33,7 @@ namespace CRS_PRE
         // Limpia e Iniciliza los campos
         private void Fi_lim_pia()
         {
-            tb_ide_tus.Text = string.Empty;
+            tb_ide_tus.Text = "0";
             tb_nom_tus.Text = string.Empty;
             tb_des_tus.Text = string.Empty;
             Fi_ini_pan();
@@ -44,11 +44,9 @@ namespace CRS_PRE
         {
             Tabla = new DataTable();
             Tabla = o_ads006.Fe_obt_ide();
-            if (Tabla.Rows.Count > 0){
+            if (Tabla.Rows.Count > 0)
                 tb_ide_tus.Text = Tabla.Rows[0]["va_ide_tus"].ToString();
-            }else{
-                tb_ide_tus.Text = "0";
-            }
+           
             tb_nom_tus.Focus();
         }
 
@@ -62,8 +60,7 @@ namespace CRS_PRE
             }
 
             // Valida que el campo código sea un valor válido
-            int.TryParse(tb_ide_tus.Text, out int ide_mod);
-            if (ide_mod == 0){
+            if (!cl_glo_bal.IsNumeric(tb_ide_tus.Text.Trim())){
                 tb_ide_tus.Focus();
                 return "El Código del Tipo de Usuario NO es valido";
             }
@@ -95,8 +92,13 @@ namespace CRS_PRE
                 tb_nom_tus.Focus();
                 return "Ya existe otro Tipo de Usuario con la mismo Nombre";
             }
-         
-           return "OK";
+
+            // Quita caracteres especiales de SQL-Trans
+            tb_ide_tus.Text = tb_ide_tus.Text.Replace("'", "");
+            tb_nom_tus.Text = tb_nom_tus.Text.Replace("'", "");
+            tb_des_tus.Text = tb_des_tus.Text.Replace("'", "");
+
+            return "OK";
         }
 
         // Evento KeyPress : ID. Tipo de Usuario
@@ -119,13 +121,16 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", "Nuevo Tipo de Usuario", MessageBoxButtons.OKCancel);
+                msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {
-                    //Registrar 
-                    o_ads006.Fe_nue_reg(int.Parse(tb_ide_tus.Text), tb_nom_tus.Text, tb_des_tus.Text);
+                    // Graba registro
+                    o_ads006.Fe_nue_reg(int.Parse(tb_ide_tus.Text), tb_nom_tus.Text.Trim(), tb_des_tus.Text.Trim());
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tus.Text));
+                    // Despliega Mensaje
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
+                    // Inicializa Campos
                     Fi_lim_pia();
                 }
             }

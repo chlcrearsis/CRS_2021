@@ -137,8 +137,7 @@ namespace CRS_PRE
             }
 
 
-            if (cl_glo_bal.IsNumeric(tb_win_max.Text) == false)
-            {
+            if (!cl_glo_bal.IsNumeric(tb_win_max.Text.Trim())){
                 tb_win_max.Focus();
                 return "El campo Maximo de ventanas debe ser numerico";
             }

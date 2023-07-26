@@ -102,9 +102,9 @@ namespace CRS_PRE
             {
                 //Edita usuario
                 if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
-                    o_ads007.Fe_exe_hds(tb_ide_usr.Text,"H");
+                    o_ads007.Fe_hab_des(tb_ide_usr.Text,"H");
                 if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
-                    o_ads007.Fe_exe_hds(tb_ide_usr.Text, "N");
+                    o_ads007.Fe_hab_des(tb_ide_usr.Text, "N");
 
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 cl_glo_frm.Cerrar(this);

@@ -20,7 +20,6 @@ namespace CRS_PRE
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {

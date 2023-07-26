@@ -30,13 +30,13 @@ namespace CRS_PRE
         {
             Fi_lim_pia();
             tb_ide_mod.Text = "0";
+            tb_nom_mod.Text = "...";
+
         }
 
         // Limpia e Iniciliza los campos
         private void Fi_lim_pia()
-        {
-            tb_ide_mod.Text = string.Empty;
-            tb_nom_mod.Text = string.Empty;
+        {            
             tb_ide_doc.Text = string.Empty;
             tb_nom_doc.Text = string.Empty;
             tb_des_doc.Text = string.Empty;
@@ -59,7 +59,7 @@ namespace CRS_PRE
         /// Obtiene datos del Módulo
         /// </summary>
         private void Fi_obt_mod()
-        {
+        {            
             // Obtiene y desplega datos del Módulo
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
@@ -68,7 +68,7 @@ namespace CRS_PRE
             }else{
                 tb_ide_mod.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
                 tb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
-            }
+            }            
         }
 
         // Valida los datos proporcionados
@@ -81,8 +81,7 @@ namespace CRS_PRE
             }
 
             // Valida que el campo código sea un valor válido
-            int.TryParse(tb_ide_mod.Text, out int ide_mod);
-            if (ide_mod == 0){
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim())){
                 tb_ide_mod.Focus();
                 return "El ID. Módulo NO es valido";
             }
@@ -129,6 +128,11 @@ namespace CRS_PRE
                 return "Ya existe otro Documento con los mismo Nombre Documento";
             }
 
+            // Quita caracteres especiales de SQL-Trans
+            tb_ide_doc.Text = tb_ide_doc.Text.ToString().Replace("'", "");
+            tb_nom_doc.Text = tb_nom_doc.Text.ToString().Replace("'", "");
+            tb_des_doc.Text = tb_des_doc.Text.ToString().Replace("'", "");
+
             return "OK";
         }
 
@@ -152,6 +156,14 @@ namespace CRS_PRE
             {
                 // Abre la ventana Busca Modulo
                 Fi_bus_mod();
+            }
+        }
+
+        private void tb_nom_doc_Leave(object sender, EventArgs e)
+        {
+            if (tb_nom_doc.Text.Trim().CompareTo("") != 0 &&
+                tb_des_doc.Text.Trim().CompareTo("") == 0) {
+                tb_des_doc.Text = tb_nom_doc.Text.Trim();                
             }
         }
 
@@ -179,8 +191,8 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     //Registrar 
-                    o_ads003.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_ide_doc.Text, tb_nom_doc.Text, tb_des_doc.Text);
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
+                    o_ads003.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_ide_doc.Text.Trim(), tb_nom_doc.Text.Trim(), tb_des_doc.Text.Trim());
+                    frm_pad.Fe_act_frm(tb_ide_doc.Text.Trim());
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     Fi_lim_pia();
                 }
@@ -195,6 +207,8 @@ namespace CRS_PRE
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
-        }        
+        }
+
+        
     }
 }

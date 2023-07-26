@@ -48,7 +48,7 @@ namespace CRS_PRE
                 //tb_cod_per.Focus();
             }
 
-            if (cl_glo_bal.IsNumeric(tb_sel_ecc.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_sel_ecc.Text.Trim()))
             {
                 tb_raz_soc.Text = "No Existe";
                 tb_nom_per.Text = "";

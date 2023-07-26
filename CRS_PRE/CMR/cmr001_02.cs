@@ -63,7 +63,7 @@ namespace CRS_PRE
         {
 
 
-            if (cl_glo_bal.IsNumeric(tb_nro_lis.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_nro_lis.Text.Trim()))
             {
                 tb_nro_lis.Focus();
                 return "Debe proporcionar un Codigo de la Lista de Precio valida";
@@ -89,7 +89,7 @@ namespace CRS_PRE
             }
 
 
-            if(cl_glo_bal.IsNumeric(tb_nro_dec.Text)== false)
+            if(!cl_glo_bal.IsNumeric(tb_nro_dec.Text.Trim()))
             {
                 tb_nro_dec.Focus();
                 return "El numero de decimales con el que trabajara la lista de precios es incorrecto";

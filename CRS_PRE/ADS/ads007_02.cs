@@ -164,7 +164,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     //Registrar usuario
-                    o_ads007.Fe_exe_nue(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
+                    o_ads007.Fe_nue_reg(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
                         tb_dir_ect.Text, tb_ema_usr.Text, 3, int.Parse(tb_cod_per.Text), 
                         int.Parse(cb_tip_usr.SelectedValue.ToString()) , usr_new);
 

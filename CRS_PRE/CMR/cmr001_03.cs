@@ -86,7 +86,7 @@ namespace CRS_PRE
                 return "Debe proporcionar el Nombre para la Lista de Precio";
             }
 
-            if (cl_glo_bal.IsNumeric(tb_nro_dec.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_nro_dec.Text.Trim()))
             {
                 tb_nro_dec.Focus();
                 return "El numero de decimales con el que trabajara la lista de precios es incorrecto";

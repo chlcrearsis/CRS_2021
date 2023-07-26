@@ -27,12 +27,11 @@ namespace CRS_PRE
             InitializeComponent();
         }
 
-
         private void frm_Load(object sender, EventArgs e)
         {
             Fi_lim_pia();
             tb_ide_doc.Text = string.Empty;
-            tb_nom_doc.Text = string.Empty;
+            lb_nom_doc.Text = "...";
             tb_for_mat.Text = "0";
             tb_nro_cop.Text = "0";
             tb_fir_ma1.Text = "Elaborado por";
@@ -72,26 +71,19 @@ namespace CRS_PRE
             // Obtiene y desplega datos del Módulo
             Tabla = new DataTable();
             Tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
-            if (Tabla.Rows.Count == 0)
-            {
-                tb_nom_doc.Clear();
-            }
-            else
-            {
+            if (Tabla.Rows.Count == 0){
+                lb_nom_doc.Text = "...";
+            }else{
                 tb_ide_doc.Text = Tabla.Rows[0]["va_ide_doc"].ToString();
-                tb_nom_doc.Text = Tabla.Rows[0]["va_nom_doc"].ToString();
+                lb_nom_doc.Text = Tabla.Rows[0]["va_nom_doc"].ToString();
             }
         }
 
         // Valida los datos proporcionados
         protected string Fi_val_dat()
-        {
-            // Variable usada para verificar datos numericos
-            int val = 0;
-
+        {          
             // Valida que el campo ID. Documento NO este vacio
-            if (tb_ide_doc.Text.Trim() == "")
-            {
+            if (tb_ide_doc.Text.Trim() == ""){
                 tb_ide_doc.Focus();
                 return "DEBE proporcionar el ID. Documento";
             }
@@ -99,35 +91,29 @@ namespace CRS_PRE
             // Verifica SI el Módulo se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
-            if (Tabla.Rows.Count == 0)
-            {
+            if (Tabla.Rows.Count == 0){
                 tb_ide_doc.Focus();
                 return "El Documento seleccionado NO se encuentra registrado";
             }
-            if (Tabla.Rows[0]["va_est_ado"].ToString() == "N")
-            {
+            if (Tabla.Rows[0]["va_est_ado"].ToString() == "N"){
                 tb_ide_doc.Focus();
                 return "El Documento seleccionado se encuentra Deshabilitado";
             }
 
             // Valida que el campo Nro. Talonario
-            if (tb_nro_tal.Text.Trim() == "")
-            {
+            if (tb_nro_tal.Text.Trim() == ""){
                 tb_nro_tal.Focus();
                 return "DEBE proporcionar el Nro. Talonario";
             }
 
             // Valida que el campo código sea un valor válido
-            int.TryParse(tb_nro_tal.Text, out int nro_tal);
-            if (nro_tal == 0)
-            {
+            if (!cl_glo_bal.IsNumeric(tb_nro_tal.Text.Trim())){
                 tb_nro_tal.Focus();
                 return "El Nro. Talonario NO es valido";
             }
 
             // Valida que el campo Nombre Talonario
-            if (tb_nom_tal.Text.Trim() == "")
-            {
+            if (tb_nom_tal.Text.Trim() == ""){
                 tb_nom_tal.Focus();
                 return "DEBE proporcionar el Nombre del Talonario";
             }
@@ -135,8 +121,7 @@ namespace CRS_PRE
             // Verifica SI el Talonario se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            if (Tabla.Rows.Count == 0)
-            {
+            if (Tabla.Rows.Count == 0){
                 tb_nro_tal.Focus();
                 return "El Talonario que desea crear ya se encuentra registrado " + tb_ide_doc.Text + " : " + tb_nro_tal.Text;
             }
@@ -144,12 +129,11 @@ namespace CRS_PRE
             // Valida que el campo Gestión no este en blanco
             if (tb_ges_tio.Text.Trim() == ""){
                 tb_ges_tio.Focus();
-                return "DEBE proporcionar el Nro. de Copia(s)";
+                return "DEBE proporcionar la Gestión";
             }
 
             // Valida que el campo Gestión sea un valor válido
-            int.TryParse(tb_ges_tio.Text, out int ges_tio);
-            if (ges_tio == 0){
+            if (!cl_glo_bal.IsNumeric(tb_ges_tio.Text.Trim())){
                 tb_ges_tio.Focus();
                 return "El campo Gestión DEBE ser numérico";
             }
@@ -161,27 +145,41 @@ namespace CRS_PRE
             }
 
             // Valida que el campo Formato de Impresión sea un valor válido
-            int.TryParse(tb_for_mat.Text, out int for_mat);
-            if (for_mat == 0)
-            {
+            if (!cl_glo_bal.IsNumeric(tb_for_mat.Text.Trim())){
                 tb_for_mat.Focus();
                 return "El Nro. de Formato de Impresion DEBE ser numérico";
             }
 
             // Valida que el campo Nro. de Copias no este en blanco
-            if (tb_nro_cop.Text.Trim() == "")
-            {
+            if (tb_nro_cop.Text.Trim() == ""){
                 tb_nro_cop.Focus();
                 return "DEBE proporcionar el Nro. de Copia(s)";
             }
 
-            // Valida que el campo Nro. de Copias sea un valor válido
-            int.TryParse(tb_nro_cop.Text, out int nro_cop);
-            if (nro_cop == 0)
-            {
+            // Valida que el campo Nro. de Copias sea un valor válido            
+            if (!cl_glo_bal.IsNumeric(tb_nro_cop.Text.Trim())){
                 tb_nro_cop.Focus();
                 return "El Nro. de Copia(s) DEBE ser numérico";
             }
+            int.TryParse(tb_nro_cop.Text, out int nro_cop);
+            if (nro_cop > 4){
+                tb_nro_cop.Focus();
+                return "El Nro. de Copia(s) DEBE ser un número del (0 -> 4)";
+            }
+
+            // Quita caracteres especiales de SQL-Trans
+            tb_ide_doc.Text = tb_ide_doc.Text.ToString().Replace("'", "");
+            tb_nro_tal.Text = tb_nro_tal.Text.ToString().Replace("'", "");
+            tb_nom_tal.Text = tb_nom_tal.Text.ToString().Replace("'", "");
+            tb_ges_tio.Text = tb_ges_tio.Text.ToString().Replace("'", "");
+            tb_for_mat.Text = tb_for_mat.Text.ToString().Replace("'", "");
+            tb_nro_cop.Text = tb_nro_cop.Text.ToString().Replace("'", "");
+            tb_fir_ma1.Text = tb_fir_ma1.Text.ToString().Replace("'", "");
+            tb_fir_ma2.Text = tb_fir_ma2.Text.ToString().Replace("'", "");
+            tb_fir_ma3.Text = tb_fir_ma3.Text.ToString().Replace("'", "");
+            tb_fir_ma4.Text = tb_fir_ma4.Text.ToString().Replace("'", "");
+            tb_obs_uno.Text = tb_obs_uno.Text.ToString().Replace("'", "");
+            tb_obs_dos.Text = tb_obs_dos.Text.ToString().Replace("'", "");
 
             return "OK";
         }
@@ -209,17 +207,17 @@ namespace CRS_PRE
             Fi_bus_doc();
         }
 
-        // Evento KeyPress : Gestión
-        private void tb_ges_tio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            cl_glo_bal.NotNumeric(e);
-        }
-
         // Evento KeyPress : Nro. Talonario
         private void tb_nro_tal_KeyPress(object sender, KeyPressEventArgs e)
         {
             cl_glo_bal.NotNumeric(e);
         }
+
+        // Evento KeyPress : Gestión
+        private void tb_ges_tio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            cl_glo_bal.NotNumeric(e);
+        }        
 
         // Evento KeyPress : Formato de Impresion
         private void tb_for_mat_KeyPress(object sender, KeyPressEventArgs e)
@@ -242,17 +240,16 @@ namespace CRS_PRE
 
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "OK")
-                {
+                if (msg_val != "OK"){
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
                 msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {
-                    //Registrar 
-                    o_ads004.Fe_nue_reg(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text), tb_nom_tal.Text, 0, cb_tip_tal.SelectedIndex, int.Parse(tb_for_mat.Text), int.Parse(tb_nro_cop.Text),
-                                        tb_fir_ma1.Text, tb_fir_ma2.Text, tb_fir_ma3.Text, tb_fir_ma4.Text, cb_for_log.SelectedIndex, int.Parse(tb_ges_tio.Text), cb_anu_mes.SelectedIndex);
+                    // Graba Registro
+                    o_ads004.Fe_nue_reg(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text), tb_nom_tal.Text, cb_tip_tal.SelectedIndex, 0, int.Parse(tb_for_mat.Text), int.Parse(tb_nro_cop.Text),
+                                        tb_fir_ma1.Text, tb_fir_ma2.Text, tb_fir_ma3.Text, tb_fir_ma4.Text, cb_for_log.SelectedIndex, tb_obs_uno.Text, tb_obs_dos.Text, int.Parse(tb_ges_tio.Text), cb_anu_mes.SelectedIndex);
                     frm_pad.Fe_act_frm(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     Fi_lim_pia();

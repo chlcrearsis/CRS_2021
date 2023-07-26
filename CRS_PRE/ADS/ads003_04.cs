@@ -64,8 +64,7 @@ namespace CRS_PRE
                 return "DEBE proporcionar el Código del Módulo";
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int cod_gru);
-            if (cod_gru == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim()))
                 return "El Código del Módulo NO es válido";
 
             // Verifica SI el Módulo se encuentra registrado
@@ -84,7 +83,7 @@ namespace CRS_PRE
             if (tb_est_ado.Text == "Habilitado"){
                 Tabla = new DataTable();
                 Tabla = o_ads004.Fe_con_doc(tb_ide_doc.Text);
-                if (Tabla.Rows.Count == 0)
+                if (Tabla.Rows.Count > 0)
                     return "No se puede Deshabilitar. Existen " + Tabla.Rows.Count + " Talonarios que hacen referencia al Documento";
             }
             return "OK";
@@ -107,9 +106,9 @@ namespace CRS_PRE
                 }
 
                 if (tb_est_ado.Text == "Habilitado")
-                    msg_res = MessageBox.Show("Esta seguro de Deshabilitar el Documento?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("¿Está seguro de Deshabilitar el documento?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 else
-                    msg_res = MessageBox.Show("Esta seguro de Habilitar el Documento?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    msg_res = MessageBox.Show("¿Está seguro de Habilitar el documento?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                 if (msg_res == DialogResult.OK)
                 {
@@ -121,7 +120,7 @@ namespace CRS_PRE
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Actualiza Ventana Buscar
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_doc.Text));
+                    frm_pad.Fe_act_frm(tb_ide_doc.Text);
                     // Cierra la Ventana
                     cl_glo_frm.Cerrar(this);
                 }

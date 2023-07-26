@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.CodeDom.Compiler;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CRS_DAT;
 namespace CRS_NEG
 {
@@ -18,101 +16,190 @@ namespace CRS_NEG
         //## Descripcion: Inicio Sesion Usuario                               ##         
         //##       Autor: JEJR - (05-01-2019)                                 ##
         //######################################################################
-        conexion_a ob_con_ecA = new conexion_a();      
-
-        public string va_ser_bda;   // Servidor
-        public string va_ins_bda;   // Instancia
-        public string va_nom_bda;   // Base de Datos
-        public string va_ide_usr;   // Usuario
-        public string va_pas_usr;   // Password
-        string cadena = "";
-        DataTable Tabla = new DataTable();
+        conexion_a ob_con_ecA = new conexion_a();
+        StringBuilder cadena;
 
         /// <summary>
-        /// Verifica que el usuario (crssql) este definida en el SQL-Server
+        /// Funcion "Registra Nuevo Usuario"
         /// </summary>
-        /// <param name="ag_ser_bda"></param>
-        /// <param name="ar_usr_sql"></param>
-        /// <param name="ar_pas_sql"></param>
-        /// <returns></returns>
-        public DataTable Fe_usr_sql(string ag_ser_bda, string ar_usr_sql, string ar_pas_sql)
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="nom_usr">Nombre de Usuario</param>
+        /// <param name="tel_usr">Teléfono</param>
+        /// <param name="car_usr">Cargo Usuario</param>
+        /// <param name="dir_tra">Directorio Trabajo</param>
+        /// <param name="ema_usr">Email</param>
+        /// <param name="ven_max">Máximo de Ventanas Abiertas</param>
+        /// <param name="ide_per">ID. Persona</param>
+        /// <param name="ide_tus">Tipo de Usuario</param>
+        /// <param name="usr_new">Usuario Nuevo (1=Nuevo; 2=Antiguo)</param>
+        public void Fe_nue_reg(string ide_usr, string nom_usr, string tel_usr, string car_usr,
+                               string dir_tra, string ema_usr, int ven_max, int ide_per,
+                                  int ide_tus, int usr_new)
         {
-            cadena = "SELECT name FROM master.sys.server_principals WHERE name = '" + ar_usr_sql + "'";
-            Tabla = ob_con_ecA.fe_exe_sql(cadena, ag_ser_bda, ar_usr_sql, ar_pas_sql);
-            return Tabla;
-        }
-
-        /// <summary>
-        /// Consulta SI el usuario a loguear tiene los permisos 
-        /// necesario para ingresar al sistema
-        /// </summary>
-        /// <param name="ar_ide_usr">ID. Usuario</param>
-        /// <param name="ar_pas_usr">Contraseña</param>
-        /// <returns></returns>
-        public DataTable Fe_ver_usr(string ag_ser_bda, string ar_usr_sql, string ar_pas_sql, string ar_ide_usr, string ar_pas_usr)
-        {
-            cadena = "EXECUTE ads000_01a_p01 '" + ar_ide_usr + "', '" + ar_pas_usr + "'";
-            Tabla = ob_con_ecA.fe_exe_sql(cadena, ag_ser_bda, ar_usr_sql, ar_pas_sql);
-            return Tabla;
-        }
-
-
-        public string Login(string ag_ide_uni, string ag_ser_bda, string ag_ide_usr, string ag_pas_usr)
-        {            
-            ob_con_ecA.Login(ag_ide_uni, ag_ser_bda, ag_ide_usr, ag_pas_usr);
-            string msg_ret = ob_con_ecA.fe_abr_cnx();
-
-            if (msg_ret == "OK"){
-                va_ser_bda = ob_con_ecA.va_ser_bda;
-                va_ins_bda = ob_con_ecA.va_ins_bda;
-                va_nom_bda = ob_con_ecA.va_nom_bda;
-                va_ide_usr = ob_con_ecA.va_ide_usr;
-                va_pas_usr = ob_con_ecA.va_pas_usr;
-                msg_ret = Fi_log_bdo(ag_ide_usr);
-            }
-            return msg_ret;
-        }
-
-        /// <summary>
-        /// Función para verificar segundas conexiones
-        /// </summary>
-        /// <param name="ag_ide_usr"></param>
-        /// <param name="ag_pas_usr"></param>
-        /// <returns></returns>
-        public string Login_2(string ag_ide_usr, string ag_pas_usr)
-        {
-            string msg_ret = "";
-            msg_ret = ob_con_ecA.Fe_loguin_2(ag_ide_usr, ag_pas_usr);
-
-            if (msg_ret == "OK")
+            try
             {
-                msg_ret = Fi_log_bdo(ag_ide_usr);
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads007_02a_p01 '" + ide_usr + "', '" + nom_usr + "', '" + tel_usr + "', '" + car_usr + "',");
+                cadena.AppendLine("                       '" + dir_tra + "', '" + ema_usr + "',  " + ven_max + ",   " + ide_per + ",");
+                cadena.AppendLine("                        " + ide_tus + ",   " + usr_new + "");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
-
-            return msg_ret;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-
-
-        private string Fi_log_bdo( string ag_ser_bda)
+        /// <summary>
+        /// Funcion "Modifica Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="nom_usr">Nombre de Usuario</param>
+        /// <param name="tel_usr">Teléfono</param>
+        /// <param name="car_usr">Cargo Usuario</param>
+        /// <param name="dir_tra">Directorio Trabajo</param>
+        /// <param name="ema_usr">Email</param>
+        /// <param name="ven_max">Máximo de Ventanas Abiertas</param>
+        /// <param name="ide_per">ID. Persona</param>
+        /// <param name="ide_tus">Tipo de Usuario</param>
+        public void Fe_edi_tar(string ide_usr, string nom_usr, string tel_usr, string car_usr,
+                               string dir_tra, string ema_usr, int ven_max, int ide_per, int ide_tus)
         {
-            string msg_ret = "";
-
-            cadena = " SELECT name" +
-                    " FROM sysusers " +
-                    " WHERE(uid > 4) and " +
-                    " (issqluser = 1) and " +
-                    " name = '"+ ag_ser_bda + "'";
-            cadena += " ";
-            DataTable tabla =  ob_con_ecA.fe_exe_sql(cadena);
-            if (tabla.Rows.Count > 0)
-                msg_ret = "OK";
-            else
-                msg_ret = "El usuario no se encuentra en la base de datos seleccionada";
-
-            return msg_ret;
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("UPDATE ads007 SET va_nom_usr = '" + nom_usr + "', va_tel_usr = '" + tel_usr + "',");
+                cadena.AppendLine("                  va_car_usr = '" + car_usr + "', va_dir_tra = '" + dir_tra + "',");
+                cadena.AppendLine("                  va_ema_usr =  " + ema_usr + ",  va_ven_max =  " + ven_max + ",");
+                cadena.AppendLine("                  va_ide_per =  " + ide_per + ",  va_ide_tus =  " + ide_tus + "");
+                cadena.AppendLine("            WHERE va_ide_usr = '" + ide_usr + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
+        /// <summary>
+        /// Funcion "Habilita/Deshabilita Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="est_ado">Estado (H=Habilitado; N=Deshabilitado)</param>
+        public void Fe_hab_des(string ide_usr, string est_ado)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("UPDATE ads007 SET va_est_ado = '" + est_ado + "' WHERE va_ide_usr = '" + ide_usr + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion "Elimina Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        public void Fe_eli_min(string ide_usr)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads007_06_p01 '" + ide_usr + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Verifica que el usuario SQL este definida en el SQL-Server
+        /// </summary>
+        /// <param name="ser_bda">Servidor/Base de Datos</param>
+        /// <param name="usr_sql">ID. Usuario SQL</param>
+        /// <param name="pas_sql">Contraseña SQL</param>
+        /// <returns></returns>
+        public DataTable Fe_usr_sql(string ser_bda, string usr_sql, string pas_sql)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT name FROM master.sys.server_principals WHERE name = '" + usr_sql + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString(), ser_bda, usr_sql, pas_sql);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Consulta SI el Usuario Logeado tiene los permisos 
+        /// necesario para Ingresar al Sistema
+        /// </summary>
+        /// <param name="ser_bda">Servidor/Base de Datos</param>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="pas_usr">Contraseña</param>
+        /// <returns></returns>
+        public DataTable Fe_ver_usr(string ser_bda, string ide_usr, string pas_usr)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads000_01a_p01 '" + ide_usr + "', '" + pas_usr + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString(), ser_bda, ide_usr, pas_usr);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion: Ingreso al Sistema (Primera Conexion)
+        /// </summary>
+        /// <param name="ide_uni">Identificador Unico de Conexion</param>
+        /// <param name="ser_bda">Servidor/Base de Datos</param>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="pas_usr">Contraseña</param>
+        /// <returns></returns>
+        public string Fe_ing_sis(string ide_uni, string ser_bda, string ide_usr, string pas_usr)
+        {            
+            try
+            {
+                ob_con_ecA.fe_log_usr(ide_uni, ser_bda, ide_usr, pas_usr);
+                return ob_con_ecA.fe_abr_cnx();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion: Ingreso al Sistema (Segunda Conexion)
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="pas_usr">Contraseña</param>
+        /// <returns></returns>
+        public string Fe_ing_sis(string ide_usr, string pas_usr)
+        {
+            try
+            {
+                ob_con_ecA.Fe_log_sql(ide_usr, pas_usr);
+                return ob_con_ecA.fe_abr_cnx();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public string Fe_ver_edi(string ag_ide_usr)
         {
@@ -168,51 +255,11 @@ namespace CRS_NEG
             }
         }
 
-        /// <summary>
-        /// Crea nuevo usuario
-        /// </summary>
-        /// <param name="ag_ide_usr">identificador</param>
-        /// <param name="ag_nom_usr">nombre</param>
-        /// <param name="ag_tel_usr">telefono</param>
-        /// <param name="ag_car_usr">cargo</param>
-        /// <param name="ag_dir_ect">Directorio de trabajo</param>
-        /// <param name="ag_ema_usr">email</param>
-        /// <param name="ag_win_max">maximo de ventanas abiertas permitidas</param>
-        /// <param name="ag_ide_per">persona relacionada con el usuario</param>
-        /// <param name="ag_tip_usr">Tipo de usuario</param>
-        public void Fe_exe_nue(string ag_ide_usr, string ag_nom_usr, string ag_tel_usr,
-                                  string ag_car_usr, string ag_dir_ect, string ag_ema_usr, int ag_win_max,
-                                  int ag_ide_per = 0, int ag_tip_usr = 1, int ag_usr_new = 1)
-        {
-            cadena = " execute ads007_02a_p01 '" + ag_ide_usr + "','"+ ag_nom_usr + "','";
-            cadena += ag_tel_usr + "','" + ag_car_usr + "','" + ag_dir_ect+ "','" + ag_ema_usr + "'," + ag_win_max + ",";
-            cadena += ag_ide_per + "," + ag_tip_usr + ", " + ag_usr_new;
-
-             ob_con_ecA.fe_exe_sql(cadena);
-        }
+        
 
 
 
-        /// <summary>
-        /// Edita usuario
-        /// </summary>
-        /// <param name="ag_ide_usr">identificador</param>
-        /// <param name="ag_nom_usr">nombre</param>
-        /// <param name="ag_tel_usr">telefono</param>
-        /// <param name="ag_car_usr">cargo</param>
-        /// <param name="ag_ema_usr">email</param>
-        /// <param name="ag_win_max">maximo de ventanas abiertas permitidas</param>
-        /// <param name="ag_ide_per">persona relacionada con el usuario</param>
-        public void Fe_exe_edi(string ag_ide_usr, string ag_nom_usr, string ag_tel_usr,
-                                  string ag_car_usr, string ag_dir_ect, string ag_ema_usr, int ag_win_max,
-                                  int ag_ide_per = 0)
-        {
-            cadena = " execute ads007_03a_p01 '" + ag_ide_usr + "','" + ag_nom_usr + "','";
-            cadena += ag_tel_usr + "','" + ag_car_usr + "','" + ag_dir_ect + "','" + ag_ema_usr + "'," + ag_win_max + ",";
-            cadena += ag_ide_per ;
-
-            ob_con_ecA.fe_exe_sql(cadena);
-        }
+        
         /// <summary>
         /// cambia tipo de usuario al usuario
         /// </summary>
@@ -224,19 +271,7 @@ namespace CRS_NEG
 
             ob_con_ecA.fe_exe_sql(cadena);
         }
-
-
-        /// <summary>
-        /// Habilitad/Deshabilita usuario
-        /// </summary>
-        /// <param name="ag_ide_usr">identificador</param>
-        /// <param name="ag_est_Ado">estado</param>
-        public void Fe_exe_hds(string ag_ide_usr, string ag_est_ado)
-        {
-            cadena = " execute ads007_04a_p01 '" + ag_ide_usr + "','" + ag_est_ado + "'";
-
-            ob_con_ecA.fe_exe_sql(cadena);
-        }
+        
 
         /// <summary>
         /// Edita contraseña de usuario
@@ -278,7 +313,7 @@ namespace CRS_NEG
         /// </summary>
         /// <param name="ag_ide_usr"> Ide exacto del usuario a consultar</param>
         /// <returns></returns>
-        public DataTable Fe_con_tus(int ide_tus)
+        public DataTable Fe_con_tus(int ide_tus, string est_ado = "T")
         {
             cadena = " Select * from ads007";
             cadena += " where va_ide_tus = " + ide_tus + "";
@@ -286,15 +321,6 @@ namespace CRS_NEG
         }
 
 
-
-        public enum parametro
-        {
-            codigo = 1, nombre = 2
-        }
-        public enum estado
-        {
-            Todos = 0, Habilitado = 1, Deshabilitado = 2
-        }
         /// <summary>
         /// Buscar Usuario por similitud en id/nombre (like)
         /// </summary>

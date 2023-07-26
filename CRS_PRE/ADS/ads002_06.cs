@@ -61,16 +61,17 @@ namespace CRS_PRE
                 return "DEBE proporcionar el Codigo del Módulo";            
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int ide_mod);
-            if (ide_mod == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim()))
                 return "El Código del Módulo NO tiene formato valido";
 
             // Valida que el Módulo este registrado en el sistema
+            Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
             if (Tabla.Rows.Count == 0)
                 return "El Módulo NO se encuentra registrado";
 
             // Valida que la Aplicacion este registrado en el sistema
+            Tabla = new DataTable();
             Tabla = o_ads002.Fe_con_apl(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text);
             if (Tabla.Rows.Count == 0)
                 return "La Aplicación NO se encuentra registrado";
@@ -100,7 +101,7 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "")
+                if (msg_val != "OK")
                 {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
@@ -111,7 +112,7 @@ namespace CRS_PRE
                     // Elimina el registro
                     o_ads002.Fe_eli_min(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text);
                     // Actualiza el Formulario Principal
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_apl.Text));
+                    frm_pad.Fe_act_frm(tb_ide_apl.Text);
                     // Despliega Mensaje
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Cierra Formulario

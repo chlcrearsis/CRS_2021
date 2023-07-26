@@ -32,6 +32,7 @@
             this.cb_est_ado = new System.Windows.Forms.ComboBox();
             this.lb_est_ado = new System.Windows.Forms.Label();
             this.gb_ord_por = new System.Windows.Forms.GroupBox();
+            this.rb_ord_abr = new System.Windows.Forms.RadioButton();
             this.rb_ord_nom = new System.Windows.Forms.RadioButton();
             this.rb_ord_cod = new System.Windows.Forms.RadioButton();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
@@ -77,6 +78,7 @@
             // 
             // gb_ord_por
             // 
+            this.gb_ord_por.Controls.Add(this.rb_ord_abr);
             this.gb_ord_por.Controls.Add(this.rb_ord_nom);
             this.gb_ord_por.Controls.Add(this.rb_ord_cod);
             this.gb_ord_por.Location = new System.Drawing.Point(11, 54);
@@ -86,10 +88,21 @@
             this.gb_ord_por.TabStop = false;
             this.gb_ord_por.Text = "Ordenado por";
             // 
+            // rb_ord_abr
+            // 
+            this.rb_ord_abr.AutoSize = true;
+            this.rb_ord_abr.Location = new System.Drawing.Point(152, 15);
+            this.rb_ord_abr.Name = "rb_ord_abr";
+            this.rb_ord_abr.Size = new System.Drawing.Size(73, 17);
+            this.rb_ord_abr.TabIndex = 2;
+            this.rb_ord_abr.TabStop = true;
+            this.rb_ord_abr.Text = "Nemónico";
+            this.rb_ord_abr.UseVisualStyleBackColor = true;
+            // 
             // rb_ord_nom
             // 
             this.rb_ord_nom.AutoSize = true;
-            this.rb_ord_nom.Location = new System.Drawing.Point(127, 15);
+            this.rb_ord_nom.Location = new System.Drawing.Point(84, 15);
             this.rb_ord_nom.Name = "rb_ord_nom";
             this.rb_ord_nom.Size = new System.Drawing.Size(62, 17);
             this.rb_ord_nom.TabIndex = 1;
@@ -100,7 +113,7 @@
             // rb_ord_cod
             // 
             this.rb_ord_cod.AutoSize = true;
-            this.rb_ord_cod.Location = new System.Drawing.Point(50, 15);
+            this.rb_ord_cod.Location = new System.Drawing.Point(20, 15);
             this.rb_ord_cod.Name = "rb_ord_cod";
             this.rb_ord_cod.Size = new System.Drawing.Size(58, 17);
             this.rb_ord_cod.TabIndex = 0;
@@ -122,10 +135,10 @@
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(101, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(108, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 0;
@@ -139,7 +152,7 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(180, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(187, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 1;
@@ -182,5 +195,6 @@
         private System.Windows.Forms.Label lb_est_ado;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Button bt_can_cel;
+        private System.Windows.Forms.RadioButton rb_ord_abr;
     }
 }

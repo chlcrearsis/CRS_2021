@@ -55,7 +55,7 @@ namespace CRS_PRE
             ads004_R02.SetParameterValue("vc_ide_mod", vp_nom_mod);
             ads004_R02.SetParameterValue("vc_doc_ini", vp_doc_ini);
             ads004_R02.SetParameterValue("vc_doc_fin", vp_doc_fin);            
-            ads004_R02.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
+            ads004_R02.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);
         }
 
         private void Mn_imp_rim_Click(object sender, EventArgs e)

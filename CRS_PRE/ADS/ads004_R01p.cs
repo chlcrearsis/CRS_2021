@@ -46,8 +46,26 @@ namespace CRS_PRE
         {
             try
             {
-                if (lb_nom_mod.Text == "..." || lb_nom_mod.Text == "")
-                    return "Debe selecciónar el ID. Módulo";
+                /* Verificar el Módulo sea distinto a cero */
+                if (tb_ide_mod.Text.Trim().CompareTo("") == 0 ||
+                    tb_ide_mod.Text.Trim().CompareTo("0") == 0){
+                    tb_ide_mod.Focus();
+                    return "DEBE proporcionar el Módulo";
+                }
+
+                /* Verifica que el ID. Módulo sea numerico */
+                if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim())){
+                    tb_ide_mod.Focus();
+                    return "El ID. Módulo DEBE ser Numerico";
+                }
+
+                /* Valida que el modulo este registrada */
+                Tabla = new DataTable();
+                Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
+                if (Tabla.Rows.Count == 0){
+                    tb_ide_mod.Focus();
+                    return "La Módulo NO se encuentra registrado";
+                }
 
                 return "OK";
             }
@@ -67,7 +85,8 @@ namespace CRS_PRE
             if (Tabla.Rows.Count == 0){
                 lb_nom_mod.Text = "...";
             }else{
-                lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
+                tb_ide_mod.Text = Tabla.Rows[0]["va_ide_mod"].ToString().Trim();
+                lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString().Trim();
             }
         }
 
@@ -91,6 +110,7 @@ namespace CRS_PRE
             Fi_bus_mod();
         }
 
+        // Evento KeyDown: ID. Módulo
         private void tb_ide_mod_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA

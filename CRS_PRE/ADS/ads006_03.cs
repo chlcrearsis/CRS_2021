@@ -61,8 +61,7 @@ namespace CRS_PRE
                 return "DEBE proporcionar el Código del Tipo de Usuario";            
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_tus.Text, out int ide_tus);
-            if (ide_tus == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_tus.Text.Trim()))
                 return "El Código del Tipo de Usuario NO es válido";            
 
             // Valida que el campo Nombre NO este vacio
@@ -79,14 +78,12 @@ namespace CRS_PRE
 
             // Valida que el registro este en el sistema
             Tabla = o_ads006.Fe_con_tus(int.Parse(tb_ide_tus.Text));
-            if (Tabla.Rows.Count == 0){
-                return "El Tipo de Usuario NO se encuentra registrado";
-            }
+            if (Tabla.Rows.Count == 0)
+                return "El Tipo de Usuario NO se encuentra registrado";            
 
-            // Valida que el modulo no esta deshabilitado
-            if (tb_est_ado.Text.Trim() == "Deshabilitado"){
-                return "El Módulo se encuentra Deshabilitado";
-            }
+            // Valida que el Tipo de Usuario no esta deshabilitado
+            if (tb_est_ado.Text.Trim() == "Deshabilitado")
+                return "El Tipo de Usuario se encuentra Deshabilitado";            
 
             // Verifica SI existe otro registro con la misma Nombre
             Tabla = new DataTable();
@@ -96,13 +93,10 @@ namespace CRS_PRE
                 return "YA existe otro Tipo de Usuario con el mismo Nombre";
             }
 
-            // Verifica SI existe otro registro con el mismo nombre
-            Tabla = new DataTable();
-            Tabla = o_ads006.Fe_con_des(tb_des_tus.Text.Trim(), int.Parse(tb_ide_tus.Text));
-            if (Tabla.Rows.Count > 0){
-                tb_des_tus.Focus();
-                return "YA existe otra Tipo de Usuario con la misma Descripción";
-            }
+            // Quita caracteres especiales de SQL-Trans
+            tb_ide_tus.Text = tb_ide_tus.Text.Replace("'", "");
+            tb_nom_tus.Text = tb_nom_tus.Text.Replace("'", "");
+            tb_des_tus.Text = tb_des_tus.Text.Replace("'", "");
 
             return "OK";
         }
@@ -123,10 +117,13 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de editar la informacion?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
-                    // Edita Tipo de Atributo
-                    o_ads006.Fe_edi_tar(int.Parse(tb_ide_tus.Text), tb_nom_tus.Text, tb_des_tus.Text);
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Edita el registro
+                    o_ads006.Fe_edi_tar(int.Parse(tb_ide_tus.Text), tb_nom_tus.Text.Trim(), tb_des_tus.Text.Trim());
+                    // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tus.Text));
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }

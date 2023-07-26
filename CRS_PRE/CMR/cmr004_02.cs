@@ -452,7 +452,7 @@ namespace CRS_PRE
         void Fi_obt_ven()
         {
             
-            if(cl_glo_bal.IsNumeric(tb_cod_ven.Text) ==false)
+            if(!cl_glo_bal.IsNumeric(tb_cod_ven.Text.Trim()))
             {
 
             }

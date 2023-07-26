@@ -65,8 +65,7 @@ namespace CRS_PRE
                 return "DEBE proporcionar el ID. de Aplicación";
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int cod_gru);
-            if (cod_gru == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim()))
                 return "El Código del Módulo NO es válido";
 
             // Verifica SI el Módulo se encuentra registrado
@@ -120,7 +119,7 @@ namespace CRS_PRE
                     else
                         o_ads002.Fe_hab_des(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, "H");                    
                     // Actualiza el Formulario Principal
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_apl.Text));
+                    frm_pad.Fe_act_frm(tb_ide_apl.Text);
                     // Despliega Mensaje
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Cierra Formulario

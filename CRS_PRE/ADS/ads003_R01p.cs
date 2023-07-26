@@ -55,18 +55,63 @@ namespace CRS_PRE
             }
         }
 
+        /// <summary>
+        /// Valida Datos
+        /// </summary>
+        /// <returns></returns>
         protected string Fi_val_dat()
         {
             try
             {
-                if (tb_mod_ini.Text == "")
-                    return "Debe proporcionar el Módulo Inicial";
-                
-                if (tb_mod_fin.Text == "")
-                    return "Debe proporcionar el Módulo Final";                
+                /* Verificar el Módulo Inicial sea distinto a vacio */
+                if (tb_mod_ini.Text.Trim().CompareTo("") == 0){
+                    tb_mod_ini.Focus();
+                    return "DEBE proporcionar el Módulo Inicial";
+                }
 
-                if (int.Parse(tb_mod_ini.Text) > int.Parse(tb_mod_fin.Text))
-                    return "El Módulo Inicial DEBE ser menor al Módulo Final";                
+                /* Verifica que el ID. Módulo Inicial sea numerico */
+                if (!cl_glo_bal.IsNumeric(tb_mod_ini.Text.Trim())){
+                    tb_mod_ini.Focus();
+                    return "El ID. Módulo Inicial DEBE ser Numerico";
+                }
+
+                /* Valida que el modulo Inicial este registrada */
+                if (tb_mod_ini.Text.Trim().CompareTo("0") != 0){
+                    Tabla = new DataTable();
+                    Tabla = o_ads001.Fe_con_mod(int.Parse(tb_mod_ini.Text));
+                    if (Tabla.Rows.Count == 0){
+                        tb_mod_ini.Focus();
+                        return "La Módulo Inicial NO se encuentra registrado";
+                    }
+                }
+
+                /* Verificar el Módulo Final sea distinto a vacio */
+                if (tb_mod_fin.Text.Trim().CompareTo("") == 0){
+                    tb_mod_fin.Focus();
+                    return "DEBE proporcionar el Módulo Final";
+                }
+
+                /* Verifica que el ID. Módulo Final sea numerico */
+                if (!cl_glo_bal.IsNumeric(tb_mod_fin.Text.Trim())){
+                    tb_mod_fin.Focus();
+                    return "El ID. Módulo Final DEBE ser Numerico";
+                }
+
+                /* Valida que el modulo Final este registrada */
+                if (tb_mod_fin.Text.Trim().CompareTo("0") != 0){
+                    Tabla = new DataTable();
+                    Tabla = o_ads001.Fe_con_mod(int.Parse(tb_mod_fin.Text));
+                    if (Tabla.Rows.Count == 0){
+                        tb_mod_fin.Focus();
+                        return "La Módulo Final NO se encuentra registrado";
+                    }
+                }
+            
+                /* Valida que el Módulo Inicial sea MENOR que el Módulo Final */
+                if (int.Parse(tb_mod_ini.Text) > int.Parse(tb_mod_fin.Text)){
+                    tb_mod_ini.Focus();
+                    return "El Módulo Inicial DEBE ser menor al Módulo Final";
+                }
 
                 return "OK";
             }
@@ -89,8 +134,10 @@ namespace CRS_PRE
                     lb_nmo_fin.Text = "";
             }else{
                 if (ini_fin == 1){
+                    tb_mod_ini.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
                     lb_nmo_ini.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
                 }else{
+                    tb_mod_fin.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
                     lb_nmo_fin.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
                 }
             }
@@ -105,60 +152,57 @@ namespace CRS_PRE
             ads001_01 frm = new ads001_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
-            if (frm.DialogResult == DialogResult.OK)
-            {
-                if (ini_fin == 1)
-                {
+            if (frm.DialogResult == DialogResult.OK){
+                if (ini_fin == 1){
                     tb_mod_ini.Text = frm.tb_ide_mod.Text;
                     Fi_obt_mod(1, int.Parse(tb_mod_ini.Text));
-                }
-                else
-                {
+                }else{
                     tb_mod_fin.Text = frm.tb_ide_mod.Text;
                     Fi_obt_mod(2, int.Parse(tb_mod_fin.Text));
                 }
             }
         }
 
+        // Evento Click: Button Modulo Inicial
         private void bt_mod_ini_Click(object sender, EventArgs e)
         {
             Fi_bus_mod(1);
         }
 
+        // Evento Click: Button Modulo Final
         private void bt_mod_fin_Click(object sender, EventArgs e)
         {
             Fi_bus_mod(2);
-        }        
+        }
 
+        // Evento KeyDown: Button Modulo Inicial
         private void tb_tip_ini_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
-            if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Usuario
-                Fi_bus_mod(1);
-            }
+            if (e.KeyData == Keys.Up)           
+                Fi_bus_mod(1);            
         }
 
+        // Evento KeyDown: Button Modulo Final
         private void tb_tip_fin_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
             if (e.KeyData == Keys.Up)
-            {
-                // Abre la ventana Busca Usuario
-                Fi_bus_mod(2);
-            }
+                Fi_bus_mod(2);            
         }       
 
         private void tb_mod_ini_Leave(object sender, EventArgs e)
         {
-            // Obtiene el Tipo de Atributo Inicial           
-            Fi_obt_mod(1, int.Parse(tb_mod_ini.Text));
+            // Obtiene el Módulo Inicial
+            if (tb_mod_ini.Text.CompareTo("") != 0)
+                Fi_obt_mod(1, int.Parse(tb_mod_ini.Text));
         }       
 
         private void tb_mod_fin_Leave(object sender, EventArgs e)
         {
-            Fi_obt_mod(2, int.Parse(tb_mod_fin.Text));
+            // Obtiene el Módulo Final
+            if (tb_mod_fin.Text.CompareTo("") != 0)
+                Fi_obt_mod(2, int.Parse(tb_mod_fin.Text));
         }
 
         // Evento Click: Button Aceptar

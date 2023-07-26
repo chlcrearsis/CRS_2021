@@ -173,6 +173,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ads004_R01p";
+            this.Tag = "Informe Talonario por Módulo";
             this.Text = "Informe Talonario por Módulo";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);

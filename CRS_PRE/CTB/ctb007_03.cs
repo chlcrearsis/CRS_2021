@@ -83,7 +83,7 @@ namespace CRS_PRE
             }
 
             // Verifica actividad economica
-            if (cl_glo_bal.IsNumeric(tb_cod_act.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_act.Text.Trim()))
             {
                 tb_cod_act.Focus();
                 return "La Actividad económica no es valida";
@@ -103,7 +103,7 @@ namespace CRS_PRE
                 return "Debe proporcionar la sucursal";
             }
             
-            if (cl_glo_bal.IsNumeric(tb_ide_suc.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_ide_suc.Text.Trim()))
             {
                 tb_ide_suc.Focus();
                 return "La Sucursal no es valida";
@@ -129,7 +129,7 @@ namespace CRS_PRE
                 return "Debe proporcionar la Leyenda";
             }
 
-            if (cl_glo_bal.IsNumeric(tb_cod_ley.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_ley.Text.Trim()))
             {
                 tb_cod_ley.Focus();
                 return "La Leyenda no es valida";
@@ -143,12 +143,12 @@ namespace CRS_PRE
            
 
             // Verifica numero inicial y final
-            if (cl_glo_bal.IsNumeric(tb_nro_ini.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_nro_ini.Text.Trim()))
             {
                 tb_nro_ini.Focus();
                 return "El numero inicial debe ser numerico";
             }
-            if (cl_glo_bal.IsNumeric(tb_nro_fin.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_nro_fin.Text.Trim()))
             {
                 tb_nro_fin.Focus();
                 return "El numero final debe ser numerico";
@@ -161,7 +161,7 @@ namespace CRS_PRE
                 return "El Numero inicial debe ser menor al numero final";
             }
 
-            if (cl_glo_bal.IsNumeric(tb_con_tad.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_con_tad.Text.Trim()))
             {
                 tb_con_tad.Focus();
                 return "El contador debe ser numerico";

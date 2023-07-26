@@ -56,7 +56,7 @@ namespace CRS_PRE
         }
 
         // Valida los datos proporcionados
-        protected string Fi_val_dat()
+        private string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio
             if (tb_ide_mod.Text.Trim() == ""){
@@ -65,8 +65,7 @@ namespace CRS_PRE
             }
 
             // Valida que el campo código sea un valor válido
-            int.TryParse(tb_ide_mod.Text, out int ide_mod);
-            if (ide_mod == 0){
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim())){
                 tb_ide_mod.Focus();
                 return "El Código del Módulo NO es valido";
             }
@@ -106,15 +105,19 @@ namespace CRS_PRE
                 tb_nom_mod.Focus();
                 return "Ya existe otro Módulo con la misma Nombre";
             }
-         
-           return "OK";
-        }
+
+            // Quita caracteres especiales de SQL-Trans
+            tb_abr_mod.Text = tb_abr_mod.Text.Replace("'", "");
+            tb_nom_mod.Text = tb_nom_mod.Text.Replace("'", "");
+
+            return "OK";
+        }        
 
         // Evento KeyPress : ID. Módulo
         private void tb_ide_mod_KeyPress(object sender, KeyPressEventArgs e)
         {
             cl_glo_bal.NotNumeric(e);
-        }
+        }        
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)

@@ -6,12 +6,12 @@
 
 Nombre   Descripcion                                             Autor
 **********************************************************************
-ads001 = Módulo del Sistema										  CHL (OK)
-ads002 = Aplicaciones del Sistema								  CHL (OK)
-ads003 = Definición de Documento								  CHL (Ok)
-ads004 = Talonario												  CHL (OK)
-ads005 = Numerador de Talonario		(cambia llave)				  CHL
-ads006 = Tipo de Usuario										  CHL
+ads001 = Módulo del Sistema										  EJR (OK)
+ads002 = Aplicaciones del Sistema								  EJR (OK)
+ads003 = Definición de Documento								  EJR (Ok)
+ads004 = Talonario												  EJR (OK) (R)
+ads005 = Numerador de Talonario		             				  EJR (OK) (R)
+ads006 = Tipo de Usuario										  EJR (OK)
 ads007 = Usuario												  CHL
 ads008 = Autorización de usuario sobre el sistema				  CHL
 ads009 = Autorización de tipo usuario sobre el sistema			  CHL

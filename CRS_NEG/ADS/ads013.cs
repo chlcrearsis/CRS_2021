@@ -59,8 +59,8 @@ namespace CRS_NEG
         public DataTable Fe_obt_glo(int ar_ide_mod, int ar_ide_glo)
         {
             cadena = " SELECT * FROM ads013";
-            cadena += " WHERE va_ide_mod =" + ar_ide_mod ;
-            cadena += "   AND va_ide_glo =" + ar_ide_glo;
+            cadena += " WHERE va_ide_mod = " + ar_ide_mod ;
+            cadena += "   AND va_ide_glo = " + ar_ide_glo;
 
             return ob_con_ecA.fe_exe_sql(cadena);
         }

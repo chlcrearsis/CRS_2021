@@ -134,7 +134,7 @@ namespace CRS_PRE
 
 
             // VALIDA LOGUIN DEL USUARIO
-            msn_res = o_ads007.Login_2(tb_ide_usr.Text, tb_pas_usr.Text);
+            msn_res = o_ads007.Fe_ing_sis(tb_ide_usr.Text, tb_pas_usr.Text);
             if (msn_res != "OK")
             {
                 tb_pas_usr.Focus();
@@ -217,7 +217,7 @@ namespace CRS_PRE
             }
 
             // VALIDA LOGUIN DEL USUARIO
-            msn_res = o_ads007.Login_2(tb_ide_usr.Text, tb_pas_usr.Text);
+            msn_res = o_ads007.Fe_ing_sis(tb_ide_usr.Text, tb_pas_usr.Text);
             if (msn_res != "OK")
             {
                 tb_pas_usr.Focus();

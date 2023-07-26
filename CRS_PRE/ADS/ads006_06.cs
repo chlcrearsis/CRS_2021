@@ -59,8 +59,7 @@ namespace CRS_PRE
                 return "DEBE proporcionar el ID. Tipo de Usuario";            
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_tus.Text, out int ide_tus);
-            if (ide_tus == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_tus.Text.Trim()))
                 return "El ID Tipo de Usuario NO tiene formato valido";            
 
             // Valida que el registro este en el sistema
@@ -74,7 +73,7 @@ namespace CRS_PRE
             
 
             // Valida que NO este registrado ningun Usuario al Tipo de Usuario
-            Tabla = o_ads007.Fe_con_tus(int.Parse(tb_ide_tus.Text));
+            Tabla = o_ads007.Fe_con_tus(int.Parse(tb_ide_tus.Text), "T");
             if (Tabla.Rows.Count == 0)
                 return "Hay " + Tabla.Rows.Count + " Usuarios relacionadas con el Tipo de Usuario " + tb_nom_tus.Text;
 
@@ -96,10 +95,10 @@ namespace CRS_PRE
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Está seguro de eliminar la información?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                msg_res = MessageBox.Show("Está seguro de eliminar el registro?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
-                    // Elimina Tipo de Atributo
+                    // Elimina registro
                     o_ads006.Fe_eli_min(int.Parse(tb_ide_tus.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_tus.Text));

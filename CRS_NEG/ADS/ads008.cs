@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CRS_DAT;
+using static CRS_NEG.ads007;
+
 namespace CRS_NEG
 {
     /// <summary>
@@ -14,218 +16,438 @@ namespace CRS_NEG
     {
         //######################################################################
         //##       Tabla: ads008_01                                           ##
-        //##      Nombre: Aplicaciones                                        ##
+        //##      Nombre: Autorizaciones Usuarios                             ##
         //## Descripcion: Permiso Usuarios sobre el sistema                   ##         
         //##       Autor: JEJR - (05-01-2019)                                 ##
         //######################################################################
-        conexion_a ob_con_ecA = new conexion_a();      
-
-        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
-
-        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
-        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
-        public string va_ide_usr;//= ob_con_ecA.va_ide_usr;
-        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
-
-        string cadena = "";
-       
-       
-        public ads008()
-        {
-            va_ser_bda = ob_con_ecA.va_ser_bda;
-            va_ins_bda = ob_con_ecA.va_ins_bda;
-            va_nom_bda = ob_con_ecA.va_nom_bda;
-            va_ide_usr = ob_con_ecA.va_ide_usr;
-            va_pas_usr = ob_con_ecA.va_pas_usr;
-        }
-
-        #region "PERMISO DE USUARIO SOBRE EL SISTEMA"
+        conexion_a ob_con_ecA = new conexion_a();
+        StringBuilder cadena;
 
         /// <summary>
-        /// Obtiene las aplicaciones autorizadas al usuario P/Menu Principal
-        /// </summary>
-        /// <param name="ag_ide_usr">Ide Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_ads008_00(string ag_ide_usr)
-        {
-            cadena = "EXECUTE ads008_01a_p01 '" + ag_ide_usr + "'";
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        /// <summary>
-        /// Obtiene las aplicaciones autorizadas al usuario
-        /// </summary>
-        /// <param name="ag_ide_usr">Ide Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_ads008_01(string ag_ide_usr, string ag_ide_tab)
-        {
-            cadena = " SELECT * FROM ads008 ";
-            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_ide_tab = '" + ag_ide_tab + "'";
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        /// <summary>
-        /// Consulta si el usuario tiene permiso sobre algo en especifico
-        /// </summary>
-        /// <param name="ag_ide_usr">ID. Usuario</param>
-        /// <param name="ag_ide_tab">ID. tabla </param>
-        /// <param name="ag_ide_uno">ID. uno </param>
-        /// <returns></returns>
-        public Boolean Fe_ads008_02(string ag_ide_usr, string ag_ide_tab, string ag_ide_uno)
-        {
-            bool resul = false;
-
-            cadena = " SELECT * FROM ads008 ";
-            cadena += " WHERE va_ide_usr = '" + ag_ide_usr + "'";
-            cadena += "   AND va_ide_tab = '" + ag_ide_tab + "'";
-            cadena += "   AND va_ide_uno = '" + ag_ide_uno + "'";
-
-            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
-
-            if (tabla.Rows.Count == 0)
-                resul = false;
-            if (tabla.Rows.Count > 0)
-                resul = true;
-
-            return resul;
-        }
-
-        /// <summary>
-        /// Funcion consultar "PERMISO USUARIO SOBRE TABLAS Y ATRIBUTOS"
+        /// Funcion "Registrar Autorizacion Usuario"
         /// </summary>
         /// <param name="ide_usr">ID. Usuario</param>
-        /// <param name="ide_tab">ID. Tabla </param>
-        /// <param name="ide_uno">ID. Uno </param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
+        /// <param name="ide_tre">Identificador 3</param>
+        /// <param name="ide_int">Identificador Entero</param>
         /// <returns></returns>
-        public DataTable Fe_con_per(string ide_usr, string ide_tab, string ide_uno)
+        public void Fe_nue_reg(string ide_usr, string ide_tab, string ide_uno = "",
+                               string ide_dos = "", string ide_tre = "", int ide_int = 0)
         {
-            cadena = " SELECT va_ide_usr, va_ide_tab, va_ide_uno, va_ide_dos, va_ide_tre";
-            cadena += "  FROM ads008 ";
-            cadena += " WHERE va_ide_usr = '" + ide_usr + "'";
-            cadena += "   AND va_ide_tab = '" + ide_tab + "'";
-            cadena += "   AND va_ide_uno = '" + ide_uno + "'";
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("INSERT INTO ads008 VALUES ('" + ide_usr + "', '" + ide_tab + "', '" + ide_uno + "',");
+                cadena.AppendLine("                           '" + ide_dos + "', '" + ide_tre + "',  " + ide_int + ")");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
-        /// Funcion consultar "PERMISO USUARIO SOBRE TABLAS Y ATRIBUTOS"
+        /// Funcion "Modifica Autorizacion Usuario"
         /// </summary>
         /// <param name="ide_usr">ID. Usuario</param>
-        /// <param name="ide_tab">ID. Tabla </param>
-        /// <param name="ide_uno">ID. Uno </param>
-        /// <param name="ide_dos">ID. Dos </param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
+        /// <param name="ide_tre">Identificador 3</param>
+        /// <param name="ide_int">Identificador Entero</param>
         /// <returns></returns>
-        public DataTable Fe_con_per(string ide_usr, string ide_tab, string ide_uno, string ide_dos)
+        public void Fe_edi_tar(string ide_usr, string ide_tab, string ide_uno,
+                               string ide_dos, string ide_tre, int ide_int)
         {
-            cadena = " SELECT va_ide_usr, va_ide_tab, va_ide_uno, va_ide_dos, va_ide_tre";
-            cadena += "  FROM ads008 ";
-            cadena += " WHERE va_ide_usr = '" + ide_usr + "'";
-            cadena += "   AND va_ide_tab = '" + ide_tab + "'";
-            cadena += "   AND va_ide_uno = '" + ide_uno + "'";
-            cadena += "   AND va_ide_dos = '" + ide_dos + "'";
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("UPDATE ads008 SET va_ide_int =  " + ide_int + "");
+                cadena.AppendLine("            WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("              AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("              AND va_ide_uno = '" + ide_uno + "'");
+                cadena.AppendLine("              AND va_ide_dos = '" + ide_dos + "'");
+                cadena.AppendLine("              AND va_ide_tre = '" + ide_tre + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
-        /// Funcion consultar "PERMISO USUARIO SOBRE TABLAS Y ATRIBUTOS"
+        /// Funcion "Elimina 1 Autorizacion Usuario"
         /// </summary>
         /// <param name="ide_usr">ID. Usuario</param>
-        /// <param name="ide_tab">ID. Tabla </param>
-        /// <param name="ide_uno">ID. Uno </param>
-        /// <param name="ide_dos">ID. Dos </param>
-        /// <param name="ide_tre">ID. Tres </param>
         /// <returns></returns>
-        public DataTable Fe_con_per(string ide_usr, string ide_tab, string ide_uno, string ide_dos, string ide_tre)
+        public void Fe_eli_min(string ide_usr)
         {
-            cadena = " SELECT va_ide_usr, va_ide_tab, va_ide_uno, va_ide_dos, va_ide_tre";
-            cadena += "  FROM ads008 ";
-            cadena += " WHERE va_ide_usr = '" + ide_usr + "'";
-            cadena += "   AND va_ide_tab = '" + ide_tab + "'";
-            cadena += "   AND va_ide_uno = '" + ide_uno + "'";
-            cadena += "   AND va_ide_dos = '" + ide_dos + "'";
-            cadena += "   AND va_ide_tre = '" + ide_tre + "'";
-            return ob_con_ecA.fe_exe_sql(cadena);
-        }
-
-        public Boolean Fe_aut_usr(string ag_ide_tab, string ag_ide_uno)
-        {
-            bool resul = false;
-
-            cadena = " SELECT * FROM ads008 ";
-            cadena += " WHERE  va_ide_usr = SYSTEM_USER AND va_ide_tab = '" + ag_ide_tab + "'" +
-                " AND va_ide_uno = '" + ag_ide_uno + "'";
-
-            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
-
-            if (tabla.Rows.Count == 0)
-                resul = false;
-            if (tabla.Rows.Count > 0)
-                resul = true;
-
-            return resul;
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("DELETE ads008 WHERE va_ide_usr = '" + ide_usr + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
-        /// Consulta si el usuario tiene permiso sobre algo en especifico
+        /// Funcion "Elimina 2 Autorizacion Usuario"
         /// </summary>
-        /// <param name="ag_ide_usr">ID. Usuario</param>
-        /// <param name="ag_ide_tab">ID. tabla </param>
-        /// <param name="ag_ide_uno">ID. uno </param>
-        /// <param name="ag_ide_dos">ID. dos </param>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
         /// <returns></returns>
-        public Boolean Fe_ads008_02(string ag_ide_usr, string ag_ide_tab, string ag_ide_uno, string ag_ide_dos)
+        public void Fe_eli_min(string ide_usr, string ide_tab)
         {
-            bool resul = false;
-
-            cadena = " SELECT * FROM ads008 ";
-            cadena += " WHERE  va_ide_usr = '" + ag_ide_usr + "' AND va_ide_tab = '" + ag_ide_tab + "'" +
-                " AND va_ide_uno = '" + ag_ide_uno + "' AND va_ide_dos = '" + ag_ide_dos + "' ";
-            
-            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
-
-            if (tabla.Rows.Count == 0)
-                resul = false;
-            if (tabla.Rows.Count > 0)
-                resul = true;
-
-            return resul;
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("DELETE ads008 WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
-        /// Registra permiso sobre tabla y atributos
+        /// Funcion "Elimina 3 Autorizacion Usuario"
         /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
         /// <returns></returns>
-        public DataTable Fe_ads008_03(string ag_ide_usr, string ag_ide_tab, string ag_ide_uno, string ag_ide_dos = "", string ag_ide_tre = "" )
+        public void Fe_eli_min(string ide_usr, string ide_tab, string ide_uno)
         {
-            cadena = " INSERT INTO ads008 VALUES ";
-            cadena += " ('" + ag_ide_usr + "', '" + ag_ide_tab + "', '" + ag_ide_uno + "','" + ag_ide_dos + "','" + ag_ide_tre + "', 0) ";
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("DELETE ads008 WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("                AND va_ide_uno = '" + ide_uno + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
-        /// Elimna permiso sobre tabla
+        /// Funcion "Elimina 4 Autorizacion Usuario"
         /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
         /// <returns></returns>
-        public DataTable Fe_ads008_04(string ag_ide_usr, string ag_ide_tab)
+        public void Fe_eli_min(string ide_usr, string ide_tab, string ide_uno,
+                               string ide_dos)
         {
-            cadena = " DELETE ads008 ";
-            cadena += " WHERE va_ide_usr ='" + ag_ide_usr + "' AND va_ide_tab = '" + ag_ide_tab + "'";
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("DELETE ads008 WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("                AND va_ide_uno = '" + ide_uno + "'");
+                cadena.AppendLine("                AND va_ide_dos = '" + ide_dos + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
-        /// Elimna permiso sobre un atributo de la tabla
+        /// Funcion "Elimina 5 Autorizacion Usuario"
         /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
+        /// <param name="ide_tre">Identificador 3</param>
         /// <returns></returns>
-        public DataTable Fe_ads008_04(string ag_ide_usr, string ag_ide_tab, string ag_ide_uno, string ag_ide_dos = "")
+        public void Fe_eli_min(string ide_usr, string ide_tab, string ide_uno,
+                               string ide_dos, string ide_tre)
         {
-            cadena = " DELETE ads008 ";
-            cadena += " WHERE va_ide_usr ='" + ag_ide_usr + "' AND va_ide_tab = '" + ag_ide_tab + "'" +
-                " AND va_ide_uno ='" + ag_ide_uno + "' AND va_ide_dos = '"+ ag_ide_dos + "'";
-
-            return ob_con_ecA.fe_exe_sql(cadena);
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("DELETE ads008 WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("                AND va_ide_uno = '" + ide_uno + "'");
+                cadena.AppendLine("                AND va_ide_dos = '" + ide_dos + "'");
+                cadena.AppendLine("                AND va_ide_tre = '" + ide_tre + "'");
+                ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        #endregion
+        /// <summary>
+        /// Aplicaciones Autorizadas al Usuario
+        /// p/Menu Principal
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <returns></returns>
+        public DataTable Fe_apl_aut(string ide_usr)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads008_01a_p01 '" + ide_usr + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Consulta 1 "Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <returns></returns>
+        public DataTable Fe_con_aut(string ide_usr, string ide_tab)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Consulta 2 "Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <returns></returns>
+        public DataTable Fe_con_aut(string ide_usr, string ide_tab, string ide_uno)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
+
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Consulta 3 "Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
+        /// <returns></returns>
+        public DataTable Fe_con_aut(string ide_usr, string ide_tab, string ide_uno,
+                                    string ide_dos)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
+                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
+
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Consulta 4 "Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
+        /// <param name="ide_tre">Identificador 3</param>
+        /// <returns></returns>
+        public DataTable Fe_con_aut(string ide_usr, string ide_tab, string ide_uno,
+                                    string ide_dos, string ide_tre)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
+                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
+                cadena.AppendLine("   AND va_ide_tre = '" + ide_tre + "'");
+
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /// <summary>
+        /// Función 1 "Verifica Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <returns></returns>
+        public bool Fe_aut_usr(string ide_usr, string ide_tab)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+
+                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
+                return dt_tab_res.Rows.Count != 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion 2 "Verifica Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <returns></returns>
+        public bool Fe_aut_usr(string ide_usr, string ide_tab, string ide_uno)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
+
+                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
+                return dt_tab_res.Rows.Count != 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion 3 "Verifica Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
+        /// <returns></returns>
+        public bool Fe_aut_usr(string ide_usr, string ide_tab, string ide_uno,
+                               string ide_dos)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
+                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
+
+                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
+                return dt_tab_res.Rows.Count != 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Función 4 "Verifica Autorización Usuario"
+        /// </summary>
+        /// <param name="ide_usr">ID. Usuario</param>
+        /// <param name="ide_tab">ID. Tabla</param>
+        /// <param name="ide_uno">Identificador 1</param>
+        /// <param name="ide_dos">Identificador 2</param>
+        /// <param name="ide_tre">Identificador 3</param>
+        /// <returns></returns>
+        public bool Fe_aut_usr(string ide_usr, string ide_tab, string ide_uno,
+                               string ide_dos, string ide_tre)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_usr, va_ide_tab, va_ide_uno,");
+                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
+                cadena.AppendLine("  FROM ads008");
+                cadena.AppendLine(" WHERE va_ide_usr = '" + ide_usr + "'");
+                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
+                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
+                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
+                cadena.AppendLine("   AND va_ide_tre = '" + ide_tre + "'");
+
+                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
+                return dt_tab_res.Rows.Count != 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }      
+           
     }
 }

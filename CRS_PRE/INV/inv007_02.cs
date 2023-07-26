@@ -414,7 +414,7 @@ namespace CRS_PRE.INV
             }
 
             // Obtiene ide y nombre documento
-            tabla = o_ads004.Fe_per_tal(o_ads007.va_ide_usr, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text), "H");
+            tabla = o_ads004.Fe_con_tal(tb_cod_doc.Text, int.Parse(tb_nro_tal.Text));
             if (tabla.Rows.Count == 0)
             {
                lb_nom_tal.Text ="";

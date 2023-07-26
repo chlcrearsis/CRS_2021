@@ -30,16 +30,16 @@
         {
             this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_est_ado = new System.Windows.Forms.Label();
+            this.tb_nom_apl = new System.Windows.Forms.TextBox();
+            this.tb_ide_apl = new System.Windows.Forms.TextBox();
+            this.lb_nom_mod = new System.Windows.Forms.Label();
             this.lb_ide_apl = new System.Windows.Forms.Label();
             this.lb_ide_mod = new System.Windows.Forms.Label();
             this.tb_ide_mod = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
-            this.lb_nom_mod = new System.Windows.Forms.Label();
-            this.tb_nom_apl = new System.Windows.Forms.TextBox();
-            this.tb_ide_apl = new System.Windows.Forms.TextBox();
-            this.lb_est_ado = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +71,44 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // lb_est_ado
+            // 
+            this.lb_est_ado.AutoSize = true;
+            this.lb_est_ado.Location = new System.Drawing.Point(227, 68);
+            this.lb_est_ado.Name = "lb_est_ado";
+            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
+            this.lb_est_ado.TabIndex = 6;
+            this.lb_est_ado.Text = "Estado";
+            // 
+            // tb_nom_apl
+            // 
+            this.tb_nom_apl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nom_apl.Location = new System.Drawing.Point(117, 39);
+            this.tb_nom_apl.MaxLength = 30;
+            this.tb_nom_apl.Name = "tb_nom_apl";
+            this.tb_nom_apl.Size = new System.Drawing.Size(232, 20);
+            this.tb_nom_apl.TabIndex = 5;
+            // 
+            // tb_ide_apl
+            // 
+            this.tb_ide_apl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ide_apl.Location = new System.Drawing.Point(66, 39);
+            this.tb_ide_apl.MaxLength = 6;
+            this.tb_ide_apl.Name = "tb_ide_apl";
+            this.tb_ide_apl.ReadOnly = true;
+            this.tb_ide_apl.Size = new System.Drawing.Size(47, 20);
+            this.tb_ide_apl.TabIndex = 4;
+            this.tb_ide_apl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lb_nom_mod
+            // 
+            this.lb_nom_mod.AutoSize = true;
+            this.lb_nom_mod.Location = new System.Drawing.Point(98, 17);
+            this.lb_nom_mod.Name = "lb_nom_mod";
+            this.lb_nom_mod.Size = new System.Drawing.Size(16, 13);
+            this.lb_nom_mod.TabIndex = 2;
+            this.lb_nom_mod.Text = "...";
+            // 
             // lb_ide_apl
             // 
             this.lb_ide_apl.AutoSize = true;
@@ -99,6 +137,7 @@
             this.tb_ide_mod.ReadOnly = true;
             this.tb_ide_mod.Size = new System.Drawing.Size(30, 20);
             this.tb_ide_mod.TabIndex = 1;
+            this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gb_ctr_btn
             // 
@@ -114,10 +153,10 @@
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(198, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(206, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 0;
@@ -131,51 +170,13 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(277, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(285, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
-            // 
-            // lb_nom_mod
-            // 
-            this.lb_nom_mod.AutoSize = true;
-            this.lb_nom_mod.Location = new System.Drawing.Point(98, 17);
-            this.lb_nom_mod.Name = "lb_nom_mod";
-            this.lb_nom_mod.Size = new System.Drawing.Size(16, 13);
-            this.lb_nom_mod.TabIndex = 2;
-            this.lb_nom_mod.Text = "...";
-            // 
-            // tb_nom_apl
-            // 
-            this.tb_nom_apl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_apl.Location = new System.Drawing.Point(117, 39);
-            this.tb_nom_apl.MaxLength = 30;
-            this.tb_nom_apl.Name = "tb_nom_apl";
-            this.tb_nom_apl.Size = new System.Drawing.Size(232, 20);
-            this.tb_nom_apl.TabIndex = 5;
-            // 
-            // tb_ide_apl
-            // 
-            this.tb_ide_apl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_apl.Location = new System.Drawing.Point(66, 39);
-            this.tb_ide_apl.MaxLength = 6;
-            this.tb_ide_apl.Name = "tb_ide_apl";
-            this.tb_ide_apl.ReadOnly = true;
-            this.tb_ide_apl.Size = new System.Drawing.Size(47, 20);
-            this.tb_ide_apl.TabIndex = 4;
-            this.tb_ide_apl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lb_est_ado
-            // 
-            this.lb_est_ado.AutoSize = true;
-            this.lb_est_ado.Location = new System.Drawing.Point(227, 68);
-            this.lb_est_ado.Name = "lb_est_ado";
-            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
-            this.lb_est_ado.TabIndex = 6;
-            this.lb_est_ado.Text = "Estado";
             // 
             // ads002_03
             // 

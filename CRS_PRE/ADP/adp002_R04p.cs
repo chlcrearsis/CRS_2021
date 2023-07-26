@@ -406,10 +406,10 @@ namespace CRS_PRE
                 if (tb_gru_fin.Text.Trim().CompareTo("") == 0)
                     return "El Campo del Grupo Final está vacio";
 
-                if (!cl_glo_bal.IsNumeric(tb_gru_ini.Text))
+                if (!cl_glo_bal.IsNumeric(tb_gru_ini.Text.Trim()))
                     return "El Campo del Grupo Inicial NO tiene un formato válido";
 
-                if (!cl_glo_bal.IsNumeric(tb_gru_fin.Text))
+                if (!cl_glo_bal.IsNumeric(tb_gru_fin.Text.Trim()))
                     return "El Campo del Grupo Final NO tiene un formato válido";
 
                 if (int.Parse(tb_gru_ini.Text.Trim()) > int.Parse(tb_gru_fin.Text.Trim()))
@@ -424,10 +424,10 @@ namespace CRS_PRE
                 if (tb_atr_fin.Text.Trim().CompareTo("") == 0)
                     return "El Campo del Atributo Final está vacio";
 
-                if (!cl_glo_bal.IsNumeric(tb_atr_ini.Text))
+                if (!cl_glo_bal.IsNumeric(tb_atr_ini.Text.Trim()))
                     return "El Campo del Atributo Inicial NO tiene un formato válido";
 
-                if (!cl_glo_bal.IsNumeric(tb_atr_fin.Text))
+                if (!cl_glo_bal.IsNumeric(tb_atr_fin.Text.Trim()))
                     return "El Campo del Atributo Final NO tiene un formato válido";
 
                 if (int.Parse(tb_atr_ini.Text.Trim()) > int.Parse(tb_atr_fin.Text.Trim()))
@@ -439,10 +439,10 @@ namespace CRS_PRE
                 if (tb_rut_fin.Text.Trim().CompareTo("") == 0)
                     return "El Campo de la Ruta Final está vacio";
 
-                if (!cl_glo_bal.IsNumeric(tb_rut_ini.Text))
+                if (!cl_glo_bal.IsNumeric(tb_rut_ini.Text.Trim()))
                     return "El Campo de la Ruta Inicial NO tiene un formato válido";
 
-                if (!cl_glo_bal.IsNumeric(tb_rut_fin.Text))
+                if (!cl_glo_bal.IsNumeric(tb_rut_fin.Text.Trim()))
                     return "El Campo de la Ruta Final NO tiene un formato válido";
 
                 if (int.Parse(tb_rut_ini.Text.Trim()) > int.Parse(tb_rut_fin.Text.Trim()))

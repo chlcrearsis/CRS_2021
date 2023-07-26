@@ -84,7 +84,7 @@ namespace CRS_PRE
             }
 
 
-            if (cl_glo_bal.IsNumeric(tb_nro_lib.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_nro_lib.Text.Trim()))
             {
                 tb_nro_lib.Focus();
                 return "El numero de la libreta es incorrecto";

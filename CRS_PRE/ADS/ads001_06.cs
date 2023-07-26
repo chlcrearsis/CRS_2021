@@ -55,29 +55,39 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio
-            if (tb_ide_mod.Text.Trim() == "")
-                return "DEBE proporcionar el Codigo del Módulo";            
+            if (tb_ide_mod.Text.Trim() == "") {
+                tb_ide_mod.Focus();
+                return "DEBE proporcionar el Codigo del Módulo";
+            }
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int ide_mod);
-            if (ide_mod == 0)
-                return "El Código del Módulo NO tiene formato valido";            
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim())) {
+                tb_ide_mod.Focus();
+                return "El Código del Módulo NO tiene formato valido";
+            }
 
             // Valida que el registro este en el sistema
+            Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
-            if (Tabla.Rows.Count == 0)
+            if (Tabla.Rows.Count == 0) {
+                tb_ide_mod.Focus();
                 return "El Módulo NO se encuentra registrado";
+            }
 
             // Verifica SI el estado se encuentra Habilitado
-            if (tb_est_ado.Text == "Habilitado")            
+            if (tb_est_ado.Text == "Habilitado"){
+                tb_ide_mod.Focus();
                 return "El Módulo se encuentra Habilitado";
-            
+            }
+
 
             // Valida que NO este registrado ninguna aplicacion que apunte al Módulo
+            Tabla = new DataTable();
             Tabla = o_ads002.Fe_con_mod(int.Parse(tb_ide_mod.Text));
-            if (Tabla.Rows.Count == 0)
+            if (Tabla.Rows.Count > 0){
+                tb_ide_mod.Focus();
                 return "Hay " + Tabla.Rows.Count + " aplicaciones relacionadas con el Módulo " + tb_nom_mod.Text;
-
+            }
 
             return "OK";
         }
@@ -91,12 +101,12 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "")
+                if (msg_val != "OK")
                 {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-                msg_res = MessageBox.Show("Está seguro de eliminar el Módulo?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                msg_res = MessageBox.Show("Está seguro de eliminar el registro?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
                     // Elimina el registro

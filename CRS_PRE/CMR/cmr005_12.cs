@@ -1419,7 +1419,7 @@ namespace CRS_PRE
         private void Fi_obt_plv()
         {
 
-            if(cl_glo_bal.IsNumeric(tb_cod_plv.Text)== false)
+            if(!cl_glo_bal.IsNumeric(tb_cod_plv.Text.Trim()))
             {
                 MessageBox.Show("Debe proporcionar una plantilla valida", "Error", MessageBoxButtons.OK);
             }

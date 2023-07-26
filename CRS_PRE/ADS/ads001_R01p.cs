@@ -29,7 +29,8 @@ namespace CRS_PRE
             // Desplega Información inicial            
             cb_est_ado.SelectedIndex = 0;
             rb_ord_cod.Checked = true;
-            rb_ord_nom.Checked = false;            
+            rb_ord_abr.Checked = false;
+            rb_ord_nom.Checked = false;             
         }
 
         protected string Fi_val_dat()
@@ -73,6 +74,8 @@ namespace CRS_PRE
             // Obtiene el criterio de ordenamiento
             if (rb_ord_cod.Checked)
                 ord_dat = "C";
+            if (rb_ord_abr.Checked)
+                ord_dat = "A";
             if (rb_ord_nom.Checked)
                 ord_dat = "N";
 

@@ -50,8 +50,8 @@ namespace CRS_PRE
             string est_ado = "";
             string ord_dat = "";
             string msg_val = Fi_val_dat();
-            if (msg_val != "OK")
-            {
+
+            if (msg_val != "OK"){
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                 return;
             }

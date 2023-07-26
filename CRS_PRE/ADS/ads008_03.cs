@@ -65,7 +65,7 @@ namespace CRS_PRE
                     dg_res_ult.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
 
                 //**** TIKEA LOS PERMITIDOS Y DESTIKEA LOS RESTRINGIDOS
-                dg_res_ult.Rows[i].Cells["va_per_mis"].Value = o_ads008.Fe_ads008_02(tb_ide_usr.Text,"cmr004", tab_cmr004.Rows[i]["va_cod_plv"].ToString() );
+                dg_res_ult.Rows[i].Cells["va_per_mis"].Value = o_ads008.Fe_aut_usr(tb_ide_usr.Text,"cmr004", tab_cmr004.Rows[i]["va_cod_plv"].ToString() );
             }
         }
 
@@ -86,13 +86,10 @@ namespace CRS_PRE
                     bool chk_val = (bool)dg_res_ult.Rows[i].Cells["va_per_mis"].Value;
                     int cod_plv= int.Parse(tab_cmr004.Rows[i]["va_cod_plv"].ToString());
 
-                    if (chk_val == true)
-                    {
-                        o_ads008.Fe_ads008_04(tb_ide_usr.Text, "cmr004", cod_plv.ToString());
-                        o_ads008.Fe_ads008_03(tb_ide_usr.Text, "cmr004", cod_plv.ToString());
-                    }
-                    if (chk_val == false)
-                        o_ads008.Fe_ads008_04(tb_ide_usr.Text, "cmr004", cod_plv.ToString());
+                    if (chk_val == true)                    
+                        o_ads008.Fe_nue_reg(tb_ide_usr.Text, "cmr004", cod_plv.ToString());                    
+                    else
+                        o_ads008.Fe_eli_min(tb_ide_usr.Text, "cmr004", cod_plv.ToString());
                 }
 
                 cl_glo_frm.Cerrar(this);

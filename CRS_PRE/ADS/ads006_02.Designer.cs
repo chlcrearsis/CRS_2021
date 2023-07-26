@@ -48,10 +48,10 @@
             this.groupBox1.Controls.Add(this.lb_ide_tus);
             this.groupBox1.Controls.Add(this.tb_nom_tus);
             this.groupBox1.Controls.Add(this.tb_ide_tus);
-            this.groupBox1.Location = new System.Drawing.Point(4, -4);
+            this.groupBox1.Location = new System.Drawing.Point(3, -3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(336, 76);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lb_des_tus
@@ -60,7 +60,7 @@
             this.lb_des_tus.Location = new System.Drawing.Point(23, 46);
             this.lb_des_tus.Name = "lb_des_tus";
             this.lb_des_tus.Size = new System.Drawing.Size(63, 13);
-            this.lb_des_tus.TabIndex = 42;
+            this.lb_des_tus.TabIndex = 3;
             this.lb_des_tus.Text = "Descripción";
             // 
             // tb_des_tus
@@ -70,7 +70,7 @@
             this.tb_des_tus.MaxLength = 120;
             this.tb_des_tus.Name = "tb_des_tus";
             this.tb_des_tus.Size = new System.Drawing.Size(219, 20);
-            this.tb_des_tus.TabIndex = 30;
+            this.tb_des_tus.TabIndex = 4;
             // 
             // lb_ide_tus
             // 
@@ -78,7 +78,7 @@
             this.lb_ide_tus.Location = new System.Drawing.Point(4, 20);
             this.lb_ide_tus.Name = "lb_ide_tus";
             this.lb_ide_tus.Size = new System.Drawing.Size(82, 13);
-            this.lb_ide_tus.TabIndex = 27;
+            this.lb_ide_tus.TabIndex = 0;
             this.lb_ide_tus.Text = "Tipo de Usuario";
             // 
             // tb_nom_tus
@@ -89,7 +89,7 @@
             this.tb_nom_tus.MaxLength = 30;
             this.tb_nom_tus.Name = "tb_nom_tus";
             this.tb_nom_tus.Size = new System.Drawing.Size(168, 20);
-            this.tb_nom_tus.TabIndex = 20;
+            this.tb_nom_tus.TabIndex = 2;
             // 
             // tb_ide_tus
             // 
@@ -99,7 +99,7 @@
             this.tb_ide_tus.MaxLength = 2;
             this.tb_ide_tus.Name = "tb_ide_tus";
             this.tb_ide_tus.Size = new System.Drawing.Size(45, 20);
-            this.tb_ide_tus.TabIndex = 10;
+            this.tb_ide_tus.TabIndex = 1;
             this.tb_ide_tus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_ide_tus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_tus_KeyPress);
             // 
@@ -108,19 +108,19 @@
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 66);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 68);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(336, 40);
-            this.gb_ctr_btn.TabIndex = 43;
+            this.gb_ctr_btn.TabIndex = 1;
             this.gb_ctr_btn.TabStop = false;
             // 
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(171, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(178, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 0;
@@ -133,7 +133,7 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(250, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(256, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 1;
@@ -144,7 +144,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 109);
+            this.ClientSize = new System.Drawing.Size(342, 109);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);

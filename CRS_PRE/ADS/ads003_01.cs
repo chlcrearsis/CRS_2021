@@ -19,10 +19,12 @@ namespace CRS_PRE
         public DataTable tab_dat;
         public dynamic frm_MDI;
         // Instancia
+        ads001 o_ads001 = new ads001();
         ads003 o_ads003 = new ads003();
         DataTable Tabla = new DataTable();
         // Variables
         string est_bus = "H";
+        public int vp_ide_mod = 0;  // TODOS LOS MÓDULOS
 
         public ads003_01()
         {
@@ -34,9 +36,19 @@ namespace CRS_PRE
             fi_ini_frm();
         }
 
-        private void fi_ini_frm()
+        public void fi_ini_frm()
         {
             tb_ide_doc.Text = "";
+            lb_nom_doc.Text = "...";
+            lb_nom_mod.Text = "TODOS";
+            // Obtiene el nombre del Módulo
+            if (vp_ide_mod != 0){
+                Tabla = new DataTable();
+                Tabla = o_ads001.Fe_con_mod(vp_ide_mod);
+                if (Tabla.Rows.Count > 0)
+                    lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
+            }
+            // Inicializa los paramatros de busqueda
             cb_prm_bus.SelectedIndex = 0;
             cb_est_bus.SelectedIndex = 0;
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus);
@@ -62,7 +74,7 @@ namespace CRS_PRE
 
             // Obtiene datos de la busqueda
             Tabla = new DataTable();
-            Tabla = o_ads003.Fe_bus_car(tex_bus, prm_bus, est_bus);
+            Tabla = o_ads003.Fe_bus_car(tex_bus, prm_bus, est_bus, vp_ide_mod);
             if (Tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < Tabla.Rows.Count; i++)
@@ -257,7 +269,7 @@ namespace CRS_PRE
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
         }
@@ -265,7 +277,7 @@ namespace CRS_PRE
         private void dg_res_ult_Enter(object sender, EventArgs e)
         {
             if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
         }
@@ -316,11 +328,17 @@ namespace CRS_PRE
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
-        }
+        }        
 
-        private void mn_nue_reg_Click(object sender, EventArgs e)
+        private void mn_nue_doc_Click(object sender, EventArgs e)
         {
             ads003_02 frm = new ads003_02();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
+        private void mn_reg_doc_Click(object sender, EventArgs e)
+        {
+            ads003_02b frm = new ads003_02b();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
@@ -375,14 +393,47 @@ namespace CRS_PRE
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
         }
+
+        private void bt_cam_mod_Click(object sender, EventArgs e)
+        {
+            ads001_01 frm = new ads001_01();
+            frm.AccessibleName = "1";
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                vp_ide_mod = int.Parse(frm.tb_ide_mod.Text);
+
+                /* Desplega el nombre del modulo seleccionado */
+                if (vp_ide_mod > 0){
+                    Tabla = new DataTable();
+                    Tabla = o_ads001.Fe_con_mod(vp_ide_mod);
+                    if (Tabla.Rows.Count > 0)
+                        lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
+                }else {
+                    lb_nom_mod.Text = "TODOS";
+                }
+                
+
+                /* Realiza el filtro de registro de acuerpo al modulo */
+                if (cb_est_bus.SelectedIndex == 0)
+                    est_bus = "T";
+                if (cb_est_bus.SelectedIndex == 1)
+                    est_bus = "H";
+                if (cb_est_bus.SelectedIndex == 2)
+                    est_bus = "N";
+
+                fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);
+            }
+        }        
     }
 }

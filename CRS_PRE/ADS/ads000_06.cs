@@ -154,7 +154,7 @@ namespace CRS_PRE
                         MessageBox.Show("ERROR: Debe proporcionar su contraseña.", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return ;
                     }
-                    msn_res = o_ads007.Login_2(tb_ide_usr.Text, tb_pas_usr.Text);
+                    msn_res = o_ads007.Fe_ing_sis(tb_ide_usr.Text, tb_pas_usr.Text);
                     if (msn_res != "OK")
                     {
                         tb_pas_usr.Focus();

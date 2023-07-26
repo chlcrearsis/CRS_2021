@@ -412,7 +412,7 @@ namespace CRS_PRE.INV
 
 
                 // Verifica que el usuario tenga lista de precios permitidas
-                tab_ads008 = o_ads008.Fe_ads008_01(Program.gl_ide_usr, "cmr001");
+                tab_ads008 = o_ads008.Fe_con_aut(Program.gl_ide_usr, "cmr001");
                 if(tab_ads008 == null)
                     MessageBox.Show("El Producto se creo correctamente", "Nuevo Producto", MessageBoxButtons.OK);
                 else if(tab_ads008.Rows.Count==0)

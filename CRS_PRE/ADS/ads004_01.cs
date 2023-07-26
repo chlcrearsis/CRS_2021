@@ -158,6 +158,7 @@ namespace CRS_PRE
             }
         }
 
+        // Evento KeyDown: Preciona Teclado
         private void fi_pre_tec_KeyDown(object sender, KeyEventArgs e)
         {
             if (dg_res_ult.Rows.Count != 0)
@@ -216,14 +217,11 @@ namespace CRS_PRE
         {
             if (dg_res_ult.SelectedRows.Count != 0)
             {
-                if (dg_res_ult.SelectedRows[0].Cells[0].Value == null)
-                {
+                if (dg_res_ult.SelectedRows[0].Cells[0].Value == null){
                     tb_ide_doc.Text = string.Empty;
                     tb_nro_tal.Text = string.Empty;
                     lb_nom_tal.Text = string.Empty;
-                }
-                else
-                {
+                }else{
                     tb_ide_doc.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString();
                     tb_nro_tal.Text = dg_res_ult.SelectedRows[0].Cells[2].Value.ToString();
                     lb_nom_tal.Text = dg_res_ult.SelectedRows[0].Cells[3].Value.ToString();
@@ -248,8 +246,7 @@ namespace CRS_PRE
             // Obtiene datos del registro seleccionado
             tab_dat = new DataTable();
             tab_dat = o_ads004.Fe_con_tal(ide_doc, nro_tal);
-            if (tab_dat.Rows.Count == 0)
-            {
+            if (tab_dat.Rows.Count == 0){
                 res_fun = "El Talonario que desea editar, no se encuentra registrada";
                 MessageBox.Show(res_fun, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_nro_tal.Focus();
@@ -280,8 +277,7 @@ namespace CRS_PRE
                     for (int i = 0; i < dg_res_ult.Rows.Count; i++)
                     {
                         if (dg_res_ult.Rows[i].Cells[0].Value.ToString().ToUpper() == ide_doc.ToUpper() &&
-                            dg_res_ult.Rows[i].Cells[2].Value.ToString().ToUpper() == nro_tal.ToString())
-                        {
+                            dg_res_ult.Rows[i].Cells[2].Value.ToString().ToUpper() == nro_tal.ToString()){
                             dg_res_ult.Rows[i].Selected = true;
                             dg_res_ult.FirstDisplayedScrollingRowIndex = i;
                             return;
@@ -296,46 +292,51 @@ namespace CRS_PRE
             }
         }
 
+        // Evento Validated: Nro. Talonario
         private void tb_nro_tal_Validated(object sender, EventArgs e)
         {
             fi_con_sel();
-            if (lb_nom_tal.Text != "NO Existe")
-            {
-                fi_sel_fil(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            }
+            if (lb_nom_tal.Text != "NO Existe")            
+                fi_sel_fil(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));            
         }
 
+        // Evento KeyPress: Nro. Talonario
         private void tb_nro_tal_KeyPress(object sender, KeyPressEventArgs e)
         {
             cl_glo_bal.NotNumeric(e);
         }
 
+        // Evento SelectionChanged: DataGridView Resultado
         private void dg_res_ult_SelectionChanged(object sender, EventArgs e)
         {
             fi_fil_act();
         }
 
+        // Evento CellClick: DataGridView Resultado
         private void dg_res_ult_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             fi_fil_act();
         }
 
+        // Evento CellDoubleClick: DataGridView Resultado
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
         }
 
+        // Evento Enter: DataGridView Resultado
         private void dg_res_ult_Enter(object sender, EventArgs e)
         {
             if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0){
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 cl_glo_frm.Cerrar(this);
             }
         }
 
+        // Evento Click: Buscar
         private void bt_bus_car_Click(object sender, EventArgs e)
         {
             if (cb_est_bus.SelectedIndex == 0)
@@ -346,11 +347,13 @@ namespace CRS_PRE
                 est_bus = "N";
 
             fi_bus_car(tb_tex_bus.Text, cb_prm_bus.SelectedIndex, est_bus);            
-        }       
+        }
 
+        // Evento Click: Cambiar Módulo
         private void bt_cam_mod_Click(object sender, EventArgs e)
         {
             ads001_01 frm = new ads001_01();
+            frm.AccessibleName = "1";
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
 
             if (frm.DialogResult == DialogResult.OK)
@@ -358,10 +361,14 @@ namespace CRS_PRE
                 vp_ide_mod = int.Parse(frm.tb_ide_mod.Text);
 
                 /* Desplega el nombre del modulo seleccionado */
-                Tabla = new DataTable();
-                Tabla = o_ads001.Fe_con_mod(vp_ide_mod);
-                if (Tabla.Rows.Count > 0)
-                    lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
+                if (vp_ide_mod > 0){
+                    Tabla = new DataTable();
+                    Tabla = o_ads001.Fe_con_mod(vp_ide_mod);
+                    if (Tabla.Rows.Count > 0)
+                        lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
+                }else{
+                    lb_nom_mod.Text = "TODOS";
+                }
 
                 /* Realiza el filtro de registro de acuerpo al modulo */
                 if (cb_est_bus.SelectedIndex == 0)
@@ -387,13 +394,19 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
+        private void mn_nue_aut_Click(object sender, EventArgs e)
+        {
+            ads004_02c frm = new ads004_02c();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+        }
+
         private void mn_mod_ifi_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para modificar
             if (fi_ver_dat(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text)) == false)
                 return;
 
-            ads003_03 frm = new ads003_03();
+            ads004_03 frm = new ads004_03();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
        
@@ -424,6 +437,17 @@ namespace CRS_PRE
             ads004_06 frm = new ads004_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
+
+        private void mn_aut_usr_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para consultar
+            if (fi_ver_dat(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text)) == false)
+                return;
+
+            ads004_10 frm = new ads004_10();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
+
         private void mn_lis_tal_Click(object sender, EventArgs e)
         {
             ads004_R01p frm = new ads004_R01p();
@@ -443,16 +467,16 @@ namespace CRS_PRE
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
         }
 
-        
+       
     }
 }

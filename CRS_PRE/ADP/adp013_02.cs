@@ -190,7 +190,7 @@ namespace CRS_PRE
 
             // Verifica que la fecha sea una fecha valida
             if (tb_fec_nac.Text.CompareTo("  /  /") != 0){
-                if (cl_glo_bal.IsDateTime(tb_fec_nac.Text) == false) {
+                if (!cl_glo_bal.IsDateTime(tb_fec_nac.Text.Trim())) {
                     tb_fec_nac.Focus();
                     return "La Fecha de Nacimiento de la Persona DEBE ser una fecha válida";
                 }
@@ -244,7 +244,7 @@ namespace CRS_PRE
         {
             // Verifica que la fecha sea una fecha valida
             if (tb_fec_nac.Text.CompareTo("  /  /") != 0){
-                if (cl_glo_bal.IsDateTime(tb_fec_nac.Text) == false){
+                if (!cl_glo_bal.IsDateTime(tb_fec_nac.Text.Trim())){
                     tb_fec_nac.Focus();
                     MessageBox.Show("La Fecha Digitada NO corresponde a una Fecha Válida", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

@@ -629,6 +629,12 @@
     <Compile Include="ADP\adp001_R01w.Designer.cs">
       <DependentUpon>adp001_R01w.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADS\ads000_04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads000_04.Designer.cs">
+      <DependentUpon>ads000_04.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads000_06.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -647,11 +653,41 @@
       <DependentUpon>ads002_R01.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ADS\ads003_02b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads003_02b.Designer.cs">
+      <DependentUpon>ads003_02b.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADS\ads003_R011.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ads003_R01.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ADS\ads004_10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads004_10.Designer.cs">
+      <DependentUpon>ads004_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads005_R01w.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads005_R01w.Designer.cs">
+      <DependentUpon>ads005_R01w.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads005_R01p.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads005_R01p.Designer.cs">
+      <DependentUpon>ads005_R01p.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADS\ads005_R01.cs">
+      <DependentUpon>ads005_R01.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="ADS\ads004_R011.cs">
       <AutoGen>True</AutoGen>
@@ -682,6 +718,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ads006_R01.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ADS\ads004_02c.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADS\ads004_02c.Designer.cs">
+      <DependentUpon>ads004_02c.cs</DependentUpon>
     </Compile>
     <Compile Include="ADS\ads016_02.cs">
       <SubType>Form</SubType>
@@ -1336,12 +1378,6 @@
     </Compile>
     <Compile Include="ADS\ads200.Designer.cs">
       <DependentUpon>ads200.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ADS\ads000_04.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ADS\ads000_04.Designer.cs">
-      <DependentUpon>ads000_04.cs</DependentUpon>
     </Compile>
     <Compile Include="ADS\ads000_02.cs">
       <SubType>Form</SubType>
@@ -2830,6 +2866,9 @@
     <EmbeddedResource Include="ADS\ads000_00.resx">
       <DependentUpon>ads000_00.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads000_04.resx">
+      <DependentUpon>ads000_04.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_06.resx">
       <DependentUpon>ads000_06.cs</DependentUpon>
     </EmbeddedResource>
@@ -2862,13 +2901,38 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ads001_R011.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads001_R01p.resx">
+      <DependentUpon>ads001_R01p.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads002_R01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ads002_R011.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads002_R01p.resx">
+      <DependentUpon>ads002_R01p.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads003_01b.resx">
+      <DependentUpon>ads003_01b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads003_02b.resx">
+      <DependentUpon>ads003_02b.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads003_R01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ads003_R011.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads003_R01p.resx">
+      <DependentUpon>ads003_R01p.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads004_10.resx">
+      <DependentUpon>ads004_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads004_R02p.resx">
+      <DependentUpon>ads004_R02p.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads005_R01.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ads005_R01.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads004_R01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2878,21 +2942,45 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ads004_R021.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads005_R01p.resx">
+      <DependentUpon>ads005_R01p.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads005_R01w.resx">
+      <DependentUpon>ads005_R01w.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_01.resx">
       <DependentUpon>ads006_01.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_02.resx">
       <DependentUpon>ads006_02.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_03.resx">
+      <DependentUpon>ads006_03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_04.resx">
+      <DependentUpon>ads006_04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_05.resx">
+      <DependentUpon>ads006_05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_06.resx">
+      <DependentUpon>ads006_06.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads006_R01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ads006_R011.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads006_R01p.resx">
+      <DependentUpon>ads006_R01p.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads007_03g.resx">
       <DependentUpon>ads007_03g.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads007_03f.resx">
       <DependentUpon>ads007_03f.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADS\ads004_02c.resx">
+      <DependentUpon>ads004_02c.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads012_01.resx">
       <DependentUpon>ads012_01.cs</DependentUpon>
@@ -3134,9 +3222,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads200.resx">
       <DependentUpon>ads200.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ADS\ads000_04.resx">
-      <DependentUpon>ads000_04.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADS\ads000_02.resx">
       <DependentUpon>ads000_02.cs</DependentUpon>

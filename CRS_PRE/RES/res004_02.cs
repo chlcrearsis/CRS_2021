@@ -91,7 +91,7 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
 
-            if(cl_glo_bal.IsNumeric(tb_cod_plv.Text) == false)
+            if(!cl_glo_bal.IsNumeric(tb_cod_plv.Text.Trim()))
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_plv.Focus();
@@ -117,7 +117,7 @@ namespace CRS_PRE
             }
 
             //Verifica Bodega
-            if (cl_glo_bal.IsNumeric(tb_cod_bod.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_bod.Text.Trim()))
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_bod.Focus();
@@ -141,7 +141,7 @@ namespace CRS_PRE
 
 
             //Verifica Lista de Precio
-            if (cl_glo_bal.IsNumeric(tb_cod_lis.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_lis.Text.Trim()))
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_lis.Focus();
@@ -163,7 +163,7 @@ namespace CRS_PRE
             }
 
             //Verifica Vendedor
-            if (cl_glo_bal.IsNumeric(tb_cod_ven.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_ven.Text.Trim()))
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_ven.Focus();
@@ -186,7 +186,7 @@ namespace CRS_PRE
             }
 
             //Verifica Delivery
-            if (cl_glo_bal.IsNumeric(tb_cod_del.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_del.Text.Trim()))
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_del.Focus();
@@ -209,7 +209,7 @@ namespace CRS_PRE
             }
 
             //Verifica Cliente (persona)
-            if (cl_glo_bal.IsNumeric(tb_cod_per.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_per.Text.Trim()))
             {
                 tc_pla_vta.SelectedIndex = 0;
                 tb_cod_per.Focus();

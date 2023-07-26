@@ -118,16 +118,15 @@ namespace CRS_PRE
         }
 
         private void bt_ace_pta_Click(object sender, EventArgs e)
-        {
-            string nro_usr = "";    // Nro. de Usuario
-            string fec_exp = "";    // Fecha de Expiración
-
+        {            
             string mod_ads = "N";    // Modulo de ADM
             string mod_inv = "N";    // Modulo de INV
             string mod_cmr = "N";    // Modulo de CMR
             string mod_ctb = "N";    // Modulo de CTB
             string mod_tes = "N";    // Modulo de TES
             string mod_res = "N";    // Modulo de RES
+            string nro_usr;          // Nro. de Usuario
+            string fec_exp;          // Fecha de Expiración
 
             try
             {               
@@ -148,7 +147,7 @@ namespace CRS_PRE
 
                 if (fi_val_dat() == true){
                     if (MessageBox.Show("Está seguro de registrar la licencia?", Titulo, MessageBoxButtons.OKCancel) == DialogResult.OK){
-                        o_ads013.Fe_gra_lic(Int32.Parse(nro_usr), fec_exp, mod_ads, mod_inv, mod_cmr, mod_ctb, mod_tes, mod_res);
+                        o_ads013.Fe_gra_lic(int.Parse(nro_usr), fec_exp, mod_ads, mod_inv, mod_cmr, mod_ctb, mod_tes, mod_res);
                         DialogResult = DialogResult.OK;
                     }
                 }

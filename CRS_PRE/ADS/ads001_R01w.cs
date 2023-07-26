@@ -46,6 +46,8 @@ namespace CRS_PRE
                 vp_ord_dat = "Código";
             if (vp_ord_dat.CompareTo("N") == 0)
                 vp_ord_dat = "Nombre";
+            if (vp_ord_dat.CompareTo("A") == 0)
+                vp_ord_dat = "Nemónico";
 
             // Obtener nombre de la empresa
             Tabla = o_ads013.Fe_obt_glo(1, 4);

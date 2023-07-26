@@ -2,8 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 
-using CRS_NEG;
-
 namespace CRS_PRE
 {
     /**********************************************************************/
@@ -14,10 +12,9 @@ namespace CRS_PRE
     /**********************************************************************/
     public partial class ads005_05 : Form
     {
-
         public dynamic frm_pad;
-        public DataTable frm_dat;
         public int frm_tip;
+        public DataTable frm_dat;
 
         public ads005_05()
         {
@@ -34,6 +31,8 @@ namespace CRS_PRE
             lb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
             tb_nro_tal.Text = frm_dat.Rows[0]["va_nro_tal"].ToString();
             lb_nom_tal.Text = frm_dat.Rows[0]["va_nom_tal"].ToString();
+            tb_ide_mod.Text = frm_dat.Rows[0]["va_ide_mod"].ToString();
+            lb_nom_mod.Text = frm_dat.Rows[0]["va_nom_mod"].ToString();
             tb_ges_tio.Text = frm_dat.Rows[0]["va_ges_tio"].ToString();
             tb_con_act.Text = frm_dat.Rows[0]["va_con_act"].ToString();
             tb_con_fin.Text = frm_dat.Rows[0]["va_con_fin"].ToString();
@@ -53,7 +52,6 @@ namespace CRS_PRE
             tb_con_fin.Text = string.Empty;
             tb_fec_ini.Text = string.Empty;
             tb_fec_fin.Text = string.Empty;
-            tb_con_act.Focus();
         }
 
         // Evento Click : Cancelar

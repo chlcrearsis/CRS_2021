@@ -145,8 +145,9 @@ namespace CRS_NEG
         /// Funcion consultar "APLICACIONES POR MODULOS DEL SISTEMA"
         /// </summary>
         /// <param name="ide_mod">ID. Módulo</param>
+        /// <param name="est_ado">Estado (H=Habilitado; N=Deshabilitado; T=Todos)</param>
         /// <returns></returns>
-        public DataTable Fe_con_mod(int ide_mod)
+        public DataTable Fe_con_mod(int ide_mod, string est_ado = "T")
         {
             try
             {
@@ -156,6 +157,8 @@ namespace CRS_NEG
                 cadena.AppendLine("  FROM ads002, ads001");
                 cadena.AppendLine(" WHERE ads002.va_ide_mod = ads001.va_ide_mod");
                 cadena.AppendLine("   AND ads002.va_ide_mod = " + ide_mod + "");
+                if (est_ado.CompareTo("T") != 0)
+                    cadena.AppendLine("   AND ads002.va_est_ado = '" + est_ado + "'");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_nue_doc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_reg_doc = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,13 +57,17 @@
             this.va_des_doc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.lb_nom_mod = new System.Windows.Forms.Label();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.bt_cam_mod = new System.Windows.Forms.Button();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_res_ult)).BeginInit();
             this.gb_ctr_btn.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_frm_hja
@@ -75,16 +81,32 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(388, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
             // mn_nue_reg
             // 
+            this.mn_nue_reg.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mn_nue_doc,
+            this.mn_reg_doc});
             this.mn_nue_reg.Name = "mn_nue_reg";
             this.mn_nue_reg.Size = new System.Drawing.Size(43, 20);
             this.mn_nue_reg.Text = "&Crea";
-            this.mn_nue_reg.Click += new System.EventHandler(this.mn_nue_reg_Click);
+            // 
+            // mn_nue_doc
+            // 
+            this.mn_nue_doc.Name = "mn_nue_doc";
+            this.mn_nue_doc.Size = new System.Drawing.Size(187, 22);
+            this.mn_nue_doc.Text = "&Nuevo Documento";
+            this.mn_nue_doc.Click += new System.EventHandler(this.mn_nue_doc_Click);
+            // 
+            // mn_reg_doc
+            // 
+            this.mn_reg_doc.Name = "mn_reg_doc";
+            this.mn_reg_doc.Size = new System.Drawing.Size(187, 22);
+            this.mn_reg_doc.Text = "Registra &Documentos";
+            this.mn_reg_doc.Click += new System.EventHandler(this.mn_reg_doc_Click);
             // 
             // mn_edi_tar
             // 
@@ -135,8 +157,8 @@
             // mn_list_doc
             // 
             this.mn_list_doc.Name = "mn_list_doc";
-            this.mn_list_doc.ShortcutKeyDisplayString = "R01";
-            this.mn_list_doc.Size = new System.Drawing.Size(263, 22);
+            this.mn_list_doc.ShortcutKeyDisplayString = "(ads003_01)";
+            this.mn_list_doc.Size = new System.Drawing.Size(305, 22);
             this.mn_list_doc.Text = "&Lista Definición de Documento";
             this.mn_list_doc.Click += new System.EventHandler(this.mn_list_doc_Click);
             // 
@@ -159,7 +181,7 @@
             this.groupBox1.Location = new System.Drawing.Point(2, -3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(566, 64);
-            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lb_nom_doc
@@ -168,7 +190,7 @@
             this.lb_nom_doc.Location = new System.Drawing.Point(117, 13);
             this.lb_nom_doc.Name = "lb_nom_doc";
             this.lb_nom_doc.Size = new System.Drawing.Size(16, 13);
-            this.lb_nom_doc.TabIndex = 33;
+            this.lb_nom_doc.TabIndex = 2;
             this.lb_nom_doc.Text = "...";
             // 
             // bt_bus_car
@@ -179,7 +201,7 @@
             this.bt_bus_car.Location = new System.Drawing.Point(485, 34);
             this.bt_bus_car.Name = "bt_bus_car";
             this.bt_bus_car.Size = new System.Drawing.Size(75, 23);
-            this.bt_bus_car.TabIndex = 30;
+            this.bt_bus_car.TabIndex = 6;
             this.bt_bus_car.Text = "&Buscar";
             this.bt_bus_car.UseVisualStyleBackColor = false;
             this.bt_bus_car.Click += new System.EventHandler(this.bt_bus_car_Click);
@@ -195,7 +217,7 @@
             this.cb_est_bus.Location = new System.Drawing.Point(367, 35);
             this.cb_est_bus.Name = "cb_est_bus";
             this.cb_est_bus.Size = new System.Drawing.Size(114, 21);
-            this.cb_est_bus.TabIndex = 25;
+            this.cb_est_bus.TabIndex = 5;
             // 
             // cb_prm_bus
             // 
@@ -203,11 +225,12 @@
             this.cb_prm_bus.FormattingEnabled = true;
             this.cb_prm_bus.Items.AddRange(new object[] {
             "Codigo",
-            "Nombre"});
+            "Nombre",
+            "Descripción"});
             this.cb_prm_bus.Location = new System.Drawing.Point(268, 35);
             this.cb_prm_bus.Name = "cb_prm_bus";
             this.cb_prm_bus.Size = new System.Drawing.Size(95, 21);
-            this.cb_prm_bus.TabIndex = 20;
+            this.cb_prm_bus.TabIndex = 4;
             // 
             // tb_tex_bus
             // 
@@ -215,7 +238,7 @@
             this.tb_tex_bus.Location = new System.Drawing.Point(9, 36);
             this.tb_tex_bus.Name = "tb_tex_bus";
             this.tb_tex_bus.Size = new System.Drawing.Size(254, 20);
-            this.tb_tex_bus.TabIndex = 15;
+            this.tb_tex_bus.TabIndex = 3;
             this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
             // lb_ide_doc
@@ -224,7 +247,7 @@
             this.lb_ide_doc.Location = new System.Drawing.Point(9, 13);
             this.lb_ide_doc.Name = "lb_ide_doc";
             this.lb_ide_doc.Size = new System.Drawing.Size(62, 13);
-            this.lb_ide_doc.TabIndex = 1;
+            this.lb_ide_doc.TabIndex = 0;
             this.lb_ide_doc.Text = "Documento";
             // 
             // tb_ide_doc
@@ -234,7 +257,8 @@
             this.tb_ide_doc.MaxLength = 3;
             this.tb_ide_doc.Name = "tb_ide_doc";
             this.tb_ide_doc.Size = new System.Drawing.Size(42, 20);
-            this.tb_ide_doc.TabIndex = 10;
+            this.tb_ide_doc.TabIndex = 1;
+            this.tb_ide_doc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_ide_doc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             this.tb_ide_doc.Validated += new System.EventHandler(this.Tb_ide_doc_Validated);
             // 
@@ -245,7 +269,7 @@
             this.groupBox2.Location = new System.Drawing.Point(2, 57);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(566, 199);
-            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
             // dg_res_ult
@@ -255,29 +279,29 @@
             this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_doc,
             this.va_nom_doc,
             this.va_des_doc,
             this.va_est_ado});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -286,7 +310,7 @@
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dg_res_ult.Size = new System.Drawing.Size(554, 187);
-            this.dg_res_ult.TabIndex = 35;
+            this.dg_res_ult.TabIndex = 0;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
@@ -321,25 +345,36 @@
             // 
             // gb_ctr_btn
             // 
+            this.gb_ctr_btn.Controls.Add(this.lb_nom_mod);
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(2, 251);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(117, 251);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(566, 40);
-            this.gb_ctr_btn.TabIndex = 32;
+            this.gb_ctr_btn.Size = new System.Drawing.Size(451, 40);
+            this.gb_ctr_btn.TabIndex = 3;
             this.gb_ctr_btn.TabStop = false;
+            // 
+            // lb_nom_mod
+            // 
+            this.lb_nom_mod.AutoSize = true;
+            this.lb_nom_mod.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nom_mod.Location = new System.Drawing.Point(6, 16);
+            this.lb_nom_mod.Name = "lb_nom_mod";
+            this.lb_nom_mod.Size = new System.Drawing.Size(19, 13);
+            this.lb_nom_mod.TabIndex = 0;
+            this.lb_nom_mod.Text = "...";
             // 
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(407, 9);
+            this.bt_ace_pta.Location = new System.Drawing.Point(293, 9);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
-            this.bt_ace_pta.TabIndex = 46;
+            this.bt_ace_pta.TabIndex = 1;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
@@ -351,22 +386,45 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(485, 9);
+            this.bt_can_cel.Location = new System.Drawing.Point(371, 9);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
-            this.bt_can_cel.TabIndex = 45;
+            this.bt_can_cel.TabIndex = 2;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.bt_cam_mod);
+            this.groupBox3.Location = new System.Drawing.Point(2, 251);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(113, 40);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            // 
+            // bt_cam_mod
+            // 
+            this.bt_cam_mod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            this.bt_cam_mod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_cam_mod.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_cam_mod.Location = new System.Drawing.Point(6, 10);
+            this.bt_cam_mod.Name = "bt_cam_mod";
+            this.bt_cam_mod.Size = new System.Drawing.Size(101, 23);
+            this.bt_cam_mod.TabIndex = 0;
+            this.bt_cam_mod.Text = "&Cambiar Módulo";
+            this.bt_cam_mod.UseVisualStyleBackColor = false;
+            this.bt_cam_mod.Click += new System.EventHandler(this.bt_cam_mod_Click);
             // 
             // ads003_01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 293);
+            this.ClientSize = new System.Drawing.Size(572, 294);
             this.ControlBox = false;
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.m_frm_hja;
@@ -387,6 +445,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_res_ult)).EndInit();
             this.gb_ctr_btn.ResumeLayout(false);
+            this.gb_ctr_btn.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -419,5 +479,10 @@
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Button bt_can_cel;
         public System.Windows.Forms.Label lb_nom_doc;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button bt_cam_mod;
+        private System.Windows.Forms.Label lb_nom_mod;
+        private System.Windows.Forms.ToolStripMenuItem mn_nue_doc;
+        private System.Windows.Forms.ToolStripMenuItem mn_reg_doc;
     }
 }

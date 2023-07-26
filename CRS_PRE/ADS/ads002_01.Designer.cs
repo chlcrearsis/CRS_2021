@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +53,7 @@
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
             this.va_ide_apl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_apl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_ide_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_nom_mod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
@@ -73,7 +75,7 @@
             this.mn_con_sul,
             this.mn_rep_ort,
             this.mn_cer_rar});
-            this.m_frm_hja.Location = new System.Drawing.Point(185, 6);
+            this.m_frm_hja.Location = new System.Drawing.Point(111, 71);
             this.m_frm_hja.Name = "m_frm_hja";
             this.m_frm_hja.Size = new System.Drawing.Size(268, 24);
             this.m_frm_hja.TabIndex = 5;
@@ -135,8 +137,8 @@
             // mn_list_apl
             // 
             this.mn_list_apl.Name = "mn_list_apl";
-            this.mn_list_apl.ShortcutKeyDisplayString = "R01";
-            this.mn_list_apl.Size = new System.Drawing.Size(210, 22);
+            this.mn_list_apl.ShortcutKeyDisplayString = "(ads002_01)";
+            this.mn_list_apl.Size = new System.Drawing.Size(252, 22);
             this.mn_list_apl.Text = "&Lista de Aplicaciones";
             this.mn_list_apl.Click += new System.EventHandler(this.mn_list_apl_Click);
             // 
@@ -151,7 +153,6 @@
             // 
             this.groupBox1.Controls.Add(this.lb_nom_apl);
             this.groupBox1.Controls.Add(this.bt_bus_car);
-            this.groupBox1.Controls.Add(this.m_frm_hja);
             this.groupBox1.Controls.Add(this.cb_est_bus);
             this.groupBox1.Controls.Add(this.cb_prm_bus);
             this.groupBox1.Controls.Add(this.tb_tex_bus);
@@ -244,6 +245,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.m_frm_hja);
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(2, 48);
             this.groupBox2.Name = "groupBox2";
@@ -271,16 +273,17 @@
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_apl,
             this.va_nom_apl,
+            this.va_ide_mod,
             this.va_nom_mod,
             this.va_est_ado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle3;
             this.dg_res_ult.Location = new System.Drawing.Point(5, 10);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -307,20 +310,30 @@
             this.va_nom_apl.HeaderText = "Aplicación";
             this.va_nom_apl.Name = "va_nom_apl";
             this.va_nom_apl.ReadOnly = true;
-            this.va_nom_apl.Width = 200;
+            this.va_nom_apl.Width = 190;
+            // 
+            // va_ide_mod
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_ide_mod.DefaultCellStyle = dataGridViewCellStyle2;
+            this.va_ide_mod.HeaderText = "ID.";
+            this.va_ide_mod.Name = "va_ide_mod";
+            this.va_ide_mod.ReadOnly = true;
+            this.va_ide_mod.Width = 35;
             // 
             // va_nom_mod
             // 
             this.va_nom_mod.HeaderText = "Módulo";
             this.va_nom_mod.Name = "va_nom_mod";
             this.va_nom_mod.ReadOnly = true;
-            this.va_nom_mod.Width = 170;
+            this.va_nom_mod.Width = 160;
             // 
             // va_est_ado
             // 
             this.va_est_ado.HeaderText = "Estado";
             this.va_est_ado.Name = "va_est_ado";
             this.va_est_ado.ReadOnly = true;
+            this.va_est_ado.Width = 80;
             // 
             // gb_ctr_btn
             // 
@@ -336,7 +349,7 @@
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(412, 10);
@@ -385,6 +398,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_res_ult)).EndInit();
             this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -417,6 +431,7 @@
         public System.Windows.Forms.Label lb_nom_apl;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_apl;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_apl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_mod;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_mod;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }

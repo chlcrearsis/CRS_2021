@@ -38,7 +38,7 @@ namespace CRS_PRE
             tb_cod_per.Text = frm_dat.Rows[0]["va_ide_per"].ToString();
             tb_win_max.Text = frm_dat.Rows[0]["va_win_max"].ToString();
 
-            //tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            tabla = o_ads006.Fe_con_tus(int.Parse(frm_dat.Rows[0]["va_tip_usr"].ToString()));
             tb_tip_usr.Text = tabla.Rows[0]["va_nom_tus"].ToString();
 
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
@@ -107,9 +107,9 @@ namespace CRS_PRE
                 {
                     //Edita usuario
                     if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
-                        o_ads007.Fe_exe_hds(tb_ide_usr.Text,"H");
+                        o_ads007.Fe_hab_des(tb_ide_usr.Text,"H");
                     if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
-                        o_ads007.Fe_exe_hds(tb_ide_usr.Text, "N");
+                        o_ads007.Fe_hab_des(tb_ide_usr.Text, "N");
 
                     MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
                     frm_pad.Fe_act_frm(tb_ide_usr.Text);

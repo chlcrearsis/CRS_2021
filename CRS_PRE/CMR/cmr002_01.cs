@@ -227,7 +227,7 @@ namespace CRS_PRE
             string res_fun = "";
 
             // Verifica si hay una lista seleccionada
-            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
+            if (!cl_glo_bal.IsNumeric(sel_ecc.Trim()))
             {
                 res_fun = "Debe de seleccionar al menos una lista de precio";
                 MessageBox.Show(res_fun, "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -256,7 +256,7 @@ namespace CRS_PRE
             string res_fun = "";
 
             // Verifica si hay una lista seleccionada
-            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
+            if (!cl_glo_bal.IsNumeric(sel_ecc.Trim()))
             {
                 res_fun = "Debe de seleccionar al menos una lista de precio";
                 MessageBox.Show(res_fun, "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -278,7 +278,7 @@ namespace CRS_PRE
         public bool fi_ver_hds(string sel_ecc)
         {
            // Verifica si hay una lista seleccionada
-            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
+            if (!cl_glo_bal.IsNumeric(sel_ecc.Trim()))
             {
                 MessageBox.Show("Debe de seleccionar al menos una lista de precio", "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();
@@ -298,7 +298,7 @@ namespace CRS_PRE
         public bool fi_ver_con(string sel_ecc)
         {
             // Verifica si hay una lista seleccionada
-            if (cl_glo_bal.IsNumeric(sel_ecc) == false)
+            if (!cl_glo_bal.IsNumeric(sel_ecc.Trim()))
             {
                 MessageBox.Show("Debe de seleccionar al menos una lista de precio", "Lista de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_sel_bus.Focus();

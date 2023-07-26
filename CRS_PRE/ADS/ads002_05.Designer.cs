@@ -59,7 +59,7 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(277, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(285, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 0;
@@ -161,6 +161,7 @@
             this.tb_ide_mod.ReadOnly = true;
             this.tb_ide_mod.Size = new System.Drawing.Size(30, 20);
             this.tb_ide_mod.TabIndex = 1;
+            this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ads002_05
             // 

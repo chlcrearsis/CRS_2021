@@ -56,28 +56,70 @@ namespace CRS_PRE
         }
 
         /// <summary>
-        /// Valida los datos proporcionados en pantalla
+        /// Valida Datos
         /// </summary>
         /// <returns></returns>
         protected string Fi_val_dat()
         {
             try
             {
-                if (tb_mod_ini.Text == "")
+                /* Verificar el Módulo Inicial sea distinto a vacio */
+                if (tb_mod_ini.Text.Trim().CompareTo("") == 0){
+                    tb_mod_ini.Focus();
                     return "DEBE proporcionar el Módulo Inicial";
-                
-                if (tb_mod_fin.Text == "")
-                    return "DEBE proporcionar el Módulo Final";                
+                }
 
-                if (int.Parse(tb_mod_ini.Text) > int.Parse(tb_mod_fin.Text))
-                    return "El Módulo Inicial DEBE ser MENOR al Módulo Final";                
+                /* Verifica que el ID. Módulo Inicial sea numerico */
+                if (!cl_glo_bal.IsNumeric(tb_mod_ini.Text.Trim())){
+                    tb_mod_ini.Focus();
+                    return "El ID. Módulo Inicial DEBE ser Numerico";
+                }
+
+                /* Valida que el modulo Inicial este registrada */
+                if (tb_mod_ini.Text.Trim().CompareTo("0") != 0){
+                    Tabla = new DataTable();
+                    Tabla = o_ads001.Fe_con_mod(int.Parse(tb_mod_ini.Text));
+                    if (Tabla.Rows.Count == 0){
+                        tb_mod_ini.Focus();
+                        return "La Módulo Inicial NO se encuentra registrado";
+                    }
+                }
+
+                /* Verificar el Módulo Final sea distinto a vacio */
+                if (tb_mod_fin.Text.Trim().CompareTo("") == 0){
+                    tb_mod_fin.Focus();
+                    return "DEBE proporcionar el Módulo Final";
+                }
+
+                /* Verifica que el ID. Módulo Final sea numerico */
+                if (!cl_glo_bal.IsNumeric(tb_mod_fin.Text.Trim())){
+                    tb_mod_fin.Focus();
+                    return "El ID. Módulo Final DEBE ser Numerico";
+                }
+
+                /* Valida que el modulo Final este registrada */
+                if (tb_mod_fin.Text.Trim().CompareTo("0") != 0){
+                    Tabla = new DataTable();
+                    Tabla = o_ads001.Fe_con_mod(int.Parse(tb_mod_fin.Text));
+                    if (Tabla.Rows.Count == 0){
+                        tb_mod_fin.Focus();
+                        return "La Módulo Final NO se encuentra registrado";
+                    }
+                }
+
+                /* Valida que el Módulo Inicial sea MENOR que el Módulo Final */
+                if (int.Parse(tb_mod_ini.Text) > int.Parse(tb_mod_fin.Text)) {
+                    tb_mod_ini.Focus();
+                    return "El Módulo Inicial DEBE ser menor al Módulo Final";
+                }
 
                 return "OK";
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 return "Los datos proporcionados NO pasaron el proceso de validación.";
-            }            
-        }                  
+            }
+        }
 
         /// <summary>
         /// Obtiene el nombre del Módulo

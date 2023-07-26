@@ -69,7 +69,7 @@ namespace CRS_PRE
             dg_res_ult.Rows.Clear();
             // Obtiene datos de la busqueda
             Tabla = new DataTable();
-            Tabla = o_ads004.Fe_per_tal(o_ads007.va_ide_usr, vp_ide_doc, "H");
+            Tabla = o_ads004.Fe_tal_usr(Program.gl_ide_usr, vp_ide_doc, "H");
             if (Tabla.Rows.Count > 0)
             {
                 for (int i = 0; i < Tabla.Rows.Count; i++)

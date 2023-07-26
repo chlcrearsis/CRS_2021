@@ -217,7 +217,7 @@ namespace CRS_PRE
         public bool fi_ver_edi(string sel_ecc)
         {
             string res_fun = "" ;
-            if(cl_glo_bal.IsNumeric(tb_sel_bus.Text) == false)
+            if(!cl_glo_bal.IsNumeric(tb_sel_bus.Text.Trim()))
             {
                 res_fun = "Debe proporcionar el ID. para la sucursal";
             }
@@ -245,7 +245,7 @@ namespace CRS_PRE
         public bool fi_ver_hds(string sel_ecc)
         {
             string res_fun = "";
-            if (cl_glo_bal.IsNumeric(tb_sel_bus.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_sel_bus.Text.Trim()))
             {
                 res_fun = "Debe proporcionar el ID. para la sucursal";
             }
@@ -270,7 +270,7 @@ namespace CRS_PRE
         public bool fi_ver_con(string sel_ecc)
         {
             string res_fun = "";
-            if (cl_glo_bal.IsNumeric(tb_sel_bus.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_sel_bus.Text.Trim()))
             {
                 res_fun = "Debe proporcionar el ID. para la sucursal";
             }

@@ -32,6 +32,11 @@
             this.lb_ges_tio = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_nom_doc = new System.Windows.Forms.Label();
+            this.lb_obs_dos = new System.Windows.Forms.Label();
+            this.tb_obs_dos = new System.Windows.Forms.TextBox();
+            this.lb_obs_uno = new System.Windows.Forms.Label();
+            this.tb_obs_uno = new System.Windows.Forms.TextBox();
             this.tb_ges_tio = new System.Windows.Forms.TextBox();
             this.gb_fir_mas = new System.Windows.Forms.GroupBox();
             this.tb_fir_ma4 = new System.Windows.Forms.TextBox();
@@ -47,7 +52,6 @@
             this.lb_nro_cop = new System.Windows.Forms.Label();
             this.lb_for_mat = new System.Windows.Forms.Label();
             this.lb_nro_tal = new System.Windows.Forms.Label();
-            this.tb_nom_doc = new System.Windows.Forms.TextBox();
             this.lb_ide_doc = new System.Windows.Forms.Label();
             this.lb_for_log = new System.Windows.Forms.Label();
             this.lb_tip_tal = new System.Windows.Forms.Label();
@@ -97,6 +101,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lb_nom_doc);
+            this.groupBox1.Controls.Add(this.lb_obs_dos);
+            this.groupBox1.Controls.Add(this.tb_obs_dos);
+            this.groupBox1.Controls.Add(this.lb_obs_uno);
+            this.groupBox1.Controls.Add(this.tb_obs_uno);
             this.groupBox1.Controls.Add(this.tb_ges_tio);
             this.groupBox1.Controls.Add(this.gb_fir_mas);
             this.groupBox1.Controls.Add(this.cb_for_log);
@@ -107,7 +116,6 @@
             this.groupBox1.Controls.Add(this.lb_ges_tio);
             this.groupBox1.Controls.Add(this.lb_for_mat);
             this.groupBox1.Controls.Add(this.lb_nro_tal);
-            this.groupBox1.Controls.Add(this.tb_nom_doc);
             this.groupBox1.Controls.Add(this.lb_ide_doc);
             this.groupBox1.Controls.Add(this.lb_for_log);
             this.groupBox1.Controls.Add(this.lb_tip_tal);
@@ -119,16 +127,61 @@
             this.groupBox1.Controls.Add(this.bt_bus_doc);
             this.groupBox1.Location = new System.Drawing.Point(3, -3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(398, 233);
+            this.groupBox1.Size = new System.Drawing.Size(398, 280);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lb_nom_doc
+            // 
+            this.lb_nom_doc.AutoSize = true;
+            this.lb_nom_doc.Location = new System.Drawing.Point(117, 17);
+            this.lb_nom_doc.Name = "lb_nom_doc";
+            this.lb_nom_doc.Size = new System.Drawing.Size(16, 13);
+            this.lb_nom_doc.TabIndex = 24;
+            this.lb_nom_doc.Text = "...";
+            // 
+            // lb_obs_dos
+            // 
+            this.lb_obs_dos.AutoSize = true;
+            this.lb_obs_dos.Location = new System.Drawing.Point(4, 250);
+            this.lb_obs_dos.Name = "lb_obs_dos";
+            this.lb_obs_dos.Size = new System.Drawing.Size(76, 13);
+            this.lb_obs_dos.TabIndex = 22;
+            this.lb_obs_dos.Text = "Observación 2";
+            // 
+            // tb_obs_dos
+            // 
+            this.tb_obs_dos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_obs_dos.Location = new System.Drawing.Point(82, 247);
+            this.tb_obs_dos.MaxLength = 80;
+            this.tb_obs_dos.Name = "tb_obs_dos";
+            this.tb_obs_dos.Size = new System.Drawing.Size(302, 20);
+            this.tb_obs_dos.TabIndex = 23;
+            // 
+            // lb_obs_uno
+            // 
+            this.lb_obs_uno.AutoSize = true;
+            this.lb_obs_uno.Location = new System.Drawing.Point(4, 224);
+            this.lb_obs_uno.Name = "lb_obs_uno";
+            this.lb_obs_uno.Size = new System.Drawing.Size(76, 13);
+            this.lb_obs_uno.TabIndex = 20;
+            this.lb_obs_uno.Text = "Observación 1";
+            // 
+            // tb_obs_uno
+            // 
+            this.tb_obs_uno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_obs_uno.Location = new System.Drawing.Point(82, 221);
+            this.tb_obs_uno.MaxLength = 80;
+            this.tb_obs_uno.Name = "tb_obs_uno";
+            this.tb_obs_uno.Size = new System.Drawing.Size(302, 20);
+            this.tb_obs_uno.TabIndex = 21;
             // 
             // tb_ges_tio
             // 
             this.tb_ges_tio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ges_tio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tb_ges_tio.Location = new System.Drawing.Point(329, 64);
-            this.tb_ges_tio.MaxLength = 1;
+            this.tb_ges_tio.MaxLength = 4;
             this.tb_ges_tio.Name = "tb_ges_tio";
             this.tb_ges_tio.Size = new System.Drawing.Size(64, 20);
             this.tb_ges_tio.TabIndex = 10;
@@ -281,17 +334,6 @@
             this.lb_nro_tal.TabIndex = 4;
             this.lb_nro_tal.Text = "Talonario";
             // 
-            // tb_nom_doc
-            // 
-            this.tb_nom_doc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_doc.Location = new System.Drawing.Point(120, 13);
-            this.tb_nom_doc.MaxLength = 30;
-            this.tb_nom_doc.Name = "tb_nom_doc";
-            this.tb_nom_doc.ReadOnly = true;
-            this.tb_nom_doc.Size = new System.Drawing.Size(273, 20);
-            this.tb_nom_doc.TabIndex = 3;
-            this.tb_nom_doc.TabStop = false;
-            // 
             // lb_ide_doc
             // 
             this.lb_ide_doc.AutoSize = true;
@@ -335,7 +377,7 @@
             // 
             this.tb_nom_tal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_nom_tal.Location = new System.Drawing.Point(105, 37);
-            this.tb_nom_tal.MaxLength = 120;
+            this.tb_nom_tal.MaxLength = 60;
             this.tb_nom_tal.Name = "tb_nom_tal";
             this.tb_nom_tal.Size = new System.Drawing.Size(288, 20);
             this.tb_nom_tal.TabIndex = 6;
@@ -345,7 +387,7 @@
             this.tb_for_mat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_for_mat.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tb_for_mat.Location = new System.Drawing.Point(254, 91);
-            this.tb_for_mat.MaxLength = 3;
+            this.tb_for_mat.MaxLength = 4;
             this.tb_for_mat.Name = "tb_for_mat";
             this.tb_for_mat.Size = new System.Drawing.Size(40, 20);
             this.tb_for_mat.TabIndex = 14;
@@ -396,7 +438,7 @@
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 226);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 271);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(398, 40);
             this.gb_ctr_btn.TabIndex = 1;
@@ -405,7 +447,7 @@
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(239, 10);
@@ -434,7 +476,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 268);
+            this.ClientSize = new System.Drawing.Size(404, 313);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
@@ -473,7 +515,6 @@
         private System.Windows.Forms.Label lb_nro_cop;
         private System.Windows.Forms.Label lb_for_mat;
         private System.Windows.Forms.Label lb_nro_tal;
-        private System.Windows.Forms.TextBox tb_nom_doc;
         private System.Windows.Forms.Label lb_ide_doc;
         private System.Windows.Forms.Label lb_for_log;
         private System.Windows.Forms.Label lb_tip_tal;
@@ -487,5 +528,10 @@
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Button bt_can_cel;
         private System.Windows.Forms.TextBox tb_ges_tio;
+        private System.Windows.Forms.Label lb_obs_dos;
+        private System.Windows.Forms.TextBox tb_obs_dos;
+        private System.Windows.Forms.Label lb_obs_uno;
+        private System.Windows.Forms.TextBox tb_obs_uno;
+        private System.Windows.Forms.Label lb_nom_doc;
     }
 }

@@ -321,7 +321,7 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.bt_can_cel.ForeColor = System.Drawing.Color.White;
-            this.bt_can_cel.Location = new System.Drawing.Point(188, 12);
+            this.bt_can_cel.Location = new System.Drawing.Point(183, 12);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(110, 30);
             this.bt_can_cel.TabIndex = 3;
@@ -333,12 +333,12 @@
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_ace_pta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatAppearance.BorderSize = 0;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.Font = new System.Drawing.Font("HP Simplified", 9.75F);
             this.bt_ace_pta.ForeColor = System.Drawing.Color.White;
-            this.bt_ace_pta.Location = new System.Drawing.Point(58, 12);
+            this.bt_ace_pta.Location = new System.Drawing.Point(50, 12);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(110, 30);
             this.bt_ace_pta.TabIndex = 2;

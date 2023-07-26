@@ -26,12 +26,14 @@ namespace CRS_PRE
 
         public ads001_01()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }        
 
         private void frm_Load(object sender, EventArgs e)
         {
             fi_ini_frm();
+            if (AccessibleName == "1") 
+                bt_tod_mod.Visible = true;            
         }
 
         /// <summary>
@@ -272,9 +274,8 @@ namespace CRS_PRE
         private void tb_ide_mod_Validated(object sender, EventArgs e)
         {
             fi_con_sel();
-            if (lb_nom_mod.Text != "NO Existe"){
-                fi_sel_fil(tb_ide_mod.Text);
-            }
+            if (lb_nom_mod.Text != "NO Existe")
+                fi_sel_fil(tb_ide_mod.Text);            
         }
 
         // Evento SelectionChanged: DataGridView 
@@ -374,11 +375,11 @@ namespace CRS_PRE
         // Evento Click: Lista Módulos
         private void mn_lis_mod_Click(object sender, EventArgs e)
         {
-            ads016_R01p frm = new ads016_R01p();
+            ads001_R01p frm = new ads001_R01p();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
 
-        // Evento Click: Cerrar Pantalla
+        // Evento Click: Salir
         private void mn_cer_rar_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -396,6 +397,17 @@ namespace CRS_PRE
         {
             DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
-        }        
+        }
+
+        // Evento Click: Todos los Módulos
+        private void bt_tod_mod_Click(object sender, EventArgs e)
+        {
+            if (bt_ace_pta.Enabled == true && dg_res_ult.Rows.Count > 0) {
+                tb_ide_mod.Text = "0";
+                lb_nom_mod.Text = "...";
+                DialogResult = DialogResult.OK;
+                cl_glo_frm.Cerrar(this);
+            }
+        }
     }
 }

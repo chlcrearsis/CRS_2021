@@ -137,8 +137,9 @@
             // mn_lis_nta
             // 
             this.mn_lis_nta.Name = "mn_lis_nta";
-            this.mn_lis_nta.Size = new System.Drawing.Size(229, 22);
-            this.mn_lis_nta.Text = "&Lista Numerador de Talonario";
+            this.mn_lis_nta.ShortcutKeyDisplayString = "(ads005_01)";
+            this.mn_lis_nta.Size = new System.Drawing.Size(270, 22);
+            this.mn_lis_nta.Text = "&Numerador de Talonario";
             this.mn_lis_nta.Click += new System.EventHandler(this.mn_lis_nta_Click);
             // 
             // mn_cer_rar
@@ -178,7 +179,7 @@
             this.cb_est_bus.Location = new System.Drawing.Point(403, 33);
             this.cb_est_bus.Name = "cb_est_bus";
             this.cb_est_bus.Size = new System.Drawing.Size(114, 21);
-            this.cb_est_bus.TabIndex = 11;
+            this.cb_est_bus.TabIndex = 9;
             // 
             // tb_nro_tal
             // 
@@ -287,6 +288,7 @@
             this.tb_ges_tio.TabIndex = 6;
             this.tb_ges_tio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_ges_tio.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
+            this.tb_ges_tio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ges_tio_KeyPress);
             this.tb_ges_tio.Validated += new System.EventHandler(this.tb_ges_tio_Validated);
             // 
             // groupBox2
@@ -423,19 +425,19 @@
             this.lb_nom_mod.Location = new System.Drawing.Point(6, 15);
             this.lb_nom_mod.Name = "lb_nom_mod";
             this.lb_nom_mod.Size = new System.Drawing.Size(19, 13);
-            this.lb_nom_mod.TabIndex = 6;
+            this.lb_nom_mod.TabIndex = 0;
             this.lb_nom_mod.Text = "...";
             // 
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(327, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
-            this.bt_ace_pta.TabIndex = 0;
+            this.bt_ace_pta.TabIndex = 1;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
@@ -450,7 +452,7 @@
             this.bt_can_cel.Location = new System.Drawing.Point(405, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
-            this.bt_can_cel.TabIndex = 1;
+            this.bt_can_cel.TabIndex = 2;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);

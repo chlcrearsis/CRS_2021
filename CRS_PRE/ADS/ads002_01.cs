@@ -72,6 +72,7 @@ namespace CRS_PRE
                     dg_res_ult.Rows.Add();
                     dg_res_ult.Rows[i].Cells["va_ide_apl"].Value = Tabla.Rows[i]["va_ide_apl"].ToString();
                     dg_res_ult.Rows[i].Cells["va_nom_apl"].Value = Tabla.Rows[i]["va_nom_apl"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_ide_mod"].Value = Tabla.Rows[i]["va_ide_mod"].ToString();
                     dg_res_ult.Rows[i].Cells["va_nom_mod"].Value = Tabla.Rows[i]["va_nom_mod"].ToString();
                     if (Tabla.Rows[i]["va_est_ado"].ToString() == "H")
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Habilitado";
@@ -91,13 +92,10 @@ namespace CRS_PRE
         {
             if (dg_res_ult.SelectedRows.Count != 0)
             {
-                if (dg_res_ult.SelectedRows[0].Cells[0].Value == null)
-                {
+                if (dg_res_ult.SelectedRows[0].Cells[0].Value == null){
                     tb_ide_apl.Text = string.Empty;
                     lb_nom_apl.Text = string.Empty;
-                }
-                else
-                {
+                }else{
                     tb_ide_apl.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString();
                     lb_nom_apl.Text = dg_res_ult.SelectedRows[0].Cells[1].Value.ToString();
                 }
@@ -175,9 +173,8 @@ namespace CRS_PRE
 
             // Obtiene datos del registro seleccionado
             tab_dat = new DataTable();
-            tab_dat = o_ads002.Fe_con_apl(tb_ide_apl.Text);
-            if (tab_dat.Rows.Count == 0)
-            {
+            tab_dat = o_ads002.Fe_con_apl(tb_ide_apl.Text.Trim());
+            if (tab_dat.Rows.Count == 0){
                 res_fun = "La Aplicación que desea editar, no se encuentra registrada";
                 MessageBox.Show(res_fun, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_ide_apl.Focus();

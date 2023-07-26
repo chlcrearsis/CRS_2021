@@ -23,7 +23,6 @@ namespace CRS_PRE
             InitializeComponent();
         }
 
-
         private void frm_Load(object sender, EventArgs e)
         {
             // Limpia Campos
@@ -31,7 +30,7 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_ide_doc.Text = frm_dat.Rows[0]["va_ide_doc"].ToString();
-            tb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
+            lb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
             tb_nro_tal.Text = frm_dat.Rows[0]["va_nro_tal"].ToString();
             tb_nom_tal.Text = frm_dat.Rows[0]["va_nom_tal"].ToString();
             tb_for_mat.Text = frm_dat.Rows[0]["va_for_mat"].ToString();
@@ -41,6 +40,8 @@ namespace CRS_PRE
             tb_fir_ma2.Text = frm_dat.Rows[0]["va_fir_ma2"].ToString();
             tb_fir_ma3.Text = frm_dat.Rows[0]["va_fir_ma3"].ToString();
             tb_fir_ma4.Text = frm_dat.Rows[0]["va_fir_ma4"].ToString();
+            tb_obs_uno.Text = frm_dat.Rows[0]["va_obs_uno"].ToString();
+            tb_obs_dos.Text = frm_dat.Rows[0]["va_obs_dos"].ToString();
             switch (frm_dat.Rows[0]["va_tip_tal"].ToString()){
                 case "0": tb_tip_tal.Text = "Manual"; break;
                 case "1": tb_tip_tal.Text = "Automático"; break;
@@ -61,7 +62,7 @@ namespace CRS_PRE
         private void Fi_lim_pia()
         {
             tb_ide_doc.Text = string.Empty;
-            tb_nom_doc.Text = string.Empty;
+            lb_nom_doc.Text = string.Empty;
             tb_nro_tal.Text = string.Empty;
             tb_nom_tal.Text = string.Empty;
             tb_for_mat.Text = string.Empty;
@@ -74,12 +75,14 @@ namespace CRS_PRE
             tb_tip_tal.Text = string.Empty;
             tb_for_log.Text = string.Empty;
             tb_est_ado.Text = string.Empty;
+            tb_obs_uno.Text = string.Empty;
+            tb_obs_dos.Text = string.Empty;
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
         }
-
     }
 }

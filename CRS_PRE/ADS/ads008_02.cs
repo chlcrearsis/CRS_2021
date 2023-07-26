@@ -105,7 +105,7 @@ namespace CRS_PRE
 
                     //**** TIKEA LOS PERMITIDOS Y DESTIKEA LOS RESTRINGIDOS
                     //dg_res_ult.Rows[i].Cells[4].Value = false;
-                    dg_res_ult.Rows[i].Cells[4].Value = o_ads008.Fe_ads008_02(tb_ide_usr.Text,"ads004", ide_doc, nro_tal.ToString());
+                    dg_res_ult.Rows[i].Cells[4].Value = o_ads008.Fe_aut_usr(tb_ide_usr.Text,"ads004", ide_doc, nro_tal.ToString());
 
                 }
 
@@ -136,11 +136,10 @@ namespace CRS_PRE
 
                     if (chk_val == true)
                     { 
-                        o_ads008.Fe_ads008_04(tb_ide_usr.Text,"ads004", ide_doc, nro_tal.ToString());
-                        o_ads008.Fe_ads008_03(tb_ide_usr.Text,"ads004", ide_doc, nro_tal.ToString());
+                        o_ads008.Fe_nue_reg(tb_ide_usr.Text, "ads004", ide_doc, nro_tal.ToString());
                     }
                     if (chk_val == false)
-                        o_ads008.Fe_ads008_04(tb_ide_usr.Text, "ads004", ide_doc, nro_tal.ToString());
+                        o_ads008.Fe_eli_min(tb_ide_usr.Text, "ads004", ide_doc, nro_tal.ToString());
                 }
 
                 cl_glo_frm.Cerrar(this);

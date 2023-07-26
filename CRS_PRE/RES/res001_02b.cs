@@ -205,7 +205,7 @@ namespace CRS_PRE.CMR
                 decimal pre_uni = 0;
 
                 // Verifica que el usuario tenga permiso sobre la lista de precios
-                if (o_ads008.Fe_ads008_02(Program.gl_ide_usr, "cmr001", tb_cod_lis.Text)== false)
+                if (o_ads008.Fe_aut_usr(Program.gl_ide_usr, "cmr001", tb_cod_lis.Text)== false)
                 {
                     MessageBox.Show("La lista de precio no esta permitida para el usuario", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
@@ -306,7 +306,7 @@ namespace CRS_PRE.CMR
         protected string Fi_val_dat()
         {
             // VERIFICA PLANTILLA DE VENTA *****************
-            if(cl_glo_bal.IsNumeric(tb_cod_plv.Text) == false)
+            if(!cl_glo_bal.IsNumeric(tb_cod_plv.Text.Trim()))
             {
                 tb_cod_plv.Focus();
                 return "Debe proporcionar una plantilla de venta valida";
@@ -325,7 +325,7 @@ namespace CRS_PRE.CMR
             }
 
             // VERIFICA BODEGA *************************           
-            if (cl_glo_bal.IsNumeric(tb_cod_bod.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_bod.Text.Trim()))
             {
                 tb_cod_bod.Focus();
                 return "Debe proporcionar una Bodega valida";
@@ -344,7 +344,7 @@ namespace CRS_PRE.CMR
             }
 
             // VERIFICA LISTA DE PRECIO *******************        
-            if (cl_glo_bal.IsNumeric(tb_cod_lis.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_lis.Text.Trim()))
             {
                 tb_cod_lis.Focus();
                 return "Debe proporcionar una Lista de precio valida";
@@ -358,7 +358,7 @@ namespace CRS_PRE.CMR
             }
 
             // verifica permiso de usuario sobre lista de precio
-            if(o_ads008.Fe_ads008_02(Program.gl_ide_usr,"cmr001",tb_cod_lis.Text) == false)
+            if(o_ads008.Fe_aut_usr(Program.gl_ide_usr,"cmr001",tb_cod_lis.Text) == false)
             {
                 tb_cod_lis.Focus();
                 return "La Lista de precio no se encuentra registrada";
@@ -371,7 +371,7 @@ namespace CRS_PRE.CMR
             }
 
             // VERIFICA VENDEDOR **********************
-            if (cl_glo_bal.IsNumeric(tb_cod_ven.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_ven.Text.Trim()))
             {
                 tb_cod_ven.Focus();
                 return "Debe proporcionar un vendedor valido";
@@ -392,7 +392,7 @@ namespace CRS_PRE.CMR
             // VERIFICA DELIVERY **********************
             if(vta_par == "D") // en caso de selleccionar entrega con Delivery, verificara que haya seleccionado un delivery
             {
-                if (cl_glo_bal.IsNumeric(lb_cod_del.Text) == false)
+                if (!cl_glo_bal.IsNumeric(lb_cod_del.Text.Trim()))
                 {
                     lb_cod_del.Focus();
                     return "Debe proporcionar un Delivery valido";
@@ -415,7 +415,7 @@ namespace CRS_PRE.CMR
             }
 
             // VERIFICA QUE CLIENTE EXISTA *******************
-            if (cl_glo_bal.IsNumeric(tb_cod_per.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_per.Text.Trim()))
             {
                 tb_cod_per.Focus();
                 return "Debe proporcionar un Cliente valido";
@@ -650,10 +650,10 @@ namespace CRS_PRE.CMR
                     // **  Recupera datos del Completa venta con Factura
                     obs_ope = frm_com_ope.tb_obs_vta.Text;
 
-                    if (cl_glo_bal.IsNumeric(frm_com_ope.tb_nit_per.Text) == false)
+                    if (!cl_glo_bal.IsNumeric(frm_com_ope.tb_nit_per.Text.Trim()))
                         nit_per = 0;
                     else
-                        nit_per = int.Parse(frm_com_ope.tb_nit_per.Text);
+                        nit_per = int.Parse(frm_com_ope.tb_nit_per.Text.Trim());
 
                     raz_soc = frm_com_ope.tb_raz_soc.Text;
                     mto_can = decimal.Parse(frm_com_ope.tb_mto_can.Text);
@@ -988,7 +988,7 @@ namespace CRS_PRE.CMR
 // int val = 0;
            
 
-            if (cl_glo_bal.IsNumeric(tb_cod_plv.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_plv.Text.Trim()))
             {
                 MessageBox.Show("Debe proporcionar una plantilla valida", "Error", MessageBoxButtons.OK);
             }
@@ -1002,7 +1002,7 @@ namespace CRS_PRE.CMR
             else
             {
                 // Pregunta si el usuario tiene permiso sobre la plantilla
-                if (o_ads008.Fe_aut_usr( "res004", tb_cod_plv.Text) == false)
+                if (o_ads008.Fe_aut_usr(Program.gl_pas_usr, "res004", tb_cod_plv.Text) == false)
                 {
                     MessageBox.Show("La plantilla de venta no esta permitida para el usuario ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ban_plv = false;
@@ -1082,7 +1082,7 @@ namespace CRS_PRE.CMR
                 tb_cod_lis.Text = tab_res004.Rows[0]["va_cod_lis"].ToString();
 
                 //Verifica si el usuario tiene permiso sobre la bodega
-                if (o_ads008.Fe_ads008_02(Program.gl_ide_usr, "cmr001", tb_cod_lis.Text) == false)
+                if (o_ads008.Fe_aut_usr(Program.gl_ide_usr, "cmr001", tb_cod_lis.Text) == false)
                 {
                     MessageBox.Show("La Lista de precio no esta permitida para el usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     lb_nom_lis.Text = "NO permitida";
@@ -1289,7 +1289,7 @@ namespace CRS_PRE.CMR
         {
             //int val = 0;
 
-            if(cl_glo_bal.IsNumeric(tb_cod_lis.Text)==false)
+            if(!cl_glo_bal.IsNumeric(tb_cod_lis.Text.Trim()))
             {
                 if (dg_det_pro.Rows.Count != 0)
                 {
@@ -1334,7 +1334,7 @@ namespace CRS_PRE.CMR
             else
             {
                 // Verifica que el usuario tenga permisos sobre la plantilla de venta
-                if(o_ads008.Fe_ads008_02(Program.gl_ide_usr,"cmr001",tb_cod_lis.Text) == false)
+                if(o_ads008.Fe_aut_usr(Program.gl_ide_usr,"cmr001",tb_cod_lis.Text) == false)
                 {
                     MessageBox.Show("La lista de precios no esta permitida para el usuario, se mantendra la lista de precios anterior", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 

@@ -90,6 +90,7 @@
             this.tb_abr_mod.Name = "tb_abr_mod";
             this.tb_abr_mod.Size = new System.Drawing.Size(47, 20);
             this.tb_abr_mod.TabIndex = 3;
+            this.tb_abr_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb_ide_mod
             // 
@@ -100,7 +101,7 @@
             this.tb_ide_mod.Name = "tb_ide_mod";
             this.tb_ide_mod.Size = new System.Drawing.Size(45, 20);
             this.tb_ide_mod.TabIndex = 1;
-            this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tb_ide_mod.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_mod_KeyPress);
             // 
             // gb_ctr_btn
@@ -117,15 +118,16 @@
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(171, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(177, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
+            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 
@@ -133,12 +135,13 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(250, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(256, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
             // ads001_02
             // 

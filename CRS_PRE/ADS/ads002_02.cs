@@ -89,8 +89,7 @@ namespace CRS_PRE
             }
 
             // Valida que el campo código sea un valor válido
-            int.TryParse(tb_ide_mod.Text, out int ide_mod);
-            if (ide_mod == 0){
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim())){
                 tb_ide_mod.Focus();
                 return "El ID. Módulo NO es valido";
             }
@@ -124,20 +123,23 @@ namespace CRS_PRE
             // Verifica SI existe otro registro con el mismo ID. de Aplicación
             Tabla = new DataTable();
             Tabla = o_ads002.Fe_con_apl(tb_ide_apl.Text);
-            if (Tabla.Rows.Count > 0)
-            {
+            if (Tabla.Rows.Count > 0){
                 tb_ide_mod.Focus();
                 return "Ya existe otra Aplicación con los mismo ID. Aplicación";
             }
 
             // Verifica SI existe otro registro con el mismo Nombre de Aplicación
             Tabla = new DataTable();
-            Tabla = o_ads002.Fe_con_nom(tb_nom_apl.Text);
+            Tabla = o_ads002.Fe_con_nom(tb_nom_apl.Text.Trim());
             if (Tabla.Rows.Count > 0){
-                tb_ide_mod.Focus();
+                tb_nom_apl.Focus();
                 return "Ya existe otra Aplicación con el mismo Nombre de Aplicación";
             }
-           
+
+            // Quita caracteres especiales de SQL-Trans
+            tb_ide_apl.Text = tb_ide_apl.Text.Replace("'", "");
+            tb_nom_apl.Text = tb_nom_apl.Text.Replace("'", "");
+
             return "OK";
         }
 
@@ -191,7 +193,7 @@ namespace CRS_PRE
                     // Graba registro
                     o_ads002.Fe_nue_reg(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, tb_nom_apl.Text);
                     // Actualiza el Formulario Principal
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_apl.Text));
+                    frm_pad.Fe_act_frm(tb_ide_apl.Text);
                     // Despliega Mensaje
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     // Inicializa Campos

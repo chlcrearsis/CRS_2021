@@ -31,13 +31,13 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_est_ado = new System.Windows.Forms.Label();
             this.lb_ide_mod = new System.Windows.Forms.Label();
             this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.tb_abr_mod = new System.Windows.Forms.TextBox();
             this.lb_nom_mod = new System.Windows.Forms.Label();
             this.tb_nom_mod = new System.Windows.Forms.TextBox();
             this.tb_ide_mod = new System.Windows.Forms.TextBox();
-            this.lb_est_ado = new System.Windows.Forms.Label();
             this.gb_ctr_btn.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +46,7 @@
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 69);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 66);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(336, 40);
             this.gb_ctr_btn.TabIndex = 1;
@@ -59,7 +59,7 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(250, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(255, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 0;
@@ -76,11 +76,20 @@
             this.groupBox1.Controls.Add(this.lb_nom_mod);
             this.groupBox1.Controls.Add(this.tb_nom_mod);
             this.groupBox1.Controls.Add(this.tb_ide_mod);
-            this.groupBox1.Location = new System.Drawing.Point(3, -3);
+            this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(336, 76);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lb_est_ado
+            // 
+            this.lb_est_ado.AutoSize = true;
+            this.lb_est_ado.Location = new System.Drawing.Point(175, 20);
+            this.lb_est_ado.Name = "lb_est_ado";
+            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
+            this.lb_est_ado.TabIndex = 2;
+            this.lb_est_ado.Text = "Estado";
             // 
             // lb_ide_mod
             // 
@@ -100,6 +109,7 @@
             this.tb_est_ado.ReadOnly = true;
             this.tb_est_ado.Size = new System.Drawing.Size(80, 20);
             this.tb_est_ado.TabIndex = 3;
+            this.tb_est_ado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb_abr_mod
             // 
@@ -110,6 +120,7 @@
             this.tb_abr_mod.ReadOnly = true;
             this.tb_abr_mod.Size = new System.Drawing.Size(47, 20);
             this.tb_abr_mod.TabIndex = 5;
+            this.tb_abr_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lb_nom_mod
             // 
@@ -140,22 +151,13 @@
             this.tb_ide_mod.ReadOnly = true;
             this.tb_ide_mod.Size = new System.Drawing.Size(45, 20);
             this.tb_ide_mod.TabIndex = 1;
-            this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lb_est_ado
-            // 
-            this.lb_est_ado.AutoSize = true;
-            this.lb_est_ado.Location = new System.Drawing.Point(175, 20);
-            this.lb_est_ado.Name = "lb_est_ado";
-            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
-            this.lb_est_ado.TabIndex = 2;
-            this.lb_est_ado.Text = "Estado";
+            this.tb_ide_mod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ads001_05
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 111);
+            this.ClientSize = new System.Drawing.Size(344, 109);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);

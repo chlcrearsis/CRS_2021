@@ -254,7 +254,7 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Informe: Tupo de Usuario
+        /// Informe: Tipo de Usuario
         /// </summary>
         /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
         /// <param name="ord_dat">Ordenar Por (C=Código; N=Nombre)</param>

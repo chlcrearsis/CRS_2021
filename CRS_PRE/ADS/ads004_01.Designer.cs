@@ -34,11 +34,13 @@
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_cre_ar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cre_tal = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_cre_tal_num = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_nue_tal = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_nue_aut = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_eli_min = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_aut_usr = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_list_tal = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +96,8 @@
             // 
             this.mn_cre_ar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_cre_tal,
-            this.mn_cre_tal_num});
+            this.mn_nue_tal,
+            this.mn_nue_aut});
             this.mn_cre_ar.Name = "mn_cre_ar";
             this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
             this.mn_cre_ar.Text = "&Crea";
@@ -102,23 +105,31 @@
             // mn_cre_tal
             // 
             this.mn_cre_tal.Name = "mn_cre_tal";
-            this.mn_cre_tal.Size = new System.Drawing.Size(198, 22);
+            this.mn_cre_tal.Size = new System.Drawing.Size(200, 22);
             this.mn_cre_tal.Text = "&Talonario";
             this.mn_cre_tal.Click += new System.EventHandler(this.mn_nue_reg_Click);
             // 
-            // mn_cre_tal_num
+            // mn_nue_tal
             // 
-            this.mn_cre_tal_num.Name = "mn_cre_tal_num";
-            this.mn_cre_tal_num.Size = new System.Drawing.Size(198, 22);
-            this.mn_cre_tal_num.Text = "Talonario y &numeración";
-            this.mn_cre_tal_num.Click += new System.EventHandler(this.mn_nue_tal_Click);
+            this.mn_nue_tal.Name = "mn_nue_tal";
+            this.mn_nue_tal.Size = new System.Drawing.Size(200, 22);
+            this.mn_nue_tal.Text = "Talonario y &Numeración";
+            this.mn_nue_tal.Click += new System.EventHandler(this.mn_nue_tal_Click);
+            // 
+            // mn_nue_aut
+            // 
+            this.mn_nue_aut.Name = "mn_nue_aut";
+            this.mn_nue_aut.Size = new System.Drawing.Size(200, 22);
+            this.mn_nue_aut.Text = "Talonario Automático";
+            this.mn_nue_aut.Click += new System.EventHandler(this.mn_nue_aut_Click);
             // 
             // mn_edi_tar
             // 
             this.mn_edi_tar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_mod_ifi,
             this.mn_hab_des,
-            this.mn_eli_min});
+            this.mn_eli_min,
+            this.mn_aut_usr});
             this.mn_edi_tar.Name = "mn_edi_tar";
             this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
             this.mn_edi_tar.Text = "&Edita";
@@ -126,23 +137,30 @@
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(178, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(201, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(178, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(201, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(178, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(201, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
+            // 
+            // mn_aut_usr
+            // 
+            this.mn_aut_usr.Name = "mn_aut_usr";
+            this.mn_aut_usr.Size = new System.Drawing.Size(201, 22);
+            this.mn_aut_usr.Text = "Autorización p/Usuarios";
+            this.mn_aut_usr.Click += new System.EventHandler(this.mn_aut_usr_Click);
             // 
             // mn_con_sul
             // 
@@ -163,15 +181,17 @@
             // mn_list_tal
             // 
             this.mn_list_tal.Name = "mn_list_tal";
-            this.mn_list_tal.Size = new System.Drawing.Size(230, 22);
+            this.mn_list_tal.ShortcutKeyDisplayString = "(ads004_R01)";
+            this.mn_list_tal.Size = new System.Drawing.Size(305, 22);
             this.mn_list_tal.Text = "&Lista de Talonarios";
             this.mn_list_tal.Click += new System.EventHandler(this.mn_lis_tal_Click);
             // 
             // mn_for_fir
             // 
             this.mn_for_fir.Name = "mn_for_fir";
-            this.mn_for_fir.Size = new System.Drawing.Size(230, 22);
-            this.mn_for_fir.Text = "Formato Definición de Firmas";
+            this.mn_for_fir.ShortcutKeyDisplayString = "(ads004_R02)";
+            this.mn_for_fir.Size = new System.Drawing.Size(305, 22);
+            this.mn_for_fir.Text = "&Formato Definición de Firmas";
             this.mn_for_fir.Click += new System.EventHandler(this.mn_for_fir_Click);
             // 
             // mn_cer_rar
@@ -304,7 +324,7 @@
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(3, 50);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(542, 199);
+            this.groupBox2.Size = new System.Drawing.Size(542, 204);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -346,7 +366,7 @@
             this.dg_res_ult.RowHeadersVisible = false;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(532, 184);
+            this.dg_res_ult.Size = new System.Drawing.Size(532, 189);
             this.dg_res_ult.TabIndex = 0;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
@@ -396,7 +416,7 @@
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(110, 244);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(110, 249);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(435, 40);
             this.gb_ctr_btn.TabIndex = 3;
@@ -415,7 +435,7 @@
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_ace_pta.Location = new System.Drawing.Point(277, 10);
@@ -457,7 +477,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.bt_cam_mod);
-            this.groupBox3.Location = new System.Drawing.Point(3, 244);
+            this.groupBox3.Location = new System.Drawing.Point(3, 249);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(113, 40);
             this.groupBox3.TabIndex = 2;
@@ -467,7 +487,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 285);
+            this.ClientSize = new System.Drawing.Size(547, 290);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -517,7 +537,7 @@
         private System.Windows.Forms.ToolStripMenuItem mn_list_tal;
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         private System.Windows.Forms.ToolStripMenuItem mn_cre_tal;
-        private System.Windows.Forms.ToolStripMenuItem mn_cre_tal_num;
+        private System.Windows.Forms.ToolStripMenuItem mn_nue_tal;
         public System.Windows.Forms.TextBox tb_nro_tal;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.Button bt_ace_pta;
@@ -533,5 +553,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
         private System.Windows.Forms.ToolStripMenuItem mn_for_fir;
         private System.Windows.Forms.Label lb_nom_mod;
+        private System.Windows.Forms.ToolStripMenuItem mn_nue_aut;
+        private System.Windows.Forms.ToolStripMenuItem mn_aut_usr;
     }
 }

@@ -64,8 +64,7 @@ namespace CRS_PRE
                 return "DEBE proporcionar el Código del Módulo";
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int cod_gru);
-            if (cod_gru == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim()))
                 return "El Código del Módulo NO es válido";
 
             // Verifica SI el Módulo se encuentra registrado
@@ -80,11 +79,20 @@ namespace CRS_PRE
             if (Tabla.Rows.Count == 0)
                 return "El Documento NO se encuentra registrado";
 
+            // Verifica SI la Aplicacion se encuentra habilitada
+            if (tb_est_ado.Text.Trim() == "Deshabilitado")
+                return "El Documento se encuentra deshabilitada";
+
             // Verifica SI existe otro registro con el mismo Nombre de Documento
             Tabla = new DataTable();
             Tabla = o_ads003.Fe_con_nom(tb_nom_doc.Text, tb_ide_doc.Text);
             if (Tabla.Rows.Count > 0)
-                return "Ya existe otro Documento con el mismo Nombre";            
+                return "Ya existe otro Documento con el mismo Nombre";
+
+            // Quita caracteres especiales de SQL-Trans
+            tb_ide_doc.Text = tb_ide_doc.Text.ToString().Replace("'", "");
+            tb_nom_doc.Text = tb_nom_doc.Text.ToString().Replace("'", "");
+            tb_des_doc.Text = tb_des_doc.Text.ToString().Replace("'", "");
 
             return "OK";
         }
@@ -107,9 +115,9 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Edita Tipo de Atributo
-                    o_ads003.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_ide_doc.Text, tb_nom_doc.Text, tb_des_doc.Text);
+                    o_ads003.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_ide_doc.Text.Trim(), tb_nom_doc.Text.Trim(), tb_des_doc.Text.Trim());
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_doc.Text));
+                    frm_pad.Fe_act_frm(tb_ide_doc.Text.Trim());
                     cl_glo_frm.Cerrar(this);
                 }
             }

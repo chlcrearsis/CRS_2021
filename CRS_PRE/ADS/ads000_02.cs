@@ -273,7 +273,7 @@ namespace CRS_PRE
 
             // Obtiene las aplicaciones autorizadas al usuario
             Tabla = new DataTable();
-            Tabla = o_ads008.Fe_ads008_00(ide_usr);
+            Tabla = o_ads008.Fe_apl_aut(ide_usr);
 
             // Habilita/Deshabilita las aplicaciones autorizadas
             for (int i = 0; i < Tabla.Rows.Count; i++){                
@@ -385,7 +385,7 @@ namespace CRS_PRE
                     }
 
                     // Verifica que el usuario tenga los permisos sobre la aplicacion
-                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "cmr200") == false)
+                    if (o_ads008.Fe_aut_usr(lb_ide_usr.Text, "ads002", "cmr200") == false)
                     {
                         MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Comercialización.", Text, MessageBoxButtons.OK);
                         return;
@@ -450,7 +450,7 @@ namespace CRS_PRE
                     }
 
                     // Verifica que el usuario tenga los permisos sobre la aplicacion
-                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "res200") == false)
+                    if (o_ads008.Fe_aut_usr(lb_ide_usr.Text, "ads002", "res200") == false)
                     {
                         MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Restaurante (res200)", Text, MessageBoxButtons.OK);
                         return;
@@ -515,7 +515,7 @@ namespace CRS_PRE
                     }
 
                     // Verifica que el usuario tenga los permisos sobre la aplicacion
-                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "tes200") == false)
+                    if (o_ads008.Fe_aut_usr(lb_ide_usr.Text, "ads002", "tes200") == false)
                     {
                         MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Tesorería (tes200)", Text, MessageBoxButtons.OK);
                         return;
@@ -580,7 +580,7 @@ namespace CRS_PRE
                     }
 
                     // Verifica que el usuario tenga los permisos sobre la aplicacion
-                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "ctb200") == false)
+                    if (o_ads008.Fe_aut_usr(lb_ide_usr.Text, "ads002", "ctb200") == false)
                     {
                         MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Contabilidad (ctb200)", Text, MessageBoxButtons.OK);
                         return;
@@ -645,7 +645,7 @@ namespace CRS_PRE
                     }
 
                     // Verifica que el usuario tenga los permisos sobre la aplicacion
-                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "inv200") == false)
+                    if (o_ads008.Fe_aut_usr(lb_ide_usr.Text, "ads002", "inv200") == false)
                     {
                         MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Inventario (inv200).", Text, MessageBoxButtons.OK);
                         return;
@@ -711,7 +711,7 @@ namespace CRS_PRE
                     }
 
                     // Verifica que el usuario tenga los permisos sobre la aplicacion
-                    if (o_ads008.Fe_ads008_02(lb_ide_usr.Text, "ads002", "ads200") == false)
+                    if (o_ads008.Fe_aut_usr(lb_ide_usr.Text, "ads002", "ads200") == false)
                     {
                         MessageBox.Show("El Usuario NO tiene permiso sobre el Módulo de Administrador  (ads200).", Text, MessageBoxButtons.OK);
                         return;

@@ -26,8 +26,7 @@ namespace CRS_NEG
         /// <param name="fec_fin">Fecha Final</param>
         /// <param name="con_act">Contador Actual</param>
         /// <param name="con_fin">Contador Final</param>
-        public void Fe_nue_reg(int ges_tio, string ide_doc, int nro_tal, string fec_ini, string fec_fin,
-                               int con_act, int con_fin)
+        public void Fe_nue_reg(int ges_tio, string ide_doc, int nro_tal, string fec_ini, string fec_fin, int con_act, int con_fin)
         {
             try
             {
@@ -52,14 +51,14 @@ namespace CRS_NEG
         /// <param name="con_act">Contador Actual</param>
         /// <param name="con_fin">Contador Final</param>
         public void Fe_edi_tar(int ges_tio, string ide_doc, int nro_tal, string fec_ini, string fec_fin,
-                               int con_act, int con_fin){
+                               int con_act,    int con_fin){
             try
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("UPDATE ads005 SET va_fec_ini = '" + fec_ini + "',");
                 cadena.AppendLine("                  va_fec_fin = '" + fec_fin + "',");
                 cadena.AppendLine("                  va_con_act =  " + con_act + ",");
-                cadena.AppendLine("                  va_con_fin =  " + con_fin + "',");
+                cadena.AppendLine("                  va_con_fin =  " + con_fin + "");
                 cadena.AppendLine("            WHERE va_ges_tio =  " + ges_tio + "");
                 cadena.AppendLine("              AND va_ide_doc = '" + ide_doc + "'");
                 cadena.AppendLine("              AND va_nro_tal =  " + nro_tal + "");
@@ -128,7 +127,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads005_05a_p01 '" + ide_doc + "', " + nro_tal + ", " + ges_tio + "");
+                cadena.AppendLine("EXECUTE ads005_05a_p01 " + ges_tio + ", '" + ide_doc + "', " + nro_tal + "");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)
@@ -167,16 +166,15 @@ namespace CRS_NEG
         /// Informe: Numeración de Talonarios
         /// </summary>
         /// <param name="ges_tio">Gestión</param>
-        /// <param name="ide_mod">ID. Módulo</param>
         /// <param name="doc_ini">ID. Documento Inicial</param>
         /// <param name="doc_fin">ID. Documento Final</param>
         /// <returns></returns>
-        public DataTable Fe_inf_R01(int ges_tio, int ide_mod, string doc_ini, string doc_fin)
+        public DataTable Fe_inf_R01(int ges_tio, string doc_ini, string doc_fin)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads005_R01 " + ges_tio + ", " + ide_mod + ", '" + doc_ini + "', '" + doc_fin + "'");
+                cadena.AppendLine("EXECUTE ads005_R01 " + ges_tio + ", '" + doc_ini + "', '" + doc_fin + "'");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

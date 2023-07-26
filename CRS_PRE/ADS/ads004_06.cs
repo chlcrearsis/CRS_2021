@@ -35,7 +35,7 @@ namespace CRS_PRE
 
             // Despliega Datos en Pantalla
             tb_ide_doc.Text = frm_dat.Rows[0]["va_ide_doc"].ToString();
-            tb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
+            lb_nom_doc.Text = frm_dat.Rows[0]["va_nom_doc"].ToString();
             tb_nro_tal.Text = frm_dat.Rows[0]["va_nro_tal"].ToString();
             tb_nom_tal.Text = frm_dat.Rows[0]["va_nom_tal"].ToString();
             tb_for_mat.Text = frm_dat.Rows[0]["va_for_mat"].ToString();
@@ -45,20 +45,19 @@ namespace CRS_PRE
             tb_fir_ma2.Text = frm_dat.Rows[0]["va_fir_ma2"].ToString();
             tb_fir_ma3.Text = frm_dat.Rows[0]["va_fir_ma3"].ToString();
             tb_fir_ma4.Text = frm_dat.Rows[0]["va_fir_ma4"].ToString();
-            switch (frm_dat.Rows[0]["va_tip_tal"].ToString())
-            {
+            tb_obs_uno.Text = frm_dat.Rows[0]["va_obs_uno"].ToString();
+            tb_obs_dos.Text = frm_dat.Rows[0]["va_obs_dos"].ToString();
+            switch (frm_dat.Rows[0]["va_tip_tal"].ToString()){
                 case "0": tb_tip_tal.Text = "Manual"; break;
                 case "1": tb_tip_tal.Text = "Automático"; break;
             }
-            switch (frm_dat.Rows[0]["va_for_log"].ToString())
-            {
+            switch (frm_dat.Rows[0]["va_for_log"].ToString()){
                 case "0": tb_for_log.Text = "Razon social de la empresa"; break;
                 case "1": tb_for_log.Text = "Logo 1"; break;
                 case "2": tb_for_log.Text = "Logo 2"; break;
                 case "3": tb_for_log.Text = "Logo 3"; break;
             }
-            switch (frm_dat.Rows[0]["va_est_ado"].ToString())
-            {
+            switch (frm_dat.Rows[0]["va_est_ado"].ToString()){
                 case "H": tb_est_ado.Text = "Habilitado"; break;
                 case "N": tb_est_ado.Text = "Deshabilitado"; break;
             }
@@ -68,7 +67,7 @@ namespace CRS_PRE
         private void Fi_lim_pia()
         {
             tb_ide_doc.Text = string.Empty;
-            tb_nom_doc.Text = string.Empty;
+            lb_nom_doc.Text = string.Empty;
             tb_nro_tal.Text = string.Empty;
             tb_nom_tal.Text = string.Empty;
             tb_for_mat.Text = string.Empty;
@@ -81,14 +80,15 @@ namespace CRS_PRE
             tb_tip_tal.Text = string.Empty;
             tb_for_log.Text = string.Empty;
             tb_est_ado.Text = string.Empty;
+            tb_obs_uno.Text = string.Empty;
+            tb_obs_dos.Text = string.Empty;
         }
 
         // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
             // Valida que el campo ID. Documento NO este vacio
-            if (tb_ide_doc.Text.Trim() == "")
-            {
+            if (tb_ide_doc.Text.Trim() == ""){
                 tb_ide_doc.Focus();
                 return "DEBE proporcionar el ID. Documento";
             }
@@ -96,32 +96,27 @@ namespace CRS_PRE
             // Verifica SI el Módulo se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
-            if (Tabla.Rows.Count == 0)
-            {
+            if (Tabla.Rows.Count == 0){
                 tb_ide_doc.Focus();
                 return "El Documento seleccionado NO se encuentra registrado";
             }            
 
             // Valida que el campo Nro. Talonario
-            if (tb_nro_tal.Text.Trim() == "")
-            {
+            if (tb_nro_tal.Text.Trim() == ""){
                 tb_nro_tal.Focus();
                 return "DEBE proporcionar el Nro. Talonario";
             }
 
             // Valida que el campo código sea un valor válido
-            int.TryParse(tb_nro_tal.Text, out int nro_tal);
-            if (nro_tal == 0)
-            {
+            if (!cl_glo_bal.IsNumeric(tb_nro_tal.Text.Trim())){
                 tb_nro_tal.Focus();
-                return "El Nro. Talonario NO es valido";
+                return "El Nro. Talonario NO es válido";
             }
 
             // Verifica SI el Talonario se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            if (Tabla.Rows.Count == 0)
-            {
+            if (Tabla.Rows.Count == 0){
                 tb_nro_tal.Focus();
                 return "El Talonario que desea modificar NO se encuentra registrado " + tb_ide_doc.Text + " : " + tb_nro_tal.Text;
             }
@@ -148,8 +143,7 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "")
-                {
+                if (msg_val != "OK"){
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
@@ -159,7 +153,7 @@ namespace CRS_PRE
                     // Elimina Tipo de Atributo
                     o_ads004.Fe_eli_min(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_doc.Text));
+                    frm_pad.Fe_act_frm(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
                     cl_glo_frm.Cerrar(this);
                 }
             }

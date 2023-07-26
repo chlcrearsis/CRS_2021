@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_est_ado = new System.Windows.Forms.Label();
+            this.tb_nom_tus = new System.Windows.Forms.TextBox();
             this.lb_des_tus = new System.Windows.Forms.Label();
             this.tb_est_ado = new System.Windows.Forms.TextBox();
             this.tb_des_tus = new System.Windows.Forms.TextBox();
@@ -37,8 +39,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
-            this.tb_nom_tus = new System.Windows.Forms.TextBox();
-            this.lb_est_ado = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,25 @@
             this.groupBox1.Size = new System.Drawing.Size(336, 102);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // lb_est_ado
+            // 
+            this.lb_est_ado.AutoSize = true;
+            this.lb_est_ado.Location = new System.Drawing.Point(183, 72);
+            this.lb_est_ado.Name = "lb_est_ado";
+            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
+            this.lb_est_ado.TabIndex = 45;
+            this.lb_est_ado.Text = "Estado";
+            // 
+            // tb_nom_tus
+            // 
+            this.tb_nom_tus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_nom_tus.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_nom_tus.Location = new System.Drawing.Point(137, 17);
+            this.tb_nom_tus.MaxLength = 30;
+            this.tb_nom_tus.Name = "tb_nom_tus";
+            this.tb_nom_tus.Size = new System.Drawing.Size(168, 20);
+            this.tb_nom_tus.TabIndex = 44;
             // 
             // lb_des_tus
             // 
@@ -121,10 +140,10 @@
             // bt_ace_pta
             // 
             this.bt_ace_pta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(171, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(178, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 2;
@@ -138,32 +157,13 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(250, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(256, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 3;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
-            // 
-            // tb_nom_tus
-            // 
-            this.tb_nom_tus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_tus.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_nom_tus.Location = new System.Drawing.Point(137, 17);
-            this.tb_nom_tus.MaxLength = 30;
-            this.tb_nom_tus.Name = "tb_nom_tus";
-            this.tb_nom_tus.Size = new System.Drawing.Size(168, 20);
-            this.tb_nom_tus.TabIndex = 44;
-            // 
-            // lb_est_ado
-            // 
-            this.lb_est_ado.AutoSize = true;
-            this.lb_est_ado.Location = new System.Drawing.Point(183, 72);
-            this.lb_est_ado.Name = "lb_est_ado";
-            this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
-            this.lb_est_ado.TabIndex = 45;
-            this.lb_est_ado.Text = "Estado";
             // 
             // ads006_03
             // 

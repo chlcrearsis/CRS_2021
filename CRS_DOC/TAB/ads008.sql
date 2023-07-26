@@ -1,11 +1,11 @@
 /*--**********************************************
 ARCHIVO:	ads008.sql	
-TABLA:		Tabla de "Autorizaciones de Usuario sobre el Sistema"
+TABLA:		Tabla de "Autorización Usuario"
 AUTOR:		CREARSIS 3.0.0 (CHL)
-FECHA:		27-10-2020
+FECHA:		21-10-2020
 */--**********************************************
 
-PRINT 'ads008 : Autorizaciones de Usuario sobre el Sistema'
+PRINT 'ads008 : Autorizaciones Usuario'
 CREATE TABLE ads008
 (
 	--** Llave Primaria

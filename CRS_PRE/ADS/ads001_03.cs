@@ -54,16 +54,19 @@ namespace CRS_PRE
         }
 
         // Valida los datos proporcionados
-        protected string Fi_val_dat()
+        private string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio
-            if (tb_ide_mod.Text.Trim() == "")
-                return "DEBE proporcionar el Código del Módulo";            
+            if (tb_ide_mod.Text.Trim() == "") {
+                tb_ide_mod.Focus();
+                return "DEBE proporcionar el Código del Módulo";
+            }
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int cod_gru);
-            if (cod_gru == 0)
-                return "El Código del Módulo NO es válido";            
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim())) { 
+                tb_ide_mod.Focus();
+                return "El Código del Módulo NO es válido";
+            }
 
             // Valida que el campo Abreviación NO este vacio
             if (tb_abr_mod.Text.Trim() == ""){
@@ -75,16 +78,19 @@ namespace CRS_PRE
             if (tb_nom_mod.Text.Trim() == ""){
                 tb_nom_mod.Focus();
                 return "DEBE proporcionar el Nombre del Módulo";
-            }            
+            }
 
             // Valida que el registro este en el sistema
+            Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
-            if (Tabla.Rows.Count == 0){
+            if (Tabla.Rows.Count == 0) {
+                tb_ide_mod.Focus();
                 return "El Módulo NO se encuentra registrado";
             }
 
             // Valida que el modulo no esta deshabilitado
-            if (tb_est_ado.Text.Trim() == "Deshabilitado"){
+            if (tb_est_ado.Text.Trim() == "Deshabilitado") { 
+                tb_ide_mod.Focus();
                 return "El Módulo se encuentra Deshabilitado";
             }
 
@@ -104,8 +110,12 @@ namespace CRS_PRE
                 return "YA existe otra Módulo con el mismo Nombre";
             }
 
+            // Quita caracteres especiales de SQL-Trans
+            tb_abr_mod.Text = tb_abr_mod.Text.Replace("'", "");
+            tb_nom_mod.Text = tb_nom_mod.Text.Replace("'", "");
+
             return "OK";
-        }
+        }              
 
         // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
@@ -116,7 +126,8 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "OK"){
+                if (msg_val != "OK")
+                {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
@@ -124,7 +135,7 @@ namespace CRS_PRE
                 if (msg_res == DialogResult.OK)
                 {
                     // Edita el registro
-                    o_ads001.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_abr_mod.Text.Trim(), tb_nom_mod.Text.Trim());
+                    o_ads001.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_nom_mod.Text.Trim(), tb_abr_mod.Text.Trim());
                     // Actualiza el Formulario Principal
                     frm_pad.Fe_act_frm(int.Parse(tb_ide_mod.Text));
                     // Despliega Mensaje

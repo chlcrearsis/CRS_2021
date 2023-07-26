@@ -19,37 +19,32 @@ namespace CRS_DAT
         public string va_ide_usr = Settings.Default.va_ide_usr;  // ID Usuario
         public string va_pas_usr = Settings.Default.va_pas_usr;  // Contraseña Usuario
 
+        SqlConnection va_cxn_usr = new SqlConnection();
         SqlConnection va_cxn_sql = new SqlConnection();
         SqlCommand va_sql_cmd = new SqlCommand();     //Instancia el Objeto de Comando de SQL
         string Cadena;
 
-        public void Login(string va_ide_uni, string ag_ser_bda , string ag_ide_usr , string ag_pas_usr )
+        public void fe_log_usr(string va_ide_uni, string ag_ser_bda , string ag_ide_usr , string ag_pas_usr )
         {
+            // Obtiene el indice del Servidor y la Instancia
+            int ser_bda = ag_ser_bda.LastIndexOf("\\");
+            int ins_bda = ag_ser_bda.LastIndexOf(":");
+            int nom_bda = ag_ser_bda.Length;
 
-            int ser_bda = 0;
-            int ins_bda = 0;
-            int nom_bda = 0;
-
-            //Obtiene el indice del Servidor y la Instancia
-            ser_bda = ag_ser_bda.LastIndexOf("\\");
-            ins_bda = ag_ser_bda.LastIndexOf(":");
-            nom_bda = ag_ser_bda.Length;
-
-            //Obtiene los datos de Conexion
+            // Obtiene los datos de Conexion
             va_ide_usr = ag_ide_usr;
             va_pas_usr = ag_pas_usr;
             va_ser_bda = ag_ser_bda.Substring(0, ser_bda);
             va_ins_bda = ag_ser_bda.Substring(ser_bda + 1, ins_bda - ser_bda - 1);
             va_nom_bda = ag_ser_bda.Substring(ins_bda + 1, nom_bda - ins_bda - 1);
 
-            //Graba los argumentos de conexion en la Configuración
+            // Graba los argumentos de conexion en la Configuración
             Settings.Default.va_ide_uni = va_ide_uni;
             Settings.Default.va_ser_bda = va_ser_bda;
             Settings.Default.va_ins_bda = va_ins_bda;
             Settings.Default.va_nom_bda = va_nom_bda;
             Settings.Default.va_ide_usr = va_ide_usr;
             Settings.Default.va_pas_usr = va_pas_usr;
-
         }
 
         /// <summary>
@@ -68,10 +63,10 @@ namespace CRS_DAT
                 //Obtiene la Cadena de Conexion
                 Cadena = ("Data Source=" + va_ser_bda + "\\" + va_ins_bda + "; Initial Catalog = " + va_nom_bda + "; User Id = " + va_ide_usr + "; Password = " + va_pas_usr + "");
                 //Coneta con el Servidor
-                if (va_cxn_sql.State == ConnectionState.Closed)
+                if (va_cxn_usr.State == ConnectionState.Closed)
                 {
-                    va_cxn_sql.ConnectionString = Cadena;
-                    va_cxn_sql.Open();
+                    va_cxn_usr.ConnectionString = Cadena;
+                    va_cxn_usr.Open();
                 }
             
                 return "OK";
@@ -84,12 +79,12 @@ namespace CRS_DAT
 
 
         /// <summary>
-        /// Función para comprobar segundas conecciones
+        /// Función para comprobar segundas conecciones (ejm: loguin para autorizar operaciones)
         /// </summary>
         /// <param name="ar_ide_usr"></param>
         /// <param name="ar_pas_usr"></param>
         /// <returns></returns>
-        public string Fe_loguin_2(string ar_ide_usr, string ar_pas_usr)
+        public string Fe_log_sql(string ar_ide_usr, string ar_pas_usr)
         {
             try
             {
@@ -122,11 +117,11 @@ namespace CRS_DAT
         /// <summary>
         /// Cierra la coneccion
         /// </summary>
-        public string fe_cer_cnx()
+        public string fe_cer_cnx_usr()
         {
             try
             {
-                va_cxn_sql.Close();
+                va_cxn_usr.Close();
                 return "OK";
             }
             catch (System.Exception ex)
@@ -136,10 +131,23 @@ namespace CRS_DAT
             }  
         }
 
+        public string fe_cer_cnx_sql()
+        {
+            try
+            {
+                va_cxn_sql.Close();
+                return "OK";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+
 
 
         #region METODOS PARA EJECUTAR CONSULTAS A SQL
- 
+
         /// <summary>
         /// Funcion que Ejecuta comando SQL CON RETORNO
         /// </summary>
@@ -151,20 +159,16 @@ namespace CRS_DAT
             {
                 DataTable dts = new DataTable();
                 fe_abr_cnx();
-                SqlDataAdapter Adaptador = new SqlDataAdapter(StrQuery, va_cxn_sql);
+                SqlDataAdapter Adaptador = new SqlDataAdapter(StrQuery, va_cxn_usr);
                 Adaptador.Fill(dts);
-                fe_cer_cnx();
+               
                 return dts;
             }
             catch (System.Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                //Cierra La conexion depues de ejecutar comando
-                fe_cer_cnx();
-            }
+            
         }
 
         /// <summary>
@@ -190,8 +194,8 @@ namespace CRS_DAT
                 nom_bda = ag_ser_bda.Length;
 
                 //Obtiene los datos de Conexion
-                va_ide_usr = ag_usr_sql;
-                va_pas_usr = ag_pas_sql;
+                //va_ide_usr = ag_usr_sql;
+                //va_pas_usr = ag_pas_sql;
                 va_ser_bda = ag_ser_bda.Substring(0, ser_bda);
                 va_ins_bda = ag_ser_bda.Substring(ser_bda + 1, ins_bda - ser_bda - 1);
                 va_nom_bda = ag_ser_bda.Substring(ins_bda + 1, nom_bda - ins_bda - 1);
@@ -199,14 +203,14 @@ namespace CRS_DAT
                 //Obtiene la Cadena de Conexion
                 Cadena = ("Data Source=" + va_ser_bda + "\\" + va_ins_bda + "; Initial Catalog = " + va_nom_bda + "; User Id = " + va_ide_usr + "; Password = " + va_pas_usr + "");
                 //Coneta con el Servidor
-                if (va_cxn_sql.State == ConnectionState.Closed)
+                if (va_cxn_usr.State == ConnectionState.Closed)
                 {
-                    va_cxn_sql.ConnectionString = Cadena;
-                    va_cxn_sql.Open();
+                    va_cxn_usr.ConnectionString = Cadena;
+                    va_cxn_usr.Open();
                 }
-                SqlDataAdapter Adaptador = new SqlDataAdapter(StrQuery, va_cxn_sql);
+                SqlDataAdapter Adaptador = new SqlDataAdapter(StrQuery, va_cxn_usr);
                 Adaptador.Fill(dts);
-                fe_cer_cnx();
+                //fe_cer_cnx();
                 return dts;
             }
             catch (Exception)
@@ -214,11 +218,7 @@ namespace CRS_DAT
                 DataTable table = new DataTable();
                 return table;
             }
-            finally
-            {
-                //Cierra La conexion depues de ejecutar comando
-                fe_cer_cnx();
-            }
+            
         }
 
         /// <summary>
@@ -239,25 +239,21 @@ namespace CRS_DAT
 
 
                 va_sql_cmd.CommandText = va_cad_sql;   //Llena la Consulta al Objeto Comando de SQL
-                va_sql_cmd.Connection = va_cxn_sql;   //Asigna el objeto Conexion SQL al Comando
+                va_sql_cmd.Connection = va_cxn_usr;   //Asigna el objeto Conexion SQL al Comando
 
                 //Agrega Parametro con la imagen
                 va_sql_cmd.Parameters.Add(va_nom_img, SqlDbType.VarBinary, va_byt_img.Length).Value = va_byt_img;
                 va_sql_cmd.ExecuteNonQuery();      //Ejecuta la Consulta
 
                 //Cierra la Conexion
-                va_cxn_sql.Close();
+                va_cxn_usr.Close();
                 return "OK";
             }
             catch (System.Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                //Cierra La conexion depues de ejecutar comando
-                fe_cer_cnx();
-            }
+            
         }
 
 

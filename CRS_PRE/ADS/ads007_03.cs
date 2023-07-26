@@ -131,8 +131,7 @@ namespace CRS_PRE
             }
             
             
-            if (cl_glo_bal.IsNumeric(tb_win_max.Text) == false)
-            {
+            if (!cl_glo_bal.IsNumeric(tb_win_max.Text.Trim())){
                 tb_win_max.Focus();
                 return "El campo Maximo de ventanas debe ser numerico";
             }
@@ -162,7 +161,7 @@ namespace CRS_PRE
             if (msg_res == DialogResult.OK)
             {
                 //Edita usuario
-                o_ads007.Fe_exe_edi(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
+                o_ads007.Fe_edi_tar(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
                                        tb_dir_ect.Text, tb_ema_usr.Text, int.Parse(tb_win_max.Text),
                                        int.Parse(tb_cod_per.Text));
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);

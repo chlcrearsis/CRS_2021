@@ -161,13 +161,11 @@ namespace CRS_PRE
                         string ide_usr = dg_res_ult.Rows[i].Cells["va_ide_usr"].Value.ToString();
 
                         // Elimina el permiso
-                        o_ads008.Fe_ads008_04(ide_usr, "cmr014", "1", tb_cod_ven.Text);
+                        o_ads008.Fe_eli_min(ide_usr, "cmr014", "1", tb_cod_ven.Text);
 
                         // Habilita Permiso s/Usuario SI esta autorizado
-                        if (chk_val == true)
-                        {
-                            o_ads008.Fe_ads008_03(ide_usr, "cmr014", "1", tb_cod_ven.Text, "");
-                        }
+                        if (chk_val == true)                        
+                            o_ads008.Fe_nue_reg(ide_usr, "cmr014", "1", tb_cod_ven.Text);                        
                     }
                     cl_glo_frm.Cerrar(this);
                 }

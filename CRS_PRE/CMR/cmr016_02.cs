@@ -45,7 +45,7 @@ namespace CRS_PRE
                 return "Debe proporcionar el Codigo";
             }
 
-            if (cl_glo_bal.IsNumeric(tb_cod_act.Text) == false)
+            if (!cl_glo_bal.IsNumeric(tb_cod_act.Text.Trim()))
             {
                 tb_cod_act.Focus();
                 return "El codigo no es valido";

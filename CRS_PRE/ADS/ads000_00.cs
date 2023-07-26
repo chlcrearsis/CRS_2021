@@ -113,7 +113,7 @@ namespace CRS_PRE
                 // Verifica que el usuario y contraseña sean correcta
                 if (fi_val_dat() == true) {
                     // Verifica que el usuario crssql este definido en el servidor
-                    Tabla = new DataTable();
+                    /*Tabla = new DataTable();
                     Tabla = o_ads007.Fe_usr_sql(nom_bda, usr_sql, pas_sql);
                     if (Tabla.Rows.Count == 0) {
                         MessageBox.Show("DEBE registrar el Inicio de Sesión ('" + usr_sql + "') en el SQL-Server", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -132,11 +132,34 @@ namespace CRS_PRE
                             MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                    }
+                    }*/
 
-                    // Guarda datos en la aplicacion
-                    msn_err = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
-                    if (msn_err == "OK") {                         
+                    // INICIA SESION SQL
+                    msn_err = o_ads007.Fe_ing_sis(ide_uni, nom_bda, ide_usr, pas_usr);
+                    if (msn_err == "OK") {
+
+                        // Verifica que el usuario este definido en la BD y asignado los permisos correspondiente
+                        Tabla = o_ads007.Fe_ver_usr(nom_bda, ide_usr, pas_usr);
+                        if (Tabla.Rows.Count == 0)
+                        {
+                            MessageBox.Show("El Usuario ('" + ide_usr + "') NO esta definido en el la BD", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else
+                        {
+                            cod_err = Tabla.Rows[0]["va_cod_err"].ToString();
+                            msn_err = Tabla.Rows[0]["va_msn_err"].ToString();
+                            if (cod_err.CompareTo("0") != 0)
+                            {
+                                MessageBox.Show("ERROR '" + cod_err + "': '" + msn_err + "'", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+
+
+
+
+
                         Program.gl_ide_uni = ide_uni;   // Guarda ID. Unico de Sesión
                         Program.gl_ide_usr = ide_usr;   // Guarda ID. Usuario
                         Program.gl_pas_usr = pas_usr;   // Guarda Contraseña Usuario
@@ -296,7 +319,7 @@ namespace CRS_PRE
                     }
 
                     // Verifica que el usuario este definido y asignado los permisos correspondiente
-                    Tabla = o_ads007.Fe_ver_usr(nom_bda, usr_sql, pas_sql, ide_usr, pas_usr);
+                    Tabla = o_ads007.Fe_ver_usr(nom_bda, ide_usr, pas_usr);
                     if (Tabla.Rows.Count == 0){
                         MessageBox.Show("El Usuario ('" + ide_usr + "') NO está definido en el Servidor", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -310,7 +333,7 @@ namespace CRS_PRE
                     }
 
                     // Guarda datos en la aplicacion
-                    msn_err = o_ads007.Login(ide_uni, nom_bda, ide_usr, pas_usr);
+                    msn_err = o_ads007.Fe_ing_sis(ide_uni, nom_bda, ide_usr, pas_usr);
                     if (msn_err == "OK"){
                         Program.gl_ide_usr = ide_usr;
 

@@ -60,31 +60,44 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio
-            if (tb_ide_mod.Text.Trim() == "")
+            if (tb_ide_mod.Text.Trim() == "") {
+                tb_ide_mod.Focus();
                 return "DEBE proporcionar el Código del Módulo";
+            }
 
             // Valida que el campo código NO este vacio
-            int.TryParse(tb_ide_mod.Text, out int cod_gru);
-            if (cod_gru == 0)
+            if (!cl_glo_bal.IsNumeric(tb_ide_mod.Text.Trim())){
+                tb_ide_mod.Focus();
                 return "El Código del Módulo NO es válido";
+            }
 
             // Verifica SI el Módulo se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(int.Parse(tb_ide_mod.Text));
-            if (Tabla.Rows.Count == 0)
+            if (Tabla.Rows.Count == 0) {
+                tb_ide_mod.Focus();
                 return "El Módulo NO se encuentra registrado";
+            }
 
             // Verifica SI la Aplicacion se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads002.Fe_con_apl(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text);
-            if (Tabla.Rows.Count == 0)
-                return "La Aplicación NO se encuentra registrado";            
+            if (Tabla.Rows.Count == 0){
+                tb_ide_apl.Focus();
+                return "La Aplicación NO se encuentra registrado";
+            }
+
+            // Verifica SI la Aplicacion se encuentra habilitada
+            if (tb_est_ado.Text.Trim() == "Deshabilitado")            
+                return "La Aplicación se encuentra deshabilitada";
 
             // Verifica SI existe otro registro con el mismo Nombre de Aplicación
             Tabla = new DataTable();
             Tabla = o_ads002.Fe_con_nom(tb_nom_apl.Text, tb_ide_apl.Text);
-            if (Tabla.Rows.Count > 0)
-                return "Ya existe otra Aplicación con los mismo Nombre de Aplicación";            
+            if (Tabla.Rows.Count > 0){
+                tb_ide_apl.Focus();
+                return "Ya existe otra Aplicación con los mismo Nombre de Aplicación";
+            }
 
             // Verifica SI la aplicación a editar es reservado por el sistema
             if ((tb_ide_apl.Text.ToString().CompareTo("ads200") == 0) ||
@@ -92,7 +105,11 @@ namespace CRS_PRE
                 (tb_ide_apl.Text.ToString().CompareTo("cmr200") == 0) ||
                 (tb_ide_apl.Text.ToString().CompareTo("res200") == 0) ||
                 (tb_ide_apl.Text.ToString().CompareTo("tes200") == 0))
-                return "No se puede modificar esta Aplicación, es reservado para el sistema";            
+                return "No se puede modificar esta Aplicación, es reservado para el sistema";
+
+            // Quita caracteres especiales de SQL-Trans
+            tb_ide_apl.Text = tb_ide_apl.Text.Replace("'", "");
+            tb_nom_apl.Text = tb_nom_apl.Text.Replace("'", "");
 
             return "OK";
         }
@@ -117,7 +134,7 @@ namespace CRS_PRE
                     // Edita el registro
                     o_ads002.Fe_edi_tar(int.Parse(tb_ide_mod.Text), tb_ide_apl.Text, tb_nom_apl.Text);
                     // Actualiza el Formulario Principal
-                    frm_pad.Fe_act_frm(int.Parse(tb_ide_apl.Text));
+                    frm_pad.Fe_act_frm(tb_ide_apl.Text);
                     // Despliega Mensaje
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Cierra Formulario

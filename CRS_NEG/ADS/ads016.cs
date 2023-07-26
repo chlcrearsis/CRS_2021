@@ -223,7 +223,7 @@ namespace CRS_NEG
             {
                 throw ex;
             }
-        }
+        }        
 
         /// <summary>
         /// Función "Consulta Periodo p/Gestión y Nombre"

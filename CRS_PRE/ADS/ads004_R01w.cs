@@ -64,7 +64,7 @@ namespace CRS_PRE
             ads004_R01.SetParameterValue("vc_nom_emp", va_nom_emp);
             ads004_R01.SetParameterValue("vc_est_ado", vp_est_ado);
             ads004_R01.SetParameterValue("vc_ide_mod", vp_nom_mod);
-            ads004_R01.SetParameterValue("vc_ide_usr", o_ads007.va_ide_usr);
+            ads004_R01.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);
         }
 
         private void Mn_imp_rim_Click(object sender, EventArgs e)
