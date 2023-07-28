@@ -19,6 +19,17 @@ namespace CRS_NEG
         conexion_a ob_con_ecA = new conexion_a();
         StringBuilder cadena;
 
+        public string va_ser_bda;   // Servidor
+        public string va_ins_bda;   // Instancia
+        public string va_nom_bda;   // Base de Datos
+
+        public ads007()
+        {
+            va_ser_bda = ob_con_ecA.va_ser_bda;
+            va_ins_bda = ob_con_ecA.va_ins_bda;
+            va_nom_bda = ob_con_ecA.va_nom_bda;
+        }
+
         /// <summary>
         /// Funcion "Registra Nuevo Usuario"
         /// </summary>

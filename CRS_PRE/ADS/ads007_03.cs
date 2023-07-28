@@ -161,9 +161,9 @@ namespace CRS_PRE
             if (msg_res == DialogResult.OK)
             {
                 //Edita usuario
-                o_ads007.Fe_edi_tar(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
-                                       tb_dir_ect.Text, tb_ema_usr.Text, int.Parse(tb_win_max.Text),
-                                       int.Parse(tb_cod_per.Text));
+                //o_ads007.Fe_edi_tar(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
+                                       //tb_dir_ect.Text, tb_ema_usr.Text, int.Parse(tb_win_max.Text),
+                                       //int.Parse(tb_cod_per.Text));
                 MessageBox.Show("Los datos se grabaron correctamente", "Edita Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 frm_pad.Fe_act_frm(tb_ide_usr.Text);
                 cl_glo_frm.Cerrar(this);

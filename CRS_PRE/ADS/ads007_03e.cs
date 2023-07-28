@@ -161,7 +161,7 @@ namespace CRS_PRE
             if (msg_res == DialogResult.OK)
             {
                 //Edita usuario
-                o_ads007.Fe_cam_tus(tb_ide_usr.Text, frm_dat.Rows[0]["va_tip_usr"].ToString());
+                //o_ads007.Fe_cam_tus(tb_ide_usr.Text, frm_dat.Rows[0]["va_tip_usr"].ToString());
                 MessageBox.Show("Los datos se grabaron correctamente", "Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 frm_pad.Fe_act_frm(tb_ide_usr.Text);
                 cl_glo_frm.Cerrar(this);

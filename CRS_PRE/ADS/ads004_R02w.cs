@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using CRS_NEG;
+using CRS_PRE.ADS;
 
 namespace CRS_PRE
 {
@@ -47,7 +48,7 @@ namespace CRS_PRE
             Tabla = o_ads013.Fe_obt_glo(1, 4);
             va_nom_emp = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
             // Logueo Manual el ReportDocument asociado al Crystal Report
-            ads004_R02.SetDatabaseLogon(o_ads007.va_ide_usr, o_ads007.va_pas_usr, o_ads007.va_ser_bda + "\\" + o_ads007.va_ins_bda, o_ads007.va_nom_bda);
+            ads004_R02.SetDatabaseLogon(Program.gl_ide_usr, Program.gl_pas_usr, Program.gl_ser_bdo + "\\" + Program.gl_ins_bdo, Program.gl_nom_bdo);
             // Paso los datos obtenidos del procedimiento en la anterior ventana
             ads004_R02.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)

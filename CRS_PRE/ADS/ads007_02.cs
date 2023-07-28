@@ -2,24 +2,24 @@
 using System.Data;
 using System.Windows.Forms;
 using CRS_NEG;
-using CRS_PRE;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads007 - Usuario                                      */
+    /*      Opción: Crear Registro                                        */
+    /*       Autor: JEJR - Crearsis             Fecha: 28-07-2023         */
+    /**********************************************************************/
     public partial class ads007_02 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         //Instancias
         ads007 o_ads007 = new ads007();
-        adp002 o_adp002 = new adp002();     // Persona
-        ads006 o_ads006 = new ads006();     // Persona
-
-        DataTable tabla = new DataTable();
-        DataTable tab_ads006 = new DataTable();
-
-        public DataTable tab_adp002 = new DataTable();  // Tabla Persona
+        adp002 o_adp002 = new adp002();
+        ads006 o_ads006 = new ads006();
+        DataTable Tabla = new DataTable();
 
         public ads007_02()
         {
@@ -29,17 +29,23 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
+            // Limpia Campos
+            Fi_lim_pia();
+
+            // Inicializa Campos
+            tb_dir_tra.Text = "C:/Temp";
+
             // obtiene lista de inicios de sesion de SQL
             cb_ini_ses.Items.Clear();
             cb_ini_ses.Items.Add("(Nuevo)");
 
-            tabla = o_ads007.Fe_lis_ini();
-            if (tabla.Rows.Count > 0)
+            Tabla = o_ads007.Fe_lis_ini();
+            if (Tabla.Rows.Count > 0)
             {
                 
-                for (int i = 0; i < tabla.Rows.Count; i++)
+                for (int i = 0; i < Tabla.Rows.Count; i++)
                 {
-                    cb_ini_ses.Items.Add(tabla.Rows[i]["name"].ToString());
+                    cb_ini_ses.Items.Add(Tabla.Rows[i]["name"].ToString());
                 }
             }
             cb_ini_ses.SelectedIndex = 0;
@@ -52,13 +58,25 @@ namespace CRS_PRE
             cb_tip_usr.SelectedIndex = 0;
 
 
-            tb_dir_ect.Text = "C:\\Temp";
-            tb_cod_per.Text = "0";
+            tb_dir_tra.Text = "C:\\Temp";
+            tb_ide_per.Text = "0";
             lb_raz_soc.Text = "";
             tb_ide_usr.Focus();
         }
 
-     
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {
+            tb_ide_usr.Text = string.Empty;
+            tb_nom_usr.Text = string.Empty;
+            tb_tel_usr.Text = string.Empty;
+            tb_car_usr.Text = string.Empty;
+            tb_ema_usr.Text = string.Empty;
+            tb_ide_per.Text = "0";
+            lb_raz_soc.Text = "...";
+            tb_ide_usr.Focus();
+        }
+
 
         private void creaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -108,8 +126,8 @@ namespace CRS_PRE
 
 
             //Verificar 
-            tabla = o_ads007.Fe_con_ide(tb_ide_usr.Text);
-            if(tabla.Rows.Count >0)
+            Tabla = o_ads007.Fe_con_ide(tb_ide_usr.Text);
+            if(Tabla.Rows.Count >0)
             {
                 tb_ide_usr.Focus();
                 return "El usuario que desea crear ya se encuentra registrado";
@@ -124,17 +142,7 @@ namespace CRS_PRE
             return "";
         }
 
-        private void Fi_lim_pia()
-        {
-            cb_ini_ses.SelectedIndex = 0;
-            tb_ide_usr.Clear(); 
-            tb_nom_usr.Clear();
-            tb_tel_usr.Clear();
-            tb_car_usr.Clear();
-            tb_ema_usr.Clear();
-
-            tb_ide_usr.Focus();
-        }
+        
         private void Bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -165,7 +173,7 @@ namespace CRS_PRE
                 {
                     //Registrar usuario
                     o_ads007.Fe_nue_reg(tb_ide_usr.Text, tb_nom_usr.Text, tb_tel_usr.Text, tb_car_usr.Text,
-                        tb_dir_ect.Text, tb_ema_usr.Text, 3, int.Parse(tb_cod_per.Text), 
+                        tb_dir_tra.Text, tb_ema_usr.Text, 3, int.Parse(tb_ide_per.Text), 
                         int.Parse(cb_tip_usr.SelectedValue.ToString()) , usr_new);
 
                     MessageBox.Show("Los datos se grabaron correctamente", "Nuevo Usuario", MessageBoxButtons.OK);
@@ -203,7 +211,7 @@ namespace CRS_PRE
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_cod_per.Text = frm.tb_cod_per.Text;
+                tb_ide_per.Text = frm.tb_cod_per.Text;
 
                 Fi_obt_per();
             }
@@ -216,27 +224,27 @@ namespace CRS_PRE
         }
         private void Fi_obt_per()
         {
-            if (tb_cod_per.Text.Trim() == "")
+            if (tb_ide_per.Text.Trim() == "")
             {
                 MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
                 //tb_cod_per.Focus();
             }
             int val = 0;
-            if (int.TryParse(tb_cod_per.Text, out val) == false)
+            if (int.TryParse(tb_ide_per.Text, out val) == false)
             {
                 //MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
                 //tb_cod_per.Focus();
                 lb_raz_soc.Text = "No Existe";
             }
 
-            tab_adp002 = o_adp002.Fe_con_per(val);
-            if (tab_adp002.Rows.Count == 0)
+            Tabla = o_adp002.Fe_con_per(val);
+            if (Tabla.Rows.Count == 0)
             {
                 lb_raz_soc.Text = "No Existe";
             }
             else
             {
-                lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
+                lb_raz_soc.Text = Tabla.Rows[0]["va_raz_soc"].ToString();
             }
         }
 
