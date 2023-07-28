@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using System.Threading;
 using CRS_NEG;
 using CRS_PRE.INV;
-using CRS_PRE.ADS;
 using System.IO;
 using System.Drawing;
 
@@ -198,7 +197,7 @@ namespace CRS_PRE
             Tabla = o_ads007.Fe_con_ide(ide_usr);
 
             // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
-            if (Convert.ToInt32(Tabla.Rows[0]["va_win_max"]) <= Program.gl_nro_win)
+            if (Convert.ToInt32(Tabla.Rows[0]["va_ven_max"]) <= Program.gl_nro_win)
             {
                 MessageBox.Show("El Usuario YA tiene abierta sus: " + Program.gl_nro_win + " ventanas permitidas ", Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return true;

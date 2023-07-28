@@ -401,15 +401,16 @@ namespace CRS_NEG
         }
 
         /// <summary>
-        /// Lista de Inicios de Sesion
+        /// Lista de Inicios de Sesion creados en el SQL-Server
         /// </summary>
         /// <returns></returns>
-        public DataTable Fe_lis_ini()
+        public DataTable Fe_usr_sql()
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT * FROM sys.syslogins");
+                cadena.AppendLine("SELECT name AS va_ide_usr");
+                cadena.AppendLine("  FROM sys.syslogins");
                 cadena.AppendLine(" WHERE dbcreator = 1");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }

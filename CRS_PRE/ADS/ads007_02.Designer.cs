@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tb_ven_max = new System.Windows.Forms.TextBox();
+            this.lb_ven_max = new System.Windows.Forms.Label();
             this.lb_raz_soc = new System.Windows.Forms.Label();
             this.cb_tip_usr = new System.Windows.Forms.ComboBox();
             this.bt_bus_per = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
-            this.tb_ven_max = new System.Windows.Forms.TextBox();
-            this.lb_ven_max = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,26 @@
             this.groupBox1.Size = new System.Drawing.Size(408, 168);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // tb_ven_max
+            // 
+            this.tb_ven_max.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ven_max.Location = new System.Drawing.Point(357, 115);
+            this.tb_ven_max.MaxLength = 30;
+            this.tb_ven_max.Name = "tb_ven_max";
+            this.tb_ven_max.Size = new System.Drawing.Size(40, 20);
+            this.tb_ven_max.TabIndex = 15;
+            this.tb_ven_max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_ven_max.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ven_max_KeyPress);
+            // 
+            // lb_ven_max
+            // 
+            this.lb_ven_max.AutoSize = true;
+            this.lb_ven_max.Location = new System.Drawing.Point(274, 119);
+            this.lb_ven_max.Name = "lb_ven_max";
+            this.lb_ven_max.Size = new System.Drawing.Size(81, 13);
+            this.lb_ven_max.TabIndex = 14;
+            this.lb_ven_max.Text = "Ventanas Máx.:";
             // 
             // lb_raz_soc
             // 
@@ -116,7 +136,7 @@
             this.bt_bus_per.TabStop = false;
             this.bt_bus_per.Text = "|";
             this.bt_bus_per.UseVisualStyleBackColor = false;
-            this.bt_bus_per.Click += new System.EventHandler(this.Bt_bus_per_Click);
+            this.bt_bus_per.Click += new System.EventHandler(this.bt_bus_per_Click);
             // 
             // tb_ide_per
             // 
@@ -127,8 +147,10 @@
             this.tb_ide_per.Name = "tb_ide_per";
             this.tb_ide_per.Size = new System.Drawing.Size(48, 20);
             this.tb_ide_per.TabIndex = 17;
-            this.tb_ide_per.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tb_ide_per.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cod_per_KeyDown);
+            this.tb_ide_per.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_ide_per.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_ide_per_KeyDown);
+            this.tb_ide_per.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_per_KeyPress);
+            this.tb_ide_per.Validated += new System.EventHandler(this.tb_ide_per_Validated);
             // 
             // label6
             // 
@@ -228,9 +250,9 @@
             "(Nuevo)"});
             this.cb_ini_ses.Location = new System.Drawing.Point(61, 17);
             this.cb_ini_ses.Name = "cb_ini_ses";
-            this.cb_ini_ses.Size = new System.Drawing.Size(103, 21);
+            this.cb_ini_ses.Size = new System.Drawing.Size(93, 21);
             this.cb_ini_ses.TabIndex = 1;
-            this.cb_ini_ses.SelectionChangeCommitted += new System.EventHandler(this.Cb_ini_ses_SelectionChangeCommitted);
+            this.cb_ini_ses.SelectionChangeCommitted += new System.EventHandler(this.cb_ini_ses_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -253,7 +275,7 @@
             // tb_ide_usr
             // 
             this.tb_ide_usr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_usr.Location = new System.Drawing.Point(169, 18);
+            this.tb_ide_usr.Location = new System.Drawing.Point(158, 18);
             this.tb_ide_usr.MaxLength = 15;
             this.tb_ide_usr.Name = "tb_ide_usr";
             this.tb_ide_usr.Size = new System.Drawing.Size(95, 20);
@@ -282,6 +304,7 @@
             this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
+            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 
@@ -295,24 +318,7 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
-            // 
-            // tb_ven_max
-            // 
-            this.tb_ven_max.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ven_max.Location = new System.Drawing.Point(357, 115);
-            this.tb_ven_max.MaxLength = 30;
-            this.tb_ven_max.Name = "tb_ven_max";
-            this.tb_ven_max.Size = new System.Drawing.Size(40, 20);
-            this.tb_ven_max.TabIndex = 15;
-            // 
-            // lb_ven_max
-            // 
-            this.lb_ven_max.AutoSize = true;
-            this.lb_ven_max.Location = new System.Drawing.Point(274, 119);
-            this.lb_ven_max.Name = "lb_ven_max";
-            this.lb_ven_max.Size = new System.Drawing.Size(81, 13);
-            this.lb_ven_max.TabIndex = 14;
-            this.lb_ven_max.Text = "Ventanas Máx.:";
+            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
             // ads007_02
             // 

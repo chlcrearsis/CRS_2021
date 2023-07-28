@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_nue_reg = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,17 +62,17 @@
             this.tb_ide_usr = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_ide_usr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_usr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_tus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_car_usr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.lb_nom_tus = new System.Windows.Forms.Label();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_tip_usr = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.va_ide_usr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_usr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_car_usr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_tus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -94,7 +94,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(25, 63);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(556, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(436, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
@@ -194,7 +194,7 @@
             // mn_lis_usr
             // 
             this.mn_lis_usr.Name = "mn_lis_usr";
-            this.mn_lis_usr.Size = new System.Drawing.Size(180, 22);
+            this.mn_lis_usr.Size = new System.Drawing.Size(161, 22);
             this.mn_lis_usr.Text = "&Lista de usuarios";
             this.mn_lis_usr.Click += new System.EventHandler(this.mn_lis_usr_Click);
             // 
@@ -270,7 +270,7 @@
             this.groupBox1.Controls.Add(this.tb_ide_usr);
             this.groupBox1.Location = new System.Drawing.Point(2, -4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(587, 60);
+            this.groupBox1.Size = new System.Drawing.Size(639, 60);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -356,7 +356,7 @@
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(2, 51);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(587, 221);
+            this.groupBox2.Size = new System.Drawing.Size(639, 221);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             // 
@@ -367,30 +367,30 @@
             this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_ide_usr,
             this.va_nom_usr,
-            this.va_nom_tus,
             this.va_car_usr,
+            this.va_nom_tus,
             this.va_est_ado});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle2;
             this.dg_res_ult.Location = new System.Drawing.Point(4, 9);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -398,45 +398,12 @@
             this.dg_res_ult.RowHeadersVisible = false;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(580, 207);
+            this.dg_res_ult.Size = new System.Drawing.Size(631, 207);
             this.dg_res_ult.TabIndex = 35;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
             this.dg_res_ult.Enter += new System.EventHandler(this.dg_res_ult_Enter);
-            // 
-            // va_ide_usr
-            // 
-            this.va_ide_usr.HeaderText = "Codigo";
-            this.va_ide_usr.Name = "va_ide_usr";
-            this.va_ide_usr.ReadOnly = true;
-            this.va_ide_usr.Width = 80;
-            // 
-            // va_nom_usr
-            // 
-            this.va_nom_usr.HeaderText = "Nombre";
-            this.va_nom_usr.Name = "va_nom_usr";
-            this.va_nom_usr.ReadOnly = true;
-            this.va_nom_usr.Width = 170;
-            // 
-            // va_nom_tus
-            // 
-            this.va_nom_tus.HeaderText = "Tip. Usuario";
-            this.va_nom_tus.Name = "va_nom_tus";
-            this.va_nom_tus.ReadOnly = true;
-            this.va_nom_tus.Width = 110;
-            // 
-            // va_car_usr
-            // 
-            this.va_car_usr.HeaderText = "Cargo";
-            this.va_car_usr.Name = "va_car_usr";
-            this.va_car_usr.ReadOnly = true;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
             // 
             // gb_ctr_btn
             // 
@@ -446,7 +413,7 @@
             this.gb_ctr_btn.Enabled = false;
             this.gb_ctr_btn.Location = new System.Drawing.Point(105, 267);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(484, 40);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(536, 40);
             this.gb_ctr_btn.TabIndex = 32;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -466,7 +433,7 @@
             this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(329, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(375, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 46;
@@ -481,7 +448,7 @@
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(407, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(453, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 45;
@@ -492,7 +459,6 @@
             // bt_tip_usr
             // 
             this.bt_tip_usr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            this.bt_tip_usr.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_tip_usr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_tip_usr.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.bt_tip_usr.Location = new System.Drawing.Point(4, 10);
@@ -501,7 +467,6 @@
             this.bt_tip_usr.TabIndex = 9;
             this.bt_tip_usr.Text = "&Tipo Usuario";
             this.bt_tip_usr.UseVisualStyleBackColor = false;
-            this.bt_tip_usr.Visible = false;
             this.bt_tip_usr.Click += new System.EventHandler(this.bt_tip_usr_Click);
             // 
             // groupBox3
@@ -513,11 +478,45 @@
             this.groupBox3.TabIndex = 33;
             this.groupBox3.TabStop = false;
             // 
+            // va_ide_usr
+            // 
+            this.va_ide_usr.HeaderText = "Codigo";
+            this.va_ide_usr.Name = "va_ide_usr";
+            this.va_ide_usr.ReadOnly = true;
+            this.va_ide_usr.Width = 80;
+            // 
+            // va_nom_usr
+            // 
+            this.va_nom_usr.HeaderText = "Nombre";
+            this.va_nom_usr.Name = "va_nom_usr";
+            this.va_nom_usr.ReadOnly = true;
+            this.va_nom_usr.Width = 170;
+            // 
+            // va_car_usr
+            // 
+            this.va_car_usr.HeaderText = "Cargo";
+            this.va_car_usr.Name = "va_car_usr";
+            this.va_car_usr.ReadOnly = true;
+            this.va_car_usr.Width = 150;
+            // 
+            // va_nom_tus
+            // 
+            this.va_nom_tus.HeaderText = "Tip. Usuario";
+            this.va_nom_tus.Name = "va_nom_tus";
+            this.va_nom_tus.ReadOnly = true;
+            this.va_nom_tus.Width = 110;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
+            // 
             // ads007_01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 308);
+            this.ClientSize = new System.Drawing.Size(644, 308);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -587,8 +586,8 @@
         public System.Windows.Forms.Label lb_nom_usr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_ide_usr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_usr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tus;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_car_usr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_tus;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
     }
 }

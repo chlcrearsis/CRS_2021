@@ -206,22 +206,15 @@ namespace CRS_NEG
         /// <summary>
         /// Funcion "LISTA TIPO DE USUARIO"
         /// </summary>
-        /// <param name="est_ado">Estado (0=Todos; 1=Habilitado; 2=Deshabilitado)</param>
+        /// <param name="est_ado">Estado (H=Habilitado; N=Deshabilitado; T=Todos; )</param>
         /// <returns></returns>
-        public DataTable Fe_lis_tus(string est_ado = "0")
+        public DataTable Fe_lis_tus(string est_ado = "T")
         {
             try
             {
                 cadena = new StringBuilder();
                 cadena.AppendLine("SELECT va_ide_tus, va_nom_tus, va_des_tus, va_est_ado");
-                cadena.AppendLine("  FROM ads006");
-                switch (est_ado)
-                {
-                    case "0": est_ado = "T"; break;
-                    case "1": est_ado = "H"; break;
-                    case "2": est_ado = "N"; break;
-                }
-
+                cadena.AppendLine("  FROM ads006");                
                 if (est_ado != "T")
                     cadena.AppendLine(" WHERE va_est_ado = '" + est_ado + "'");
 
