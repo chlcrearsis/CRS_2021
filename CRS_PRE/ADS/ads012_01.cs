@@ -90,7 +90,7 @@ namespace CRS_PRE
             tb_ide_usr.Text = cod_usr;
             lb_nom_apl.Text = ide_frm;
 
-            tab_ads007 = o_ads007.Fe_con_usu(tb_ide_usr.Text);
+            tab_ads007 = o_ads007.Fe_con_ide(tb_ide_usr.Text);
             tb_nom_usr.Text = tab_ads007.Rows[0]["va_nom_usr"].ToString();
 
             //// Recrea todas las opciones del menu en el arbol

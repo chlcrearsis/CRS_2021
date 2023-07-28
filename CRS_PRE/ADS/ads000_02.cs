@@ -49,7 +49,7 @@ namespace CRS_PRE
 
             // Lee datos del Usuario Logueado
             Tabla = new DataTable();
-            Tabla = o_ads007.Fe_con_usu(Program.gl_ide_usr);
+            Tabla = o_ads007.Fe_con_ide(Program.gl_ide_usr);
             if (Tabla.Rows.Count > 0){
                 lb_ide_usr.Text = Tabla.Rows[0]["va_ide_usr"].ToString();
                 lb_nom_usr.Text = Tabla.Rows[0]["va_nom_usr"].ToString();
@@ -195,7 +195,7 @@ namespace CRS_PRE
         {
             // Lee datos del Usuario Logueado
             Tabla = new DataTable();
-            Tabla = o_ads007.Fe_con_usu(ide_usr);
+            Tabla = o_ads007.Fe_con_ide(ide_usr);
 
             // Verifica si el usuario tiene abiertas el maximo de ventanas permitidas
             if (Convert.ToInt32(Tabla.Rows[0]["va_win_max"]) <= Program.gl_nro_win)

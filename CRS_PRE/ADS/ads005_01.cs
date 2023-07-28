@@ -325,6 +325,14 @@ namespace CRS_PRE
                 fi_sel_fil(int.Parse(tb_ges_tio.Text), tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));            
         }
 
+        // Evento Validated: Gestión
+        private void tb_ges_tio_Validated(object sender, EventArgs e)
+        {
+            fi_con_sel();
+            if (lb_nom_tal.Text != "NO Existe")
+                fi_sel_fil(int.Parse(tb_ges_tio.Text), tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
+        }
+
         // Evento KeyPress: Nro. Talonario
         private void tb_nro_tal_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -335,15 +343,7 @@ namespace CRS_PRE
         private void tb_ges_tio_KeyPress(object sender, KeyPressEventArgs e)
         {
             cl_glo_bal.NotNumeric(e);
-        }
-
-        // Evento Validated: Gestión
-        private void tb_ges_tio_Validated(object sender, EventArgs e)
-        {
-            fi_con_sel();
-            if (lb_nom_tal.Text != "NO Existe")
-                fi_sel_fil(int.Parse(tb_ges_tio.Text), tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));            
-        }
+        }        
 
         // Evento SelectionChanged: DataGridView Resultado
         private void dg_res_ult_SelectionChanged(object sender, EventArgs e)
@@ -448,7 +448,7 @@ namespace CRS_PRE
 
         private void mn_eli_min_Click(object sender, EventArgs e)
         {
-            // Verifica concurrencia de datos para consultar
+            // Verifica concurrencia de datos para eliminar
             if (fi_ver_dat(int.Parse(tb_ges_tio.Text), tb_ide_doc.Text, int.Parse(tb_nro_tal.Text)) == false)
                 return;
 

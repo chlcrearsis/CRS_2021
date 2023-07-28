@@ -33,7 +33,7 @@ namespace CRS_PRE
             cb_ini_ses.Items.Clear();
             cb_ini_ses.Items.Add("(Nuevo)");
 
-            tabla = o_ads007.Fe_lis_usu();
+            tabla = o_ads007.Fe_lis_ini();
             if (tabla.Rows.Count > 0)
             {
                 
@@ -108,7 +108,7 @@ namespace CRS_PRE
 
 
             //Verificar 
-            tabla = o_ads007.Fe_con_usu(tb_ide_usr.Text);
+            tabla = o_ads007.Fe_con_ide(tb_ide_usr.Text);
             if(tabla.Rows.Count >0)
             {
                 tb_ide_usr.Focus();

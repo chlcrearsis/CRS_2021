@@ -203,7 +203,7 @@ namespace CRS_PRE
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_usr_ges.Text = frm.tb_sel_bus.Text;
+                tb_usr_ges.Text = frm.tb_ide_usr.Text;
             }
         }
    

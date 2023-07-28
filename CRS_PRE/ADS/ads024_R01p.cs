@@ -101,7 +101,7 @@ namespace CRS_PRE
         void Fi_obt_usr(int ini_fin, string ide_usr)
         {
             // Obtiene ide y nombre del usuario
-            tabla = o_ads007.Fe_con_usu(ide_usr);
+            tabla = o_ads007.Fe_con_ide(ide_usr);
             if (tabla.Rows.Count == 0)
             {
                 if (ini_fin == 1)
@@ -140,12 +140,12 @@ namespace CRS_PRE
             {
                 if (ini_fin == 1)
                 {
-                    tb_usr_ini.Text = frm.tb_sel_bus.Text;
+                    tb_usr_ini.Text = frm.tb_ide_usr.Text;
                     Fi_obt_usr(1, tb_usr_ini.Text);
                 }
                 else
                 {
-                    tb_usr_fin.Text = frm.tb_sel_bus.Text;
+                    tb_usr_fin.Text = frm.tb_ide_usr.Text;
                     Fi_obt_usr(2, tb_usr_fin.Text);
                 }
             }

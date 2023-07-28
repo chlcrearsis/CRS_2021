@@ -103,7 +103,7 @@ namespace CRS_PRE
                 return false;
             }
 
-            tabla = o_ads007.Fe_con_usu(ide_usr);
+            tabla = o_ads007.Fe_con_ide(ide_usr);
             if (tabla.Rows.Count == 0)
             {
                 tb_ide_usr.Focus();
@@ -196,7 +196,7 @@ namespace CRS_PRE
                 return false;
             }
 
-            tabla = o_ads007.Fe_con_usu(ide_usr);
+            tabla = o_ads007.Fe_con_ide(ide_usr);
             if(tabla.Rows.Count == 0)
             {
                 tb_ide_usr.Focus();
