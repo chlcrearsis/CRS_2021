@@ -40,7 +40,8 @@ namespace CRS_NEG
         /// <param name="dir_pri">Direccion Principal</param>
         /// <param name="dir_ent">Direccion de Entrega</param>
         /// <param name="ema_ail">Email</param>
-        /// <param name="ubi_gps">Ubicación Geografica</param>
+        /// <param name="ubi_lat">Ubicación Geografica Latitud</param>
+        /// <param name="ubi_lon">Ubicación Geografica Longitud</param>
         /// <param name="cod_ven">Código de Vendedor Asignado</param>
         /// <param name="cod_cob">Código de Cobrador Asignado</param>
         /// <param name="tip_atr">Array Tipo de Atributo</param>
@@ -49,8 +50,8 @@ namespace CRS_NEG
         public void Fe_nue_reg(int cod_per,    int cod_gru, string tip_per, string nom_bre, string ape_pat,
                             string ape_mat, string raz_soc, string nom_fac,   long ruc_nit, string sex_per,
                             string fec_nac, string tip_doc, double nro_doc, string ext_doc, string tel_per, 
-                            string cel_ula, string tel_fij, string dir_pri, string dir_ent, string ema_ail, SqlGeography ubi_gps, 
-                               int cod_ven,    int cod_cob, string tip_atr, string ide_atr){
+                            string cel_ula, string tel_fij, string dir_pri, string dir_ent, string ema_ail,
+                            string ubi_lat, string ubi_lon, int cod_ven,    int cod_cob, string tip_atr, string ide_atr){
             try
             {
                 cadena = new StringBuilder();
@@ -59,7 +60,7 @@ namespace CRS_NEG
                 cadena.AppendFormat("'" + ape_mat + "','" + raz_soc + "','" + nom_fac + "', " + ruc_nit + ", '" + sex_per + "',");
                 cadena.AppendFormat(" " + fec_nac + ", '" + tip_doc + "', " + nro_doc + ", '" + ext_doc + "','" + tel_per + "',");
                 cadena.AppendFormat("'" + cel_ula + "','" + tel_fij + "','" + dir_pri + "','" + dir_ent + "','" + ema_ail + "',");
-                cadena.AppendFormat("'" + ubi_gps + "', " + cod_ven + ",  " + cod_cob + ", '" + tip_atr + "','" + ide_atr + "'");
+                cadena.AppendFormat("'" + ubi_lat + "','" + ubi_lon + "', " + cod_ven + ",  " + cod_cob + ", '" + tip_atr + "','" + ide_atr + "'");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
 
             }catch (Exception ex){

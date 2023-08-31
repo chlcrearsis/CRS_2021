@@ -45,7 +45,7 @@ namespace CRS_NEG
             {
                 cadena = " INSERT INTO cmr003 VALUES('" + ar_ide_suc + "' , '" + ar_nom_suc + "','" + ar_des_suc  + "'" + 
                      ",'" + ar_dto_suc + "', '" + ar_ciu_suc +"', '"+ ar_dir_suc + "', '"+ ar_enc_suc + "', '" + ar_tel_suc + "'," +
-                     "'" + ar_cel_suc + "','" + ar_cla_wif + "','null','H')";
+                     "'" + ar_cel_suc + "','" + ar_cla_wif + "','0','0','H')";
 
                 ob_con_ecA.fe_exe_sql(cadena);
 

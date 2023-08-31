@@ -33,7 +33,8 @@ CREATE TABLE adp002
 	va_dir_pri	VARCHAR(120) NOT NULL DEFAULT(''),	--** Direccion Principal
 	va_dir_ent	VARCHAR(120) NOT NULL DEFAULT(''),	--** Direccion de Entrega
 	va_ema_ail	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Email
-	va_ubi_gps	GEOGRAPHY,		                    --** Ubicación Geografica
+	va_ubi_lat	VARCHAR(30)	 NOT NULL DEFAULT('0'),	--** Ubicación Geografica latitud
+	va_ubi_lon	VARCHAR(30)	 NOT NULL DEFAULT('0'),	--** Ubicación Geografica longitud
 	va_cod_ven	INT			 NOT NULL DEFAULT(0),	--** Código de Vendedor Asignado
 	va_cod_cob	INT			 NOT NULL DEFAULT(0),	--** Código de Cobrador Asignado	   	    	  	   		
 	va_est_ado	CHAR(01)	 NOT NULL DEFAULT(''),	--** Estado(H=Habilitado; N=Deshabilitado)
