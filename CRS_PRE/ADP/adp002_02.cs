@@ -710,7 +710,9 @@ namespace CRS_PRE
                 msg_res = MessageBox.Show("Esta seguro de registrar la informacion?", Text, MessageBoxButtons.OKCancel);
                 if (msg_res == DialogResult.OK)
                 {
-                    SqlGeography ubi_gps = SqlGeography.Null;
+                    //SqlGeography ubi_gps = SqlGeography.Null;
+                    string ubi_lat = "0";
+                    string ubi_lon = "0";
                     string tip_per = cb_tip_per.Text.Substring(0, 1);
                     string nom_bre = tb_nom_bre.Text.Trim();
                     string ape_pat = tb_ape_pat.Text.Trim();
@@ -748,8 +750,8 @@ namespace CRS_PRE
                     // Registrar Persona
                     o_adp002.Fe_nue_reg(cod_per, cod_gru, tip_per, nom_bre, ape_pat, ape_mat, raz_soc,
                                         nom_fac, ruc_nit, sex_per, fec_nac, tip_doc, nro_doc, ext_doc,
-                                        tel_per, cel_ula, tel_fij, dir_pri, dir_ent, ema_ail, ubi_gps,
-                                        cod_ven, cod_cob, tip_atr, ide_atr);
+                                        tel_per, cel_ula, tel_fij, dir_pri, dir_ent, ema_ail, ubi_lat,
+                                        ubi_lon, cod_ven, cod_cob, tip_atr, ide_atr);
 
                     MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK);
                     frm_pad.Fe_act_frm(int.Parse(tb_cod_per.Text));
