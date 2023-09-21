@@ -16,6 +16,8 @@ CREATE TABLE ads008
 	va_ide_tre	VARCHAR(15)  NOT NULL DEFAULT(''),	--** Identificador Tres
 	--** Atributos
 	va_ide_int	INT	         NOT NULL DEFAULT(0),	--** Identificador Entero
+	va_usr_reg 	VARCHAR(15)  NOT NULL DEFAULT(''),	--** ID. Usuario de Registro
+	va_fch_reg  DATETIME                            --** Fecha y Hora de Registro
 
 CONSTRAINT pk1_ads008 PRIMARY KEY(va_ide_usr, va_ide_tab, va_ide_uno, 
                                   va_ide_dos, va_ide_tre)

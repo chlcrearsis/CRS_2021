@@ -10,8 +10,8 @@ CREATE TABLE inv002
 va_ide_gru		SMALLINT		NOT NULL,	--Grupo de Almacen (4 numeros)
 va_cod_bod		INT				NOT NULL,	--Codigo deL ALMACEN (#####) -> compuesto por (va_cod_gru , va_nro_bod)	
 
-va_nom_bod		VARCHAR(40)		NOT NULL,	--Nombre del almacen
-va_des_bod		VARCHAR(160)	NOT NULL,	--Descripcion del almacen
+va_nom_bod		VARCHAR(60)		NOT NULL,	--Nombre del almacen
+va_des_bod		VARCHAR(120)	NOT NULL,	--Descripcion del almacen
 va_dir_bod		VARCHAR(200),				--Direccion del almacen
 va_fec_ctr		DATE			NOT NULL,	--ULTIMA FECHA CONTROL  DEL ALMACEN
 va_mon_inv		CHAR(01)		NOT NULL,	--Moneda del inventario B=Bolivianos ; U=Dolares

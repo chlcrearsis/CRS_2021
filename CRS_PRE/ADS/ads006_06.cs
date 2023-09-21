@@ -74,7 +74,7 @@ namespace CRS_PRE
 
             // Valida que NO este registrado ningun Usuario al Tipo de Usuario
             Tabla = o_ads007.Fe_con_tus(int.Parse(tb_ide_tus.Text), "T");
-            if (Tabla.Rows.Count == 0)
+            if (Tabla.Rows.Count > 0)
                 return "Hay " + Tabla.Rows.Count + " Usuarios relacionadas con el Tipo de Usuario " + tb_nom_tus.Text;
 
 
@@ -90,7 +90,7 @@ namespace CRS_PRE
             {
                 // funcion para validar datos
                 string msg_val = Fi_val_dat();
-                if (msg_val != "")
+                if (msg_val != "OK")
                 {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;

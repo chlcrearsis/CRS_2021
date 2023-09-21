@@ -35,18 +35,18 @@
             this.cb_tip_usr = new System.Windows.Forms.ComboBox();
             this.bt_bus_per = new System.Windows.Forms.Button();
             this.tb_ide_per = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lb_ide_per = new System.Windows.Forms.Label();
+            this.lb_tel_usr = new System.Windows.Forms.Label();
             this.tb_ema_usr = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lb_ema_usr = new System.Windows.Forms.Label();
             this.tb_dir_tra = new System.Windows.Forms.TextBox();
             this.tb_car_usr = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lb_dir_tra = new System.Windows.Forms.Label();
+            this.lb_car_usr = new System.Windows.Forms.Label();
             this.tb_nom_usr = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lb_nom_usr = new System.Windows.Forms.Label();
             this.cb_ini_ses = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lb_ide_usr = new System.Windows.Forms.Label();
             this.tb_tel_usr = new System.Windows.Forms.TextBox();
             this.tb_ide_usr = new System.Windows.Forms.TextBox();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
@@ -64,18 +64,18 @@
             this.groupBox1.Controls.Add(this.cb_tip_usr);
             this.groupBox1.Controls.Add(this.bt_bus_per);
             this.groupBox1.Controls.Add(this.tb_ide_per);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lb_ide_per);
+            this.groupBox1.Controls.Add(this.lb_tel_usr);
             this.groupBox1.Controls.Add(this.tb_ema_usr);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lb_ema_usr);
             this.groupBox1.Controls.Add(this.tb_dir_tra);
             this.groupBox1.Controls.Add(this.tb_car_usr);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lb_dir_tra);
+            this.groupBox1.Controls.Add(this.lb_car_usr);
             this.groupBox1.Controls.Add(this.tb_nom_usr);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lb_nom_usr);
             this.groupBox1.Controls.Add(this.cb_ini_ses);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lb_ide_usr);
             this.groupBox1.Controls.Add(this.tb_tel_usr);
             this.groupBox1.Controls.Add(this.tb_ide_usr);
             this.groupBox1.Location = new System.Drawing.Point(3, -4);
@@ -152,23 +152,23 @@
             this.tb_ide_per.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_per_KeyPress);
             this.tb_ide_per.Validated += new System.EventHandler(this.tb_ide_per_Validated);
             // 
-            // label6
+            // lb_ide_per
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 143);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Persona";
+            this.lb_ide_per.AutoSize = true;
+            this.lb_ide_per.Location = new System.Drawing.Point(13, 143);
+            this.lb_ide_per.Name = "lb_ide_per";
+            this.lb_ide_per.Size = new System.Drawing.Size(46, 13);
+            this.lb_ide_per.TabIndex = 16;
+            this.lb_ide_per.Text = "Persona";
             // 
-            // label3
+            // lb_tel_usr
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Telefono";
+            this.lb_tel_usr.AutoSize = true;
+            this.lb_tel_usr.Location = new System.Drawing.Point(10, 69);
+            this.lb_tel_usr.Name = "lb_tel_usr";
+            this.lb_tel_usr.Size = new System.Drawing.Size(49, 13);
+            this.lb_tel_usr.TabIndex = 6;
+            this.lb_tel_usr.Text = "Telefono";
             // 
             // tb_ema_usr
             // 
@@ -179,14 +179,14 @@
             this.tb_ema_usr.Size = new System.Drawing.Size(336, 20);
             this.tb_ema_usr.TabIndex = 11;
             // 
-            // label5
+            // lb_ema_usr
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Email";
+            this.lb_ema_usr.AutoSize = true;
+            this.lb_ema_usr.Location = new System.Drawing.Point(27, 94);
+            this.lb_ema_usr.Name = "lb_ema_usr";
+            this.lb_ema_usr.Size = new System.Drawing.Size(32, 13);
+            this.lb_ema_usr.TabIndex = 10;
+            this.lb_ema_usr.Text = "Email";
             // 
             // tb_dir_tra
             // 
@@ -206,23 +206,23 @@
             this.tb_car_usr.Size = new System.Drawing.Size(187, 20);
             this.tb_car_usr.TabIndex = 9;
             // 
-            // label7
+            // lb_dir_tra
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 118);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Directorio";
+            this.lb_dir_tra.AutoSize = true;
+            this.lb_dir_tra.Location = new System.Drawing.Point(7, 118);
+            this.lb_dir_tra.Name = "lb_dir_tra";
+            this.lb_dir_tra.Size = new System.Drawing.Size(52, 13);
+            this.lb_dir_tra.TabIndex = 12;
+            this.lb_dir_tra.Text = "Directorio";
             // 
-            // label4
+            // lb_car_usr
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(173, 70);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Cargo";
+            this.lb_car_usr.AutoSize = true;
+            this.lb_car_usr.Location = new System.Drawing.Point(173, 70);
+            this.lb_car_usr.Name = "lb_car_usr";
+            this.lb_car_usr.Size = new System.Drawing.Size(35, 13);
+            this.lb_car_usr.TabIndex = 8;
+            this.lb_car_usr.Text = "Cargo";
             // 
             // tb_nom_usr
             // 
@@ -233,14 +233,14 @@
             this.tb_nom_usr.Size = new System.Drawing.Size(336, 20);
             this.tb_nom_usr.TabIndex = 5;
             // 
-            // label2
+            // lb_nom_usr
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Nombre";
+            this.lb_nom_usr.AutoSize = true;
+            this.lb_nom_usr.Location = new System.Drawing.Point(15, 46);
+            this.lb_nom_usr.Name = "lb_nom_usr";
+            this.lb_nom_usr.Size = new System.Drawing.Size(44, 13);
+            this.lb_nom_usr.TabIndex = 4;
+            this.lb_nom_usr.Text = "Nombre";
             // 
             // cb_ini_ses
             // 
@@ -254,14 +254,14 @@
             this.cb_ini_ses.TabIndex = 1;
             this.cb_ini_ses.SelectionChangeCommitted += new System.EventHandler(this.cb_ini_ses_SelectionChangeCommitted);
             // 
-            // label1
+            // lb_ide_usr
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Codigo";
+            this.lb_ide_usr.AutoSize = true;
+            this.lb_ide_usr.Location = new System.Drawing.Point(19, 21);
+            this.lb_ide_usr.Name = "lb_ide_usr";
+            this.lb_ide_usr.Size = new System.Drawing.Size(40, 13);
+            this.lb_ide_usr.TabIndex = 0;
+            this.lb_ide_usr.Text = "Codigo";
             // 
             // tb_tel_usr
             // 
@@ -343,22 +343,22 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_ide_usr;
         private System.Windows.Forms.TextBox tb_ide_usr;
         private System.Windows.Forms.ComboBox cb_ini_ses;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lb_tel_usr;
         private System.Windows.Forms.TextBox tb_nom_usr;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lb_nom_usr;
         private System.Windows.Forms.TextBox tb_tel_usr;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lb_ide_per;
         private System.Windows.Forms.TextBox tb_ema_usr;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lb_ema_usr;
         private System.Windows.Forms.TextBox tb_car_usr;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lb_car_usr;
         private System.Windows.Forms.Button bt_bus_per;
         public System.Windows.Forms.TextBox tb_ide_per;
         private System.Windows.Forms.TextBox tb_dir_tra;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lb_dir_tra;
         private System.Windows.Forms.ComboBox cb_tip_usr;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
         private System.Windows.Forms.Button bt_ace_pta;

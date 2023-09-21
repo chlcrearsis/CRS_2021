@@ -35,7 +35,7 @@ namespace CRS_PRE
             tb_doc_ini.Text = "AAA";
             lb_ndo_ini.Text = "...";
             tb_doc_fin.Text = "ZZZ";
-            lb_ndo_fin.Text = "...";
+            lb_ndo_fin.Text = "...";            
         }
 
         /// <summary>
@@ -120,7 +120,18 @@ namespace CRS_PRE
                 lb_nom_mod.Text = "...";
             }else{
                 tb_ide_mod.Text = Tabla.Rows[0]["va_ide_mod"].ToString().Trim();
-                lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString().Trim();
+                lb_nom_mod.Text = Tabla.Rows[0]["va_abr_mod"].ToString().Trim() + " - " +
+                                  Tabla.Rows[0]["va_nom_mod"].ToString().Trim();
+
+                // Obtiene el primer y ultimo documento del Módulo
+                Tabla = new DataTable();
+                Tabla = o_ads003.Fe_con_mod(int.Parse(tb_ide_mod.Text.Trim()));
+                if (Tabla.Rows.Count > 0) {
+                    tb_doc_ini.Text = Tabla.Rows[0]["va_ide_doc"].ToString().Trim();
+                    lb_ndo_ini.Text = Tabla.Rows[0]["va_nom_doc"].ToString().Trim();
+                    tb_doc_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_ide_doc"].ToString().Trim();
+                    lb_ndo_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_nom_doc"].ToString().Trim();
+                }
             }
         }
 
@@ -141,7 +152,7 @@ namespace CRS_PRE
                     tb_doc_ini.Text = Tabla.Rows[0]["va_ide_doc"].ToString().Trim();
                     lb_ndo_ini.Text = Tabla.Rows[0]["va_nom_doc"].ToString().Trim();
                 }else {
-                    tb_doc_ini.Text = Tabla.Rows[0]["va_ide_doc"].ToString().Trim();
+                    tb_doc_fin.Text = Tabla.Rows[0]["va_ide_doc"].ToString().Trim();
                     lb_ndo_fin.Text = Tabla.Rows[0]["va_nom_doc"].ToString().Trim();
                 }
             }
@@ -287,10 +298,11 @@ namespace CRS_PRE
             Tabla = o_ads004.Fe_inf_R02(ide_mod, doc_ini, doc_fin);
 
             // Genera el Informe
-            ads004_R02w frm = new ads004_R02w();            
-            frm.vp_ide_mod = ide_mod;
-            frm.vp_doc_ini = doc_ini;
-            frm.vp_doc_fin = doc_fin;
+            ads004_R02w frm = new ads004_R02w{
+                vp_ide_mod = lb_nom_mod.Text.Trim(),
+                vp_doc_ini = doc_ini,
+                vp_doc_fin = doc_fin
+            };
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

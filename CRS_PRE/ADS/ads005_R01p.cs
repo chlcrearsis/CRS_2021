@@ -17,9 +17,7 @@ namespace CRS_PRE
         public dynamic frm_pad;
         public int frm_tip;
         // Instancias
-        ads001 o_ads001 = new ads001();
         ads003 o_ads003 = new ads003();
-        ads004 o_ads004 = new ads004();
         ads005 o_ads005 = new ads005();
         ads013 o_ads013 = new ads013();
         ads016 o_ads016 = new ads016();
@@ -49,6 +47,16 @@ namespace CRS_PRE
             Tabla = o_ads013.Fe_obt_glo(1, 2);
             if (Tabla.Rows.Count > 0)
                 tb_ges_tio.Text = Tabla.Rows[0]["va_glo_ent"].ToString();
+
+            /* Obtiene el Documento Incial y Final */
+            Tabla = new DataTable();
+            Tabla = o_ads003.Fe_lis_doc("1");
+            if (Tabla.Rows.Count > 0){
+                tb_doc_ini.Text = Tabla.Rows[0]["va_ide_doc"].ToString().Trim();
+                lb_ndo_ini.Text = Tabla.Rows[0]["va_nom_doc"].ToString().Trim();
+                tb_doc_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_ide_doc"].ToString().Trim();
+                lb_ndo_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_nom_doc"].ToString().Trim();
+            }
         }
 
         /// <summary>
@@ -244,10 +252,11 @@ namespace CRS_PRE
             Tabla = o_ads005.Fe_inf_R01(ges_tio, doc_ini, doc_fin);
 
             // Genera el Informe
-            ads005_R01w frm = new ads005_R01w();            
-            frm.vp_ges_tio = ges_tio;
-            frm.vp_doc_ini = doc_ini;
-            frm.vp_doc_fin = doc_fin;
+            ads005_R01w frm = new ads005_R01w{
+                vp_ges_tio = ges_tio,
+                vp_doc_ini = doc_ini,
+                vp_doc_fin = doc_fin
+            };
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

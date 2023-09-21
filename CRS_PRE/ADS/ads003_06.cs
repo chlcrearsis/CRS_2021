@@ -88,8 +88,7 @@ namespace CRS_PRE
             Tabla = new DataTable();
             Tabla = o_ads004.Fe_con_doc(tb_ide_doc.Text);
             if (Tabla.Rows.Count > 0)
-                return "No se puede Eliminar. Existen " + Tabla.Rows.Count + " Talonarios que hacen referencia al Documento";
-            
+                return "No se puede Eliminar. Existen " + Tabla.Rows.Count + " Talonarios que hacen referencia al Documento";            
 
             return "OK";
         }

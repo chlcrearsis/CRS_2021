@@ -140,8 +140,14 @@ namespace CRS_PRE
                 return "DEBE proporcionar el cargo del Usuario";
             }
 
+            // Verifica que el maximo de ventas abierta sea Numerico
+            if (!cl_glo_bal.IsNumeric(tb_ven_max.Text.Trim())){
+                tb_ven_max.Focus();
+                return "El Campo de Máximo de Ventas abiertas DEBE ser numerico";
+            }
+
             // Valida que el máximo de ventanas abiertas sea mayor a 1
-            if (int.Parse(tb_ven_max.Text.Trim()) > 1){
+            if (int.Parse(tb_ven_max.Text.Trim()) == 0){
                 tb_ven_max.Focus();
                 return "Las Ventanas máximas abiertas DEBE ser MAYOR a 1";
             }

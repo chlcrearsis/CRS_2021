@@ -780,16 +780,17 @@ namespace CRS_PRE
             Tabla = o_adp002.Fe_inf_R03(gru_ini, gru_fin, ide_ti1, atr_in1, atr_fi1, ide_ti2, atr_in2, atr_fi2, est_ado, ord_dat);
 
             // Genera el Informe
-            adp002_R03w frm = new adp002_R03w();
-            frm.vp_gru_ini = gru_ini.ToString();
-            frm.vp_gru_fin = gru_fin.ToString();
-            frm.vp_tip_at1 = ide_ti1.ToString();
-            frm.vp_atr_in1 = atr_in1.ToString();
-            frm.vp_atr_fi1 = atr_fi1.ToString();
-            frm.vp_tip_at2 = ide_ti2.ToString();
-            frm.vp_atr_in2 = atr_in2.ToString();
-            frm.vp_atr_fi2 = atr_fi2.ToString();
-            frm.vp_est_ado = est_ado;
+            adp002_R03w frm = new adp002_R03w{
+                vp_gru_ini = gru_ini.ToString(),
+                vp_gru_fin = gru_fin.ToString(),
+                vp_tip_at1 = ide_ti1.ToString(),
+                vp_atr_in1 = atr_in1.ToString(),
+                vp_atr_fi1 = atr_fi1.ToString(),
+                vp_tip_at2 = ide_ti2.ToString(),
+                vp_atr_in2 = atr_in2.ToString(),
+                vp_atr_fi2 = atr_fi2.ToString(),
+                vp_est_ado = est_ado
+            };
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

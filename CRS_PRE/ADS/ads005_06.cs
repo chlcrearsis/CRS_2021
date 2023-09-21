@@ -19,12 +19,10 @@ namespace CRS_PRE
         ads016 o_ads016 = new ads016();
         DataTable Tabla = new DataTable();
 
-
         public ads005_06()
         {
             InitializeComponent();
         }
-
       
         private void frm_Load(object sender, EventArgs e)
         {
@@ -66,58 +64,42 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
             // Verificar Documento
-            if (tb_ide_doc.Text.Trim().CompareTo("") == 0){
-                tb_ide_doc.Focus();
-                return "DEBE proporcionar el Documento";
-            }
+            if (tb_ide_doc.Text.Trim().CompareTo("") == 0)
+                return "DEBE proporcionar el Documento";            
 
             // Valida que el Documento este registrada y habilitada
             Tabla = new DataTable();
             Tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
-            if (Tabla.Rows.Count == 0){
-                tb_ide_doc.Focus();
-                return "El Documento NO se encuentra registrado";
-            }            
+            if (Tabla.Rows.Count == 0)
+                return "El Documento NO se encuentra registrado";            
 
             // Verificar el Nro. de Talonario
-            if (tb_nro_tal.Text.Trim().CompareTo("") == 0){
-                tb_nro_tal.Focus();
-                return "DEBE proporcionar el Nro. de Talonario";
-            }
+            if (tb_nro_tal.Text.Trim().CompareTo("") == 0)
+                return "DEBE proporcionar el Nro. de Talonario";            
 
             // Verifica que el Nro. de Talonario sea numerico
-            if (!cl_glo_bal.IsNumeric(tb_nro_tal.Text.Trim())){
-                tb_nro_tal.Focus();
-                return "El Nro. de Talonario DEBE ser Numerico";
-            }
+            if (!cl_glo_bal.IsNumeric(tb_nro_tal.Text.Trim()))
+                return "El Nro. de Talonario DEBE ser Numerico";            
 
             // Valida que el Nro. de Talonario este registrada y habilitada
             Tabla = new DataTable();
             Tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            if (Tabla.Rows.Count == 0){
-                tb_nro_tal.Focus();
+            if (Tabla.Rows.Count == 0)
                 return "El Talonario NO se encuentra registrado";
-            }            
 
             // Verificar el Nro. de Talonario
-            if (tb_ges_tio.Text.Trim().CompareTo("") == 0){
-                tb_ges_tio.Focus();
+            if (tb_ges_tio.Text.Trim().CompareTo("") == 0)
                 return "DEBE proporcionar la Gestión";
-            }
 
             // Verifica que el Nro. de Talonario sea numerico
-            if (!cl_glo_bal.IsNumeric(tb_ges_tio.Text.Trim())){
-                tb_ges_tio.Focus();
+            if (!cl_glo_bal.IsNumeric(tb_ges_tio.Text.Trim()))
                 return "La Gestión DEBE ser Numerico";
-            }
 
             // Valida que la Gestión este registrada y habilitada
             Tabla = new DataTable();
             Tabla = o_ads016.Fe_con_ges(int.Parse(tb_ges_tio.Text));
-            if (Tabla.Rows.Count == 0){
-                tb_nro_tal.Focus();
+            if (Tabla.Rows.Count == 0)
                 return "La Gestión NO se encuentra registrado";
-            }
            
             return "OK";
         }

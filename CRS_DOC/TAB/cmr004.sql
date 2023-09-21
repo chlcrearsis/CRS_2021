@@ -9,7 +9,7 @@ CREATE TABLE cmr004
 (
 	va_cod_plv		SMALLINT		NOT NULL,	--Codigo de plantilla de venta (3 números)
 	va_nom_plv		VARCHAR(30)		NOT NULL,	--Nombre de la plantilla
-	va_des_plv		VARCHAR(120)	NOT NULL,	--Descripcion de la plantilla
+	va_des_plv		VARCHAR(60)	NOT NULL,	    --Descripcion de la plantilla
 	--LLAVE FORANEA
 	va_cod_bod		INT						,	--Codigo de almacen (inv002) (##-##-###) -> compuesto por (va_cod_gru , va_nro_alm)	
 	va_cam_bod		TINYINT					,	--Bandera cambia almacen ? (0=NO ; 1=SI)

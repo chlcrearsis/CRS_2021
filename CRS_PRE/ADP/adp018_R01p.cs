@@ -99,9 +99,10 @@ namespace CRS_PRE
             Tabla = o_adp018.Fe_inf_R01(est_ado, ord_dat, cb_ban_fac.SelectedIndex);
 
             // Genera el Informe
-            adp018_R01w frm = new adp018_R01w();
-            frm.vp_est_ado = est_ado;
-            frm.vp_ban_fac = ban_fac;
+            adp018_R01w frm = new adp018_R01w{
+                vp_est_ado = est_ado,
+                vp_ban_fac = ban_fac
+            };
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

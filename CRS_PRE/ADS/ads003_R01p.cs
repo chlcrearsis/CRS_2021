@@ -20,6 +20,9 @@ namespace CRS_PRE
         ads001 o_ads001 = new ads001();
         ads003 o_ads003 = new ads003();
         DataTable Tabla = new DataTable();
+        // Variables
+        private string vp_mod_ini;  // Módulo Inicial
+        private string vp_mod_fin;  // Módulo Final
 
         public ads003_R01p()
         {
@@ -29,29 +32,24 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {     
             // Desplega Información inicial
-            tb_mod_ini.Text = string.Empty;
-            tb_mod_fin.Text = string.Empty;
-            lb_nmo_ini.Text = string.Empty;
-            lb_nmo_fin.Text = string.Empty;
+            tb_mod_ini.Text = "0";            
+            lb_nmo_ini.Text = "...";
+            tb_mod_fin.Text = "99";
+            lb_nmo_fin.Text = "...";
             cb_est_ado.SelectedIndex = 0;
 
             // Obtiene y Desplega el tipo de atributo inicial y final
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_lis_mod("H");
             if (Tabla.Rows.Count > 0){
-                // Obtiene el Tipo de Atributo Inicial
-                tb_mod_ini.Text = Tabla.Rows[0]["va_ide_mod"].ToString().Trim();
-                lb_nmo_ini.Text = Tabla.Rows[0]["va_nom_mod"].ToString().Trim();
-                // Obtiene el Tipo de Atributo Final
-                tb_mod_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_ide_mod"].ToString().Trim();
-                lb_nmo_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_nom_mod"].ToString().Trim();
-            }else {
-                // Obtiene el Tipo de Atributo Inicial
-                tb_mod_ini.Text = "0";
-                lb_nmo_ini.Text = "Módulo Inicial";
-                // Obtiene el Tipo de Atributo Final
-                tb_mod_fin.Text = "99";
-                lb_nmo_fin.Text = "Módulo Final";
+                // Obtiene el Tipo de Módulo Inicial
+                tb_mod_ini.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
+                lb_nmo_ini.Text = Tabla.Rows[0]["va_abr_mod"].ToString() + " - " +
+                                  Tabla.Rows[0]["va_nom_mod"].ToString();
+                // Obtiene el Tipo de Módulo Final
+                tb_mod_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_ide_mod"].ToString();
+                lb_nmo_fin.Text = Tabla.Rows[Tabla.Rows.Count - 1]["va_abr_mod"].ToString() + " - " +
+                                  Tabla.Rows[Tabla.Rows.Count - 1]["va_nom_mod"].ToString();
             }
         }
 
@@ -63,6 +61,10 @@ namespace CRS_PRE
         {
             try
             {
+                // Incializa Variables
+                vp_mod_ini = "";
+                vp_mod_fin = "";
+
                 /* Verificar el Módulo Inicial sea distinto a vacio */
                 if (tb_mod_ini.Text.Trim().CompareTo("") == 0){
                     tb_mod_ini.Focus();
@@ -83,6 +85,7 @@ namespace CRS_PRE
                         tb_mod_ini.Focus();
                         return "La Módulo Inicial NO se encuentra registrado";
                     }
+                    vp_mod_ini = Tabla.Rows[0]["va_abr_mod"].ToString().Trim();
                 }
 
                 /* Verificar el Módulo Final sea distinto a vacio */
@@ -105,6 +108,7 @@ namespace CRS_PRE
                         tb_mod_fin.Focus();
                         return "La Módulo Final NO se encuentra registrado";
                     }
+                    vp_mod_fin = Tabla.Rows[0]["va_abr_mod"].ToString().Trim();
                 }
             
                 /* Valida que el Módulo Inicial sea MENOR que el Módulo Final */
@@ -125,21 +129,21 @@ namespace CRS_PRE
         /// </summary>
         void Fi_obt_mod(int ini_fin, int ide_mod)
         {
+            // Obtiene y Desplega datos del Módulo
             Tabla = new DataTable();
             Tabla = o_ads001.Fe_con_mod(ide_mod);
             if (Tabla.Rows.Count == 0){
                 if (ini_fin == 1)
-                    lb_nmo_ini.Text = "";
+                    lb_nmo_ini.Text = "...";
                 else
-                    lb_nmo_fin.Text = "";
+                    lb_nmo_fin.Text = "...";
             }else{
-                if (ini_fin == 1){
-                    tb_mod_ini.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
-                    lb_nmo_ini.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
-                }else{
-                    tb_mod_fin.Text = Tabla.Rows[0]["va_ide_mod"].ToString();
-                    lb_nmo_fin.Text = Tabla.Rows[0]["va_nom_mod"].ToString();
-                }
+                if (ini_fin == 1)
+                    lb_nmo_ini.Text = Tabla.Rows[0]["va_abr_mod"].ToString() + " - " +
+                                      Tabla.Rows[0]["va_nom_mod"].ToString();
+                else
+                    lb_nmo_fin.Text = Tabla.Rows[0]["va_abr_mod"].ToString() + " - " +
+                                      Tabla.Rows[0]["va_nom_mod"].ToString();
             }
         }
 
@@ -235,10 +239,11 @@ namespace CRS_PRE
             Tabla = o_ads003.Fe_inf_R01(est_ado, mod_ini, mod_fin);
 
             // Genera el Informe
-            ads003_R01w frm = new ads003_R01w();
-            frm.vp_est_ado = est_ado;
-            frm.vp_mod_ini = mod_ini;
-            frm.vp_mod_fin = mod_fin;
+            ads003_R01w frm = new ads003_R01w{
+                vp_est_ado = est_ado,
+                vp_mod_ini = vp_mod_ini,
+                vp_mod_fin = vp_mod_fin
+            };
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

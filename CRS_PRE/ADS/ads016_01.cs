@@ -49,7 +49,7 @@ namespace CRS_PRE
         /// <param name="ar_tex_bus">Texto a buscar</param>
         /// <param name="ar_prm_bus">Parametro a buscar</param>
         /// <param name="ar_est_bus">Estado a buscar</param>
-        private void fi_bus_car(string tex_bus = "", int prm_bus = 0)
+        public void fi_bus_car(string tex_bus = "", int prm_bus = 0)
         {
             // Limpia Grilla
             dg_res_ult.Rows.Clear();

@@ -12,10 +12,11 @@ CREATE TABLE ads017
 	va_ide_usr	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** ID. Usuario
 
 	--** Atributos     
-	va_pin_usr	INT			 NOT NULL DEFAULT(0),	--** Pin usuario
-	va_fec_reg	DATETIME	 NOT NULL,		        --** Fecha de registro pin
-	va_fec_exp  DATETIME     NOT NULL,              --** Fecha de expiracion del pin
-	va_nom_eqp	VARCHAR(20)  NOT NULL DEFAULT(''),	--** Nombre del equipo de donde se registro
+	va_pin_usr	INT			 NOT NULL DEFAULT(0),	--** PIN usuario
+	va_fec_reg	DATETIME	 NOT NULL,		        --** Fecha de Registro
+	va_fec_exp  DATETIME     NOT NULL,              --** Fecha de Expiracion
+	va_usr_reg	VARCHAR(15)	 NOT NULL DEFAULT(''),	--** ID. Usuario Registro
+	va_nom_equ	VARCHAR(20)  NOT NULL DEFAULT(''),	--** Nombre del Equipo	
 
 CONSTRAINT pk1_ads017 PRIMARY KEY(va_ide_usr)
 )

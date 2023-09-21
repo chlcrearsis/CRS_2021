@@ -18,13 +18,12 @@ namespace CRS_PRE
         public DataTable frm_dat;        
         // Instancias
         ads013 o_ads013 = new ads013();
-        ads007 o_ads007 = new ads007();
         DataTable Tabla = new DataTable();
         // Variables
         string va_nom_emp = "";
         public string vp_est_ado;
-        public int vp_mod_ini;
-        public int vp_mod_fin;
+        public string vp_mod_ini;
+        public string vp_mod_fin;
 
         public ads003_R01w()
         {

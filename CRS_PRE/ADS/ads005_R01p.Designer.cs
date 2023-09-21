@@ -77,7 +77,7 @@
             // 
             this.tb_ges_tio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ges_tio.Location = new System.Drawing.Point(100, 19);
-            this.tb_ges_tio.MaxLength = 3;
+            this.tb_ges_tio.MaxLength = 4;
             this.tb_ges_tio.Name = "tb_ges_tio";
             this.tb_ges_tio.Size = new System.Drawing.Size(52, 20);
             this.tb_ges_tio.TabIndex = 1;

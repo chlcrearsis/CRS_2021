@@ -12,7 +12,7 @@ CREATE TABLE adp001
 	va_cod_gru	INT			 NOT NULL DEFAULT(0),	--** Codigo de Grupo de persona
 
 	--** Atributos     
-	va_nom_gru	VARCHAR(50)	 NOT NULL DEFAULT(''),	--** Nombre de Grupo de persona
+	va_nom_gru	VARCHAR(30)	 NOT NULL DEFAULT(''),	--** Nombre de Grupo de persona
 	va_est_ado  CHAR(01)     NOT NULL DEFAULT(''),	--** Estado (H=Habilitado; N=Deshabilitado)
 
 CONSTRAINT pk1_adp001 PRIMARY KEY(va_cod_gru)
