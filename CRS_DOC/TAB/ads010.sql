@@ -31,7 +31,7 @@ INSERT INTO ads010 VALUES ('PF','Producto Frente','inv004','H')
 INSERT INTO ads010 VALUES ('PD','Producto Derecha','inv004','H')
 INSERT INTO ads010 VALUES ('PI','Producto Izquirda','inv004','H')
 INSERT INTO ads010 VALUES ('PA','Producto Detras','inv004','H')
-INSERT INTO ads010 VALUES ('PR','Descripcion','inv004','H')
+INSERT INTO ads010 VALUES ('PD','Descripcion','inv004','H')
 
 GO
  

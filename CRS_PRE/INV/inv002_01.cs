@@ -21,6 +21,7 @@ namespace CRS_PRE.INV
         public dynamic frm_MDI;
 
         string est_bus = "T";
+        public DateTime fec_ctr = DateTime.Parse("01/01/1990");
 
         //Form frm_mdi;
         public inv002_01()
@@ -58,15 +59,6 @@ namespace CRS_PRE.INV
             fi_bus_car("", cb_prm_bus.SelectedIndex, est_bus, int.Parse(cb_gru_bod.SelectedValue.ToString()));
         }
 
-        //public enum parametro
-        //{
-        //    codigo = 1, nombre = 2
-        //}
-        //protected enum estado
-        //{
-        //    Todos = 0, Habilitado = 1, Deshabilitado = 2
-        //}
-
         /// <summary>
         /// Funcion interna buscar
         /// </summary>
@@ -94,6 +86,7 @@ namespace CRS_PRE.INV
                     dg_res_ult.Rows.Add();
                     dg_res_ult.Rows[i].Cells["va_cod_bod"].Value = tabla.Rows[i]["va_cod_bod"].ToString();
                     dg_res_ult.Rows[i].Cells["va_nom_bod"].Value = tabla.Rows[i]["va_nom_bod"].ToString();
+                    dg_res_ult.Rows[i].Cells["va_fec_ctr"].Value = DateTime.Parse(tabla.Rows[i]["va_fec_ctr"].ToString()).ToString("d");
 
                     if (tabla.Rows[i]["va_mon_inv"].ToString() == "B")
                         dg_res_ult.Rows[i].Cells["va_mon_inv"].Value = "Bs.";
@@ -107,6 +100,7 @@ namespace CRS_PRE.INV
                 }
                 tb_sel_bus.Text = tabla.Rows[0]["va_cod_bod"].ToString();
                 lb_des_bus.Text = tabla.Rows[0]["va_nom_bod"].ToString();
+                fec_ctr = DateTime.Parse(tabla.Rows[0]["va_fec_ctr"].ToString());
             }
 
         }
@@ -116,6 +110,8 @@ namespace CRS_PRE.INV
             if (tb_sel_bus.Text.Trim() == "")
             {
                 lb_des_bus.Text = "** NO existe";
+                fec_ctr = DateTime.Parse("01/01/1999");
+
                 return;
             }
 
@@ -123,10 +119,13 @@ namespace CRS_PRE.INV
             if (tabla.Rows.Count == 0)
             {
                 lb_des_bus.Text = "** NO existe";
+                fec_ctr = DateTime.Parse("01/01/1999");
+
                 return;
             }
 
             lb_des_bus.Text = Convert.ToString(tabla.Rows[0]["va_nom_bod"].ToString());
+            fec_ctr = DateTime.Parse(tabla.Rows[0]["va_fec_ctr"].ToString());
         }
         /// <summary>
         /// - > Función que selecciona la fila en el Datagrid que la bodega Modificó
@@ -402,7 +401,15 @@ namespace CRS_PRE.INV
             inv002_06 frm = new inv002_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
+        private void mn_ape_bod_Click(object sender, EventArgs e)
+        {
+            // Verifica concurrencia de datos para aperturar bodega
+            if (fi_ver_edi(int.Parse(tb_sel_bus.Text)) == false)
+                return;
 
+            inv002_03b frm = new inv002_03b();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+        }
         private void Mn_cer_rar_Click_1(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
@@ -425,5 +432,7 @@ namespace CRS_PRE.INV
             inv002_R01p frm = new inv002_R01p();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
         }
+
+       
     }
 }

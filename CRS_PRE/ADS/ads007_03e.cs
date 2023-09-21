@@ -3,25 +3,22 @@ using System.Data;
 using System.Windows.Forms;
 
 using CRS_NEG;
+using CRS_PRE;
 
 namespace CRS_PRE
 {
-    /**********************************************************************/
-    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
-    /*  Aplicación: ads007e - Usuario                                     */
-    /*      Opción: Restablece los Permisos del Usuario                   */
-    /*       Autor: JEJR - Crearsis             Fecha: 03-08-2023         */
-    /**********************************************************************/
     public partial class ads007_03e : Form
     {
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-        // Instancias
+        //Instancias
         ads006 o_ads006 = new ads006();
         ads007 o_ads007 = new ads007();
-        DataTable Tabla = new DataTable();
-        private int vp_ide_tus = 0;  // ID. Tipo de Usuario
+        adp002 o_adp002 = new adp002();     // Persona
+
+        DataTable tabla = new DataTable();
+         DataTable tab_adp002 = new DataTable();  // Tabla Persona
 
         public ads007_03e()
         {
@@ -31,97 +28,145 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
-            // Limpia Campos
-            Fi_lim_pia();
 
-            // Despliega Informacion del Usuario
             tb_ide_usr.Text = frm_dat.Rows[0]["va_ide_usr"].ToString();
             tb_nom_usr.Text = frm_dat.Rows[0]["va_nom_usr"].ToString();
-            tb_tip_usr.Text = frm_dat.Rows[0]["va_nom_tus"].ToString();
+            tb_tel_usr.Text = frm_dat.Rows[0]["va_tel_usr"].ToString();
+            tb_car_usr.Text = frm_dat.Rows[0]["va_car_usr"].ToString();
+            tb_dir_ect.Text = frm_dat.Rows[0]["va_dir_ect"].ToString();
+            tb_ema_usr.Text = frm_dat.Rows[0]["va_ema_usr"].ToString();
+            tb_cod_per.Text = frm_dat.Rows[0]["va_ide_per"].ToString();
+            tb_win_max.Text = frm_dat.Rows[0]["va_win_max"].ToString();
+
+            //cb_tip_usr.DataSource = o_ads006.Fe_lis_tus();
+            //cb_tip_usr.ValueMember = "va_ide_tus";
+            //cb_tip_usr.DisplayMember = "va_nom_tus";
+
+            //tabla = o_ads006.Fe_con_tus(frm_dat.Rows[0]["va_tip_usr"].ToString());
+            if(tabla.Rows.Count == 0)
+                tb_tip_usr.Text = "??";
+            else
+                tb_tip_usr.Text = tabla.Rows[0]["va_nom_tus"].ToString();
+
+
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "N")
                 tb_est_ado.Text = "Deshabilitado";
 
-            // Obtiene el Tipo de Usuario
-            vp_ide_tus = int.Parse(frm_dat.Rows[0]["va_ide_tus"].ToString());
+            // Obtiene persona
+            Fi_obt_per();
+
+
+            tb_nom_usr.Focus();
         }
 
-        // Limpia e Iniciliza los campos
-        private void Fi_lim_pia()
+
+
+
+        //** BUSCAR PERSONA
+        private void Bt_bus_per_Click(object sender, EventArgs e)
         {
-            tb_ide_usr.Text = string.Empty;
-            tb_nom_usr.Text = string.Empty;
-            tb_est_ado.Text = string.Empty;
-            tb_tip_usr.Text = string.Empty;
+            Fi_abr_bus_per();
         }
-
-        // Valida los datos proporcionados
-        private string Fi_val_dat()
+        private void Tb_cod_per_KeyDown(object sender, KeyEventArgs e)
         {
-            // Valida que el ID. Usuario NO este vacio
-            if (tb_ide_usr.Text.Trim() == "")
-                return "DEBE proporcionar el ID. Usuario";
-
-            // Verifica que el Usuario este definido
-            Tabla = new DataTable();
-            Tabla = o_ads007.Fe_con_ide(tb_ide_usr.Text.Trim());
-            if (Tabla.Rows.Count == 0)
-                return "El Usuario NO está definido en el sistema (ads007)";
-
-            // Valida que el Usuario NO esté deshabilitado
-            if (Tabla.Rows[0]["va_est_ado"].ToString().CompareTo("H") != 0)
-                return "El Usuario se encuentra Deshabilitado";
-
-            // Verifica que el Tipo de Usuario Nuevo este definido
-            Tabla = new DataTable();
-            Tabla = o_ads006.Fe_con_tus(vp_ide_tus);
-            if (Tabla.Rows.Count == 0)
-                return "El Tipo de Usuario NO está definido en el sistema (ads006)";
-
-            // Valida que el Usuario NO esté deshabilitado
-            if (Tabla.Rows[0]["va_est_ado"].ToString().CompareTo("H") != 0)
-                return "El Tipo de Usuario se encuentra Deshabilitado";
-
-            return "OK";
-        }
-
-        // Evento Click: Button Aceptar
-        private void bt_ace_pta_Click(object sender, EventArgs e)
-        {
-            DialogResult msg_res;
-            try
+            //al presionar tecla para ARRIBA
+            if (e.KeyData == Keys.Up)
             {
-                // funcion para validar datos
-                string msg_val = Fi_val_dat();
-                if (msg_val != "OK")
-                {
-                    MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
-                    return;
-                }
-                msg_res = MessageBox.Show("Está seguro de restablecer los permisos del Usuario?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (msg_res == DialogResult.OK)
-                {
-                    // Edita el registro
-                    o_ads007.Fe_rei_per(tb_ide_usr.Text.Trim());
-                    // Actualiza el Formulario Padre
-                    frm_pad.Fe_act_frm(tb_ide_usr.Text.Trim());
-                    // Despliega Mensaje
-                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Cierra Formulario
-                    cl_glo_frm.Cerrar(this);
-                }
+                // Abre la ventana Busca Persona
+                Fi_abr_bus_per();
             }
-            catch (Exception ex)
+        }
+        void Fi_abr_bus_per()
+        {
+            adp002_01 frm = new adp002_01();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
+
+            if (frm.DialogResult == DialogResult.OK)
             {
-                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tb_cod_per.Text = frm.tb_cod_per.Text;
+
+                Fi_obt_per();
+            }
+
+        }
+        private void Tb_cod_per_Validated(object sender, EventArgs e)
+        {
+            Fi_obt_per();
+
+        }
+        private void Fi_obt_per()
+        {
+            if (tb_cod_per.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
+                //tb_cod_per.Focus();
+            }
+            int val = 0;
+            if (int.TryParse(tb_cod_per.Text, out val) == false)
+            {
+                //MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
+                //tb_cod_per.Focus();
+                lb_raz_soc.Text = "No Existe";
+            }
+
+            tab_adp002 = o_adp002.Fe_con_per(val);
+            if (tab_adp002.Rows.Count == 0)
+            {
+                lb_raz_soc.Text = "No Existe";
+            }
+            else
+            {
+                lb_raz_soc.Text = tab_adp002.Rows[0]["va_raz_soc"].ToString();
             }
         }
 
-        // Evento Click: Button Cancelar
-        private void bt_can_cel_Click(object sender, EventArgs e)
+        protected string Fi_val_dat()
+        {
+            if (tb_nom_usr.Text.Trim()=="")
+            {
+                tb_nom_usr.Focus();
+                return "Debe proporcionar el nombre para el usuario";
+            }
+           
+            if (!cl_glo_bal.IsNumeric(tb_win_max.Text.Trim()))
+            {
+                tb_win_max.Focus();
+                return "El campo Maximo de ventanas debe ser numerico";
+            }
+
+          return  o_ads007.Fe_ver_edi(tb_ide_usr.Text);
+
+        }
+             
+        private void Bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
+        }
+
+        private void Bt_ace_pta_Click(object sender, EventArgs e)
+        {
+            string msg_val = "";
+            DialogResult msg_res;
+
+            // funcion para validar datos
+            msg_val = Fi_val_dat();
+            if (msg_val != "")
+            {
+                MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
+                return;
+            }
+            msg_res = MessageBox.Show("Esta seguro de editar la informacion?", "Usuario", MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            if (msg_res == DialogResult.OK)
+            {
+                //Edita usuario
+                //o_ads007.Fe_cam_tus(tb_ide_usr.Text, frm_dat.Rows[0]["va_tip_usr"].ToString());
+                MessageBox.Show("Los datos se grabaron correctamente", "Usuario", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                frm_pad.Fe_act_frm(tb_ide_usr.Text);
+                cl_glo_frm.Cerrar(this);
+            }
+
         }
     }
 }

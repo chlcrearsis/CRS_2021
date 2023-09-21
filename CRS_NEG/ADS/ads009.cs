@@ -1,561 +1,143 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CRS_DAT;
 namespace CRS_NEG
 {
-    //######################################################################
-    //##       Tabla: ads008_01                                           ##
-    //##      Nombre: Autorizaciones Tipo de Usuarios                     ##
-    //## Descripcion: Permiso Usuarios sobre el sistema                   ##         
-    //##       Autor: JEJR - (29-08-2023)                                 ##
-    //######################################################################
+    /// <summary>
+    /// Clase PERMISO TIPO USUARIO SOBRE EL SISTEMA
+    /// </summary>
     public class ads009
-    {        
+    {
+        //######################################################################
+        //##       Tabla: ads009_01                                           ##
+        //##      Nombre: Aplicaciones                                        ##
+        //## Descripcion:Permiso Tipo Usuario sobre el sistema                ##         
+        //##       Autor: CHL - (26-07-2021)                                  ##
+        //######################################################################
         conexion_a ob_con_ecA = new conexion_a();
-        StringBuilder cadena;
+
+        public string va_ser_bda;//= ob_con_ecA.va_ins_bda;
+
+        public string va_ins_bda;// = ob_con_ecA.va_ins_bda;
+        public string va_nom_bda;//= ob_con_ecA.va_nom_bda;
+        public string va_ide_tus;//= ob_con_ecA.va_ide_tus;
+        public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
+
+        string cadena = "";
+
+
+        public ads009()
+        {
+            va_ser_bda = ob_con_ecA.va_ser_bda;
+            va_ins_bda = ob_con_ecA.va_ins_bda;
+            va_nom_bda = ob_con_ecA.va_nom_bda;
+            va_ide_tus = ob_con_ecA.va_ide_usr;
+            va_pas_usr = ob_con_ecA.va_pas_usr;
+        }
+
+        #region "PERMISO DE TIPO USUARIO SOBRE EL SISTEMA"
 
         /// <summary>
-        /// Funcion "Registrar Autorizacion Tipo de Usuario"
+        /// Obtiene Permiso sobre una tabla
         /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <param name="ide_dos">Identificador 2</param>
-        /// <param name="ide_tre">Identificador 3</param>
-        /// <param name="ide_int">Identificador Entero</param>
+        /// <param name="ag_ide_tus">Ide Usuario</param>
         /// <returns></returns>
-        public void Fe_nue_reg(int ide_tus, string ide_tab, string ide_uno = "", 
-                               string ide_dos = "", string ide_tre = "", int ide_int = 0)
+        public DataTable Fe_ads009_01(string ag_ide_tus, string ag_ide_tab)
         {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("INSERT INTO ads009 VALUES (" + ide_tus + ", '" + ide_tab + "', '" + ide_uno + "', '" + ide_dos + "',");
-                cadena.AppendLine("                          '" + ide_tre + "', " + ide_int + ",  SYSTEM_USER, GETDATE())");
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            cadena = " SELECT * FROM ads009 ";
+            cadena += " WHERE  va_ide_tus = '" + ag_ide_tus + "' AND va_ide_tab = '" + ag_ide_tab + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
         }
 
         /// <summary>
-        /// Funcion "Elimina 1 Autorizacion Tipo de Usuario"
+        /// Consulta si el usuario tiene permiso sobre algo en especifico
         /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
+        /// <param name="ag_ide_tus">ID. Usuario</param>
+        /// <param name="ag_ide_tab">ID. tabla </param>
+        /// <param name="ag_ide_uno">ID. uno </param>
         /// <returns></returns>
-        public void Fe_eli_min(int ide_tus)
+        public Boolean Fe_ads009_02(string ag_ide_tus, string ag_ide_tab, string ag_ide_uno)
         {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("DELETE ads009 WHERE va_ide_tus = " + ide_tus + "");
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            bool resul = false;
+
+            cadena = " SELECT * FROM ads009 ";
+            cadena += " WHERE  va_ide_tus = '" + ag_ide_tus + "' AND va_ide_tab = '" + ag_ide_tab + "'" +
+                " AND va_ide_uno = '" + ag_ide_uno + "'";
+
+            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
+
+            if (tabla.Rows.Count == 0)
+                resul = false;
+            if (tabla.Rows.Count > 0)
+                resul = true;
+
+            return resul;
+        }
+        /// <summary>
+        /// Consulta si el usuario tiene permiso sobre algo en especifico
+        /// </summary>
+        /// <param name="ag_ide_tus">ID. Usuario</param>
+        /// <param name="ag_ide_tab">ID. tabla </param>
+        /// <param name="ag_ide_uno">ID. uno </param>
+        /// <param name="ag_ide_dos">ID. dos </param>
+        /// <returns></returns>
+        public Boolean Fe_ads009_02(string ag_ide_tus, string ag_ide_tab, string ag_ide_uno, string ag_ide_dos)
+        {
+            bool resul = false;
+
+            cadena = " SELECT * FROM ads009 ";
+            cadena += " WHERE  va_ide_tus = '" + ag_ide_tus + "' AND va_ide_tab = '" + ag_ide_tab + "'" +
+                " AND va_ide_uno = '" + ag_ide_uno + "' AND va_ide_dos = '" + ag_ide_dos + "' ";
+
+            DataTable tabla = ob_con_ecA.fe_exe_sql(cadena);
+
+            if (tabla.Rows.Count == 0)
+                resul = false;
+            if (tabla.Rows.Count > 0)
+                resul = true;
+
+            return resul;
         }
 
         /// <summary>
-        /// Funcion "Elimina 2 Autorizacion Usuario"
+        /// Registra permiso sobre tabla y atributos
         /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
         /// <returns></returns>
-        public void Fe_eli_min(int ide_tus, string ide_tab)
+        public DataTable Fe_ads009_03(string ag_ide_tus, string ag_ide_tab, string ag_ide_uno, string ag_ide_dos = "", string ag_ide_tre = "")
         {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("DELETE ads009 WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            cadena = " INSERT INTO ads009 VALUES ";
+            cadena += " ('" + ag_ide_tus + "', '" + ag_ide_tab + "', '" + ag_ide_uno + "','" + ag_ide_dos + "','" + ag_ide_tre + "',0) ";
+            return ob_con_ecA.fe_exe_sql(cadena);
         }
 
         /// <summary>
-        /// Funcion "Elimina 3 Autorizacion Tipo de Usuario"
+        /// Elimna permiso sobre tabla
         /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
         /// <returns></returns>
-        public void Fe_eli_min(int ide_tus, string ide_tab, string ide_uno)
+        public DataTable Fe_ads009_04(string ag_ide_tus, string ag_ide_tab)
         {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("DELETE ads009 WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("                AND va_ide_uno = '" + ide_uno + "'");
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            cadena = " DELETE ads009 ";
+            cadena += " WHERE va_ide_tus ='" + ag_ide_tus + "' AND va_ide_tab = '" + ag_ide_tab + "'";
+            return ob_con_ecA.fe_exe_sql(cadena);
         }
 
         /// <summary>
-        /// Funcion "Elimina 4 Autorizacion Tipo de Usuario"
+        /// Elimna permiso sobre un atributo de la tabla
         /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <param name="ide_dos">Identificador 2</param>
         /// <returns></returns>
-        public void Fe_eli_min(int ide_tus, string ide_tab, string ide_uno, string ide_dos)
+        public DataTable Fe_ads009_04(string ag_ide_tus, string ag_ide_tab, string ag_ide_uno, string ag_ide_dos = "")
         {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("DELETE ads009 WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("                AND va_ide_uno = '" + ide_uno + "'");
-                cadena.AppendLine("                AND va_ide_dos = '" + ide_dos + "'");
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            cadena = " DELETE ads009 ";
+            cadena += " WHERE va_ide_tus ='" + ag_ide_tus + "' AND va_ide_tab = '" + ag_ide_tab + "'" +
+                " AND va_ide_uno ='" + ag_ide_uno + "' AND va_ide_dos = '" + ag_ide_dos + "'";
+
+            return ob_con_ecA.fe_exe_sql(cadena);
         }
 
-        /// <summary>
-        /// Funcion "Elimina 5 Autorizacion Tipo de Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <param name="ide_dos">Identificador 2</param>
-        /// <param name="ide_tre">Identificador 3</param>
-        /// <returns></returns>
-        public void Fe_eli_min(int ide_tus, string ide_tab, string ide_uno, string ide_dos, string ide_tre)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("DELETE ads009 WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("                AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("                AND va_ide_uno = '" + ide_uno + "'");
-                cadena.AppendLine("                AND va_ide_dos = '" + ide_dos + "'");
-                cadena.AppendLine("                AND va_ide_tre = '" + ide_tre + "'");
-                ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }      
-
-        /// <summary>
-        /// Consulta 1 "Autorización Tipo de Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <returns></returns>
-        public DataTable Fe_con_aut(int ide_tus, string ide_tab)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta 2 "Autorización Tipo de Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <returns></returns>
-        public DataTable Fe_con_aut(int ide_tus, string ide_tab, string ide_uno)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
-
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta 3 "Autorización Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <param name="ide_dos">Identificador 2</param>
-        /// <returns></returns>
-        public DataTable Fe_con_aut(int ide_tus, string ide_tab, string ide_uno, string ide_dos)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
-                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
-
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta 4 "Autorización Tipo de Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <param name="ide_dos">Identificador 2</param>
-        /// <param name="ide_tre">Identificador 3</param>
-        /// <returns></returns>
-        public DataTable Fe_con_aut(int ide_tus, string ide_tab, string ide_uno, string ide_dos, string ide_tre)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
-                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
-                cadena.AppendLine("   AND va_ide_tre = '" + ide_tre + "'");
-
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        /// <summary>
-        /// Función 1 "Verifica Autorización Tipo de Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <returns></returns>
-        public bool Fe_aut_tus(int ide_tus, string ide_tab)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-
-                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
-                return dt_tab_res.Rows.Count != 0;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Funcion 2 "Verifica Autorización Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <returns></returns>
-        public bool Fe_aut_tus(int ide_tus, string ide_tab, string ide_uno)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
-
-                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
-                return dt_tab_res.Rows.Count != 0;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Funcion 3 "Verifica Autorización Tipo de Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <param name="ide_dos">Identificador 2</param>
-        /// <returns></returns>
-        public bool Fe_aut_tus(int ide_tus, string ide_tab, string ide_uno, string ide_dos)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
-                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
-
-                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
-                return dt_tab_res.Rows.Count != 0;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Función 4 "Verifica Autorización Tipo de Usuario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="ide_tab">ID. Tabla</param>
-        /// <param name="ide_uno">Identificador 1</param>
-        /// <param name="ide_dos">Identificador 2</param>
-        /// <param name="ide_tre">Identificador 3</param>
-        /// <returns></returns>
-        public bool Fe_aut_tus(int ide_tus, string ide_tab, string ide_uno,
-                               string ide_dos, string ide_tre)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tus, va_ide_tab, va_ide_uno,");
-                cadena.AppendLine("       va_ide_dos, va_ide_tre, va_ide_int");
-                cadena.AppendLine("  FROM ads009");
-                cadena.AppendLine(" WHERE va_ide_tus =  " + ide_tus + "");
-                cadena.AppendLine("   AND va_ide_tab = '" + ide_tab + "'");
-                cadena.AppendLine("   AND va_ide_uno = '" + ide_uno + "'");
-                cadena.AppendLine("   AND va_ide_dos = '" + ide_dos + "'");
-                cadena.AppendLine("   AND va_ide_tre = '" + ide_tre + "'");
-
-                DataTable dt_tab_res = ob_con_ecA.fe_exe_sql(cadena.ToString());
-                return dt_tab_res.Rows.Count != 0;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Aplicacion"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_apl(int ide_tus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_01a_p01 " + ide_tus + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Plantilla de Venta"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_pdv(int ide_tus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_03a_p01 " + ide_tus + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Plantilla de Venta"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_lis(int ide_tus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_04a_p01 " + ide_tus + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Grupo de Persona"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_gdp(int ide_tus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_06a_p01 " + ide_tus + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Vendedor"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_ven(int ide_tus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_07a_p01 " + ide_tus + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Cobrador"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_cob(int ide_tus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_08a_p01 " + ide_tus + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Grupo de Bodega"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_gdb(int ide_tus)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_09a_p01 " + ide_tus + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Talonario"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_tal(int ide_tus, int ide_mod)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_02a_p01 " + ide_tus + ", " + ide_mod + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Consulta "Permiso Tipo de Usuario sobre Bodega"
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo Usuario</param>
-        /// <returns></returns>
-        public DataTable Fe_tus_bod(int ide_tus, int ide_mod)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads009_05a_p01 " + ide_tus + ", " + ide_mod + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
+        #endregion
     }
 }

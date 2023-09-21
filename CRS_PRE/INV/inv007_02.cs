@@ -20,6 +20,7 @@ namespace CRS_PRE.INV
         ads007 o_ads007 = new ads007();
         ads016 o_ads016 = new ads016();
         adp002 o_adp002 = new adp002();
+        ads022 o_ads022 = new ads022();     // Tipo de cambio
         cl_glo_frm o_mg_glo_frm = new cl_glo_frm();
 
 
@@ -46,6 +47,7 @@ namespace CRS_PRE.INV
             tb_nro_tal.Text = "0";
             tb_cod_bod.Text = "0";
             tb_fec_cmp.Value = DateTime.Today;
+            cb_mon_cmp.SelectedIndex = 0;
             cb_for_pag.SelectedIndex = 0;
             tb_nro_ite.Text = "1";
 
@@ -207,8 +209,9 @@ namespace CRS_PRE.INV
             lb_eqv_cmp.Text = "0";
             lb_fab_ric.Text = "";
 
-            //bt_edi_itm.Enabled = true;
-            //bt_eli_itm.Enabled = true;
+            tb_obs_cmp.Text = "";
+            tb_ref_cmp.Text = "";
+
             tb_cod_pro.Focus();
         }
         private void Fi_lim_gri()
@@ -260,8 +263,8 @@ namespace CRS_PRE.INV
                     tab_cmp = o_inv007.fu_gra_cmp(va_cod_tmp, tb_cod_doc.Text, int.Parse(tb_nro_tal.Text),
                                          ges_tio, int.Parse(tb_cod_bod.Text), tb_cod_per.Text,
                                          "B", tb_fec_cmp.Value, cb_for_pag.SelectedIndex, 0, 0,
-                                         0, 0, 0, 1,
-                                         decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, "", Program.gl_ide_usr);
+                                         0, 0, 0, decimal.Parse(tb_tip_cam.Text),
+                                         decimal.Parse(tb_des_cue.Text), tb_obs_cmp.Text, tb_ref_cmp.Text, Program.gl_ide_usr);
 
 
                     // Crea tabla para pasar datos
@@ -271,6 +274,8 @@ namespace CRS_PRE.INV
                     tab_dat.Columns.Add("va_ges_doc");
                     tab_dat.Columns.Add("va_nro_tal");
                     tab_dat.Columns.Add("va_ope_rac");
+                    tab_dat.Columns.Add("va_nro_fac");
+                    tab_dat.Columns.Add("va_cod_plv");
 
                     tab_dat.Rows.Add();
                     tab_dat.Rows[0]["va_ide_doc"] = tab_cmp.Rows[0]["va_ide_cmp"].ToString();
@@ -279,6 +284,10 @@ namespace CRS_PRE.INV
                     tab_dat.Rows[0]["va_ges_doc"] = tab_cmp.Rows[0]["va_ges_cmp"].ToString();
                     tab_dat.Rows[0]["va_nro_tal"] = tab_cmp.Rows[0]["va_nro_tal"].ToString();
                     tab_dat.Rows[0]["va_ope_rac"] = "COMPRA";
+                    
+                    //** No se usa pero requiere que se envie
+                    tab_dat.Rows[0]["va_nro_fac"] = "0";                    
+                    tab_dat.Rows[0]["va_cod_plv"] = 0;
 
                     //** Limpiar formulario de venta
                     Fi_lim_ite();
@@ -322,6 +331,7 @@ namespace CRS_PRE.INV
             {
                 tb_cod_bod.Text = frm.tb_sel_bus.Text;
                 lb_nom_bod.Text = frm.lb_des_bus.Text;
+                tb_fec_alm.Text = frm.fec_ctr.ToString("d");
             }
         }
         private void Tb_cod_bod_Validated(object sender, EventArgs e)
@@ -382,12 +392,13 @@ namespace CRS_PRE.INV
             tab_prm.Rows[0]["va_ide_doc"] = tb_cod_doc.Text;
             tab_prm.Rows[0]["va_nom_doc"] = "Compra";
 
-            ads004_01 frm = new ads004_01();
+            ads004_01b frm = new ads004_01b();
+            frm.vp_ide_doc = tb_cod_doc.Text;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si, tab_prm);
 
             if (frm.DialogResult == DialogResult.OK)
             {
-                tb_nro_tal.Text = frm.tb_nro_tal.Text;
+                tb_nro_tal.Text = frm.vp_nro_tal;
                 Fi_obt_tal();
             }
         }
@@ -599,6 +610,31 @@ namespace CRS_PRE.INV
 
         }
 
+        private void tb_tip_cam_Validated(object sender, EventArgs e)
+         {
+            // Valida que el dato proporcionado sea decimal
+
+            decimal val = 0m;
+            decimal.TryParse(tb_tip_cam.Text, out val);
+
+            if (val == 0m)
+            {
+                if (tb_tip_cam.Text != "0")
+                {
+                    MessageBox.Show("Debe proporcionar el tipo de cambio Bs/Us", "Error", MessageBoxButtons.OK);
+                   // tb_tip_cam.SelectAll();
+                   // tb_tip_cam.Focus();
+                    return;
+                }
+            }
+            else
+            {
+                tb_tip_cam.Text = decimal.Parse(tb_tip_cam.Text).ToString("N2");
+              
+            }
+        }
+
+
 
         private void tb_can_tid_Validated(object sender, EventArgs e)
         {
@@ -647,8 +683,6 @@ namespace CRS_PRE.INV
 
                 Fi_cal_pre(1);
             }
-
-
         }
 
         private void tb_pre_cmp_Validated(object sender, EventArgs e)
@@ -699,10 +733,33 @@ namespace CRS_PRE.INV
             }
         }
 
+        private void tb_fec_cmp_Validated(object sender, EventArgs e)
+        {
+            // Trae el tipo de cambio Bs/Us para la fecha
+            tabla = o_ads022.Fe_con_tic(tb_fec_cmp.Text);
+
+            if (tabla != null)
+            {
+                if (tabla.Rows.Count > 0)              
+                    tb_tip_cam.Text = decimal.Parse(tabla.Rows[0][1].ToString()).ToString("N2");                                    
+                else
+                    tb_tip_cam.Text = "0.00";
+            }
+            else
+                tb_tip_cam.Text = "0.00";
+
+
+        }
+
+        private void tb_tip_cam_Enter(object sender, EventArgs e)
+        {
+            tb_tip_cam.SelectAll();
+        }
         private void tb_can_tid_Enter(object sender, EventArgs e)
         {
             tb_can_tid.SelectAll();
         }
+
 
         private void tb_pre_cmp_Enter(object sender, EventArgs e)
         {
@@ -827,7 +884,7 @@ namespace CRS_PRE.INV
                 tab_det_cmp.Columns.Add(dg_res_ult.Columns[i].Name);
             }
 
-            //Obtiene ultima item
+            //Obtiene ultimo item
             foreach (DataGridViewRow Row in dg_res_ult.Rows)
             {
                 if (Row.Index == fila) // siempre obtiene la fila activa
@@ -984,20 +1041,7 @@ namespace CRS_PRE.INV
                 MessageBox.Show(ex.Message, "Nueva Compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
+
     }
 }

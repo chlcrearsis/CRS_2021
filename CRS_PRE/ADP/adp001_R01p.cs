@@ -75,11 +75,10 @@ namespace CRS_PRE
             Tabla = o_adp001.Fe_inf_R01(est_ado, ord_dat);
 
             // Genera el Informe
-            adp001_R01w frm = new adp001_R01w(){
-                vp_est_ado = est_ado,
-                vp_ord_dat = ord_dat
-            };
-        cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
+            adp001_R01w frm = new adp001_R01w();
+            frm.vp_est_ado = est_ado;
+            frm.vp_ord_dat = ord_dat;
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 
         // Evento Click: Button Cancelar

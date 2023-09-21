@@ -187,11 +187,10 @@ namespace CRS_PRE
             Tabla = o_adp004.Fe_inf_R01(est_ado, tip_ini, tip_fin);
 
             // Genera el Informe
-            adp004_R01w frm = new adp004_R01w{
-                vp_est_ado = est_ado,
-                vp_tip_ini = tip_ini,
-                vp_tip_fin = tip_fin
-            };
+            adp004_R01w frm = new adp004_R01w();
+            frm.vp_est_ado = est_ado;
+            frm.vp_tip_ini = tip_ini;
+            frm.vp_tip_fin = tip_fin;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

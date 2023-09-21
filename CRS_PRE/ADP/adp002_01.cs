@@ -509,16 +509,15 @@ namespace CRS_PRE
             if (fi_ver_dat(tb_cod_per.Text) == false)
                 return;
 
-            adp006_05 frm = new adp006_05();
+            adp013_01 frm = new adp013_01();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 
         private void mn_con_fic_Click(object sender, EventArgs e)
         {
             // Genera el Informe
-            adp002_R00w frm = new adp002_R00w{
-                vp_cod_per = int.Parse(tb_cod_per.Text)
-            };
+            adp002_R00w frm = new adp002_R00w();
+            frm.vp_cod_per = int.Parse(tb_cod_per.Text);
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 
@@ -529,7 +528,7 @@ namespace CRS_PRE
                 return;
 
             ecp003_01 frm = new ecp003_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.bloq, cl_glo_frm.ctr_btn.no, Tabla);
         }
         private void mn_asi_emp_Click(object sender, EventArgs e)
         {

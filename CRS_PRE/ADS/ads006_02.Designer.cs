@@ -100,7 +100,7 @@
             this.tb_ide_tus.Name = "tb_ide_tus";
             this.tb_ide_tus.Size = new System.Drawing.Size(45, 20);
             this.tb_ide_tus.TabIndex = 1;
-            this.tb_ide_tus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_ide_tus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_ide_tus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ide_tus_KeyPress);
             // 
             // gb_ctr_btn
@@ -126,7 +126,6 @@
             this.bt_ace_pta.TabIndex = 0;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
-            this.bt_ace_pta.Click += new System.EventHandler(this.bt_ace_pta_Click);
             // 
             // bt_can_cel
             // 
@@ -140,7 +139,6 @@
             this.bt_can_cel.TabIndex = 1;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
-            this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
             // ads006_02
             // 

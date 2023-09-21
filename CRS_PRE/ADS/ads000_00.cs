@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using CRS_NEG;
-using CRS_PRE.Properties;
 
 namespace CRS_PRE
 {
@@ -156,6 +155,10 @@ namespace CRS_PRE
                                 return;
                             }
                         }
+
+
+
+
 
                         Program.gl_ide_uni = ide_uni;   // Guarda ID. Unico de Sesión
                         Program.gl_ide_usr = ide_usr;   // Guarda ID. Usuario

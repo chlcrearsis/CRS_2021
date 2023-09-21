@@ -81,9 +81,8 @@ namespace CRS_PRE
             Tabla = o_ads016.Fe_inf_R02();
 
             // Genera el Informe
-            ads016_R02w frm = new ads016_R02w{
-                vp_ges_tio = ges_tio
-            };
+            ads016_R02w frm = new ads016_R02w();
+            frm.vp_ges_tio = ges_tio;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

@@ -57,15 +57,11 @@ namespace CRS_PRE
 
         public void Fe_pob_rep()
         {
-            va_ide_vta = frm_dat.Rows[0]["va_ide_vta"].ToString();
-            va_ges_vta = int.Parse(frm_dat.Rows[0]["va_ges_vta"].ToString());
+            va_ide_vta = frm_dat.Rows[0]["va_ide_doc"].ToString();
+            va_ges_vta = int.Parse(frm_dat.Rows[0]["va_ges_doc"].ToString());
 
-            // Obtiene datos de la factura
+            // Obtiene datos de la venta
             tabla = o_res001.Fe_con_vta(va_ide_vta, va_ges_vta);
-
-
-            // ** OBTIENE DATOS DE LA NOTA DE VENTA **\\
-            //tab_not_vta = o_res001.Fe_con_vta(va_ide_vta, va_ges_vta);
 
             // Hacer grande la pantalla
             this.Dock = DockStyle.Fill;

@@ -22,6 +22,6 @@ GO
 
 
 --** INSERTA TIPO DE USUARIO POR DEFECTO
-INSERT INTO ads006 VALUES (1, 'Administrador', 'Nivel de Privilegio Alto', 'H')
-INSERT INTO ads006 VALUES (2, 'Supervisor', 'Nivel de Privilegio Básico', 'H')
-INSERT INTO ads006 VALUES (3, 'Operativo', 'Nivel de Privilegio Restringido', 'H')
+INSERT INTO ads006 VALUES (1, 'Administrador', 'Usuario con privilegio alto', 'H')
+INSERT INTO ads006 VALUES (2, 'Supervisor', 'Usuario con permisos restringido', 'H')
+INSERT INTO ads006 VALUES (3, 'Operativo', 'Usuario con permisos básicos', 'H')

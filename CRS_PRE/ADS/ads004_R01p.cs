@@ -86,8 +86,7 @@ namespace CRS_PRE
                 lb_nom_mod.Text = "...";
             }else{
                 tb_ide_mod.Text = Tabla.Rows[0]["va_ide_mod"].ToString().Trim();
-                lb_nom_mod.Text = Tabla.Rows[0]["va_abr_mod"].ToString().Trim() + " - " +
-                                  Tabla.Rows[0]["va_nom_mod"].ToString().Trim();
+                lb_nom_mod.Text = Tabla.Rows[0]["va_nom_mod"].ToString().Trim();
             }
         }
 
@@ -131,7 +130,7 @@ namespace CRS_PRE
             // funcion para validar datos
             string msg_val = Fi_val_dat();
             string est_ado = "";
-            string ide_mod = "";
+               int ide_mod;
 
             if (msg_val != "OK"){
                 MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
@@ -139,7 +138,7 @@ namespace CRS_PRE
             }
 
             // Obtiene parametros de pantalla
-            ide_mod = tb_ide_mod.Text.Trim() + "  " + lb_nom_mod.Text.Trim();
+            ide_mod = int.Parse(tb_ide_mod.Text);
 
             // Obtiene el estado del reporte
             if (cb_est_ado.SelectedIndex == 0)
@@ -151,13 +150,12 @@ namespace CRS_PRE
 
             // Obtiene Datos
             Tabla = new DataTable();
-            Tabla = o_ads004.Fe_inf_R01(int.Parse(tb_ide_mod.Text.Trim()), est_ado);
+            Tabla = o_ads004.Fe_inf_R01(ide_mod, est_ado);
 
             // Genera el Informe
-            ads004_R01w frm = new ads004_R01w{
-                vp_est_ado = est_ado,
-                vp_ide_mod = ide_mod
-            };
+            ads004_R01w frm = new ads004_R01w();
+            frm.vp_est_ado = est_ado;
+            frm.vp_ide_mod = ide_mod;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

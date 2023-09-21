@@ -42,6 +42,13 @@ namespace CRS_PRE
         private void fi_ini_frm()
         {
             // Obtiene el ID. Módulo que pertenece el ID. Documento
+            if (frm_dat.Rows.Count > 0)
+            {
+                vp_ide_doc = frm_dat.Rows[0]["va_ide_doc"].ToString();
+                vp_nom_doc = frm_dat.Rows[0]["va_nom_doc"].ToString();
+
+            }
+
             Tabla = new DataTable();
             Tabla = o_ads003.Fe_con_doc(vp_ide_doc);
             if (Tabla.Rows.Count > 0)

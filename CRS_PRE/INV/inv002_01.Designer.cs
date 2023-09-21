@@ -39,6 +39,7 @@
             this.mn_con_sul = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_rep_ort = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_list_bod = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_ape_bod = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cb_gru_bod = new System.Windows.Forms.ComboBox();
@@ -51,13 +52,14 @@
             this.tb_sel_bus = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.va_cod_bod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_nom_bod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_mon_inv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.va_cod_bod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_nom_bod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_mon_inv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_fec_ctr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.m_frm_hja.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,17 +75,18 @@
             this.mn_edi_tar,
             this.mn_con_sul,
             this.mn_rep_ort,
+            this.mn_ape_bod,
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(141, 49);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(257, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(376, 24);
             this.m_frm_hja.TabIndex = 5;
             this.m_frm_hja.Visible = false;
             // 
             // mn_cre_ar
             // 
             this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
+            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
             this.mn_cre_ar.Text = "&Crea";
             this.mn_cre_ar.Click += new System.EventHandler(this.Mn_cre_ar_Click);
             // 
@@ -94,34 +97,34 @@
             this.mn_hab_des,
             this.mn_eli_min});
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(43, 20);
+            this.mn_edi_tar.Size = new System.Drawing.Size(45, 20);
             this.mn_edi_tar.Text = "&Edita";
             // 
             // mn_mod_ifi
             // 
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(165, 22);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(178, 22);
             this.mn_mod_ifi.Text = "&Modifica";
             this.mn_mod_ifi.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(178, 22);
             this.mn_hab_des.Text = "&Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.Mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(178, 22);
             this.mn_eli_min.Text = "E&limina";
             this.mn_eli_min.Click += new System.EventHandler(this.Mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(61, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(66, 20);
             this.mn_con_sul.Text = "&Consulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
@@ -130,20 +133,27 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_bod});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_bod
             // 
             this.mn_list_bod.Name = "mn_list_bod";
-            this.mn_list_bod.Size = new System.Drawing.Size(115, 22);
+            this.mn_list_bod.Size = new System.Drawing.Size(119, 22);
             this.mn_list_bod.Text = "&Bodegas";
             this.mn_list_bod.Click += new System.EventHandler(this.mn_list_bod_Click);
+            // 
+            // mn_ape_bod
+            // 
+            this.mn_ape_bod.Name = "mn_ape_bod";
+            this.mn_ape_bod.Size = new System.Drawing.Size(108, 20);
+            this.mn_ape_bod.Text = "A&pertura Bodega";
+            this.mn_ape_bod.Click += new System.EventHandler(this.mn_ape_bod_Click);
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.Mn_cer_rar_Click_1);
             // 
@@ -279,6 +289,7 @@
             this.va_cod_bod,
             this.va_nom_bod,
             this.va_mon_inv,
+            this.va_fec_ctr,
             this.va_est_ado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -300,33 +311,6 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
-            // 
-            // va_cod_bod
-            // 
-            this.va_cod_bod.HeaderText = "Codigo";
-            this.va_cod_bod.Name = "va_cod_bod";
-            this.va_cod_bod.ReadOnly = true;
-            this.va_cod_bod.Width = 60;
-            // 
-            // va_nom_bod
-            // 
-            this.va_nom_bod.HeaderText = "Nombre";
-            this.va_nom_bod.Name = "va_nom_bod";
-            this.va_nom_bod.ReadOnly = true;
-            this.va_nom_bod.Width = 250;
-            // 
-            // va_mon_inv
-            // 
-            this.va_mon_inv.HeaderText = "Moneda";
-            this.va_mon_inv.Name = "va_mon_inv";
-            this.va_mon_inv.ReadOnly = true;
-            this.va_mon_inv.Width = 85;
-            // 
-            // va_est_ado
-            // 
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.ReadOnly = true;
             // 
             // gb_ctr_btn
             // 
@@ -365,6 +349,40 @@
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
+            // 
+            // va_cod_bod
+            // 
+            this.va_cod_bod.HeaderText = "Codigo";
+            this.va_cod_bod.Name = "va_cod_bod";
+            this.va_cod_bod.ReadOnly = true;
+            this.va_cod_bod.Width = 60;
+            // 
+            // va_nom_bod
+            // 
+            this.va_nom_bod.HeaderText = "Nombre";
+            this.va_nom_bod.Name = "va_nom_bod";
+            this.va_nom_bod.ReadOnly = true;
+            this.va_nom_bod.Width = 200;
+            // 
+            // va_mon_inv
+            // 
+            this.va_mon_inv.HeaderText = "Moneda";
+            this.va_mon_inv.Name = "va_mon_inv";
+            this.va_mon_inv.ReadOnly = true;
+            this.va_mon_inv.Width = 85;
+            // 
+            // va_fec_ctr
+            // 
+            this.va_fec_ctr.HeaderText = "Ult. Apert.";
+            this.va_fec_ctr.Name = "va_fec_ctr";
+            this.va_fec_ctr.ReadOnly = true;
+            this.va_fec_ctr.Width = 90;
+            // 
+            // va_est_ado
+            // 
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.ReadOnly = true;
             // 
             // inv002_01
             // 
@@ -424,10 +442,12 @@
         private System.Windows.Forms.ComboBox cb_gru_bod;
         public System.Windows.Forms.TextBox tb_sel_bus;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
+        public System.Windows.Forms.Label lb_des_bus;
+        private System.Windows.Forms.ToolStripMenuItem mn_ape_bod;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_bod;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_nom_bod;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_mon_inv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn va_fec_ctr;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_est_ado;
-        public System.Windows.Forms.Label lb_des_bus;
     }
 }
