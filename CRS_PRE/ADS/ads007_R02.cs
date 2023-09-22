@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CRS_PRE {
+namespace CRS_PRE.ADS {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,24 +16,14 @@ namespace CRS_PRE {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-<<<<<<<< HEAD:CRS_PRE/ADS/ads010_R01.cs
-    public class ads010_R01 : ReportClass {
+    public class ads007_R02 : ReportClass {
         
-        public ads010_R01() {
-========
-    public class ads007_R01b : ReportClass {
-        
-        public ads007_R01b() {
->>>>>>>> parent of 9316bd1 (CAMBIOS Y ACTUALIZACION DEL MODULO DE SEGURIDAD + REPORTES):CRS_PRE/ADS/ads007_R01b.cs
+        public ads007_R02() {
         }
         
         public override string ResourceName {
             get {
-<<<<<<<< HEAD:CRS_PRE/ADS/ads010_R01.cs
-                return "ads010_R01.rpt";
-========
-                return "ads007_R01b.rpt";
->>>>>>>> parent of 9316bd1 (CAMBIOS Y ACTUALIZACION DEL MODULO DE SEGURIDAD + REPORTES):CRS_PRE/ADS/ads007_R01b.cs
+                return "ads007_R02.rpt";
             }
             set {
                 // Do nothing
@@ -51,11 +41,7 @@ namespace CRS_PRE {
         
         public override string FullResourceName {
             get {
-<<<<<<<< HEAD:CRS_PRE/ADS/ads010_R01.cs
-                return "CRS_PRE.ADS.ads010_R01.rpt";
-========
-                return "CRS_PRE.ADS.ads007_R01b.rpt";
->>>>>>>> parent of 9316bd1 (CAMBIOS Y ACTUALIZACION DEL MODULO DE SEGURIDAD + REPORTES):CRS_PRE/ADS/ads007_R01b.cs
+                return "CRS_PRE.ADS.ads007_R02.rpt";
             }
             set {
                 // Do nothing
@@ -104,7 +90,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_ide_usr {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_nom_emp {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -112,7 +98,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_nom_emp {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_est_ado {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -120,7 +106,7 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_est_ado {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_ide_usr {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -128,20 +114,15 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-<<<<<<<< HEAD:CRS_PRE/ADS/ads010_R01.cs
-        public CrystalDecisions.Shared.IParameterField Parameter_vc_ord_dat {
-========
-        public CrystalDecisions.Shared.IParameterField Parameter_ag_est_ado {
->>>>>>>> parent of 9316bd1 (CAMBIOS Y ACTUALIZACION DEL MODULO DE SEGURIDAD + REPORTES):CRS_PRE/ADS/ads007_R01b.cs
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_tus_ini {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
         }
-<<<<<<<< HEAD:CRS_PRE/ADS/ads010_R01.cs
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ar_est_ado {
+        public CrystalDecisions.Shared.IParameterField Parameter_vc_tus_fin {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -149,25 +130,41 @@ namespace CRS_PRE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_ar_ord_dat {
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_tus_ini {
             get {
                 return this.DataDefinition.ParameterFields[5];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_tus_fin {
+            get {
+                return this.DataDefinition.ParameterFields[6];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_est_ado {
+            get {
+                return this.DataDefinition.ParameterFields[7];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ar_ord_dat {
+            get {
+                return this.DataDefinition.ParameterFields[8];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class Cachedads010_R01 : Component, ICachedReport {
+    public class Cachedads007_R02 : Component, ICachedReport {
         
-        public Cachedads010_R01() {
-========
-    }
-    
-    [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class Cachedads007_R01b : Component, ICachedReport {
-        
-        public Cachedads007_R01b() {
->>>>>>>> parent of 9316bd1 (CAMBIOS Y ACTUALIZACION DEL MODULO DE SEGURIDAD + REPORTES):CRS_PRE/ADS/ads007_R01b.cs
+        public Cachedads007_R02() {
         }
         
         [Browsable(false)]
@@ -204,11 +201,7 @@ namespace CRS_PRE {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-<<<<<<<< HEAD:CRS_PRE/ADS/ads010_R01.cs
-            ads010_R01 rpt = new ads010_R01();
-========
-            ads007_R01b rpt = new ads007_R01b();
->>>>>>>> parent of 9316bd1 (CAMBIOS Y ACTUALIZACION DEL MODULO DE SEGURIDAD + REPORTES):CRS_PRE/ADS/ads007_R01b.cs
+            ads007_R02 rpt = new ads007_R02();
             rpt.Site = this.Site;
             return rpt;
         }
