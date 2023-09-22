@@ -39,9 +39,7 @@ namespace CRS_PRE
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             else
-                tb_est_ado.Text = "Deshabilitado";
-            
-            tb_ide_mod.Focus();
+                tb_est_ado.Text = "Deshabilitado";            
         }
 
         // Limpia e Iniciliza los campos
@@ -53,6 +51,7 @@ namespace CRS_PRE
             tb_est_ado.Text = string.Empty;
         }
 
+        // Valida Datos proporcionado en pantalla
         protected string Fi_val_dat()
         {
             // Valida que el campo código NO este vacio

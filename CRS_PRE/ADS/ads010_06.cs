@@ -80,7 +80,7 @@ namespace CRS_PRE
                
                 if (msg_res == DialogResult.OK)
                 {
-                    o_ads010.Fe_eli_tip(tb_ide_tip.Text);                    
+                    o_ads010.Fe_eli_min(tb_ide_tip.Text);                    
                     MessageBox.Show("Los Datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     //Actualiza ventana buscar
