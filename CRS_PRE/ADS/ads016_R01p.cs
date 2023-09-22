@@ -90,10 +90,9 @@ namespace CRS_PRE
             Tabla = o_ads016.Fe_inf_R01(int.Parse(tb_ges_tio.Text), ord_dat);
 
             // Genera el Informe
-            ads016_R01w frm = new ads016_R01w{
-                vp_ges_tio = tb_ges_tio.Text.Trim(),
-                vp_ord_dat = ord_dat
-            };
+            ads016_R01w frm = new ads016_R01w();
+            frm.vp_ges_tio = tb_ges_tio.Text;
+            frm.vp_ord_dat = ord_dat;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

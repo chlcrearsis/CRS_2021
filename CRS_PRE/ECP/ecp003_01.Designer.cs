@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tb_nom_per = new System.Windows.Forms.TextBox();
             this.tb_raz_soc = new System.Windows.Forms.TextBox();
@@ -45,7 +45,6 @@
             this.m_frm_hja = new System.Windows.Forms.MenuStrip();
             this.mn_cre_ar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_nue_ccp = new System.Windows.Forms.ToolStripMenuItem();
-            this.mn_nue_tes = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_mod_ifi = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_edi_tar = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_hab_des = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,10 +54,6 @@
             this.mn_list_mod = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_cer_rar = new System.Windows.Forms.ToolStripMenuItem();
             this.dg_res_ult = new System.Windows.Forms.DataGridView();
-            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
-            this.bt_can_cel = new System.Windows.Forms.Button();
-            this.bt_ace_pta = new System.Windows.Forms.Button();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.va_cod_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_des_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_mto_lim = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +62,10 @@
             this.va_mon_lib = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_fec_exp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.va_est_ado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
+            this.bt_can_cel = new System.Windows.Forms.Button();
+            this.bt_ace_pta = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.m_frm_hja.SuspendLayout();
@@ -167,32 +166,24 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(195, 99);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(266, 24);
+            this.m_frm_hja.Size = new System.Drawing.Size(402, 24);
             this.m_frm_hja.TabIndex = 36;
             this.m_frm_hja.Visible = false;
             // 
             // mn_cre_ar
             // 
             this.mn_cre_ar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mn_nue_ccp,
-            this.mn_nue_tes});
+            this.mn_nue_ccp});
             this.mn_cre_ar.Name = "mn_cre_ar";
-            this.mn_cre_ar.Size = new System.Drawing.Size(42, 20);
+            this.mn_cre_ar.Size = new System.Drawing.Size(43, 20);
             this.mn_cre_ar.Text = "&Crea";
             // 
             // mn_nue_ccp
             // 
             this.mn_nue_ccp.Name = "mn_nue_ccp";
-            this.mn_nue_ccp.Size = new System.Drawing.Size(228, 22);
-            this.mn_nue_ccp.Text = "Libreta de Ctas. x Cobrar/Pagar";
-            this.mn_nue_ccp.Click += new System.EventHandler(this.mn_nue_ccp_Click);
-            // 
-            // mn_nue_tes
-            // 
-            this.mn_nue_tes.Name = "mn_nue_tes";
-            this.mn_nue_tes.Size = new System.Drawing.Size(228, 22);
-            this.mn_nue_tes.Text = "Libreta de Tesoreria";
-            this.mn_nue_tes.Click += new System.EventHandler(this.mn_nue_tes_Click);
+            this.mn_nue_ccp.Size = new System.Drawing.Size(180, 22);
+            this.mn_nue_ccp.Text = "Inscripción";
+            this.mn_nue_ccp.Click += new System.EventHandler(this.mn_nue_ins_Click);
             // 
             // mn_mod_ifi
             // 
@@ -201,34 +192,34 @@
             this.mn_hab_des,
             this.mn_eli_min});
             this.mn_mod_ifi.Name = "mn_mod_ifi";
-            this.mn_mod_ifi.Size = new System.Drawing.Size(58, 20);
+            this.mn_mod_ifi.Size = new System.Drawing.Size(66, 20);
             this.mn_mod_ifi.Text = "&Modifica";
             // 
             // mn_edi_tar
             // 
             this.mn_edi_tar.Name = "mn_edi_tar";
-            this.mn_edi_tar.Size = new System.Drawing.Size(165, 22);
+            this.mn_edi_tar.Size = new System.Drawing.Size(178, 22);
             this.mn_edi_tar.Text = "&Edita";
             this.mn_edi_tar.Click += new System.EventHandler(this.Mn_mod_ifi_Click);
             // 
             // mn_hab_des
             // 
             this.mn_hab_des.Name = "mn_hab_des";
-            this.mn_hab_des.Size = new System.Drawing.Size(165, 22);
+            this.mn_hab_des.Size = new System.Drawing.Size(178, 22);
             this.mn_hab_des.Text = "Habilita/Deshabilita";
             this.mn_hab_des.Click += new System.EventHandler(this.mn_hab_des_Click);
             // 
             // mn_eli_min
             // 
             this.mn_eli_min.Name = "mn_eli_min";
-            this.mn_eli_min.Size = new System.Drawing.Size(165, 22);
+            this.mn_eli_min.Size = new System.Drawing.Size(178, 22);
             this.mn_eli_min.Text = "Elimi&na";
             this.mn_eli_min.Click += new System.EventHandler(this.mn_eli_min_Click);
             // 
             // mn_con_sul
             // 
             this.mn_con_sul.Name = "mn_con_sul";
-            this.mn_con_sul.Size = new System.Drawing.Size(55, 20);
+            this.mn_con_sul.Size = new System.Drawing.Size(59, 20);
             this.mn_con_sul.Text = "&Cosulta";
             this.mn_con_sul.Click += new System.EventHandler(this.Mn_con_sul_Click);
             // 
@@ -237,19 +228,19 @@
             this.mn_rep_ort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mn_list_mod});
             this.mn_rep_ort.Name = "mn_rep_ort";
-            this.mn_rep_ort.Size = new System.Drawing.Size(58, 20);
+            this.mn_rep_ort.Size = new System.Drawing.Size(60, 20);
             this.mn_rep_ort.Text = "&Reporte";
             // 
             // mn_list_mod
             // 
             this.mn_list_mod.Name = "mn_list_mod";
-            this.mn_list_mod.Size = new System.Drawing.Size(153, 22);
+            this.mn_list_mod.Size = new System.Drawing.Size(164, 22);
             this.mn_list_mod.Text = "&Lista de Módulos";
             // 
             // mn_cer_rar
             // 
             this.mn_cer_rar.Name = "mn_cer_rar";
-            this.mn_cer_rar.Size = new System.Drawing.Size(45, 20);
+            this.mn_cer_rar.Size = new System.Drawing.Size(46, 20);
             this.mn_cer_rar.Text = "&Atras";
             this.mn_cer_rar.Click += new System.EventHandler(this.mn_atr_ass_Click);
             // 
@@ -260,15 +251,15 @@
             this.dg_res_ult.AllowUserToResizeRows = false;
             this.dg_res_ult.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dg_res_ult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dg_res_ult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dg_res_ult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_res_ult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.va_cod_lib,
@@ -279,14 +270,14 @@
             this.va_mon_lib,
             this.va_fec_exp,
             this.va_est_ado});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dg_res_ult.DefaultCellStyle = dataGridViewCellStyle14;
             this.dg_res_ult.Location = new System.Drawing.Point(6, 7);
             this.dg_res_ult.MultiSelect = false;
             this.dg_res_ult.Name = "dg_res_ult";
@@ -298,6 +289,62 @@
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
             this.dg_res_ult.SelectionChanged += new System.EventHandler(this.dg_res_ult_SelectionChanged);
+            // 
+            // va_cod_lib
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.va_cod_lib.DefaultCellStyle = dataGridViewCellStyle9;
+            this.va_cod_lib.HeaderText = "Codigo";
+            this.va_cod_lib.Name = "va_cod_lib";
+            this.va_cod_lib.Width = 50;
+            // 
+            // va_des_lib
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_des_lib.DefaultCellStyle = dataGridViewCellStyle10;
+            this.va_des_lib.HeaderText = "Descripción";
+            this.va_des_lib.Name = "va_des_lib";
+            this.va_des_lib.Width = 235;
+            // 
+            // va_mto_lim
+            // 
+            this.va_mto_lim.HeaderText = "Monto Limite";
+            this.va_mto_lim.Name = "va_mto_lim";
+            // 
+            // va_sal_act
+            // 
+            this.va_sal_act.HeaderText = "Saldo";
+            this.va_sal_act.Name = "va_sal_act";
+            // 
+            // va_tip_lib
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_tip_lib.DefaultCellStyle = dataGridViewCellStyle11;
+            this.va_tip_lib.HeaderText = "Tipo";
+            this.va_tip_lib.Name = "va_tip_lib";
+            this.va_tip_lib.Width = 110;
+            // 
+            // va_mon_lib
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.va_mon_lib.DefaultCellStyle = dataGridViewCellStyle12;
+            this.va_mon_lib.HeaderText = "Moneda";
+            this.va_mon_lib.Name = "va_mon_lib";
+            this.va_mon_lib.Width = 55;
+            // 
+            // va_fec_exp
+            // 
+            this.va_fec_exp.HeaderText = "Expiración";
+            this.va_fec_exp.Name = "va_fec_exp";
+            this.va_fec_exp.Width = 80;
+            // 
+            // va_est_ado
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle13;
+            this.va_est_ado.HeaderText = "Estado";
+            this.va_est_ado.Name = "va_est_ado";
+            this.va_est_ado.Width = 75;
             // 
             // gb_ctr_btn
             // 
@@ -340,62 +387,6 @@
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
-            // va_cod_lib
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.va_cod_lib.DefaultCellStyle = dataGridViewCellStyle2;
-            this.va_cod_lib.HeaderText = "Codigo";
-            this.va_cod_lib.Name = "va_cod_lib";
-            this.va_cod_lib.Width = 50;
-            // 
-            // va_des_lib
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.va_des_lib.DefaultCellStyle = dataGridViewCellStyle3;
-            this.va_des_lib.HeaderText = "Descripción";
-            this.va_des_lib.Name = "va_des_lib";
-            this.va_des_lib.Width = 235;
-            // 
-            // va_mto_lim
-            // 
-            this.va_mto_lim.HeaderText = "Monto Limite";
-            this.va_mto_lim.Name = "va_mto_lim";
-            // 
-            // va_sal_act
-            // 
-            this.va_sal_act.HeaderText = "Saldo";
-            this.va_sal_act.Name = "va_sal_act";
-            // 
-            // va_tip_lib
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_tip_lib.DefaultCellStyle = dataGridViewCellStyle4;
-            this.va_tip_lib.HeaderText = "Tipo";
-            this.va_tip_lib.Name = "va_tip_lib";
-            this.va_tip_lib.Width = 110;
-            // 
-            // va_mon_lib
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.va_mon_lib.DefaultCellStyle = dataGridViewCellStyle5;
-            this.va_mon_lib.HeaderText = "Moneda";
-            this.va_mon_lib.Name = "va_mon_lib";
-            this.va_mon_lib.Width = 55;
-            // 
-            // va_fec_exp
-            // 
-            this.va_fec_exp.HeaderText = "Expiración";
-            this.va_fec_exp.Name = "va_fec_exp";
-            this.va_fec_exp.Width = 80;
-            // 
-            // va_est_ado
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.va_est_ado.DefaultCellStyle = dataGridViewCellStyle6;
-            this.va_est_ado.HeaderText = "Estado";
-            this.va_est_ado.Name = "va_est_ado";
-            this.va_est_ado.Width = 75;
             // 
             // ecp003_01
             // 
@@ -450,7 +441,6 @@
         private System.Windows.Forms.ToolStripMenuItem mn_con_sul;
         private System.Windows.Forms.ToolStripMenuItem mn_hab_des;
         private System.Windows.Forms.ToolStripMenuItem mn_nue_ccp;
-        private System.Windows.Forms.ToolStripMenuItem mn_nue_tes;
         public System.Windows.Forms.TextBox tb_raz_soc;
         public System.Windows.Forms.TextBox tb_nom_per;
         private System.Windows.Forms.DataGridViewTextBoxColumn va_cod_lib;
