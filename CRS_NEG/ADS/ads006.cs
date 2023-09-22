@@ -265,26 +265,5 @@ namespace CRS_NEG
                 throw ex;
             }
         }
-
-        /// <summary>
-        /// Informe: Autorizaciones por Tipo de Usuario
-        /// </summary>
-        /// <param name="ide_tus">ID. Tipo de Usuario</param>
-        /// <param name="mod_ini">ID. Módulo Inicial</param>
-        /// <param name="mod_fin">ID. Módulo Final</param>
-        /// <returns></returns>
-        public DataTable Fe_inf_R03(int ide_tus, int mod_ini, int mod_fin)
-        {
-            try
-            {
-                cadena = new StringBuilder();
-                cadena.AppendLine("EXECUTE ads006_R03 " + ide_tus + ", " + mod_ini + ", " + mod_fin + "");
-                return ob_con_ecA.fe_exe_sql(cadena.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

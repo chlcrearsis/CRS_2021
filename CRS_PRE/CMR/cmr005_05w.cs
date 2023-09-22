@@ -77,7 +77,7 @@ namespace CRS_PRE
             ide_doc = frm_dat.Rows[0]["va_ide_doc"].ToString();
             ges_doc = int.Parse(frm_dat.Rows[0]["va_ges_doc"].ToString());
 
-            doc_vta = ide_doc.Substring(0, 3);
+            doc_vta = frm_dat.Rows[0]["va_cod_doc"].ToString();// ide_doc.Substring(0, 3);
             nro_tal = int.Parse(ide_doc.Substring(3, 3));
 
             // Obtiene formato de impresion del nro de talonario

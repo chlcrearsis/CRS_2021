@@ -727,16 +727,15 @@ namespace CRS_PRE
             Tabla = o_adp002.Fe_inf_R04(gru_ini, gru_fin, ide_tip, atr_ini, atr_fin, rut_ini, rut_fin, est_ado, ord_dat);
 
             // Genera el Informe
-            adp002_R04w frm = new adp002_R04w{
-                vp_gru_ini = gru_ini.ToString(),
-                vp_gru_fin = gru_fin.ToString(),
-                vp_tip_atr = ide_tip.ToString(),
-                vp_atr_ini = atr_ini.ToString(),
-                vp_atr_fin = atr_fin.ToString(),
-                vp_rut_ini = rut_ini.ToString(),
-                vp_rut_fin = rut_fin.ToString(),
-                vp_est_ado = est_ado
-            };
+            adp002_R04w frm = new adp002_R04w();
+            frm.vp_gru_ini = gru_ini.ToString();
+            frm.vp_gru_fin = gru_fin.ToString();
+            frm.vp_tip_atr = ide_tip.ToString();
+            frm.vp_atr_ini = atr_ini.ToString();
+            frm.vp_atr_fin = atr_fin.ToString();
+            frm.vp_rut_ini = rut_ini.ToString();
+            frm.vp_rut_fin = rut_fin.ToString();
+            frm.vp_est_ado = est_ado;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

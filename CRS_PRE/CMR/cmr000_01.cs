@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 using CRS_NEG;
@@ -62,6 +63,10 @@ namespace CRS_PRE
         {
             try
             {
+                PrintDocument vv_pri_doc = new PrintDocument();
+                string vv_imp_def = "";     // Impresora por defecto
+
+
                 //Recupera datos
                 cod_doc = frm_dat.Rows[0]["va_cod_doc"].ToString();             // Documento (XXX)
                 ges_doc = int.Parse(frm_dat.Rows[0]["va_ges_doc"].ToString());  // Gestion (0000)
@@ -70,18 +75,44 @@ namespace CRS_PRE
                 nro_fac = int.Parse(frm_dat.Rows[0]["va_nro_fac"].ToString());  // Nro de fctura
                 cod_plv = int.Parse(frm_dat.Rows[0]["va_cod_plv"].ToString());  // Codigo de plantilla de venta (0)
 
-                // Obtiene formato de impresion y nro de copias
-                tab_ads004 = o_ads004.Fe_con_tal(cod_doc,nro_tal);
+                if (cod_plv > 0)
+                {    // Obtiene formato de impresion y nro de copias
+                    tab_ads004 = o_ads004.Fe_con_tal(cod_doc, nro_tal);
 
-                for_imp = int.Parse(tab_ads004.Rows[0]["va_for_mat"].ToString());   // Formato de impresion (0)
-                nro_cop = int.Parse(tab_ads004.Rows[0]["va_nro_cop"].ToString());   // Nro de copias de impresion (0)
+                    for_imp = int.Parse(tab_ads004.Rows[0]["va_for_mat"].ToString());   // Formato de impresion (0)
+                    nro_cop = int.Parse(tab_ads004.Rows[0]["va_nro_cop"].ToString());   // Nro de copias de impresion (0)
 
+
+                    // Obtiene impresora para el documento               
+                    lb_nom_imp.Text = imp_nom + " - [ " + nro_cop.ToString() + " Copia(s) ]";
+
+                    // Verifica bandera imprime aviso 1
+                    ban_av1 = int.Parse(tab_pla_vta.Rows[0]["va_ban_av1"].ToString());
+                    imp_av1 = tab_pla_vta.Rows[0]["va_imp_av1"].ToString();
+
+                    // Verifica bandera imprime aviso 2
+                    ban_av2 = int.Parse(tab_pla_vta.Rows[0]["va_ban_av2"].ToString());
+                    imp_av2 = tab_pla_vta.Rows[0]["va_imp_av2"].ToString();
+
+                }
+                else
+                {
+                    for_imp = 0;
+                    nro_cop = 0;
+                    // Obtiene impresora por defecto
+                    vv_imp_def = vv_pri_doc.PrinterSettings.PrinterName;
+                    ban_av1 = 0;
+                    imp_av1 = "";
+                    ban_av2 = 0;
+                    imp_av2 = "";
+                }
+
+                // Obtiene la operacion 
                 ope_rac = frm_dat.Rows[0]["va_ope_rac"].ToString();
-
                 lb_ide_doc.Text = ide_doc;
-                
-                // Muestra la etiqueta Factura
-                if(ope_rac == "VENTA" && nro_fac > 0)
+
+                // Muestra la etiqueta del documento
+                if (ope_rac == "VENTA" && nro_fac > 0)
                 {
                     lb_tit_ope.Text = "FACTURA:";
                     lb_nro_fac.Text = "#" + nro_fac.ToString();
@@ -95,25 +126,20 @@ namespace CRS_PRE
 
                 // Crea tabla para pasar datos p/impresion o mostrar documento
                 dat_doc = new DataTable();
-                dat_doc.Columns.Add("va_ide_doc");
+                dat_doc.Columns.Add("va_cod_doc");
                 dat_doc.Columns.Add("va_ges_doc");
-                dat_doc.Columns.Add("va_ide_vta");
-                dat_doc.Columns.Add("va_ges_vta");
+                dat_doc.Columns.Add("va_ide_doc");
 
                 dat_doc.Rows.Add();
-                dat_doc.Rows[0]["va_ide_doc"] = cod_doc;
+                dat_doc.Rows[0]["va_cod_doc"] = cod_doc;
                 dat_doc.Rows[0]["va_ges_doc"] = ges_doc;
-                dat_doc.Rows[0]["va_ide_vta"] = ide_doc;
-                dat_doc.Rows[0]["va_ges_vta"] = ges_doc;
-
+                dat_doc.Rows[0]["va_ide_doc"] = ide_doc;
 
                 switch (ope_rac.ToUpper())
                 {
                     case "VENTA":
                         if (cod_doc.Substring(0,2) == "VR") // Restaurant
                         {
-
-                            //cod_plv = 1;
                             // Obtiene impresora
                             tab_pla_vta = o_res004.Fe_con_plv(cod_plv.ToString());
                             imp_nom = tab_pla_vta.Rows[0]["va_imp_ntv"].ToString();
@@ -124,8 +150,6 @@ namespace CRS_PRE
                             tab_pla_vta = o_cmr004.Fe_con_plv(cod_plv.ToString());
                             imp_nom = tab_pla_vta.Rows[0]["va_imp_ntv"].ToString();
                         }
-
-
                         break;
                     case "COMPRA":
                         //Fi_cmp_ver();
@@ -139,17 +163,7 @@ namespace CRS_PRE
                         break;
                 }
 
-                // Obtiene impresora para el documento               
-                lb_nom_imp.Text = imp_nom + " - [ " + nro_cop.ToString() + " Copia(s) ]";
-
-                // Verifica bandera imprime aviso 1
-                ban_av1 = int.Parse(tab_pla_vta.Rows[0]["va_ban_av1"].ToString());
-                imp_av1 = tab_pla_vta.Rows[0]["va_imp_av1"].ToString();
-
-                // Verifica bandera imprime aviso 2
-                ban_av2 = int.Parse(tab_pla_vta.Rows[0]["va_ban_av2"].ToString());
-                imp_av2 = tab_pla_vta.Rows[0]["va_imp_av2"].ToString();
-
+               
                 bt_imp_rim.Focus();
                 
             }

@@ -18,13 +18,16 @@ namespace CRS_PRE
         public int frm_tip;
         public DataTable frm_dat;
         // Instancias
+        ads001 o_ads001 = new ads001();
         ads013 o_ads013 = new ads013();
+        ads007 o_ads007 = new ads007();
         DataTable Tabla = new DataTable();
         // Variables
         string va_nom_emp = "";
+        string vp_nom_mod = "";
         public string vp_doc_ini = "";
         public string vp_doc_fin = "";
-        public string vp_ide_mod = "";
+        public int vp_ide_mod;
 
         public ads004_R02w()
         {
@@ -34,7 +37,13 @@ namespace CRS_PRE
         private void frm_Load(object sender, EventArgs e)
         {
             // Hacer grande la pantalla
-            Dock = DockStyle.Fill;                        
+            Dock = DockStyle.Fill;            
+
+            // Obtiene el nombre del Modulo
+            Tabla = o_ads001.Fe_con_mod(vp_ide_mod);
+            vp_nom_mod = vp_ide_mod + " - " + Tabla.Rows[0]["va_nom_mod"].ToString().Trim();
+
+
             // Obtener nombre de la empresa
             Tabla = o_ads013.Fe_obt_glo(1, 4);
             va_nom_emp = Tabla.Rows[0]["va_glo_car"].ToString().Trim();
@@ -44,7 +53,7 @@ namespace CRS_PRE
             ads004_R02.SetDataSource(frm_dat);
             // Para enviar parametros directos al reporte (nombre del parametro en crystal report, valor que se enviara)
             ads004_R02.SetParameterValue("vc_nom_emp", va_nom_emp);
-            ads004_R02.SetParameterValue("vc_ide_mod", vp_ide_mod);
+            ads004_R02.SetParameterValue("vc_ide_mod", vp_nom_mod);
             ads004_R02.SetParameterValue("vc_doc_ini", vp_doc_ini);
             ads004_R02.SetParameterValue("vc_doc_fin", vp_doc_fin);            
             ads004_R02.SetParameterValue("vc_ide_usr", Program.gl_ide_usr);

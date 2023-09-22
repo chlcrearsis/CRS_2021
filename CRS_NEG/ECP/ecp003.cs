@@ -39,7 +39,7 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("INSERT INTO ecp003 VALUES (" + cod_lib + ", " + cod_per + ", '" + mto_lim + "', '" + sal_act + "', " + max_cuo + ", '" + fec_exp + "', 'H')");
+                cadena.AppendLine("INSERT INTO ecp003 VALUES (" + cod_lib + ", " + cod_per + ", " + cod_plg + ", '" + mto_lim + "', '" + sal_act + "', " + max_cuo + ", '" + fec_exp.ToString("d") + "', 'H')");
                 ob_con_ecA.fe_exe_sql(cadena.ToString());
             }catch (Exception ex){
                 throw ex;
@@ -56,12 +56,12 @@ namespace CRS_NEG
         /// <param name="sal_act">Saldo actual del monto limite</param>
         /// <param name="max_cuo">Maximo de cuotas vencidas</param>
         /// <param name="fec_exp">Fecha de expiración de la suscripcion de la libreta</param>
-        public void Fe_edi_sus(int cod_lib, int cod_per, int cod_plg, decimal mto_lim, decimal sal_act, int max_cuo, DateTime fec_exp)
+        public void Fe_edi_sus(int cod_lib, int cod_per, int cod_plg, decimal mto_lim, int max_cuo, DateTime fec_exp)
         {
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("UPDATE ecp003 SET va_cod_plg = " + cod_plg + ", va_mto_lim = '" + mto_lim + "',  va_sal_act = '" + sal_act + "',  va_max_cuo = '" + max_cuo + "',  va_fec_exp = '" + fec_exp + "' ");
+                cadena.AppendLine("UPDATE ecp003 SET va_cod_plg = " + cod_plg + ", va_mto_lim = '" + mto_lim + "',  va_max_cuo = '" + max_cuo + "',  va_fec_exp = '" + fec_exp.ToString("d") + "' ");
                 cadena.AppendLine(" WHERE va_cod_lib = '" + cod_lib + "' AND va_cod_per = " + cod_per ); 
 
                 ob_con_ecA.fe_exe_sql(cadena.ToString());

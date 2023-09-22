@@ -40,6 +40,14 @@ namespace CRS_NEG
             ob_con_ecA.fe_exe_sql(cadena);
         }
 
+        public void Fe_ape_fec(int ar_cod_bod, DateTime ar_fec_ctr)
+        {
+            cadena = " UPDATE inv002 SET va_fec_ctr = '" + ar_fec_ctr.ToString("d") + "'" +
+                  " WHERE va_cod_bod = " + ar_cod_bod + "";
+            ob_con_ecA.fe_exe_sql(cadena);
+        }
+
+
         public void Fe_hab_ili( int ar_ide_gru, int ar_cod_bod)
         {
             cadena = " inv002_04a_p01 " + ar_ide_gru + "," + ar_cod_bod + "";
@@ -72,7 +80,7 @@ namespace CRS_NEG
 
         public DataTable Fe_bus_car(string ar_tex_bus,int ar_par_ame, string ar_est_ado, int ar_ide_gru )
         {
-            cadena = " SELECT va_ide_gru, va_cod_bod, va_nom_bod, va_mon_inv, va_est_ado" +
+            cadena = " SELECT va_ide_gru, va_cod_bod, va_nom_bod, va_mon_inv, va_fec_ctr, va_est_ado" +
                      " FROM inv002 ";
             cadena += " WHERE va_ide_gru = va_ide_gru ";
 

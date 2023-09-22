@@ -124,7 +124,7 @@
             this.tb_ide_tus.ReadOnly = true;
             this.tb_ide_tus.Size = new System.Drawing.Size(45, 20);
             this.tb_ide_tus.TabIndex = 10;
-            this.tb_ide_tus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tb_ide_tus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // gb_ctr_btn
             // 

@@ -241,11 +241,10 @@ namespace CRS_PRE
             Tabla = o_adp002.Fe_inf_R01(int.Parse(gru_ini), int.Parse(gru_fin), est_ado, ord_dat);
 
             // Genera el Informe
-            adp002_R01w frm = new adp002_R01w{
-                vp_gru_ini = gru_ini,
-                vp_gru_fin = gru_fin,
-                vp_est_ado = est_ado
-            };
+            adp002_R01w frm = new adp002_R01w();
+            frm.vp_gru_ini = gru_ini;
+            frm.vp_gru_fin = gru_fin;
+            frm.vp_est_ado = est_ado;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

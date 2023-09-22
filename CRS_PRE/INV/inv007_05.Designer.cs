@@ -71,7 +71,7 @@
             this.mn_cer_rar});
             this.m_frm_hja.Location = new System.Drawing.Point(136, 9);
             this.m_frm_hja.Name = "m_frm_hja";
-            this.m_frm_hja.Size = new System.Drawing.Size(451, 27);
+            this.m_frm_hja.Size = new System.Drawing.Size(572, 27);
             this.m_frm_hja.TabIndex = 6;
             this.m_frm_hja.Visible = false;
             // 
@@ -85,7 +85,7 @@
             // mn_exp_ort
             // 
             this.mn_exp_ort.Name = "mn_exp_ort";
-            this.mn_exp_ort.Size = new System.Drawing.Size(62, 23);
+            this.mn_exp_ort.Size = new System.Drawing.Size(63, 23);
             this.mn_exp_ort.Text = "&Exportar";
             this.mn_exp_ort.Click += new System.EventHandler(this.Mn_exp_ort_Click);
             // 
@@ -135,9 +135,11 @@
             // mn_nro_pag
             // 
             this.mn_nro_pag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mn_nro_pag.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.mn_nro_pag.MaxLength = 3;
             this.mn_nro_pag.Name = "mn_nro_pag";
             this.mn_nro_pag.Size = new System.Drawing.Size(30, 23);
+            this.mn_nro_pag.Tag = "separador";
             this.mn_nro_pag.Text = "1";
             this.mn_nro_pag.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mn_nro_pag.Leave += new System.EventHandler(this.Mn_nro_pag_Leave);
@@ -147,6 +149,7 @@
             this.toolStripMenuItem2.Enabled = false;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(22, 23);
+            this.toolStripMenuItem2.Tag = "separador";
             this.toolStripMenuItem2.Text = "|";
             // 
             // mn_bus_car
