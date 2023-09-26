@@ -22,7 +22,7 @@ GO
 --** INSERTA APLICACIONES DEL SISTEMA POR DEFECTO
 INSERT INTO ads002 VALUES (1, 'ads200', 'Administrador', 'H')
 INSERT INTO ads002 VALUES (2, 'inv200', 'Inventario', 'H')
-INSERT INTO ads002 VALUES (3, 'cmr200', 'Comercialización', 'H')
+INSERT INTO ads002 VALUES (3, 'crm200', 'Comercialización', 'H')
 INSERT INTO ads002 VALUES (3, 'res200', 'Restaurant', 'H')
 INSERT INTO ads002 VALUES (4, 'ctb200', 'Contabilidad', 'H')
 INSERT INTO ads002 VALUES (5, 'tes200', 'Tesorería', 'H')

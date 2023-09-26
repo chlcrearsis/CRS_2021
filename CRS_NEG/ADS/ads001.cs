@@ -2,6 +2,7 @@
 using System.Data;
 using System.Text;
 using CRS_DAT;
+
 namespace CRS_NEG
 {
     //######################################################################

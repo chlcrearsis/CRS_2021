@@ -89,8 +89,8 @@ namespace CRS_PRE
                             break;
                     }
                 }
-                tb_ide_tip.Text = Tabla.Rows[0]["va_ide_tip"].ToString();
-                lb_nom_tip.Text = Tabla.Rows[0]["va_nom_tip"].ToString();
+                tb_ide_tip.Text = Tabla.Rows[0]["va_ide_tip"].ToString().Trim();
+                lb_nom_tip.Text = Tabla.Rows[0]["va_nom_tip"].ToString().Trim();
             }
         }
 
@@ -113,7 +113,7 @@ namespace CRS_PRE
 
 
         /// <summary>
-        /// Consulta Registro Seleccionado
+        /// Función: Consulta registro seleccionado
         /// </summary>
         private void fi_con_sel()
         {
@@ -319,7 +319,7 @@ namespace CRS_PRE
         // Evento CellDoubleClick: DataGridView
         private void dg_res_ult_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             cl_glo_frm.Cerrar(this);
         }
 
@@ -426,6 +426,6 @@ namespace CRS_PRE
         {
             DialogResult = DialogResult.Cancel;
             cl_glo_frm.Cerrar(this);
-        }
+        }        
     }
 }

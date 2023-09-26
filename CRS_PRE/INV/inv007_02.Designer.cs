@@ -32,7 +32,7 @@
             this.bt_eli_min = new System.Windows.Forms.Button();
             this.bt_edi_tar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_fec_alm = new System.Windows.Forms.TextBox();
             this.tb_cod_doc = new System.Windows.Forms.TextBox();
             this.tb_nro_tal = new System.Windows.Forms.TextBox();
             this.tb_cod_bod = new System.Windows.Forms.TextBox();
@@ -43,6 +43,11 @@
             this.bt_bus_tal = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tb_ref_cmp = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tb_tip_cam = new System.Windows.Forms.TextBox();
+            this.cb_mon_cmp = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lb_raz_soc = new System.Windows.Forms.Label();
             this.bt_bus_per = new System.Windows.Forms.Button();
@@ -91,6 +96,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.tb_obs_cmp = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -139,7 +145,7 @@
             this.bt_eli_min.Location = new System.Drawing.Point(88, 350);
             this.bt_eli_min.Name = "bt_eli_min";
             this.bt_eli_min.Size = new System.Drawing.Size(54, 23);
-            this.bt_eli_min.TabIndex = 112;
+            this.bt_eli_min.TabIndex = 115;
             this.bt_eli_min.Text = "E&liminar";
             this.bt_eli_min.UseVisualStyleBackColor = false;
             this.bt_eli_min.Click += new System.EventHandler(this.bt_eli_min_Click);
@@ -159,7 +165,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.tb_fec_alm);
             this.groupBox2.Controls.Add(this.tb_cod_doc);
             this.groupBox2.Controls.Add(this.tb_nro_tal);
             this.groupBox2.Controls.Add(this.tb_cod_bod);
@@ -171,22 +177,22 @@
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Location = new System.Drawing.Point(8, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(722, 34);
-            this.groupBox2.TabIndex = 49;
+            this.groupBox2.Size = new System.Drawing.Size(748, 34);
+            this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             // 
-            // textBox3
+            // tb_fec_alm
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(612, 10);
-            this.textBox3.MaxLength = 6;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(91, 20);
-            this.textBox3.TabIndex = 83;
-            this.textBox3.TabStop = false;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_fec_alm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_fec_alm.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_fec_alm.Enabled = false;
+            this.tb_fec_alm.Location = new System.Drawing.Point(612, 10);
+            this.tb_fec_alm.MaxLength = 6;
+            this.tb_fec_alm.Name = "tb_fec_alm";
+            this.tb_fec_alm.Size = new System.Drawing.Size(91, 20);
+            this.tb_fec_alm.TabIndex = 83;
+            this.tb_fec_alm.TabStop = false;
+            this.tb_fec_alm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tb_cod_doc
             // 
@@ -293,6 +299,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.tb_ref_cmp);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.tb_tip_cam);
+            this.groupBox3.Controls.Add(this.cb_mon_cmp);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.lb_raz_soc);
             this.groupBox3.Controls.Add(this.bt_bus_per);
@@ -302,14 +314,67 @@
             this.groupBox3.Controls.Add(this.cb_for_pag);
             this.groupBox3.Location = new System.Drawing.Point(8, 28);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(722, 57);
-            this.groupBox3.TabIndex = 31;
+            this.groupBox3.Size = new System.Drawing.Size(748, 57);
+            this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
+            // 
+            // tb_ref_cmp
+            // 
+            this.tb_ref_cmp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_ref_cmp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_ref_cmp.Location = new System.Drawing.Point(645, 9);
+            this.tb_ref_cmp.MaxLength = 10;
+            this.tb_ref_cmp.Name = "tb_ref_cmp";
+            this.tb_ref_cmp.Size = new System.Drawing.Size(97, 20);
+            this.tb_ref_cmp.TabIndex = 52;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(589, 14);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(56, 13);
+            this.label16.TabIndex = 85;
+            this.label16.Text = "Doc. Ref.:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(155, 13);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(30, 13);
+            this.label17.TabIndex = 114;
+            this.label17.Text = "T.C.:";
+            // 
+            // tb_tip_cam
+            // 
+            this.tb_tip_cam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_tip_cam.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tb_tip_cam.Location = new System.Drawing.Point(187, 10);
+            this.tb_tip_cam.MaxLength = 8;
+            this.tb_tip_cam.Name = "tb_tip_cam";
+            this.tb_tip_cam.Size = new System.Drawing.Size(45, 20);
+            this.tb_tip_cam.TabIndex = 45;
+            this.tb_tip_cam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tb_tip_cam.Enter += new System.EventHandler(this.tb_tip_cam_Enter);
+            this.tb_tip_cam.Validated += new System.EventHandler(this.tb_tip_cam_Validated);
+            // 
+            // cb_mon_cmp
+            // 
+            this.cb_mon_cmp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_mon_cmp.FormattingEnabled = true;
+            this.cb_mon_cmp.Items.AddRange(new object[] {
+            "Bolivianos",
+            "Dolares"});
+            this.cb_mon_cmp.Location = new System.Drawing.Point(386, 9);
+            this.cb_mon_cmp.Name = "cb_mon_cmp";
+            this.cb_mon_cmp.Size = new System.Drawing.Size(95, 21);
+            this.cb_mon_cmp.TabIndex = 48;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 11);
+            this.label4.Location = new System.Drawing.Point(6, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 52;
@@ -317,9 +382,9 @@
             // 
             // lb_raz_soc
             // 
-            this.lb_raz_soc.Location = new System.Drawing.Point(145, 37);
+            this.lb_raz_soc.Location = new System.Drawing.Point(145, 36);
             this.lb_raz_soc.Name = "lb_raz_soc";
-            this.lb_raz_soc.Size = new System.Drawing.Size(251, 13);
+            this.lb_raz_soc.Size = new System.Drawing.Size(235, 13);
             this.lb_raz_soc.TabIndex = 42;
             this.lb_raz_soc.Text = ".";
             // 
@@ -331,7 +396,7 @@
             this.bt_bus_per.Location = new System.Drawing.Point(126, 32);
             this.bt_bus_per.Name = "bt_bus_per";
             this.bt_bus_per.Size = new System.Drawing.Size(16, 22);
-            this.bt_bus_per.TabIndex = 45;
+            this.bt_bus_per.TabIndex = 55;
             this.bt_bus_per.TabStop = false;
             this.bt_bus_per.Text = "|";
             this.bt_bus_per.UseVisualStyleBackColor = false;
@@ -345,7 +410,7 @@
             this.tb_cod_per.MaxLength = 6;
             this.tb_cod_per.Name = "tb_cod_per";
             this.tb_cod_per.Size = new System.Drawing.Size(61, 20);
-            this.tb_cod_per.TabIndex = 50;
+            this.tb_cod_per.TabIndex = 55;
             this.tb_cod_per.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_cod_per.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Tb_cod_per_KeyDown);
             this.tb_cod_per.Validated += new System.EventHandler(this.Tb_cod_per_Validated);
@@ -366,6 +431,7 @@
             this.tb_fec_cmp.Name = "tb_fec_cmp";
             this.tb_fec_cmp.Size = new System.Drawing.Size(95, 20);
             this.tb_fec_cmp.TabIndex = 40;
+            this.tb_fec_cmp.Validated += new System.EventHandler(this.tb_fec_cmp_Validated);
             // 
             // cb_for_pag
             // 
@@ -374,10 +440,10 @@
             this.cb_for_pag.Items.AddRange(new object[] {
             "Contado",
             "Credito"});
-            this.cb_for_pag.Location = new System.Drawing.Point(402, 31);
+            this.cb_for_pag.Location = new System.Drawing.Point(489, 9);
             this.cb_for_pag.Name = "cb_for_pag";
             this.cb_for_pag.Size = new System.Drawing.Size(95, 21);
-            this.cb_for_pag.TabIndex = 60;
+            this.cb_for_pag.TabIndex = 50;
             // 
             // dg_res_ult
             // 
@@ -404,7 +470,7 @@
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dg_res_ult.Size = new System.Drawing.Size(747, 216);
-            this.dg_res_ult.TabIndex = 111;
+            this.dg_res_ult.TabIndex = 110;
             // 
             // va_nro_ite
             // 
@@ -477,7 +543,7 @@
             this.bt_lim_pia.Location = new System.Drawing.Point(645, 101);
             this.bt_lim_pia.Name = "bt_lim_pia";
             this.bt_lim_pia.Size = new System.Drawing.Size(18, 23);
-            this.bt_lim_pia.TabIndex = 110;
+            this.bt_lim_pia.TabIndex = 105;
             this.bt_lim_pia.Text = "X";
             this.bt_lim_pia.UseVisualStyleBackColor = false;
             this.bt_lim_pia.Click += new System.EventHandler(this.bt_lim_pia_Click);
@@ -490,7 +556,7 @@
             this.bt_adi_pro.Location = new System.Drawing.Point(677, 101);
             this.bt_adi_pro.Name = "bt_adi_pro";
             this.bt_adi_pro.Size = new System.Drawing.Size(70, 23);
-            this.bt_adi_pro.TabIndex = 110;
+            this.bt_adi_pro.TabIndex = 108;
             this.bt_adi_pro.Text = "&AGREGAR";
             this.bt_adi_pro.UseVisualStyleBackColor = false;
             this.bt_adi_pro.Click += new System.EventHandler(this.bt_adi_pro_Click);
@@ -697,7 +763,7 @@
             this.bt_can_cel.Location = new System.Drawing.Point(659, 9);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 23);
-            this.bt_can_cel.TabIndex = 20;
+            this.bt_can_cel.TabIndex = 150;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.Bt_can_cel_Click);
@@ -710,7 +776,7 @@
             this.bt_ace_pta.Location = new System.Drawing.Point(578, 9);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 23);
-            this.bt_ace_pta.TabIndex = 10;
+            this.bt_ace_pta.TabIndex = 140;
             this.bt_ace_pta.Text = "&Aceptar";
             this.bt_ace_pta.UseVisualStyleBackColor = false;
             this.bt_ace_pta.Click += new System.EventHandler(this.Bt_ace_pta_Click);
@@ -726,7 +792,7 @@
             this.groupBox4.Location = new System.Drawing.Point(558, 377);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(202, 82);
-            this.groupBox4.TabIndex = 31;
+            this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
             // 
             // tb_tot_net
@@ -739,6 +805,7 @@
             this.tb_tot_net.ReadOnly = true;
             this.tb_tot_net.Size = new System.Drawing.Size(104, 20);
             this.tb_tot_net.TabIndex = 86;
+            this.tb_tot_net.TabStop = false;
             this.tb_tot_net.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tb_des_cue
@@ -749,7 +816,7 @@
             this.tb_des_cue.MaxLength = 8;
             this.tb_des_cue.Name = "tb_des_cue";
             this.tb_des_cue.Size = new System.Drawing.Size(104, 20);
-            this.tb_des_cue.TabIndex = 86;
+            this.tb_des_cue.TabIndex = 120;
             this.tb_des_cue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tb_des_cue.Validated += new System.EventHandler(this.tb_des_cue_Validated);
             // 
@@ -763,6 +830,7 @@
             this.tb_tot_bru.ReadOnly = true;
             this.tb_tot_bru.Size = new System.Drawing.Size(104, 20);
             this.tb_tot_bru.TabIndex = 86;
+            this.tb_tot_bru.TabStop = false;
             this.tb_tot_bru.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
@@ -810,7 +878,16 @@
             this.tb_obs_cmp.Multiline = true;
             this.tb_obs_cmp.Name = "tb_obs_cmp";
             this.tb_obs_cmp.Size = new System.Drawing.Size(363, 59);
-            this.tb_obs_cmp.TabIndex = 81;
+            this.tb_obs_cmp.TabIndex = 125;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(394, 37);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(31, 13);
+            this.label18.TabIndex = 115;
+            this.label18.Text = "Caja:";
             // 
             // inv007_02
             // 
@@ -881,7 +958,7 @@
         private System.Windows.Forms.DateTimePicker tb_fec_cmp;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tb_fec_alm;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tb_und_cmp;
         private System.Windows.Forms.TextBox tb_des_pro;
@@ -921,5 +998,11 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tb_obs_cmp;
+        private System.Windows.Forms.ComboBox cb_mon_cmp;
+        private System.Windows.Forms.TextBox tb_ref_cmp;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox tb_tip_cam;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }

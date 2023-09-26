@@ -80,14 +80,14 @@
             this.groupBox1.Controls.Add(this.tb_ide_tip);
             this.groupBox1.Location = new System.Drawing.Point(2, -5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(542, 63);
+            this.groupBox1.Size = new System.Drawing.Size(537, 63);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // lb_ide_tab
             // 
             this.lb_ide_tab.AutoSize = true;
-            this.lb_ide_tab.Location = new System.Drawing.Point(370, 15);
+            this.lb_ide_tab.Location = new System.Drawing.Point(366, 15);
             this.lb_ide_tab.Name = "lb_ide_tab";
             this.lb_ide_tab.Size = new System.Drawing.Size(49, 13);
             this.lb_ide_tab.TabIndex = 3;
@@ -101,17 +101,18 @@
             "Todos",
             "Persona",
             "Producto"});
-            this.cb_ide_tab.Location = new System.Drawing.Point(422, 11);
+            this.cb_ide_tab.Location = new System.Drawing.Point(418, 11);
             this.cb_ide_tab.Name = "cb_ide_tab";
             this.cb_ide_tab.Size = new System.Drawing.Size(113, 21);
             this.cb_ide_tab.TabIndex = 4;
+            this.cb_ide_tab.SelectedIndexChanged += new System.EventHandler(this.cb_ide_tab_SelectedIndexChanged);
             // 
             // bt_bus_car
             // 
             this.bt_bus_car.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(43)))), ((int)(((byte)(76)))));
             this.bt_bus_car.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_bus_car.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_bus_car.Location = new System.Drawing.Point(461, 36);
+            this.bt_bus_car.Location = new System.Drawing.Point(457, 36);
             this.bt_bus_car.Name = "bt_bus_car";
             this.bt_bus_car.Size = new System.Drawing.Size(75, 23);
             this.bt_bus_car.TabIndex = 8;
@@ -127,7 +128,7 @@
             "Todos",
             "Habilitado",
             "Deshabilitado"});
-            this.cb_est_bus.Location = new System.Drawing.Point(353, 37);
+            this.cb_est_bus.Location = new System.Drawing.Point(349, 37);
             this.cb_est_bus.Name = "cb_est_bus";
             this.cb_est_bus.Size = new System.Drawing.Size(105, 21);
             this.cb_est_bus.TabIndex = 7;
@@ -139,7 +140,7 @@
             this.cb_prm_bus.Items.AddRange(new object[] {
             "Codigo",
             "Nombre"});
-            this.cb_prm_bus.Location = new System.Drawing.Point(253, 37);
+            this.cb_prm_bus.Location = new System.Drawing.Point(249, 37);
             this.cb_prm_bus.Name = "cb_prm_bus";
             this.cb_prm_bus.Size = new System.Drawing.Size(95, 21);
             this.cb_prm_bus.TabIndex = 6;
@@ -149,7 +150,7 @@
             this.tb_tex_bus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_tex_bus.Location = new System.Drawing.Point(9, 38);
             this.tb_tex_bus.Name = "tb_tex_bus";
-            this.tb_tex_bus.Size = new System.Drawing.Size(240, 20);
+            this.tb_tex_bus.Size = new System.Drawing.Size(236, 20);
             this.tb_tex_bus.TabIndex = 5;
             this.tb_tex_bus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fi_pre_tec_KeyDown);
             // 
@@ -189,7 +190,7 @@
             this.groupBox2.Controls.Add(this.dg_res_ult);
             this.groupBox2.Location = new System.Drawing.Point(2, 52);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(542, 195);
+            this.groupBox2.Size = new System.Drawing.Size(537, 195);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -313,7 +314,7 @@
             this.dg_res_ult.RowHeadersVisible = false;
             this.dg_res_ult.RowTemplate.Height = 20;
             this.dg_res_ult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_res_ult.Size = new System.Drawing.Size(530, 183);
+            this.dg_res_ult.Size = new System.Drawing.Size(526, 183);
             this.dg_res_ult.TabIndex = 0;
             this.dg_res_ult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellClick);
             this.dg_res_ult.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_res_ult_CellDoubleClick);
@@ -356,7 +357,7 @@
             this.gb_ctr_btn.Enabled = false;
             this.gb_ctr_btn.Location = new System.Drawing.Point(1, 241);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(542, 40);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(538, 40);
             this.gb_ctr_btn.TabIndex = 2;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -366,7 +367,7 @@
             this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(382, 10);
+            this.bt_ace_pta.Location = new System.Drawing.Point(375, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 0;
@@ -380,7 +381,7 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(461, 10);
+            this.bt_can_cel.Location = new System.Drawing.Point(454, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 1;
@@ -392,7 +393,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 283);
+            this.ClientSize = new System.Drawing.Size(541, 283);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);

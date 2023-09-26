@@ -379,7 +379,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ads000_06";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "USUARIO";
+            this.Tag = "Control de Acceso";
+            this.Text = "Control de Acceso";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ads000_06_FormClosing);
             this.Load += new System.EventHandler(this.ads000_01_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ads000_06_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ads000_06_MouseMove);

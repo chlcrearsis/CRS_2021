@@ -351,30 +351,14 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
-        
-        private void mn_con_sul_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         // Evento Click: Consulta Registro
-        private void mn_con_reg_Click(object sender, EventArgs e)
+        private void mn_con_sul_Click(object sender, EventArgs e)
         {
             // Verifica concurrencia de datos para consultar
             if (fi_ver_dat(tb_ide_tus.Text) == false)
                 return;
 
             ads006_05 frm = new ads006_05();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        private void mn_con_per_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para informe
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads006_R03p frm = new ads006_R03p();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
@@ -389,119 +373,11 @@ namespace CRS_PRE
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
-        // Evento Click: Permiso Plantilla de Venta
-        private void mn_per_plv_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_03 frm = new ads009_03();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        // Evento Click: Permiso Aplicación
-        private void mn_per_apl_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_01 frm = new ads009_01();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-
-        }
-
-        // Evento Click: Permiso Lista de Precio
-        private void mn_per_lis_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_04 frm = new ads009_04();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        private void mn_per_gdp_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_06 frm = new ads009_06();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        private void mn_per_ven_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_07 frm = new ads009_07();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        private void mn_per_cob_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_08 frm = new ads009_08();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        // Evento Click: Permiso Grupo de Bodega
-        private void mn_per_gdb_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_09 frm = new ads009_09();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        // Evento Click: Permiso Bodega
-        private void mn_per_bod_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_05 frm = new ads009_05();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
-        // Evento Click: Permiso Talonario
-        private void mn_per_tal_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads009_02 frm = new ads009_02();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
-        }
-
         // Evento Click: Lista Tipo de Usuario
         private void mn_lis_tus_Click(object sender, EventArgs e)
         {
             ads006_R01p frm = new ads006_R01p();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
-        }
-
-        // Evento Click: Autorizaciones Tipo de Usuario
-        private void mn_lis_atu_Click(object sender, EventArgs e)
-        {
-            // Verifica concurrencia de datos para el permiso
-            if (fi_ver_dat(tb_ide_tus.Text) == false)
-                return;
-
-            ads006_R03p frm = new ads006_R03p();
-            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
         }
 
         // Evento Click: Salir
@@ -534,6 +410,8 @@ namespace CRS_PRE
                 cl_glo_frm.Cerrar(this);
             }
         }
+
+        
 
         
     }

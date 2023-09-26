@@ -23,6 +23,7 @@ namespace CRS_PRE
         adp002 o_adp002 = new adp002();
         ecp003 o_ecp003 = new ecp003();
 
+        int ve_lib_per = 0; //** Libreta de la persona
 
         // Variables
         DataTable tabla = new DataTable();
@@ -44,7 +45,7 @@ namespace CRS_PRE
         {
             if (tb_sel_ecc.Text.Trim() == "")
             {
-                MessageBox.Show("Debe proporcionar un codigo de proveedor valido", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Debe proporcionar un codigo de persona valido", "Error", MessageBoxButtons.OK);
                 //tb_cod_per.Focus();
             }
 
@@ -122,7 +123,8 @@ namespace CRS_PRE
                         dg_res_ult.Rows[i].Cells["va_est_ado"].Value = "Deshabilitado";
                 
                 }
-                //tb_sel_ecc.Text = tabla.Rows[0]["va_cod_lib"].ToString();
+                ve_lib_per = int.Parse(tabla.Rows[0]["va_cod_lib"].ToString());
+                tb_sel_ecc.Text = frm_dat.Rows[0]["va_cod_per"].ToString();
 
             }
 
@@ -209,9 +211,15 @@ namespace CRS_PRE
             if (dg_res_ult.SelectedRows.Count != 0)
             {
                 if (dg_res_ult.SelectedRows[0].Cells[0].Value == null)
-                    tb_sel_ecc.Text = "";
+                { 
+                    tb_sel_ecc.Text = ""; //** Persona
+                    
+                }
                 else
-                    tb_sel_ecc.Text = dg_res_ult.SelectedRows[0].Cells[0].Value.ToString();
+                {
+                    ve_lib_per = int.Parse(tabla.Rows[0]["va_cod_lib"].ToString());
+                    //tb_sel_ecc.Text = frm_dat.Rows[0]["va_cod_per"].ToString();
+                }
             }
         }
 
@@ -225,8 +233,8 @@ namespace CRS_PRE
             if(cl_glo_bal.IsDecimal(tb_sel_ecc.Text) ==false)
                 res_fun = "la suscripción no es valido.";
 
-            frm_dat = o_ecp003.Fe_con_sus(0, int.Parse(tb_sel_ecc.Text));
-            if (tabla.Rows.Count == 0)
+            frm_dat = o_ecp003.Fe_con_sus(ve_lib_per, int.Parse(tb_sel_ecc.Text));
+            if (frm_dat.Rows.Count == 0)
             {
                 res_fun = "la suscripción no se encuentra registrado";
             }
@@ -242,6 +250,7 @@ namespace CRS_PRE
             return true;
         }
      
+    
         #endregion
 
         private void Tb_sel_bus_Validated(object sender, EventArgs e)
@@ -302,8 +311,8 @@ namespace CRS_PRE
             if (fi_ver_dat() == false)
                 return;
 
-            //ecp003_03 frm = new ecp003_03();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, tab_dat);
+            ecp003_03 frm = new ecp003_03();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, frm_dat);
         }
        
       
@@ -335,17 +344,12 @@ namespace CRS_PRE
             ecp001_06 frm = new ecp001_06();
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, frm_dat);
         }
-        private void mn_nue_ccp_Click(object sender, EventArgs e)
-        {
-            //ecp003_02 frm = new ecp003_02();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
+     
+        private void mn_nue_ins_Click(object sender, EventArgs e)
+        {            
+            ecp003_02 frm = new ecp003_02();
+            cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si, frm_dat);
         }
-        private void mn_nue_tes_Click(object sender, EventArgs e)
-        {
-            //ecp003_02b frm = new ecp003_02b();
-            //cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.si);
-        }
-
         private void mn_atr_ass_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);

@@ -88,28 +88,38 @@ namespace CRS_PRE
         protected string Fi_val_dat()
         {
             // Valida que el campo ID. Documento NO este vacio
-            if (tb_ide_doc.Text.Trim() == "")
+            if (tb_ide_doc.Text.Trim() == ""){
+                tb_ide_doc.Focus();
                 return "DEBE proporcionar el ID. Documento";
+            }
 
             // Verifica SI el Módulo se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads003.Fe_con_doc(tb_ide_doc.Text);
-            if (Tabla.Rows.Count == 0)
+            if (Tabla.Rows.Count == 0){
+                tb_ide_doc.Focus();
                 return "El Documento seleccionado NO se encuentra registrado";
+            }            
 
             // Valida que el campo Nro. Talonario
-            if (tb_nro_tal.Text.Trim() == "")
+            if (tb_nro_tal.Text.Trim() == ""){
+                tb_nro_tal.Focus();
                 return "DEBE proporcionar el Nro. Talonario";
+            }
 
             // Valida que el campo código sea un valor válido
-            if (!cl_glo_bal.IsNumeric(tb_nro_tal.Text.Trim()))
+            if (!cl_glo_bal.IsNumeric(tb_nro_tal.Text.Trim())){
+                tb_nro_tal.Focus();
                 return "El Nro. Talonario NO es válido";
+            }
 
             // Verifica SI el Talonario se encuentra registrado
             Tabla = new DataTable();
             Tabla = o_ads004.Fe_con_tal(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            if (Tabla.Rows.Count == 0)
+            if (Tabla.Rows.Count == 0){
+                tb_nro_tal.Focus();
                 return "El Talonario que desea modificar NO se encuentra registrado " + tb_ide_doc.Text + " : " + tb_nro_tal.Text;
+            }
 
             // Valida que el Talonraio NO este habilitado
             if (tb_est_ado.Text == "Habilitado")
@@ -118,7 +128,7 @@ namespace CRS_PRE
             // Verifica SI existen Control Numeración que hacen referencia al Talonario
             Tabla = new DataTable();
             Tabla = o_ads005.Fe_con_tal(tb_ide_doc.Text, int.Parse(tb_nro_tal.Text));
-            if (Tabla.Rows.Count > 0)
+            if (Tabla.Rows.Count == 0)
                 return "No se puede Eliminar. Existen " + Tabla.Rows.Count + " Control Numeración que hacen referencia al Talonario";
 
             return "OK";

@@ -166,7 +166,7 @@ namespace CRS_PRE
             }
         }
 
-        // Evento KeyDown: ID. Módulo Inicial
+        // Evento Click: ID. Módulo Inicial
         private void tb_mod_ini_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
@@ -177,7 +177,7 @@ namespace CRS_PRE
             }
         }
 
-        // Evento KeyDown: ID. Módulo Final
+        // Evento Click: ID. Módulo Final
         private void tb_mod_fin_KeyDown(object sender, KeyEventArgs e)
         {
             //al presionar tecla para ARRIBA
@@ -243,11 +243,10 @@ namespace CRS_PRE
             Tabla = o_ads002.Fe_inf_R01(est_ado, mod_ini, mod_fin);
 
             // Genera el Informe
-            ads002_R01w frm = new ads002_R01w{
-                vp_est_ado = est_ado,
-                vp_mod_ini = mod_ini,
-                vp_mod_fin = mod_fin
-            };
+            ads002_R01w frm = new ads002_R01w();
+            frm.vp_est_ado = est_ado;
+            frm.vp_mod_ini = mod_ini;
+            frm.vp_mod_fin = mod_fin;
             cl_glo_frm.abrir(this, frm, cl_glo_frm.ventana.nada, cl_glo_frm.ctr_btn.no, Tabla);
         }
 

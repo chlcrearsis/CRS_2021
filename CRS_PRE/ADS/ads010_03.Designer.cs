@@ -52,7 +52,7 @@
             this.groupBox1.Controls.Add(this.tb_nom_tip);
             this.groupBox1.Controls.Add(this.lb_tip_ima);
             this.groupBox1.Controls.Add(this.tb_ide_tip);
-            this.groupBox1.Location = new System.Drawing.Point(4, -4);
+            this.groupBox1.Location = new System.Drawing.Point(3, -3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(360, 86);
             this.groupBox1.TabIndex = 0;
@@ -132,7 +132,7 @@
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 76);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 78);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(360, 44);
             this.gb_ctr_btn.TabIndex = 1;
@@ -170,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 122);
+            this.ClientSize = new System.Drawing.Size(366, 124);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);

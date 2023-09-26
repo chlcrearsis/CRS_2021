@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CRS_NEG;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace CRS_PRE
@@ -237,7 +238,7 @@ namespace CRS_PRE
         // Evento Click : Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
-            // Devuelve Cancel Como resultado
+            // Devuelve Estado de Respuesta
             DialogResult = DialogResult.Cancel;
             // Cierra Formulario
             cl_glo_frm.Cerrar(this);

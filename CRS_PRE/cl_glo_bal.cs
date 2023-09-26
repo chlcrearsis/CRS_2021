@@ -55,7 +55,7 @@ namespace CRS_PRE
         /// <summary>
         /// Verifica que el valor sea FECHA valida
         /// </summary>
-        /// <param name="date">Fecha Formato dd/MM/yyyy</param>
+        /// <param name="date"></param>
         /// <returns></returns>
         public static bool IsDateTime(string date)
         {
@@ -69,27 +69,6 @@ namespace CRS_PRE
             isValid = DateTime.TryParseExact(date, "dd/MM/yyyy", new CultureInfo("es-MX"), DateTimeStyles.None, out dt);
             if (isValid)            
                 return true;            
-            else
-                return false;
-        }
-
-        /// <summary>
-        /// Verifica que el valor sea FECHA valida
-        /// </summary>
-        /// <param name="hour">Hora y Minuto HH:mm</param>
-        /// <returns></returns>
-        public static bool IsHourTime(string hour)
-        {
-            Regex regex = new Regex(@"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
-
-            // Verifique si la fecha ingresada en formato HH:mm.
-            bool isValid = regex.IsMatch(hour);
-
-            // Verifique si la fecha ingresada es una fecha válida.            
-            DateTime dt;
-            isValid = DateTime.TryParseExact(hour, "HH:mm", new CultureInfo("es-MX"), DateTimeStyles.None, out dt);
-            if (isValid)
-                return true;
             else
                 return false;
         }

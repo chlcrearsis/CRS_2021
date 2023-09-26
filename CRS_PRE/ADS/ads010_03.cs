@@ -84,9 +84,10 @@ namespace CRS_PRE
             Tabla = o_ads010.Fe_con_tip(tb_ide_tip.Text);
             if (Tabla.Rows.Count == 0){
                 tb_ide_tip.Focus();
-                return "No Existe ningún Tipo de Imagen con ese ID.";
+                return "No Existe ningún Tipo de Imagen con ese Código";
             }
             // Valida que no exista otro registro con el mismo nombre
+            Tabla = new DataTable();
             Tabla = o_ads010.Fe_con_nom(tb_nom_tip.Text.Trim(), tb_ide_tip.Text);
             Tabla = new DataTable();
             if (Tabla.Rows.Count > 0){
@@ -97,7 +98,7 @@ namespace CRS_PRE
             return "OK";
         }
 
-               
+        // Evento Click: Button Aceptar       
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
             DialogResult msg_res;

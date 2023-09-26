@@ -1,10 +1,6 @@
 ﻿using CRS_DAT;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CRS_NEG
 {
@@ -26,8 +22,6 @@ namespace CRS_NEG
         public string va_pas_usr;//= ob_con_ecA.va_pas_usr;
 
         string cadena = "";
-
-
 
         public ads012()
         {
