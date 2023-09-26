@@ -54,7 +54,7 @@
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(360, 86);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // tb_ide_tab
@@ -65,7 +65,7 @@
             this.tb_ide_tab.Name = "tb_ide_tab";
             this.tb_ide_tab.ReadOnly = true;
             this.tb_ide_tab.Size = new System.Drawing.Size(98, 20);
-            this.tb_ide_tab.TabIndex = 7;
+            this.tb_ide_tab.TabIndex = 4;
             // 
             // tb_est_ado
             // 
@@ -133,7 +133,7 @@
             this.gb_ctr_btn.Location = new System.Drawing.Point(4, 76);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(360, 44);
-            this.gb_ctr_btn.TabIndex = 5;
+            this.gb_ctr_btn.TabIndex = 1;
             this.gb_ctr_btn.TabStop = false;
             // 
             // bt_can_cel
@@ -145,7 +145,7 @@
             this.bt_can_cel.Location = new System.Drawing.Point(272, 12);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
-            this.bt_can_cel.TabIndex = 1;
+            this.bt_can_cel.TabIndex = 0;
             this.bt_can_cel.Text = "&Cancelar";
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);

@@ -107,9 +107,9 @@ namespace CRS_DAT
 
                 return "OK";
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
-                return ex.Message;
+                return "ERROR";
             }
         }
 

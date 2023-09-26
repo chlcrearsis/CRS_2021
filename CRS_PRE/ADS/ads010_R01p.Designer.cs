@@ -1,6 +1,6 @@
 ﻿namespace CRS_PRE
 {
-    partial class ads010_03
+    partial class ads010_R01p
     {
         /// <summary>
         /// Required designer variable.
@@ -29,112 +29,93 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tb_est_ado = new System.Windows.Forms.TextBox();
+            this.cb_est_ado = new System.Windows.Forms.ComboBox();
             this.lb_est_ado = new System.Windows.Forms.Label();
-            this.lb_ide_tab = new System.Windows.Forms.Label();
-            this.cb_ide_tab = new System.Windows.Forms.ComboBox();
-            this.tb_nom_tip = new System.Windows.Forms.TextBox();
-            this.lb_tip_ima = new System.Windows.Forms.Label();
-            this.tb_ide_tip = new System.Windows.Forms.TextBox();
+            this.gb_ord_por = new System.Windows.Forms.GroupBox();
+            this.rb_ord_des = new System.Windows.Forms.RadioButton();
+            this.rb_ord_cod = new System.Windows.Forms.RadioButton();
             this.gb_ctr_btn = new System.Windows.Forms.GroupBox();
             this.bt_ace_pta = new System.Windows.Forms.Button();
             this.bt_can_cel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.gb_ord_por.SuspendLayout();
             this.gb_ctr_btn.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tb_est_ado);
+            this.groupBox1.Controls.Add(this.cb_est_ado);
             this.groupBox1.Controls.Add(this.lb_est_ado);
-            this.groupBox1.Controls.Add(this.lb_ide_tab);
-            this.groupBox1.Controls.Add(this.cb_ide_tab);
-            this.groupBox1.Controls.Add(this.tb_nom_tip);
-            this.groupBox1.Controls.Add(this.lb_tip_ima);
-            this.groupBox1.Controls.Add(this.tb_ide_tip);
-            this.groupBox1.Location = new System.Drawing.Point(4, -4);
+            this.groupBox1.Controls.Add(this.gb_ord_por);
+            this.groupBox1.Location = new System.Drawing.Point(3, -4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(360, 86);
+            this.groupBox1.Size = new System.Drawing.Size(267, 101);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // tb_est_ado
+            // cb_est_ado
             // 
-            this.tb_est_ado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_est_ado.Location = new System.Drawing.Point(246, 48);
-            this.tb_est_ado.MaxLength = 20;
-            this.tb_est_ado.Name = "tb_est_ado";
-            this.tb_est_ado.Size = new System.Drawing.Size(92, 20);
-            this.tb_est_ado.TabIndex = 6;
+            this.cb_est_ado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_est_ado.FormattingEnabled = true;
+            this.cb_est_ado.Items.AddRange(new object[] {
+            "Todos",
+            "Habilitado",
+            "Deshabilitado"});
+            this.cb_est_ado.Location = new System.Drawing.Point(90, 24);
+            this.cb_est_ado.Name = "cb_est_ado";
+            this.cb_est_ado.Size = new System.Drawing.Size(105, 21);
+            this.cb_est_ado.TabIndex = 1;
             // 
             // lb_est_ado
             // 
             this.lb_est_ado.AutoSize = true;
-            this.lb_est_ado.Location = new System.Drawing.Point(204, 52);
+            this.lb_est_ado.Location = new System.Drawing.Point(48, 27);
             this.lb_est_ado.Name = "lb_est_ado";
             this.lb_est_ado.Size = new System.Drawing.Size(40, 13);
-            this.lb_est_ado.TabIndex = 5;
+            this.lb_est_ado.TabIndex = 0;
             this.lb_est_ado.Text = "Estado";
             // 
-            // lb_ide_tab
+            // gb_ord_por
             // 
-            this.lb_ide_tab.AutoSize = true;
-            this.lb_ide_tab.Location = new System.Drawing.Point(35, 52);
-            this.lb_ide_tab.Name = "lb_ide_tab";
-            this.lb_ide_tab.Size = new System.Drawing.Size(49, 13);
-            this.lb_ide_tab.TabIndex = 3;
-            this.lb_ide_tab.Text = "Relación";
+            this.gb_ord_por.Controls.Add(this.rb_ord_des);
+            this.gb_ord_por.Controls.Add(this.rb_ord_cod);
+            this.gb_ord_por.Location = new System.Drawing.Point(11, 54);
+            this.gb_ord_por.Name = "gb_ord_por";
+            this.gb_ord_por.Size = new System.Drawing.Size(243, 41);
+            this.gb_ord_por.TabIndex = 2;
+            this.gb_ord_por.TabStop = false;
+            this.gb_ord_por.Text = "Ordenado por";
             // 
-            // cb_ide_tab
+            // rb_ord_des
             // 
-            this.cb_ide_tab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_ide_tab.FormattingEnabled = true;
-            this.cb_ide_tab.Items.AddRange(new object[] {
-            "Persona",
-            "Producto"});
-            this.cb_ide_tab.Location = new System.Drawing.Point(87, 48);
-            this.cb_ide_tab.Name = "cb_ide_tab";
-            this.cb_ide_tab.Size = new System.Drawing.Size(98, 21);
-            this.cb_ide_tab.TabIndex = 4;
+            this.rb_ord_des.AutoSize = true;
+            this.rb_ord_des.Location = new System.Drawing.Point(134, 15);
+            this.rb_ord_des.Name = "rb_ord_des";
+            this.rb_ord_des.Size = new System.Drawing.Size(81, 17);
+            this.rb_ord_des.TabIndex = 1;
+            this.rb_ord_des.TabStop = true;
+            this.rb_ord_des.Text = "Descripción";
+            this.rb_ord_des.UseVisualStyleBackColor = true;
             // 
-            // tb_nom_tip
+            // rb_ord_cod
             // 
-            this.tb_nom_tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_nom_tip.Location = new System.Drawing.Point(127, 22);
-            this.tb_nom_tip.MaxLength = 20;
-            this.tb_nom_tip.Name = "tb_nom_tip";
-            this.tb_nom_tip.Size = new System.Drawing.Size(211, 20);
-            this.tb_nom_tip.TabIndex = 2;
-            // 
-            // lb_tip_ima
-            // 
-            this.lb_tip_ima.AutoSize = true;
-            this.lb_tip_ima.Location = new System.Drawing.Point(6, 25);
-            this.lb_tip_ima.Name = "lb_tip_ima";
-            this.lb_tip_ima.Size = new System.Drawing.Size(81, 13);
-            this.lb_tip_ima.TabIndex = 0;
-            this.lb_tip_ima.Text = "Tipo de Imagen";
-            // 
-            // tb_ide_tip
-            // 
-            this.tb_ide_tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ide_tip.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_ide_tip.Location = new System.Drawing.Point(89, 22);
-            this.tb_ide_tip.MaxLength = 2;
-            this.tb_ide_tip.Name = "tb_ide_tip";
-            this.tb_ide_tip.ReadOnly = true;
-            this.tb_ide_tip.Size = new System.Drawing.Size(36, 20);
-            this.tb_ide_tip.TabIndex = 1;
-            this.tb_ide_tip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.rb_ord_cod.AutoSize = true;
+            this.rb_ord_cod.Location = new System.Drawing.Point(51, 15);
+            this.rb_ord_cod.Name = "rb_ord_cod";
+            this.rb_ord_cod.Size = new System.Drawing.Size(58, 17);
+            this.rb_ord_cod.TabIndex = 0;
+            this.rb_ord_cod.TabStop = true;
+            this.rb_ord_cod.Text = "Código";
+            this.rb_ord_cod.UseVisualStyleBackColor = true;
             // 
             // gb_ctr_btn
             // 
             this.gb_ctr_btn.Controls.Add(this.bt_ace_pta);
             this.gb_ctr_btn.Controls.Add(this.bt_can_cel);
             this.gb_ctr_btn.Enabled = false;
-            this.gb_ctr_btn.Location = new System.Drawing.Point(4, 76);
+            this.gb_ctr_btn.Location = new System.Drawing.Point(3, 91);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
-            this.gb_ctr_btn.Size = new System.Drawing.Size(360, 44);
+            this.gb_ctr_btn.Size = new System.Drawing.Size(267, 40);
             this.gb_ctr_btn.TabIndex = 1;
             this.gb_ctr_btn.TabStop = false;
             // 
@@ -144,7 +125,7 @@
             this.bt_ace_pta.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.bt_ace_pta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_ace_pta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_ace_pta.Location = new System.Drawing.Point(201, 12);
+            this.bt_ace_pta.Location = new System.Drawing.Point(108, 10);
             this.bt_ace_pta.Name = "bt_ace_pta";
             this.bt_ace_pta.Size = new System.Drawing.Size(75, 25);
             this.bt_ace_pta.TabIndex = 0;
@@ -158,7 +139,7 @@
             this.bt_can_cel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bt_can_cel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_can_cel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_can_cel.Location = new System.Drawing.Point(280, 12);
+            this.bt_can_cel.Location = new System.Drawing.Point(187, 10);
             this.bt_can_cel.Name = "bt_can_cel";
             this.bt_can_cel.Size = new System.Drawing.Size(75, 25);
             this.bt_can_cel.TabIndex = 1;
@@ -166,40 +147,40 @@
             this.bt_can_cel.UseVisualStyleBackColor = false;
             this.bt_can_cel.Click += new System.EventHandler(this.bt_can_cel_Click);
             // 
-            // ads010_03
+            // ads010_R01p
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 122);
+            this.ClientSize = new System.Drawing.Size(272, 132);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_ctr_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ads010_03";
-            this.Tag = "Edita Modulo";
-            this.Text = "Edita Tipo Imagen";
+            this.Name = "ads010_R01p";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "Informe Módulo del Sistema";
+            this.Text = "Informe Tipos de Imagen";
             this.Load += new System.EventHandler(this.frm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gb_ord_por.ResumeLayout(false);
+            this.gb_ord_por.PerformLayout();
             this.gb_ctr_btn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lb_ide_tab;
-        private System.Windows.Forms.ComboBox cb_ide_tab;
-        private System.Windows.Forms.TextBox tb_nom_tip;
-        private System.Windows.Forms.Label lb_tip_ima;
-        private System.Windows.Forms.TextBox tb_ide_tip;
         public System.Windows.Forms.GroupBox gb_ctr_btn;
+        private System.Windows.Forms.RadioButton rb_ord_des;
+        private System.Windows.Forms.RadioButton rb_ord_cod;
+        private System.Windows.Forms.GroupBox gb_ord_por;
+        private System.Windows.Forms.ComboBox cb_est_ado;
+        private System.Windows.Forms.Label lb_est_ado;
         private System.Windows.Forms.Button bt_ace_pta;
         private System.Windows.Forms.Button bt_can_cel;
-        private System.Windows.Forms.TextBox tb_est_ado;
-        private System.Windows.Forms.Label lb_est_ado;
     }
 }

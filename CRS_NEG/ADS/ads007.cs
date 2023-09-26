@@ -198,9 +198,8 @@ namespace CRS_NEG
         public string Fe_ing_sis(string ide_usr, string pas_usr)
         {
             try
-            {
-                ob_con_ecA.Fe_log_sql(ide_usr, pas_usr);
-                return ob_con_ecA.fe_abr_cnx();
+            {                
+                return ob_con_ecA.Fe_log_sql(ide_usr, pas_usr);
             }
             catch (Exception ex)
             {

@@ -90,7 +90,7 @@ namespace CRS_NEG
         /// Funcion "ELIMINA TIPO DE IMAGEN"
         /// </summary>
         /// <param name="ide_tip">ID. Tipo Imagen</param>
-        public void Fe_eli_tip(string ide_tip)
+        public void Fe_eli_min(string ide_tip)
         {
             try
             {
@@ -174,11 +174,54 @@ namespace CRS_NEG
             try
             {
                 cadena = new StringBuilder();
-                cadena.AppendLine("SELECT va_ide_tip, va_nom_tip, va_atr_def, va_est_ado");
-                cadena.AppendLine("  FROM adp003");
+                cadena.AppendLine("SELECT va_ide_tip, va_nom_tip, va_ide_tab, va_est_ado");
+                cadena.AppendLine("  FROM ads010");
                 cadena.AppendLine(" WHERE va_nom_tip = '" + nom_tip + "'");
                 if (ide_tip.CompareTo("") != 0)
                     cadena.AppendLine(" AND va_ide_tip <> '" + ide_tip + "'");
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Funcion consultar "LISTA TIPOS DE IMAGEN"
+        /// </summary>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <returns></returns>
+        public DataTable Fe_lis_tip(string est_ado = "T")
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("SELECT va_ide_tip, va_nom_tip, va_ide_tab, va_est_ado");
+                cadena.AppendLine("  FROM ads010");
+                if (est_ado != "T")
+                    cadena.AppendLine(" WHERE va_est_ado = '" + est_ado + "'");
+
+                return ob_con_ecA.fe_exe_sql(cadena.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Informe: Tipos de Imagen 
+        /// </summary>
+        /// <param name="est_ado">Estado (T=Todos; H=Habilitado; N=Deshabilitado)</param>
+        /// <param name="ord_dat">Ordenar Por (C=Código; D=Descripción)</param>
+        /// <returns></returns>
+        public DataTable Fe_inf_R01(string est_ado, string ord_dat)
+        {
+            try
+            {
+                cadena = new StringBuilder();
+                cadena.AppendLine("EXECUTE ads010_R01 '" + est_ado + "', '" + ord_dat + "'");
                 return ob_con_ecA.fe_exe_sql(cadena.ToString());
             }
             catch (Exception ex)

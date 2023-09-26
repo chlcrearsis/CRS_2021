@@ -354,13 +354,11 @@ namespace CRS_PRE
                     frm_pad = this.ActiveMdiChild;
             }
             
-            if (frm_pad != null)
+            if (frm_pad != null) { 
                 cl_glo_frm.abrir(frm_pad, o_frm, cl_glo_frm.ventana.modal, cl_glo_frm.ctr_btn.si);
-            else
-                return;
-
-            if (o_frm.DialogResult == DialogResult.OK)
-                cl_glo_bal.fg_per_mnu(o_frm.tb_usr_ges.Text, frm_pad);
+                if (o_frm.DialogResult == DialogResult.OK)
+                    cl_glo_bal.fg_per_mnu(o_frm.tb_usr_ges.Text, frm_pad);
+            }
         }
 
 

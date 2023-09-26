@@ -55,7 +55,7 @@
             this.groupBox1.Location = new System.Drawing.Point(4, -4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(360, 86);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // tb_ide_tab
@@ -66,7 +66,7 @@
             this.tb_ide_tab.Name = "tb_ide_tab";
             this.tb_ide_tab.ReadOnly = true;
             this.tb_ide_tab.Size = new System.Drawing.Size(98, 20);
-            this.tb_ide_tab.TabIndex = 7;
+            this.tb_ide_tab.TabIndex = 4;
             // 
             // tb_est_ado
             // 
@@ -135,7 +135,7 @@
             this.gb_ctr_btn.Location = new System.Drawing.Point(4, 76);
             this.gb_ctr_btn.Name = "gb_ctr_btn";
             this.gb_ctr_btn.Size = new System.Drawing.Size(360, 44);
-            this.gb_ctr_btn.TabIndex = 3;
+            this.gb_ctr_btn.TabIndex = 1;
             this.gb_ctr_btn.TabStop = false;
             // 
             // bt_ace_pta

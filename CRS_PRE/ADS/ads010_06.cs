@@ -6,17 +6,21 @@ using CRS_NEG;
 
 namespace CRS_PRE
 {
+    /**********************************************************************/
+    /*      Módulo: ADS - ADMINISTRACIÓN Y SEGURIDAD                      */
+    /*  Aplicación: ads001 - Módulo del Sistema                           */
+    /*      Opción: Elimina Registro                                      */
+    /*       Autor: JEJR - Crearsis             Fecha: 18-08-2022         */
+    /**********************************************************************/
     public partial class ads010_06 : Form
     {
-
         public dynamic frm_pad;
         public int frm_tip;
         public DataTable frm_dat;
-
-        //Instancias
+        // Instancias
         ads010 o_ads010 = new ads010();
+        ads002 o_ads002 = new ads002();
         DataTable Tabla = new DataTable();
-        string Titulo = "Elimina Tipo de Imagen";
 
         public ads010_06()
         {
@@ -25,11 +29,13 @@ namespace CRS_PRE
       
         private void frm_Load(object sender, EventArgs e)
         {
+            // Limpia Campos
+            Fi_lim_pia();
+
+            // Despliega Datos en Pantalla
             tb_ide_tip.Text = frm_dat.Rows[0]["va_ide_tip"].ToString();
             tb_nom_tip.Text = frm_dat.Rows[0]["va_nom_tip"].ToString();
-
-            switch (frm_dat.Rows[0]["va_ide_tab"].ToString())
-            {
+            switch (frm_dat.Rows[0]["va_ide_tab"].ToString()){
                 case "adp002":
                     tb_ide_tab.Text = "Persona";
                     break;
@@ -37,64 +43,75 @@ namespace CRS_PRE
                     tb_ide_tab.Text = "Producto";
                     break;
             }
-
             if (frm_dat.Rows[0]["va_est_ado"].ToString() == "H")
                 tb_est_ado.Text = "Habilitado";
             else
                 tb_est_ado.Text = "Deshabilitado";
         }
 
+        // Limpia e Iniciliza los campos
+        private void Fi_lim_pia()
+        {
+            tb_ide_tip.Text = string.Empty;
+            tb_nom_tip.Text = string.Empty;
+            tb_ide_tab.Text = string.Empty;
+            tb_est_ado.Text = string.Empty;
+        }
+
+        // Valida los datos proporcionados
         protected string Fi_val_dat()
         {
-
+            // Valida que el campo ID. Tipo Imagen NO este vacio
             if (tb_ide_tip.Text.Trim() == "")
-                return "DEBE proporcionar el ID. Tipo de Imagen";            
+                return "DEBE proporcionar el ID. Tipo de Imagen";
 
+            // Valida que el Tipo de Imagen NO este deshabilitado
             if (tb_est_ado.Text == "Habilitado")
-                return "El Tipo de Imagen esta Habilitado";            
+                return "El Tipo de Imagen esta Habilitado";
 
             // Valida que no exista otro registro con el mismo ID
+            Tabla = new DataTable();
             Tabla = o_ads010.Fe_con_tip(tb_ide_tip.Text);
             if (Tabla.Rows.Count == 0)            
                 return "No Existe ningún Tipo de Imagen con ese ID.";           
                        
-           return "";
-        }              
+           return "OK";
+        }
 
+        // Evento Click: Button Aceptar
         private void bt_ace_pta_Click(object sender, EventArgs e)
         {
+            DialogResult msg_res;
+
             try
             {
-                string msg_val = "";
-                DialogResult msg_res;
-
                 // funcion para validar datos
-                msg_val = Fi_val_dat();
-                if (msg_val != "")
+                string msg_val = Fi_val_dat();
+                if (msg_val != "OK")
                 {
                     MessageBox.Show(msg_val, "Error", MessageBoxButtons.OK);
                     return;
                 }
-
-                msg_res = MessageBox.Show("Esta seguro de Eliminar el Tipo de Imagen?", Titulo, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-               
+                msg_res = MessageBox.Show("Está seguro de eliminar el registro?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg_res == DialogResult.OK)
                 {
-                    o_ads010.Fe_eli_tip(tb_ide_tip.Text);                    
-                    MessageBox.Show("Los Datos se grabaron correctamente", Titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //Actualiza ventana buscar
-                    frm_pad.Fe_act_frm(tb_ide_tip.Text);
+                    // Elimina el registro
+                    o_ads010.Fe_eli_min(tb_ide_tip.Text.Trim());
+                    // Actualiza el Formulario Principal
+                    frm_pad.Fe_act_frm(tb_ide_tip.Text.Trim());
+                    // Despliega Mensaje
+                    MessageBox.Show("Los datos se grabaron correctamente", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Cierra Formulario
                     cl_glo_frm.Cerrar(this);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
+        // Evento Click: Button Cancelar
         private void bt_can_cel_Click(object sender, EventArgs e)
         {
             cl_glo_frm.Cerrar(this);
